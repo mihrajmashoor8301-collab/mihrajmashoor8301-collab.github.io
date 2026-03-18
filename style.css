@@ -1,0 +1,121 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, rgb(224, 231, 118),rgb(128, 185, 227));
+}
+    #h11{ 
+        background-color: transparent;color: rgb(0, 0, 0);
+        text-align: center;
+        margin-top: 50px;
+        text-decoration: underline;
+        text-decoration: thickness 5px;
+    }
+    
+    
+    p {
+    font-size: 30px;
+    line-height: 1.6;
+      color: white;
+    max-width: 700px;
+    margin: 40px auto;
+    text-align: justify;   /* better readability */
+}
+.container{
+   background: white;
+    padding: 30px;
+    max-width: 1200px;
+    
+    margin:  80px auto;
+    width: 90%;
+    display: flex;
+    min-height: 700px;
+    border-radius: 10px;
+    overflow: hidden;
+    gap: 20px;
+    justify-content: space-between;
+    justify-content: center;
+    align-items: stretch;
+    min-width: 1200px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+
+}
+.left,.right{
+    flex: 1;
+    padding: 40px;
+    
+
+}
+.left{ background-color:  rgb(220, 122, 122);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-right: 2px solid rgba(0,0,0,0.1);
+    border-radius: 10px;
+
+
+}
+
+.right{ background-color:rgb(69, 157, 220);
+color: white;
+border-radius: 10px;
+}
+#button1 {
+    background-color: tomato;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+    margin: 10px 850px;
+    transition: 0.3s;
+    cursor: pointer;
+    
+    
+}
+
+#h112{
+    text-align: center;
+    color: black;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
+#name1{
+    text-align: center;
+   color: white;
+   
+    font-size: 40px;
+    
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 15px;font-weight: bold;
+ 
+}
+#dp1{ 
+    width: 200px;
+height: 200px;
+border-radius: 50%;
+object-fit: cover;
+margin-top: 50px;
+border: 2px solid white;}
+p1{
+    font-size: 20px;
+    line-height: 1.6;
+    color: white;
+    max-width: 400px;
+    margin-top: 2px;
+    
+    
+    text-align: center /* better readability */
+}
+p{letter-spacing: 0.5px;
+    word-spacing: 2px;}
+    .container:hover {
+    transform: scale(1.02);
+    transition: 0.3s;
+}
+#button1:hover {
+    background-color: darkred;
+    transform: scale(1.1);
+}
