@@ -1,34 +1,72 @@
 <!DOCTYPE html>
-<head><title>My Portfolio</title> <link rel="stylesheet" href="style.css">
-     <link rel="icon" href="logo2.png" ></head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mihraj Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
 <body>
-    <h1 id="h112">Welcome to My Portfolio</h1>
-    <div class="container" >
-        <div class="left">
-            
-            
-            
-            <img src="dp4.jpeg" alt="My Picture" id="dp1">
-            <h1 id="name1">Mihraj Mashhoor K</h1>
-            <p id="p1">Cybersecurity Enthusiast </p>
-        
-        
-        </div>
 
-    <div class="right"> 
-    <h1 id="h11">About Me</h1>
+<!-- NAVBAR -->
+<nav>
+    <h2>Mihraj</h2>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+    </ul>
+</nav>
 
-    <p>I am a tech enthusiast with a strong interest in cybersecurity and web development.
-         I enjoy understanding how systems can be secured and exploring different aspects of ethical hacking.
-         Alongside this, I build web projects to improve my development skills and bring ideas to life.
-    </p>
-    <p>
-        
+<!-- HERO SECTION -->
+<section class="hero">
+    <h1>Welcome to My Portfolio</h1>
+    <p>Cybersecurity Enthusiast | Web Developer</p>
+</section>
 
+<!-- MAIN CONTAINER -->
+<div class="container">
 
-    </p></div></div>
+    <!-- LEFT -->
+    <div class="left">
+        <img src="your-image.jpg" alt="profile">
+        <h2>Mihraj Mashhoor K</h2>
+        <p>Cybersecurity Enthusiast</p>
+    </div>
 
+    <!-- RIGHT -->
+    <div class="right" id="about">
+        <h2>About Me</h2>
+        <p>
+            I am a tech enthusiast with a strong interest in cybersecurity and web development.
+            I enjoy understanding how systems can be secured and exploring ethical hacking.
+            I build web projects to improve my skills and bring ideas to life.
+        </p>
+    </div>
 
-<button id="button1">Click Here</button>
+</div>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+    <h2>Projects</h2>
+
+    <div class="project-box">
+        <h3>Portfolio Website</h3>
+        <p>My personal portfolio built using HTML & CSS.</p>
+    </div>
+
+    <div class="project-box">
+        <h3>Password Generator</h3>
+        <p>Secure password generator using Python.</p>
+    </div>
+
+</section>
+
+<!-- BUTTON -->
+<div class="center">
+    <button id="button1">Contact Me</button>
+</div>
+
 </body>
-    </html>
+</html>
