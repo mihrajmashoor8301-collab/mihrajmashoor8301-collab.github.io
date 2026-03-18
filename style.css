@@ -1,121 +1,119 @@
+/* RESET */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, rgb(224, 231, 118),rgb(128, 185, 227));
+    background: linear-gradient(to right, #c9d6ff, #e2e2e2);
 }
-    #h11{ 
-        background-color: transparent;color: rgb(0, 0, 0);
-        text-align: center;
-        margin-top: 50px;
-        text-decoration: underline;
-        text-decoration: thickness 5px;
-    }
-    
-    
-    p {
-    font-size: 30px;
-    line-height: 1.6;
-      color: white;
-    max-width: 700px;
-    margin: 40px auto;
-    text-align: justify;   /* better readability */
-}
-.container{
-   background: white;
-    padding: 30px;
-    max-width: 1200px;
-    
-    margin:  80px auto;
-    width: 90%;
+
+/* NAVBAR */
+nav {
     display: flex;
-    min-height: 700px;
+    justify-content: space-between;
+    padding: 15px 40px;
+    background: black;
+    color: white;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.hero h1 {
+    font-size: 32px;
+}
+
+/* CONTAINER */
+.container {
+    display: flex;
+    max-width: 900px;
+    margin: 50px auto;
+    background: white;
     border-radius: 10px;
     overflow: hidden;
-    gap: 20px;
-    justify-content: space-between;
-    justify-content: center;
-    align-items: stretch;
-    min-width: 1200px;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
-
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
-.left,.right{
+
+/* LEFT */
+.left {
     flex: 1;
+    background: linear-gradient(to bottom, #d66d75, #e29587);
+    text-align: center;
     padding: 40px;
-    
-
-}
-.left{ background-color:  rgb(220, 122, 122);
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-right: 2px solid rgba(0,0,0,0.1);
-    border-radius: 10px;
-
-
-}
-
-.right{ background-color:rgb(69, 157, 220);
-color: white;
-border-radius: 10px;
-}
-#button1 {
-    background-color: tomato;
-    color: black;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    text-align: center;
-    margin: 10px 850px;
-    transition: 0.3s;
-    cursor: pointer;
-    
-    
-}
-
-#h112{
-    text-align: center;
-    color: black;
-    text-decoration: underline;
-    text-decoration-thickness: 3px;
-}
-
-#name1{
-    text-align: center;
-   color: white;
-   
-    font-size: 40px;
-    
-    font-family: 'Times New Roman', Times, serif;
-    margin-top: 15px;font-weight: bold;
- 
-}
-#dp1{ 
-    width: 200px;
-height: 200px;
-border-radius: 50%;
-object-fit: cover;
-margin-top: 50px;
-border: 2px solid white;}
-p1{
-    font-size: 20px;
-    line-height: 1.6;
     color: white;
-    max-width: 400px;
-    margin-top: 2px;
-    
-    
-    text-align: center /* better readability */
 }
-p{letter-spacing: 0.5px;
-    word-spacing: 2px;}
-    .container:hover {
-    transform: scale(1.02);
+
+.left img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+}
+
+/* RIGHT */
+.right {
+    flex: 1;
+    background: linear-gradient(to bottom, #4b79a1, #283e51);
+    color: white;
+    padding: 40px;
+}
+
+.right p {
+    line-height: 1.6;
+}
+
+/* PROJECTS */
+.projects {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.project-box {
+    background: white;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* BUTTON */
+.center {
+    text-align: center;
+    margin: 30px;
+}
+
+#button1 {
+    background: tomato;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
     transition: 0.3s;
 }
+
 #button1:hover {
-    background-color: darkred;
+    background: darkred;
     transform: scale(1.1);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
 }
