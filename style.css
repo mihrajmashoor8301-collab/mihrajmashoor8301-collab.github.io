@@ -150,16 +150,17 @@ img{
 /* ===========================================
    HERO
 =========================================== */
-
 .hero{
 
     min-height:100vh;
 
     display:flex;
+
     justify-content:center;
+
     align-items:center;
 
-    padding:130px 8% 70px;
+    padding:80px 8% 40px;
 
 }
 
@@ -167,13 +168,13 @@ img{
 
     width:100%;
 
-    max-width:1200px;
+    max-width:1400px;
 
     display:grid;
 
-    grid-template-columns:320px 1fr;
+    grid-template-columns:380px 1fr;
 
-    gap:70px;
+    gap:90px;
 
     align-items:center;
 
@@ -182,7 +183,10 @@ img{
 .hero-image{
 
     display:flex;
+
     justify-content:center;
+
+    align-items:center;
 
 }
 
@@ -265,25 +269,29 @@ img{
 
     display:flex;
 
-    gap:20px;
+    gap:22px;
 
-    margin-top:35px;
-
-    flex-wrap:wrap;
+    margin-top:45px;
 
 }
 
 .btn{
 
-    display:inline-flex;
+    display:flex;
+
+    justify-content:center;
 
     align-items:center;
 
     gap:10px;
 
-    padding:15px 28px;
+    width:230px;
 
-    border-radius:50px;
+    height:60px;
+
+    border-radius:14px;
+
+    font-size:18px;
 
     font-weight:600;
 
@@ -293,31 +301,33 @@ img{
 
 .primary{
 
-    background:#58a6ff;
+    background:#2f81f7;
 
     color:white;
+
+    border:none;
 
 }
 
 .primary:hover{
 
-    transform:translateY(-4px);
+    background:#1f6feb;
 
-    background:#4094ef;
+    transform:translateY(-5px);
 
 }
 
 .secondary{
 
-    border:2px solid #58a6ff;
+    border:2px solid #2f81f7;
 
-    color:#58a6ff;
+    color:#2f81f7;
 
 }
 
 .secondary:hover{
 
-    background:#58a6ff;
+    background:#2f81f7;
 
     color:white;
 
@@ -745,9 +755,13 @@ footer p{
 
     .hero-text{
 
-        order:2;
+    display:flex;
 
-    }
+    flex-direction:column;
+
+    justify-content:center;
+
+}
 
     .hero-buttons{
 
@@ -755,12 +769,25 @@ footer p{
 
     }
 
-    .profile-img{
+   .profile-img{
 
-        width:220px;
-        height:220px;
+    width:310px;
 
-    }
+    height:310px;
+
+    object-fit:cover;
+
+    object-position:center;
+
+    border-radius:50%;
+
+    border:6px solid #58a6ff;
+
+    box-shadow:
+        0 0 35px rgba(88,166,255,.45),
+        0 20px 45px rgba(0,0,0,.5);
+
+}
 
     .hero-text h1{
 
