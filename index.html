@@ -12,32 +12,41 @@
 
     <link rel="icon" href="logo2.png">
 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/6d8c8d5f3f.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
+<!-- ===================== NAVIGATION ===================== -->
 
 <nav>
 
-    <h2>Mihraj</h2>
+    <h2>Mihraj.</h2>
 
     <ul>
 
-        <li><a href="#">Home</a></li>
+        <li><a href="#home">Home</a></li>
+
         <li><a href="#about">About</a></li>
+
         <li><a href="#skills">Skills</a></li>
+
         <li><a href="#certifications">Certifications</a></li>
+
         <li><a href="#projects">Projects</a></li>
+
         <li><a href="#contact">Contact</a></li>
 
     </ul>
 
 </nav>
 
-<!-- ================= HERO ================= -->
+<!-- ===================== HERO ===================== -->
 
-<section class="hero">
+<section class="hero" id="home">
 
     <img src="cvphoto.png" alt="Mihraj Mashhoor" class="profile-img">
 
@@ -45,11 +54,14 @@
 
     <h2>Mihraj Mashhoor K</h2>
 
-    <h3>Cybersecurity Engineering Student</h3>
+    <h3 class="typing">
+        Cybersecurity Engineering Student
+    </h3>
 
     <p>
 
-        Aspiring Penetration Tester • Offensive Security Learner
+        Passionate about Offensive Security, Ethical Hacking,
+        Web Application Security and Penetration Testing.
 
         <br><br>
 
@@ -61,47 +73,105 @@
 
     </p>
 
-    <a href="resume.pdf">
+    <div class="hero-buttons">
 
-        <button>Download Resume</button>
+        <a href="resume.pdf">
 
-    </a>
+            <button>Download Resume</button>
+
+        </a>
+
+        <a href="#contact">
+
+            <button id="button1">Contact Me</button>
+
+        </a>
+
+    </div>
 
 </section>
 
-<!-- ================= ABOUT ================= -->
+<!-- ===================== ABOUT ===================== -->
 
 <section id="about">
 
     <h2>About Me</h2>
 
-    <p>
+    <div class="card">
 
-        I am a Cybersecurity Engineering student passionate about Offensive Security,
-        Ethical Hacking, and Penetration Testing.
+        <p>
 
-        <br><br>
+            Hello! I'm <strong>Mihraj Mashhoor K</strong>,
+            a B.Tech Cybersecurity Engineering student with a strong
+            passion for ethical hacking and offensive security.
 
-        I completed the Google Cybersecurity Professional Certificate and actively
-        build practical cybersecurity skills through hands-on labs on TryHackMe,
-        where I rank in the Top 9% globally.
+            <br><br>
 
-        <br><br>
+            I enjoy understanding how cyber attacks work and learning
+            practical techniques to defend systems by thinking like an attacker.
 
-        I enjoy learning how attackers think, analyzing network traffic,
-        performing vulnerability assessments in lab environments, and
-        continuously expanding my technical knowledge.
+            <br><br>
 
-        <br><br>
+            I have completed the
+            <strong>Google Cybersecurity Professional Certificate</strong>
+            and actively strengthen my practical skills through
+            <strong>TryHackMe</strong>, where I am currently ranked in the
+            <strong>Top 9%</strong> worldwide.
 
-        My long-term goal is to become a professional Penetration Tester
-        and contribute to improving organizational security.
+            <br><br>
 
-    </p>
+            My experience includes working with:
+
+            <br><br>
+
+            ✔ Kali Linux
+
+            <br>
+
+            ✔ Wireshark
+
+            <br>
+
+            ✔ Nmap
+
+            <br>
+
+            ✔ Metasploit Framework
+
+            <br>
+
+            ✔ Burp Suite
+
+            <br>
+
+            ✔ Aircrack-ng
+
+            <br>
+
+            ✔ John the Ripper
+
+            <br>
+
+            ✔ Hydra
+
+            <br><br>
+
+            I enjoy building home labs, solving security challenges,
+            capturing network traffic, performing vulnerability assessments,
+            and continuously improving my penetration testing skills.
+
+            <br><br>
+
+            My long-term goal is to become a professional
+            <strong>Penetration Tester</strong> and help organizations
+            strengthen their security posture.
+
+        </p>
+
+    </div>
 
 </section>
-
-<!-- ================= SKILLS ================= -->
+<!-- ===================== SKILLS ===================== -->
 
 <section id="skills">
 
@@ -111,7 +181,9 @@
 
         <h3>Operating Systems</h3>
 
-        <p>Kali Linux • Linux • Windows</p>
+        <p>
+            Kali Linux • Linux • Windows 10/11 • Windows Server
+        </p>
 
     </div>
 
@@ -120,41 +192,49 @@
         <h3>Networking</h3>
 
         <p>
-
-            TCP/IP • DNS • HTTP • HTTPS • SSH • Subnetting • Packet Analysis
-
+            TCP/IP • DNS • HTTP • HTTPS • SSH • ICMP • DHCP • Routing •
+            Switching • Subnetting • Packet Analysis
         </p>
 
     </div>
 
     <div class="card">
 
-        <h3>Security Tools</h3>
+        <h3>Cybersecurity Tools</h3>
 
         <p>
-
             Wireshark • Nmap • Metasploit Framework • Burp Suite •
-            John the Ripper • Hydra • Aircrack-ng
-
+            John the Ripper • Hydra • Aircrack-ng • Gobuster • Nikto
         </p>
 
     </div>
 
     <div class="card">
 
-        <h3>Programming</h3>
+        <h3>Programming & Scripting</h3>
 
         <p>
+            C • Python (Basic) • HTML • CSS • Bash • SQL (Basic)
+        </p>
 
-            C • Python (Basic) • HTML • CSS • Bash (Basic)
+    </div>
 
+    <div class="card">
+
+        <h3>Cybersecurity Concepts</h3>
+
+        <p>
+            Penetration Testing • Vulnerability Assessment •
+            Network Security • Web Security • Linux Administration •
+            Password Cracking • Wireless Security • Cryptography Basics •
+            SIEM Fundamentals • Incident Response
         </p>
 
     </div>
 
 </section>
 
-<!-- ================= CERTIFICATIONS ================= -->
+<!-- ===================== CERTIFICATIONS ===================== -->
 
 <section id="certifications">
 
@@ -166,14 +246,39 @@
 
         <p>
 
-            Completed professional training covering Linux,
-            Networking, Python, SQL,
-            Security Operations,
-            SIEM,
-            Risk Management,
-            Incident Response,
-            Threat Detection,
-            Identity & Access Management.
+            ✔ Security Operations
+
+            <br>
+
+            ✔ Linux
+
+            <br>
+
+            ✔ Networking
+
+            <br>
+
+            ✔ Python
+
+            <br>
+
+            ✔ SQL
+
+            <br>
+
+            ✔ SIEM
+
+            <br>
+
+            ✔ Incident Response
+
+            <br>
+
+            ✔ Risk Management
+
+            <br>
+
+            ✔ Identity & Access Management
 
         </p>
 
@@ -189,11 +294,27 @@
 
             <br>
 
-            ✔ Completed Pre Security Learning Path
+            ✔ Completed Pre Security Path
 
             <br>
 
-            ✔ Practical Labs in Networking, Linux, Windows & Web Security
+            ✔ Networking Fundamentals
+
+            <br>
+
+            ✔ Linux Fundamentals
+
+            <br>
+
+            ✔ Windows Fundamentals
+
+            <br>
+
+            ✔ Web Fundamentals
+
+            <br>
+
+            ✔ Practical Hands-on Labs
 
         </p>
 
@@ -201,68 +322,102 @@
 
 </section>
 
-<!-- ================= PROJECTS ================= -->
+<!-- ===================== PROJECTS ===================== -->
 
 <section id="projects">
 
     <h2>Projects</h2>
 
-    <div class="card">
+    <div class="projects-grid">
 
-        <h3>Cybersecurity Portfolio Website</h3>
+        <div class="card">
 
-        <p>
+            <h3>Cybersecurity Portfolio Website</h3>
 
-            Developed a responsive personal cybersecurity portfolio using
-            HTML and CSS.
+            <p>
 
-        </p>
+                Developed a responsive cybersecurity portfolio using
+                HTML and CSS with a modern user interface and GitHub Pages deployment.
 
-    </div>
+            </p>
 
-    <div class="card">
+        </div>
 
-        <h3>Password Generator</h3>
+        <div class="card">
 
-        <p>
+            <h3>Password Generator</h3>
 
-            Developed a secure password generator using Python.
+            <p>
 
-        </p>
+                Created a Python-based secure password generator capable
+                of generating strong randomized passwords.
 
-    </div>
+            </p>
 
-    <div class="card">
+        </div>
 
-        <h3>Wireshark Network Analysis</h3>
+        <div class="card">
 
-        <p>
+            <h3>Wireshark Network Analysis</h3>
 
-            Captured and analyzed network traffic to understand protocols,
-            DNS requests, TCP communication, and HTTP traffic.
+            <p>
 
-        </p>
+                Captured and analyzed packets including HTTP, DNS,
+                TCP and ICMP traffic to understand network communication.
 
-    </div>
+            </p>
 
-    <div class="card">
+        </div>
 
-        <h3>Home Cybersecurity Lab</h3>
+        <div class="card">
 
-        <p>
+            <h3>Home Cybersecurity Lab</h3>
 
-            Built a personal cybersecurity lab using Kali Linux and virtual
-            machines to practice security concepts in an isolated environment.
+            <p>
 
-        </p>
+                Built a personal cybersecurity lab using Kali Linux,
+                Windows virtual machines and networking tools
+                for penetration testing practice.
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Metasploit Practice</h3>
+
+            <p>
+
+                Practiced exploitation, Meterpreter usage,
+                privilege escalation and post-exploitation techniques
+                inside safe lab environments.
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Wireless Security Testing</h3>
+
+            <p>
+
+                Practiced Wi-Fi security concepts using Aircrack-ng,
+                wireless packet capture and WPA/WPA2 authentication analysis
+                in authorized lab environments.
+
+            </p>
+
+        </div>
 
     </div>
 
 </section>
 
-<!-- ================= CURRENT LEARNING ================= -->
+<!-- ===================== CURRENT LEARNING ===================== -->
 
-<section>
+<section id="learning">
 
     <h2>Currently Learning</h2>
 
@@ -270,59 +425,181 @@
 
         <ul>
 
-            <li>Penetration Testing</li>
-
-            <li>Web Application Security</li>
+            <li>Penetration Testing Methodology</li>
 
             <li>OWASP Top 10</li>
 
-            <li>Burp Suite</li>
+            <li>Burp Suite Professional Workflow</li>
 
-            <li>Privilege Escalation</li>
+            <li>Active Directory Security</li>
 
-            <li>Python Automation</li>
+            <li>Privilege Escalation (Windows & Linux)</li>
 
-            <li>Active Directory</li>
+            <li>Python Automation for Security</li>
 
-            <li>Capture The Flag (CTFs)</li>
+            <li>Web Application Security</li>
+
+            <li>Network Enumeration</li>
+
+            <li>CTF Challenges</li>
+
+            <li>TryHackMe Offensive Security Rooms</li>
 
         </ul>
 
     </div>
 
 </section>
-
-<!-- ================= CONTACT ================= -->
+<!-- ===================== CONTACT ===================== -->
 
 <section id="contact">
 
-    <h2>Contact</h2>
+    <h2>Get In Touch</h2>
 
     <div class="card">
 
-        <p>📧 Email : yourmail@gmail.com</p>
+        <p>
+            I'm always interested in learning, collaborating on cybersecurity
+            projects, and connecting with professionals in the security community.
+        </p>
 
-        <p>💼 LinkedIn : linkedin.com/in/yourusername</p>
+        <br>
 
-        <p>💻 GitHub : github.com/yourusername</p>
+        <p>📧 <strong>Email:</strong> yourmail@gmail.com</p>
 
-        <p>🏆 TryHackMe : tryhackme.com/p/yourusername</p>
+        <p>💼 <strong>LinkedIn:</strong> https://linkedin.com/in/yourusername</p>
+
+        <p>💻 <strong>GitHub:</strong> https://github.com/yourusername</p>
+
+        <p>🏆 <strong>TryHackMe:</strong> https://tryhackme.com/p/yourusername</p>
+
+        <br>
+
+        <div class="center">
+
+            <a href="mailto:yourmail@gmail.com">
+
+                <button id="button1">Contact Me</button>
+
+            </a>
+
+        </div>
 
     </div>
 
 </section>
 
-<!-- ================= FOOTER ================= -->
+<!-- ===================== FOOTER ===================== -->
 
 <footer>
 
+    <h3>Mihraj Mashhoor K</h3>
+
     <p>
+        Cybersecurity Engineering Student |
+        Aspiring Penetration Tester
+    </p>
 
-        © 2026 Mihraj Mashhoor K | Cybersecurity Portfolio
+    <br>
 
+    <p>
+        Google Cybersecurity Professional Certificate •
+        TryHackMe Top 9%
+    </p>
+
+    <br>
+
+    <p>
+        © 2026 Mihraj Mashhoor K. All Rights Reserved.
     </p>
 
 </footer>
+
+<!-- ===================== JAVASCRIPT ===================== -->
+
+<script>
+
+// Smooth scroll for navigation links
+document.querySelectorAll('nav a').forEach(link => {
+
+    link.addEventListener('click', function(e){
+
+        e.preventDefault();
+
+        const target = document.querySelector(this.getAttribute('href'));
+
+        if(target){
+
+            target.scrollIntoView({
+
+                behavior:'smooth'
+
+            });
+
+        }
+
+    });
+
+});
+
+// Typing animation
+const typing = document.querySelector(".typing");
+
+const words = [
+
+    "Cybersecurity Engineering Student",
+
+    "Aspiring Penetration Tester",
+
+    "Offensive Security Learner",
+
+    "Ethical Hacking Enthusiast"
+
+];
+
+let wordIndex = 0;
+let charIndex = 0;
+let deleting = false;
+
+function typeEffect(){
+
+    const current = words[wordIndex];
+
+    if(!deleting){
+
+        typing.textContent = current.substring(0,charIndex++);
+
+        if(charIndex > current.length){
+
+            deleting = true;
+
+            setTimeout(typeEffect,1200);
+
+            return;
+
+        }
+
+    }else{
+
+        typing.textContent = current.substring(0,--charIndex);
+
+        if(charIndex === 0){
+
+            deleting = false;
+
+            wordIndex = (wordIndex + 1) % words.length;
+
+        }
+
+    }
+
+    setTimeout(typeEffect,deleting ? 40 : 90);
+
+}
+
+typeEffect();
+
+</script>
 
 </body>
 
