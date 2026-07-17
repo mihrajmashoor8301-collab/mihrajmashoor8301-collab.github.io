@@ -1,7 +1,6 @@
 /* ===========================
    GOOGLE FONT
 =========================== */
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 /* ===========================
@@ -18,7 +17,8 @@
 body{
     font-family:'Poppins',sans-serif;
     background:#0d1117;
-    color:#f5f5f5;
+    color:#f0f6fc;
+    line-height:1.7;
 }
 
 /* ===========================
@@ -26,20 +26,24 @@ body{
 =========================== */
 
 nav{
-    position:sticky;
+    position:fixed;
+    width:100%;
     top:0;
+    left:0;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:18px 8%;
-    background:#161b22;
+    padding:20px 8%;
+    background:rgba(13,17,23,.95);
+    backdrop-filter:blur(12px);
     border-bottom:1px solid #30363d;
     z-index:1000;
 }
 
 nav h2{
     color:#58a6ff;
-    font-size:28px;
+    font-size:30px;
+    font-weight:700;
 }
 
 nav ul{
@@ -48,14 +52,14 @@ nav ul{
 }
 
 nav ul li{
-    margin-left:25px;
+    margin-left:30px;
 }
 
 nav ul li a{
-    color:white;
     text-decoration:none;
-    transition:.3s;
+    color:white;
     font-weight:500;
+    transition:.3s;
 }
 
 nav ul li a:hover{
@@ -67,86 +71,125 @@ nav ul li a:hover{
 =========================== */
 
 .hero{
-    padding:100px 20px;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
     text-align:center;
+    padding:120px 20px 80px;
+}
+
+/* Profile Image */
+
+.profile-img{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    object-fit:cover;
+    object-position:center;
+    border:5px solid #58a6ff;
+    box-shadow:0 10px 35px rgba(0,0,0,.55),
+               0 0 30px rgba(88,166,255,.45);
+    margin-bottom:30px;
+    transition:.35s;
+}
+
+.profile-img:hover{
+    transform:scale(1.05);
+    box-shadow:0 15px 45px rgba(0,0,0,.6),
+               0 0 40px rgba(88,166,255,.7);
 }
 
 .hero h1{
-    font-size:50px;
+    font-size:60px;
     margin-bottom:10px;
+    font-weight:700;
 }
 
 .hero h2{
+    font-size:42px;
     color:#58a6ff;
     margin-bottom:15px;
 }
 
 .hero h3{
+    font-size:22px;
     color:#8b949e;
     margin-bottom:20px;
 }
 
 .hero p{
     font-size:18px;
-    line-height:1.8;
+    max-width:700px;
     color:#c9d1d9;
     margin-bottom:35px;
 }
 
-.hero button{
-    padding:14px 32px;
-    background:#238636;
+/* ===========================
+   BUTTON
+=========================== */
+
+.hero button,
+#button1{
+    background:#58a6ff;
     color:white;
+    padding:15px 38px;
     border:none;
-    border-radius:8px;
+    border-radius:50px;
     cursor:pointer;
     font-size:16px;
+    font-weight:600;
     transition:.3s;
+    box-shadow:0 8px 25px rgba(88,166,255,.35);
 }
 
-.hero button:hover{
-    transform:translateY(-4px);
-    background:#2ea043;
+.hero button:hover,
+#button1:hover{
+    transform:translateY(-5px);
+    background:#4094ef;
+    box-shadow:0 12px 30px rgba(88,166,255,.55);
 }
 
 /* ===========================
-   SECTIONS
+   SECTION
 =========================== */
 
 section{
     max-width:1100px;
     margin:auto;
-    padding:70px 20px;
+    padding:90px 20px;
 }
 
 section h2{
-    text-align:center;
+    font-size:40px;
     color:#58a6ff;
-    margin-bottom:35px;
-    font-size:35px;
+    margin-bottom:40px;
+    text-align:center;
 }
 
 section p{
     color:#c9d1d9;
-    line-height:1.8;
+    line-height:1.9;
 }
 
 /* ===========================
-   SKILL / CARD
+   CARD
 =========================== */
 
 .card{
     background:#161b22;
     border:1px solid #30363d;
-    padding:25px;
-    border-radius:12px;
+    border-radius:15px;
+    padding:30px;
     margin-bottom:25px;
-    transition:.3s;
+    transition:.35s;
 }
 
 .card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 0 25px rgba(88,166,255,.25);
+    transform:translateY(-10px);
+    border-color:#58a6ff;
+    box-shadow:0 15px 35px rgba(88,166,255,.2);
 }
 
 .card h3{
@@ -155,7 +198,7 @@ section p{
 }
 
 /* ===========================
-   PROJECT GRID
+   PROJECTS
 =========================== */
 
 #projects{
@@ -165,7 +208,7 @@ section p{
 }
 
 /* ===========================
-   LIST
+   LISTS
 =========================== */
 
 ul{
@@ -180,9 +223,22 @@ li{
    CONTACT
 =========================== */
 
-#contact p{
+#contact{
     text-align:center;
-    margin-bottom:10px;
+}
+
+#contact p{
+    margin-bottom:12px;
+}
+
+/* ===========================
+   CONTACT BUTTON
+=========================== */
+
+.center{
+    display:flex;
+    justify-content:center;
+    margin-top:35px;
 }
 
 /* ===========================
@@ -191,29 +247,11 @@ li{
 
 footer{
     background:#161b22;
+    border-top:1px solid #30363d;
+    color:#8b949e;
     text-align:center;
     padding:25px;
-    color:#8b949e;
-    border-top:1px solid #30363d;
-}
-
-/* ===========================
-   BUTTONS
-=========================== */
-
-button{
-    background:#238636;
-    color:white;
-    border:none;
-    padding:12px 28px;
-    border-radius:8px;
-    cursor:pointer;
-    transition:.3s;
-}
-
-button:hover{
-    background:#2ea043;
-    transform:scale(1.05);
+    margin-top:40px;
 }
 
 /* ===========================
@@ -239,16 +277,9 @@ button:hover{
 
 @media(max-width:900px){
 
-.hero h1{
-    font-size:38px;
-}
-
-.hero h2{
-    font-size:28px;
-}
-
 nav{
     flex-direction:column;
+    padding:20px;
 }
 
 nav ul{
@@ -261,8 +292,25 @@ nav ul li{
     margin:10px;
 }
 
+.hero h1{
+    font-size:42px;
+}
+
+.hero h2{
+    font-size:32px;
+}
+
+.hero h3{
+    font-size:20px;
+}
+
+.profile-img{
+    width:180px;
+    height:180px;
+}
+
 section{
-    padding:60px 25px;
+    padding:70px 25px;
 }
 
 }
