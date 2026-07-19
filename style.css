@@ -335,10 +335,11 @@ img{
 =========================*/
 
 .stats{
-    width:100%;
+    padding:80px 8%;
+}
+.stats-container{
     max-width:1200px;
-    margin:80px auto;
-    padding:0 20px;
+    margin:0 auto;
 
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -1054,17 +1055,7 @@ footer p{
         gap:16px;
 
     }
-   .stats-container{
-    max-width:1200px;
-    margin:0 auto;
-
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:24px;
-
-    justify-content:center;
-    align-items:stretch;
-}
+   
 
 
 /* ===========================================
