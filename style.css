@@ -196,7 +196,7 @@ img{
     height:280px;
 
     object-fit:cover;
-    object-position:center 8%;
+    object-position:center top;
 
     border-radius:50%;
 
