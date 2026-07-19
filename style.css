@@ -1055,12 +1055,17 @@ footer p{
 
     }
    .stats-container{
+    max-width:1200px;
+    margin:0 auto;
 
-    grid-template-columns:1fr 1fr;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:24px;
 
+    justify-content:center;
+    align-items:stretch;
 }
 
-}
 
 /* ===========================================
    SMALL PHONES
