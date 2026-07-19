@@ -329,7 +329,8 @@ img{
 
     background:#2f81f7;
 
-    color:white;/*=========================
+    color:white;
+ /*=========================
     STATS
 =========================*/
 
@@ -339,58 +340,17 @@ img{
 
 .stats-container{
 
+    max-width:1200px;
+    margin:0 auto;
+
     display:grid;
 
     grid-template-columns:repeat(4,1fr);
 
     gap:25px;
 
+    align-items:center;
 }
-
-.stat-card{
-
-    background:#161b22;
-
-    border:1px solid #30363d;
-
-    border-radius:18px;
-
-    padding:35px;
-
-    text-align:center;
-
-    transition:.35s;
-
-}
-
-.stat-card:hover{
-
-    transform:translateY(-8px);
-
-    border-color:#58a6ff;
-
-    box-shadow:0 15px 35px rgba(88,166,255,.2);
-
-}
-
-.stat-card h2{
-
-    color:#58a6ff;
-
-    font-size:42px;
-
-    margin-bottom:10px;
-
-}
-
-.stat-card p{
-
-    color:#c9d1d9;
-
-}
-
-}
-
 /* ===========================================
    SECTIONS
 =========================================== */
