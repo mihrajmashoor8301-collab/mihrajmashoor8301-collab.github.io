@@ -341,18 +341,20 @@ img{
     max-width:1200px;
     margin:0 auto;
 
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:25px;
-
+    display:flex;
     justify-content:center;
     align-items:stretch;
+    flex-wrap:wrap;
+    gap:25px;
 }
 .stat-card{
+    flex:0 1 250px;
+
     background:rgba(255,255,255,.05);
     border:1px solid rgba(255,255,255,.08);
     border-radius:16px;
     padding:30px 20px;
+
     text-align:center;
     transition:.3s;
 }
@@ -360,6 +362,8 @@ img{
 .stat-card:hover{
     transform:translateY(-6px);
 }
+
+
 /* ===========================================
    SECTIONS
 =========================================== */
