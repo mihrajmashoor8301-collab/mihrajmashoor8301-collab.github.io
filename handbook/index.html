@@ -1,73 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Handbook</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
 
-<title>Cybersecurity Handbook</title>
-
-<link rel="stylesheet" href="../style.css">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
 
-<nav class="navbar">
+    <!-- Navigation -->
+    <nav class="navbar">
 
-<a href="../index.html" class="logo">
-<i class="fa-solid fa-shield-halved"></i>
-<span>Mihraj Portfolio</span>
-</a>
+        <a href="../index.html" class="logo">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Cyber Handbook</span>
+        </a>
 
-<ul class="nav-links">
+        <ul class="nav-links">
+            <li><a href="../index.html">← Back to Portfolio</a></li>
+        </ul>
 
-<li><a href="../index.html">Portfolio</a></li>
+    </nav>
 
-</ul>
+    <!-- Hero -->
+    <section class="hero">
 
-</nav>
+        <div class="hero-text">
 
-<section class="hero">
+            <h1>Cybersecurity Handbook</h1>
 
-<div class="hero-text">
+            <h2>Personal Knowledge Base</h2>
 
-<h1>Cybersecurity Handbook</h1>
+            <p>
+                Commands, cheat sheets, notes, examples and practical references
+                collected during my Ethical Hacking journey.
+            </p>
 
-<h2>Your Personal Knowledge Base</h2>
+        </div>
 
-<p>
+    </section>
 
-Commands.
+    <!-- Chapters -->
+    <section id="chapters">
 
-Examples.
+        <div class="section-title">
 
-Cheat Sheets.
+            <h2>Available Chapters</h2>
 
-Notes.
+            <p>
+                Explore my cybersecurity documentation.
+            </p>
 
-Practical References.
+        </div>
 
-Everything I learn while becoming an Ethical Hacker.
+        <div class="grid">
 
-</p>
+            <!-- Nmap -->
+            <div class="card">
 
-</div>
+                <div class="card-icon">
+                    <i class="fa-solid fa-network-wired"></i>
+                </div>
 
-</section>
+                <h3>Nmap</h3>
 
-<section>
+                <p>
+                    Host discovery, port scanning,
+                    service detection and NSE scripts.
+                </p>
 
-<div class="section-title">
+                <a href="nmap.html" class="btn secondary">
+                    Open Handbook
+                </a>
 
-<h2>Available Chapters</h2>
+            </div>
 
-<p>Select a handbook below.</p>
+            <!-- Linux -->
+            <div class="card">
 
-</div>
+                <div class="card-icon">
+                    <i class="fa-brands fa-linux"></i>
+                </div>
 
-<div class="grid">
+                <h3>Linux</h3>
+
+                <p>
+                    Linux commands, permissions,
+                    networking and shell usage.
+                </p>
+
+                <a href="linux.html" class="btn secondary">
+                    Open Handbook
+                </a>
+
+            </div>
+
+            <!-- Metasploit -->
+            <div class="card">
+
+                <div class="card-icon">
+                    <i class="fa-solid fa-bug"></i>
+                </div>
+
+                <h3>Metasploit</h3>
+
+                <p>
+                    Exploits, payloads,
+                    Meterpreter and post-exploitation.
+                </p>
+
+                <a href="metasploit.html" class="btn secondary">
+                    Open Handbook
+                </a>
+
+            </div>
+
+            <!-- Searchsploit -->
+            <div class="card">
+
+                <div class="card-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+
+                <h3>Searchsploit</h3>
+
+                <p>
+                    Search Exploit-DB,
+                    filter exploits and use offline databases.
+                </p>
+
+                <a href="searchsploit.html" class="btn secondary">
+                    Open Handbook
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+
+        <h2>Cybersecurity Handbook</h2>
+
+        <p>
+            Continuously updated with new tools, commands and practical notes.
+        </p>
+
+    </footer>
+
+</body>
+</html>
