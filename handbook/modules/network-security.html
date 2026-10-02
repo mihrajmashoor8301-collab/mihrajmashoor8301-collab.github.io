@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <title>Module 06: Network Security & Packet Analysis · The Ethical Hacker's Command Handbook</title>
+  <meta name="description" content="TCP/IP structures, 3-way handshakes, Wireshark packet capture, display filters, and network inspection.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/handbook.css">
+</head>
+<body>
+
+<header class="header">
+  <a class="brand" href="../index.html">
+    <span class="mark">M</span>
+    <div class="brand-text">
+      <span>Security Knowledge Base</span>
+      <b>The Ethical Hacker's Command Handbook</b>
+    </div>
+  </a>
+
+  <nav class="nav">
+    <a href="../index.html">
+      <span class="material-symbols-outlined" style="font-size: 16px;">apps</span>
+      <span>Modules (15)</span>
+    </a>
+    <a href="../library.html">
+      <span class="material-symbols-outlined" style="font-size: 16px;">library_books</span>
+      <span>PDF Library (30)</span>
+    </a>
+    <a href="../../index.html" class="btn-portfolio">
+      <span class="material-symbols-outlined" style="font-size: 14px;">arrow_back</span>
+      <span>Portfolio</span>
+    </a>
+  </nav>
+
+  <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
+    <span class="material-symbols-outlined">menu</span>
+  </button>
+</header>
+
+<div class="mobile-drawer" id="mobile-drawer">
+  <div class="mobile-drawer-nav">
+    <a href="../index.html">📚 All Modules (15)</a>
+    <a href="../library.html">📥 PDF Download Library (30)</a>
+    <hr style="border:0; border-top:1px solid var(--line); margin: 0.5rem 0;">
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-subtle); padding: 0 1rem; margin-bottom: 0.25rem;">DOCUMENTATION MODULES</div>
+    <a href="../nmap.html">01. Nmap Reconnaissance & Scanning</a>
+    <a href="../linux.html">02. Linux Essentials for Practitioners</a>
+    <a href="../metasploit.html">03. Metasploit Framework Fundamentals</a>
+    <a href="../searchsploit.html">04. Searchsploit & Vulnerability Research</a>
+    <a href="web-security.html">05. Web Application Security Fundamentals</a>
+    <a href="network-security.html">06. Network Security & Packet Analysis</a>
+    <a href="privilege-escalation.html">07. Privilege Escalation (Educational Labs)</a>
+    <a href="credential-security.html">08. Credential Security & Hash Analysis</a>
+    <a href="exploitation.html">09. Controlled Exploitation & Post-Exploitation</a>
+    <a href="reconnaissance.html">10. Reconnaissance & Surface Enumeration</a>
+    <a href="linux-security.html">11. Linux System Security & Defensive Hardening</a>
+    <a href="security-automation.html">12. Security Automation with Python & Scripting</a>
+    <a href="ai-cybersecurity.html">13. AI & Agentic Workflows in Cybersecurity</a>
+    <a href="tools-reference.html">14. Security Tools Command Index & Quick Reference</a>
+    <a href="pentest-methodology.html">15. Penetration Testing Methodology & Authorization</a>
+    <hr style="border:0; border-top:1px solid var(--line); margin: 0.5rem 0;">
+    <a href="../../index.html">← Return to Portfolio</a>
+  </div>
+</div>
+
+<main class="docs-layout">
+<aside class="sidebar">
+  <div class="sidebar-heading">
+    <span class="material-symbols-outlined" style="font-size: 14px;">menu_book</span>
+    <span>Handbook Modules</span>
+  </div>
+  <div class="sidebar-nav">
+    <a href="../nmap.html">
+      <span class="nav-num">01</span>
+      <span>Nmap Reconnaissance</span>
+    </a>
+    <a href="../linux.html">
+      <span class="nav-num">02</span>
+      <span>Linux Essentials for Practitioners</span>
+    </a>
+    <a href="../metasploit.html">
+      <span class="nav-num">03</span>
+      <span>Metasploit Framework Fundamentals</span>
+    </a>
+    <a href="../searchsploit.html">
+      <span class="nav-num">04</span>
+      <span>Searchsploit</span>
+    </a>
+    <a href="web-security.html">
+      <span class="nav-num">05</span>
+      <span>Web Application Security Fundamentals</span>
+    </a>
+    <a href="network-security.html" class="active">
+      <span class="nav-num">06</span>
+      <span>Network Security</span>
+    </a>
+    <a href="privilege-escalation.html">
+      <span class="nav-num">07</span>
+      <span>Privilege Escalation</span>
+    </a>
+    <a href="credential-security.html">
+      <span class="nav-num">08</span>
+      <span>Credential Security</span>
+    </a>
+    <a href="exploitation.html">
+      <span class="nav-num">09</span>
+      <span>Controlled Exploitation</span>
+    </a>
+    <a href="reconnaissance.html">
+      <span class="nav-num">10</span>
+      <span>Reconnaissance</span>
+    </a>
+    <a href="linux-security.html">
+      <span class="nav-num">11</span>
+      <span>Linux System Security</span>
+    </a>
+    <a href="security-automation.html">
+      <span class="nav-num">12</span>
+      <span>Security Automation with Python</span>
+    </a>
+    <a href="ai-cybersecurity.html">
+      <span class="nav-num">13</span>
+      <span>AI</span>
+    </a>
+    <a href="tools-reference.html">
+      <span class="nav-num">14</span>
+      <span>Security Tools Command Index</span>
+    </a>
+    <a href="pentest-methodology.html">
+      <span class="nav-num">15</span>
+      <span>Penetration Testing Methodology</span>
+    </a>
+  </div>
+  <div class="sidebar-heading">
+    <span class="material-symbols-outlined" style="font-size: 14px;">download</span>
+    <span>Resources</span>
+  </div>
+  <div class="sidebar-nav">
+    <a href="../library.html">
+      <span class="nav-num">PDF</span>
+      <span>Download Library (30)</span>
+    </a>
+  </div>
+</aside>
+
+  <article class="article">
+    <nav class="breadcrumb">
+      <a href="../index.html">Handbook</a>
+      <span>/</span>
+      <span>Network Security</span>
+      <span>/</span>
+      <span>Module 06</span>
+    </nav>
+
+    <div class="article-header">
+      <div class="origin-tag badge-thm">
+        <span class="material-symbols-outlined" style="font-size: 14px;">terminal</span>
+        <span>TRYHACKME PRACTICAL LEARNING (PRE SECURITY / CYBER 101)</span>
+      </div>
+      <h1>Network Security & Packet Analysis</h1>
+      <p class="lead">TCP/IP structures, 3-way handshakes, Wireshark packet capture, display filters, and network inspection.</p>
+    </div>
+
+
+<h2 id="overview">Overview</h2>
+<p>
+  <strong>Network Security &amp; Packet Analysis</strong> forms the core foundation of communication auditing, telemetry analysis, and threat detection. Understanding packet headers, transport handshakes, and protocol behaviors enables practitioners to diagnose communication failures, isolate network anomalies, and identify reconnaissance probes.
+</p>
+
+<h2 id="concepts">Core Concepts</h2>
+<ul>
+  <li><strong>TCP 3-Way Handshake:</strong> Connection initiation sequence: Client sends <code>SYN</code> &rarr; Server responds with <code>SYN-ACK</code> &rarr; Client acknowledges with <code>ACK</code>.</li>
+  <li><strong>TCP Connection Teardown:</strong> Graceful connection termination via <code>FIN</code> flags or abrupt termination via <code>RST</code> flags.</li>
+  <li><strong>Packet Inspection Layers:</strong> Examining protocol structures across Link Layer (Ethernet/MAC), Network Layer (IP/ICMP), Transport Layer (TCP/UDP), and Application Layer (HTTP/DNS).</li>
+  <li><strong>Capture Filters vs Display Filters:</strong> Capture filters (BPF syntax) discard non-matching packets at the NIC driver before saving; display filters evaluate packets in memory within Wireshark.</li>
+</ul>
+
+<h2 id="tools">Tools &amp; Requirements</h2>
+<p>Wireshark (graphical packet analyzer), tcpdump (command-line packet capture), and netcat.</p>
+<div class="command">
+  <div class="command-header"><span>BASH // PACKET ANALYSIS TOOLING</span><span>APT</span></div>
+  <pre>$ sudo apt update && sudo apt install -y wireshark tcpdump netcat-traditional</pre>
+</div>
+
+<h2 id="commands">Commands &amp; Practical Examples</h2>
+
+<h3>1. Capturing Traffic with tcpdump</h3>
+<p>Capture traffic on interface <code>eth0</code> without DNS resolution, filtering for HTTP port 80:</p>
+<div class="command">
+  <div class="command-header"><span>BASH // TCPDUMP CAPTURE</span><span>BPF FILTER</span></div>
+  <pre>$ sudo tcpdump -i eth0 -nn -c 20 port 80</pre>
+</div>
+
+<h3>2. Writing Capture to PCAP File</h3>
+<p>Record network packets into standard libpcap format for later in-depth analysis in Wireshark:</p>
+<div class="command">
+  <div class="command-header"><span>BASH // PCAP EXPORT</span><span>RAW PACKETS</span></div>
+  <pre>$ sudo tcpdump -i any -w capture.pcap -c 1000</pre>
+</div>
+
+<h3>3. Essential Wireshark Display Filters</h3>
+<p>Common filter strings applied during investigation in Wireshark:</p>
+<div class="command">
+  <div class="command-header"><span>WIRESHARK // DISPLAY FILTER SYNTAX</span><span>FILTER ENGINE</span></div>
+  <pre>ip.addr == 192.168.1.10
+tcp.flags.syn == 1 && tcp.flags.ack == 0
+http.request.method == "POST"
+dns.flags.response == 1</pre>
+</div>
+
+<h3>4. Active Connection Verification with Netcat</h3>
+<p>Test TCP reachability and grab application banners without full protocol negotiation:</p>
+<div class="command">
+  <div class="command-header"><span>BASH // PORT REACHABILITY</span><span>NETCAT BANNER</span></div>
+  <pre>$ nc -zv 192.168.1.10 22 80 443
+$ nc -vn 192.168.1.10 80</pre>
+</div>
+
+<h2 id="workflow">Practical Workflow</h2>
+<ol>
+  <li><strong>Interface Selection:</strong> Identify active physical or virtual interface (<code>ip a</code>).</li>
+  <li><strong>Capture Baseline:</strong> Start capture before triggering network actions to record background traffic.</li>
+  <li><strong>Execute Activity:</strong> Perform specific HTTP request or test probe.</li>
+  <li><strong>Apply Filters:</strong> Filter down by source IP, destination port, or protocol to isolate relevant conversations.</li>
+  <li><strong>Follow Stream:</strong> Use Wireshark's "Follow TCP Stream" to view full payload text in sequence.</li>
+</ol>
+
+<h2 id="mistakes">Common Mistakes &amp; Troubleshooting</h2>
+<ul>
+  <li><strong>Promiscuous Mode Restrictions:</strong> Capturing switched network traffic requires promiscuous mode or port mirroring (SPAN port); otherwise, only broadcast traffic and host-directed packets are received.</li>
+  <li><strong>Overly Broad Captures:</strong> Running unfiltered captures on busy networks fills disk storage rapidly. Always use capture filters (e.g. <code>port 80</code> or <code>host 10.10.10.5</code>).</li>
+</ul>
+
+<h2 id="security">Security Considerations &amp; Scoping</h2>
+<p>
+  Packet capturing intercepts unencrypted application credentials, session tokens, and personal data. Capture traffic exclusively within designated lab networks or with explicit administrative authorization.
+</p>
+
+<h2 id="related">Related Topics</h2>
+<ul>
+  <li><a href="../nmap.html">Module 01: Nmap Reconnaissance &amp; Scanning</a></li>
+  <li><a href="web-security.html">Module 05: Web Application Security Fundamentals</a></li>
+  <li><a href="tools-reference.html">Module 14: Security Tools Command Index</a></li>
+</ul>
+
+<h2 id="reading">Further Reading &amp; TryHackMe Paths</h2>
+<ul>
+  <li><strong>TryHackMe Paths:</strong> <em>Pre Security (Network Fundamentals, Packets &amp; Frames)</em>, <em>Cyber Security 101 (Wireshark 101, Tcpdump Basics)</em>.</li>
+</ul>
+
+
+    <nav class="chapter-nav">
+      <a href="web-security.html">
+  <span class="nav-label">← Module 05</span>
+  <span class="nav-title">Web Application Security Fundamentals</span>
+</a>
+      <a href="privilege-escalation.html" class="next">
+  <span class="nav-label">Module 07 →</span>
+  <span class="nav-title">Privilege Escalation</span>
+</a>
+    </nav>
+  </article>
+
+  <aside class="toc-sidebar">
+    <div class="sidebar-heading">
+      <span class="material-symbols-outlined" style="font-size: 14px;">toc</span>
+      <span>IN THIS CHAPTER</span>
+    </div>
+    <div class="toc-nav">
+      <a href="#overview">Overview</a>
+      <a href="#concepts">Core Concepts</a>
+      <a href="#tools">Tools & Requirements</a>
+      <a href="#commands">Commands & Examples</a>
+      <a href="#workflow">Practical Workflow</a>
+      <a href="#mistakes">Common Mistakes</a>
+      <a href="#security">Security Considerations</a>
+      <a href="#related">Related Topics</a>
+      <a href="#reading">Further Reading</a>
+    </div>
+  </aside>
+</main>
+
+<footer class="footer">
+  <p><strong>The Ethical Hacker's Command Handbook</strong> · Developed by Mihraj Mashhoor K</p>
+  <p class="footer-disclaimer">Authorized security learning reference · All practical demonstrations conducted strictly in authorized educational environments (TryHackMe, local Linux lab).</p>
+</footer>
+
+<script src="../assets/handbook.js"></script>
+</body>
+</html>

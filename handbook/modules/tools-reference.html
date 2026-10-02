@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <title>Module 14: Security Tools Command Index & Quick Reference · The Ethical Hacker's Command Handbook</title>
+  <meta name="description" content="High-density command index covering reconnaissance, web testing, exploitation, password analysis, and traffic tools.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/handbook.css">
+</head>
+<body>
+
+<header class="header">
+  <a class="brand" href="../index.html">
+    <span class="mark">M</span>
+    <div class="brand-text">
+      <span>Security Knowledge Base</span>
+      <b>The Ethical Hacker's Command Handbook</b>
+    </div>
+  </a>
+
+  <nav class="nav">
+    <a href="../index.html">
+      <span class="material-symbols-outlined" style="font-size: 16px;">apps</span>
+      <span>Modules (15)</span>
+    </a>
+    <a href="../library.html">
+      <span class="material-symbols-outlined" style="font-size: 16px;">library_books</span>
+      <span>PDF Library (30)</span>
+    </a>
+    <a href="../../index.html" class="btn-portfolio">
+      <span class="material-symbols-outlined" style="font-size: 14px;">arrow_back</span>
+      <span>Portfolio</span>
+    </a>
+  </nav>
+
+  <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
+    <span class="material-symbols-outlined">menu</span>
+  </button>
+</header>
+
+<div class="mobile-drawer" id="mobile-drawer">
+  <div class="mobile-drawer-nav">
+    <a href="../index.html">📚 All Modules (15)</a>
+    <a href="../library.html">📥 PDF Download Library (30)</a>
+    <hr style="border:0; border-top:1px solid var(--line); margin: 0.5rem 0;">
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-subtle); padding: 0 1rem; margin-bottom: 0.25rem;">DOCUMENTATION MODULES</div>
+    <a href="../nmap.html">01. Nmap Reconnaissance & Scanning</a>
+    <a href="../linux.html">02. Linux Essentials for Practitioners</a>
+    <a href="../metasploit.html">03. Metasploit Framework Fundamentals</a>
+    <a href="../searchsploit.html">04. Searchsploit & Vulnerability Research</a>
+    <a href="web-security.html">05. Web Application Security Fundamentals</a>
+    <a href="network-security.html">06. Network Security & Packet Analysis</a>
+    <a href="privilege-escalation.html">07. Privilege Escalation (Educational Labs)</a>
+    <a href="credential-security.html">08. Credential Security & Hash Analysis</a>
+    <a href="exploitation.html">09. Controlled Exploitation & Post-Exploitation</a>
+    <a href="reconnaissance.html">10. Reconnaissance & Surface Enumeration</a>
+    <a href="linux-security.html">11. Linux System Security & Defensive Hardening</a>
+    <a href="security-automation.html">12. Security Automation with Python & Scripting</a>
+    <a href="ai-cybersecurity.html">13. AI & Agentic Workflows in Cybersecurity</a>
+    <a href="tools-reference.html">14. Security Tools Command Index & Quick Reference</a>
+    <a href="pentest-methodology.html">15. Penetration Testing Methodology & Authorization</a>
+    <hr style="border:0; border-top:1px solid var(--line); margin: 0.5rem 0;">
+    <a href="../../index.html">← Return to Portfolio</a>
+  </div>
+</div>
+
+<main class="docs-layout">
+<aside class="sidebar">
+  <div class="sidebar-heading">
+    <span class="material-symbols-outlined" style="font-size: 14px;">menu_book</span>
+    <span>Handbook Modules</span>
+  </div>
+  <div class="sidebar-nav">
+    <a href="../nmap.html">
+      <span class="nav-num">01</span>
+      <span>Nmap Reconnaissance</span>
+    </a>
+    <a href="../linux.html">
+      <span class="nav-num">02</span>
+      <span>Linux Essentials for Practitioners</span>
+    </a>
+    <a href="../metasploit.html">
+      <span class="nav-num">03</span>
+      <span>Metasploit Framework Fundamentals</span>
+    </a>
+    <a href="../searchsploit.html">
+      <span class="nav-num">04</span>
+      <span>Searchsploit</span>
+    </a>
+    <a href="web-security.html">
+      <span class="nav-num">05</span>
+      <span>Web Application Security Fundamentals</span>
+    </a>
+    <a href="network-security.html">
+      <span class="nav-num">06</span>
+      <span>Network Security</span>
+    </a>
+    <a href="privilege-escalation.html">
+      <span class="nav-num">07</span>
+      <span>Privilege Escalation</span>
+    </a>
+    <a href="credential-security.html">
+      <span class="nav-num">08</span>
+      <span>Credential Security</span>
+    </a>
+    <a href="exploitation.html">
+      <span class="nav-num">09</span>
+      <span>Controlled Exploitation</span>
+    </a>
+    <a href="reconnaissance.html">
+      <span class="nav-num">10</span>
+      <span>Reconnaissance</span>
+    </a>
+    <a href="linux-security.html">
+      <span class="nav-num">11</span>
+      <span>Linux System Security</span>
+    </a>
+    <a href="security-automation.html">
+      <span class="nav-num">12</span>
+      <span>Security Automation with Python</span>
+    </a>
+    <a href="ai-cybersecurity.html">
+      <span class="nav-num">13</span>
+      <span>AI</span>
+    </a>
+    <a href="tools-reference.html" class="active">
+      <span class="nav-num">14</span>
+      <span>Security Tools Command Index</span>
+    </a>
+    <a href="pentest-methodology.html">
+      <span class="nav-num">15</span>
+      <span>Penetration Testing Methodology</span>
+    </a>
+  </div>
+  <div class="sidebar-heading">
+    <span class="material-symbols-outlined" style="font-size: 14px;">download</span>
+    <span>Resources</span>
+  </div>
+  <div class="sidebar-nav">
+    <a href="../library.html">
+      <span class="nav-num">PDF</span>
+      <span>Download Library (30)</span>
+    </a>
+  </div>
+</aside>
+
+  <article class="article">
+    <nav class="breadcrumb">
+      <a href="../index.html">Handbook</a>
+      <span>/</span>
+      <span>Reference</span>
+      <span>/</span>
+      <span>Module 14</span>
+    </nav>
+
+    <div class="article-header">
+      <div class="origin-tag badge-existing">
+        <span class="material-symbols-outlined" style="font-size: 14px;">terminal</span>
+        <span>SYNTHESIZED CHEAT SHEETS & PRACTICAL LEARNING</span>
+      </div>
+      <h1>Security Tools Command Index & Quick Reference</h1>
+      <p class="lead">High-density command index covering reconnaissance, web testing, exploitation, password analysis, and traffic tools.</p>
+    </div>
+
+
+<h2 id="overview">Overview</h2>
+<p>
+  <strong>Security Tools Command Index &amp; Quick Reference</strong> is a consolidated cheat sheet cataloging essential syntax, common flags, and usage patterns across the primary reconnaissance, web auditing, exploitation, and traffic analysis utilities documented throughout this handbook.
+</p>
+
+<h2 id="concepts">Core Concepts</h2>
+<p>
+  This reference organizes tools by their operational phase in an authorized assessment, providing copy-ready command templates optimized for terminal productivity.
+</p>
+
+<h2 id="tools">Tool Quick-Lookup Table</h2>
+<ul>
+  <li><strong>Reconnaissance &amp; Scanning:</strong> <code>nmap</code>, <code>dig</code>, <code>whois</code>, <code>whatweb</code></li>
+  <li><strong>Web Application Auditing:</strong> <code>ffuf</code>, <code>curl</code>, <code>burpsuite</code></li>
+  <li><strong>Vulnerability Research &amp; Exploits:</strong> <code>searchsploit</code>, <code>msfconsole</code>, <code>msfvenom</code></li>
+  <li><strong>Credential Security:</strong> <code>john</code>, <code>hashid</code>, <code>hydra</code></li>
+  <li><strong>Traffic &amp; Protocol Analysis:</strong> <code>wireshark</code>, <code>tcpdump</code>, <code>netcat</code></li>
+  <li><strong>Host Administration &amp; Hardening:</strong> <code>chmod</code>, <code>find</code>, <code>ufw</code>, <code>systemctl</code></li>
+</ul>
+
+<h2 id="commands">Commands &amp; Practical Examples</h2>
+
+<h3>1. Reconnaissance &amp; Discovery Commands</h3>
+<div class="command">
+  <div class="command-header"><span>BASH // RECONNAISSANCE SHORTCUTS</span><span>NMAP &amp; DNS</span></div>
+  <pre># Fast ping sweep on local subnet
+$ nmap -sn 192.168.1.0/24
+
+# Full TCP port scan with timing T4
+$ nmap -p- -T4 192.168.1.10
+
+# Service version detection with default safe scripts
+$ nmap -sV -sC -p 22,80,443,8080 -oA scan_results 192.168.1.10
+
+# Query all authoritative DNS records
+$ dig target.local ANY +noall +answer</pre>
+</div>
+
+<h3>2. Web Application Testing Commands</h3>
+<div class="command">
+  <div class="command-header"><span>BASH // WEB AUDITING SHORTCUTS</span><span>FFUF &amp; CURL</span></div>
+  <pre># Directory and route fuzzing
+$ ffuf -w /usr/share/wordlists/dirb/common.txt -u http://192.168.1.10/FUZZ -mc 200,301
+
+# Inspect HTTP response headers
+$ curl -I http://192.168.1.10
+
+# Test HTTP POST request with form data
+$ curl -X POST -d "user=admin&pass=test" http://192.168.1.10/login.php</pre>
+</div>
+
+<h3>3. Vulnerability Research &amp; Metasploit Commands</h3>
+<div class="command">
+  <div class="command-header"><span>BASH &amp; MSF // VULNERABILITY WORKFLOWS</span><span>SEARCHSPLOIT &amp; MSF</span></div>
+  <pre># Search local Exploit-DB by product and version
+$ searchsploit "Apache 2.4.49"
+
+# Search by CVE and show web URLs
+$ searchsploit --cve CVE-2021-41773 -w
+
+# Launch Metasploit quietly
+$ msfconsole -q
+
+# Metasploit standard configuration pattern
+msf6 > use auxiliary/scanner/portscan/tcp
+msf6 auxiliary(...) > set RHOSTS 192.168.1.10
+msf6 auxiliary(...) > run</pre>
+</div>
+
+<h3>4. Passwords, Hashes &amp; Netcat Commands</h3>
+<div class="command">
+  <div class="command-header"><span>BASH // CREDENTIALS &amp; SHELLS</span><span>JOHN &amp; NETCAT</span></div>
+  <pre># Identify hash type
+$ hashid "$6$saltsalt$..."
+
+# Offline password audit with John the Ripper
+$ john --wordlist=/usr/share/wordlists/rockyou.txt hashes.txt
+
+# Start Netcat reverse shell listener
+$ nc -lvnp 4444
+
+# Test TCP port connection
+$ nc -zv 192.168.1.10 22 80 443</pre>
+</div>
+
+<h2 id="workflow">Practical Workflow</h2>
+<ol>
+  <li><strong>Select Phase:</strong> Identify current assessment stage (Discovery &rarr; Enumeration &rarr; Verification).</li>
+  <li><strong>Copy Template:</strong> Copy targeted command block.</li>
+  <li><strong>Update Parameters:</strong> Replace target IP address, port numbers, and wordlist paths.</li>
+  <li><strong>Document Outputs:</strong> Ensure all command executions save logs (<code>-oA</code>, <code>-oN</code>, or shell redirection <code>&gt; output.txt</code>).</li>
+</ol>
+
+<h2 id="mistakes">Common Mistakes &amp; Troubleshooting</h2>
+<ul>
+  <li><strong>Wordlist Paths:</strong> Wordlist locations vary across distributions. Verify file exists (e.g. <code>ls -l /usr/share/wordlists/rockyou.txt</code>) before running dictionary tools.</li>
+  <li><strong>Missing Sudo on Raw Scans:</strong> Raw packet operations (such as SYN scan <code>-sS</code> or <code>tcpdump</code>) require root/sudo privileges.</li>
+</ul>
+
+<h2 id="security">Security Considerations &amp; Scoping</h2>
+<p>
+  Always verify that the target IP address matches your authorized scope before pasting and executing commands from cheat sheets.
+</p>
+
+<h2 id="related">Related Topics</h2>
+<ul>
+  <li><a href="../nmap.html">Module 01: Nmap Reconnaissance &amp; Scanning</a></li>
+  <li><a href="web-security.html">Module 05: Web Application Security Fundamentals</a></li>
+  <li><a href="pentest-methodology.html">Module 15: Penetration Testing Methodology</a></li>
+</ul>
+
+<h2 id="reading">Further Reading &amp; TryHackMe Paths</h2>
+<ul>
+  <li><strong>PDF Master Cheat Sheets:</strong> Download <code>The_Ethical_Hackers_Command_Handbook_Chapter_2_Part_10_Master_Cheat_Sheet.pdf</code> and <code>searchsploit/c6.pdf</code> in the PDF Library.</li>
+</ul>
+
+
+    <nav class="chapter-nav">
+      <a href="ai-cybersecurity.html">
+  <span class="nav-label">← Module 13</span>
+  <span class="nav-title">AI</span>
+</a>
+      <a href="pentest-methodology.html" class="next">
+  <span class="nav-label">Module 15 →</span>
+  <span class="nav-title">Penetration Testing Methodology</span>
+</a>
+    </nav>
+  </article>
+
+  <aside class="toc-sidebar">
+    <div class="sidebar-heading">
+      <span class="material-symbols-outlined" style="font-size: 14px;">toc</span>
+      <span>IN THIS CHAPTER</span>
+    </div>
+    <div class="toc-nav">
+      <a href="#overview">Overview</a>
+      <a href="#concepts">Core Concepts</a>
+      <a href="#tools">Tool Quick-Lookup Table</a>
+      <a href="#commands">Commands & Examples</a>
+      <a href="#workflow">Practical Workflow</a>
+      <a href="#mistakes">Common Mistakes</a>
+      <a href="#security">Security Considerations</a>
+      <a href="#related">Related Topics</a>
+      <a href="#reading">Further Reading</a>
+    </div>
+  </aside>
+</main>
+
+<footer class="footer">
+  <p><strong>The Ethical Hacker's Command Handbook</strong> · Developed by Mihraj Mashhoor K</p>
+  <p class="footer-disclaimer">Authorized security learning reference · All practical demonstrations conducted strictly in authorized educational environments (TryHackMe, local Linux lab).</p>
+</footer>
+
+<script src="../assets/handbook.js"></script>
+</body>
+</html>

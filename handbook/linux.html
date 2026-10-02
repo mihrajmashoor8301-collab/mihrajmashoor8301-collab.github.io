@@ -1,1 +1,298 @@
-<!doctype html><html lang="en"><head><link rel="icon" type="image/png" href="assets/favicon.png"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Linux · Handbook</title><link rel="stylesheet" href="assets/handbook.css"></head><body><header class="header"><a class="brand" href="index.html"><span class="mark">M</span><span>The Ethical Hacker's<br><b>Command Handbook</b></span></a><nav class="nav"><a href="index.html">Home</a><a href="nmap.html">Nmap</a><a class="active" href="linux.html">Linux</a><a href="metasploit.html">Metasploit</a><a href="searchsploit.html">Searchsploit</a></nav></header><main class="docs"><aside class="aside"><b>IN THIS CHAPTER</b><a href="#navigation">Navigation</a><a href="#files">Files</a><a href="#permissions">Permissions</a><a href="#processes">Processes</a><a href="#safe">Practice safely</a></aside><article class="article"><nav class="breadcrumb"><a href="index.html">Handbook</a> / Linux</nav><p class="eyebrow">CHAPTER 02 · OPERATING SYSTEMS</p><h1>Linux essentials</h1><p class="lead" style="margin-left:0">A small set of commands, used carefully, makes Linux easier to understand and administer.</p><h2 id="navigation">Navigation</h2><p>Linux uses a single directory tree rooted at <code>/</code>. Check your location before changing files.</p><div class="command"><pre>pwd; ls -lah; cd ~/Documents</pre></div><h2 id="files">Files and folders</h2><p>Create folders with parents, copy cautiously, and use interactive flags where overwriting would be risky.</p><div class="command"><pre>mkdir -p projects/handbook/assets; cp -i notes.md backup/notes.md; mv draft.md final.md</pre></div><div class="callout"><b>Warning:</b> Recursive deletion can permanently remove data. Confirm the full target path first.</div><h2 id="permissions">Permissions</h2><p>Permissions are owner, group, and others. <code>r</code> is read, <code>w</code> is write, and <code>x</code> is execute.</p><div class="command"><pre>ls -l report.txt; chmod 600 ~/.ssh/id_ed25519; chmod u+x backup.sh</pre></div><h2 id="processes">Processes and services</h2><p>Use normal termination before forceful termination, and manage services through the service manager where possible.</p><div class="command"><pre>ps aux; top; systemctl status ssh</pre></div><h2 id="safe">Practice safely</h2><p>Experiment inside a test folder in your home directory. Check manual pages with <code>man command</code> before running unfamiliar administrative commands.</p><nav class="chapter-nav"><a href="nmap.html">← Nmap</a><a href="metasploit.html">Metasploit →</a></nav></article></main><footer class="footer">Learn in a safe environment.</footer><script src="assets/handbook.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <title>Module 02: Linux Essentials for Practitioners · The Ethical Hacker's Command Handbook</title>
+  <meta name="description" content="Filesystem navigation, permissions, process control, systemctl, and essential administrative utilities.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <link rel="stylesheet" href="assets/handbook.css">
+</head>
+<body>
+
+<header class="header">
+  <a class="brand" href="index.html">
+    <span class="mark">M</span>
+    <div class="brand-text">
+      <span>Security Knowledge Base</span>
+      <b>The Ethical Hacker's Command Handbook</b>
+    </div>
+  </a>
+
+  <nav class="nav">
+    <a href="index.html">
+      <span class="material-symbols-outlined" style="font-size: 16px;">apps</span>
+      <span>Modules (15)</span>
+    </a>
+    <a href="library.html">
+      <span class="material-symbols-outlined" style="font-size: 16px;">library_books</span>
+      <span>PDF Library (30)</span>
+    </a>
+    <a href="../index.html" class="btn-portfolio">
+      <span class="material-symbols-outlined" style="font-size: 14px;">arrow_back</span>
+      <span>Portfolio</span>
+    </a>
+  </nav>
+
+  <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
+    <span class="material-symbols-outlined">menu</span>
+  </button>
+</header>
+
+<div class="mobile-drawer" id="mobile-drawer">
+  <div class="mobile-drawer-nav">
+    <a href="index.html">📚 All Modules (15)</a>
+    <a href="library.html">📥 PDF Download Library (30)</a>
+    <hr style="border:0; border-top:1px solid var(--line); margin: 0.5rem 0;">
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-subtle); padding: 0 1rem; margin-bottom: 0.25rem;">DOCUMENTATION MODULES</div>
+    <a href="nmap.html">01. Nmap Reconnaissance & Scanning</a>
+    <a href="linux.html">02. Linux Essentials for Practitioners</a>
+    <a href="metasploit.html">03. Metasploit Framework Fundamentals</a>
+    <a href="searchsploit.html">04. Searchsploit & Vulnerability Research</a>
+    <a href="modules/web-security.html">05. Web Application Security Fundamentals</a>
+    <a href="modules/network-security.html">06. Network Security & Packet Analysis</a>
+    <a href="modules/privilege-escalation.html">07. Privilege Escalation (Educational Labs)</a>
+    <a href="modules/credential-security.html">08. Credential Security & Hash Analysis</a>
+    <a href="modules/exploitation.html">09. Controlled Exploitation & Post-Exploitation</a>
+    <a href="modules/reconnaissance.html">10. Reconnaissance & Surface Enumeration</a>
+    <a href="modules/linux-security.html">11. Linux System Security & Defensive Hardening</a>
+    <a href="modules/security-automation.html">12. Security Automation with Python & Scripting</a>
+    <a href="modules/ai-cybersecurity.html">13. AI & Agentic Workflows in Cybersecurity</a>
+    <a href="modules/tools-reference.html">14. Security Tools Command Index & Quick Reference</a>
+    <a href="modules/pentest-methodology.html">15. Penetration Testing Methodology & Authorization</a>
+    <hr style="border:0; border-top:1px solid var(--line); margin: 0.5rem 0;">
+    <a href="../index.html">← Return to Portfolio</a>
+  </div>
+</div>
+
+<main class="docs-layout">
+<aside class="sidebar">
+  <div class="sidebar-heading">
+    <span class="material-symbols-outlined" style="font-size: 14px;">menu_book</span>
+    <span>Handbook Modules</span>
+  </div>
+  <div class="sidebar-nav">
+    <a href="nmap.html">
+      <span class="nav-num">01</span>
+      <span>Nmap Reconnaissance</span>
+    </a>
+    <a href="linux.html" class="active">
+      <span class="nav-num">02</span>
+      <span>Linux Essentials for Practitioners</span>
+    </a>
+    <a href="metasploit.html">
+      <span class="nav-num">03</span>
+      <span>Metasploit Framework Fundamentals</span>
+    </a>
+    <a href="searchsploit.html">
+      <span class="nav-num">04</span>
+      <span>Searchsploit</span>
+    </a>
+    <a href="modules/web-security.html">
+      <span class="nav-num">05</span>
+      <span>Web Application Security Fundamentals</span>
+    </a>
+    <a href="modules/network-security.html">
+      <span class="nav-num">06</span>
+      <span>Network Security</span>
+    </a>
+    <a href="modules/privilege-escalation.html">
+      <span class="nav-num">07</span>
+      <span>Privilege Escalation</span>
+    </a>
+    <a href="modules/credential-security.html">
+      <span class="nav-num">08</span>
+      <span>Credential Security</span>
+    </a>
+    <a href="modules/exploitation.html">
+      <span class="nav-num">09</span>
+      <span>Controlled Exploitation</span>
+    </a>
+    <a href="modules/reconnaissance.html">
+      <span class="nav-num">10</span>
+      <span>Reconnaissance</span>
+    </a>
+    <a href="modules/linux-security.html">
+      <span class="nav-num">11</span>
+      <span>Linux System Security</span>
+    </a>
+    <a href="modules/security-automation.html">
+      <span class="nav-num">12</span>
+      <span>Security Automation with Python</span>
+    </a>
+    <a href="modules/ai-cybersecurity.html">
+      <span class="nav-num">13</span>
+      <span>AI</span>
+    </a>
+    <a href="modules/tools-reference.html">
+      <span class="nav-num">14</span>
+      <span>Security Tools Command Index</span>
+    </a>
+    <a href="modules/pentest-methodology.html">
+      <span class="nav-num">15</span>
+      <span>Penetration Testing Methodology</span>
+    </a>
+  </div>
+  <div class="sidebar-heading">
+    <span class="material-symbols-outlined" style="font-size: 14px;">download</span>
+    <span>Resources</span>
+  </div>
+  <div class="sidebar-nav">
+    <a href="library.html">
+      <span class="nav-num">PDF</span>
+      <span>Download Library (30)</span>
+    </a>
+  </div>
+</aside>
+
+  <article class="article">
+    <nav class="breadcrumb">
+      <a href="index.html">Handbook</a>
+      <span>/</span>
+      <span>Operating Systems</span>
+      <span>/</span>
+      <span>Module 02</span>
+    </nav>
+
+    <div class="article-header">
+      <div class="origin-tag badge-existing">
+        <span class="material-symbols-outlined" style="font-size: 14px;">terminal</span>
+        <span>EXISTING HANDBOOK & REPOSITORY PDFS</span>
+      </div>
+      <h1>Linux Essentials for Practitioners</h1>
+      <p class="lead">Filesystem navigation, permissions, process control, systemctl, and essential administrative utilities.</p>
+    </div>
+
+
+<h2 id="overview">Overview</h2>
+<p>
+  Linux constitutes the operational foundation of cybersecurity infrastructure, hosting environments, penetration testing distributions (Kali, Ubuntu), and embedded network appliances. Operating efficiently within the bash terminal is an indispensable prerequisite for vulnerability assessment, log investigation, and tool automation.
+</p>
+
+<h2 id="concepts">Core Concepts</h2>
+<ul>
+  <li><strong>Unified Hierarchical Filesystem:</strong> Every storage device, process, and socket is mapped under a single root directory (<code>/</code>). Everything in Linux is treated as a file.</li>
+  <li><strong>Standard Permission Triad:</strong> Access rights are partitioned across User (owner), Group, and Other. Permissions consist of Read (<code>r=4</code>), Write (<code>w=2</code>), and Execute (<code>x=1</code>).</li>
+  <li><strong>Process Architecture:</strong> Programs run as processes identified by unique Process IDs (PIDs). Init/Systemd (PID 1) manages background system services.</li>
+</ul>
+
+<h2 id="tools">Tools &amp; Requirements</h2>
+<p>Standard Linux core utilities (GNU coreutils), Bash 5+, and systemd service management.</p>
+
+<h2 id="commands">Commands &amp; Practical Examples</h2>
+
+<h3>1. Filesystem Navigation &amp; Inspection</h3>
+<p>Verify current working directory, list all files with human-readable permissions, and change directory:</p>
+<div class="command">
+  <div class="command-header"><span>BASH // NAVIGATION</span><span>COREUTILS</span></div>
+  <pre>$ pwd; ls -lah; cd ~/Documents</pre>
+</div>
+
+<h3>2. Directory Management &amp; Safe File Operations</h3>
+<p>Create nested folder hierarchies, copy files with overwrite prompts, and rename items:</p>
+<div class="command">
+  <div class="command-header"><span>BASH // FILE OPERATIONS</span><span>SAFE FLAGS</span></div>
+  <pre>$ mkdir -p projects/handbook/assets; cp -i notes.md backup/notes.md; mv draft.md final.md</pre>
+</div>
+<div class="callout callout-warning">
+  <b>Warning:</b> Recursive file deletion (<code>rm -rf</code>) does not use a trash bin. Verify the absolute path before executing deletion commands.
+</div>
+
+<h3>3. Security Permissions &amp; Access Controls</h3>
+<p>Audit permissions, secure private SSH keys with strict owner-only access (600), and add script execution rights:</p>
+<div class="command">
+  <div class="command-header"><span>BASH // PERMISSIONS</span><span>OCTAL MODES</span></div>
+  <pre>$ ls -l report.txt; chmod 600 ~/.ssh/id_ed25519; chmod u+x backup.sh</pre>
+</div>
+
+<h3>4. Process Monitoring &amp; Service Control</h3>
+<p>List running system processes, launch interactive process viewer, and check service availability:</p>
+<div class="command">
+  <div class="command-header"><span>BASH // PROCESSES &amp; SERVICES</span><span>SYSTEMCTL</span></div>
+  <pre>$ ps aux; top; systemctl status ssh</pre>
+</div>
+
+<h3>5. Searching Files and Content</h3>
+<p>Locate configuration files recursively and search for keyword patterns inside files:</p>
+<div class="command">
+  <div class="command-header"><span>BASH // SEARCH UTILITIES</span><span>FIND &amp; GREP</span></div>
+  <pre>$ find /etc -name "*.conf" 2>/dev/null
+$ grep -rn "password" /var/log/ 2>/dev/null</pre>
+</div>
+
+<h2 id="workflow">Practical Workflow</h2>
+<ol>
+  <li><strong>Orientation:</strong> Always confirm current user (<code>whoami</code>) and directory path (<code>pwd</code>) upon terminal connection.</li>
+  <li><strong>File Verification:</strong> Inspect file permissions (<code>ls -l</code>) before modifying or executing scripts.</li>
+  <li><strong>Resource Review:</strong> Check memory and active network listeners (<code>ss -tulpn</code>) before launching heavy tools.</li>
+</ol>
+
+<h2 id="mistakes">Common Mistakes &amp; Troubleshooting</h2>
+<ul>
+  <li><strong>Running Everything as Root:</strong> Avoid conducting routine tasks as root. Use standard user accounts and invoke <code>sudo</code> only when administrative escalation is required.</li>
+  <li><strong>Permissive SSH Keys:</strong> OpenSSH refuses connection if private key files have permissions greater than <code>600</code>.</li>
+  <li><strong>Unquoted Wildcards:</strong> Misusing wildcards with commands like <code>chown</code> can inadvertently change permissions across system files.</li>
+</ul>
+
+<h2 id="security">Security Considerations &amp; Scoping</h2>
+<p>
+  Enforce the Principle of Least Privilege across all personal lab machines. Ensure sensitive files in test environments are restricted from world-readable permissions.
+</p>
+
+<h2 id="related">Related Topics</h2>
+<ul>
+  <li><a href="modules/privilege-escalation.html">Module 07: Privilege Escalation (Educational Labs)</a></li>
+  <li><a href="modules/linux-security.html">Module 11: Linux System Security &amp; Defensive Hardening</a></li>
+  <li><a href="modules/security-automation.html">Module 12: Security Automation with Python &amp; Scripting</a></li>
+</ul>
+
+<h2 id="reading">Further Reading &amp; TryHackMe Paths</h2>
+<ul>
+  <li><strong>TryHackMe Paths:</strong> <em>Pre Security (Linux Fundamentals Parts 1–3)</em>, <em>Cyber Security 101</em>.</li>
+  <li><strong>Offline Guide:</strong> Refer to <code>handbook/sources/linux-basics.pdf</code> in the PDF Library.</li>
+</ul>
+
+
+    <nav class="chapter-nav">
+      <a href="nmap.html">
+  <span class="nav-label">← Module 01</span>
+  <span class="nav-title">Nmap Reconnaissance</span>
+</a>
+      <a href="metasploit.html" class="next">
+  <span class="nav-label">Module 03 →</span>
+  <span class="nav-title">Metasploit Framework Fundamentals</span>
+</a>
+    </nav>
+  </article>
+
+  <aside class="toc-sidebar">
+    <div class="sidebar-heading">
+      <span class="material-symbols-outlined" style="font-size: 14px;">toc</span>
+      <span>IN THIS CHAPTER</span>
+    </div>
+    <div class="toc-nav">
+      <a href="#overview">Overview</a>
+      <a href="#concepts">Core Concepts</a>
+      <a href="#tools">Tools & Requirements</a>
+      <a href="#commands">Commands & Examples</a>
+      <a href="#workflow">Practical Workflow</a>
+      <a href="#mistakes">Common Mistakes</a>
+      <a href="#security">Security Considerations</a>
+      <a href="#related">Related Topics</a>
+      <a href="#reading">Further Reading</a>
+    </div>
+  </aside>
+</main>
+
+<footer class="footer">
+  <p><strong>The Ethical Hacker's Command Handbook</strong> · Developed by Mihraj Mashhoor K</p>
+  <p class="footer-disclaimer">Authorized security learning reference · All practical demonstrations conducted strictly in authorized educational environments (TryHackMe, local Linux lab).</p>
+</footer>
+
+<script src="assets/handbook.js"></script>
+</body>
+</html>

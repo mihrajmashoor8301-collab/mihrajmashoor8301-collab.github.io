@@ -1,1 +1,308 @@
-<!doctype html><html lang="en"><head><link rel="icon" type="image/png" href="assets/favicon.png"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Metasploit · Handbook</title><link rel="stylesheet" href="assets/handbook.css"></head><body><header class="header"><a class="brand" href="index.html"><span class="mark">M</span><span>The Ethical Hacker's<br><b>Command Handbook</b></span></a><nav class="nav"><a href="index.html">Home</a><a href="nmap.html">Nmap</a><a href="linux.html">Linux</a><a class="active" href="metasploit.html">Metasploit</a><a href="searchsploit.html">Searchsploit</a></nav></header><main class="docs"><aside class="aside"><b>IN THIS CHAPTER</b><a href="#overview">Overview</a><a href="#workflow">Workflow</a><a href="#research">Research modules</a><a href="#workspaces">Workspaces</a><a href="#safe">Practice safely</a></aside><article class="article"><nav class="breadcrumb"><a href="index.html">Handbook</a> / Metasploit</nav><p class="eyebrow">CHAPTER 03 · FRAMEWORKS</p><h1>Metasploit</h1><p class="lead" style="margin-left:0">Metasploit is a framework for authorised security testing, validation, and lab learning. It does not replace understanding the target, scope, or impact.</p><h2 id="overview">Core vocabulary</h2><ul><li><b>Module:</b> a component for a defined task, such as auxiliary scanning or validation.</li><li><b>Options:</b> configuration values required by a module.</li><li><b>Workspace:</b> a separate area for organising assessment data.</li></ul><h2 id="workflow">Responsible workflow</h2><ol><li>Confirm written scope and a safe test window.</li><li>Enumerate and verify the service independently.</li><li>Read module descriptions, references, and options.</li><li>Use non-destructive validation where possible.</li><li>Record evidence and remediation advice.</li></ol><h2 id="research">Research modules</h2><p>Search broadly, then inspect details before making choices.</p><div class="command"><pre>msfconsole; search type:auxiliary http; info &lt;module-name&gt;</pre></div><p>The <code>info</code> output explains purpose, references, options, and limitations. Read it first.</p><h2 id="workspaces">Organise a lab</h2><div class="command"><pre>workspace -a training-lab; workspace; help</pre></div><div class="callout"><b>Important:</b> Only use modules against targets you own or are explicitly authorised to test. Do not use a framework to gain access to unrelated systems.</div><h2 id="safe">Practice safely</h2><p>Use intentionally vulnerable labs or applications you control. Strong reporting explains what was tested, evidence, impact, and remediation.</p><nav class="chapter-nav"><a href="linux.html">← Linux</a><a href="searchsploit.html">Searchsploit →</a></nav></article></main><footer class="footer">Authorisation is part of the skill.</footer><script src="assets/handbook.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <title>Module 03: Metasploit Framework Fundamentals · The Ethical Hacker's Command Handbook</title>
+  <meta name="description" content="Exploit modules, auxiliary scanners, payloads, Meterpreter fundamentals, and workspace organization.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <link rel="stylesheet" href="assets/handbook.css">
+</head>
+<body>
+
+<header class="header">
+  <a class="brand" href="index.html">
+    <span class="mark">M</span>
+    <div class="brand-text">
+      <span>Security Knowledge Base</span>
+      <b>The Ethical Hacker's Command Handbook</b>
+    </div>
+  </a>
+
+  <nav class="nav">
+    <a href="index.html">
+      <span class="material-symbols-outlined" style="font-size: 16px;">apps</span>
+      <span>Modules (15)</span>
+    </a>
+    <a href="library.html">
+      <span class="material-symbols-outlined" style="font-size: 16px;">library_books</span>
+      <span>PDF Library (30)</span>
+    </a>
+    <a href="../index.html" class="btn-portfolio">
+      <span class="material-symbols-outlined" style="font-size: 14px;">arrow_back</span>
+      <span>Portfolio</span>
+    </a>
+  </nav>
+
+  <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
+    <span class="material-symbols-outlined">menu</span>
+  </button>
+</header>
+
+<div class="mobile-drawer" id="mobile-drawer">
+  <div class="mobile-drawer-nav">
+    <a href="index.html">📚 All Modules (15)</a>
+    <a href="library.html">📥 PDF Download Library (30)</a>
+    <hr style="border:0; border-top:1px solid var(--line); margin: 0.5rem 0;">
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-subtle); padding: 0 1rem; margin-bottom: 0.25rem;">DOCUMENTATION MODULES</div>
+    <a href="nmap.html">01. Nmap Reconnaissance & Scanning</a>
+    <a href="linux.html">02. Linux Essentials for Practitioners</a>
+    <a href="metasploit.html">03. Metasploit Framework Fundamentals</a>
+    <a href="searchsploit.html">04. Searchsploit & Vulnerability Research</a>
+    <a href="modules/web-security.html">05. Web Application Security Fundamentals</a>
+    <a href="modules/network-security.html">06. Network Security & Packet Analysis</a>
+    <a href="modules/privilege-escalation.html">07. Privilege Escalation (Educational Labs)</a>
+    <a href="modules/credential-security.html">08. Credential Security & Hash Analysis</a>
+    <a href="modules/exploitation.html">09. Controlled Exploitation & Post-Exploitation</a>
+    <a href="modules/reconnaissance.html">10. Reconnaissance & Surface Enumeration</a>
+    <a href="modules/linux-security.html">11. Linux System Security & Defensive Hardening</a>
+    <a href="modules/security-automation.html">12. Security Automation with Python & Scripting</a>
+    <a href="modules/ai-cybersecurity.html">13. AI & Agentic Workflows in Cybersecurity</a>
+    <a href="modules/tools-reference.html">14. Security Tools Command Index & Quick Reference</a>
+    <a href="modules/pentest-methodology.html">15. Penetration Testing Methodology & Authorization</a>
+    <hr style="border:0; border-top:1px solid var(--line); margin: 0.5rem 0;">
+    <a href="../index.html">← Return to Portfolio</a>
+  </div>
+</div>
+
+<main class="docs-layout">
+<aside class="sidebar">
+  <div class="sidebar-heading">
+    <span class="material-symbols-outlined" style="font-size: 14px;">menu_book</span>
+    <span>Handbook Modules</span>
+  </div>
+  <div class="sidebar-nav">
+    <a href="nmap.html">
+      <span class="nav-num">01</span>
+      <span>Nmap Reconnaissance</span>
+    </a>
+    <a href="linux.html">
+      <span class="nav-num">02</span>
+      <span>Linux Essentials for Practitioners</span>
+    </a>
+    <a href="metasploit.html" class="active">
+      <span class="nav-num">03</span>
+      <span>Metasploit Framework Fundamentals</span>
+    </a>
+    <a href="searchsploit.html">
+      <span class="nav-num">04</span>
+      <span>Searchsploit</span>
+    </a>
+    <a href="modules/web-security.html">
+      <span class="nav-num">05</span>
+      <span>Web Application Security Fundamentals</span>
+    </a>
+    <a href="modules/network-security.html">
+      <span class="nav-num">06</span>
+      <span>Network Security</span>
+    </a>
+    <a href="modules/privilege-escalation.html">
+      <span class="nav-num">07</span>
+      <span>Privilege Escalation</span>
+    </a>
+    <a href="modules/credential-security.html">
+      <span class="nav-num">08</span>
+      <span>Credential Security</span>
+    </a>
+    <a href="modules/exploitation.html">
+      <span class="nav-num">09</span>
+      <span>Controlled Exploitation</span>
+    </a>
+    <a href="modules/reconnaissance.html">
+      <span class="nav-num">10</span>
+      <span>Reconnaissance</span>
+    </a>
+    <a href="modules/linux-security.html">
+      <span class="nav-num">11</span>
+      <span>Linux System Security</span>
+    </a>
+    <a href="modules/security-automation.html">
+      <span class="nav-num">12</span>
+      <span>Security Automation with Python</span>
+    </a>
+    <a href="modules/ai-cybersecurity.html">
+      <span class="nav-num">13</span>
+      <span>AI</span>
+    </a>
+    <a href="modules/tools-reference.html">
+      <span class="nav-num">14</span>
+      <span>Security Tools Command Index</span>
+    </a>
+    <a href="modules/pentest-methodology.html">
+      <span class="nav-num">15</span>
+      <span>Penetration Testing Methodology</span>
+    </a>
+  </div>
+  <div class="sidebar-heading">
+    <span class="material-symbols-outlined" style="font-size: 14px;">download</span>
+    <span>Resources</span>
+  </div>
+  <div class="sidebar-nav">
+    <a href="library.html">
+      <span class="nav-num">PDF</span>
+      <span>Download Library (30)</span>
+    </a>
+  </div>
+</aside>
+
+  <article class="article">
+    <nav class="breadcrumb">
+      <a href="index.html">Handbook</a>
+      <span>/</span>
+      <span>Frameworks</span>
+      <span>/</span>
+      <span>Module 03</span>
+    </nav>
+
+    <div class="article-header">
+      <div class="origin-tag badge-existing">
+        <span class="material-symbols-outlined" style="font-size: 14px;">terminal</span>
+        <span>EXISTING HANDBOOK & REPOSITORY PDFS</span>
+      </div>
+      <h1>Metasploit Framework Fundamentals</h1>
+      <p class="lead">Exploit modules, auxiliary scanners, payloads, Meterpreter fundamentals, and workspace organization.</p>
+    </div>
+
+
+<h2 id="overview">Overview</h2>
+<p>
+  The <strong>Metasploit Framework</strong> is a modular penetration testing and validation platform developed for security auditing, vulnerability research, and security education. It standardizes exploit development, payload delivery, auxiliary scanning, and post-exploitation validation within a unified command-line console (<code>msfconsole</code>).
+</p>
+<div class="callout callout-warning">
+  <b>Laboratory Authorization:</b> Only launch Metasploit modules against target systems you own or have explicit written authorization to test. Unauthorized exploit delivery constitutes an illegal attack.
+</div>
+
+<h2 id="concepts">Core Concepts</h2>
+<ul>
+  <li><strong>Auxiliary Modules:</strong> Components that perform scanning, fingerprinting, protocol analysis, and denial-of-service tests without injecting a payload.</li>
+  <li><strong>Exploit Modules:</strong> Code designed to leverage a specific software flaw (buffer overflow, command injection, authentication bypass) to deliver a payload.</li>
+  <li><strong>Payloads:</strong> Code executed on the target after successful exploitation (e.g., standard command shell, Meterpreter session). Payloads can be <em>staged</em> or <em>stageless</em>.</li>
+  <li><strong>Encoders &amp; NOPs:</strong> Modules used to eliminate bad characters (such as null bytes <code>\x00</code>) from payload binaries.</li>
+  <li><strong>Workspaces:</strong> Database partitions that segment assessment data, discovered hosts, and captured credentials into isolated projects.</li>
+</ul>
+
+<h2 id="tools">Tools &amp; Requirements</h2>
+<p>Metasploit Framework is installed by default on Kali Linux and Parrot OS. Initialize the database before first use:</p>
+<div class="command">
+  <div class="command-header"><span>BASH // INITIALIZE METASPLOIT DATABASE</span><span>POSTGRESQL</span></div>
+  <pre>$ sudo msfdb init
+$ msfconsole -q</pre>
+</div>
+
+<h2 id="commands">Commands &amp; Practical Examples</h2>
+
+<h3>1. Searching and Inspecting Modules</h3>
+<p>Search for specific service auxiliary modules and inspect their documentation, CVE references, and configuration requirements:</p>
+<div class="command">
+  <div class="command-header"><span>MSFCONSOLE // MODULE SEARCH &amp; INFO</span><span>DISCOVERY</span></div>
+  <pre>msf6 > search type:auxiliary http
+msf6 > info auxiliary/scanner/http/http_version</pre>
+</div>
+
+<h3>2. Configuring Assessment Workspaces</h3>
+<p>Create an isolated workspace to organize host discoveries and loot for a training lab:</p>
+<div class="command">
+  <div class="command-header"><span>MSFCONSOLE // WORKSPACE MANAGEMENT</span><span>ISOLATION</span></div>
+  <pre>msf6 > workspace -a training-lab
+msf6 > workspace
+msf6 > help</pre>
+</div>
+
+<h3>3. Module Selection &amp; Execution Workflow</h3>
+<p>Standard configuration pattern for auxiliary scanning modules:</p>
+<div class="command">
+  <div class="command-header"><span>MSFCONSOLE // TARGET CONFIGURATION</span><span>SCANNER WORKFLOW</span></div>
+  <pre>msf6 > use auxiliary/scanner/portscan/tcp
+msf6 auxiliary(scanner/portscan/tcp) > set RHOSTS 192.168.1.10
+msf6 auxiliary(scanner/portscan/tcp) > set PORTS 21,22,80,443
+msf6 auxiliary(scanner/portscan/tcp) > run</pre>
+</div>
+
+<h3>4. Database Host &amp; Service Inspection</h3>
+<p>Review all identified hosts and open service records recorded in the active workspace database:</p>
+<div class="command">
+  <div class="command-header"><span>MSFCONSOLE // DATABASE RECORDS</span><span>HOST INVENTORY</span></div>
+  <pre>msf6 > hosts
+msf6 > services -p 80
+msf6 > loot</pre>
+</div>
+
+<h2 id="workflow">Practical Workflow</h2>
+<ol>
+  <li><strong>Verify Scope:</strong> Confirm target IP is within designated lab workspace.</li>
+  <li><strong>Configure Workspace:</strong> Create a dedicated workspace (<code>workspace -a &lt;name&gt;</code>).</li>
+  <li><strong>Enumerate:</strong> Run auxiliary scanners to fingerprint service versions independently.</li>
+  <li><strong>Read Documentation:</strong> Review module <code>info</code> carefully to understand required options and side effects.</li>
+  <li><strong>Controlled Validation:</strong> Use <code>check</code> where supported before executing any exploit.</li>
+  <li><strong>Session Logging:</strong> Document findings and clear sessions immediately upon test completion.</li>
+</ol>
+
+<h2 id="mistakes">Common Mistakes &amp; Troubleshooting</h2>
+<ul>
+  <li><strong>Blind Exploitation:</strong> Firing exploits without verifying target version often crashes services (causing denial of service) without establishing a session.</li>
+  <li><strong>LHOST Misconfiguration:</strong> When testing over a VPN or NAT, ensure <code>LHOST</code> is set to your VPN interface IP (e.g. <code>tun0</code>), not your local loopback or LAN IP.</li>
+  <li><strong>Database Disconnection:</strong> Running scans without PostgreSQL active prevents findings from being recorded in workspaces.</li>
+</ul>
+
+<h2 id="security">Security Considerations &amp; Scoping</h2>
+<p>
+  In authorized engagements, exploit execution is tightly regulated. Proof-of-concept verification should use non-destructive checks wherever possible.
+</p>
+
+<h2 id="related">Related Topics</h2>
+<ul>
+  <li><a href="searchsploit.html">Module 04: Searchsploit &amp; Vulnerability Research</a></li>
+  <li><a href="modules/exploitation.html">Module 09: Controlled Exploitation &amp; Post-Exploitation</a></li>
+  <li><a href="modules/pentest-methodology.html">Module 15: Penetration Testing Methodology</a></li>
+</ul>
+
+<h2 id="reading">Further Reading &amp; TryHackMe Paths</h2>
+<ul>
+  <li><strong>TryHackMe Rooms:</strong> <em>Metasploit: Introduction</em>, <em>Metasploit: Exploitation</em>, <em>Meterpreter</em>.</li>
+  <li><strong>PDF Library:</strong> Download <code>metasploit.pdf</code> and the 10 chapter breakdown parts in the PDF Download Library.</li>
+</ul>
+
+
+    <nav class="chapter-nav">
+      <a href="linux.html">
+  <span class="nav-label">← Module 02</span>
+  <span class="nav-title">Linux Essentials for Practitioners</span>
+</a>
+      <a href="searchsploit.html" class="next">
+  <span class="nav-label">Module 04 →</span>
+  <span class="nav-title">Searchsploit</span>
+</a>
+    </nav>
+  </article>
+
+  <aside class="toc-sidebar">
+    <div class="sidebar-heading">
+      <span class="material-symbols-outlined" style="font-size: 14px;">toc</span>
+      <span>IN THIS CHAPTER</span>
+    </div>
+    <div class="toc-nav">
+      <a href="#overview">Overview</a>
+      <a href="#concepts">Core Concepts</a>
+      <a href="#tools">Tools & Requirements</a>
+      <a href="#commands">Commands & Examples</a>
+      <a href="#workflow">Practical Workflow</a>
+      <a href="#mistakes">Common Mistakes</a>
+      <a href="#security">Security Considerations</a>
+      <a href="#related">Related Topics</a>
+      <a href="#reading">Further Reading</a>
+    </div>
+  </aside>
+</main>
+
+<footer class="footer">
+  <p><strong>The Ethical Hacker's Command Handbook</strong> · Developed by Mihraj Mashhoor K</p>
+  <p class="footer-disclaimer">Authorized security learning reference · All practical demonstrations conducted strictly in authorized educational environments (TryHackMe, local Linux lab).</p>
+</footer>
+
+<script src="assets/handbook.js"></script>
+</body>
+</html>

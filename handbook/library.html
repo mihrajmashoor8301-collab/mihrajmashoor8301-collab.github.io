@@ -1,142 +1,354 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-<title>The Ethical Hacker's Command Handbook</title>
-<link rel="stylesheet" href="assets/handbook.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <title>PDF Download Center (30 Files) · The Ethical Hacker's Command Handbook</title>
+  <meta name="description" content="Browse and download all 30 PDF chapters and master handbooks for Linux, Nmap, Metasploit, and Searchsploit.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <link rel="stylesheet" href="assets/handbook.css">
 </head>
 <body>
 
 <header class="header">
-    <a class="brand" href="index.html">
-        <span class="mark">M</span>
-        <span>The Ethical Hacker's<br><b>Command Handbook</b></span>
-    </a>
+  <a class="brand" href="index.html">
+    <span class="mark">M</span>
+    <div class="brand-text">
+      <span>Security Knowledge Base</span>
+      <b>The Ethical Hacker's Command Handbook</b>
+    </div>
+  </a>
 
-    <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="nmap.html">Nmap</a>
-        <a href="linux.html">Linux</a>
-        <a href="metasploit.html">Metasploit</a>
-        <a href="searchsploit.html">Searchsploit</a>
-        <a class="active" href="library.html">PDF Library</a>
-        <a href="../index.html">Portfolio ↗</a>
-    </nav>
+  <nav class="nav">
+    <a href="index.html">
+      <span class="material-symbols-outlined" style="font-size: 16px;">apps</span>
+      <span>Modules (15)</span>
+    </a>
+    <a href="library.html" class="active">
+      <span class="material-symbols-outlined" style="font-size: 16px;">library_books</span>
+      <span>PDF Library (30)</span>
+    </a>
+    <a href="../index.html" class="btn-portfolio">
+      <span class="material-symbols-outlined" style="font-size: 14px;">arrow_back</span>
+      <span>Portfolio</span>
+    </a>
+  </nav>
+
+  <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
+    <span class="material-symbols-outlined">menu</span>
+  </button>
 </header>
 
-<main class="docs">
-
-<aside class="aside">
-<b>PDF LIBRARY</b>
-<a href="#linux">Linux</a>
-<a href="#nmap">Nmap</a>
-<a href="#metasploit">Metasploit</a>
-<a href="#searchsploit">Searchsploit</a>
-</aside>
-
-<article class="article">
-
-<nav class="breadcrumb">
-<a href="index.html">Handbook</a> / PDF Library
-</nav>
-
-<p class="eyebrow">DOWNLOAD CENTER</p>
-
-<h1>PDF Library</h1>
-
-<p class="lead" style="margin-left:0">
-Browse every completed handbook. Each topic includes downloadable PDFs
-and a corresponding web version for easy reading.
-</p>
-
-<hr>
-
-<h2 id="linux">🐧 Linux</h2>
-
-<p>
-Complete Linux command reference covering navigation, permissions,
-packages, networking and shell utilities.
-</p>
-
-<div class="library-meta">
-<div class="meta-card"><span>📄 Chapters</span><strong>1</strong></div>
-<div class="meta-card"><span>📥 Format</span><strong>PDF</strong></div>
-<div class="meta-card"><span>✅ Status</span><strong>Completed</strong></div>
+<div class="mobile-drawer" id="mobile-drawer">
+  <div class="mobile-drawer-nav">
+    <a href="index.html">📚 All Modules (15)</a>
+    <a href="library.html">📥 PDF Download Library (30)</a>
+    <hr style="border:0; border-top:1px solid var(--line); margin: 0.5rem 0;">
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-subtle); padding: 0 1rem; margin-bottom: 0.25rem;">DOCUMENTATION MODULES</div>
+    <a href="nmap.html">01. Nmap Reconnaissance & Scanning</a>
+    <a href="linux.html">02. Linux Essentials for Practitioners</a>
+    <a href="metasploit.html">03. Metasploit Framework Fundamentals</a>
+    <a href="searchsploit.html">04. Searchsploit & Vulnerability Research</a>
+    <a href="modules/web-security.html">05. Web Application Security Fundamentals</a>
+    <a href="modules/network-security.html">06. Network Security & Packet Analysis</a>
+    <a href="modules/privilege-escalation.html">07. Privilege Escalation (Educational Labs)</a>
+    <a href="modules/credential-security.html">08. Credential Security & Hash Analysis</a>
+    <a href="modules/exploitation.html">09. Controlled Exploitation & Post-Exploitation</a>
+    <a href="modules/reconnaissance.html">10. Reconnaissance & Surface Enumeration</a>
+    <a href="modules/linux-security.html">11. Linux System Security & Defensive Hardening</a>
+    <a href="modules/security-automation.html">12. Security Automation with Python & Scripting</a>
+    <a href="modules/ai-cybersecurity.html">13. AI & Agentic Workflows in Cybersecurity</a>
+    <a href="modules/tools-reference.html">14. Security Tools Command Index & Quick Reference</a>
+    <a href="modules/pentest-methodology.html">15. Penetration Testing Methodology & Authorization</a>
+    <hr style="border:0; border-top:1px solid var(--line); margin: 0.5rem 0;">
+    <a href="../index.html">← Return to Portfolio</a>
+  </div>
 </div>
 
-<p>
-<a class="button" href="sources/linux-basics.pdf" target="_blank">📖 Open Handbook ↗</a>
-</p>
+<main class="docs-layout">
+  <!-- Left Navigation Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-heading">
+      <span class="material-symbols-outlined" style="font-size: 14px;">folder_zip</span>
+      <span>PDF CATEGORIES</span>
+    </div>
+    <div class="sidebar-nav">
+      <a href="#linux"><span class="nav-num">01</span><span>Linux Fundamentals (1)</span></a>
+      <a href="#nmap"><span class="nav-num">02</span><span>Nmap Network Mapper (11)</span></a>
+      <a href="#metasploit"><span class="nav-num">03</span><span>Metasploit Framework (11)</span></a>
+      <a href="#searchsploit"><span class="nav-num">04</span><span>Searchsploit Research (7)</span></a>
+    </div>
+    <div class="sidebar-heading">
+      <span class="material-symbols-outlined" style="font-size: 14px;">apps</span>
+      <span>ONLINE MODULES</span>
+    </div>
+    <div class="sidebar-nav">
+      <a href="index.html"><span class="nav-num">ALL</span><span>Return to Module Catalog</span></a>
+    </div>
+  </aside>
 
-<hr>
+  <!-- Main Article Canvas -->
+  <article class="article">
+    <nav class="breadcrumb">
+      <a href="index.html">Handbook</a>
+      <span>/</span>
+      <span>PDF Library</span>
+    </nav>
 
-<h2 id="nmap">🌐 Nmap</h2>
+    <div class="article-header">
+      <div class="origin-tag badge-existing">
+        <span class="material-symbols-outlined" style="font-size: 14px;">download_done</span>
+        <span>DOWNLOAD CENTER // 30 PRESERVED PDF RESOURCES</span>
+      </div>
+      <h1>PDF Download Library</h1>
+      <p class="lead">
+        Browse every offline handbook and chapter part. All 30 original study PDFs from the repository are indexed below with direct download links, file sizes, and chapter mappings.
+      </p>
+    </div>
 
-<p>
-Host discovery, port scanning, service detection, NSE,
-OS detection and enumeration techniques.
-</p>
+    <!-- Category 1: Linux -->
+    <div class="library-category" id="linux">
+      <div class="library-category-header">
+        <div class="library-category-title">
+          <span>🐧</span>
+          <span>Linux Fundamentals</span>
+        </div>
+        <div class="library-meta">
+          <span class="meta-card">Chapters: <strong>1</strong></span>
+          <span class="meta-card">Total: <strong>6.6 KB</strong></span>
+          <span class="meta-card">Format: <strong>PDF</strong></span>
+        </div>
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+        Essential Linux command reference covering directory tree navigation, file management, permissions, and service administration.
+      </p>
+      <div style="margin-bottom: 1rem;">
+        <a class="button" href="sources/linux-basics.pdf" target="_blank" rel="noopener noreferrer">
+          <span class="material-symbols-outlined" style="font-size: 16px;">download</span>
+          <span>Open Linux Fundamentals PDF ↗</span>
+        </a>
+      </div>
+    </div>
 
-<div class="library-meta">
-<div class="meta-card"><span>📄 Chapters</span><strong>10</strong></div>
-<div class="meta-card"><span>📥 Format</span><strong>PDF + Web</strong></div>
-<div class="meta-card"><span>✅ Status</span><strong>Completed</strong></div>
-</div>
+    <!-- Category 2: Nmap -->
+    <div class="library-category" id="nmap">
+      <div class="library-category-header">
+        <div class="library-category-title">
+          <span>🌐</span>
+          <span>Nmap (Network Mapper)</span>
+        </div>
+        <div class="library-meta">
+          <span class="meta-card">Files: <strong>11 (1 Master + 10 Parts)</strong></span>
+          <span class="meta-card">Format: <strong>PDF + Web</strong></span>
+          <span class="meta-card">Status: <strong>Complete</strong></span>
+        </div>
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+        Complete reference for host discovery, port scanning, service detection, NSE Lua scripts, OS detection, timing optimization, and enumeration strategy.
+      </p>
+      <div style="margin-bottom: 1.5rem;">
+        <a class="button" href="sources/nmap/nmap.pdf" target="_blank" rel="noopener noreferrer">
+          <span class="material-symbols-outlined" style="font-size: 16px;">download</span>
+          <span>Download Master Nmap Handbook (47.6 KB) ↗</span>
+        </a>
+      </div>
 
-<p>
-<a class="button" href="sources/nmap/nmap.pdf" target="_blank">📖 Open Handbook ↗</a>
-</p>
+      <h4 style="font-size: 0.95rem; font-weight: 600; color: var(--secondary); margin-bottom: 0.75rem;">Individual Chapter Breakdown Parts:</h4>
+      <div class="pdf-parts-grid">
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 1: Overview &amp; Command Reference</span>
+          <a class="pdf-download-btn" href="sources/nmap/The_Ethical_Hackers_Command_Handbook_Chapter_2_Nmap.pdf" target="_blank">PDF (6.2 KB) ↗</a>
+        </div>
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 2: Port Scanning Mechanics</span>
+          <a class="pdf-download-btn" href="sources/nmap/The_Ethical_Hackers_Command_Handbook_Chapter_2_Part_2_Port_Scanning.pdf" target="_blank">PDF (4.8 KB) ↗</a>
+        </div>
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 3: Port Selection &amp; Service Detection</span>
+          <a class="pdf-download-btn" href="sources/nmap/The_Ethical_Hackers_Command_Handbook_Chapter_2_Part_3_Port_Selection_Service_Detection.pdf" target="_blank">PDF (6.0 KB) ↗</a>
+        </div>
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 4: Nmap Scripting Engine (NSE)</span>
+          <a class="pdf-download-btn" href="sources/nmap/The_Ethical_Hackers_Command_Handbook_Chapter_2_Part_4_NSE.pdf" target="_blank">PDF (5.9 KB) ↗</a>
+        </div>
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 5: OS Detection Techniques</span>
+          <a class="pdf-download-btn" href="sources/nmap/The_Ethical_Hackers_Command_Handbook_Chapter_2_Part_5_OS_Detection.pdf" target="_blank">PDF (5.4 KB) ↗</a>
+        </div>
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 6: Timing &amp; Performance</span>
+          <a class="pdf-download-btn" href="sources/nmap/The_Ethical_Hackers_Command_Handbook_Chapter_2_Part_6_Timing_Performance.pdf" target="_blank">PDF (6.6 KB) ↗</a>
+        </div>
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 7: Output Formats &amp; Reporting</span>
+          <a class="pdf-download-btn" href="sources/nmap/The_Ethical_Hackers_Command_Handbook_Chapter_2_Part_7_Output_Formats.pdf" target="_blank">PDF (5.3 KB) ↗</a>
+        </div>
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 8: Real-World Enumeration Strategy</span>
+          <a class="pdf-download-btn" href="sources/nmap/The_Ethical_Hackers_Command_Handbook_Chapter_2_Part_8_Enumeration_Workflows.pdf" target="_blank">PDF (5.1 KB) ↗</a>
+        </div>
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 9: Advanced Features &amp; Defense</span>
+          <a class="pdf-download-btn" href="sources/nmap/The_Ethical_Hackers_Command_Handbook_Chapter_2_Part_9_Advanced_Nmap_Features.pdf" target="_blank">PDF (5.2 KB) ↗</a>
+        </div>
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 10: Master Cheat Sheet &amp; QA</span>
+          <a class="pdf-download-btn" href="sources/nmap/The_Ethical_Hackers_Command_Handbook_Chapter_2_Part_10_Master_Cheat_Sheet.pdf" target="_blank">PDF (4.2 KB) ↗</a>
+        </div>
+      </div>
+    </div>
 
-<hr>
+    <!-- Category 3: Metasploit Framework -->
+    <div class="library-category" id="metasploit">
+      <div class="library-category-header">
+        <div class="library-category-title">
+          <span>💥</span>
+          <span>Metasploit Framework</span>
+        </div>
+        <div class="library-meta">
+          <span class="meta-card">Files: <strong>11 (1 Master + 10 Parts)</strong></span>
+          <span class="meta-card">Format: <strong>PDF + Web</strong></span>
+          <span class="meta-card">Status: <strong>Complete</strong></span>
+        </div>
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+        Comprehensive guide covering msfconsole architecture, module management, auxiliary scanners, payloads, listeners, Meterpreter post-exploitation, workspaces, and automation.
+      </p>
+      <div style="margin-bottom: 1.5rem;">
+        <a class="button" href="sources/metasploit-framework/metasploit.pdf" target="_blank" rel="noopener noreferrer">
+          <span class="material-symbols-outlined" style="font-size: 16px;">download</span>
+          <span>Download Master Metasploit Handbook (225.7 KB) ↗</span>
+        </a>
+      </div>
 
-<h2 id="metasploit">💥 Metasploit Framework</h2>
+      <h4 style="font-size: 0.95rem; font-weight: 600; color: var(--secondary); margin-bottom: 0.75rem;">Individual Chapter Breakdown Parts:</h4>
+      <div class="pdf-parts-grid">
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 1: Introduction &amp; Fundamentals</span>
+          <a class="pdf-download-btn" href="sources/metasploit-framework/c1.pdf" target="_blank">PDF (24.3 KB) ↗</a>
+        </div>
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 2: msfconsole Command Basics</span>
+          <a class="pdf-download-btn" href="sources/metasploit-framework/c2.pdf" target="_blank">PDF (23.3 KB) ↗</a>
+        </div>
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 3: Module Management &amp; Config</span>
+          <a class="pdf-download-btn" href="sources/metasploit-framework/c3.pdf" target="_blank">PDF (23.3 KB) ↗</a>
+        </div>
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 4: Payloads, Encoders &amp; Listeners</span>
+          <a class="pdf-download-btn" href="sources/metasploit-framework/c4.pdf" target="_blank">PDF (23.4 KB) ↗</a>
+        </div>
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 5: Auxiliary Modules Deep Dive</span>
+          <a class="pdf-download-btn" href="sources/metasploit-framework/c5.pdf" target="_blank">PDF (23.4 KB) ↗</a>
+        </div>
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 6: Meterpreter Fundamentals</span>
+          <a class="pdf-download-btn" href="sources/metasploit-framework/c6.pdf" target="_blank">PDF (23.2 KB) ↗</a>
+        </div>
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 7: Post-Exploitation Concepts</span>
+          <a class="pdf-download-btn" href="sources/metasploit-framework/c7.pdf" target="_blank">PDF (23.2 KB) ↗</a>
+        </div>
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 8: Workspaces, Loot &amp; Reporting</span>
+          <a class="pdf-download-btn" href="sources/metasploit-framework/c8.pdf" target="_blank">PDF (23.2 KB) ↗</a>
+        </div>
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 9: Automation &amp; Resource Scripts</span>
+          <a class="pdf-download-btn" href="sources/metasploit-framework/c9.pdf" target="_blank">PDF (23.1 KB) ↗</a>
+        </div>
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 10: Troubleshooting &amp; Best Practices</span>
+          <a class="pdf-download-btn" href="sources/metasploit-framework/c10.pdf" target="_blank">PDF (23.4 KB) ↗</a>
+        </div>
+      </div>
+    </div>
 
-<p>
-Reference covering exploits, payloads, auxiliary modules,
-encoders, post-exploitation and workflows.
-</p>
+    <!-- Category 4: Searchsploit -->
+    <div class="library-category" id="searchsploit">
+      <div class="library-category-header">
+        <div class="library-category-title">
+          <span>🔎</span>
+          <span>Searchsploit &amp; Exploit-DB</span>
+        </div>
+        <div class="library-meta">
+          <span class="meta-card">Files: <strong>7 (1 Master + 6 Parts)</strong></span>
+          <span class="meta-card">Format: <strong>PDF + Web</strong></span>
+          <span class="meta-card">Status: <strong>Complete</strong></span>
+        </div>
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+        Practical reference for offline exploit research, search filters, CLI options, analyzing proof-of-concept code safely, and validation workflows.
+      </p>
+      <div style="margin-bottom: 1.5rem;">
+        <a class="button" href="sources/searchsploit/searchsploit.pdf" target="_blank" rel="noopener noreferrer">
+          <span class="material-symbols-outlined" style="font-size: 16px;">download</span>
+          <span>Download Master Searchsploit Handbook (21.7 KB) ↗</span>
+        </a>
+      </div>
 
-<div class="library-meta">
-<div class="meta-card"><span>📄 Chapters</span><strong>10</strong></div>
-<div class="meta-card"><span>📥 Format</span><strong>PDF + Web</strong></div>
-<div class="meta-card"><span>✅ Status</span><strong>Completed</strong></div>
-</div>
+      <h4 style="font-size: 0.95rem; font-weight: 600; color: var(--secondary); margin-bottom: 0.75rem;">Individual Chapter Breakdown Parts:</h4>
+      <div class="pdf-parts-grid">
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 1: Searchsploit Fundamentals</span>
+          <a class="pdf-download-btn" href="sources/searchsploit/c1.pdf" target="_blank">PDF (4.5 KB) ↗</a>
+        </div>
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 2: Advanced Searching &amp; Filters</span>
+          <a class="pdf-download-btn" href="sources/searchsploit/c2.pdf" target="_blank">PDF (5.0 KB) ↗</a>
+        </div>
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 3: CLI Options (-m, -x, -p, -w)</span>
+          <a class="pdf-download-btn" href="sources/searchsploit/c3.pdf" target="_blank">PDF (4.5 KB) ↗</a>
+        </div>
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 4: Reading &amp; Analyzing Exploit Code</span>
+          <a class="pdf-download-btn" href="sources/searchsploit/c4.pdf" target="_blank">PDF (4.1 KB) ↗</a>
+        </div>
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 5: Exploit Validation Workflow</span>
+          <a class="pdf-download-btn" href="sources/searchsploit/c5.pdf" target="_blank">PDF (4.0 KB) ↗</a>
+        </div>
+        <div class="pdf-part-card">
+          <span class="pdf-part-name">Part 6: Searchsploit Master Cheat Sheet</span>
+          <a class="pdf-download-btn" href="sources/searchsploit/c6.pdf" target="_blank">PDF (3.8 KB) ↗</a>
+        </div>
+      </div>
+    </div>
 
-<p>
-<a class="button" href="sources/metasploit-framework/metasploit.pdf" target="_blank">📖 Open Handbook</a>
-</p>
+    <!-- Educational Scoping Note -->
+    <div class="callout callout-info">
+      <b>Educational Preservation Note:</b> All 30 PDF documents are preserved from the original repository study archives to provide offline access for students and practitioners testing in authorized lab environments.
+    </div>
 
-<hr>
+  </article>
 
-<h2 id="searchsploit">🔎 Searchsploit</h2>
-
-<p>
-Offline Exploit-DB search tool with practical examples and
-workflow for locating public proof-of-concept exploits.
-</p>
-
-<div class="library-meta">
-<div class="meta-card"><span>📄 Chapters</span><strong>7</strong></div>
-<div class="meta-card"><span>📥 Format</span><strong>PDF + Web</strong></div>
-<div class="meta-card"><span>✅ Status</span><strong>Completed</strong></div>
-</div>
-
-<p>
-<a class="button" href="sources/searchsploit/searchsploit.pdf" target="_blank">📖 Open Handbook ↗</a>
-</p>
-
-<div class="callout">
-<b>Note:</b> All PDFs are preserved as original study material while the online handbook continues to expand with new chapters and updates.
-</div>
-
-</article>
+  <!-- Right TOC Sidebar -->
+  <aside class="toc-sidebar">
+    <div class="sidebar-heading">
+      <span class="material-symbols-outlined" style="font-size: 14px;">toc</span>
+      <span>IN THIS LIBRARY</span>
+    </div>
+    <div class="toc-nav">
+      <a href="#linux">Linux Fundamentals</a>
+      <a href="#nmap">Nmap Network Mapper</a>
+      <a href="#metasploit">Metasploit Framework</a>
+      <a href="#searchsploit">Searchsploit Exploit-DB</a>
+    </div>
+  </aside>
 </main>
 
 <footer class="footer">
-Built by Mihraj • Ethical Hacker's Command Handbook
+  <p><strong>The Ethical Hacker's Command Handbook</strong> · Developed by Mihraj Mashhoor K</p>
+  <p class="footer-disclaimer">Authorized security learning reference · All practical demonstrations conducted strictly in authorized educational environments (TryHackMe, local Linux lab).</p>
 </footer>
 
+<script src="assets/handbook.js"></script>
 </body>
 </html>
