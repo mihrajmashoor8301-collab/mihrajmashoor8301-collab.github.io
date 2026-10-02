@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html class="scroll-smooth dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Digital Certificate Viewer | Mihraj Mashoor K</title>
+  <meta content="Interactive digital credential viewer for cybersecurity certifications and educational training pathways of Mihraj Mashoor K." name="description"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'canvas-base': '#090D12',
+            'surface-subtle': '#0E131B',
+            'surface-raised': '#151D28',
+            'border-hairline': '#1F2937',
+            'border-medium': '#2D3748',
+            'primary': '#4EDEA3',
+            'primary-container': '#10b981',
+            'secondary': '#4CD7F6',
+            'on-surface': '#F3F4F6',
+            'on-surface-variant': '#8692A6',
+            'outline': '#64748B',
+            'warning': '#FBBF24',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #090D12;
+      color: #F3F4F6;
+      font-family: 'Inter', sans-serif;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      vertical-align: middle;
+    }
+    .viewer-frame {
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.9), 0 0 30px -10px rgba(78, 222, 163, 0.15);
+    }
+    .modal-active {
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-primary/20 selection:text-primary">
+
+  <!-- ========================================================================= -->
+  <!-- Top Bar / Navigation                                                      -->
+  <!-- ========================================================================= -->
+  <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-canvas-base/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      
+      <!-- Left: Back Button & Context -->
+      <div class="flex items-center gap-3">
+        <a href="certificates.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-border-hairline bg-surface-subtle font-mono text-xs text-on-surface hover:text-primary hover:border-primary/40 transition-colors">
+          <span class="material-symbols-outlined text-sm">arrow_back</span>
+          <span>All Credentials</span>
+        </a>
+        <div class="hidden sm:flex items-center gap-2 font-mono text-xs text-outline">
+          <span>/</span>
+          <span class="text-primary font-bold">DIGITAL VIEWER</span>
+        </div>
+      </div>
+
+      <!-- Center: Switcher Selector -->
+      <div class="hidden md:flex items-center gap-2 font-mono text-xs">
+        <button id="prev-cert-btn" class="p-1.5 rounded border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-primary hover:border-primary/40 transition-colors" title="Previous Certificate">
+          <span class="material-symbols-outlined text-sm">chevron_left</span>
+        </button>
+        <span id="cert-counter" class="text-outline px-2">1 of 4</span>
+        <button id="next-cert-btn" class="p-1.5 rounded border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-primary hover:border-primary/40 transition-colors" title="Next Certificate">
+          <span class="material-symbols-outlined text-sm">chevron_right</span>
+        </button>
+      </div>
+
+      <!-- Right: Actions -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <a id="nav-download-btn" href="#" download="" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded bg-primary-container text-canvas-base font-mono text-xs font-bold hover:bg-primary transition-all shadow-[0_0_12px_rgba(16,185,129,0.25)]">
+          <span class="material-symbols-outlined text-sm">download</span>
+          <span>Download PDF</span>
+        </a>
+        <a href="index.html" class="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 rounded border border-secondary/30 bg-secondary/10 font-mono text-xs text-secondary hover:bg-secondary/20 transition-colors">
+          <span class="material-symbols-outlined text-sm">home</span>
+          <span>Portfolio</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- Main Viewer Content                                                       -->
+  <!-- ========================================================================= -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 py-8">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left Column: Certificate Viewport (7 or 8 cols) -->
+      <div class="lg:col-span-7 xl:col-span-8 space-y-4">
+        
+        <!-- Viewer Card -->
+        <div class="viewer-frame bg-surface-subtle border border-border-hairline rounded-xl overflow-hidden p-4 sm:p-6 space-y-4">
+          
+          <!-- Viewport Bar -->
+          <div class="flex items-center justify-between pb-3 border-b border-border-hairline font-mono text-xs">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+              <span id="cert-view-badge" class="px-2 py-0.5 rounded bg-primary/10 border border-primary/30 text-primary font-bold text-[10px]">
+                AUTHENTICATED CREDENTIAL
+              </span>
+            </div>
+            
+            <div class="flex items-center gap-2 text-outline">
+              <button id="zoom-modal-btn" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface-raised border border-border-hairline hover:text-on-surface transition-colors" title="Expand Fullscreen View">
+                <span class="material-symbols-outlined text-sm">fullscreen</span>
+                <span class="hidden sm:inline">Fullscreen</span>
+              </button>
+              <a id="open-raw-pdf-btn" href="#" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface-raised border border-border-hairline hover:text-on-surface transition-colors" title="Open PDF in new tab">
+                <span class="material-symbols-outlined text-sm">open_in_new</span>
+                <span class="hidden sm:inline">Raw PDF</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Certificate Image Frame -->
+          <div class="relative bg-canvas-base rounded-lg border border-border-hairline overflow-hidden flex items-center justify-center p-2 min-h-[320px] sm:min-h-[460px]">
+            <img id="cert-image" src="" alt="Certificate Preview" class="max-w-full max-h-[600px] object-contain rounded shadow-lg transition-transform duration-300"/>
+          </div>
+
+          <!-- Bottom Navigation Bar inside Viewer -->
+          <div class="pt-2 flex items-center justify-between font-mono text-xs">
+            <button id="bottom-prev-btn" class="inline-flex items-center gap-1 px-3 py-1.5 rounded border border-border-hairline bg-surface-raised text-on-surface hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-sm">chevron_left</span>
+              <span>Previous</span>
+            </button>
+            <span class="text-outline text-[11px] hidden sm:inline">Original PDF available via direct download</span>
+            <button id="bottom-next-btn" class="inline-flex items-center gap-1 px-3 py-1.5 rounded border border-border-hairline bg-surface-raised text-on-surface hover:text-primary transition-colors">
+              <span>Next</span>
+              <span class="material-symbols-outlined text-sm">chevron_right</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Right Column: Credential Metadata Dossier (5 or 4 cols) -->
+      <div class="lg:col-span-5 xl:col-span-4 space-y-6">
+        
+        <div class="bg-surface-subtle border border-border-hairline rounded-xl p-6 space-y-5">
+          
+          <!-- Category & Status -->
+          <div class="flex items-center justify-between gap-2 border-b border-border-hairline pb-4">
+            <span id="meta-category" class="font-mono text-xs font-bold text-primary">CATEGORY</span>
+            <div class="flex items-center gap-1.5 font-mono text-xs text-primary font-bold">
+              <span class="material-symbols-outlined text-sm">verified</span>
+              <span>VERIFIED</span>
+            </div>
+          </div>
+
+          <!-- Title & Subtitle -->
+          <div>
+            <h1 id="meta-title" class="text-2xl font-extrabold text-on-surface leading-tight">Certificate Title</h1>
+            <div id="meta-subtitle" class="font-mono text-xs text-secondary mt-1">Subtitle</div>
+            <div id="meta-issuer" class="font-mono text-xs text-outline mt-0.5">Issuer</div>
+          </div>
+
+          <!-- Metadata Spec Grid -->
+          <div class="space-y-3 p-4 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs">
+            
+            <div class="flex justify-between items-center border-b border-border-hairline pb-2">
+              <span class="text-outline text-[11px]">CREDENTIAL ID</span>
+              <div class="flex items-center gap-1">
+                <span id="meta-cred-id" class="text-on-surface font-bold text-xs select-all"></span>
+                <button id="copy-id-btn" class="text-outline hover:text-primary p-0.5" title="Copy Credential ID">
+                  <span class="material-symbols-outlined text-xs">content_copy</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex justify-between items-center border-b border-border-hairline pb-2">
+              <span class="text-outline text-[11px]">ISSUE DATE</span>
+              <span id="meta-date" class="text-on-surface font-medium"></span>
+            </div>
+
+            <div class="flex justify-between items-center border-b border-border-hairline pb-2">
+              <span class="text-outline text-[11px]">DURATION / VOLUME</span>
+              <span id="meta-duration" class="text-secondary font-medium"></span>
+            </div>
+
+            <div class="flex justify-between items-start pt-1">
+              <span class="text-outline text-[11px]">SIGNATORY / AUTHORITY</span>
+              <span id="meta-signatory" class="text-on-surface text-right text-[11px] max-w-[200px]"></span>
+            </div>
+
+          </div>
+
+          <!-- Description -->
+          <div class="space-y-2">
+            <div class="font-mono text-xs text-outline uppercase tracking-wider">OFFICIAL SCOPE &amp; DESCRIPTION</div>
+            <p id="meta-description" class="text-xs text-on-surface-variant leading-relaxed">
+            </p>
+          </div>
+
+          <!-- Topics / Skills Covered -->
+          <div class="space-y-2 pt-2 border-t border-border-hairline">
+            <div class="font-mono text-xs text-outline uppercase tracking-wider">CURRICULUM COMPETENCIES</div>
+            <div id="meta-skills" class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="pt-4 border-t border-border-hairline space-y-2.5">
+            <a id="main-download-btn" href="#" download="" class="w-full inline-flex items-center justify-center gap-2 p-3 rounded-lg bg-primary-container text-canvas-base font-mono text-xs font-bold hover:bg-primary transition-all shadow-[0_0_12px_rgba(16,185,129,0.25)]">
+              <span class="material-symbols-outlined text-base">download</span>
+              <span>Download Original PDF Certificate</span>
+            </a>
+            
+            <a id="meta-verify-link" href="#" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 p-2.5 rounded-lg border border-border-hairline bg-surface-raised font-mono text-xs text-secondary hover:border-secondary transition-colors">
+              <span>Verify on Official Platform</span>
+              <span class="material-symbols-outlined text-sm">open_in_new</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- Fullscreen Zoom Modal                                                     -->
+  <!-- ========================================================================= -->
+  <div id="zoom-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+    <button id="close-modal-btn" class="absolute top-4 right-4 p-2 rounded-full bg-surface-subtle border border-border-hairline text-on-surface hover:text-primary transition-colors z-10" aria-label="Close Fullscreen Modal">
+      <span class="material-symbols-outlined text-2xl">close</span>
+    </button>
+    <div class="max-w-6xl max-h-[90vh] overflow-auto flex items-center justify-center p-2">
+      <img id="modal-image" src="" alt="Certificate Full View" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"/>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- Footer                                                                    -->
+  <!-- ========================================================================= -->
+  <footer class="border-t border-border-hairline bg-canvas-base py-6 text-center text-xs font-mono text-outline mt-10">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Mihraj Mashoor K · Digital Credential Vault</div>
+      <div class="flex items-center space-x-4 text-on-surface-variant">
+        <a href="certificates.html" class="hover:text-primary transition-colors">Credentials Grid</a>
+        <a href="resume.html" class="hover:text-primary transition-colors">Resume</a>
+        <a href="index.html" class="hover:text-primary transition-colors">Portfolio</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- Certificate Data & Interactive Logic                                      -->
+  <!-- ========================================================================= -->
+  <script>
+    const CERTIFICATES = [
+      {
+        id: "google-cybersecurity",
+        title: "Google Cybersecurity",
+        subTitle: "Online Professional Certificate (9 Courses)",
+        issuer: "Google · Delivered via Coursera",
+        category: "PROFESSIONAL CERTIFICATION",
+        categoryClass: "text-primary",
+        issueDate: "February 23, 2026",
+        credentialId: "OLK16MA4UQ7Z",
+        verifyUrl: "https://coursera.org/verify/professional-cert/OLK16MA4UQ7Z",
+        pdfPath: "Coursera OLK16MA4UQ7Z.pdf",
+        previewImg: "cert_previews/google-cybersecurity.png",
+        duration: "9 Courses (Hands-on Practice & Assessments)",
+        signatory: "Amanda Brophy — Global Director of Google Career Certificates",
+        description: "Nine-course professional curriculum developed by Google. Competencies include Python automation, Linux command line, SQL querying, SIEM tools, IDS telemetry, threat intelligence, and vulnerability identification and mitigation.",
+        skills: ["Python Automation", "Linux CLI", "SQL", "SIEM Tools", "IDS Systems", "Vulnerability Mitigation", "Network Security", "Incident Response", "Threat Research"]
+      },
+      {
+        id: "thm-cyber-101",
+        title: "Cyber Security 101",
+        subTitle: "Learning Path Certificate of Completion",
+        issuer: "TryHackMe · Educational Learning Pathway",
+        category: "CYBERSECURITY TRAINING",
+        categoryClass: "text-secondary",
+        issueDate: "2nd August 2026",
+        credentialId: "THM-I4YSFYIXEL",
+        verifyUrl: "https://tryhackme.com/p/mihraj.io",
+        pdfPath: "THM-I4YSFYIXEL.pdf",
+        previewImg: "cert_previews/thm-cyber-101.png",
+        duration: "45 hours 23 minutes",
+        signatory: "Ben Spring (CEO) & Ashu Savani (CTO) — TryHackMe",
+        description: "In-depth practical curriculum on TryHackMe covering networking transport protocols, Wireshark packet capture analysis, display filtering, web application security fundamentals, basic cryptography, and defensive auditing methodologies.",
+        skills: ["Wireshark", "Packet Analysis", "Transport Protocols", "Web Security", "Cryptography", "Defensive Auditing", "Network Telemetry"]
+      },
+      {
+        id: "thm-pre-security",
+        title: "Pre Security",
+        subTitle: "Learning Path Certificate of Completion",
+        issuer: "TryHackMe · Educational Learning Pathway",
+        category: "CYBERSECURITY TRAINING",
+        categoryClass: "text-secondary",
+        issueDate: "9th May 2026",
+        credentialId: "THM-O6NSA2SHXF",
+        verifyUrl: "https://tryhackme.com/p/mihraj.io",
+        pdfPath: "THM-O6NSA2SHXF.pdf",
+        previewImg: "cert_previews/thm-pre-security.png",
+        duration: "19 hours 10 minutes",
+        signatory: "Ben Spring (CEO) & Ashu Savani (CTO) — TryHackMe",
+        description: "Foundational cybersecurity learning pathway establishing core network architectures, OSI layers, IPv4 addressing, VLSM subnetting, Linux command line essentials, and fundamental web HTTP request structures.",
+        skills: ["Network Architecture", "OSI Layers", "Subnetting / VLSM", "Linux Essentials", "HTTP Request Mechanics", "TCP/IP"]
+      },
+      {
+        id: "thm-hacker-holidays",
+        title: "Hacker Holidays (Byte Lotus)",
+        subTitle: "Certificate of Participation · Summer 2026",
+        issuer: "TryHackMe · CTF & Challenge Event",
+        category: "EVENT / PARTICIPATION",
+        categoryClass: "text-warning",
+        issueDate: "13 August 2026",
+        credentialId: "THM-LMVHD9LP6F",
+        verifyUrl: "https://tryhackme.com/p/mihraj.io",
+        pdfPath: "THM-LMVHD9LP6F.pdf",
+        previewImg: "cert_previews/thm-hacker-holidays.png",
+        duration: "Summer 2026 Event Challenge",
+        signatory: "TryHackMe Event Operations",
+        description: "Certificate of participation for completing hands-on challenge rooms in the Byte Lotus summer 2026 event. Documented participation in simulated offensive security, problem solving, and CTF challenges.",
+        skills: ["CTF Challenges", "Simulated Environments", "Reconnaissance", "Problem Solving", "Offensive Security Labs"]
+      }
+    ];
+
+    let currentIndex = 0;
+
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    function renderCertificate(index) {
+      if (index < 0) index = CERTIFICATES.length - 1;
+      if (index >= CERTIFICATES.length) index = 0;
+      currentIndex = index;
+
+      const cert = CERTIFICATES[currentIndex];
+
+      // Update URL query without page reload
+      const newUrl = `${window.location.pathname}?id=${cert.id}`;
+      window.history.replaceState({ id: cert.id }, "", newUrl);
+
+      // DOM Updates
+      document.title = `${cert.title} | Certificate Viewer`;
+      document.getElementById("cert-counter").textContent = `${currentIndex + 1} of ${CERTIFICATES.length}`;
+
+      // Images
+      const certImg = document.getElementById("cert-image");
+      certImg.src = cert.previewImg;
+      certImg.alt = `${cert.title} Certificate Full Preview`;
+
+      document.getElementById("modal-image").src = cert.previewImg;
+
+      // Badges & Texts
+      document.getElementById("cert-view-badge").textContent = cert.category;
+      document.getElementById("meta-category").textContent = cert.category;
+      document.getElementById("meta-title").textContent = cert.title;
+      document.getElementById("meta-subtitle").textContent = cert.subTitle;
+      document.getElementById("meta-issuer").textContent = cert.issuer;
+      document.getElementById("meta-cred-id").textContent = cert.credentialId;
+      document.getElementById("meta-date").textContent = cert.issueDate;
+      document.getElementById("meta-duration").textContent = cert.duration;
+      document.getElementById("meta-signatory").textContent = cert.signatory;
+      document.getElementById("meta-description").textContent = cert.description;
+
+      // Skills
+      const skillsContainer = document.getElementById("meta-skills");
+      skillsContainer.innerHTML = "";
+      cert.skills.forEach(skill => {
+        const span = document.createElement("span");
+        span.className = "px-2 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface";
+        span.textContent = skill;
+        skillsContainer.appendChild(span);
+      });
+
+      // Links & Buttons
+      const navDownload = document.getElementById("nav-download-btn");
+      navDownload.href = cert.pdfPath;
+      navDownload.download = cert.pdfPath;
+
+      const mainDownload = document.getElementById("main-download-btn");
+      mainDownload.href = cert.pdfPath;
+      mainDownload.download = cert.pdfPath;
+
+      const rawPdf = document.getElementById("open-raw-pdf-btn");
+      rawPdf.href = cert.pdfPath;
+
+      const verifyLink = document.getElementById("meta-verify-link");
+      verifyLink.href = cert.verifyUrl;
+      if (cert.verifyUrl.includes("coursera.org")) {
+        verifyLink.innerHTML = `<span>Verify on Coursera ↗</span><span class="material-symbols-outlined text-sm">open_in_new</span>`;
+      } else {
+        verifyLink.innerHTML = `<span>Verify on TryHackMe ↗</span><span class="material-symbols-outlined text-sm">open_in_new</span>`;
+      }
+    }
+
+    // Initialize from URL query parameter
+    const initialId = getQueryParam("id");
+    const foundIndex = CERTIFICATES.findIndex(c => c.id === initialId);
+    renderCertificate(foundIndex >= 0 ? foundIndex : 0);
+
+    // Nav Switchers
+    document.getElementById("prev-cert-btn").addEventListener("click", () => renderCertificate(currentIndex - 1));
+    document.getElementById("next-cert-btn").addEventListener("click", () => renderCertificate(currentIndex + 1));
+    document.getElementById("bottom-prev-btn").addEventListener("click", () => renderCertificate(currentIndex - 1));
+    document.getElementById("bottom-next-btn").addEventListener("click", () => renderCertificate(currentIndex + 1));
+
+    // Keyboard navigation (Arrow keys)
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") renderCertificate(currentIndex - 1);
+      if (e.key === "ArrowRight") renderCertificate(currentIndex + 1);
+      if (e.key === "Escape") closeModal();
+    });
+
+    // Copy Credential ID
+    document.getElementById("copy-id-btn").addEventListener("click", () => {
+      const id = CERTIFICATES[currentIndex].credentialId;
+      navigator.clipboard.writeText(id).then(() => {
+        const btn = document.getElementById("copy-id-btn");
+        btn.innerHTML = `<span class="material-symbols-outlined text-xs text-primary">done</span>`;
+        setTimeout(() => {
+          btn.innerHTML = `<span class="material-symbols-outlined text-xs">content_copy</span>`;
+        }, 1500);
+      });
+    });
+
+    // Fullscreen Modal Logic
+    const modal = document.getElementById("zoom-modal");
+    const openModalBtn = document.getElementById("zoom-modal-btn");
+    const closeModalBtn = document.getElementById("close-modal-btn");
+
+    function openModal() {
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      document.body.classList.add("modal-active");
+    }
+
+    function closeModal() {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      document.body.classList.remove("modal-active");
+    }
+
+    openModalBtn.addEventListener("click", openModal);
+    closeModalBtn.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+  </script>
+
+</body>
+</html>

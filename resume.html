@@ -1,0 +1,886 @@
+<!doctype html>
+<html class="scroll-smooth dark" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="logo2.png">
+  <title>Resume · Mihraj Mashhoor K · Cybersecurity &amp; Security Automation</title>
+  <meta name="description" content="Interactive browser resume of Mihraj Mashhoor K - Cybersecurity Engineering Undergraduate, TryHackMe Top 2% Globally, Google Cybersecurity Certified.">
+
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
+  <!-- Tailwind CSS Engine -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'canvas-base': '#090D12',
+            'surface-subtle': '#0E131B',
+            'surface-raised': '#151D28',
+            'surface-overlay': '#122131',
+            'primary': '#4EDEA3',
+            'primary-container': '#10B981',
+            'secondary': '#4CD7F6',
+            'secondary-container': '#0284C7',
+            'border-hairline': '#1F2937',
+            'border-strong': '#374151',
+            'on-surface': '#F3F4F6',
+            'on-surface-variant': '#9CA3AF',
+            'outline': '#6B7280',
+            'warning': '#F59E0B',
+          },
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #090D12; }
+    ::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #374151; }
+
+    /* Print Stylesheet */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #111827 !important;
+        font-size: 10pt;
+      }
+      .no-print, header, footer, #mobile-menu, #nav-bar, .action-buttons {
+        display: none !important;
+      }
+      .print-card {
+        background: #ffffff !important;
+        border: 1px solid #e5e7eb !important;
+        box-shadow: none !important;
+        color: #111827 !important;
+        page-break-inside: avoid;
+      }
+      .print-text-dark {
+        color: #111827 !important;
+      }
+      .print-text-muted {
+        color: #4b5563 !important;
+      }
+      .print-accent {
+        color: #059669 !important;
+        font-weight: 700 !important;
+      }
+      a {
+        text-decoration: none !important;
+        color: inherit !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-canvas-base text-on-surface font-sans min-h-screen flex flex-col antialiased selection:bg-primary/20 selection:text-primary">
+
+  <!-- ========================================================================= -->
+  <!-- Top Navigation Header                                                     -->
+  <!-- ========================================================================= -->
+  <header class="no-print sticky top-0 z-50 bg-canvas-base/90 backdrop-blur-md border-b border-border-hairline">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      
+      <!-- Brand & Section Label -->
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2 group">
+          <div class="w-8 h-8 rounded bg-surface-raised border border-primary/40 flex items-center justify-center font-mono font-bold text-primary group-hover:border-primary transition-colors">
+            M
+          </div>
+          <div class="flex flex-col">
+            <span class="font-mono text-xs font-bold tracking-wider text-on-surface">MIHRAJ.IO</span>
+            <span class="font-mono text-[10px] text-secondary tracking-widest uppercase">RESUME // 2026</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Desktop Nav Jump Links -->
+      <nav class="hidden md:flex items-center gap-1 font-mono text-xs text-on-surface-variant" id="desktop-nav">
+        <a href="#about" class="px-2.5 py-1.5 rounded hover:text-on-surface hover:bg-surface-raised transition-colors">About</a>
+        <a href="#education" class="px-2.5 py-1.5 rounded hover:text-on-surface hover:bg-surface-raised transition-colors">Education</a>
+        <a href="#training" class="px-2.5 py-1.5 rounded hover:text-on-surface hover:bg-surface-raised transition-colors">Training</a>
+        <a href="#skills" class="px-2.5 py-1.5 rounded hover:text-on-surface hover:bg-surface-raised transition-colors">Skills</a>
+        <a href="#tools" class="px-2.5 py-1.5 rounded hover:text-on-surface hover:bg-surface-raised transition-colors">Tools</a>
+        <a href="#projects" class="px-2.5 py-1.5 rounded hover:text-on-surface hover:bg-surface-raised transition-colors">Projects</a>
+        <a href="#achievements" class="px-2.5 py-1.5 rounded hover:text-on-surface hover:bg-surface-raised transition-colors">TryHackMe</a>
+        <a href="certificates.html" class="px-2.5 py-1.5 rounded text-primary hover:bg-surface-raised transition-colors flex items-center gap-0.5">
+          <span>Certificates</span>
+          <span class="material-symbols-outlined text-[10px]">open_in_new</span>
+        </a>
+        <a href="#contact" class="px-2.5 py-1.5 rounded hover:text-on-surface hover:bg-surface-raised transition-colors">Contact</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2 action-buttons">
+        <button onclick="window.print()" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-border-hairline bg-surface-subtle font-mono text-xs text-on-surface-variant hover:text-primary hover:border-primary/40 transition-colors" title="Print Web Resume">
+          <span class="material-symbols-outlined text-sm">print</span>
+          <span>Print</span>
+        </button>
+        <a href="CV_2026_UPDATED.pdf" download="CV_2026_UPDATED.pdf" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded bg-primary-container text-canvas-base font-mono text-xs font-bold hover:bg-primary transition-all shadow-[0_0_12px_rgba(16,185,129,0.25)]">
+          <span class="material-symbols-outlined text-sm">download</span>
+          <span>PDF</span>
+        </a>
+        <a href="index.html" class="inline-flex items-center gap-1 px-3 py-1.5 rounded border border-secondary/30 bg-secondary/10 font-mono text-xs text-secondary hover:bg-secondary/20 transition-colors">
+          <span class="material-symbols-outlined text-sm">arrow_back</span>
+          <span class="hidden sm:inline">Portfolio</span>
+        </a>
+        <button id="mobile-menu-btn" class="md:hidden p-1.5 rounded text-on-surface-variant hover:text-on-surface focus:outline-none" aria-label="Toggle navigation">
+          <span class="material-symbols-outlined text-xl">menu</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-border-hairline bg-surface-subtle px-4 py-3 space-y-2 font-mono text-xs">
+      <div class="grid grid-cols-2 gap-2">
+        <a href="#about" class="px-3 py-2 rounded bg-surface-raised text-on-surface-variant hover:text-primary">About</a>
+        <a href="#education" class="px-3 py-2 rounded bg-surface-raised text-on-surface-variant hover:text-primary">Education</a>
+        <a href="#training" class="px-3 py-2 rounded bg-surface-raised text-on-surface-variant hover:text-primary">Training</a>
+        <a href="#skills" class="px-3 py-2 rounded bg-surface-raised text-on-surface-variant hover:text-primary">Skills</a>
+        <a href="#tools" class="px-3 py-2 rounded bg-surface-raised text-on-surface-variant hover:text-primary">Tools</a>
+        <a href="#projects" class="px-3 py-2 rounded bg-surface-raised text-on-surface-variant hover:text-primary">Projects</a>
+        <a href="#achievements" class="px-3 py-2 rounded bg-surface-raised text-on-surface-variant hover:text-primary">TryHackMe</a>
+        <a href="certificates.html" class="px-3 py-2 rounded bg-surface-raised text-primary font-bold flex items-center justify-between">
+          <span>Certificates</span>
+          <span class="material-symbols-outlined text-xs">open_in_new</span>
+        </a>
+        <a href="#contact" class="px-3 py-2 rounded bg-surface-raised text-on-surface-variant hover:text-primary">Contact</a>
+      </div>
+      <div class="pt-2 border-t border-border-hairline flex items-center justify-between">
+        <button onclick="window.print()" class="text-on-surface-variant hover:text-primary flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">print</span> Print Resume
+        </button>
+        <a href="CV_2026_UPDATED.pdf" download class="text-primary font-bold flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">download</span> Download PDF
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- Main Resume Content                                                       -->
+  <!-- ========================================================================= -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-8 md:py-12 space-y-12 flex-grow w-full">
+
+    <!-- 1. Hero / Header Card -->
+    <section class="bg-surface-subtle border border-border-hairline rounded-2xl p-6 sm:p-8 relative overflow-hidden print-card">
+      <div class="absolute -right-20 -top-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-20 -bottom-20 w-64 h-64 bg-secondary/5 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 relative z-10">
+        <!-- Profile Photo -->
+        <div class="relative shrink-0">
+          <img src="cvphoto.png" alt="Mihraj Mashhoor K" class="w-28 h-28 sm:w-32 sm:h-32 rounded-xl object-cover border-2 border-primary/40 shadow-lg">
+          <div class="absolute -bottom-2 -right-2 px-2 py-0.5 rounded-full bg-surface-raised border border-primary/50 text-[10px] font-mono text-primary flex items-center gap-1 shadow">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+            <span>VERIFIED</span>
+          </div>
+        </div>
+
+        <!-- Name & Title -->
+        <div class="flex-grow text-center sm:text-left space-y-2">
+          <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-mono text-[11px] tracking-wider uppercase">
+            <span class="material-symbols-outlined text-sm">shield</span>
+            <span>Cybersecurity Practitioner · Security Automation</span>
+          </div>
+
+          <h1 class="text-2xl sm:text-4xl font-extrabold text-on-surface tracking-tight print-text-dark">
+            Mihraj Mashhoor K
+          </h1>
+
+          <p class="text-sm sm:text-base text-secondary font-mono print-accent">
+            Cybersecurity Engineering Undergraduate · Offensive Security &amp; Automation
+          </p>
+
+          <p class="text-sm text-on-surface-variant max-w-2xl print-text-muted leading-relaxed">
+            Undergraduate student specializing in cybersecurity with extensive hands-on experience developed through 140+ TryHackMe rooms (Top 2% globally), structured coursework, and personal lab environments. Passionate about Linux systems, network analysis, web application security (OWASP Top 10), and local AI-assisted security workflows.
+          </p>
+
+          <!-- Contact & Socials Bar -->
+          <div class="pt-3 flex flex-wrap items-center justify-center sm:justify-start gap-y-2 gap-x-4 font-mono text-xs text-on-surface-variant print-text-muted">
+            <span class="inline-flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm text-primary">location_on</span>
+              <span>Malappuram, Kerala, India</span>
+            </span>
+            <a href="mailto:cybehmihraj32@gmail.com" class="inline-flex items-center gap-1 hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-sm text-primary">mail</span>
+              <span>cybehmihraj32@gmail.com</span>
+            </a>
+            <span class="inline-flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm text-primary">phone</span>
+              <span>+91 9383447163</span>
+            </span>
+            <a href="https://github.com/mihrajmashoor8301-collab" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 hover:text-secondary transition-colors">
+              <span class="material-symbols-outlined text-sm text-secondary">code</span>
+              <span>GitHub</span>
+            </a>
+            <a href="https://linkedin.com/in/mihrajmashhoork" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 hover:text-secondary transition-colors">
+              <span class="material-symbols-outlined text-sm text-secondary">business_center</span>
+              <span>LinkedIn</span>
+            </a>
+            <a href="https://tryhackme.com/p/mihraj.io" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-sm text-primary">military_tech</span>
+              <span>TryHackMe (Top 2%)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. About / Profile -->
+    <section id="about" class="space-y-4 print-card">
+      <div class="flex items-center gap-2 border-b border-border-hairline pb-2">
+        <span class="material-symbols-outlined text-primary text-xl">account_circle</span>
+        <h2 class="text-lg font-bold font-mono tracking-wider uppercase text-on-surface print-text-dark">Professional Profile</h2>
+      </div>
+
+      <div class="bg-surface-subtle border border-border-hairline rounded-xl p-5 sm:p-6 text-sm text-on-surface-variant leading-relaxed space-y-3 print-card print-text-dark">
+        <p>
+          I am a cybersecurity student currently pursuing a Bachelor of Technology in Computer Science &amp; Engineering at MES College of Engineering (2024–2028). My approach pairs fundamental computer science theory—operating systems, networking, and algorithms—with continuous practical learning in virtual laboratory environments.
+        </p>
+        <p>
+          My hands-on security capability is grounded in over <strong>140 completed TryHackMe rooms</strong>, positioning me in the <strong>Top 2% globally</strong>. Having completed the foundational <em>Pre Security</em> and <em>Cyber Security 101</em> pathways, I am actively progressing through the <em>Junior Penetration Tester</em> curriculum, focusing on active reconnaissance, web exploitation techniques, and Linux privilege escalation vectors.
+        </p>
+        <p>
+          In parallel, I develop custom security tooling and offline AI agentic workflows—such as <em>SentinelAI</em> and the <em>Autonomous Pentesting Agent</em>—leveraging local models (Qwen3-Coder via Ollama) to automate vulnerability triage while ensuring zero data leakage. All security research and practical exercises are conducted strictly within authorized educational and virtual testing boundaries.
+        </p>
+      </div>
+    </section>
+
+    <!-- 3. Education -->
+    <section id="education" class="space-y-4 print-card">
+      <div class="flex items-center gap-2 border-b border-border-hairline pb-2">
+        <span class="material-symbols-outlined text-primary text-xl">school</span>
+        <h2 class="text-lg font-bold font-mono tracking-wider uppercase text-on-surface print-text-dark">Education</h2>
+      </div>
+
+      <div class="bg-surface-subtle border border-border-hairline rounded-xl p-5 sm:p-6 space-y-3 print-card">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+          <div>
+            <h3 class="text-base font-bold text-on-surface print-text-dark">Bachelor of Technology (B.Tech) · Cyber Security / Computer Science</h3>
+            <div class="text-secondary font-mono text-xs print-accent">MES College of Engineering, Kuttippuram, Kerala</div>
+          </div>
+          <div class="font-mono text-xs text-primary bg-primary/10 border border-primary/20 px-2.5 py-1 rounded w-fit print-accent">
+            2024 – 2028 (Undergraduate)
+          </div>
+        </div>
+
+        <p class="text-xs sm:text-sm text-on-surface-variant print-text-muted leading-relaxed">
+          Comprehensive degree program covering core computer science principles, discrete mathematics, software engineering, and defensive systems design.
+        </p>
+
+        <div class="pt-2 border-t border-border-hairline/60">
+          <div class="font-mono text-[11px] text-outline uppercase tracking-wider mb-2">Relevant Academic Coursework</div>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface-variant print-card">Computer Networks</span>
+            <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface-variant print-card">Operating Systems</span>
+            <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface-variant print-card">Cryptography &amp; Network Security</span>
+            <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface-variant print-card">Data Structures &amp; Algorithms</span>
+            <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface-variant print-card">Linux Systems Administration</span>
+            <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface-variant print-card">Object-Oriented Programming (C# / Python)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Cybersecurity Training & Pathways -->
+    <section id="training" class="space-y-4 print-card">
+      <div class="flex items-center gap-2 border-b border-border-hairline pb-2">
+        <span class="material-symbols-outlined text-primary text-xl">model_training</span>
+        <h2 class="text-lg font-bold font-mono tracking-wider uppercase text-on-surface print-text-dark">Structured Cybersecurity Training</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        
+        <!-- Google Cybersecurity Professional Certificate -->
+        <div class="bg-surface-subtle border border-border-hairline rounded-xl p-5 space-y-2.5 print-card">
+          <div class="flex items-start justify-between gap-2">
+            <div>
+              <span class="font-mono text-[10px] text-secondary uppercase tracking-widest">PROFESSIONAL CERTIFICATE</span>
+              <h3 class="text-sm sm:text-base font-bold text-on-surface print-text-dark">Google Cybersecurity Professional Certificate</h3>
+              <p class="text-xs text-on-surface-variant font-mono">Google (Virtual)</p>
+            </div>
+            <span class="shrink-0 px-2 py-0.5 rounded bg-primary/10 border border-primary/30 text-primary font-mono text-[10px] font-bold">
+              COMPLETED
+            </span>
+          </div>
+          <p class="text-xs text-on-surface-variant print-text-muted leading-relaxed">
+            Eight-course professional series covering security models, Linux CLI, network security, Python scripting, SIEM tools, detection and response methodologies, and incident handling.
+          </p>
+          <div class="font-mono text-[11px] text-outline">Oct 2025 – Feb 2026</div>
+        </div>
+
+        <!-- TryHackMe - Cyber Security 101 -->
+        <div class="bg-surface-subtle border border-border-hairline rounded-xl p-5 space-y-2.5 print-card">
+          <div class="flex items-start justify-between gap-2">
+            <div>
+              <span class="font-mono text-[10px] text-secondary uppercase tracking-widest">LEARNING PATHWAY</span>
+              <h3 class="text-sm sm:text-base font-bold text-on-surface print-text-dark">Cyber Security 101</h3>
+              <p class="text-xs text-on-surface-variant font-mono">TryHackMe</p>
+            </div>
+            <span class="shrink-0 px-2 py-0.5 rounded bg-primary/10 border border-primary/30 text-primary font-mono text-[10px] font-bold">
+              COMPLETED
+            </span>
+          </div>
+          <p class="text-xs text-on-surface-variant print-text-muted leading-relaxed">
+            In-depth practical curriculum covering transport protocol structures, packet analysis in Wireshark, web application security concepts, cryptography, and defensive auditing.
+          </p>
+          <div class="font-mono text-[11px] text-outline">May 2026 – Aug 2026</div>
+        </div>
+
+        <!-- TryHackMe - Pre Security -->
+        <div class="bg-surface-subtle border border-border-hairline rounded-xl p-5 space-y-2.5 print-card">
+          <div class="flex items-start justify-between gap-2">
+            <div>
+              <span class="font-mono text-[10px] text-secondary uppercase tracking-widest">LEARNING PATHWAY</span>
+              <h3 class="text-sm sm:text-base font-bold text-on-surface print-text-dark">Pre Security</h3>
+              <p class="text-xs text-on-surface-variant font-mono">TryHackMe</p>
+            </div>
+            <span class="shrink-0 px-2 py-0.5 rounded bg-primary/10 border border-primary/30 text-primary font-mono text-[10px] font-bold">
+              COMPLETED
+            </span>
+          </div>
+          <p class="text-xs text-on-surface-variant print-text-muted leading-relaxed">
+            Foundational pathway establishing core network architectures, OSI layers, IP addressing and subnetting, Linux command line essentials, and fundamental web request mechanisms.
+          </p>
+          <div class="font-mono text-[11px] text-outline">Mar 2026 – May 2026</div>
+        </div>
+
+        <!-- TryHackMe - Junior Penetration Tester -->
+        <div class="bg-surface-subtle border border-border-hairline rounded-xl p-5 space-y-2.5 print-card">
+          <div class="flex items-start justify-between gap-2">
+            <div>
+              <span class="font-mono text-[10px] text-warning uppercase tracking-widest">OFFENSIVE SECURITY TRACK</span>
+              <h3 class="text-sm sm:text-base font-bold text-on-surface print-text-dark">Jr Penetration Tester</h3>
+              <p class="text-xs text-on-surface-variant font-mono">TryHackMe</p>
+            </div>
+            <span class="shrink-0 px-2 py-0.5 rounded bg-warning/10 border border-warning/30 text-warning font-mono text-[10px] font-bold">
+              IN PROGRESS
+            </span>
+          </div>
+          <p class="text-xs text-on-surface-variant print-text-muted leading-relaxed">
+            Active offensive security track focusing on industry testing methodologies, active network scanning, web vulnerability assessment, Burp Suite, and foundational Linux privilege escalation.
+          </p>
+          <div class="font-mono text-[11px] text-outline">Currently Progressing</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. Cybersecurity Skills Matrix -->
+    <section id="skills" class="space-y-4 print-card">
+      <div class="flex items-center gap-2 border-b border-border-hairline pb-2">
+        <span class="material-symbols-outlined text-primary text-xl">terminal</span>
+        <h2 class="text-lg font-bold font-mono tracking-wider uppercase text-on-surface print-text-dark">Cybersecurity Skills Matrix</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        
+        <!-- Reconnaissance -->
+        <div class="bg-surface-subtle border border-border-hairline rounded-xl p-4 space-y-2 print-card">
+          <div class="flex items-center gap-2 font-mono text-xs font-bold text-secondary">
+            <span class="material-symbols-outlined text-base">radar</span>
+            <span>01 // RECONNAISSANCE &amp; ENUMERATION</span>
+          </div>
+          <p class="text-xs text-on-surface-variant print-text-muted">
+            Passive intelligence gathering (WHOIS, DNS records), active host discovery, TCP/UDP port sweeps, service banner grabbing, and web technology identification.
+          </p>
+          <div class="flex flex-wrap gap-1 font-mono text-[11px] text-on-surface">
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">Nmap</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">Dig / Whois</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">WhatWeb</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">Subnetting</span>
+          </div>
+        </div>
+
+        <!-- Web Security -->
+        <div class="bg-surface-subtle border border-border-hairline rounded-xl p-4 space-y-2 print-card">
+          <div class="flex items-center gap-2 font-mono text-xs font-bold text-primary">
+            <span class="material-symbols-outlined text-base">language</span>
+            <span>02 // WEB APPLICATION SECURITY</span>
+          </div>
+          <p class="text-xs text-on-surface-variant print-text-muted">
+            OWASP Top 10 vulnerability assessment, SQL Injection (authentication bypass / union testing), Cross-Site Scripting (XSS), IDOR, session manipulation, and proxy interception.
+          </p>
+          <div class="flex flex-wrap gap-1 font-mono text-[11px] text-on-surface">
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">Burp Suite</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">ffuf</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">OWASP Top 10</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">cURL</span>
+          </div>
+        </div>
+
+        <!-- Network Security -->
+        <div class="bg-surface-subtle border border-border-hairline rounded-xl p-4 space-y-2 print-card">
+          <div class="flex items-center gap-2 font-mono text-xs font-bold text-secondary">
+            <span class="material-symbols-outlined text-base">hub</span>
+            <span>03 // NETWORK SECURITY &amp; TRAFFIC ANALYSIS</span>
+          </div>
+          <p class="text-xs text-on-surface-variant print-text-muted">
+            Protocol inspection across TCP/IP and OSI layers, 3-way handshake telemetry, packet capture with tcpdump, display filtering in Wireshark, and Netcat banner probes.
+          </p>
+          <div class="flex flex-wrap gap-1 font-mono text-[11px] text-on-surface">
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">Wireshark</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">tcpdump</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">Netcat</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">TCP/IP / DNS / DHCP</span>
+          </div>
+        </div>
+
+        <!-- Linux Systems -->
+        <div class="bg-surface-subtle border border-border-hairline rounded-xl p-4 space-y-2 print-card">
+          <div class="flex items-center gap-2 font-mono text-xs font-bold text-primary">
+            <span class="material-symbols-outlined text-base">terminal</span>
+            <span>04 // LINUX SYSTEMS &amp; ADMINISTRATION</span>
+          </div>
+          <p class="text-xs text-on-surface-variant print-text-muted">
+            Daily operation in Kali Linux and Ubuntu, Bash scripting, octal permission management, systemd service administration, process monitoring, and host hardening.
+          </p>
+          <div class="flex flex-wrap gap-1 font-mono text-[11px] text-on-surface">
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">Kali Linux</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">Bash</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">systemctl</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">UFW / SSH Hardening</span>
+          </div>
+        </div>
+
+        <!-- Exploitation & Research -->
+        <div class="bg-surface-subtle border border-border-hairline rounded-xl p-4 space-y-2 print-card">
+          <div class="flex items-center gap-2 font-mono text-xs font-bold text-secondary">
+            <span class="material-symbols-outlined text-base">pest_control</span>
+            <span>05 // CONTROLLED EXPLOITATION &amp; RESEARCH</span>
+          </div>
+          <p class="text-xs text-on-surface-variant print-text-muted">
+            Metasploit console operations, auxiliary scanning, payload configuration, Searchsploit Exploit-DB research, reverse shell handling, and interactive TTY stabilization.
+          </p>
+          <div class="flex flex-wrap gap-1 font-mono text-[11px] text-on-surface">
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">Metasploit</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">Searchsploit</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">Netcat Shells</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">PoC Review</span>
+          </div>
+        </div>
+
+        <!-- Credential Security -->
+        <div class="bg-surface-subtle border border-border-hairline rounded-xl p-4 space-y-2 print-card">
+          <div class="flex items-center gap-2 font-mono text-xs font-bold text-primary">
+            <span class="material-symbols-outlined text-base">key</span>
+            <span>06 // CREDENTIAL &amp; PASSWORD SECURITY</span>
+          </div>
+          <p class="text-xs text-on-surface-variant print-text-muted">
+            Cryptographic hash identification, offline dictionary verification with John the Ripper, Hydra authentication testing in labs, and salting/stretching security controls.
+          </p>
+          <div class="flex flex-wrap gap-1 font-mono text-[11px] text-on-surface">
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">John the Ripper</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">hashid</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">Hydra</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">MD5 / SHA / bcrypt</span>
+          </div>
+        </div>
+
+        <!-- Security Automation -->
+        <div class="bg-surface-subtle border border-border-hairline rounded-xl p-4 space-y-2 print-card">
+          <div class="flex items-center gap-2 font-mono text-xs font-bold text-secondary">
+            <span class="material-symbols-outlined text-base">code</span>
+            <span>07 // SECURITY AUTOMATION WITH PYTHON</span>
+          </div>
+          <p class="text-xs text-on-surface-variant print-text-muted">
+            Python security scripting, custom socket port probes, automated HTTP header and status inspection with requests, regex log parsing, and CLI automation.
+          </p>
+          <div class="flex flex-wrap gap-1 font-mono text-[11px] text-on-surface">
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">Python 3</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">Requests</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">Sockets</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">Regex / Argparse</span>
+          </div>
+        </div>
+
+        <!-- AI & Agentic Security -->
+        <div class="bg-surface-subtle border border-border-hairline rounded-xl p-4 space-y-2 print-card">
+          <div class="flex items-center gap-2 font-mono text-xs font-bold text-primary">
+            <span class="material-symbols-outlined text-base">smart_toy</span>
+            <span>08 // AI &amp; AGENTIC SECURITY WORKFLOWS</span>
+          </div>
+          <p class="text-xs text-on-surface-variant print-text-muted">
+            Offline local LLM execution (Ollama, Qwen3-Coder), automated vulnerability triage, structured JSON log analysis, agentic tool sandboxing, and prompt injection defense.
+          </p>
+          <div class="flex flex-wrap gap-1 font-mono text-[11px] text-on-surface">
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">Ollama</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">Qwen3-Coder</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">Local Compute Stack</span>
+            <span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline">Triage Agents</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. Practical Toolkit -->
+    <section id="tools" class="space-y-4 print-card">
+      <div class="flex items-center gap-2 border-b border-border-hairline pb-2">
+        <span class="material-symbols-outlined text-primary text-xl">construction</span>
+        <h2 class="text-lg font-bold font-mono tracking-wider uppercase text-on-surface print-text-dark">Operational Toolkit</h2>
+      </div>
+
+      <div class="bg-surface-subtle border border-border-hairline rounded-xl p-5 space-y-4 print-card">
+        <div>
+          <div class="font-mono text-xs text-secondary font-bold mb-2">SECURITY &amp; OFFENSIVE AUDITING TOOLS</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface print-card">Nmap</span>
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface print-card">Burp Suite Community</span>
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface print-card">ffuf</span>
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface print-card">Wireshark</span>
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface print-card">Metasploit Framework</span>
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface print-card">Searchsploit</span>
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface print-card">John the Ripper</span>
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface print-card">Hydra</span>
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface print-card">tcpdump</span>
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface print-card">Netcat</span>
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface print-card">WhatWeb</span>
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface print-card">OpenVAS</span>
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface print-card">Snort (Lab)</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="font-mono text-xs text-primary font-bold mb-2">SYSTEMS, LANGUAGES &amp; DEVELOPMENT</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface print-card">Kali Linux (Daily)</span>
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface print-card">Ubuntu Server / Desktop</span>
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface print-card">Python 3</span>
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface print-card">Bash Scripting</span>
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface print-card">C#</span>
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface print-card">HTML / CSS / Tailwind</span>
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface print-card">Git / GitHub</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="font-mono text-xs text-secondary font-bold mb-2">LOCAL AI COMPUTE &amp; WORKFLOWS</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface print-card">Ollama (Offline Inference)</span>
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface print-card">Qwen3-Coder</span>
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface print-card">Open-WebUI</span>
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface print-card">NVIDIA RTX Compute Stack</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Projects -->
+    <section id="projects" class="space-y-4 print-card">
+      <div class="flex items-center gap-2 border-b border-border-hairline pb-2">
+        <span class="material-symbols-outlined text-primary text-xl">folder</span>
+        <h2 class="text-lg font-bold font-mono tracking-wider uppercase text-on-surface print-text-dark">Technical Projects</h2>
+      </div>
+
+      <div class="space-y-4">
+        
+        <!-- SentinelAI -->
+        <div class="bg-surface-subtle border border-border-hairline rounded-xl p-5 space-y-2 print-card">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+            <h3 class="text-base font-bold text-on-surface print-text-dark">SentinelAI · Autonomous Security Assistant &amp; Vulnerability Triage</h3>
+            <span class="font-mono text-xs text-primary print-accent">Active Engineering Project</span>
+          </div>
+          <p class="text-xs sm:text-sm text-on-surface-variant print-text-muted leading-relaxed">
+            Autonomous security engineering tool unifying reconnaissance log parsing, CVE correlation, and risk calculation. Employs local neural models to structure scan outputs into actionable remediation roadmaps with complete data privacy.
+          </p>
+          <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-outline pt-1">
+            <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline">Python</span>
+            <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline">Ollama</span>
+            <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline">CVE Intelligence</span>
+            <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline">CVSS Scoring</span>
+          </div>
+        </div>
+
+        <!-- Autonomous Pentesting Agent -->
+        <div class="bg-surface-subtle border border-border-hairline rounded-xl p-5 space-y-2 print-card">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+            <h3 class="text-base font-bold text-on-surface print-text-dark">Autonomous Pentesting Agent · Local Agentic Security Pipeline</h3>
+            <span class="font-mono text-xs text-secondary print-accent">Agentic Architecture</span>
+          </div>
+          <p class="text-xs sm:text-sm text-on-surface-variant print-text-muted leading-relaxed">
+            Agentic decision-making framework designed to automate educational laboratory workflows. Coordinates planning, command execution validation, output parsing, and structured reporting under strict sandboxing guardrails.
+          </p>
+          <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-outline pt-1">
+            <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline">Qwen3-Coder</span>
+            <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline">Tool Use Guardrails</span>
+            <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline">Sandboxed Execution</span>
+          </div>
+        </div>
+
+        <!-- CyberAI -->
+        <div class="bg-surface-subtle border border-border-hairline rounded-xl p-5 space-y-2 print-card">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+            <h3 class="text-base font-bold text-on-surface print-text-dark">CyberAI · Security Intelligence &amp; Log Analysis Assistant</h3>
+            <span class="font-mono text-xs text-primary print-accent">Telemetry Analysis</span>
+          </div>
+          <p class="text-xs sm:text-sm text-on-surface-variant print-text-muted leading-relaxed">
+            Telemetry ingestion platform converting raw system logs, authentication streams, and firewall dumps into structured security incident timelines with contextual risk scoring.
+          </p>
+          <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-outline pt-1">
+            <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline">Log Parsing</span>
+            <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline">Incident Timelines</span>
+            <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline">Python</span>
+          </div>
+        </div>
+
+        <!-- Local AI Compute Stack -->
+        <div class="bg-surface-subtle border border-border-hairline rounded-xl p-5 space-y-2 print-card">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+            <h3 class="text-base font-bold text-on-surface print-text-dark">Local AI Compute Stack · Offline Hardware &amp; Inference Infrastructure</h3>
+            <span class="font-mono text-xs text-secondary print-accent">Infrastructure</span>
+          </div>
+          <p class="text-xs sm:text-sm text-on-surface-variant print-text-muted leading-relaxed">
+            Dedicated local hardware execution environment powered by an NVIDIA RTX GPU, running containerized Ollama and Open-WebUI for private offline execution of coding and security reasoning models.
+          </p>
+          <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-outline pt-1">
+            <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline">RTX GPU</span>
+            <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline">Ollama Server</span>
+            <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline">Zero Cloud Leakage</span>
+          </div>
+        </div>
+
+        <!-- The Ethical Hacker's Command Handbook -->
+        <div class="bg-surface-subtle border border-border-hairline rounded-xl p-5 space-y-2 print-card">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+            <h3 class="text-base font-bold text-on-surface print-text-dark">The Ethical Hacker's Command Handbook · Knowledge Base</h3>
+            <span class="font-mono text-xs text-primary print-accent">Educational Documentation</span>
+          </div>
+          <p class="text-xs sm:text-sm text-on-surface-variant print-text-muted leading-relaxed">
+            Comprehensive documentation platform spanning 15 specialized modules and 30 downloadable offline PDF companions, documenting Linux, Nmap, Metasploit, Searchsploit, web security, and automation workflows.
+          </p>
+          <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-outline pt-1">
+            <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline">15 Modules</span>
+            <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline">30 PDFs</span>
+            <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline">Client-Side Search</span>
+            <a href="handbook/index.html" class="text-primary hover:underline font-bold">Open Handbook ↗</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 8. TryHackMe Verified Achievements -->
+    <section id="achievements" class="space-y-4 print-card">
+      <div class="flex items-center gap-2 border-b border-border-hairline pb-2">
+        <span class="material-symbols-outlined text-primary text-xl">military_tech</span>
+        <h2 class="text-lg font-bold font-mono tracking-wider uppercase text-on-surface print-text-dark">TryHackMe Verified Ranking &amp; Achievements</h2>
+      </div>
+
+      <div class="bg-surface-subtle border border-border-hairline rounded-xl p-6 relative overflow-hidden print-card">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center sm:text-left mb-4">
+          <div class="bg-surface-raised border border-border-hairline rounded-lg p-4 print-card">
+            <div class="font-mono text-[11px] text-outline uppercase tracking-wider">GLOBAL RANKING</div>
+            <div class="text-2xl sm:text-3xl font-extrabold text-primary font-mono print-accent mt-1">TOP 2%</div>
+            <div class="text-[11px] text-on-surface-variant mt-0.5">Global Percentile</div>
+          </div>
+
+          <div class="bg-surface-raised border border-border-hairline rounded-lg p-4 print-card">
+            <div class="font-mono text-[11px] text-outline uppercase tracking-wider">ROOMS COMPLETED</div>
+            <div class="text-2xl sm:text-3xl font-extrabold text-secondary font-mono print-accent mt-1">140+</div>
+            <div class="text-[11px] text-on-surface-variant mt-0.5">Hands-On Labs Solved</div>
+          </div>
+
+          <div class="bg-surface-raised border border-border-hairline rounded-lg p-4 print-card">
+            <div class="font-mono text-[11px] text-outline uppercase tracking-wider">ACTIVE TRACK</div>
+            <div class="text-lg sm:text-xl font-bold text-warning font-mono mt-1">Jr Pentester</div>
+            <div class="text-[11px] text-on-surface-variant mt-0.5">Currently In Progress</div>
+          </div>
+        </div>
+
+        <p class="text-xs sm:text-sm text-on-surface-variant print-text-muted leading-relaxed">
+          TryHackMe exercises provide hands-on experience in attacking and defending virtual systems. Accomplishments reflect mastery across reconnaissance, privilege verification, network discovery, web application vulnerabilities, and defensive incident response.
+        </p>
+
+        <div class="pt-3 border-t border-border-hairline/60 flex items-center justify-between">
+          <span class="font-mono text-xs text-outline">Public Profile: tryhackme.com/p/mihraj.io</span>
+          <a href="https://tryhackme.com/p/mihraj.io" target="_blank" rel="noopener noreferrer" class="font-mono text-xs text-primary hover:underline font-bold flex items-center gap-1">
+            <span>Verify Live THM Profile</span>
+            <span class="material-symbols-outlined text-xs">open_in_new</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Certifications & Credentials -->
+    <section id="certifications" class="space-y-4 print-card">
+      <div class="flex items-center gap-2 border-b border-border-hairline pb-2">
+        <span class="material-symbols-outlined text-primary text-xl">verified</span>
+        <h2 class="text-lg font-bold font-mono tracking-wider uppercase text-on-surface print-text-dark">Certifications &amp; Credentials</h2>
+      </div>
+
+      <div class="space-y-3">
+        
+        <div class="bg-surface-subtle border border-border-hairline rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 print-card">
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-on-surface print-text-dark">Google Cybersecurity Professional Certificate</h3>
+            <p class="text-xs text-on-surface-variant font-mono">Google · Issued Feb 2026</p>
+          </div>
+          <span class="px-2.5 py-1 rounded bg-primary/10 border border-primary/30 text-primary font-mono text-xs font-bold w-fit print-accent">
+            Verified Credential
+          </span>
+        </div>
+
+        <div class="bg-surface-subtle border border-border-hairline rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 print-card">
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-on-surface print-text-dark">Cyber Security 101 Certificate</h3>
+            <p class="text-xs text-on-surface-variant font-mono">TryHackMe · Issued Aug 2026</p>
+          </div>
+          <span class="px-2.5 py-1 rounded bg-primary/10 border border-primary/30 text-primary font-mono text-xs font-bold w-fit print-accent">
+            Pathway Completed
+          </span>
+        </div>
+
+        <div class="bg-surface-subtle border border-border-hairline rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 print-card">
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-on-surface print-text-dark">Pre Security Certificate</h3>
+            <p class="text-xs text-on-surface-variant font-mono">TryHackMe · Issued May 2026</p>
+          </div>
+          <span class="px-2.5 py-1 rounded bg-primary/10 border border-primary/30 text-primary font-mono text-xs font-bold w-fit print-accent">
+            Pathway Completed
+          </span>
+        </div>
+
+        <!-- Dedicated Certificates Vault Link -->
+        <div class="pt-2 no-print flex flex-col sm:flex-row items-center justify-between gap-3 p-4 rounded-xl border border-border-hairline bg-surface-raised">
+          <div class="text-xs text-on-surface-variant font-mono">
+            Official certificate artifacts, credential IDs, and interactive digital viewer available.
+          </div>
+          <a href="certificates.html" class="inline-flex items-center gap-1.5 px-4 py-2 rounded bg-primary/10 border border-primary/30 text-primary font-mono text-xs font-bold hover:bg-primary/20 transition-all shrink-0">
+            <span class="material-symbols-outlined text-sm">verified</span>
+            <span>View Dedicated Certificates Vault ↗</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 10. Contact Section -->
+    <section id="contact" class="space-y-4 print-card">
+      <div class="flex items-center gap-2 border-b border-border-hairline pb-2">
+        <span class="material-symbols-outlined text-primary text-xl">contact_mail</span>
+        <h2 class="text-lg font-bold font-mono tracking-wider uppercase text-on-surface print-text-dark">Contact &amp; Professional Inquiry</h2>
+      </div>
+
+      <div class="bg-surface-subtle border border-border-hairline rounded-xl p-6 space-y-4 print-card">
+        <p class="text-xs sm:text-sm text-on-surface-variant print-text-muted leading-relaxed">
+          Open to cybersecurity internships, offensive security research collaborations, junior security analyst roles, and technical discussions.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
+          <div class="bg-surface-raised border border-border-hairline p-3 rounded-lg print-card">
+            <span class="text-outline block text-[10px]">PRIMARY EMAIL</span>
+            <a href="mailto:cybehmihraj32@gmail.com" class="text-primary hover:underline font-bold">cybehmihraj32@gmail.com</a>
+          </div>
+          <div class="bg-surface-raised border border-border-hairline p-3 rounded-lg print-card">
+            <span class="text-outline block text-[10px]">ACADEMIC EMAIL</span>
+            <a href="mailto:mihrajmashoor8301@gmail.com" class="text-secondary hover:underline font-bold">mihrajmashoor8301@gmail.com</a>
+          </div>
+          <div class="bg-surface-raised border border-border-hairline p-3 rounded-lg print-card">
+            <span class="text-outline block text-[10px]">DIRECT PHONE</span>
+            <span class="text-on-surface font-bold">+91 9383447163</span>
+          </div>
+          <div class="bg-surface-raised border border-border-hairline p-3 rounded-lg print-card">
+            <span class="text-outline block text-[10px]">LINKEDIN PROFILE</span>
+            <a href="https://linkedin.com/in/mihrajmashhoork" target="_blank" rel="noopener noreferrer" class="text-secondary hover:underline font-bold">linkedin.com/in/mihrajmashhoork</a>
+          </div>
+        </div>
+
+        <div class="pt-2 flex flex-wrap gap-3">
+          <a href="mailto:cybehmihraj32@gmail.com?subject=Cybersecurity%20Opportunity%20Inquiry" class="inline-flex items-center gap-2 px-5 py-2.5 rounded bg-primary-container text-canvas-base font-mono text-xs font-bold hover:bg-primary transition-all shadow-[0_0_12px_rgba(16,185,129,0.3)]">
+            <span class="material-symbols-outlined text-sm">send</span>
+            <span>Send Direct Email</span>
+          </a>
+          <a href="CV_2026_UPDATED.pdf" download="CV_2026_UPDATED.pdf" class="inline-flex items-center gap-2 px-5 py-2.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:border-primary/50 transition-colors">
+            <span class="material-symbols-outlined text-sm">download</span>
+            <span>Download PDF Resume</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- Footer                                                                    -->
+  <!-- ========================================================================= -->
+  <footer class="no-print border-t border-border-hairline bg-surface-subtle py-8 text-center text-xs font-mono text-outline">
+    <div class="max-w-5xl mx-auto px-4 space-y-2">
+      <p>Mihraj Mashhoor K · Cybersecurity &amp; Security Automation Practitioner</p>
+      <p class="text-[11px] text-on-surface-variant">All practical demonstrations conducted strictly within authorized educational environments (TryHackMe, private virtual lab).</p>
+      <div class="pt-2 flex items-center justify-center gap-4 text-on-surface-variant">
+        <a href="index.html" class="hover:text-primary transition-colors">Return to Portfolio ↗</a>
+        <span>·</span>
+        <a href="handbook/index.html" class="hover:text-primary transition-colors">Cybersecurity Handbook ↗</a>
+        <span>·</span>
+        <a href="CV_2026_UPDATED.pdf" download class="hover:text-primary transition-colors">Download PDF Resume ↗</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- Client JavaScript                                                         -->
+  <!-- ========================================================================= -->
+  <script>
+    // Mobile Drawer Toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Close on link click
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+    }
+
+    // Scrollspy for Desktop Navigation
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('#desktop-nav a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 100;
+        if (pageYOffset >= top) {
+          current = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('text-primary', 'bg-surface-raised');
+          link.classList.remove('text-on-surface-variant');
+        } else {
+          link.classList.remove('text-primary', 'bg-surface-raised');
+          link.classList.add('text-on-surface-variant');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

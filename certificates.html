@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html class="scroll-smooth dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Certificates &amp; Verified Credentials | Mihraj Mashoor K</title>
+  <meta content="Official cybersecurity certifications, verified TryHackMe learning pathways, and educational security event credentials for Mihraj Mashoor K." name="description"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'canvas-base': '#090D12',
+            'surface-subtle': '#0E131B',
+            'surface-raised': '#151D28',
+            'border-hairline': '#1F2937',
+            'border-medium': '#2D3748',
+            'primary': '#4EDEA3',
+            'primary-container': '#10b981',
+            'secondary': '#4CD7F6',
+            'on-surface': '#F3F4F6',
+            'on-surface-variant': '#8692A6',
+            'outline': '#64748B',
+            'warning': '#FBBF24',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #090D12;
+      color: #F3F4F6;
+      font-family: 'Inter', sans-serif;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      vertical-align: middle;
+    }
+    .cert-card {
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .cert-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(78, 222, 163, 0.4);
+      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.7), 0 0 20px -5px rgba(78, 222, 163, 0.15);
+    }
+    .thumb-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #090D12;
+    }
+    .thumb-container img {
+      transition: transform 0.3s ease;
+    }
+    .cert-card:hover .thumb-container img {
+      transform: scale(1.02);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-primary/20 selection:text-primary">
+
+  <!-- ========================================================================= -->
+  <!-- Header / Navigation                                                       -->
+  <!-- ========================================================================= -->
+  <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-canvas-base/85 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      
+      <!-- Brand -->
+      <a href="index.html" class="flex items-center gap-2 group">
+        <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+        <span class="font-mono text-sm font-bold tracking-wider text-on-surface group-hover:text-primary transition-colors">MIHRAJ.IO</span>
+        <span class="text-outline text-xs font-mono">/</span>
+        <span class="font-mono text-xs text-secondary font-semibold">CREDENTIALS</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden lg:flex items-center space-x-6 font-mono text-xs text-on-surface-variant">
+        <a href="index.html" class="hover:text-primary transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">home</span>
+          <span>Portfolio</span>
+        </a>
+        <a href="resume.html" class="hover:text-primary transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">description</span>
+          <span>Resume</span>
+        </a>
+        <a href="handbook/index.html" class="hover:text-primary transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">menu_book</span>
+          <span>Handbook</span>
+        </a>
+        <a href="https://tryhackme.com/p/mihraj.io" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1 text-secondary">
+          <span class="material-symbols-outlined text-sm">military_tech</span>
+          <span>THM Top 2%</span>
+        </a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-3">
+        <a href="CV_2026_UPDATED.pdf" download="CV_2026_UPDATED.pdf" class="hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-primary-container text-canvas-base font-mono text-xs font-bold hover:bg-primary transition-all shadow-[0_0_12px_rgba(16,185,129,0.25)]">
+          <span class="material-symbols-outlined text-sm">download</span>
+          <span>Download CV</span>
+        </a>
+        <a href="index.html" class="inline-flex items-center gap-1 px-3 py-1.5 rounded border border-secondary/30 bg-secondary/10 font-mono text-xs text-secondary hover:bg-secondary/20 transition-colors">
+          <span class="material-symbols-outlined text-sm">arrow_back</span>
+          <span class="hidden sm:inline">Back to Portfolio</span>
+        </a>
+        <button id="mobile-menu-btn" class="lg:hidden p-1.5 rounded text-on-surface-variant hover:text-on-surface focus:outline-none" aria-label="Toggle navigation">
+          <span class="material-symbols-outlined text-xl">menu</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-border-hairline bg-surface-subtle px-6 py-4 space-y-3 font-mono text-xs">
+      <a href="index.html" class="block py-1.5 text-on-surface-variant hover:text-primary">Portfolio</a>
+      <a href="resume.html" class="block py-1.5 text-on-surface-variant hover:text-primary">Interactive Resume</a>
+      <a href="handbook/index.html" class="block py-1.5 text-on-surface-variant hover:text-primary">Cybersecurity Handbook</a>
+      <a href="https://tryhackme.com/p/mihraj.io" target="_blank" class="block py-1.5 text-secondary font-bold">TryHackMe Profile (Top 2%)</a>
+      <div class="pt-2 border-t border-border-hairline">
+        <a href="CV_2026_UPDATED.pdf" download="CV_2026_UPDATED.pdf" class="inline-flex items-center gap-1 text-primary font-bold">
+          <span class="material-symbols-outlined text-sm">download</span>
+          <span>Download PDF CV</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- Hero Section                                                              -->
+  <!-- ========================================================================= -->
+  <main class="flex-grow">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-8 border-b border-border-hairline">
+      
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        
+        <!-- Identity & Heading -->
+        <div class="space-y-4 max-w-3xl">
+          <div class="flex items-center gap-2 font-mono text-xs text-primary">
+            <span class="material-symbols-outlined text-base">verified</span>
+            <span>VERIFIED ARTIFACTS // CREDENTIAL VAULT</span>
+          </div>
+          
+          <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-on-surface">
+            CERTIFICATIONS <span class="text-primary">//</span> CREDENTIALS
+          </h1>
+
+          <p class="text-base sm:text-lg text-on-surface-variant leading-relaxed">
+            Verified learning, cybersecurity training, and authorized educational participation records.
+          </p>
+
+          <div class="p-3 rounded-lg bg-surface-subtle border border-border-hairline text-xs text-on-surface-variant font-mono space-y-1">
+            <div class="flex items-center gap-2 text-on-surface font-semibold">
+              <span class="material-symbols-outlined text-sm text-secondary">info</span>
+              <span>EDUCATIONAL INTEGRITY DISCLOSURE</span>
+            </div>
+            <p class="text-[11px] leading-relaxed">
+              All credentials documented below represent verified online certifications, structured TryHackMe learning pathways, and authorized CTF challenges. None represent commercial or independent penetration testing client engagements.
+            </p>
+          </div>
+        </div>
+
+        <!-- Avatar & Quick Stats -->
+        <div class="shrink-0 flex md:flex-col items-center md:items-end justify-between gap-4 bg-surface-subtle p-5 rounded-xl border border-border-hairline">
+          <div class="flex items-center gap-3">
+            <div class="relative">
+              <img src="dp4.jpeg" alt="Mihraj Mashoor K" class="w-16 h-16 rounded-lg object-cover border border-primary/40 shadow-lg"/>
+              <span class="absolute -bottom-1 -right-1 w-3.5 h-3.5 rounded-full bg-primary border-2 border-canvas-base"></span>
+            </div>
+            <div>
+              <div class="text-sm font-bold text-on-surface">Mihraj Mashoor K</div>
+              <div class="font-mono text-xs text-secondary">Cybersecurity Undergraduate</div>
+              <div class="font-mono text-[10px] text-outline mt-0.5">KTU 2024 · B.Tech CSE</div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 font-mono text-xs">
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline text-primary font-bold">4 Verified Records</span>
+            <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline text-secondary">Top 2% THM</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Filter Controls & Stats Bar -->
+      <div class="mt-8 pt-6 border-t border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        
+        <!-- Filter Tabs -->
+        <div class="flex flex-wrap gap-2 font-mono text-xs" id="filter-tabs">
+          <button data-filter="all" class="filter-btn px-3 py-1.5 rounded-md border border-primary bg-primary/10 text-primary font-semibold transition-all">
+            All Records (4)
+          </button>
+          <button data-filter="professional" class="filter-btn px-3 py-1.5 rounded-md border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface transition-all">
+            Professional Certification (1)
+          </button>
+          <button data-filter="training" class="filter-btn px-3 py-1.5 rounded-md border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface transition-all">
+            Cybersecurity Training (2)
+          </button>
+          <button data-filter="event" class="filter-btn px-3 py-1.5 rounded-md border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface transition-all">
+            Event / Participation (1)
+          </button>
+        </div>
+
+        <!-- Quick Summary -->
+        <div class="font-mono text-xs text-outline flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-sm text-primary">security</span>
+          <span>Source: Official Issuing Authorities</span>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- Certificate Grid                                                          -->
+    <!-- ========================================================================= -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="certs-grid">
+        
+        <!-- ------------------------------------------------------------------- -->
+        <!-- Card 1: Google Cybersecurity Professional Certificate                -->
+        <!-- ------------------------------------------------------------------- -->
+        <div class="cert-card cert-item bg-surface-subtle rounded-xl border border-border-hairline p-6 flex flex-col justify-between" data-category="professional">
+          <div class="space-y-4">
+            
+            <!-- Card Header -->
+            <div class="flex items-center justify-between gap-2">
+              <span class="px-2.5 py-1 rounded bg-primary/10 border border-primary/30 text-primary font-mono text-[11px] font-bold">
+                PROFESSIONAL CERTIFICATION
+              </span>
+              <span class="font-mono text-xs text-outline font-semibold">ID: OLK16MA4UQ7Z</span>
+            </div>
+
+            <!-- Preview Image -->
+            <a href="certificate-viewer.html?id=google-cybersecurity" class="thumb-container block border border-border-hairline group" title="Open in Certificate Viewer">
+              <img src="cert_previews/google-cybersecurity.png" alt="Google Cybersecurity Professional Certificate Preview" class="w-full h-48 sm:h-56 object-cover object-top rounded-lg" loading="lazy"/>
+              <div class="absolute inset-0 bg-canvas-base/40 opacity-0 group-hover:opacity-100 flex items-center justify-center gap-2 transition-opacity">
+                <span class="px-3 py-1.5 rounded bg-canvas-base/90 border border-primary text-primary font-mono text-xs font-bold flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm">visibility</span>
+                  <span>Open Interactive Viewer</span>
+                </span>
+              </div>
+            </a>
+
+            <!-- Content -->
+            <div>
+              <div class="font-mono text-xs text-secondary font-semibold">Google · Delivered via Coursera</div>
+              <h2 class="text-xl font-bold text-on-surface mt-1 hover:text-primary transition-colors">
+                <a href="certificate-viewer.html?id=google-cybersecurity">Google Cybersecurity</a>
+              </h2>
+              <div class="font-mono text-xs text-outline mt-0.5">Online Professional Certificate (9 Courses)</div>
+            </div>
+
+            <p class="text-xs text-on-surface-variant leading-relaxed">
+              Comprehensive 9-course professional curriculum developed by Google. Covers Linux command line, network security operations, SIEM tools, intrusion detection systems, Python automation, threat intelligence, and vulnerability mitigation.
+            </p>
+
+            <!-- Metadata Pills -->
+            <div class="grid grid-cols-2 gap-2 p-3 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs">
+              <div>
+                <span class="text-outline text-[10px] block">COMPLETION DATE</span>
+                <span class="text-on-surface font-medium">Feb 23, 2026</span>
+              </div>
+              <div>
+                <span class="text-outline text-[10px] block">SCOPE</span>
+                <span class="text-primary font-medium">9 Courses Completed</span>
+              </div>
+            </div>
+
+            <!-- Skills -->
+            <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+              <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface">Python</span>
+              <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface">Linux CLI</span>
+              <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface">SQL</span>
+              <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface">SIEM</span>
+              <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface">IDS Telemetry</span>
+              <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface">Packet Inspection</span>
+            </div>
+
+          </div>
+
+          <!-- Card Actions -->
+          <div class="mt-6 pt-4 border-t border-border-hairline flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2">
+              <a href="certificate-viewer.html?id=google-cybersecurity" class="inline-flex items-center gap-1.5 px-4 py-2 rounded bg-primary/10 border border-primary/30 text-primary font-mono text-xs font-bold hover:bg-primary/20 transition-all">
+                <span class="material-symbols-outlined text-sm">visibility</span>
+                <span>View Certificate</span>
+              </a>
+              <a href="Coursera OLK16MA4UQ7Z.pdf" download="Coursera OLK16MA4UQ7Z.pdf" class="inline-flex items-center gap-1.5 px-3 py-2 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:border-primary/50 transition-colors" title="Download Original PDF">
+                <span class="material-symbols-outlined text-sm">download</span>
+                <span>Download PDF</span>
+              </a>
+            </div>
+            <a href="https://coursera.org/verify/professional-cert/OLK16MA4UQ7Z" target="_blank" rel="noopener noreferrer" class="font-mono text-xs text-secondary hover:underline flex items-center gap-1">
+              <span>Verify on Coursera</span>
+              <span class="material-symbols-outlined text-xs">open_in_new</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- ------------------------------------------------------------------- -->
+        <!-- Card 2: TryHackMe — Cyber Security 101 Learning Path                -->
+        <!-- ------------------------------------------------------------------- -->
+        <div class="cert-card cert-item bg-surface-subtle rounded-xl border border-border-hairline p-6 flex flex-col justify-between" data-category="training">
+          <div class="space-y-4">
+            
+            <!-- Card Header -->
+            <div class="flex items-center justify-between gap-2">
+              <span class="px-2.5 py-1 rounded bg-secondary/10 border border-secondary/30 text-secondary font-mono text-[11px] font-bold">
+                CYBERSECURITY TRAINING
+              </span>
+              <span class="font-mono text-xs text-outline font-semibold">ID: THM-I4YSFYIXEL</span>
+            </div>
+
+            <!-- Preview Image -->
+            <a href="certificate-viewer.html?id=thm-cyber-101" class="thumb-container block border border-border-hairline group" title="Open in Certificate Viewer">
+              <img src="cert_previews/thm-cyber-101.png" alt="TryHackMe Cyber Security 101 Certificate Preview" class="w-full h-48 sm:h-56 object-cover object-top rounded-lg" loading="lazy"/>
+              <div class="absolute inset-0 bg-canvas-base/40 opacity-0 group-hover:opacity-100 flex items-center justify-center gap-2 transition-opacity">
+                <span class="px-3 py-1.5 rounded bg-canvas-base/90 border border-secondary text-secondary font-mono text-xs font-bold flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm">visibility</span>
+                  <span>Open Interactive Viewer</span>
+                </span>
+              </div>
+            </a>
+
+            <!-- Content -->
+            <div>
+              <div class="font-mono text-xs text-primary font-semibold">TryHackMe · Educational Learning Pathway</div>
+              <h2 class="text-xl font-bold text-on-surface mt-1 hover:text-primary transition-colors">
+                <a href="certificate-viewer.html?id=thm-cyber-101">Cyber Security 101</a>
+              </h2>
+              <div class="font-mono text-xs text-outline mt-0.5">Certificate of Completion · Learning Path</div>
+            </div>
+
+            <p class="text-xs text-on-surface-variant leading-relaxed">
+              In-depth hands-on curriculum covering network protocol telemetry, transport layers, packet capture and display filtering in Wireshark, web application security fundamentals, basic cryptography, and defensive auditing.
+            </p>
+
+            <!-- Metadata Pills -->
+            <div class="grid grid-cols-2 gap-2 p-3 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs">
+              <div>
+                <span class="text-outline text-[10px] block">COMPLETION DATE</span>
+                <span class="text-on-surface font-medium">2nd August 2026</span>
+              </div>
+              <div>
+                <span class="text-outline text-[10px] block">COURSE DURATION</span>
+                <span class="text-secondary font-medium">45h 23m of Interactive Labs</span>
+              </div>
+            </div>
+
+            <!-- Skills -->
+            <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+              <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface">Wireshark</span>
+              <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface">Packet Inspection</span>
+              <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface">Web Security</span>
+              <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface">Cryptography</span>
+              <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface">Defensive Auditing</span>
+            </div>
+
+          </div>
+
+          <!-- Card Actions -->
+          <div class="mt-6 pt-4 border-t border-border-hairline flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2">
+              <a href="certificate-viewer.html?id=thm-cyber-101" class="inline-flex items-center gap-1.5 px-4 py-2 rounded bg-secondary/10 border border-secondary/30 text-secondary font-mono text-xs font-bold hover:bg-secondary/20 transition-all">
+                <span class="material-symbols-outlined text-sm">visibility</span>
+                <span>View Certificate</span>
+              </a>
+              <a href="THM-I4YSFYIXEL.pdf" download="THM-I4YSFYIXEL.pdf" class="inline-flex items-center gap-1.5 px-3 py-2 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:border-secondary/50 transition-colors" title="Download Original PDF">
+                <span class="material-symbols-outlined text-sm">download</span>
+                <span>Download PDF</span>
+              </a>
+            </div>
+            <a href="https://tryhackme.com/p/mihraj.io" target="_blank" rel="noopener noreferrer" class="font-mono text-xs text-primary hover:underline flex items-center gap-1">
+              <span>TryHackMe Profile</span>
+              <span class="material-symbols-outlined text-xs">open_in_new</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- ------------------------------------------------------------------- -->
+        <!-- Card 3: TryHackMe — Pre Security Learning Path                      -->
+        <!-- ------------------------------------------------------------------- -->
+        <div class="cert-card cert-item bg-surface-subtle rounded-xl border border-border-hairline p-6 flex flex-col justify-between" data-category="training">
+          <div class="space-y-4">
+            
+            <!-- Card Header -->
+            <div class="flex items-center justify-between gap-2">
+              <span class="px-2.5 py-1 rounded bg-secondary/10 border border-secondary/30 text-secondary font-mono text-[11px] font-bold">
+                CYBERSECURITY TRAINING
+              </span>
+              <span class="font-mono text-xs text-outline font-semibold">ID: THM-O6NSA2SHXF</span>
+            </div>
+
+            <!-- Preview Image -->
+            <a href="certificate-viewer.html?id=thm-pre-security" class="thumb-container block border border-border-hairline group" title="Open in Certificate Viewer">
+              <img src="cert_previews/thm-pre-security.png" alt="TryHackMe Pre Security Certificate Preview" class="w-full h-48 sm:h-56 object-cover object-top rounded-lg" loading="lazy"/>
+              <div class="absolute inset-0 bg-canvas-base/40 opacity-0 group-hover:opacity-100 flex items-center justify-center gap-2 transition-opacity">
+                <span class="px-3 py-1.5 rounded bg-canvas-base/90 border border-secondary text-secondary font-mono text-xs font-bold flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm">visibility</span>
+                  <span>Open Interactive Viewer</span>
+                </span>
+              </div>
+            </a>
+
+            <!-- Content -->
+            <div>
+              <div class="font-mono text-xs text-primary font-semibold">TryHackMe · Educational Learning Pathway</div>
+              <h2 class="text-xl font-bold text-on-surface mt-1 hover:text-primary transition-colors">
+                <a href="certificate-viewer.html?id=thm-pre-security">Pre Security</a>
+              </h2>
+              <div class="font-mono text-xs text-outline mt-0.5">Certificate of Completion · Learning Path</div>
+            </div>
+
+            <p class="text-xs text-on-surface-variant leading-relaxed">
+              Foundational pathway establishing core network architectures, OSI layers, IP addressing and VLSM subnetting, Linux command line essentials, and fundamental web HTTP request structures.
+            </p>
+
+            <!-- Metadata Pills -->
+            <div class="grid grid-cols-2 gap-2 p-3 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs">
+              <div>
+                <span class="text-outline text-[10px] block">COMPLETION DATE</span>
+                <span class="text-on-surface font-medium">9th May 2026</span>
+              </div>
+              <div>
+                <span class="text-outline text-[10px] block">COURSE DURATION</span>
+                <span class="text-secondary font-medium">19h 10m of Interactive Labs</span>
+              </div>
+            </div>
+
+            <!-- Skills -->
+            <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+              <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface">Network Architecture</span>
+              <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface">OSI Layers</span>
+              <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface">Subnetting / VLSM</span>
+              <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface">Linux Fundamentals</span>
+              <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface">HTTP Mechanics</span>
+            </div>
+
+          </div>
+
+          <!-- Card Actions -->
+          <div class="mt-6 pt-4 border-t border-border-hairline flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2">
+              <a href="certificate-viewer.html?id=thm-pre-security" class="inline-flex items-center gap-1.5 px-4 py-2 rounded bg-secondary/10 border border-secondary/30 text-secondary font-mono text-xs font-bold hover:bg-secondary/20 transition-all">
+                <span class="material-symbols-outlined text-sm">visibility</span>
+                <span>View Certificate</span>
+              </a>
+              <a href="THM-O6NSA2SHXF.pdf" download="THM-O6NSA2SHXF.pdf" class="inline-flex items-center gap-1.5 px-3 py-2 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:border-secondary/50 transition-colors" title="Download Original PDF">
+                <span class="material-symbols-outlined text-sm">download</span>
+                <span>Download PDF</span>
+              </a>
+            </div>
+            <a href="https://tryhackme.com/p/mihraj.io" target="_blank" rel="noopener noreferrer" class="font-mono text-xs text-primary hover:underline flex items-center gap-1">
+              <span>TryHackMe Profile</span>
+              <span class="material-symbols-outlined text-xs">open_in_new</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- ------------------------------------------------------------------- -->
+        <!-- Card 4: TryHackMe — Hacker Holidays (Byte Lotus)                    -->
+        <!-- ------------------------------------------------------------------- -->
+        <div class="cert-card cert-item bg-surface-subtle rounded-xl border border-border-hairline p-6 flex flex-col justify-between" data-category="event">
+          <div class="space-y-4">
+            
+            <!-- Card Header -->
+            <div class="flex items-center justify-between gap-2">
+              <span class="px-2.5 py-1 rounded bg-warning/10 border border-warning/30 text-warning font-mono text-[11px] font-bold">
+                EVENT / PARTICIPATION
+              </span>
+              <span class="font-mono text-xs text-outline font-semibold">ID: THM-LMVHD9LP6F</span>
+            </div>
+
+            <!-- Preview Image -->
+            <a href="certificate-viewer.html?id=thm-hacker-holidays" class="thumb-container block border border-border-hairline group" title="Open in Certificate Viewer">
+              <img src="cert_previews/thm-hacker-holidays.png" alt="TryHackMe Hacker Holidays Certificate Preview" class="w-full h-48 sm:h-56 object-cover object-top rounded-lg" loading="lazy"/>
+              <div class="absolute inset-0 bg-canvas-base/40 opacity-0 group-hover:opacity-100 flex items-center justify-center gap-2 transition-opacity">
+                <span class="px-3 py-1.5 rounded bg-canvas-base/90 border border-warning text-warning font-mono text-xs font-bold flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm">visibility</span>
+                  <span>Open Interactive Viewer</span>
+                </span>
+              </div>
+            </a>
+
+            <!-- Content -->
+            <div>
+              <div class="font-mono text-xs text-warning font-semibold">TryHackMe · Summer 2026 CTF Event</div>
+              <h2 class="text-xl font-bold text-on-surface mt-1 hover:text-primary transition-colors">
+                <a href="certificate-viewer.html?id=thm-hacker-holidays">Hacker Holidays</a>
+              </h2>
+              <div class="font-mono text-xs text-outline mt-0.5">Certificate of Participation · Byte Lotus</div>
+            </div>
+
+            <p class="text-xs text-on-surface-variant leading-relaxed">
+              Certificate of participation for completing hands-on challenge rooms in the Byte Lotus summer 2026 event. Documented participation in simulated offensive security, problem solving, and CTF challenges.
+            </p>
+
+            <!-- Metadata Pills -->
+            <div class="grid grid-cols-2 gap-2 p-3 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs">
+              <div>
+                <span class="text-outline text-[10px] block">ISSUED BY</span>
+                <span class="text-on-surface font-medium">TryHackMe</span>
+              </div>
+              <div>
+                <span class="text-outline text-[10px] block">ISSUE DATE</span>
+                <span class="text-warning font-medium">13 August 2026</span>
+              </div>
+            </div>
+
+            <!-- Skills -->
+            <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+              <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface">CTF Challenges</span>
+              <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface">Simulated Labs</span>
+              <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface">Offensive Practice</span>
+              <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface">Problem Solving</span>
+            </div>
+
+          </div>
+
+          <!-- Card Actions -->
+          <div class="mt-6 pt-4 border-t border-border-hairline flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2">
+              <a href="certificate-viewer.html?id=thm-hacker-holidays" class="inline-flex items-center gap-1.5 px-4 py-2 rounded bg-warning/10 border border-warning/30 text-warning font-mono text-xs font-bold hover:bg-warning/20 transition-all">
+                <span class="material-symbols-outlined text-sm">visibility</span>
+                <span>View Certificate</span>
+              </a>
+              <a href="THM-LMVHD9LP6F.pdf" download="THM-LMVHD9LP6F.pdf" class="inline-flex items-center gap-1.5 px-3 py-2 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:border-warning/50 transition-colors" title="Download Original PDF">
+                <span class="material-symbols-outlined text-sm">download</span>
+                <span>Download PDF</span>
+              </a>
+            </div>
+            <a href="https://tryhackme.com/p/mihraj.io" target="_blank" rel="noopener noreferrer" class="font-mono text-xs text-primary hover:underline flex items-center gap-1">
+              <span>TryHackMe Profile</span>
+              <span class="material-symbols-outlined text-xs">open_in_new</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- Direct Verification / Contact Callout                                     -->
+    <!-- ========================================================================= -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 pb-16">
+      <div class="bg-surface-subtle border border-border-hairline rounded-xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="space-y-2">
+          <div class="font-mono text-xs text-primary font-bold flex items-center gap-2">
+            <span class="material-symbols-outlined text-base">verified_user</span>
+            <span>INDEPENDENT VERIFICATION AVAILABLE</span>
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-on-surface">Need Official Verification for an Academic or Internship Role?</h3>
+          <p class="text-xs sm:text-sm text-on-surface-variant max-w-2xl leading-relaxed">
+            All certifications above can be verified directly with the issuing platforms (Coursera or TryHackMe). Original cryptographically authenticated PDF records are available for institutional auditing.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3 shrink-0">
+          <a href="resume.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded bg-primary-container text-canvas-base font-mono text-xs font-bold hover:bg-primary transition-all shadow-[0_0_12px_rgba(16,185,129,0.25)]">
+            <span class="material-symbols-outlined text-sm">description</span>
+            <span>View Full Resume</span>
+          </a>
+          <a href="index.html#contact" class="inline-flex items-center gap-2 px-5 py-2.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:border-primary/50 transition-colors">
+            <span class="material-symbols-outlined text-sm">mail</span>
+            <span>Contact Candidate</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- Footer                                                                    -->
+  <!-- ========================================================================= -->
+  <footer class="border-t border-border-hairline bg-canvas-base py-8 text-center text-xs font-mono text-outline">
+    <div class="max-w-7xl mx-auto px-4 space-y-2">
+      <div class="flex flex-wrap items-center justify-center gap-4 text-on-surface-variant">
+        <a href="index.html" class="hover:text-primary transition-colors">Portfolio</a>
+        <span>·</span>
+        <a href="resume.html" class="hover:text-primary transition-colors">Resume</a>
+        <span>·</span>
+        <a href="handbook/index.html" class="hover:text-primary transition-colors">Handbook</a>
+        <span>·</span>
+        <a href="CV_2026_UPDATED.pdf" download="CV_2026_UPDATED.pdf" class="hover:text-primary transition-colors">Download CV</a>
+        <span>·</span>
+        <a href="https://tryhackme.com/p/mihraj.io" target="_blank" rel="noopener noreferrer" class="hover:text-secondary transition-colors">TryHackMe Profile</a>
+      </div>
+      <p class="text-[11px] text-outline">© 2026 Mihraj Mashoor K · Documented credentials verified in authorized environments.</p>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- Client JavaScript: Filtering & Mobile Nav                                 -->
+  <!-- ========================================================================= -->
+  <script>
+    // Mobile Navigation Toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Category Filtering
+    const filterTabs = document.querySelectorAll('.filter-btn');
+    const certItems = document.querySelectorAll('.cert-item');
+
+    filterTabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+
+        // Update button states
+        filterTabs.forEach(b => {
+          b.classList.remove('border-primary', 'bg-primary/10', 'text-primary', 'font-semibold');
+          b.classList.add('border-border-hairline', 'bg-surface-subtle', 'text-on-surface-variant');
+        });
+        btn.classList.remove('border-border-hairline', 'bg-surface-subtle', 'text-on-surface-variant');
+        btn.classList.add('border-primary', 'bg-primary/10', 'text-primary', 'font-semibold');
+
+        // Filter cards
+        certItems.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
