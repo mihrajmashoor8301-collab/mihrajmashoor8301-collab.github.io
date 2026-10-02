@@ -90,7 +90,7 @@
   </style>
 </head>
 
-<body class="bg-canvas-base text-on-surface font-sans min-h-screen flex flex-col antialiased selection:bg-primary/20 selection:text-primary">
+<body class="bg-canvas-base text-on-surface font-sans min-h-screen flex flex-col antialiased selection:bg-primary/20 selection:text-primary overflow-x-hidden">
 
   <!-- ========================================================================= -->
   <!-- Top Navigation Header                                                     -->
@@ -112,7 +112,7 @@
       </div>
 
       <!-- Desktop Nav Jump Links -->
-      <nav class="hidden md:flex items-center gap-1 font-mono text-xs text-on-surface-variant" id="desktop-nav">
+      <nav class="hidden xl:flex items-center gap-1 font-mono text-xs text-on-surface-variant" id="desktop-nav">
         <a href="#about" class="px-2.5 py-1.5 rounded hover:text-on-surface hover:bg-surface-raised transition-colors">About</a>
         <a href="#education" class="px-2.5 py-1.5 rounded hover:text-on-surface hover:bg-surface-raised transition-colors">Education</a>
         <a href="#training" class="px-2.5 py-1.5 rounded hover:text-on-surface hover:bg-surface-raised transition-colors">Training</a>
@@ -141,7 +141,7 @@
           <span class="material-symbols-outlined text-sm">arrow_back</span>
           <span class="hidden sm:inline">Portfolio</span>
         </a>
-        <button id="mobile-menu-btn" class="md:hidden p-1.5 rounded text-on-surface-variant hover:text-on-surface focus:outline-none" aria-label="Toggle navigation">
+        <button id="mobile-menu-btn" class="xl:hidden p-1.5 rounded text-on-surface-variant hover:text-on-surface focus:outline-none" aria-label="Toggle navigation">
           <span class="material-symbols-outlined text-xl">menu</span>
         </button>
       </div>
@@ -149,7 +149,7 @@
     </div>
 
     <!-- Mobile Navigation Drawer -->
-    <div id="mobile-menu" class="hidden md:hidden border-t border-border-hairline bg-surface-subtle px-4 py-3 space-y-2 font-mono text-xs">
+    <div id="mobile-menu" class="hidden xl:hidden border-t border-border-hairline bg-surface-subtle px-4 py-3 space-y-2 font-mono text-xs">
       <div class="grid grid-cols-2 gap-2">
         <a href="#about" class="px-3 py-2 rounded bg-surface-raised text-on-surface-variant hover:text-primary">About</a>
         <a href="#education" class="px-3 py-2 rounded bg-surface-raised text-on-surface-variant hover:text-primary">Education</a>
