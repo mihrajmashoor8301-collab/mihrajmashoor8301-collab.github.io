@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html class="scroll-smooth dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>AI Application Development Platform · Technical Case Study | Mihraj Mashhoor K</title>
+  <meta content="Engineering case study for AI Application Development Platform: Multi-Agent Local Development Environment powered by Qwen3-Coder 30B on dedicated RTX hardware." name="description"/>
+  <link rel="icon" type="image/png" href="../logo2.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'canvas-base': '#090D12',
+            'surface-subtle': '#0E131B',
+            'surface-raised': '#151D28',
+            'surface-container': '#122131',
+            'border-hairline': '#1F2937',
+            'border-medium': '#2D3748',
+            'border-highlight': '#374151',
+            'on-surface': '#F3F4F6',
+            'on-surface-variant': '#8692A6',
+            'outline': '#64748B',
+            'primary': '#4EDEA3',
+            'primary-container': '#10b981',
+            'secondary': '#4CD7F6',
+            'warning': '#FBBF24',
+            'danger-critical': '#F43F5E'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+    body {
+      background-color: #090D12;
+      color: #F3F4F6;
+      font-family: 'Inter', sans-serif;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .telemetry-grid {
+      background-size: 32px 32px;
+      background-image:
+        linear-gradient(to right, rgba(31, 41, 55, 0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(31, 41, 55, 0.25) 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body class="bg-canvas-base text-on-surface antialiased selection:bg-primary selection:text-canvas-base telemetry-grid min-h-screen font-sans">
+
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-50 bg-surface-subtle/90 backdrop-blur-md border-b border-border-hairline">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a class="font-mono text-sm font-bold text-on-surface tracking-tight flex items-center gap-2 hover:text-primary transition-colors" href="../index.html#projects">
+        <span class="material-symbols-outlined text-primary text-lg">arrow_back</span>
+        <span>Portfolio / Projects</span>
+        <span class="hidden sm:inline-flex items-center gap-1.5 px-2 py-0.5 rounded border border-primary/30 bg-canvas-base font-mono text-[10px] text-primary">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+          CASE STUDY
+        </span>
+      </a>
+      <div class="flex items-center gap-3">
+        <a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:border-primary hover:text-primary transition-colors" href="https://github.com/mihrajmashoor8301-collab" target="_blank" rel="noopener noreferrer">
+          <span class="material-symbols-outlined text-sm">terminal</span>
+          <span class="hidden md:inline">GitHub</span>
+          <span class="material-symbols-outlined text-xs">open_in_new</span>
+        </a>
+        <a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-primary-container text-canvas-base font-mono text-xs font-bold hover:bg-primary transition-all shadow-[0_0_12px_rgba(16,185,129,0.25)]" href="../index.html#projects">
+          <span>All Projects</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb & Context Notice -->
+  <div class="max-w-7xl mx-auto px-6 pt-6">
+    <div class="flex flex-wrap items-center justify-between gap-4 py-2 border-b border-border-hairline/60 font-mono text-xs">
+      <div class="flex items-center gap-2 text-on-surface-variant">
+        <a href="../index.html" class="hover:text-primary transition-colors">Home</a>
+        <span>/</span>
+        <a href="../index.html#projects" class="hover:text-primary transition-colors">Projects</a>
+        <span>/</span>
+        <span class="text-primary font-bold">AI Application Development Platform</span>
+      </div>
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-surface-subtle border border-border-hairline text-[11px] text-outline">
+        <span class="material-symbols-outlined text-xs text-secondary">verified_user</span>
+        <span>Verified Portfolio Project Documentation</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="max-w-7xl mx-auto px-6 py-8 space-y-12">
+
+    <!-- 1. PROJECT HERO -->
+    <section class="bg-surface-subtle rounded-2xl p-6 md:p-10 border border-primary/40 relative overflow-hidden">
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+        <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+          <span class="px-3 py-1 rounded bg-canvas-base border border-primary/40 text-primary font-bold">DEVELOPMENT</span>
+          <span class="px-3 py-1 rounded bg-canvas-base border border-border-hairline text-on-surface">LOCAL AI PLATFORM</span>
+          <span class="px-3 py-1 rounded bg-canvas-base border border-border-hairline text-secondary">MULTI-AGENT SYSTEM</span>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/50 bg-canvas-base font-mono text-xs text-primary font-bold shadow-[0_0_15px_rgba(78,222,163,0.15)]">
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          <span>IN PROGRESS // DEDICATED HARDWARE</span>
+        </div>
+      </div>
+
+      <div class="space-y-4 mb-8">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-on-surface tracking-tight">
+          AI Application Development Platform
+        </h1>
+        <div class="font-mono text-base sm:text-lg text-primary font-semibold">
+          Multi-Agent Local Development Environment &amp; Code Security Review Stack
+        </div>
+        <p class="text-base sm:text-lg text-on-surface-variant max-w-4xl leading-relaxed">
+          A local AI-powered engineering environment running Qwen3-Coder 30B on dedicated NVIDIA RTX hardware to assist throughout the complete software lifecycle under zero cloud dependency. Deploys specialized sub-agents dedicated to frontend engineering, backend architecture, debugging, test generation, and automated security code reviews.
+        </p>
+      </div>
+
+      <!-- Quick Specs Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-6">
+        <div class="p-3.5 rounded-lg bg-canvas-base/80 border border-border-hairline">
+          <div class="font-mono text-[10px] text-outline uppercase tracking-wider">HARDWARE ACCELERATION</div>
+          <div class="font-mono text-xs font-bold text-primary mt-1">NVIDIA RTX 4070 (12GB)</div>
+        </div>
+        <div class="p-3.5 rounded-lg bg-canvas-base/80 border border-border-hairline">
+          <div class="font-mono text-[10px] text-outline uppercase tracking-wider">SYSTEM MEMORY</div>
+          <div class="font-mono text-xs font-bold text-secondary mt-1">32 GB System RAM</div>
+        </div>
+        <div class="p-3.5 rounded-lg bg-canvas-base/80 border border-border-hairline">
+          <div class="font-mono text-[10px] text-outline uppercase tracking-wider">HOST ENVIRONMENT</div>
+          <div class="font-mono text-xs font-bold text-on-surface mt-1">Kali Linux</div>
+        </div>
+        <div class="p-3.5 rounded-lg bg-canvas-base/80 border border-border-hairline">
+          <div class="font-mono text-[10px] text-outline uppercase tracking-wider">MODEL RUNTIME</div>
+          <div class="font-mono text-xs font-bold text-primary mt-1">Ollama / Qwen3-Coder 30B</div>
+        </div>
+      </div>
+
+      <!-- Tech Stack Tags -->
+      <div class="flex flex-wrap gap-2 pt-4 border-t border-border-hairline/80">
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-primary font-semibold">Qwen3-Coder 30B</span>
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-secondary font-semibold">Ollama</span>
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">OpenCode</span>
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-primary">Multi-Agent System</span>
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-secondary">Code Security Review</span>
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">Full-Stack Dev</span>
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-outline">Test Generation</span>
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-primary">Zero Cloud Leakage</span>
+      </div>
+
+      <!-- Links & Source Notice -->
+      <div class="mt-8 pt-6 border-t border-border-hairline/80 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex flex-wrap gap-3">
+          <a href="../index.html#projects" class="inline-flex items-center gap-2 px-4 py-2 rounded bg-surface-raised border border-border-hairline text-on-surface hover:text-primary hover:border-primary font-mono text-xs transition-colors">
+            <span class="material-symbols-outlined text-sm">arrow_back</span>
+            <span>Back to Projects</span>
+          </a>
+          <a href="https://github.com/mihrajmashoor8301-collab" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded bg-primary/10 border border-primary/40 text-primary hover:bg-primary hover:text-canvas-base font-mono text-xs font-semibold transition-all">
+            <span class="material-symbols-outlined text-sm">code</span>
+            <span>View Source Repository</span>
+            <span class="material-symbols-outlined text-xs">open_in_new</span>
+          </a>
+        </div>
+        <div class="font-mono text-xs text-outline flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-sm text-secondary">info</span>
+          <span>Implementation details documented at project repository</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Availability Callout -->
+    <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline flex items-start gap-3 text-xs text-on-surface-variant font-mono">
+      <span class="material-symbols-outlined text-secondary text-base mt-0.5">verified</span>
+      <div>
+        <span class="text-on-surface font-semibold">Information Source &amp; Classification:</span>
+        Based on the documented architecture and hardware runtime specifications in the portfolio and resume. Implementation source code is hosted in the developer's external repository.
+      </div>
+    </div>
+
+    <!-- 2. WHAT IS THIS PROJECT? -->
+    <section class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
+      <div class="flex items-center gap-2 font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">info</span>
+        <span>OVERVIEW &amp; PLATFORM ROLE // 01</span>
+      </div>
+      <h2 class="text-2xl font-bold text-on-surface">What is the AI Application Development Platform?</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-on-surface-variant leading-relaxed">
+        <div class="space-y-3">
+          <h3 class="text-base font-semibold text-on-surface font-mono flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-sm">psychology</span>
+            Purpose &amp; Problem Solved
+          </h3>
+          <p>
+            Modern software engineering requires orchestrating multiple simultaneous disciplines: UI design, backend data models, unit testing, and security auditing. Relying on remote cloud-based AI services introduces recurring latency, API quota costs, and severe source code privacy risks.
+          </p>
+          <p>
+            The portfolio project documentation describes this platform as a private local engineering environment designed to handle the complete software development lifecycle locally. By leveraging high-throughput GPU inference on dedicated hardware, the system executes multi-agent workflows with zero cloud dependency.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <h3 class="text-base font-semibold text-on-surface font-mono flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary text-sm">memory</span>
+            Dedicated Hardware Specification
+          </h3>
+          <p>
+            The platform is explicitly optimized for dedicated local hardware:
+          </p>
+          <ul class="space-y-1 font-mono text-xs text-on-surface">
+            <li>• GPU: NVIDIA GeForce RTX 4070 with 12GB VRAM</li>
+            <li>• Memory: 32 GB System RAM for large multi-agent context</li>
+            <li>• Operating System: Kali Linux with hardened drivers</li>
+            <li>• Inference: Ollama server with full GPU layer offloading</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 5 Specialized Sub-Agents Callout Grid -->
+      <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-3 mt-4">
+        <div class="font-mono text-xs text-outline uppercase tracking-wider">DOCUMENTED SPECIALIZED SUB-AGENT TEAM</div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 pt-2">
+          <div class="p-3 rounded-lg bg-surface-raised border border-border-hairline space-y-1">
+            <div class="font-mono text-xs text-primary font-bold">1. Frontend Agent</div>
+            <p class="text-xs text-on-surface-variant">UI components, responsive CSS, client interactions.</p>
+          </div>
+          <div class="p-3 rounded-lg bg-surface-raised border border-border-hairline space-y-1">
+            <div class="font-mono text-xs text-secondary font-bold">2. Backend Agent</div>
+            <p class="text-xs text-on-surface-variant">API design, database schemas, business logic.</p>
+          </div>
+          <div class="p-3 rounded-lg bg-surface-raised border border-border-hairline space-y-1">
+            <div class="font-mono text-xs text-on-surface font-bold">3. Debugging Agent</div>
+            <p class="text-xs text-on-surface-variant">Root-cause diagnosis, stack trace analysis, log triage.</p>
+          </div>
+          <div class="p-3 rounded-lg bg-surface-raised border border-border-hairline space-y-1">
+            <div class="font-mono text-xs text-outline font-bold">4. Test Agent</div>
+            <p class="text-xs text-on-surface-variant">Unit test generation, edge case suites, regression checks.</p>
+          </div>
+          <div class="p-3 rounded-lg bg-surface-raised border border-primary/40 space-y-1">
+            <div class="font-mono text-xs text-primary font-bold">5. Security Review</div>
+            <p class="text-xs text-on-surface-variant">Automated vulnerability scans, OWASP pattern audits.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. ARCHITECTURE & DIAGRAM -->
+    <section class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
+      <div class="flex items-center gap-2 font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">schema</span>
+        <span>SYSTEM ARCHITECTURE // 02</span>
+      </div>
+      <h2 class="text-2xl font-bold text-on-surface">Documented Multi-Agent Architecture</h2>
+      <p class="text-sm text-on-surface-variant max-w-3xl leading-relaxed">
+        Based on the documented architecture in the portfolio repository, the platform coordinates specialized agents through an integrated lifecycle loop:
+      </p>
+
+      <!-- Visual Architecture Diagram -->
+      <div class="p-6 rounded-xl bg-canvas-base border border-border-hairline space-y-6">
+        <div class="flex items-center justify-between border-b border-border-hairline pb-3">
+          <span class="font-mono text-xs text-primary font-bold flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">developer_mode</span>
+            MULTI-AGENT SOFTWARE LIFECYCLE SCHEMATIC
+          </span>
+          <span class="font-mono text-[10px] text-outline">HARDWARE-ACCELERATED LOCAL RUNTIME</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <!-- Tier 1 -->
+          <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2 flex flex-col justify-between">
+            <div>
+              <div class="font-mono text-[10px] text-outline uppercase tracking-wider">TIER 1 · COORDINATION</div>
+              <div class="font-mono text-xs font-bold text-on-surface mt-1 flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-secondary text-sm">hub</span>
+                OpenCode Orchestrator
+              </div>
+              <ul class="mt-2 space-y-1 font-mono text-[11px] text-on-surface-variant">
+                <li>• Task Decomposition</li>
+                <li>• Context Routing</li>
+                <li>• Sub-Agent Assignment</li>
+              </ul>
+            </div>
+            <div class="pt-2 border-t border-border-hairline font-mono text-[10px] text-primary">
+              Structured Task Graph
+            </div>
+          </div>
+
+          <!-- Tier 2 -->
+          <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2 flex flex-col justify-between">
+            <div>
+              <div class="font-mono text-[10px] text-outline uppercase tracking-wider">TIER 2 · SPECIALIZED SUB-AGENTS</div>
+              <div class="font-mono text-xs font-bold text-primary mt-1 flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-primary text-sm">groups</span>
+                Lifecycle Workers
+              </div>
+              <ul class="mt-2 space-y-1 font-mono text-[11px] text-on-surface-variant">
+                <li>• Frontend &amp; Backend</li>
+                <li>• Debug &amp; Diagnostics</li>
+                <li>• Unit Test Generator</li>
+              </ul>
+            </div>
+            <div class="pt-2 border-t border-border-hairline font-mono text-[10px] text-secondary">
+              Parallel Execution
+            </div>
+          </div>
+
+          <!-- Tier 3 -->
+          <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2 flex flex-col justify-between">
+            <div>
+              <div class="font-mono text-[10px] text-outline uppercase tracking-wider">TIER 3 · HARDWARE RUNTIME</div>
+              <div class="font-mono text-xs font-bold text-secondary mt-1 flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-secondary text-sm">memory</span>
+                RTX 4070 + Ollama
+              </div>
+              <ul class="mt-2 space-y-1 font-mono text-[11px] text-on-surface-variant">
+                <li>• Qwen3-Coder 30B</li>
+                <li>• 12GB VRAM Acceleration</li>
+                <li>• 32GB System Context</li>
+              </ul>
+            </div>
+            <div class="pt-2 border-t border-border-hairline font-mono text-[10px] text-primary">
+              Zero Cloud Egress
+            </div>
+          </div>
+
+          <!-- Tier 4 -->
+          <div class="p-4 rounded-lg bg-surface-raised border border-primary/40 space-y-2 flex flex-col justify-between">
+            <div>
+              <div class="font-mono text-[10px] text-outline uppercase tracking-wider">TIER 4 · SECURITY GATE</div>
+              <div class="font-mono text-xs font-bold text-primary mt-1 flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-primary text-sm">verified_user</span>
+                Security Code Audit
+              </div>
+              <ul class="mt-2 space-y-1 font-mono text-[11px] text-on-surface-variant">
+                <li>• Automated OWASP Checks</li>
+                <li>• Vulnerability Screening</li>
+                <li>• Pre-Commit Verification</li>
+              </ul>
+            </div>
+            <div class="pt-2 border-t border-border-hairline font-mono text-[10px] text-primary">
+              Hardened Code Delivery
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-2 font-mono text-xs text-outline py-2 border-t border-border-hairline text-center">
+          <span>TASK DECOMPOSITION</span>
+          <span class="text-primary">→</span>
+          <span>SPECIALIZED GENERATION</span>
+          <span class="text-primary">→</span>
+          <span>LOCAL GPU INFERENCE</span>
+          <span class="text-primary">→</span>
+          <span>SECURITY CODE AUDIT</span>
+        </div>
+      </div>
+
+      <!-- Component Table -->
+      <div class="space-y-3">
+        <h3 class="text-base font-semibold text-on-surface font-mono">Component Breakdown &amp; Data Contract</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs font-mono border border-border-hairline rounded-lg overflow-hidden">
+            <thead class="bg-surface-raised text-on-surface border-b border-border-hairline">
+              <tr>
+                <th class="p-3">Component</th>
+                <th class="p-3">Responsibility</th>
+                <th class="p-3">Inputs</th>
+                <th class="p-3">Outputs</th>
+                <th class="p-3">Relationships</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border-hairline text-on-surface-variant">
+              <tr>
+                <td class="p-3 text-secondary font-bold">OpenCode Orchestrator</td>
+                <td class="p-3">Dispatches programming goals and routes context to relevant agent roles.</td>
+                <td class="p-3">User requests, workspace files</td>
+                <td class="p-3">Agent execution instructions</td>
+                <td class="p-3">Central coordination coordinator</td>
+              </tr>
+              <tr>
+                <td class="p-3 text-on-surface font-bold">Frontend / Backend Agents</td>
+                <td class="p-3">Generates component templates, data models, APIs, and logic.</td>
+                <td class="p-3">Specifications, existing code files</td>
+                <td class="p-3">Code diffs, new source modules</td>
+                <td class="p-3">Collaborates on full-stack features</td>
+              </tr>
+              <tr>
+                <td class="p-3 text-primary font-bold">Debugging &amp; Test Agents</td>
+                <td class="p-3">Analyzes stack traces and writes unit tests validating functionality.</td>
+                <td class="p-3">Test frameworks, bug logs</td>
+                <td class="p-3">Unit test files, bug fixes</td>
+                <td class="p-3">Validates backend/frontend outputs</td>
+              </tr>
+              <tr>
+                <td class="p-3 text-primary font-bold">Security Code Review Agent</td>
+                <td class="p-3">Performs automated vulnerability audits on generated code.</td>
+                <td class="p-3">Proposed code changes</td>
+                <td class="p-3">Audit pass/fail, vulnerability flags</td>
+                <td class="p-3">Gates code before staging or commit</td>
+              </tr>
+              <tr>
+                <td class="p-3 text-secondary font-bold">Ollama / RTX 4070 Runtime</td>
+                <td class="p-3">Powers high-speed tensor execution for Qwen3-Coder 30B.</td>
+                <td class="p-3">Agent prompt contexts</td>
+                <td class="p-3">Token streams, completions</td>
+                <td class="p-3">Shared local compute resource</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. HOW IT WORKS -->
+    <section class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
+      <div class="flex items-center gap-2 font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">route</span>
+        <span>DEVELOPMENT WORKFLOW // 03</span>
+      </div>
+      <h2 class="text-2xl font-bold text-on-surface">Step-by-Step Documented Workflow</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-3">
+        <!-- Step 1 -->
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="font-mono text-xs text-primary font-bold flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[10px]">1</span>
+            <span>INPUT</span>
+          </div>
+          <div class="text-xs text-on-surface font-semibold font-mono">Task Specification</div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Developer provides engineering requirements, ticket details, or bug descriptions to the local OpenCode environment.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="font-mono text-xs text-secondary font-bold flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-secondary/20 text-secondary flex items-center justify-center text-[10px]">2</span>
+            <span>PROCESSING</span>
+          </div>
+          <div class="text-xs text-on-surface font-semibold font-mono">Agent Assignment</div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Orchestrator breaks tasks down and allocates them across specialized sub-agents (frontend, backend, testing).
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="font-mono text-xs text-primary font-bold flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[10px]">3</span>
+            <span>DECISION</span>
+          </div>
+          <div class="text-xs text-on-surface font-semibold font-mono">Local RTX Inference</div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Qwen3-Coder 30B generates implementation code with high-speed GPU acceleration on the dedicated RTX 4070.
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="font-mono text-xs text-secondary font-bold flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-secondary/20 text-secondary flex items-center justify-center text-[10px]">4</span>
+            <span>ACTION</span>
+          </div>
+          <div class="text-xs text-on-surface font-semibold font-mono">Security Review Audit</div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            The Security Code Review Agent evaluates newly generated code for OWASP vulnerabilities and insecure coding practices.
+          </p>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="font-mono text-xs text-primary font-bold flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[10px]">5</span>
+            <span>OUTPUT</span>
+          </div>
+          <div class="text-xs text-on-surface font-semibold font-mono">Verified Artifacts</div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Delivers tested, secure, and audited source code directly to the workspace with 100% on-premises data residency.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 & 6. IMPLEMENTATION & TECHNICAL ARCHITECTURE -->
+    <section class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
+      <div class="flex items-center gap-2 font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">code</span>
+        <span>IMPLEMENTATION DETAILS // 04</span>
+      </div>
+      <h2 class="text-2xl font-bold text-on-surface">Technologies &amp; Runtime Specifications</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-5 rounded-lg bg-surface-raised border border-border-hairline space-y-3">
+          <div class="font-mono text-xs text-primary font-bold flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">memory</span>
+            <span>Dedicated Hardware Environment</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Hardware acceleration is anchored by an <strong>NVIDIA GeForce RTX 4070 (12GB VRAM)</strong> and <strong>32 GB of system RAM</strong> on <strong>Kali Linux</strong>, allowing full GPU offloading of 30B parameter quantized weights.
+          </p>
+          <div class="pt-2 font-mono text-[11px] text-outline">
+            Hardware: RTX 4070 12GB VRAM, 32GB RAM, Kali Linux Host
+          </div>
+        </div>
+
+        <div class="p-5 rounded-lg bg-surface-raised border border-border-hairline space-y-3">
+          <div class="font-mono text-xs text-secondary font-bold flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">precision_manufacturing</span>
+            <span>Ollama &amp; OpenCode Integration</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Combines <strong>Ollama</strong> as the backend model server with <strong>OpenCode</strong> as the developer interface, coordinating prompt routing, file editing tools, and terminal command execution.
+          </p>
+          <div class="pt-2 font-mono text-[11px] text-outline">
+            Stack: Ollama Server, OpenCode Multi-Agent Engine
+          </div>
+        </div>
+
+        <div class="p-5 rounded-lg bg-surface-raised border border-border-hairline space-y-3">
+          <div class="font-mono text-xs text-primary font-bold flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">security</span>
+            <span>Security Code Review Engine</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            A dedicated sub-agent prompts the model with defensive security checklists covering OWASP Top 10 vulnerabilities, injection flaws, memory safety, and secret sanitization before code is merged.
+          </p>
+          <div class="pt-2 font-mono text-[11px] text-outline">
+            Defensive Checks: OWASP Compliance, Secret Scanning, Static Triage
+          </div>
+        </div>
+
+        <div class="p-5 rounded-lg bg-surface-raised border border-border-hairline space-y-3">
+          <div class="font-mono text-xs text-secondary font-bold flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">alt_route</span>
+            <span>Autonomous Sub-Agent Role Isolation</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Each sub-agent operates within focused system boundaries to prevent hallucinated changes outside its domain (e.g. testing agent only modifies test directories).
+          </p>
+          <div class="pt-2 font-mono text-[11px] text-outline">
+            Safety: Scoped Agent Roles, Boundary Enforcement
+          </div>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-lg bg-canvas-base border border-border-hairline text-xs font-mono text-on-surface-variant flex flex-col sm:flex-row items-center justify-between gap-3">
+        <span>Implementation details and agent configuration files are documented at the project repository.</span>
+        <a href="https://github.com/mihrajmashoor8301-collab" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-bold flex items-center gap-1 shrink-0">
+          <span>View Source Repository</span>
+          <span class="material-symbols-outlined text-xs">open_in_new</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 7. SECURITY DESIGN -->
+    <section class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
+      <div class="flex items-center gap-2 font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">shield</span>
+        <span>SECURITY DESIGN &amp; CODE CONFIDENTIALITY // 05</span>
+      </div>
+      <h2 class="text-2xl font-bold text-on-surface">Data Sovereignty &amp; Defensive Controls</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="font-mono text-xs text-primary font-bold flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">lock</span>
+            <span>Code Confidentiality</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Source code, internal API keys, and business algorithms never traverse public network interfaces, eliminating cloud IP theft risks.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="font-mono text-xs text-secondary font-bold flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">bug_report</span>
+            <span>Pre-Commit Vulnerability Screening</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            The security sub-agent automatically identifies insecure coding patterns (e.g. unsafe string interpolations in SQL) before code reaches production.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="font-mono text-xs text-primary font-bold flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">terminal</span>
+            <span>Controlled Execution</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Test execution and builds occur in restricted local directories without root privileges, protecting the host system.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. AI ARCHITECTURE -->
+    <section class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
+      <div class="flex items-center gap-2 font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">neurology</span>
+        <span>AI MODEL &amp; HARDWARE ACCELERATION // 06</span>
+      </div>
+      <h2 class="text-2xl font-bold text-on-surface">Local Inference Architecture</h2>
+
+      <div class="space-y-4 text-sm text-on-surface-variant leading-relaxed">
+        <p>
+          The architecture pairs <strong>Qwen3-Coder 30B</strong> with Ollama and an NVIDIA RTX 4070 (12GB VRAM):
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+          <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+            <div class="font-mono text-xs text-primary font-bold">VRAM-Optimized Quantization</div>
+            <p class="text-xs text-on-surface-variant leading-relaxed">
+              Model layers are offloaded to 12GB of high-speed GDDR6 VRAM, delivering interactive token generation speeds required for fluid pair programming.
+            </p>
+          </div>
+          <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+            <div class="font-mono text-xs text-secondary font-bold">Prompt Role Specialization</div>
+            <p class="text-xs text-on-surface-variant leading-relaxed">
+              Each sub-agent runs with tailored system prompts defining its persona, expected JSON outputs, and validation rules, ensuring high-quality specialized responses.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. TESTING / VALIDATION -->
+    <section class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
+      <div class="flex items-center gap-2 font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">checklist</span>
+        <span>TESTING &amp; VALIDATION // 07</span>
+      </div>
+      <h2 class="text-2xl font-bold text-on-surface">Platform Testing &amp; Validation</h2>
+
+      <div class="space-y-4 text-sm text-on-surface-variant leading-relaxed">
+        <p>
+          The multi-agent platform is validated through continuous real-world development workflows:
+        </p>
+        <div class="p-4 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs space-y-2">
+          <div class="flex items-center justify-between text-primary font-bold">
+            <span class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-base">check_circle</span>
+              Full-Lifecycle Engineering Verification
+            </span>
+            <span class="text-outline">VERIFIED ON HARDWARE</span>
+          </div>
+          <p class="text-on-surface-variant">
+            Evaluated on real application builds to verify agent handoffs, test generation coverage, and security audit accuracy under full local GPU acceleration.
+          </p>
+        </div>
+        <p class="text-xs text-outline font-mono">
+          Testing details, performance traces, and prompt evaluation fixtures are maintained in the project repository.
+        </p>
+      </div>
+    </section>
+
+    <!-- 10 & 11. CURRENT STATUS & FUTURE WORK -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Current Status -->
+      <div class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-primary/40 space-y-4">
+        <div class="flex items-center gap-2 font-mono text-xs text-primary">
+          <span class="material-symbols-outlined text-sm">sync</span>
+          <span>CURRENT STATUS // 08</span>
+        </div>
+        <h3 class="text-xl font-bold text-on-surface">In Progress (Dedicated Hardware)</h3>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/40 bg-canvas-base font-mono text-xs text-primary font-bold">
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          <span>IN PROGRESS // DEDICATED HARDWARE</span>
+        </div>
+        <p class="text-xs text-on-surface-variant leading-relaxed">
+          The core multi-agent execution pipeline, Ollama server configuration, and dedicated RTX hardware environment are actively in use for daily engineering tasks.
+        </p>
+      </div>
+
+      <!-- Future Work -->
+      <div class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-4">
+        <div class="flex items-center gap-2 font-mono text-xs text-secondary">
+          <span class="material-symbols-outlined text-sm">update</span>
+          <span>FUTURE ROADMAP // 09</span>
+        </div>
+        <h3 class="text-xl font-bold text-on-surface">Planned Improvements</h3>
+        <ul class="space-y-2 text-xs text-on-surface-variant font-mono">
+          <li class="flex items-start gap-2">
+            <span class="text-secondary font-bold">[Planned]</span>
+            <span>Local LoRA adapter fine-tuning on project-specific coding conventions.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-secondary font-bold">[Planned]</span>
+            <span>Automated pre-commit git hooks invoking the Security Review Agent.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-secondary font-bold">[Planned]</span>
+            <span>Integrated test execution container running unit tests automatically upon code edit.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="pt-8 border-t border-border-hairline flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
+      <a href="opencode-persistent-memory.html" class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-sm">arrow_back</span>
+        <span>Previous: OpenCode Persistent Memory</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <span class="text-outline">Next Case Study:</span>
+        <a href="local-ai-compute-stack.html" class="text-primary hover:underline font-bold flex items-center gap-1">
+          <span>Local AI Compute Stack</span>
+          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="mt-16 bg-surface-subtle border-t border-border-hairline py-8">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-outline">
+      <div>
+        <span>Mihraj Mashhoor K · Technical Engineering Portfolio</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="../index.html" class="hover:text-primary transition-colors">Portfolio</a>
+        <span>·</span>
+        <a href="../resume.html" class="hover:text-primary transition-colors">Resume</a>
+        <span>·</span>
+        <a href="../handbook/index.html" class="hover:text-primary transition-colors">Handbook</a>
+        <span>·</span>
+        <a href="https://github.com/mihrajmashoor8301-collab" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html class="scroll-smooth dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>SentinelAI · Technical Case Study | Mihraj Mashhoor K</title>
+  <meta content="Engineering case study for SentinelAI: AI-Powered Vulnerability Intelligence & Security Knowledge Platform." name="description"/>
+  <link rel="icon" type="image/png" href="../logo2.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'canvas-base': '#090D12',
+            'surface-subtle': '#0E131B',
+            'surface-raised': '#151D28',
+            'surface-container': '#122131',
+            'border-hairline': '#1F2937',
+            'border-medium': '#2D3748',
+            'border-highlight': '#374151',
+            'on-surface': '#F3F4F6',
+            'on-surface-variant': '#8692A6',
+            'outline': '#64748B',
+            'primary': '#4EDEA3',
+            'primary-container': '#10b981',
+            'secondary': '#4CD7F6',
+            'warning': '#FBBF24',
+            'danger-critical': '#F43F5E'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+    body {
+      background-color: #090D12;
+      color: #F3F4F6;
+      font-family: 'Inter', sans-serif;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .telemetry-grid {
+      background-size: 32px 32px;
+      background-image:
+        linear-gradient(to right, rgba(31, 41, 55, 0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(31, 41, 55, 0.25) 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body class="bg-canvas-base text-on-surface antialiased selection:bg-primary selection:text-canvas-base telemetry-grid min-h-screen font-sans">
+
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-50 bg-surface-subtle/90 backdrop-blur-md border-b border-border-hairline">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a class="font-mono text-sm font-bold text-on-surface tracking-tight flex items-center gap-2 hover:text-primary transition-colors" href="../index.html#projects">
+        <span class="material-symbols-outlined text-primary text-lg">arrow_back</span>
+        <span>Portfolio / Projects</span>
+        <span class="hidden sm:inline-flex items-center gap-1.5 px-2 py-0.5 rounded border border-primary/30 bg-canvas-base font-mono text-[10px] text-primary">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+          CASE STUDY
+        </span>
+      </a>
+      <div class="flex items-center gap-3">
+        <a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:border-primary hover:text-primary transition-colors" href="https://github.com/mihrajmashoor8301-collab" target="_blank" rel="noopener noreferrer">
+          <span class="material-symbols-outlined text-sm">terminal</span>
+          <span class="hidden md:inline">GitHub</span>
+          <span class="material-symbols-outlined text-xs">open_in_new</span>
+        </a>
+        <a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-primary-container text-canvas-base font-mono text-xs font-bold hover:bg-primary transition-all shadow-[0_0_12px_rgba(16,185,129,0.25)]" href="../index.html#projects">
+          <span>All Projects</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb & Context Notice -->
+  <div class="max-w-7xl mx-auto px-6 pt-6">
+    <div class="flex flex-wrap items-center justify-between gap-4 py-2 border-b border-border-hairline/60 font-mono text-xs">
+      <div class="flex items-center gap-2 text-on-surface-variant">
+        <a href="../index.html" class="hover:text-primary transition-colors">Home</a>
+        <span>/</span>
+        <a href="../index.html#projects" class="hover:text-primary transition-colors">Projects</a>
+        <span>/</span>
+        <span class="text-primary font-bold">SentinelAI</span>
+      </div>
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-surface-subtle border border-border-hairline text-[11px] text-outline">
+        <span class="material-symbols-outlined text-xs text-secondary">verified_user</span>
+        <span>Verified Portfolio Project Documentation</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="max-w-7xl mx-auto px-6 py-8 space-y-12">
+
+    <!-- 1. PROJECT HERO -->
+    <section class="bg-surface-subtle rounded-2xl p-6 md:p-10 border border-primary/40 relative overflow-hidden">
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+        <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+          <span class="px-3 py-1 rounded bg-canvas-base border border-primary/40 text-primary font-bold">FLAGSHIP ARCHITECTURE</span>
+          <span class="px-3 py-1 rounded bg-canvas-base border border-border-hairline text-on-surface">AI SECURITY ENGINEERING</span>
+          <span class="px-3 py-1 rounded bg-canvas-base border border-border-hairline text-secondary">AUTONOMOUS TRIAGE</span>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/50 bg-canvas-base font-mono text-xs text-primary font-bold shadow-[0_0_15px_rgba(78,222,163,0.15)]">
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          <span>PHASE 16 COMPLETE // PHASE 17 IN DEV</span>
+        </div>
+      </div>
+
+      <div class="space-y-4 mb-8">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-on-surface tracking-tight">
+          SentinelAI
+        </h1>
+        <div class="font-mono text-base sm:text-lg text-secondary font-semibold">
+          AI-Powered Vulnerability Intelligence &amp; Security Knowledge Platform
+        </div>
+        <p class="text-base sm:text-lg text-on-surface-variant max-w-4xl leading-relaxed">
+          An actively developed security engineering platform rather than a simple chatbot, SentinelAI unifies vulnerability intelligence, graph-based security knowledge, CVE exposure tracking, asset-software relationships, evidence management, and threat intelligence. Incorporates RAG architectures, CLI/API interfaces, and authorization/approval primitives for secure multi-step orchestration.
+        </p>
+      </div>
+
+      <!-- Quick Metrics / Specs Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-6">
+        <div class="p-3.5 rounded-lg bg-canvas-base/80 border border-border-hairline">
+          <div class="font-mono text-[10px] text-outline uppercase tracking-wider">PROJECT STATUS</div>
+          <div class="font-mono text-xs font-bold text-primary mt-1">Phase 16 Implemented</div>
+        </div>
+        <div class="p-3.5 rounded-lg bg-canvas-base/80 border border-border-hairline">
+          <div class="font-mono text-[10px] text-outline uppercase tracking-wider">DATA RESIDENCY</div>
+          <div class="font-mono text-xs font-bold text-secondary mt-1">100% Offline / Zero Leak</div>
+        </div>
+        <div class="p-3.5 rounded-lg bg-canvas-base/80 border border-border-hairline">
+          <div class="font-mono text-[10px] text-outline uppercase tracking-wider">AI RUNTIME</div>
+          <div class="font-mono text-xs font-bold text-on-surface mt-1">Ollama / Local Models</div>
+        </div>
+        <div class="p-3.5 rounded-lg bg-canvas-base/80 border border-border-hairline">
+          <div class="font-mono text-[10px] text-outline uppercase tracking-wider">DISPATCH INTERFACES</div>
+          <div class="font-mono text-xs font-bold text-primary mt-1">FastAPI &amp; CLI Tooling</div>
+        </div>
+      </div>
+
+      <!-- Tech Stack Tags -->
+      <div class="flex flex-wrap gap-2 pt-4 border-t border-border-hairline/80">
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-primary font-semibold">Python</span>
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">Ollama</span>
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-secondary">Knowledge Graphs</span>
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">MITRE ATT&amp;CK</span>
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">RAG Pipeline</span>
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-secondary">CVE Intelligence</span>
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">CVSS Scoring</span>
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-primary">FastAPI / CLI</span>
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-outline">Audit Logging</span>
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-primary">Secure Orchestration</span>
+      </div>
+
+      <!-- Links & Source Notice -->
+      <div class="mt-8 pt-6 border-t border-border-hairline/80 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex flex-wrap gap-3">
+          <a href="../index.html#projects" class="inline-flex items-center gap-2 px-4 py-2 rounded bg-surface-raised border border-border-hairline text-on-surface hover:text-primary hover:border-primary font-mono text-xs transition-colors">
+            <span class="material-symbols-outlined text-sm">arrow_back</span>
+            <span>Back to Projects</span>
+          </a>
+          <a href="https://github.com/mihrajmashoor8301-collab" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded bg-primary/10 border border-primary/40 text-primary hover:bg-primary hover:text-canvas-base font-mono text-xs font-semibold transition-all">
+            <span class="material-symbols-outlined text-sm">code</span>
+            <span>View Source Repository</span>
+            <span class="material-symbols-outlined text-xs">open_in_new</span>
+          </a>
+        </div>
+        <div class="font-mono text-xs text-outline flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-sm text-secondary">info</span>
+          <span>Implementation details documented at project repository</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Availability Callout -->
+    <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline flex items-start gap-3 text-xs text-on-surface-variant font-mono">
+      <span class="material-symbols-outlined text-secondary text-base mt-0.5">verified</span>
+      <div>
+        <span class="text-on-surface font-semibold">Information Source &amp; Verification Notice:</span>
+        Based on the documented project architecture, engineering milestones (Phase 16 completed), and technical specifications documented in the portfolio repository. Implementation source code is hosted in the developer's external repository.
+      </div>
+    </div>
+
+    <!-- 2. WHAT IS THIS PROJECT? -->
+    <section class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
+      <div class="flex items-center gap-2 font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">info</span>
+        <span>OVERVIEW &amp; MISSION // 01</span>
+      </div>
+      <h2 class="text-2xl font-bold text-on-surface">What is SentinelAI?</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-on-surface-variant leading-relaxed">
+        <div class="space-y-3">
+          <h3 class="text-base font-semibold text-on-surface font-mono flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-sm">psychology</span>
+            Purpose &amp; Problem Addressed
+          </h3>
+          <p>
+            Vulnerability assessment workflows frequently suffer from fragmented tooling: reconnaissance port scans produce raw text banners, CVE feeds produce overwhelming noise without asset context, and remediation plans require tedious manual synthesis.
+          </p>
+          <p>
+            The portfolio project documentation describes SentinelAI as an active security engineering platform designed to resolve this fragmentation. Instead of relying on generic public chatbots that leak sensitive infrastructure details, SentinelAI operates strictly on-premises using local neural models to correlate security intelligence and structure findings into actionable roadmaps.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <h3 class="text-base font-semibold text-on-surface font-mono flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary text-sm">target</span>
+            Intended Audience &amp; Scope
+          </h3>
+          <p>
+            SentinelAI is built for security engineers, vulnerability analysts, and offensive security practitioners conducting authorized technical evaluations on owned or simulated lab systems.
+          </p>
+          <p>
+            It unifies log parsing, CVE correlation, CVSS scoring, and graph-based threat context while maintaining authorization and approval primitives at every dispatch stage, ensuring multi-step orchestration remains strictly auditable and controlled.
+          </p>
+        </div>
+      </div>
+
+      <!-- Core Pillars Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-border-hairline">
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="flex items-center gap-2 text-primary font-mono text-xs font-bold">
+            <span class="material-symbols-outlined text-sm">hub</span>
+            <span>KNOWLEDGE GRAPH</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Security Knowledge Graph with MITRE ATT&amp;CK mapping across tactic vectors and asset-software relationships.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="flex items-center gap-2 text-secondary font-mono text-xs font-bold">
+            <span class="material-symbols-outlined text-sm">security_update_warning</span>
+            <span>CVE INTELLIGENCE</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Contextual exposure analysis engine correlating parsed service banners with CVE records and CVSS severity metrics.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="flex items-center gap-2 text-primary font-mono text-xs font-bold">
+            <span class="material-symbols-outlined text-sm">assignment_turned_in</span>
+            <span>EVIDENCE MANAGEMENT</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Structured evidence management tracking findings and linking vulnerability records with actionable defensive remediations.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="flex items-center gap-2 text-secondary font-mono text-xs font-bold">
+            <span class="material-symbols-outlined text-sm">terminal</span>
+            <span>DISPATCH &amp; AUDIT</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Local RAG pipeline, dual CLI/API dispatch interfaces, and comprehensive audit-logged orchestration primitives.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. ARCHITECTURE & DIAGRAM -->
+    <section class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
+      <div class="flex items-center gap-2 font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">schema</span>
+        <span>SYSTEM ARCHITECTURE // 02</span>
+      </div>
+      <h2 class="text-2xl font-bold text-on-surface">Documented System Architecture</h2>
+      <p class="text-sm text-on-surface-variant max-w-3xl leading-relaxed">
+        Based on the documented architecture in the portfolio engineering specifications, SentinelAI organizes functionality across four tightly coupled tiers: Ingestion, Knowledge &amp; CVE Intelligence, Local AI Reasoning, and Dispatch &amp; Audit.
+      </p>
+
+      <!-- Visual Architecture Diagram (Responsive HTML/CSS Component) -->
+      <div class="p-6 rounded-xl bg-canvas-base border border-border-hairline space-y-6">
+        <div class="flex items-center justify-between border-b border-border-hairline pb-3">
+          <span class="font-mono text-xs text-primary font-bold flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">account_tree</span>
+            SENTINELAI ARCHITECTURAL SCHEMATIC
+          </span>
+          <span class="font-mono text-[10px] text-outline">AIR-GAPPED LOCAL INFERENCE</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <!-- Tier 1: Ingestion -->
+          <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2 flex flex-col justify-between">
+            <div>
+              <div class="font-mono text-[10px] text-outline uppercase tracking-wider">TIER 1 · INGESTION</div>
+              <div class="font-mono text-xs font-bold text-on-surface mt-1 flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-secondary text-sm">input</span>
+                Recon &amp; Asset Data
+              </div>
+              <ul class="mt-2 space-y-1 font-mono text-[11px] text-on-surface-variant">
+                <li>• Nmap Service Banners</li>
+                <li>• Asset-Software Maps</li>
+                <li>• Target Scan Logs</li>
+              </ul>
+            </div>
+            <div class="pt-2 border-t border-border-hairline font-mono text-[10px] text-primary">
+              Output: Normalized Telemetry
+            </div>
+          </div>
+
+          <!-- Tier 2: Knowledge & CVE -->
+          <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2 flex flex-col justify-between">
+            <div>
+              <div class="font-mono text-[10px] text-outline uppercase tracking-wider">TIER 2 · KNOWLEDGE CORE</div>
+              <div class="font-mono text-xs font-bold text-primary mt-1 flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-primary text-sm">hub</span>
+                Security Knowledge Graph
+              </div>
+              <ul class="mt-2 space-y-1 font-mono text-[11px] text-on-surface-variant">
+                <li>• MITRE ATT&amp;CK Vectors</li>
+                <li>• CVE Exposure Engine</li>
+                <li>• CVSS Risk Calculation</li>
+              </ul>
+            </div>
+            <div class="pt-2 border-t border-border-hairline font-mono text-[10px] text-secondary">
+              Output: Graph Relationships
+            </div>
+          </div>
+
+          <!-- Tier 3: AI Reasoning Layer -->
+          <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2 flex flex-col justify-between">
+            <div>
+              <div class="font-mono text-[10px] text-outline uppercase tracking-wider">TIER 3 · LOCAL AI LAYER</div>
+              <div class="font-mono text-xs font-bold text-secondary mt-1 flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-secondary text-sm">memory</span>
+                Local Ollama + RAG
+              </div>
+              <ul class="mt-2 space-y-1 font-mono text-[11px] text-on-surface-variant">
+                <li>• Offline Neural Models</li>
+                <li>• RAG Pipeline Context</li>
+                <li>• Triage Prioritization</li>
+              </ul>
+            </div>
+            <div class="pt-2 border-t border-border-hairline font-mono text-[10px] text-primary">
+              Zero External Telemetry
+            </div>
+          </div>
+
+          <!-- Tier 4: Dispatch & Evidence -->
+          <div class="p-4 rounded-lg bg-surface-raised border border-primary/40 space-y-2 flex flex-col justify-between">
+            <div>
+              <div class="font-mono text-[10px] text-outline uppercase tracking-wider">TIER 4 · DISPATCH &amp; AUDIT</div>
+              <div class="font-mono text-xs font-bold text-primary mt-1 flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-primary text-sm">verified_user</span>
+                Secure Orchestration
+              </div>
+              <ul class="mt-2 space-y-1 font-mono text-[11px] text-on-surface-variant">
+                <li>• Approval Primitives</li>
+                <li>• FastAPI &amp; CLI Dispatch</li>
+                <li>• Immutable Audit Logs</li>
+              </ul>
+            </div>
+            <div class="pt-2 border-t border-border-hairline font-mono text-[10px] text-primary">
+              Output: Verified Remediation
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-2 font-mono text-xs text-outline py-2 border-t border-border-hairline text-center">
+          <span>INGESTION</span>
+          <span class="text-primary">→</span>
+          <span>GRAPH &amp; CVE CORRELATION</span>
+          <span class="text-primary">→</span>
+          <span>OFFLINE RAG TRIAGE</span>
+          <span class="text-primary">→</span>
+          <span>AUTHORIZED DISPATCH &amp; AUDITING</span>
+        </div>
+      </div>
+
+      <!-- Architectural Component Breakdown Table -->
+      <div class="space-y-3">
+        <h3 class="text-base font-semibold text-on-surface font-mono">Component Responsibility &amp; Data Contract</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs font-mono border border-border-hairline rounded-lg overflow-hidden">
+            <thead class="bg-surface-raised text-on-surface border-b border-border-hairline">
+              <tr>
+                <th class="p-3">Component</th>
+                <th class="p-3">Core Responsibility</th>
+                <th class="p-3">Inputs</th>
+                <th class="p-3">Outputs</th>
+                <th class="p-3">Relationships</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border-hairline text-on-surface-variant">
+              <tr>
+                <td class="p-3 text-primary font-bold">Reconnaissance Ingestion</td>
+                <td class="p-3">Parses raw service scan outputs and normalizes service identifiers.</td>
+                <td class="p-3">Nmap logs, banner strings</td>
+                <td class="p-3">Normalized asset service dictionaries</td>
+                <td class="p-3">Feeds into Knowledge Graph &amp; CVE Engine</td>
+              </tr>
+              <tr>
+                <td class="p-3 text-secondary font-bold">Knowledge Graph</td>
+                <td class="p-3">Maps vulnerabilities and asset connections to MITRE ATT&amp;CK tactic vectors.</td>
+                <td class="p-3">Asset specs, vulnerability mappings</td>
+                <td class="p-3">Graph nodes &amp; attack paths</td>
+                <td class="p-3">Enriches RAG context for neural triage</td>
+              </tr>
+              <tr>
+                <td class="p-3 text-on-surface font-bold">CVE Intelligence Engine</td>
+                <td class="p-3">Performs contextual exposure analysis and CVSS risk scoring.</td>
+                <td class="p-3">Service banners, version strings</td>
+                <td class="p-3">CVE matches, severity ratings</td>
+                <td class="p-3">Correlated with Knowledge Graph nodes</td>
+              </tr>
+              <tr>
+                <td class="p-3 text-primary font-bold">Local AI Reasoning (Ollama)</td>
+                <td class="p-3">RAG pipeline evaluates combined context to generate remediation guidance.</td>
+                <td class="p-3">RAG context, risk metadata</td>
+                <td class="p-3">Prioritized remediation roadmaps</td>
+                <td class="p-3">Operates strictly offline without cloud calls</td>
+              </tr>
+              <tr>
+                <td class="p-3 text-secondary font-bold">Dispatch &amp; Audit Layer</td>
+                <td class="p-3">Exposes FastAPI/CLI endpoints governed by approval primitives and audit logs.</td>
+                <td class="p-3">Remediation actions, user commands</td>
+                <td class="p-3">Action execution records, audit logs</td>
+                <td class="p-3">Guards system perimeter and logs operations</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. HOW IT WORKS -->
+    <section class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
+      <div class="flex items-center gap-2 font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">route</span>
+        <span>WORKFLOW &amp; DATA PIPELINE // 03</span>
+      </div>
+      <h2 class="text-2xl font-bold text-on-surface">Step-by-Step Documented Workflow</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-3">
+        <!-- Step 1 -->
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="font-mono text-xs text-primary font-bold flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[10px]">1</span>
+            <span>INPUT</span>
+          </div>
+          <div class="text-xs text-on-surface font-semibold font-mono">Telemetry Ingestion</div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Reconnaissance scan logs, such as Nmap port scan service banners and asset configuration details, are submitted to the platform.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="font-mono text-xs text-secondary font-bold flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-secondary/20 text-secondary flex items-center justify-center text-[10px]">2</span>
+            <span>PROCESSING</span>
+          </div>
+          <div class="text-xs text-on-surface font-semibold font-mono">Graph &amp; CVE Mapping</div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Parsed banners are correlated against CVE vulnerability intelligence and mapped into the MITRE ATT&amp;CK knowledge graph across tactic vectors.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="font-mono text-xs text-primary font-bold flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[10px]">3</span>
+            <span>DECISION</span>
+          </div>
+          <div class="text-xs text-on-surface font-semibold font-mono">Neural Model Triage</div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Local neural models running via Ollama evaluate contextual exposure and calculate CVSS-aligned risk priorities through the RAG pipeline.
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="font-mono text-xs text-secondary font-bold flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-secondary/20 text-secondary flex items-center justify-center text-[10px]">4</span>
+            <span>ACTION</span>
+          </div>
+          <div class="text-xs text-on-surface font-semibold font-mono">Authorized Dispatch</div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Actions trigger authorization and approval primitives before dispatching remediation roadmaps through the FastAPI or CLI interfaces.
+          </p>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="font-mono text-xs text-primary font-bold flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[10px]">5</span>
+            <span>OUTPUT</span>
+          </div>
+          <div class="text-xs text-on-surface font-semibold font-mono">Evidence &amp; Audit</div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Structured evidence records are stored alongside immutable audit logs, providing full traceability for every assessed asset and action.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 & 6. IMPLEMENTATION & TECHNICAL ARCHITECTURE -->
+    <section class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
+      <div class="flex items-center gap-2 font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">code</span>
+        <span>IMPLEMENTATION DETAILS // 04</span>
+      </div>
+      <h2 class="text-2xl font-bold text-on-surface">Technologies &amp; Engineering Implementation</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-5 rounded-lg bg-surface-raised border border-border-hairline space-y-3">
+          <div class="font-mono text-xs text-primary font-bold flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">terminal</span>
+            <span>Backend &amp; Dispatch Interfaces</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            The platform core is developed in <strong>Python</strong>, offering dual operational interfaces: a structured <strong>FastAPI</strong> service layer for programmatic integration and an interactive <strong>CLI toolchain</strong> for rapid terminal-based triage during security exercises.
+          </p>
+          <div class="pt-2 font-mono text-[11px] text-outline">
+            Stack: Python, FastAPI, CLI Parser, Structured JSON Logging
+          </div>
+        </div>
+
+        <div class="p-5 rounded-lg bg-surface-raised border border-border-hairline space-y-3">
+          <div class="font-mono text-xs text-secondary font-bold flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">hub</span>
+            <span>Knowledge Graph &amp; CVE Intelligence</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Incorporates a graph-based security knowledge model representing asset-software dependencies and mapping tactic vectors against the <strong>MITRE ATT&amp;CK framework</strong>, coupled with a contextual CVE correlation engine.
+          </p>
+          <div class="pt-2 font-mono text-[11px] text-outline">
+            Concepts: Graph Modeling, MITRE ATT&amp;CK, CVE Enrichment, CVSS Scoring
+          </div>
+        </div>
+
+        <div class="p-5 rounded-lg bg-surface-raised border border-border-hairline space-y-3">
+          <div class="font-mono text-xs text-primary font-bold flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">psychology</span>
+            <span>AI Reasoning &amp; RAG Architecture</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Leverages <strong>Ollama</strong> for hosting offline neural models. The Retrieval-Augmented Generation (RAG) pipeline injects relevant vulnerability profiles and remediation playbooks directly into the inference context without transmitting any telemetry to third-party APIs.
+          </p>
+          <div class="pt-2 font-mono text-[11px] text-outline">
+            Architecture: Ollama Local Runtime, Offline RAG, Zero Data Leakage
+          </div>
+        </div>
+
+        <div class="p-5 rounded-lg bg-surface-raised border border-border-hairline space-y-3">
+          <div class="font-mono text-xs text-secondary font-bold flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">lock</span>
+            <span>Authorization &amp; Audit Governance</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Implements strict authorization and approval primitives guarding multi-step orchestration tasks. Every triage decision, remediation recommendation, and external dispatch is recorded in structured, immutable audit logs.
+          </p>
+          <div class="pt-2 font-mono text-[11px] text-outline">
+            Security Controls: Explicit Approval Gates, Structured Audit Logging
+          </div>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-lg bg-canvas-base border border-border-hairline text-xs font-mono text-on-surface-variant flex flex-col sm:flex-row items-center justify-between gap-3">
+        <span>Implementation details and version-controlled source files are documented at the project repository.</span>
+        <a href="https://github.com/mihrajmashoor8301-collab" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-bold flex items-center gap-1 shrink-0">
+          <span>View Source Repository</span>
+          <span class="material-symbols-outlined text-xs">open_in_new</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 7. SECURITY DESIGN -->
+    <section class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
+      <div class="flex items-center gap-2 font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">shield</span>
+        <span>SECURITY DESIGN &amp; BOUNDARIES // 05</span>
+      </div>
+      <h2 class="text-2xl font-bold text-on-surface">Verified Security Controls &amp; Boundaries</h2>
+      <p class="text-sm text-on-surface-variant max-w-3xl leading-relaxed">
+        As an engineering platform handling sensitive reconnaissance information and vulnerability assessments, SentinelAI embeds foundational defensive controls directly into its architecture.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="font-mono text-xs text-primary font-bold flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">gavel</span>
+            <span>Authorization Primitives</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Autonomous multi-step actions require explicit approval barriers. High-impact operations cannot be executed autonomously without deliberate human verification.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="font-mono text-xs text-secondary font-bold flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">visibility_off</span>
+            <span>Zero Cloud Leakage</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            By running local neural models through Ollama on local hardware, sensitive vulnerability telemetry, service versions, and network topologies are never transmitted to external cloud endpoints.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="font-mono text-xs text-primary font-bold flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">history_edu</span>
+            <span>Immutable Audit Logging</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            All user inputs, model evaluations, and dispatch queries produce verifiable audit trails with timestamps to support compliance and technical post-mortem analysis.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. AI ARCHITECTURE -->
+    <section class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
+      <div class="flex items-center gap-2 font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">neurology</span>
+        <span>AI ARCHITECTURE &amp; RETRIEVAL // 06</span>
+      </div>
+      <h2 class="text-2xl font-bold text-on-surface">Local AI Inference &amp; RAG Architecture</h2>
+
+      <div class="space-y-4 text-sm text-on-surface-variant leading-relaxed">
+        <p>
+          The portfolio documentation defines SentinelAI's AI tier around local execution using the <strong>Ollama runtime</strong>. Instead of transmitting infrastructure data across third-party APIs, inference happens locally on private hardware.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+          <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+            <div class="font-mono text-xs text-primary font-bold">RAG Retrieval Pipeline</div>
+            <p class="text-xs text-on-surface-variant leading-relaxed">
+              Indices of MITRE ATT&amp;CK techniques and CVE intelligence allow the system to fetch relevant defensive mitigation patterns on demand, augmenting the model's prompt context with deterministic security references.
+            </p>
+          </div>
+          <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+            <div class="font-mono text-xs text-secondary font-bold">Contextual Exposure Scoring</div>
+            <p class="text-xs text-on-surface-variant leading-relaxed">
+              Rather than generic severity scores, the reasoning engine combines CVSS metrics with asset-specific connectivity and software relationships to compute localized, contextual risk rankings.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. TESTING / VALIDATION -->
+    <section class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
+      <div class="flex items-center gap-2 font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">checklist</span>
+        <span>TESTING &amp; VALIDATION // 07</span>
+      </div>
+      <h2 class="text-2xl font-bold text-on-surface">Validation &amp; Development Milestones</h2>
+
+      <div class="space-y-4 text-sm text-on-surface-variant leading-relaxed">
+        <p>
+          SentinelAI's progress is measured through structured engineering development phases. As verified in the portfolio documentation:
+        </p>
+        <div class="p-4 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs space-y-2">
+          <div class="flex items-center justify-between text-primary font-bold">
+            <span class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-base">check_circle</span>
+              Phase 16 Engineering Milestone Complete
+            </span>
+            <span class="text-outline">VERIFIED</span>
+          </div>
+          <p class="text-on-surface-variant">
+            Covers full end-to-end integration of the Knowledge Graph, CVE Intelligence correlation engine, evidence management schema, and audit-logged CLI/API dispatch primitives.
+          </p>
+        </div>
+        <p class="text-xs text-outline font-mono">
+          Detailed testing suites, unit test coverage, and benchmark harnesses are maintained in the project repository.
+        </p>
+      </div>
+    </section>
+
+    <!-- 10 & 11. CURRENT STATUS & FUTURE WORK -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Current Status -->
+      <div class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-primary/40 space-y-4">
+        <div class="flex items-center gap-2 font-mono text-xs text-primary">
+          <span class="material-symbols-outlined text-sm">sync</span>
+          <span>CURRENT STATUS // 08</span>
+        </div>
+        <h3 class="text-xl font-bold text-on-surface">Active Engineering Project</h3>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/40 bg-canvas-base font-mono text-xs text-primary font-bold">
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          <span>PHASE 16 COMPLETE // PHASE 17 IN DEV</span>
+        </div>
+        <p class="text-xs text-on-surface-variant leading-relaxed">
+          The core architecture is actively maintained and implemented through Phase 16. Development is actively proceeding on Phase 17 engineering objectives.
+        </p>
+      </div>
+
+      <!-- Future Work -->
+      <div class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-4">
+        <div class="flex items-center gap-2 font-mono text-xs text-secondary">
+          <span class="material-symbols-outlined text-sm">update</span>
+          <span>FUTURE ROADMAP // 09</span>
+        </div>
+        <h3 class="text-xl font-bold text-on-surface">Planned Engineering Enhancements</h3>
+        <ul class="space-y-2 text-xs text-on-surface-variant font-mono">
+          <li class="flex items-start gap-2">
+            <span class="text-secondary font-bold">[Planned]</span>
+            <span>Phase 17: Multi-asset lateral exposure reasoning across complex network graphs.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-secondary font-bold">[Planned]</span>
+            <span>Automated remediation validation scripts with safe dry-run execution checks.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-secondary font-bold">[Planned]</span>
+            <span>Deepened integration with local Kali Linux toolchains and telemetry feeds.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="pt-8 border-t border-border-hairline flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
+      <a href="../index.html#projects" class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-sm">arrow_back</span>
+        <span>Back to Projects Section</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <span class="text-outline">Next Case Study:</span>
+        <a href="autonomous-pentesting-agent.html" class="text-primary hover:underline font-bold flex items-center gap-1">
+          <span>Autonomous Pentesting Agent</span>
+          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="mt-16 bg-surface-subtle border-t border-border-hairline py-8">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-outline">
+      <div>
+        <span>Mihraj Mashhoor K · Technical Engineering Portfolio</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="../index.html" class="hover:text-primary transition-colors">Portfolio</a>
+        <span>·</span>
+        <a href="../resume.html" class="hover:text-primary transition-colors">Resume</a>
+        <span>·</span>
+        <a href="../handbook/index.html" class="hover:text-primary transition-colors">Handbook</a>
+        <span>·</span>
+        <a href="https://github.com/mihrajmashoor8301-collab" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

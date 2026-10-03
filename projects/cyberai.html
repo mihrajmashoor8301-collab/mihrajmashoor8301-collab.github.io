@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html class="scroll-smooth dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>CyberAI · Technical Case Study | Mihraj Mashhoor K</title>
+  <meta content="Engineering case study for CyberAI: Local AI Cybersecurity Agent Platform for private telemetry analysis and security automation." name="description"/>
+  <link rel="icon" type="image/png" href="../logo2.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'canvas-base': '#090D12',
+            'surface-subtle': '#0E131B',
+            'surface-raised': '#151D28',
+            'surface-container': '#122131',
+            'border-hairline': '#1F2937',
+            'border-medium': '#2D3748',
+            'border-highlight': '#374151',
+            'on-surface': '#F3F4F6',
+            'on-surface-variant': '#8692A6',
+            'outline': '#64748B',
+            'primary': '#4EDEA3',
+            'primary-container': '#10b981',
+            'secondary': '#4CD7F6',
+            'warning': '#FBBF24',
+            'danger-critical': '#F43F5E'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+    body {
+      background-color: #090D12;
+      color: #F3F4F6;
+      font-family: 'Inter', sans-serif;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .telemetry-grid {
+      background-size: 32px 32px;
+      background-image:
+        linear-gradient(to right, rgba(31, 41, 55, 0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(31, 41, 55, 0.25) 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body class="bg-canvas-base text-on-surface antialiased selection:bg-primary selection:text-canvas-base telemetry-grid min-h-screen font-sans">
+
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-50 bg-surface-subtle/90 backdrop-blur-md border-b border-border-hairline">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a class="font-mono text-sm font-bold text-on-surface tracking-tight flex items-center gap-2 hover:text-primary transition-colors" href="../index.html#projects">
+        <span class="material-symbols-outlined text-primary text-lg">arrow_back</span>
+        <span>Portfolio / Projects</span>
+        <span class="hidden sm:inline-flex items-center gap-1.5 px-2 py-0.5 rounded border border-primary/30 bg-canvas-base font-mono text-[10px] text-primary">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+          CASE STUDY
+        </span>
+      </a>
+      <div class="flex items-center gap-3">
+        <a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:border-primary hover:text-primary transition-colors" href="https://github.com/mihrajmashoor8301-collab" target="_blank" rel="noopener noreferrer">
+          <span class="material-symbols-outlined text-sm">terminal</span>
+          <span class="hidden md:inline">GitHub</span>
+          <span class="material-symbols-outlined text-xs">open_in_new</span>
+        </a>
+        <a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-primary-container text-canvas-base font-mono text-xs font-bold hover:bg-primary transition-all shadow-[0_0_12px_rgba(16,185,129,0.25)]" href="../index.html#projects">
+          <span>All Projects</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb & Context Notice -->
+  <div class="max-w-7xl mx-auto px-6 pt-6">
+    <div class="flex flex-wrap items-center justify-between gap-4 py-2 border-b border-border-hairline/60 font-mono text-xs">
+      <div class="flex items-center gap-2 text-on-surface-variant">
+        <a href="../index.html" class="hover:text-primary transition-colors">Home</a>
+        <span>/</span>
+        <a href="../index.html#projects" class="hover:text-primary transition-colors">Projects</a>
+        <span>/</span>
+        <span class="text-primary font-bold">CyberAI</span>
+      </div>
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-surface-subtle border border-border-hairline text-[11px] text-outline">
+        <span class="material-symbols-outlined text-xs text-secondary">verified_user</span>
+        <span>Verified Portfolio Project Documentation</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="max-w-7xl mx-auto px-6 py-8 space-y-12">
+
+    <!-- 1. PROJECT HERO -->
+    <section class="bg-surface-subtle rounded-2xl p-6 md:p-10 border border-primary/40 relative overflow-hidden">
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+        <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+          <span class="px-3 py-1 rounded bg-canvas-base border border-primary/40 text-primary font-bold">LOCAL AI</span>
+          <span class="px-3 py-1 rounded bg-canvas-base border border-border-hairline text-on-surface">SECURITY AUTOMATION</span>
+          <span class="px-3 py-1 rounded bg-canvas-base border border-border-hairline text-secondary">TELEMETRY ANALYSIS</span>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/50 bg-canvas-base font-mono text-xs text-primary font-bold shadow-[0_0_15px_rgba(78,222,163,0.15)]">
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          <span>ACTIVE DEV // IN PROGRESS</span>
+        </div>
+      </div>
+
+      <div class="space-y-4 mb-8">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-on-surface tracking-tight">
+          CyberAI
+        </h1>
+        <div class="font-mono text-base sm:text-lg text-primary font-semibold">
+          Local AI Cybersecurity Agent Platform &amp; Telemetry Analysis Assistant
+        </div>
+        <p class="text-base sm:text-lg text-on-surface-variant max-w-4xl leading-relaxed">
+          An ongoing local-inference cybersecurity environment focused on private, on-device intelligence. Integrates Ollama, Qwen3-Coder 30B, and OpenCode with Kali Linux security tooling to orchestrate multi-agent development workflows, automated vulnerability analysis tasks, and reproducible security experimentation.
+        </p>
+      </div>
+
+      <!-- Quick Specs Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-6">
+        <div class="p-3.5 rounded-lg bg-canvas-base/80 border border-border-hairline">
+          <div class="font-mono text-[10px] text-outline uppercase tracking-wider">PROJECT STATUS</div>
+          <div class="font-mono text-xs font-bold text-primary mt-1">Active Dev // In Progress</div>
+        </div>
+        <div class="p-3.5 rounded-lg bg-canvas-base/80 border border-border-hairline">
+          <div class="font-mono text-[10px] text-outline uppercase tracking-wider">CORE FOCUS</div>
+          <div class="font-mono text-xs font-bold text-secondary mt-1">Telemetry &amp; Incident Triage</div>
+        </div>
+        <div class="p-3.5 rounded-lg bg-canvas-base/80 border border-border-hairline">
+          <div class="font-mono text-[10px] text-outline uppercase tracking-wider">NEURAL MODEL</div>
+          <div class="font-mono text-xs font-bold text-on-surface mt-1">Qwen3-Coder 30B (Local)</div>
+        </div>
+        <div class="p-3.5 rounded-lg bg-canvas-base/80 border border-border-hairline">
+          <div class="font-mono text-[10px] text-outline uppercase tracking-wider">AGENT INTEGRATION</div>
+          <div class="font-mono text-xs font-bold text-primary mt-1">OpenCode &amp; Ollama</div>
+        </div>
+      </div>
+
+      <!-- Tech Stack Tags -->
+      <div class="flex flex-wrap gap-2 pt-4 border-t border-border-hairline/80">
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-primary font-semibold">Python</span>
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-secondary font-semibold">Ollama</span>
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">Qwen3-Coder 30B</span>
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">OpenCode</span>
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-primary">Kali Linux</span>
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-secondary">Log Parsing</span>
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-outline">Incident Timelines</span>
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">Syslog / Auth Logs</span>
+        <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-primary">Threat Correlation</span>
+      </div>
+
+      <!-- Links & Source Notice -->
+      <div class="mt-8 pt-6 border-t border-border-hairline/80 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex flex-wrap gap-3">
+          <a href="../index.html#projects" class="inline-flex items-center gap-2 px-4 py-2 rounded bg-surface-raised border border-border-hairline text-on-surface hover:text-primary hover:border-primary font-mono text-xs transition-colors">
+            <span class="material-symbols-outlined text-sm">arrow_back</span>
+            <span>Back to Projects</span>
+          </a>
+          <a href="https://github.com/mihrajmashoor8301-collab" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded bg-primary/10 border border-primary/40 text-primary hover:bg-primary hover:text-canvas-base font-mono text-xs font-semibold transition-all">
+            <span class="material-symbols-outlined text-sm">code</span>
+            <span>View Source Repository</span>
+            <span class="material-symbols-outlined text-xs">open_in_new</span>
+          </a>
+        </div>
+        <div class="font-mono text-xs text-outline flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-sm text-secondary">info</span>
+          <span>Implementation details documented at project repository</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Availability Callout -->
+    <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline flex items-start gap-3 text-xs text-on-surface-variant font-mono">
+      <span class="material-symbols-outlined text-secondary text-base mt-0.5">verified</span>
+      <div>
+        <span class="text-on-surface font-semibold">Information Source &amp; Classification:</span>
+        Based on the documented architecture and system descriptions in the portfolio and resume. Implementation source code is hosted in the developer's external repository.
+      </div>
+    </div>
+
+    <!-- 2. WHAT IS THIS PROJECT? -->
+    <section class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
+      <div class="flex items-center gap-2 font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">info</span>
+        <span>OVERVIEW &amp; MISSION // 01</span>
+      </div>
+      <h2 class="text-2xl font-bold text-on-surface">What is CyberAI?</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-on-surface-variant leading-relaxed">
+        <div class="space-y-3">
+          <h3 class="text-base font-semibold text-on-surface font-mono flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-sm">psychology</span>
+            Purpose &amp; Problem Solved
+          </h3>
+          <p>
+            Security operations generate vast quantities of operational telemetry: system authentication attempts (`auth.log`), kernel messages, firewall connection drops, and security utility outputs. Analyzing these raw, unstructured logs manually during incident investigations or lab exercises is time-consuming and error-prone.
+          </p>
+          <p>
+            The portfolio project documentation describes CyberAI as a private, on-device telemetry ingestion and triage platform. It ingests raw logs, normalizes them into structured incident timelines, and applies contextual anomaly detection heuristics combined with local neural reasoning to identify correlated attack patterns.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <h3 class="text-base font-semibold text-on-surface font-mono flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary text-sm">shield</span>
+            Privacy &amp; Air-Gapped Philosophy
+          </h3>
+          <p>
+            Security telemetry frequently contains sensitive IP addresses, usernames, hostnames, and password hash attempts. Sending these logs to cloud-based LLM APIs presents significant data exposure risks.
+          </p>
+          <p>
+            CyberAI guarantees complete data residency by executing Qwen3-Coder 30B locally via Ollama on Kali Linux. Telemetry is parsed, correlated, and triaged entirely in an air-gapped local environment with zero external telemetry.
+          </p>
+        </div>
+      </div>
+
+      <!-- Core Capability Callout Box -->
+      <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+        <div class="font-mono text-xs text-outline uppercase tracking-wider">DOCUMENTED CORE ARCHITECTURE CAPABILITY</div>
+        <div class="font-mono text-sm text-secondary font-bold flex items-center gap-2">
+          <span class="material-symbols-outlined text-base">precision_manufacturing</span>
+          <span>Local Inference + Security Tooling Integration + Agentic Task Automation</span>
+        </div>
+        <p class="text-xs text-on-surface-variant leading-relaxed">
+          Bridges Kali Linux security tools with private local LLM reasoning via OpenCode and Ollama, transforming raw forensic streams into structured operational insight.
+        </p>
+      </div>
+    </section>
+
+    <!-- 3. ARCHITECTURE & DIAGRAM -->
+    <section class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
+      <div class="flex items-center gap-2 font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">schema</span>
+        <span>TELEMETRY ARCHITECTURE // 02</span>
+      </div>
+      <h2 class="text-2xl font-bold text-on-surface">Documented System Architecture</h2>
+      <p class="text-sm text-on-surface-variant max-w-3xl leading-relaxed">
+        Based on the documented architecture in the portfolio engineering specifications, CyberAI structures telemetry ingestion and local reasoning through an end-to-end pipeline:
+      </p>
+
+      <!-- Visual Architecture Diagram -->
+      <div class="p-6 rounded-xl bg-canvas-base border border-border-hairline space-y-6">
+        <div class="flex items-center justify-between border-b border-border-hairline pb-3">
+          <span class="font-mono text-xs text-primary font-bold flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">analytics</span>
+            CYBERAI TELEMETRY INGESTION &amp; REASONING PIPELINE
+          </span>
+          <span class="font-mono text-[10px] text-outline">LOCAL KALIX LINUX HOST</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <!-- Tier 1 -->
+          <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2 flex flex-col justify-between">
+            <div>
+              <div class="font-mono text-[10px] text-outline uppercase tracking-wider">TIER 1 · TELEMETRY INGESTION</div>
+              <div class="font-mono text-xs font-bold text-on-surface mt-1 flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-secondary text-sm">data_object</span>
+                Raw Log Streams
+              </div>
+              <ul class="mt-2 space-y-1 font-mono text-[11px] text-on-surface-variant">
+                <li>• Linux `auth.log` &amp; Syslog</li>
+                <li>• Firewall Packet Dumps</li>
+                <li>• Security Tool Logs</li>
+              </ul>
+            </div>
+            <div class="pt-2 border-t border-border-hairline font-mono text-[10px] text-primary">
+              Read-Only Log Ingestion
+            </div>
+          </div>
+
+          <!-- Tier 2 -->
+          <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2 flex flex-col justify-between">
+            <div>
+              <div class="font-mono text-[10px] text-outline uppercase tracking-wider">TIER 2 · PARSING &amp; TIMELINE</div>
+              <div class="font-mono text-xs font-bold text-primary mt-1 flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-primary text-sm">schedule</span>
+                Event Normalization
+              </div>
+              <ul class="mt-2 space-y-1 font-mono text-[11px] text-on-surface-variant">
+                <li>• Regex &amp; Token Parser</li>
+                <li>• Chronological Sequencing</li>
+                <li>• Heuristic Anomaly Flags</li>
+              </ul>
+            </div>
+            <div class="pt-2 border-t border-border-hairline font-mono text-[10px] text-secondary">
+              Structured Timeline Records
+            </div>
+          </div>
+
+          <!-- Tier 3 -->
+          <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2 flex flex-col justify-between">
+            <div>
+              <div class="font-mono text-[10px] text-outline uppercase tracking-wider">TIER 3 · LOCAL REASONING</div>
+              <div class="font-mono text-xs font-bold text-secondary mt-1 flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-secondary text-sm">neurology</span>
+                Qwen3-Coder 30B
+              </div>
+              <ul class="mt-2 space-y-1 font-mono text-[11px] text-on-surface-variant">
+                <li>• Ollama Inference Server</li>
+                <li>• Threat Correlation</li>
+                <li>• Contextual Risk Scoring</li>
+              </ul>
+            </div>
+            <div class="pt-2 border-t border-border-hairline font-mono text-[10px] text-primary">
+              Private On-Device AI
+            </div>
+          </div>
+
+          <!-- Tier 4 -->
+          <div class="p-4 rounded-lg bg-surface-raised border border-primary/40 space-y-2 flex flex-col justify-between">
+            <div>
+              <div class="font-mono text-[10px] text-outline uppercase tracking-wider">TIER 4 · AUTOMATION &amp; TRIAGE</div>
+              <div class="font-mono text-xs font-bold text-primary mt-1 flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-primary text-sm">integration_instructions</span>
+                OpenCode &amp; Triage
+              </div>
+              <ul class="mt-2 space-y-1 font-mono text-[11px] text-on-surface-variant">
+                <li>• Multi-Agent Workflows</li>
+                <li>• Incident Reports</li>
+                <li>• Prioritized Alerts</li>
+              </ul>
+            </div>
+            <div class="pt-2 border-t border-border-hairline font-mono text-[10px] text-primary">
+              Actionable Security Intelligence
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-2 font-mono text-xs text-outline py-2 border-t border-border-hairline text-center">
+          <span>RAW LOGS</span>
+          <span class="text-primary">→</span>
+          <span>NORMALIZATION &amp; TIMELINE</span>
+          <span class="text-primary">→</span>
+          <span>LOCAL THREAT CORRELATION</span>
+          <span class="text-primary">→</span>
+          <span>AGENTIC AUTOMATION &amp; TRIAGE</span>
+        </div>
+      </div>
+
+      <!-- Component Table -->
+      <div class="space-y-3">
+        <h3 class="text-base font-semibold text-on-surface font-mono">Component Breakdown &amp; Data Flow</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs font-mono border border-border-hairline rounded-lg overflow-hidden">
+            <thead class="bg-surface-raised text-on-surface border-b border-border-hairline">
+              <tr>
+                <th class="p-3">Component</th>
+                <th class="p-3">Responsibility</th>
+                <th class="p-3">Inputs</th>
+                <th class="p-3">Outputs</th>
+                <th class="p-3">Relationships</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border-hairline text-on-surface-variant">
+              <tr>
+                <td class="p-3 text-secondary font-bold">Log Parser &amp; Normalizer</td>
+                <td class="p-3">Extracts timestamps, hostnames, IPs, and event types from raw log files.</td>
+                <td class="p-3">Raw log files (syslog, auth.log)</td>
+                <td class="p-3">Structured JSON event stream</td>
+                <td class="p-3">Feeds into Chronological Timeline Engine</td>
+              </tr>
+              <tr>
+                <td class="p-3 text-on-surface font-bold">Timeline &amp; Anomaly Engine</td>
+                <td class="p-3">Organizes events sequentially and applies heuristic threshold triggers.</td>
+                <td class="p-3">Structured event stream</td>
+                <td class="p-3">Chronological timeline with anomaly flags</td>
+                <td class="p-3">Passes prioritized context to local AI model</td>
+              </tr>
+              <tr>
+                <td class="p-3 text-primary font-bold">Threat Correlation (Qwen3-Coder 30B)</td>
+                <td class="p-3">Analyzes multi-stage event sequences to evaluate potential attack progression.</td>
+                <td class="p-3">Incident timeline windows</td>
+                <td class="p-3">Threat correlation summaries &amp; risk scores</td>
+                <td class="p-3">Hosted via local Ollama runtime</td>
+              </tr>
+              <tr>
+                <td class="p-3 text-secondary font-bold">OpenCode Agent Integrator</td>
+                <td class="p-3">Orchestrates multi-agent development workflows and automated analysis tasks.</td>
+                <td class="p-3">Correlation output, user instructions</td>
+                <td class="p-3">Automated tasks, investigative queries</td>
+                <td class="p-3">Integrates with Kali Linux security utilities</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. HOW IT WORKS -->
+    <section class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
+      <div class="flex items-center gap-2 font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">route</span>
+        <span>STEP-BY-STEP WORKFLOW // 03</span>
+      </div>
+      <h2 class="text-2xl font-bold text-on-surface">Documented Operational Workflow</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-3">
+        <!-- Step 1 -->
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="font-mono text-xs text-primary font-bold flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[10px]">1</span>
+            <span>INPUT</span>
+          </div>
+          <div class="text-xs text-on-surface font-semibold font-mono">Telemetry Streams</div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Raw system logs (such as authentication events, firewall connection logs, or tool dumps) are ingested into the platform.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="font-mono text-xs text-secondary font-bold flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-secondary/20 text-secondary flex items-center justify-center text-[10px]">2</span>
+            <span>PROCESSING</span>
+          </div>
+          <div class="text-xs text-on-surface font-semibold font-mono">Parsing &amp; Ordering</div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Events are structured into normalized schemas and chronologically ordered to form a coherent activity timeline.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="font-mono text-xs text-primary font-bold flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[10px]">3</span>
+            <span>DECISION</span>
+          </div>
+          <div class="text-xs text-on-surface font-semibold font-mono">Threat Correlation</div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Qwen3-Coder 30B evaluates clustered events, correlating anomalous patterns (e.g. repeated auth failures followed by escalation).
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="font-mono text-xs text-secondary font-bold flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-secondary/20 text-secondary flex items-center justify-center text-[10px]">4</span>
+            <span>ACTION</span>
+          </div>
+          <div class="text-xs text-on-surface font-semibold font-mono">Agentic Triage</div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            OpenCode agents dispatch follow-up verification tasks or query specific log subsets for deep contextual inspection.
+          </p>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="font-mono text-xs text-primary font-bold flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[10px]">5</span>
+            <span>OUTPUT</span>
+          </div>
+          <div class="text-xs text-on-surface font-semibold font-mono">Incident Synthesis</div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Generates structured security incident reports with risk scores and actionable defensive remediation recommendations.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 & 6. IMPLEMENTATION & TECHNICAL ARCHITECTURE -->
+    <section class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
+      <div class="flex items-center gap-2 font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">code</span>
+        <span>IMPLEMENTATION DETAILS // 04</span>
+      </div>
+      <h2 class="text-2xl font-bold text-on-surface">Technologies &amp; Architecture Implementation</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-5 rounded-lg bg-surface-raised border border-border-hairline space-y-3">
+          <div class="font-mono text-xs text-primary font-bold flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">terminal</span>
+            <span>Python Telemetry Engine</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Engineered in <strong>Python</strong> with custom parsers for common Linux log formats (syslog, auth.log, auditd, iptables). Normalizes timestamps into unified UTC ISO-8601 records.
+          </p>
+          <div class="pt-2 font-mono text-[11px] text-outline">
+            Modules: Python, Regex Parsers, Datetime Normalization
+          </div>
+        </div>
+
+        <div class="p-5 rounded-lg bg-surface-raised border border-border-hairline space-y-3">
+          <div class="font-mono text-xs text-secondary font-bold flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">memory</span>
+            <span>Local Inference Stack</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Connects to a local <strong>Ollama</strong> instance running <strong>Qwen3-Coder 30B</strong>. Employs prompt templates designed for log analysis, root-cause identification, and attack sequence mapping.
+          </p>
+          <div class="pt-2 font-mono text-[11px] text-outline">
+            Stack: Ollama, Qwen3-Coder 30B, Local GPU Offloading
+          </div>
+        </div>
+
+        <div class="p-5 rounded-lg bg-surface-raised border border-border-hairline space-y-3">
+          <div class="font-mono text-xs text-primary font-bold flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">precision_manufacturing</span>
+            <span>OpenCode Agentic Workflows</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Interfaces with <strong>OpenCode</strong> to automate multi-agent task execution, enabling security tasks to run as background workers while preserving state and context across analysis sessions.
+          </p>
+          <div class="pt-2 font-mono text-[11px] text-outline">
+            Integration: OpenCode CLI / IDE, Background Tasks
+          </div>
+        </div>
+
+        <div class="p-5 rounded-lg bg-surface-raised border border-border-hairline space-y-3">
+          <div class="font-mono text-xs text-secondary font-bold flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">security</span>
+            <span>Kali Linux Security Tooling</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Executes on a dedicated <strong>Kali Linux</strong> environment, bridging local intelligence directly with native command-line forensic utilities and security inspection tools.
+          </p>
+          <div class="pt-2 font-mono text-[11px] text-outline">
+            OS: Kali Linux, Native Command-Line Forensics
+          </div>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-lg bg-canvas-base border border-border-hairline text-xs font-mono text-on-surface-variant flex flex-col sm:flex-row items-center justify-between gap-3">
+        <span>Implementation details and parser modules are documented at the project repository.</span>
+        <a href="https://github.com/mihrajmashoor8301-collab" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-bold flex items-center gap-1 shrink-0">
+          <span>View Source Repository</span>
+          <span class="material-symbols-outlined text-xs">open_in_new</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 7. SECURITY DESIGN -->
+    <section class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
+      <div class="flex items-center gap-2 font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">shield</span>
+        <span>SECURITY CONTROLS &amp; PRIVACY // 05</span>
+      </div>
+      <h2 class="text-2xl font-bold text-on-surface">Data Isolation &amp; Defensive Controls</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="font-mono text-xs text-primary font-bold flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">visibility_off</span>
+            <span>Telemetry Privacy</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Operational logs and system authentication details remain on localhost at all times; zero prompt data is transmitted to cloud endpoints.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="font-mono text-xs text-secondary font-bold flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">lock_open_right</span>
+            <span>Read-Only Ingestion</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Ingestion pipes operate with strictly read-only filesystem privileges, ensuring original system audit trails are never altered or damaged.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+          <div class="font-mono text-xs text-primary font-bold flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">rule</span>
+            <span>Safe Automation Boundaries</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Analysis and triage tasks operate within authorized workspace directories, restricting background script execution to designated sandbox paths.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. AI ARCHITECTURE -->
+    <section class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
+      <div class="flex items-center gap-2 font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">neurology</span>
+        <span>AI MODEL INTEGRATION // 06</span>
+      </div>
+      <h2 class="text-2xl font-bold text-on-surface">Local AI Model &amp; Context Pipeline</h2>
+
+      <div class="space-y-4 text-sm text-on-surface-variant leading-relaxed">
+        <p>
+          CyberAI leverages <strong>Qwen3-Coder 30B</strong> served locally through Ollama. The model's large context window and strong code and structured syntax comprehension make it well-suited for security log interpretation:
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+          <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+            <div class="font-mono text-xs text-primary font-bold">Sliding-Window Log Analysis</div>
+            <p class="text-xs text-on-surface-variant leading-relaxed">
+              Chunks continuous log streams into coherent temporal windows, allowing the model to detect coordinated activity distributed across multiple minutes or hours.
+            </p>
+          </div>
+          <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+            <div class="font-mono text-xs text-secondary font-bold">Contextual Threat Scoring</div>
+            <p class="text-xs text-on-surface-variant leading-relaxed">
+              Synthesizes raw anomalies into qualitative severity flags (e.g. low-frequency reconnaissance vs. active credential brute-forcing) with transparent reasoning traces.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. TESTING / VALIDATION -->
+    <section class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
+      <div class="flex items-center gap-2 font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">checklist</span>
+        <span>TESTING &amp; VALIDATION // 07</span>
+      </div>
+      <h2 class="text-2xl font-bold text-on-surface">Testing &amp; Telemetry Validation</h2>
+
+      <div class="space-y-4 text-sm text-on-surface-variant leading-relaxed">
+        <p>
+          The platform's log parsing and correlation modules are evaluated against synthetic and educational lab datasets:
+        </p>
+        <div class="p-4 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs space-y-2">
+          <div class="flex items-center justify-between text-primary font-bold">
+            <span class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-base">check_circle</span>
+              Synthetic &amp; Lab Telemetry Verification
+            </span>
+            <span class="text-outline">VERIFIED</span>
+          </div>
+          <p class="text-on-surface-variant">
+            Evaluated against simulated Linux authentication failure bursts, sudo privilege anomalies, and firewall connection drops to ensure accurate chronological reconstruction without dropped events.
+          </p>
+        </div>
+        <p class="text-xs text-outline font-mono">
+          Testing details, test event fixtures, and parser validation scripts are maintained in the project repository.
+        </p>
+      </div>
+    </section>
+
+    <!-- 10 & 11. CURRENT STATUS & FUTURE WORK -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Current Status -->
+      <div class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-primary/40 space-y-4">
+        <div class="flex items-center gap-2 font-mono text-xs text-primary">
+          <span class="material-symbols-outlined text-sm">sync</span>
+          <span>CURRENT STATUS // 08</span>
+        </div>
+        <h3 class="text-xl font-bold text-on-surface">Active Development</h3>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/40 bg-canvas-base font-mono text-xs text-primary font-bold">
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          <span>ACTIVE DEV // IN PROGRESS</span>
+        </div>
+        <p class="text-xs text-on-surface-variant leading-relaxed">
+          Core log parsing, timeline ordering, and local Qwen3-Coder inference integrations are operational. Work is currently progressing on streaming socket ingestion and deeper OpenCode automation hooks.
+        </p>
+      </div>
+
+      <!-- Future Work -->
+      <div class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-4">
+        <div class="flex items-center gap-2 font-mono text-xs text-secondary">
+          <span class="material-symbols-outlined text-sm">update</span>
+          <span>FUTURE ROADMAP // 09</span>
+        </div>
+        <h3 class="text-xl font-bold text-on-surface">Planned Improvements</h3>
+        <ul class="space-y-2 text-xs text-on-surface-variant font-mono">
+          <li class="flex items-start gap-2">
+            <span class="text-secondary font-bold">[Planned]</span>
+            <span>Real-time streaming ingestion via systemd-journald socket listeners.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-secondary font-bold">[Planned]</span>
+            <span>Automated Sigma rule matching integrated directly with local LLM threat correlation.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-secondary font-bold">[Planned]</span>
+            <span>Interactive timeline filtering UI rendered within the local OpenCode environment.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="pt-8 border-t border-border-hairline flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
+      <a href="autonomous-pentesting-agent.html" class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-sm">arrow_back</span>
+        <span>Previous: Autonomous Pentesting Agent</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <span class="text-outline">Next Case Study:</span>
+        <a href="opencode-persistent-memory.html" class="text-primary hover:underline font-bold flex items-center gap-1">
+          <span>OpenCode Persistent Memory</span>
+          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="mt-16 bg-surface-subtle border-t border-border-hairline py-8">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-outline">
+      <div>
+        <span>Mihraj Mashhoor K · Technical Engineering Portfolio</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="../index.html" class="hover:text-primary transition-colors">Portfolio</a>
+        <span>·</span>
+        <a href="../resume.html" class="hover:text-primary transition-colors">Resume</a>
+        <span>·</span>
+        <a href="../handbook/index.html" class="hover:text-primary transition-colors">Handbook</a>
+        <span>·</span>
+        <a href="https://github.com/mihrajmashoor8301-collab" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
