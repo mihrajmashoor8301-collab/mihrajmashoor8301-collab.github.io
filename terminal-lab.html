@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html class="scroll-smooth dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Interactive Linux &amp; Tools Terminal Lab | Mihraj Mashhoor K</title>
+  <meta content="Interactive cybersecurity terminal sandbox for practicing Linux system commands and offensive security tools (Nmap, Gobuster, Hydra, Metasploit, Hashcat, SUID hunting) with authentic simulated outputs." name="description"/>
+  <link rel="icon" type="image/png" href="logo2.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'canvas-base': '#090D12',
+            'surface-subtle': '#0E131B',
+            'surface-raised': '#151D28',
+            'border-hairline': '#1F2937',
+            'border-medium': '#2D3748',
+            'primary': '#4EDEA3',
+            'primary-container': '#10b981',
+            'secondary': '#4CD7F6',
+            'on-surface': '#F3F4F6',
+            'on-surface-variant': '#8692A6',
+            'outline': '#64748B',
+            'warning': '#F59E0B',
+            'danger-critical': '#F43F5E',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #090D12;
+      color: #F3F4F6;
+      font-family: 'Inter', sans-serif;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .telemetry-grid {
+      background-size: 32px 32px;
+      background-image:
+        linear-gradient(to right, rgba(31, 41, 55, 0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(31, 41, 55, 0.25) 1px, transparent 1px);
+    }
+    @keyframes pulse-fast {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .cursor-blink { animation: pulse-fast 1s infinite; }
+    
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090D12;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1F2937;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #4EDEA3;
+    }
+  </style>
+</head>
+<body class="bg-canvas-base text-on-surface antialiased telemetry-grid min-h-screen flex flex-col font-sans selection:bg-primary selection:text-canvas-base">
+
+  <!-- ========================================================================= -->
+  <!-- Top Navigation Bar                                                        -->
+  <!-- ========================================================================= -->
+  <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      
+      <!-- Brand & Status -->
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2 group">
+          <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+          <span class="font-mono text-sm font-bold tracking-wider text-on-surface group-hover:text-primary transition-colors">MIHRAJ.IO</span>
+          <span class="text-outline text-xs font-mono">/</span>
+          <span class="font-mono text-xs text-primary font-bold">TERMINAL LAB</span>
+        </a>
+        <span class="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded border border-primary/30 bg-canvas-base font-mono text-[10px] text-primary">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          <span>SANDBOX: READY</span>
+        </span>
+      </div>
+
+      <!-- Quick Nav Links -->
+      <nav class="hidden lg:flex items-center space-x-6 font-mono text-xs text-on-surface-variant">
+        <a href="index.html" class="hover:text-primary transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">home</span>
+          <span>Portfolio</span>
+        </a>
+        <a href="handbook/index.html" class="hover:text-primary transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">menu_book</span>
+          <span>Handbook</span>
+        </a>
+        <a href="resume.html" class="hover:text-primary transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">description</span>
+          <span>Resume</span>
+        </a>
+        <a href="certificates.html" class="hover:text-primary transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">verified</span>
+          <span>Credentials</span>
+        </a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button id="target-info-btn" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:text-secondary hover:border-secondary transition-colors" title="View Target Details">
+          <span class="material-symbols-outlined text-sm text-secondary">gps_fixed</span>
+          <span class="hidden sm:inline">10.10.110.45</span>
+        </button>
+        <button id="quick-cheatsheet-btn" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded border border-primary/40 bg-primary/10 font-mono text-xs text-primary hover:bg-primary hover:text-canvas-base transition-all font-bold cursor-pointer" title="View Quick Command Cheatsheet">
+          <span class="material-symbols-outlined text-sm">bolt</span>
+          <span>Cheatsheet</span>
+        </button>
+        <a href="index.html" class="inline-flex items-center gap-1 px-3 py-1.5 rounded border border-border-hairline bg-surface-subtle font-mono text-xs text-on-surface-variant hover:text-on-surface transition-colors">
+          <span class="material-symbols-outlined text-sm">arrow_back</span>
+          <span class="hidden sm:inline">Exit Lab</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- Context Banner                                                            -->
+  <!-- ========================================================================= -->
+  <div class="border-b border-border-hairline bg-canvas-base/80 px-4 sm:px-6 py-2.5">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-outline">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-sm text-primary">terminal</span>
+        <span class="text-on-surface font-semibold">Interactive Command Sandbox</span>
+        <span>·</span>
+        <span>Practice real Linux, Nmap, Gobuster, Hydra &amp; Metasploit commands with authentic simulated outputs.</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <span>Type <kbd class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline text-primary">help</kbd> or <kbd class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline text-primary">learn</kbd></span>
+        <span class="hidden sm:inline">Press <kbd class="px-1 rounded bg-surface-raised border border-border-hairline">TAB</kbd> to autocomplete</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- Main Dual-Pane Sandbox                                                    -->
+  <!-- ========================================================================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+    
+    <!-- LEFT COLUMN: Learning Modules & Practical Scenarios (5 Cols) -->
+    <div class="lg:col-span-5 space-y-4">
+      
+      <!-- Module Navigation Tabs -->
+      <div class="p-2 rounded-xl bg-surface-subtle border border-border-hairline">
+        <div class="font-mono text-[10px] text-outline px-2 py-1 uppercase tracking-wider">Select Learning Track:</div>
+        <div class="grid grid-cols-3 gap-1.5 mt-1 font-mono text-xs" id="track-tabs">
+          <button class="track-tab-btn active px-2.5 py-2 rounded-lg bg-primary/10 border border-primary/40 text-primary font-bold transition-all text-left flex items-center gap-1.5" data-track="linux">
+            <span class="material-symbols-outlined text-sm">terminal</span>
+            <span>Linux Core</span>
+          </button>
+          <button class="track-tab-btn px-2.5 py-2 rounded-lg bg-surface-raised border border-border-hairline text-on-surface-variant hover:text-primary transition-all text-left flex items-center gap-1.5" data-track="nmap">
+            <span class="material-symbols-outlined text-sm">radar</span>
+            <span>Nmap Recon</span>
+          </button>
+          <button class="track-tab-btn px-2.5 py-2 rounded-lg bg-surface-raised border border-border-hairline text-on-surface-variant hover:text-secondary transition-all text-left flex items-center gap-1.5" data-track="web">
+            <span class="material-symbols-outlined text-sm">language</span>
+            <span>Web Fuzzing</span>
+          </button>
+          <button class="track-tab-btn px-2.5 py-2 rounded-lg bg-surface-raised border border-border-hairline text-on-surface-variant hover:text-warning transition-all text-left flex items-center gap-1.5" data-track="passwords">
+            <span class="material-symbols-outlined text-sm">key</span>
+            <span>Passwords</span>
+          </button>
+          <button class="track-tab-btn px-2.5 py-2 rounded-lg bg-surface-raised border border-border-hairline text-on-surface-variant hover:text-primary transition-all text-left flex items-center gap-1.5" data-track="privesc">
+            <span class="material-symbols-outlined text-sm">shield</span>
+            <span>PrivEsc</span>
+          </button>
+          <button class="track-tab-btn px-2.5 py-2 rounded-lg bg-surface-raised border border-border-hairline text-on-surface-variant hover:text-danger-critical transition-all text-left flex items-center gap-1.5" data-track="metasploit">
+            <span class="material-symbols-outlined text-sm">bug_report</span>
+            <span>Metasploit</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Module Content Container -->
+      <div id="module-cards-container" class="space-y-3.5 max-h-[720px] overflow-y-auto pr-1">
+        <!-- Injected via JavaScript based on active track -->
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN: Full Interactive Terminal Workstation (7 Cols) -->
+    <div class="lg:col-span-7 flex flex-col h-[780px] rounded-2xl bg-surface-subtle border border-primary/50 shadow-[0_0_60px_rgba(78,222,163,0.15)] overflow-hidden font-mono text-xs">
+      
+      <!-- Terminal Window Bar -->
+      <div class="flex items-center justify-between px-4 py-2.5 bg-surface-raised border-b border-border-hairline select-none">
+        <div class="flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-danger-critical inline-block"></span>
+          <span class="w-3 h-3 rounded-full bg-warning inline-block"></span>
+          <span class="w-3 h-3 rounded-full bg-primary inline-block"></span>
+          <span class="text-on-surface text-xs font-bold ml-2 flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm text-primary">terminal</span>
+            <span>guest@sec-station:~/lab$ (Kali Linux 6.8)</span>
+          </span>
+        </div>
+        <div class="flex items-center gap-2 text-[11px]">
+          <button id="term-clear-btn" class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface-variant hover:text-primary hover:border-primary/40 transition-colors" title="Clear terminal screen">
+            Clear
+          </button>
+          <button id="term-copy-btn" class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface-variant hover:text-secondary hover:border-secondary/40 transition-colors" title="Copy terminal output">
+            Copy
+          </button>
+        </div>
+      </div>
+
+      <!-- Terminal Output Screen -->
+      <div id="lab-terminal-output" class="flex-1 overflow-y-auto p-4 space-y-2.5 text-on-surface-variant leading-relaxed bg-canvas-base/90">
+        <div class="text-primary font-bold">
+          ════════════════════════════════════════════════════════════════════════════════════<br/>
+          &nbsp;&nbsp;MIHRAJ MASHOOR K // INTERACTIVE CYBERSECURITY COMMAND &amp; LINUX SANDBOX<br/>
+          &nbsp;&nbsp;SCOPED LAB TARGET: 10.10.110.45 (starlight-web.lab) // ROLE: AUTHORIZED AUDITOR<br/>
+          ════════════════════════════════════════════════════════════════════════════════════
+        </div>
+        <div class="text-on-surface bg-surface-raised/60 p-3 rounded-lg border border-border-hairline text-[11px] space-y-1">
+          <div class="text-primary font-bold flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">school</span>
+            <span>PRACTITIONER LAB READY</span>
+          </div>
+          <div>• Select any command card on the left and click <span class="text-primary font-bold">[Run in Terminal ▶]</span> to execute it immediately.</div>
+          <div>• Or type Linux and tool commands directly in the prompt below (<kbd class="px-1 rounded bg-canvas-base border border-border-hairline text-secondary">nmap</kbd>, <kbd class="px-1 rounded bg-canvas-base border border-border-hairline text-secondary">gobuster</kbd>, <kbd class="px-1 rounded bg-canvas-base border border-border-hairline text-secondary">hydra</kbd>, <kbd class="px-1 rounded bg-canvas-base border border-border-hairline text-secondary">cat</kbd>, <kbd class="px-1 rounded bg-canvas-base border border-border-hairline text-secondary">find</kbd>).</div>
+          <div>• Type <span class="text-primary font-bold">help</span> or <span class="text-primary font-bold">learn</span> for guided instructions. Press <kbd class="px-1 rounded bg-canvas-base border border-border-hairline">TAB</kbd> to autocomplete.</div>
+        </div>
+      </div>
+
+      <!-- Terminal Input Line -->
+      <div class="flex items-center gap-2 px-4 py-3 bg-surface-raised border-t border-border-hairline">
+        <span class="text-primary font-bold select-none shrink-0 flex items-center gap-1">
+          <span>guest@sec-station:~/lab$</span>
+        </span>
+        <input id="lab-terminal-input" type="text" 
+               class="flex-1 bg-transparent border-0 outline-none text-on-surface font-mono text-xs focus:ring-0 focus:outline-none"
+               placeholder="Type a Linux or security tool command... (or click any lesson on the left)"
+               autocomplete="off" spellcheck="false" autofocus />
+      </div>
+
+      <!-- Terminal Footer Bar -->
+      <div class="px-4 py-1.5 bg-canvas-base border-t border-border-hairline flex items-center justify-between text-[10px] text-outline select-none">
+        <div class="flex items-center gap-3">
+          <span class="flex items-center gap-1 text-primary">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+            <span>STATUS: ACTIVE</span>
+          </span>
+          <span>TARGET: 10.10.110.45</span>
+          <span>SHELL: /bin/bash</span>
+        </div>
+        <div>
+          <span>HISTORY: <kbd class="px-1 rounded bg-surface-raised border border-border-hairline">↑↓</kbd> · AUTOCOMPLETE: <kbd class="px-1 rounded bg-surface-raised border border-border-hairline">TAB</kbd></span>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- Target Details Modal                                                      -->
+  <!-- ========================================================================= -->
+  <div id="target-modal" class="fixed inset-0 z-[120] hidden items-center justify-center p-4 bg-canvas-base/85 backdrop-blur-md">
+    <div class="w-full max-w-lg rounded-2xl bg-surface-subtle border border-secondary/40 shadow-2xl overflow-hidden font-mono text-xs">
+      <div class="px-4 py-3 bg-surface-raised border-b border-border-hairline flex items-center justify-between">
+        <div class="flex items-center gap-2 text-secondary font-bold">
+          <span class="material-symbols-outlined text-base">gps_fixed</span>
+          <span>AUTHORIZED LAB TARGET PROFILE</span>
+        </div>
+        <button id="close-target-modal-btn" class="p-1 rounded text-outline hover:text-on-surface">
+          <span class="material-symbols-outlined text-sm">close</span>
+        </button>
+      </div>
+      <div class="p-5 space-y-4">
+        <div class="space-y-1">
+          <div class="text-sm font-bold text-on-surface">Target: starlight-web.lab (10.10.110.45)</div>
+          <div class="text-secondary text-[11px]">Ubuntu Linux 22.04 LTS · Educational Scoped Target</div>
+        </div>
+        <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline space-y-2">
+          <div class="text-outline text-[11px] font-bold">IDENTIFIED EXPOSURE SURFACE:</div>
+          <div class="grid grid-cols-2 gap-2 text-[11px]">
+            <div>• Port 21: vsftpd 2.3.4 (Backdoor)</div>
+            <div>• Port 22: OpenSSH 8.9p1</div>
+            <div>• Port 80: Apache 2.4.52 (/admin)</div>
+            <div>• Port 445: Samba 4.15.5</div>
+            <div>• Port 3306: MySQL 8.0</div>
+            <div>• SUID: /usr/bin/find (Root PrivEsc)</div>
+          </div>
+        </div>
+        <div class="flex justify-end pt-2">
+          <button id="run-nmap-target-btn" class="px-3.5 py-1.5 rounded bg-primary text-canvas-base font-bold text-xs hover:bg-primary-container transition-all">
+            Scan This Target Now (nmap)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- Quick Cheatsheet Modal                                                    -->
+  <!-- ========================================================================= -->
+  <div id="cheatsheet-modal" class="fixed inset-0 z-[120] hidden items-center justify-center p-4 bg-canvas-base/85 backdrop-blur-md">
+    <div class="w-full max-w-2xl max-h-[85vh] rounded-2xl bg-surface-subtle border border-primary/40 shadow-2xl overflow-hidden font-mono text-xs flex flex-col">
+      <div class="px-4 py-3 bg-surface-raised border-b border-border-hairline flex items-center justify-between">
+        <div class="flex items-center gap-2 text-primary font-bold">
+          <span class="material-symbols-outlined text-base">bolt</span>
+          <span>ETHICAL HACKER RAPID COMMAND CHEATSHEET</span>
+        </div>
+        <button id="close-cheatsheet-modal-btn" class="p-1 rounded text-outline hover:text-on-surface">
+          <span class="material-symbols-outlined text-sm">close</span>
+        </button>
+      </div>
+      <div class="p-5 overflow-y-auto space-y-4">
+        <div>
+          <div class="text-secondary font-bold mb-1">Nmap Scanning &amp; Service Discovery:</div>
+          <div class="p-2.5 rounded bg-canvas-base border border-border-hairline space-y-1 text-[11px]">
+            <div><code class="text-primary font-bold">nmap -sS -sV 10.10.110.45</code> - Stealth SYN scan with version detection</div>
+            <div><code class="text-primary font-bold">nmap -sC -sV 10.10.110.45</code> - Run default security discovery scripts</div>
+            <div><code class="text-primary font-bold">nmap -p- 10.10.110.45</code> - Audit all 65,535 TCP ports</div>
+            <div><code class="text-primary font-bold">nmap --script vuln 10.10.110.45</code> - Scan for known CVE vulnerabilities</div>
+          </div>
+        </div>
+        <div>
+          <div class="text-primary font-bold mb-1">Linux Navigation &amp; Privilege Escalation:</div>
+          <div class="p-2.5 rounded bg-canvas-base border border-border-hairline space-y-1 text-[11px]">
+            <div><code class="text-secondary font-bold">ls -la</code> - List all files with owner permissions &amp; hidden items</div>
+            <div><code class="text-secondary font-bold">find / -perm -4000 2>/dev/null</code> - Hunt for SUID root privilege escalation binaries</div>
+            <div><code class="text-secondary font-bold">cat /etc/passwd</code> - Audit user accounts and default login shells</div>
+            <div><code class="text-secondary font-bold">sudo -l</code> - Inspect commands allowed to execute as root without password</div>
+          </div>
+        </div>
+        <div>
+          <div class="text-warning font-bold mb-1">Web Recon &amp; Password Cracking:</div>
+          <div class="p-2.5 rounded bg-canvas-base border border-border-hairline space-y-1 text-[11px]">
+            <div><code class="text-warning font-bold">gobuster dir -u http://10.10.110.45 -w wordlist.txt</code> - Directory brute-forcing</div>
+            <div><code class="text-warning font-bold">hydra -l admin -P wordlist.txt ssh://10.10.110.45</code> - Network service login cracking</div>
+            <div><code class="text-warning font-bold">hashcat -m 0 hashes.txt rockyou.txt</code> - GPU accelerated MD5 hash cracking</div>
+            <div><code class="text-warning font-bold">sqlmap -u "http://10.10.110.45/product.php?id=1" --dbs</code> - Automated SQL injection testing</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-border-hairline bg-canvas-base py-6 text-center text-xs font-mono text-outline">
+    <div class="max-w-7xl mx-auto px-4 space-y-1">
+      <div>© 2026 Mihraj Mashhoor K · Interactive Cybersecurity Learning Sandbox</div>
+      <div class="text-[11px] text-outline">All demonstrations and command simulations are conducted strictly in authorized educational environments.</div>
+    </div>
+  </footer>
+
+  <!-- Include Interactive System & Lab Script -->
+  <script src="portfolio-interactive.js"></script>
+  <script>
+    // =========================================================================
+    // LAB DATASET: CURATED PRACTICAL LESSONS BY TRACK
+    // =========================================================================
+    const LESSONS = {
+      linux: {
+        title: "Linux System & Core Inspection",
+        description: "Master essential Linux navigation, permission analysis, process inspection, and grep pipeline filters.",
+        cards: [
+          {
+            title: "List Directory with Full Permissions",
+            command: "ls -la",
+            flags: ["-l: Long listing format", "-a: Show hidden files (.dotfiles)"],
+            desc: "Displays file permissions (rwx), owners, file sizes, and timestamps to inspect local files in the target directory."
+          },
+          {
+            title: "Inspect System User Accounts",
+            command: "cat /etc/passwd",
+            flags: ["cat: Concatenate / read file", "/etc/passwd: System user database"],
+            desc: "Audits all accounts registered on the system. Useful for identifying non-standard users and login shells (e.g. /bin/bash vs /nologin)."
+          },
+          {
+            title: "Hunt for SUID Privilege Escalation Binaries",
+            command: "find / -perm -4000 2>/dev/null",
+            flags: ["-perm -4000: Match SUID bit", "2>/dev/null: Discard permission denied errors"],
+            desc: "Scans the entire filesystem for binaries that execute with root privileges. Misconfigured SUID binaries like 'find' can lead to instant root access."
+          },
+          {
+            title: "Check Sudo Privileges Without Password",
+            command: "sudo -l",
+            flags: ["-l: List privileges", "sudo: Superuser execution"],
+            desc: "Queries the sudoers file to identify which binaries the current user can execute as root without requiring a password."
+          },
+          {
+            title: "Grep Filter Engagement Notes for Passwords",
+            command: "grep -i \"pass\" notes.txt",
+            flags: ["-i: Case-insensitive search", "\"pass\": Search keyword", "notes.txt: Target file"],
+            desc: "Rapidly filters a file for strings matching 'pass', 'password', or credentials left behind by developers."
+          },
+          {
+            title: "Process Table & Background Daemons",
+            command: "ps aux",
+            flags: ["a: All users", "u: User format", "x: Include processes without controlling tty"],
+            desc: "Inspects all running system processes, active background services, database servers, and AI engines."
+          }
+        ]
+      },
+      nmap: {
+        title: "Nmap Network Discovery & Auditing",
+        description: "Learn how to probe network boundaries, discover open ports, fingerprint service versions, and identify vulnerabilities.",
+        cards: [
+          {
+            title: "Fast Stealth SYN & Service Version Scan",
+            command: "nmap -sS -sV 10.10.110.45",
+            flags: ["-sS: TCP SYN Stealth (half-open)", "-sV: Probe open ports for service version"],
+            desc: "The gold standard initial scan. Sends TCP SYN packets without completing the 3-way handshake, followed by version interrogation."
+          },
+          {
+            title: "Version Probes with Safe Default NSE Scripts",
+            command: "nmap -sC -sV 10.10.110.45",
+            flags: ["-sC: Execute default safe NSE scripts", "-sV: Service version detection"],
+            desc: "Runs Nmap's default scripts to detect anonymous FTP access, web titles, SSL certificates, and NetBIOS workgroup names."
+          },
+          {
+            title: "Full 65,535 TCP Port Discovery",
+            command: "nmap -p- 10.10.110.45",
+            flags: ["-p-: Scan all ports from 1 to 65535", "-T4: Aggressive timing speed"],
+            desc: "Audits every possible port to find non-standard backdoors, internal REST APIs, and secondary management consoles."
+          },
+          {
+            title: "Automated Known Vulnerability Scan",
+            command: "nmap --script vuln 10.10.110.45",
+            flags: ["--script vuln: Execute CVE vulnerability detection scripts"],
+            desc: "Runs vulnerability audit scripts against detected services to check for known public exploits and configuration flaws."
+          }
+        ]
+      },
+      web: {
+        title: "Web Reconnaissance & Endpoint Fuzzing",
+        description: "Enumerate hidden directories, administrative portals, and API endpoints using modern fuzzing tools.",
+        cards: [
+          {
+            title: "Directory Brute-Forcing with Gobuster",
+            command: "gobuster dir -u http://10.10.110.45 -w wordlist.txt",
+            flags: ["dir: Directory mode", "-u: Target URL", "-w: Wordlist path"],
+            desc: "Sends rapid HTTP requests matching words in wordlist.txt to uncover unlinked directories like /admin, /login, /uploads, and /api."
+          },
+          {
+            title: "Fast URL Endpoint Fuzzing with Ffuf",
+            command: "ffuf -u http://10.10.110.45/FUZZ -w wordlist.txt",
+            flags: ["-u: URL containing FUZZ keyword", "-w: Wordlist to substitute into FUZZ"],
+            desc: "High-speed Go-based fuzzer that replaces the FUZZ placeholder with wordlist entries, displaying HTTP response codes and size."
+          },
+          {
+            title: "Automated SQL Injection Detection (SQLMap)",
+            command: "sqlmap -u \"http://10.10.110.45/product.php?id=1\" --dbs",
+            flags: ["-u: Target endpoint with parameter", "--dbs: Enumerate DBMS databases"],
+            desc: "Tests the 'id' parameter for Boolean, Error, UNION, and Time-based SQL injections, then retrieves the backend database names."
+          },
+          {
+            title: "Dump Database Table Records with SQLMap",
+            command: "sqlmap -u \"http://10.10.110.45/product.php?id=1\" -D users_production -T accounts --dump",
+            flags: ["-D: Database name", "-T: Table name", "--dump: Extract all rows"],
+            desc: "Extracts user credentials, password hashes, and email records from the compromised database table."
+          }
+        ]
+      },
+      passwords: {
+        title: "Authentication & Password Auditing",
+        description: "Test password strength, execute controlled dictionary attacks, and crack cryptographic hashes.",
+        cards: [
+          {
+            title: "SSH Credential Brute-Force with Hydra",
+            command: "hydra -l admin -P wordlist.txt ssh://10.10.110.45",
+            flags: ["-l: Single target username", "-P: Wordlist of passwords", "ssh://: Protocol & target IP"],
+            desc: "Tests dictionary passwords against the target's SSH service until valid credentials (admin:Password123) are identified."
+          },
+          {
+            title: "GPU Accelerated MD5 Hash Cracking with Hashcat",
+            command: "hashcat -m 0 hashes.txt rockyou.txt",
+            flags: ["-m 0: MD5 hash mode", "hashes.txt: Hash list", "rockyou.txt: Dictionary file"],
+            desc: "Leverages compute cores to crack MD5 password hashes against standard security wordlists."
+          },
+          {
+            title: "Password Hash Cracking with John the Ripper",
+            command: "john --wordlist=wordlist.txt hashes.txt",
+            flags: ["--wordlist: Dictionary path", "hashes.txt: File containing password hashes"],
+            desc: "Auto-detects hash formats and attempts dictionary-based password recovery."
+          },
+          {
+            title: "Inspect Cracked Credentials in John",
+            command: "john --show hashes.txt",
+            flags: ["--show: Display previously cracked credentials database"],
+            desc: "Displays usernames paired with recovered cleartext passwords from previous cracking sessions."
+          }
+        ]
+      },
+      privesc: {
+        title: "Privilege Escalation Techniques",
+        description: "Identify privilege boundary weaknesses, misconfigured binaries, and sudo bypasses.",
+        cards: [
+          {
+            title: "SUID Binary Root Shell via Find",
+            command: "find . -exec /bin/sh -p \\; -quit",
+            flags: ["-exec: Run command on match", "/bin/sh -p: Preserve root SUID privileges", "-quit: Exit after 1st execution"],
+            desc: "When /usr/bin/find has the SUID bit set, executing /bin/sh -p through -exec spawns a shell retaining EUID=0 (root)."
+          },
+          {
+            title: "Check Sudoers Rules for Passwordless Commands",
+            command: "sudo -l",
+            flags: ["sudo -l: List permitted commands"],
+            desc: "Checks which binaries can be executed with elevated privileges without providing a password."
+          },
+          {
+            title: "Audit Unquoted Service Paths & Writable Directories",
+            command: "find / -writable -type d 2>/dev/null",
+            flags: ["-writable: World or group writable", "-type d: Directories only"],
+            desc: "Finds writable directories where custom binaries, scripts, or cronjob overwrites can be planted."
+          },
+          {
+            title: "Inspect Kernel & OS Release Architecture",
+            command: "uname -a",
+            flags: ["-a: Print all kernel & system architecture details"],
+            desc: "Identifies exact Linux kernel version to cross-reference against known kernel exploits (e.g. Dirty COW, PwnKit)."
+          }
+        ]
+      },
+      metasploit: {
+        title: "Metasploit Framework & Reverse Shells",
+        description: "Learn modular vulnerability verification, payload configuration, and remote command listeners.",
+        cards: [
+          {
+            title: "Search Exploit-DB for Known Vulnerabilities",
+            command: "searchsploit vsftpd 2.3.4",
+            flags: ["searchsploit: Offline Exploit-DB search utility"],
+            desc: "Queries local Exploit-DB archive for public exploit scripts matching the detected service version."
+          },
+          {
+            title: "Start Netcat Reverse Shell Listener",
+            command: "nc -lvnp 4444",
+            flags: ["-l: Listen mode", "-v: Verbose output", "-n: Numeric IP only", "-p: Target listening port"],
+            desc: "Opens a TCP listening port on your security station to catch incoming reverse shells spawned from target payloads."
+          },
+          {
+            title: "Launch Metasploit Framework Console",
+            command: "msfconsole",
+            flags: ["msfconsole: Interactive exploitation console interface"],
+            desc: "Launches the industry-standard penetration testing framework shell with module searching and payload dispatch."
+          },
+          {
+            title: "Banner Grabbing on Service Port",
+            command: "nc 10.10.110.45 21",
+            flags: ["21: FTP port"],
+            desc: "Connects raw TCP socket to port 21 to inspect the service greeting banner and verify software versions manually."
+          }
+        ]
+      }
+    };
+
+    // =========================================================================
+    // DYNAMIC LESSON RENDERING
+    // =========================================================================
+    const cardsContainer = document.getElementById('module-cards-container');
+    const trackTabs = document.querySelectorAll('.track-tab-btn');
+
+    function renderTrack(trackKey) {
+      const data = LESSONS[trackKey] || LESSONS.linux;
+      
+      let html = `
+        <div class="p-3.5 rounded-xl bg-canvas-base border border-border-hairline space-y-1">
+          <div class="text-primary font-bold text-xs flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">auto_stories</span>
+            <span>${data.title}</span>
+          </div>
+          <div class="text-[11px] text-outline leading-relaxed">${data.description}</div>
+        </div>
+      `;
+
+      data.cards.forEach((card, idx) => {
+        html += `
+          <div class="p-3.5 rounded-xl bg-surface-subtle border border-border-hairline hover:border-primary/40 transition-all space-y-2.5 group">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-xs font-bold text-on-surface group-hover:text-primary transition-colors truncate">
+                ${card.title}
+              </span>
+              <button class="run-cmd-btn px-2.5 py-1 rounded bg-primary/10 border border-primary/40 hover:bg-primary hover:text-canvas-base text-primary font-mono text-[10px] font-bold transition-all shrink-0 flex items-center gap-1 cursor-pointer"
+                      data-cmd="${card.command}">
+                <span>Run</span>
+                <span class="material-symbols-outlined text-xs">play_arrow</span>
+              </button>
+            </div>
+            
+            <div class="p-2 rounded bg-canvas-base border border-border-hairline font-mono text-[11px] text-primary flex items-center justify-between gap-2 select-all">
+              <span class="truncate">${card.command}</span>
+              <button class="copy-small-btn text-outline hover:text-on-surface transition-colors" title="Copy Command" data-copy="${card.command}">
+                <span class="material-symbols-outlined text-xs">content_copy</span>
+              </button>
+            </div>
+
+            <div class="text-[11px] text-outline leading-relaxed">
+              ${card.desc}
+            </div>
+
+            <div class="flex flex-wrap gap-1 font-mono text-[9px]">
+              ${card.flags.map(f => `<span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface-variant">${f}</span>`).join('')}
+            </div>
+          </div>
+        `;
+      });
+
+      cardsContainer.innerHTML = html;
+
+      // Attach click listeners to "Run" buttons
+      cardsContainer.querySelectorAll('.run-cmd-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const cmd = btn.getAttribute('data-cmd');
+          executeInLabTerminal(cmd);
+        });
+      });
+
+      // Attach copy listeners
+      cardsContainer.querySelectorAll('.copy-small-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const text = btn.getAttribute('data-copy');
+          navigator.clipboard.writeText(text);
+          if (window.showToast) window.showToast('Command copied: ' + text, 'success');
+        });
+      });
+    }
+
+    trackTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        trackTabs.forEach(t => {
+          t.classList.remove('active', 'bg-primary/10', 'border-primary/40', 'text-primary', 'font-bold');
+          t.classList.add('bg-surface-raised', 'border-border-hairline', 'text-on-surface-variant');
+        });
+        tab.classList.add('active', 'bg-primary/10', 'border-primary/40', 'text-primary', 'font-bold');
+        tab.classList.remove('bg-surface-raised', 'border-border-hairline', 'text-on-surface-variant');
+
+        renderTrack(tab.getAttribute('data-track'));
+      });
+    });
+
+    // Initial render
+    renderTrack('linux');
+
+    // =========================================================================
+    // DEDICATED LAB TERMINAL WORKSTATION LOGIC
+    // =========================================================================
+    const labInput = document.getElementById('lab-terminal-input');
+    const labOutput = document.getElementById('lab-terminal-output');
+    const clearBtn = document.getElementById('term-clear-btn');
+    const copyBtn = document.getElementById('term-copy-btn');
+
+    let labHistory = [];
+    let labHistoryIdx = -1;
+
+    function appendLabOutput(html) {
+      const line = document.createElement('div');
+      line.innerHTML = html;
+      labOutput.appendChild(line);
+      labOutput.scrollTop = labOutput.scrollHeight;
+    }
+
+    function executeInLabTerminal(cmdRaw) {
+      const cmd = cmdRaw.trim();
+      if (!cmd) return;
+      labHistory.push(cmd);
+      labHistoryIdx = labHistory.length;
+
+      if (cmd.toLowerCase() === 'clear' || cmd.toLowerCase() === 'cls') {
+        labOutput.innerHTML = '';
+        labInput.value = '';
+        return;
+      }
+
+      // Print prompt echo
+      appendLabOutput(`<div class="flex items-center gap-2 mt-2"><span class="text-primary font-bold">guest@sec-station:~/lab$</span> <span class="text-on-surface">${escapeHtml(cmd)}</span></div>`);
+
+      // Delegate command through global interactive command engine if available
+      if (window.cyberCommandEngine && window.cyberCommandEngine.run) {
+        const responseHtml = window.cyberCommandEngine.run(cmd);
+        if (responseHtml) {
+          appendLabOutput(responseHtml);
+        }
+      }
+
+      labInput.value = '';
+      labOutput.scrollTop = labOutput.scrollHeight;
+    }
+
+    const LAB_AUTOCOMPLETE = [
+      'help', 'learn', 'targets', 'cheatsheet', 'whoami', 'skills', 'projects', 'tryhackme', 'cat resume',
+      'ls', 'pwd', 'cd', 'cat', 'grep', 'find', 'chmod', 'ps', 'uname', 'ifconfig', 'df', 'free', 'history',
+      'nmap', 'gobuster', 'ffuf', 'hydra', 'hashcat', 'john', 'sqlmap', 'nc', 'searchsploit', 'msfconsole',
+      'matrix', 'theme', 'uptime', 'date', 'sudo', 'echo', 'clear', 'exit'
+    ];
+
+    // Connect Enter, Tab and History keys
+    labInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        executeInLabTerminal(labInput.value);
+      } else if (e.key === 'Tab') {
+        e.preventDefault();
+        const current = labInput.value.trim().toLowerCase();
+        if (!current) return;
+        const matches = LAB_AUTOCOMPLETE.filter(c => c.startsWith(current));
+        if (matches.length === 1) {
+          labInput.value = matches[0] + (matches[0] === 'cat resume' ? '' : ' ');
+        } else if (matches.length > 1) {
+          appendLabOutput(`<div class="text-outline text-[11px] my-1">${matches.join('&nbsp;&nbsp;&nbsp;&nbsp;')}</div>`);
+          let prefix = current;
+          while (true) {
+            const nextChar = matches[0][prefix.length];
+            if (!nextChar || !matches.every(m => m[prefix.length] === nextChar)) break;
+            prefix += nextChar;
+          }
+          labInput.value = prefix;
+        }
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (labHistory.length > 0 && labHistoryIdx > 0) {
+          labHistoryIdx--;
+          labInput.value = labHistory[labHistoryIdx] || '';
+        }
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (labHistoryIdx < labHistory.length - 1) {
+          labHistoryIdx++;
+          labInput.value = labHistory[labHistoryIdx] || '';
+        } else {
+          labHistoryIdx = labHistory.length;
+          labInput.value = '';
+        }
+      }
+    });
+
+    // Clear and Copy buttons
+    clearBtn.addEventListener('click', () => {
+      labOutput.innerHTML = `
+        <div class="text-outline text-xs">Terminal buffer cleared. Ready for commands.</div>
+      `;
+    });
+
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(labOutput.innerText);
+      if (window.showToast) window.showToast('Terminal output copied to clipboard', 'success');
+    });
+
+    // Modals
+    const targetModal = document.getElementById('target-modal');
+    const targetBtn = document.getElementById('target-info-btn');
+    const closeTargetBtn = document.getElementById('close-target-modal-btn');
+    const runNmapTargetBtn = document.getElementById('run-nmap-target-btn');
+
+    targetBtn.addEventListener('click', () => targetModal.classList.remove('hidden'));
+    closeTargetBtn.addEventListener('click', () => targetModal.classList.add('hidden'));
+    targetModal.addEventListener('click', (e) => { if (e.target === targetModal) targetModal.classList.add('hidden'); });
+
+    runNmapTargetBtn.addEventListener('click', () => {
+      targetModal.classList.add('hidden');
+      executeInLabTerminal('nmap -sS -sV 10.10.110.45');
+    });
+
+    const cheatsheetModal = document.getElementById('cheatsheet-modal');
+    const cheatsheetBtn = document.getElementById('quick-cheatsheet-btn');
+    const closeCheatsheetBtn = document.getElementById('close-cheatsheet-modal-btn');
+
+    cheatsheetBtn.addEventListener('click', () => cheatsheetModal.classList.remove('hidden'));
+    closeCheatsheetBtn.addEventListener('click', () => cheatsheetModal.classList.add('hidden'));
+    cheatsheetModal.addEventListener('click', (e) => { if (e.target === cheatsheetModal) cheatsheetModal.classList.add('hidden'); });
+
+    // Focus input on body click if not selecting text
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        targetModal.classList.add('hidden');
+        cheatsheetModal.classList.add('hidden');
+      }
+    });
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/[&<>"']/g, m => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      })[m]);
+    }
+  </script>
+
+</body>
+</html>
