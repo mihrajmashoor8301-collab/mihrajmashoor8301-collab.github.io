@@ -38,6 +38,7 @@
   const SEARCH_ITEMS = [
     // Practice Lab
     { title: 'Interactive Terminal Lab', type: 'SANDBOX', url: root + 'terminal-lab.html', desc: 'Interactive Linux & cybersecurity tools learning simulator with simulated outputs', keywords: 'terminal lab linux sandbox practice nmap hydra gobuster sqlmap metasploit fake outputs learn practice' },
+    { title: 'Cybersecurity Learning Roadmap', type: 'SANDBOX', url: root + 'terminal-lab.html#roadmap', desc: 'Guided 6-stage penetration testing methodology from host inspection to root privilege escalation', keywords: 'roadmap methodology pentesting stages curriculum progress nmap privesc' },
 
     // Case Studies
     { title: 'OpenCode Persistent Memory', type: 'CASE STUDY', url: root + 'projects/opencode-persistent-memory.html', desc: 'SQLite-authoritative local persistent memory & dual-engine retrieval for OpenCode', keywords: 'memory opencode sqlite chroma ollama local ai gemma nomic vector source verified' },
@@ -126,7 +127,8 @@
 
     container.appendChild(toast);
 
-    requestAnimationFrame(() => {
+    const raf = typeof requestAnimationFrame === 'function' ? requestAnimationFrame : (cb) => setTimeout(cb, 16);
+    raf(() => {
       toast.style.transform = 'translateY(0)';
       toast.style.opacity = '1';
     });
@@ -210,17 +212,19 @@
     document.body.appendChild(dock);
 
     const topBtn = document.getElementById('scroll-to-top-btn');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        topBtn.style.display = 'flex';
-      } else {
-        topBtn.style.display = 'none';
-      }
-    }, { passive: true });
+    if (topBtn) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          topBtn.style.display = 'flex';
+        } else {
+          topBtn.style.display = 'none';
+        }
+      }, { passive: true });
 
-    topBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+      topBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
   }
 
   // =========================================================================
@@ -311,6 +315,74 @@ HOME_URL="https://www.kali.org/"`
         // =====================================================================
         // GUIDED LEARNING & CHEATSHEETS
         // =====================================================================
+        case 'roadmap':
+        case 'methodology':
+        case 'stages': {
+          return `
+            <div class="p-3 rounded bg-canvas-base border border-primary/40 space-y-2 text-xs">
+              <div class="text-primary font-bold flex items-center justify-between">
+                <span class="flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-sm">route</span>
+                  <span>STRUCTURED 6-STAGE PENETRATION TESTING ROADMAP</span>
+                </span>
+                <span class="px-2 py-0.5 rounded bg-primary/20 text-primary text-[10px] font-bold">GUIDED LAB</span>
+              </div>
+              <div class="text-outline text-[11px]">Systematic offensive security methodology implemented in the Terminal Lab:</div>
+              <div class="space-y-1.5 text-[11px] font-mono">
+                <div class="p-2 rounded bg-surface-raised border border-border-hairline">
+                  <div class="flex items-center justify-between text-primary font-bold">
+                    <span>STAGE 01: Host Discovery &amp; Environment Inspection</span>
+                    <span class="px-1.5 py-0.2 bg-primary/20 rounded text-[9px]">STEP 1/6</span>
+                  </div>
+                  <div class="text-outline text-[10px]">Audit local users, default login shells, and sensitive configuration.</div>
+                  <div class="text-on-surface mt-1">Command: <code class="text-primary font-bold">cat /etc/passwd</code></div>
+                </div>
+                <div class="p-2 rounded bg-surface-raised border border-border-hairline">
+                  <div class="flex items-center justify-between text-secondary font-bold">
+                    <span>STAGE 02: Network Scoping &amp; Service Interrogation</span>
+                    <span class="px-1.5 py-0.2 bg-secondary/20 rounded text-[9px]">STEP 2/6</span>
+                  </div>
+                  <div class="text-outline text-[10px]">Identify active IP targets and fingerprint listening daemon software versions.</div>
+                  <div class="text-on-surface mt-1">Command: <code class="text-secondary font-bold">nmap -sS -sV 10.10.110.45</code></div>
+                </div>
+                <div class="p-2 rounded bg-surface-raised border border-border-hairline">
+                  <div class="flex items-center justify-between text-warning font-bold">
+                    <span>STAGE 03: Vulnerability &amp; Exploit Assessment</span>
+                    <span class="px-1.5 py-0.2 bg-warning/20 rounded text-[9px]">STEP 3/6</span>
+                  </div>
+                  <div class="text-outline text-[10px]">Query CVE databases and run automated vulnerability interrogation scripts.</div>
+                  <div class="text-on-surface mt-1">Command: <code class="text-warning font-bold">nmap --script vuln 10.10.110.45</code></div>
+                </div>
+                <div class="p-2 rounded bg-surface-raised border border-border-hairline">
+                  <div class="flex items-center justify-between text-secondary font-bold">
+                    <span>STAGE 04: Web Directory Fuzzing &amp; SQL Injection</span>
+                    <span class="px-1.5 py-0.2 bg-secondary/20 rounded text-[9px]">STEP 4/6</span>
+                  </div>
+                  <div class="text-outline text-[10px]">Discover hidden administrative portals and probe GET parameters for SQLi.</div>
+                  <div class="text-on-surface mt-1">Command: <code class="text-secondary font-bold">gobuster dir -u http://10.10.110.45 -w wordlist.txt</code></div>
+                </div>
+                <div class="p-2 rounded bg-surface-raised border border-border-hairline">
+                  <div class="flex items-center justify-between text-primary font-bold">
+                    <span>STAGE 05: Authentication Auditing &amp; Hash Cracking</span>
+                    <span class="px-1.5 py-0.2 bg-primary/20 rounded text-[9px]">STEP 5/6</span>
+                  </div>
+                  <div class="text-outline text-[10px]">Conduct targeted dictionary attacks and recover password hashes.</div>
+                  <div class="text-on-surface mt-1">Command: <code class="text-primary font-bold">hydra -l admin -P wordlist.txt ssh://10.10.110.45</code></div>
+                </div>
+                <div class="p-2 rounded bg-surface-raised border border-border-hairline">
+                  <div class="flex items-center justify-between text-danger-critical font-bold">
+                    <span>STAGE 06: Privilege Escalation &amp; Root Acquisition</span>
+                    <span class="px-1.5 py-0.2 bg-danger-critical/20 rounded text-[9px]">STEP 6/6</span>
+                  </div>
+                  <div class="text-outline text-[10px]">Abuse misconfigured SUID binaries or sudoers to achieve root EUID=0.</div>
+                  <div class="text-on-surface mt-1">Command: <code class="text-danger-critical font-bold">find . -exec /bin/sh -p \\; -quit</code></div>
+                </div>
+              </div>
+              <div class="text-outline text-[10px]">Tip: Visit <a href="${root}terminal-lab.html" class="text-primary underline font-bold">terminal-lab.html</a> for the full curriculum with live stage completion tracking and expected output previews!</div>
+            </div>
+          `;
+        }
+
         case 'learn':
         case 'tutorial':
         case 'guide':
@@ -1172,6 +1244,7 @@ PORT      STATE SERVICE
             <div class="space-y-2 text-xs">
               <div class="text-outline font-bold">Available Sandbox Commands:</div>
               <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-on-surface font-mono text-[11px]">
+                <div><span class="text-primary font-bold">roadmap</span> - 6-stage guided methodology</div>
                 <div><span class="text-primary font-bold">learn</span> - Interactive training modules</div>
                 <div><span class="text-secondary font-bold">targets</span> - Scoped lab machines</div>
                 <div><span class="text-primary font-bold">cheatsheet</span> - Quick flag references</div>
@@ -1478,7 +1551,7 @@ PORT      STATE SERVICE
     let matrixCanvas = null;
 
     const AUTOCOMPLETE_COMMANDS = [
-      'help', 'learn', 'targets', 'cheatsheet', 'whoami', 'skills', 'projects', 'tryhackme', 'cat resume',
+      'help', 'roadmap', 'learn', 'targets', 'cheatsheet', 'whoami', 'skills', 'projects', 'tryhackme', 'cat resume',
       'ls', 'pwd', 'cd', 'cat', 'grep', 'find', 'chmod', 'ps', 'uname', 'ifconfig', 'df', 'free', 'history',
       'nmap', 'gobuster', 'ffuf', 'hydra', 'hashcat', 'john', 'sqlmap', 'nc', 'searchsploit', 'msfconsole',
       'matrix', 'theme', 'uptime', 'date', 'sudo', 'echo', 'clear', 'exit'
