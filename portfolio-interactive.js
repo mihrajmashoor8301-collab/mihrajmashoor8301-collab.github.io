@@ -255,7 +255,7 @@
               </span>
             </div>
             <div class="flex items-center gap-2 text-[10px] text-outline">
-              <span>Press <kbd class="px-1 rounded bg-canvas-base border border-border-hairline">`</kbd> or <kbd class="px-1 rounded bg-canvas-base border border-border-hairline">ESC</kbd> to exit</span>
+              <span>Press <kbd class="px-1 rounded bg-canvas-base border border-border-hairline">~</kbd> or <kbd class="px-1 rounded bg-canvas-base border border-border-hairline">ESC</kbd> to exit</span>
             </div>
           </div>
           <!-- Terminal Output Screen -->
@@ -429,7 +429,10 @@
     function openTerminal() {
       termModal.classList.remove('hidden');
       termModal.classList.add('flex');
-      setTimeout(() => termInput.focus(), 50);
+      setTimeout(() => {
+        termInput.focus();
+        termOutput.scrollTop = termOutput.scrollHeight;
+      }, 50);
     }
 
     function closeTerminal() {
@@ -437,13 +440,22 @@
       termModal.classList.add('hidden');
     }
 
-    closeBtn?.addEventListener('click', closeTerminal);
+    closeBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeTerminal();
+    });
+
     termModal.addEventListener('click', (e) => {
-      if (e.target === termModal) closeTerminal();
+      if (e.target === termModal) {
+        closeTerminal();
+      } else {
+        termInput.focus();
+      }
     });
 
     termInput.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
+        e.preventDefault();
         handleCommand(termInput.value);
         termInput.value = '';
       } else if (e.key === 'ArrowUp') {
@@ -462,27 +474,31 @@
           termInput.value = '';
         }
       } else if (e.key === 'Escape') {
+        e.preventDefault();
         closeTerminal();
       }
     });
 
-    // Toggle shortcut with backtick key (`)
+    // Toggle shortcut with backtick (`) or tilde (~)
     window.addEventListener('keydown', (e) => {
-      if (e.key === '`' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+      if ((e.key === '`' || e.key === '~') && (document.activeElement !== termInput && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA')) {
         e.preventDefault();
         termModal.classList.contains('hidden') ? openTerminal() : closeTerminal();
+      } else if (e.key === 'Escape' && !termModal.classList.contains('hidden')) {
+        closeTerminal();
       }
     });
 
     window.openTerminal = openTerminal;
     window.closeTerminal = closeTerminal;
 
-    // Attach to any element with data-trigger-term
-    document.querySelectorAll('[data-trigger-term]').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+    // Document-level event delegation for terminal triggers
+    document.addEventListener('click', (e) => {
+      const termBtn = e.target.closest('[data-trigger-term]');
+      if (termBtn) {
         e.preventDefault();
         openTerminal();
-      });
+      }
     });
   }
 
