@@ -129,6 +129,13 @@
 
       <!-- Action Buttons -->
       <div class="flex items-center gap-2 action-buttons">
+        <button data-trigger-cmd class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded border border-border-hairline bg-surface-subtle font-mono text-xs text-on-surface-variant hover:text-primary hover:border-primary/40 transition-colors cursor-pointer" title="Search Portfolio (Cmd+K)">
+          <span class="material-symbols-outlined text-sm text-primary">search</span>
+          <span class="hidden md:inline text-[11px] text-outline">⌘K</span>
+        </button>
+        <button data-trigger-term class="hidden sm:inline-flex items-center gap-1 px-2 py-1.5 rounded border border-primary/30 bg-canvas-base font-mono text-xs text-primary hover:bg-primary/10 transition-colors cursor-pointer" title="Launch Interactive Terminal (`)">
+          <span class="material-symbols-outlined text-sm text-primary">terminal</span>
+        </button>
         <button onclick="window.print()" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-border-hairline bg-surface-subtle font-mono text-xs text-on-surface-variant hover:text-primary hover:border-primary/40 transition-colors" title="Print Web Resume">
           <span class="material-symbols-outlined text-sm">print</span>
           <span>Print</span>
@@ -921,5 +928,6 @@
       });
     });
   </script>
+  <script src="portfolio-interactive.js"></script>
 </body>
 </html>

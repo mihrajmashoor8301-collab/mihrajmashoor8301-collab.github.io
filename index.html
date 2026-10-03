@@ -16,7 +16,48 @@
 <meta content="Mihraj Mashhoor K | Cybersecurity Portfolio" name="twitter:title"/>
 <meta content="Cybersecurity Student | TryHackMe Top 2% Globally (140+ Rooms Completed) | Google Cybersecurity Professional Certificate" name="twitter:description"/>
 <meta content="https://endlessus.in/cover.png" name="twitter:image"/>
-<link href="logo2.png" rel="icon"/>
+<!-- Structured Data (JSON-LD) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://endlessus.in/#person",
+      "name": "Mihraj Mashhoor K",
+      "url": "https://endlessus.in",
+      "image": "https://endlessus.in/dp4.jpeg",
+      "jobTitle": "Offensive Security Researcher & Cybersecurity Student",
+      "description": "B.Tech Cybersecurity Student | TryHackMe Top 2% Globally | Google Cybersecurity Professional Certificate | Offensive Security & Local AI Research.",
+      "sameAs": [
+        "https://github.com/mihrajmashoor8301-collab",
+        "https://tryhackme.com/p/mihrajmashoor8301"
+      ],
+      "knowsAbout": [
+        "Penetration Testing",
+        "Offensive Security",
+        "Vulnerability Assessment",
+        "Network Security",
+        "Web Application Security",
+        "Local AI & Multi-Agent Systems",
+        "Python",
+        "Linux",
+        "Metasploit",
+        "Nmap"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://endlessus.in/#website",
+      "url": "https://endlessus.in",
+      "name": "Mihraj Mashhoor K · Cybersecurity Engineering Portfolio",
+      "author": {
+        "@id": "https://endlessus.in/#person"
+      }
+    }
+  ]
+}
+</script>
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -103,7 +144,15 @@
 <a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#certifications">Certifications</a>
 <a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#roadmap">Roadmap</a>
 </nav>
-<div class="flex items-center space-x-3">
+<div class="flex items-center space-x-2 sm:space-x-3">
+<button data-trigger-cmd class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:text-primary hover:border-primary transition-colors cursor-pointer" title="Search Portfolio (Cmd+K or /)">
+<span class="material-symbols-outlined text-sm text-primary">search</span>
+<span class="hidden lg:inline text-[11px] text-outline">⌘K</span>
+</button>
+<button data-trigger-term class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded border border-primary/40 bg-canvas-base font-mono text-xs text-primary hover:bg-primary/10 transition-colors cursor-pointer" title="Open Interactive Terminal (`)">
+<span class="material-symbols-outlined text-sm text-primary">terminal</span>
+<span class="hidden sm:inline text-[11px] font-bold">Terminal</span>
+</button>
 <a class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-border-hairline bg-surface-subtle font-mono text-xs text-on-surface hover:border-secondary hover:text-secondary transition-colors" href="#contact">
 <span class="material-symbols-outlined text-sm">alternate_email</span>
 <span>Contact</span>
@@ -112,8 +161,8 @@
 <span class="material-symbols-outlined text-sm">description</span>
 <span>Resume</span>
 </a>
-<a class="p-1.5 rounded border border-border-hairline text-on-surface-variant hover:text-primary hover:border-primary transition-colors flex items-center justify-center" href="https://github.com/mihrajmashoor8301-collab" rel="noopener noreferrer" target="_blank" title="Terminal Mode / GitHub">
-<span class="material-symbols-outlined text-lg">terminal</span>
+<a class="p-1.5 rounded border border-border-hairline text-on-surface-variant hover:text-primary hover:border-primary transition-colors flex items-center justify-center" href="https://github.com/mihrajmashoor8301-collab" rel="noopener noreferrer" target="_blank" title="GitHub Profile">
+<span class="material-symbols-outlined text-lg">code</span>
 </a>
 <button aria-label="Toggle Mobile Navigation" class="md:hidden p-1.5 rounded border border-border-hairline text-on-surface-variant hover:text-primary hover:border-primary transition-colors flex items-center justify-center" id="mobile-menu-btn">
 <span class="material-symbols-outlined text-xl" id="menu-icon">menu</span>
@@ -122,6 +171,16 @@
 </div>
 <!-- Mobile Navigation Drawer -->
 <div class="hidden md:hidden bg-surface-subtle/95 backdrop-blur-xl border-b border-border-hairline px-6 py-4 space-y-3 font-mono text-xs tracking-wider shadow-2xl" id="mobile-menu">
+<div class="flex items-center gap-2 pb-2 border-b border-border-hairline/60">
+<button data-trigger-cmd class="flex-1 inline-flex items-center justify-center gap-1.5 py-2 rounded bg-surface-raised border border-border-hairline text-on-surface hover:text-primary text-xs">
+<span class="material-symbols-outlined text-sm text-primary">search</span>
+<span>Search (⌘K)</span>
+</button>
+<button data-trigger-term class="flex-1 inline-flex items-center justify-center gap-1.5 py-2 rounded bg-canvas-base border border-primary/40 text-primary font-bold text-xs">
+<span class="material-symbols-outlined text-sm">terminal</span>
+<span>Terminal (`)</span>
+</button>
+</div>
 <a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="#about">About</a>
 <a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="#achievements">Achievements</a>
 <a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="#skills">Skills</a>
@@ -1656,4 +1715,5 @@
     });
   }
 </script>
+<script src="portfolio-interactive.js"></script>
 </body></html>

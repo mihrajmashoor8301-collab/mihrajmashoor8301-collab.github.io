@@ -88,6 +88,10 @@
         </span>
       </a>
       <div class="flex items-center gap-3">
+        <button data-trigger-cmd class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:text-primary hover:border-primary transition-colors cursor-pointer" title="Search Portfolio (Cmd+K)">
+          <span class="material-symbols-outlined text-sm text-primary">search</span>
+          <span class="hidden md:inline text-[11px] text-outline">⌘K</span>
+        </button>
         <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-outline">
           <span class="material-symbols-outlined text-sm">inventory_2</span>
           <span>Repository — Coming Soon</span>
@@ -113,6 +117,16 @@
         <span class="material-symbols-outlined text-xs text-primary">verified</span>
         <span>SOURCE VERIFIED · LOCAL REPOSITORY INSPECTED</span>
       </div>
+    </div>
+    <!-- Quick In-Page Jump Bar -->
+    <div class="flex flex-wrap items-center gap-2 py-2 font-mono text-[11px] text-outline border-b border-border-hairline/40">
+      <span class="text-primary font-bold">INDEX:</span>
+      <a href="#overview" class="px-2 py-0.5 rounded bg-surface-subtle border border-border-hairline hover:text-primary hover:border-primary/40 transition-colors">Overview</a>
+      <a href="#architecture" class="px-2 py-0.5 rounded bg-surface-subtle border border-border-hairline hover:text-primary hover:border-primary/40 transition-colors">Architecture</a>
+      <a href="#workflow" class="px-2 py-0.5 rounded bg-surface-subtle border border-border-hairline hover:text-primary hover:border-primary/40 transition-colors">Workflow</a>
+      <a href="#implementation" class="px-2 py-0.5 rounded bg-surface-subtle border border-border-hairline hover:text-primary hover:border-primary/40 transition-colors">Implementation</a>
+      <a href="#security" class="px-2 py-0.5 rounded bg-surface-subtle border border-border-hairline hover:text-primary hover:border-primary/40 transition-colors">Security</a>
+      <a href="#validation" class="px-2 py-0.5 rounded bg-surface-subtle border border-border-hairline hover:text-primary hover:border-primary/40 transition-colors">Testing</a>
     </div>
   </div>
 
@@ -215,7 +229,7 @@
     </div>
 
     <!-- 2. WHAT IS THIS PROJECT? -->
-    <section class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
+    <section id="overview" class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
       <div class="flex items-center gap-2 font-mono text-xs text-primary">
         <span class="material-symbols-outlined text-sm">info</span>
         <span>OVERVIEW &amp; PROBLEM STATEMENT // 01</span>
@@ -1337,5 +1351,6 @@ memory_id = cursor.lastrowid
     </div>
   </footer>
 
+  <script src="../portfolio-interactive.js"></script>
 </body>
 </html>

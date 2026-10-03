@@ -175,6 +175,10 @@
 <div class="callout callout-warning">
   <b>Scope First:</b> Scanning unauthorized networks or external IP addresses without prior written authorization is illegal. Run scans exclusively against your personal home lab, local virtual machines, or authorized platforms such as TryHackMe.
 </div>
+<div class="callout" style="border-left: 3px solid var(--accent, #4edea3); background: rgba(78, 222, 163, 0.05); padding: 0.85rem 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem; font-family: var(--font-mono); font-size: 0.8rem;">
+  <span style="color: var(--accent, #4edea3); font-weight: bold;">⚡ Project Case Study:</span> See how Nmap host sweeps, port discovery, and NSE script audits are autonomously orchestrated inside the
+  <a href="../projects/autonomous-pentesting-agent.html" style="color: var(--accent, #4edea3); font-weight: bold; text-decoration: underline;">Autonomous Pentesting Agent Case Study &rarr;</a>
+</div>
 
 <h2 id="concepts">Core Concepts</h2>
 <p>Nmap determines port states by analyzing transport layer responses (TCP SYN/ACK, RST, or ICMP unreachable errors):</p>
@@ -305,5 +309,6 @@ $ nmap --version</pre>
 </footer>
 
 <script src="assets/handbook.js"></script>
+<script src="../portfolio-interactive.js"></script>
 </body>
 </html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>404: Target Not Found | Mihraj Mashhoor K</title>
+  <meta content="404 Error: The requested security resource or document could not be located on this server." name="description"/>
+  <link rel="icon" type="image/png" href="logo2.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "canvas-base": "#090D12",
+            "surface-subtle": "#0E131B",
+            "surface-raised": "#151D28",
+            "border-hairline": "#1F2937",
+            "on-surface": "#F3F4F6",
+            "on-surface-variant": "#8692A6",
+            "outline": "#64748B",
+            "primary": "#4EDEA3",
+            "secondary": "#4CD7F6",
+            "danger-critical": "#F43F5E"
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #090D12;
+      color: #F3F4F6;
+      font-family: 'Inter', sans-serif;
+    }
+    .telemetry-grid {
+      background-size: 32px 32px;
+      background-image:
+        linear-gradient(to right, rgba(31, 41, 55, 0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(31, 41, 55, 0.25) 1px, transparent 1px);
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body class="bg-canvas-base text-on-surface antialiased telemetry-grid min-h-screen flex flex-col justify-between font-sans selection:bg-danger-critical selection:text-canvas-base">
+
+  <!-- Header -->
+  <header class="p-6 border-b border-border-hairline bg-surface-subtle/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="index.html" class="font-mono text-sm font-bold flex items-center gap-2 text-on-surface hover:text-primary transition-colors">
+        <span class="material-symbols-outlined text-primary text-xl">terminal</span>
+        <span>Mihraj Mashhoor K</span>
+        <span class="hidden sm:inline-flex px-2 py-0.5 rounded border border-danger-critical/30 bg-canvas-base font-mono text-[10px] text-danger-critical">
+          HTTP 404
+        </span>
+      </a>
+      <a href="index.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface hover:text-primary hover:border-primary transition-colors">
+        <span class="material-symbols-outlined text-sm">home</span>
+        <span>Return to Mainframe</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- 404 Main Terminal -->
+  <main class="max-w-2xl mx-auto px-6 py-12 w-full">
+    <div class="p-6 sm:p-8 rounded-2xl bg-surface-subtle border border-danger-critical/40 shadow-[0_0_30px_rgba(244,63,94,0.1)] space-y-6">
+      <div class="flex items-center justify-between border-b border-border-hairline pb-4">
+        <div class="flex items-center gap-2 font-mono text-xs text-danger-critical font-bold">
+          <span class="w-2.5 h-2.5 rounded-full bg-danger-critical animate-ping"></span>
+          <span>SEGFAULT: TARGET_NOT_FOUND</span>
+        </div>
+        <span class="font-mono text-[11px] text-outline">PORT: 443 // TCP_RST</span>
+      </div>
+
+      <div class="font-mono text-xs text-on-surface-variant space-y-2 bg-canvas-base p-4 rounded-xl border border-border-hairline">
+        <div class="text-outline">$ curl -I https://endlessus.in/unknown_route</div>
+        <div class="text-danger-critical">HTTP/2 404 Not Found</div>
+        <div class="text-on-surface">server: cloudflare-pages</div>
+        <div class="text-on-surface">content-type: text/html; charset=UTF-8</div>
+        <div class="text-outline"># Diagnosis: The endpoint you requested does not exist or has been migrated.</div>
+      </div>
+
+      <div class="space-y-2">
+        <h1 class="text-2xl sm:text-3xl font-black text-on-surface font-mono">
+          404: Object Unreachable
+        </h1>
+        <p class="text-sm text-on-surface-variant leading-relaxed">
+          The requested memory address, case study, or tool reference could not be found. You may have typed an incorrect URL or followed a broken external link.
+        </p>
+      </div>
+
+      <div class="pt-4 border-t border-border-hairline flex flex-wrap items-center gap-3">
+        <a href="index.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-canvas-base font-mono text-xs font-bold hover:bg-primary-container transition-all shadow-[0_0_12px_rgba(78,222,163,0.25)]">
+          <span class="material-symbols-outlined text-sm">home</span>
+          <span>Go to Home Page</span>
+        </a>
+        <a href="resume.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface hover:text-primary hover:border-primary transition-colors">
+          <span class="material-symbols-outlined text-sm">description</span>
+          <span>View Resume</span>
+        </a>
+        <a href="index.html#projects" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-raised border border-border-hairline font-mono text-xs text-secondary hover:border-secondary transition-colors">
+          <span class="material-symbols-outlined text-sm">schema</span>
+          <span>Case Studies</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="p-6 border-t border-border-hairline bg-surface-subtle font-mono text-xs text-outline text-center">
+    <span>Mihraj Mashhoor K · Cybersecurity &amp; Local AI Research</span>
+  </footer>
+
+</body>
+</html>

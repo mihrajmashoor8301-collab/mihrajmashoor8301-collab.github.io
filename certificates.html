@@ -106,7 +106,14 @@
       </nav>
 
       <!-- Action Buttons -->
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button data-trigger-cmd class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded border border-border-hairline bg-surface-subtle font-mono text-xs text-on-surface-variant hover:text-primary hover:border-primary/40 transition-colors cursor-pointer" title="Search Portfolio (Cmd+K)">
+          <span class="material-symbols-outlined text-sm text-primary">search</span>
+          <span class="hidden md:inline text-[11px] text-outline">⌘K</span>
+        </button>
+        <button data-trigger-term class="hidden sm:inline-flex items-center gap-1 px-2 py-1.5 rounded border border-primary/30 bg-canvas-base font-mono text-xs text-primary hover:bg-primary/10 transition-colors cursor-pointer" title="Launch Interactive Terminal (`)">
+          <span class="material-symbols-outlined text-sm text-primary">terminal</span>
+        </button>
         <a href="CV_2026_UPDATED.pdf" download="CV_2026_UPDATED.pdf" class="hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-primary-container text-canvas-base font-mono text-xs font-bold hover:bg-primary transition-all shadow-[0_0_12px_rgba(16,185,129,0.25)]">
           <span class="material-symbols-outlined text-sm">download</span>
           <span>Download CV</span>
@@ -648,6 +655,6 @@
       });
     });
   </script>
-
+  <script src="portfolio-interactive.js"></script>
 </body>
 </html>
