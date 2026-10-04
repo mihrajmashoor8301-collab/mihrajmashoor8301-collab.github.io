@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html class="scroll-smooth dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Cybersecurity Toolkit, Tool Database &amp; Nmap Builder | Mihraj Mashhoor K</title>
+  <meta content="Interactive in-browser cybersecurity toolkit with 13 client-side tools (JWT, CIDR, Base64, Hash ID, CSP), educational tool encyclopedia for 20 essential tools, and an interactive Nmap command builder." name="description"/>
+  <link rel="icon" type="image/png" href="logo2.png"/>
+  <link rel="canonical" href="https://endlessus.in/tools.html"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Cybersecurity Toolkit, Tool Database &amp; Nmap Builder | Mihraj Mashhoor K"/>
+  <meta property="og:description" content="13 zero-telemetry client-side security tools, 20 educational tool manuals, and an interactive Nmap command generator."/>
+  <meta property="og:image" content="https://endlessus.in/cover.png"/>
+  <meta property="og:url" content="https://endlessus.in/tools.html"/>
+  <meta property="og:type" content="website"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'canvas-base': '#090D12',
+            'surface-subtle': '#0E131B',
+            'surface-raised': '#151D28',
+            'surface-container': '#122131',
+            'border-hairline': '#1F2937',
+            'border-medium': '#2D3748',
+            'primary': '#4EDEA3',
+            'primary-container': '#10b981',
+            'secondary': '#4CD7F6',
+            'on-surface': '#F3F4F6',
+            'on-surface-variant': '#8692A6',
+            'outline': '#64748B',
+            'warning': '#F59E0B',
+            'danger-critical': '#F43F5E',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #090D12; color: #F3F4F6; font-family: 'Inter', sans-serif; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; vertical-align: middle; line-height: 1; }
+    .telemetry-grid {
+      background-size: 32px 32px;
+      background-image:
+        linear-gradient(to right, rgba(31, 41, 55, 0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(31, 41, 55, 0.25) 1px, transparent 1px);
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #090D12; }
+    ::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #4EDEA3; }
+    .tab-btn.active {
+      border-color: #4EDEA3;
+      background-color: rgba(78, 222, 163, 0.1);
+      color: #4EDEA3;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body class="bg-canvas-base text-on-surface antialiased telemetry-grid min-h-screen flex flex-col font-sans selection:bg-primary selection:text-canvas-base">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2 group">
+          <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+          <span class="font-mono text-sm font-bold tracking-wider text-on-surface group-hover:text-primary transition-colors">MIHRAJ.IO</span>
+          <span class="text-outline text-xs font-mono">/</span>
+          <span class="font-mono text-xs text-primary font-bold">TOOLKIT &amp; DB</span>
+        </a>
+        <span class="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded border border-primary/30 bg-canvas-base font-mono text-[10px] text-primary">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          <span>100% LOCAL EXECUTION · ZERO TELEMETRY</span>
+        </span>
+      </div>
+
+      <nav class="hidden xl:flex items-center space-x-5 font-mono text-xs text-on-surface-variant">
+        <a href="index.html" class="hover:text-primary transition-colors">Portfolio</a>
+        <a href="learning.html" class="hover:text-primary transition-colors">Learning</a>
+        <a href="labs.html" class="hover:text-primary transition-colors">Labs</a>
+        <a href="tools.html" class="text-primary font-bold border-b border-primary pb-0.5">Toolkit &amp; DB</a>
+        <a href="methodology.html" class="hover:text-primary transition-colors">Methodology</a>
+        <a href="roadmap.html" class="hover:text-primary transition-colors">Roadmap</a>
+        <a href="glossary.html" class="hover:text-primary transition-colors">Glossary</a>
+        <a href="payloads.html" class="text-danger-critical hover:text-primary transition-colors">Payloads</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button data-trigger-cmd class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:text-primary hover:border-primary transition-colors cursor-pointer" title="Search Everything (Cmd+K)">
+          <span class="material-symbols-outlined text-sm text-primary">search</span>
+          <span class="hidden sm:inline text-[11px] text-outline">⌘K</span>
+        </button>
+        <button data-trigger-term class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded border border-primary/40 bg-canvas-base font-mono text-xs text-primary hover:bg-primary/10 transition-colors cursor-pointer" title="Terminal (~)">
+          <span class="material-symbols-outlined text-sm text-primary">terminal</span>
+          <span class="hidden sm:inline text-[11px] font-bold">CLI</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 py-10 w-full space-y-10">
+
+    <!-- Header / Banner -->
+    <div class="space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-surface-subtle font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">build</span>
+        <span>BROWSER-SIDE SECURITY SUITE &amp; TOOL ENCYCLOPEDIA</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black text-on-surface tracking-tight font-mono">
+        Interactive Security <span class="text-primary">Toolkit &amp; DB</span>
+      </h1>
+      <p class="text-sm sm:text-base text-on-surface-variant max-w-3xl leading-relaxed">
+        A triple-layer cybersecurity engineering workspace: 13 instant in-browser analytical utilities (100% processed locally without uploading sensitive data), an interactive educational Nmap command builder with live flag explanations, and a reference manual for 20 essential security tools.
+      </p>
+
+      <!-- Main Navigation Tabs -->
+      <div class="flex flex-wrap gap-2 pt-2 border-b border-border-hairline pb-4 font-mono text-xs">
+        <button data-target="tab-browser-tools" class="tab-btn active px-4 py-2 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-2">
+          <span class="material-symbols-outlined text-base">terminal</span>
+          <span>1. In-Browser Security Tools (13)</span>
+        </button>
+        <button data-target="tab-nmap-builder" class="tab-btn px-4 py-2 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-2" id="nmap-builder">
+          <span class="material-symbols-outlined text-base">tune</span>
+          <span>2. Interactive Nmap Command Builder</span>
+        </button>
+        <button data-target="tab-tool-db" class="tab-btn px-4 py-2 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-2" id="tool-db">
+          <span class="material-symbols-outlined text-base">library_books</span>
+          <span>3. Security Tool Database (20)</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 1: IN-BROWSER SECURITY TOOLS                                          -->
+    <!-- ========================================================================= -->
+    <section id="tab-browser-tools" class="tab-content space-y-8">
+      
+      <div class="p-3 rounded-lg border border-primary/30 bg-canvas-base flex items-center gap-2 font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-base">security</span>
+        <span>Zero-Telemetry Guarantee: All inputs (Base64, JWT, Hashes, Headers) are processed strictly within your local browser DOM.</span>
+      </div>
+
+      <!-- Quick Tool Selector Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2 font-mono text-xs">
+        <a href="#tool-base64" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">Base64</a>
+        <a href="#tool-url" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">URL Encode</a>
+        <a href="#jwt-tool" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">JWT Inspector</a>
+        <a href="#tool-hash" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">Hash Identifier</a>
+        <a href="#cidr-calc" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">CIDR Calculator</a>
+        <a href="#tool-headers" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">HTTP Headers</a>
+        <a href="#csp-tool" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">CSP Analyzer</a>
+        <a href="#tool-entropy" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">Password Entropy</a>
+        <a href="#tool-regex" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">Regex Tester</a>
+        <a href="#tool-json" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">JSON Formatter</a>
+        <a href="#tool-html" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">HTML Entities</a>
+        <a href="#tool-epoch" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">Timestamp / Epoch</a>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <!-- 1. BASE64 ENCODER / DECODER -->
+        <div class="p-5 rounded-xl border border-border-hairline bg-surface-subtle space-y-4" id="tool-base64">
+          <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-xl">code</span>
+              <h3 class="font-mono text-sm font-bold text-on-surface">1. Base64 Encoder / Decoder</h3>
+            </div>
+            <span class="text-[10px] font-mono text-outline">Standard &amp; URL-safe</span>
+          </div>
+          <div class="space-y-2">
+            <label class="font-mono text-xs text-outline">Input String:</label>
+            <textarea id="b64-input" rows="3" class="w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface placeholder:text-outline focus:outline-none focus:border-primary" placeholder="Enter plaintext or Base64 string..."></textarea>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button id="b64-btn-encode" class="px-3 py-1.5 rounded bg-primary-container text-canvas-base font-mono text-xs font-bold hover:bg-primary transition-all">Encode</button>
+            <button id="b64-btn-decode" class="px-3 py-1.5 rounded bg-surface-raised border border-border-hairline text-on-surface font-mono text-xs hover:border-primary transition-all">Decode</button>
+            <button id="b64-btn-clear" class="px-3 py-1.5 rounded bg-canvas-base border border-border-hairline text-outline font-mono text-xs hover:text-on-surface transition-all">Clear</button>
+          </div>
+          <div class="space-y-1">
+            <label class="font-mono text-xs text-outline">Result:</label>
+            <textarea id="b64-output" rows="3" readonly class="w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-primary focus:outline-none"></textarea>
+          </div>
+        </div>
+
+        <!-- 2. URL ENCODER / DECODER -->
+        <div class="p-5 rounded-xl border border-border-hairline bg-surface-subtle space-y-4" id="tool-url">
+          <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-secondary text-xl">link</span>
+              <h3 class="font-mono text-sm font-bold text-on-surface">2. URL / URI Encoder / Decoder</h3>
+            </div>
+            <span class="text-[10px] font-mono text-outline">Percent-Encoding</span>
+          </div>
+          <div class="space-y-2">
+            <label class="font-mono text-xs text-outline">URL / Query Parameter:</label>
+            <textarea id="url-input" rows="3" class="w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface placeholder:text-outline focus:outline-none focus:border-secondary" placeholder="e.g. admin' OR '1'='1 -- or https://target.local/?q=test"></textarea>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button id="url-btn-encode" class="px-3 py-1.5 rounded bg-secondary text-canvas-base font-mono text-xs font-bold hover:opacity-90 transition-all">Encode (encodeURIComponent)</button>
+            <button id="url-btn-decode" class="px-3 py-1.5 rounded bg-surface-raised border border-border-hairline text-on-surface font-mono text-xs hover:border-secondary transition-all">Decode</button>
+          </div>
+          <div class="space-y-1">
+            <label class="font-mono text-xs text-outline">Result:</label>
+            <textarea id="url-output" rows="3" readonly class="w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-secondary focus:outline-none"></textarea>
+          </div>
+        </div>
+
+        <!-- 3. JWT INSPECTOR -->
+        <div class="p-5 rounded-xl border border-border-hairline bg-surface-subtle space-y-4 lg:col-span-2" id="jwt-tool">
+          <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-xl">badge</span>
+              <h3 class="font-mono text-sm font-bold text-on-surface">3. JWT Inspector &amp; Claims Analyzer</h3>
+            </div>
+            <span class="text-[10px] font-mono text-primary border border-primary/30 px-2 py-0.5 rounded bg-canvas-base">Local Token Parser</span>
+          </div>
+          <div class="space-y-2">
+            <label class="font-mono text-xs text-outline">Paste Encoded JWT (Header.Payload.Signature):</label>
+            <textarea id="jwt-input" rows="2" class="w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface placeholder:text-outline focus:outline-none focus:border-primary" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFkbWluIFVzZXIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE1MTYyMzkwMjIsImV4cCI6MTk5OTk5OTk5OX0.signature"></textarea>
+          </div>
+          <div class="flex gap-2">
+            <button id="jwt-btn-parse" class="px-3 py-1.5 rounded bg-primary-container text-canvas-base font-mono text-xs font-bold hover:bg-primary transition-all">Parse JWT</button>
+            <button id="jwt-btn-sample" class="px-3 py-1.5 rounded bg-surface-raised border border-border-hairline text-on-surface font-mono text-xs hover:border-primary transition-all">Load Sample</button>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+            <div class="space-y-1">
+              <div class="font-mono text-xs text-secondary font-bold flex items-center justify-between">
+                <span>HEADER: Algorithm &amp; Type</span>
+                <span id="jwt-alg-badge" class="text-[10px] text-outline"></span>
+              </div>
+              <pre id="jwt-header-out" class="p-3 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-secondary overflow-x-auto min-h-[120px]">{ }</pre>
+            </div>
+            <div class="space-y-1">
+              <div class="font-mono text-xs text-primary font-bold flex items-center justify-between">
+                <span>PAYLOAD: Claims &amp; Timestamps</span>
+                <span id="jwt-exp-badge" class="text-[10px] text-outline"></span>
+              </div>
+              <pre id="jwt-payload-out" class="p-3 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-primary overflow-x-auto min-h-[120px]">{ }</pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. HASH IDENTIFIER -->
+        <div class="p-5 rounded-xl border border-border-hairline bg-surface-subtle space-y-4" id="tool-hash">
+          <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-warning text-xl">fingerprint</span>
+              <h3 class="font-mono text-sm font-bold text-on-surface">4. Cryptographic Hash Identifier</h3>
+            </div>
+            <span class="text-[10px] font-mono text-outline">Length &amp; Format Heuristics</span>
+          </div>
+          <div class="space-y-2">
+            <label class="font-mono text-xs text-outline">Paste Mystery Hash:</label>
+            <input id="hash-input" type="text" class="w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface placeholder:text-outline focus:outline-none focus:border-warning" placeholder="e.g. 5d41402abc4b2a76b9719d911017c592 or $2y$12$..."/>
+          </div>
+          <button id="hash-btn-analyze" class="px-3 py-1.5 rounded bg-warning text-canvas-base font-mono text-xs font-bold hover:opacity-90 transition-all">Identify Hash</button>
+          <div id="hash-result" class="p-3 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface space-y-1.5 min-h-[80px]">
+            <span class="text-outline">Results will appear here...</span>
+          </div>
+        </div>
+
+        <!-- 5. CIDR & SUBNET CALCULATOR -->
+        <div class="p-5 rounded-xl border border-border-hairline bg-surface-subtle space-y-4" id="cidr-calc">
+          <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-secondary text-xl">calculate</span>
+              <h3 class="font-mono text-sm font-bold text-on-surface">5. CIDR &amp; IPv4 Subnet Calculator</h3>
+            </div>
+            <span class="text-[10px] font-mono text-outline">RFC 4632</span>
+          </div>
+          <div class="space-y-2">
+            <label class="font-mono text-xs text-outline">IP Address &amp; CIDR (e.g. 192.168.1.100/24):</label>
+            <div class="flex gap-2">
+              <input id="cidr-input" type="text" value="10.10.110.45/24" class="flex-1 p-2.5 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface focus:outline-none focus:border-secondary"/>
+              <button id="cidr-btn-calc" class="px-4 py-2 rounded bg-secondary text-canvas-base font-mono text-xs font-bold hover:opacity-90 transition-all">Calculate</button>
+            </div>
+          </div>
+          <div id="cidr-results" class="grid grid-cols-2 gap-2 p-3 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs">
+            <div><span class="text-outline">Network:</span> <strong id="res-net" class="text-secondary">-</strong></div>
+            <div><span class="text-outline">Netmask:</span> <strong id="res-mask" class="text-on-surface">-</strong></div>
+            <div><span class="text-outline">Broadcast:</span> <strong id="res-broad" class="text-secondary">-</strong></div>
+            <div><span class="text-outline">Usable Hosts:</span> <strong id="res-hosts" class="text-primary">-</strong></div>
+            <div class="col-span-2"><span class="text-outline">Usable Range:</span> <span id="res-range" class="text-on-surface font-bold">-</span></div>
+          </div>
+        </div>
+
+        <!-- 6. HTTP SECURITY HEADER ANALYZER -->
+        <div class="p-5 rounded-xl border border-border-hairline bg-surface-subtle space-y-4" id="tool-headers">
+          <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-xl">rule</span>
+              <h3 class="font-mono text-sm font-bold text-on-surface">6. HTTP Security Header Evaluator</h3>
+            </div>
+            <span class="text-[10px] font-mono text-outline">Defense Audit</span>
+          </div>
+          <div class="space-y-2">
+            <label class="font-mono text-xs text-outline">Paste Response Headers:</label>
+            <textarea id="hdr-input" rows="4" class="w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface placeholder:text-outline focus:outline-none focus:border-primary" placeholder="HTTP/2 200 OK&#10;strict-transport-security: max-age=31536000&#10;x-frame-options: DENY&#10;x-content-type-options: nosniff"></textarea>
+          </div>
+          <button id="hdr-btn-audit" class="px-3 py-1.5 rounded bg-primary-container text-canvas-base font-mono text-xs font-bold hover:bg-primary transition-all">Evaluate Headers</button>
+          <div id="hdr-results" class="p-3 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs space-y-1.5 min-h-[90px]">
+            <span class="text-outline">Paste headers and click Evaluate...</span>
+          </div>
+        </div>
+
+        <!-- 7. CSP ANALYZER -->
+        <div class="p-5 rounded-xl border border-border-hairline bg-surface-subtle space-y-4" id="csp-tool">
+          <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-danger-critical text-xl">shield</span>
+              <h3 class="font-mono text-sm font-bold text-on-surface">7. CSP (Content Security Policy) Audit</h3>
+            </div>
+            <span class="text-[10px] font-mono text-outline">Directives &amp; Bypasses</span>
+          </div>
+          <div class="space-y-2">
+            <label class="font-mono text-xs text-outline">Paste Content-Security-Policy string:</label>
+            <input id="csp-input" type="text" value="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.example.com; object-src 'none';" class="w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface focus:outline-none focus:border-danger-critical"/>
+          </div>
+          <button id="csp-btn-audit" class="px-3 py-1.5 rounded bg-danger-critical text-canvas-base font-mono text-xs font-bold hover:opacity-90 transition-all">Analyze Directives</button>
+          <div id="csp-results" class="p-3 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs space-y-1.5 min-h-[90px]">
+            <span class="text-outline">Results will appear here...</span>
+          </div>
+        </div>
+
+        <!-- 8. PASSWORD ENTROPY ESTIMATOR -->
+        <div class="p-5 rounded-xl border border-border-hairline bg-surface-subtle space-y-4" id="tool-entropy">
+          <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-xl">password</span>
+              <h3 class="font-mono text-sm font-bold text-on-surface">8. Password Entropy &amp; Crack Time</h3>
+            </div>
+            <span class="text-[10px] font-mono text-outline">Shannon Entropy</span>
+          </div>
+          <div class="space-y-2">
+            <label class="font-mono text-xs text-outline">Test Password (Processed in Browser):</label>
+            <input id="ent-input" type="text" placeholder="Type a password to test resistance..." class="w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface focus:outline-none focus:border-primary"/>
+          </div>
+          <div id="ent-results" class="grid grid-cols-2 gap-2 p-3 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs">
+            <div><span class="text-outline">Bits of Entropy:</span> <strong id="ent-bits" class="text-primary">-</strong></div>
+            <div><span class="text-outline">Character Pool:</span> <strong id="ent-pool" class="text-on-surface">-</strong></div>
+            <div class="col-span-2"><span class="text-outline">Offline GPU Hashcat Estimate:</span> <strong id="ent-time" class="text-secondary">-</strong></div>
+          </div>
+        </div>
+
+        <!-- 9. REGEX TESTER -->
+        <div class="p-5 rounded-xl border border-border-hairline bg-surface-subtle space-y-4" id="tool-regex">
+          <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-secondary text-xl">regular_expression</span>
+              <h3 class="font-mono text-sm font-bold text-on-surface">9. Regular Expression Tester</h3>
+            </div>
+            <span class="text-[10px] font-mono text-outline">JS Engine</span>
+          </div>
+          <div class="space-y-2">
+            <div class="flex gap-2">
+              <input id="reg-pattern" type="text" placeholder="Pattern (e.g. \b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b)" class="flex-1 p-2 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface focus:outline-none focus:border-secondary"/>
+              <input id="reg-flags" type="text" value="g" placeholder="flags" class="w-16 p-2 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-secondary text-center focus:outline-none focus:border-secondary"/>
+            </div>
+            <textarea id="reg-text" rows="3" class="w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface focus:outline-none focus:border-secondary" placeholder="Test string to match against..."></textarea>
+          </div>
+          <div class="space-y-1">
+            <span class="font-mono text-xs text-outline">Matches:</span>
+            <div id="reg-matches" class="p-3 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-secondary min-h-[50px]">0 matches</div>
+          </div>
+        </div>
+
+        <!-- 10. JSON FORMATTER & VALIDATOR -->
+        <div class="p-5 rounded-xl border border-border-hairline bg-surface-subtle space-y-4" id="tool-json">
+          <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-warning text-xl">data_object</span>
+              <h3 class="font-mono text-sm font-bold text-on-surface">10. JSON Formatter &amp; Linter</h3>
+            </div>
+            <span class="text-[10px] font-mono text-outline">Pretty / Minify</span>
+          </div>
+          <textarea id="json-input" rows="4" class="w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface focus:outline-none focus:border-warning" placeholder='{"status":"active","ports":[80,443],"target":"lab.local"}'></textarea>
+          <div class="flex gap-2">
+            <button id="json-btn-format" class="px-3 py-1.5 rounded bg-warning text-canvas-base font-mono text-xs font-bold hover:opacity-90 transition-all">Format (2 Spaces)</button>
+            <button id="json-btn-minify" class="px-3 py-1.5 rounded bg-surface-raised border border-border-hairline text-on-surface font-mono text-xs hover:border-warning transition-all">Minify</button>
+          </div>
+          <div id="json-status" class="font-mono text-xs text-outline">Status: Ready</div>
+        </div>
+
+        <!-- 11. HTML ENTITY ENCODER / DECODER -->
+        <div class="p-5 rounded-xl border border-border-hairline bg-surface-subtle space-y-4" id="tool-html">
+          <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-xl">html</span>
+              <h3 class="font-mono text-sm font-bold text-on-surface">11. HTML Entity Sanitizer &amp; Decoder</h3>
+            </div>
+            <span class="text-[10px] font-mono text-outline">Anti-XSS Escaping</span>
+          </div>
+          <textarea id="html-input" rows="3" class="w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface focus:outline-none focus:border-primary" placeholder="<script>alert('XSS')</script> & &quot;quotes&quot;"></textarea>
+          <div class="flex gap-2">
+            <button id="html-btn-encode" class="px-3 py-1.5 rounded bg-primary-container text-canvas-base font-mono text-xs font-bold hover:bg-primary transition-all">HTML Entity Escape</button>
+            <button id="html-btn-decode" class="px-3 py-1.5 rounded bg-surface-raised border border-border-hairline text-on-surface font-mono text-xs hover:border-primary transition-all">Unescape / Decode</button>
+          </div>
+          <textarea id="html-output" rows="2" readonly class="w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-primary focus:outline-none"></textarea>
+        </div>
+
+        <!-- 12. EPOCH TIMESTAMP CONVERTER & USER-AGENT -->
+        <div class="p-5 rounded-xl border border-border-hairline bg-surface-subtle space-y-4" id="tool-epoch">
+          <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-secondary text-xl">schedule</span>
+              <h3 class="font-mono text-sm font-bold text-on-surface">12. UNIX Epoch Timestamp &amp; 13. UA Parser</h3>
+            </div>
+            <span class="text-[10px] font-mono text-outline">Forensics</span>
+          </div>
+          <div class="space-y-2">
+            <div class="flex gap-2">
+              <input id="epoch-input" type="text" placeholder="Unix Epoch (e.g. 1700000000)" class="flex-1 p-2 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface focus:outline-none focus:border-secondary"/>
+              <button id="epoch-btn-now" class="px-3 py-1.5 rounded bg-surface-raised border border-border-hairline text-xs font-mono hover:text-secondary">Current Time</button>
+              <button id="epoch-btn-conv" class="px-3 py-1.5 rounded bg-secondary text-canvas-base font-mono text-xs font-bold">Convert</button>
+            </div>
+            <div id="epoch-result" class="p-2.5 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-secondary">UTC: - | Local: -</div>
+          </div>
+          <div class="pt-2 border-t border-border-hairline/60 space-y-1">
+            <span class="font-mono text-xs text-outline">Your Browser User-Agent String:</span>
+            <div id="ua-display" class="p-2.5 rounded-lg bg-canvas-base border border-border-hairline font-mono text-[11px] text-on-surface-variant break-all"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 2: INTERACTIVE NMAP COMMAND BUILDER                                   -->
+    <!-- ========================================================================= -->
+    <section id="tab-nmap-builder" class="tab-content hidden space-y-8">
+      
+      <!-- Warning Banner -->
+      <div class="p-4 rounded-xl border border-warning/40 bg-surface-subtle flex items-start gap-3">
+        <span class="material-symbols-outlined text-warning text-xl shrink-0 mt-0.5">warning</span>
+        <div class="space-y-1 text-xs font-mono">
+          <strong class="text-warning uppercase">Educational Simulator &amp; Authorization Notice:</strong>
+          <p class="text-on-surface-variant leading-relaxed">
+            "Use only against systems you own or are explicitly authorized to test." This interactive command builder generates educational syntaxes in client memory for training; no active scans are initiated from your web browser.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- Controls Column -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5">
+            
+            <h3 class="font-mono text-sm font-bold text-primary flex items-center gap-2 border-b border-border-hairline/60 pb-3">
+              <span class="material-symbols-outlined text-base">tune</span>
+              <span>Nmap Scan Configuration Matrix</span>
+            </h3>
+
+            <!-- Target Selection -->
+            <div class="space-y-1.5 font-mono text-xs">
+              <label class="text-outline font-bold">1. Target Host / Subnet / IP:</label>
+              <input id="nmap-target" type="text" value="10.10.110.45" class="w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline text-on-surface focus:outline-none focus:border-primary"/>
+              <div class="flex gap-2 pt-1 text-[11px]">
+                <button type="button" class="nmap-preset-target px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-outline hover:text-primary" data-ip="10.10.110.45">TryHackMe IP (10.10.110.45)</button>
+                <button type="button" class="nmap-preset-target px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-outline hover:text-primary" data-ip="192.168.1.0/24">Local Subnet (/24)</button>
+                <button type="button" class="nmap-preset-target px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-outline hover:text-primary" data-ip="scanme.nmap.org">scanme.nmap.org (Official)</button>
+              </div>
+            </div>
+
+            <!-- Port Selection -->
+            <div class="space-y-1.5 font-mono text-xs">
+              <label class="text-outline font-bold">2. Port Specification:</label>
+              <select id="nmap-ports" class="w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline text-on-surface focus:outline-none focus:border-primary">
+                <option value="">Default (Top 1,000 Ports)</option>
+                <option value="-p-">Full Port Scan: All 65,535 Ports (-p-)</option>
+                <option value="-F">Fast Scan: Top 100 Ports (-F)</option>
+                <option value="-p 80,443,8080,8443">Web Ports: 80, 443, 8080, 8443 (-p 80,443,...)</option>
+                <option value="-p 21,22,25,53,80,110,139,443,445,3389">Standard Network Services (-p 21,22,53...)</option>
+                <option value="--top-ports 10000">Top 10,000 Ports (--top-ports 10000)</option>
+              </select>
+            </div>
+
+            <!-- Scan Type -->
+            <div class="space-y-1.5 font-mono text-xs">
+              <label class="text-outline font-bold">3. Scan Technique (Protocol Layer):</label>
+              <select id="nmap-type" class="w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline text-on-surface focus:outline-none focus:border-primary">
+                <option value="-sS">TCP SYN Stealth Scan (-sS) [Default / Privileged]</option>
+                <option value="-sT">TCP Full Connect Scan (-sT) [Unprivileged fallback]</option>
+                <option value="-sU">UDP Port Scan (-sU) [DNS/SNMP/DHCP]</option>
+                <option value="-sS -sU">Combined TCP SYN + UDP Scan (-sS -sU)</option>
+                <option value="-sA">TCP ACK Scan (-sA) [Firewall Rule Mapping]</option>
+                <option value="-sN">TCP NULL Scan (-sN) [Stealth / RFC 793 bypass]</option>
+                <option value="-sn">No Port Scan / Ping Sweep (-sn) [Host Discovery]</option>
+              </select>
+            </div>
+
+            <!-- Service & OS Detection -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
+              <label class="p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center gap-2 cursor-pointer hover:border-primary/40">
+                <input id="chk-sV" type="checkbox" checked class="rounded border-border-hairline text-primary focus:ring-0"/>
+                <span>Service Versioning (<code class="text-primary">-sV</code>)</span>
+              </label>
+              <label class="p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center gap-2 cursor-pointer hover:border-primary/40">
+                <input id="chk-O" type="checkbox" checked class="rounded border-border-hairline text-primary focus:ring-0"/>
+                <span>OS Fingerprinting (<code class="text-primary">-O</code>)</span>
+              </label>
+            </div>
+
+            <!-- Scripts (NSE) -->
+            <div class="space-y-1.5 font-mono text-xs">
+              <label class="text-outline font-bold">4. Nmap Scripting Engine (NSE):</label>
+              <select id="nmap-nse" class="w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline text-on-surface focus:outline-none focus:border-primary">
+                <option value="-sC">Default Safe Scripts (-sC)</option>
+                <option value="--script vuln">Vulnerability Detection Scripts (--script vuln)</option>
+                <option value="--script banner">Banner Grabbing Only (--script banner)</option>
+                <option value="--script auth">Authentication &amp; Default Credentials (--script auth)</option>
+                <option value="--script discovery">Network Discovery Scripts (--script discovery)</option>
+                <option value="none">No Scripts (Faster Scan)</option>
+              </select>
+            </div>
+
+            <!-- Timing Template & Performance -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
+              <div class="space-y-1">
+                <label class="text-outline font-bold">5. Timing Template:</label>
+                <select id="nmap-timing" class="w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline text-on-surface focus:outline-none focus:border-primary">
+                  <option value="-T4">Aggressive / Fast (-T4) [Lab Default]</option>
+                  <option value="-T3">Normal Timing (-T3)</option>
+                  <option value="-T2">Polite Timing (-T2) [Less bandwidth]</option>
+                  <option value="-T1">Sneaky Timing (-T1) [IDS Evasion]</option>
+                  <option value="-T0">Paranoid Timing (-T0) [Extremely slow]</option>
+                  <option value="-T5">Insane Timing (-T5) [Local LAN only]</option>
+                </select>
+              </div>
+
+              <div class="space-y-1">
+                <label class="text-outline font-bold">6. Verbosity &amp; DNS:</label>
+                <select id="nmap-verbosity" class="w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline text-on-surface focus:outline-none focus:border-primary">
+                  <option value="-v -n">Verbose + Disable Reverse DNS (-v -n)</option>
+                  <option value="-v">Standard Verbose (-v)</option>
+                  <option value="-vv">High Verbosity (-vv)</option>
+                  <option value="-n">Disable DNS Resolution only (-n)</option>
+                  <option value="">Default Verbosity</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Output Formats -->
+            <div class="space-y-1.5 font-mono text-xs">
+              <label class="text-outline font-bold">7. Output Format:</label>
+              <select id="nmap-output" class="w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline text-on-surface focus:outline-none focus:border-primary">
+                <option value="-oN scan_results.txt">Normal Text File (-oN scan_results.txt)</option>
+                <option value="-oA full_audit_scan">All Formats: Nmap, XML, Grepable (-oA full_audit_scan)</option>
+                <option value="-oX scan.xml">XML for Automation (-oX scan.xml)</option>
+                <option value="">Display to Terminal only (No file output)</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Generated Output & Explanation Column -->
+        <div class="lg:col-span-5 space-y-6">
+          
+          <!-- Live Generated Command Box -->
+          <div class="p-6 rounded-2xl border border-primary/40 bg-surface-subtle shadow-xl space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-xs font-bold text-primary flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">terminal</span>
+                <span>GENERATED COMMAND</span>
+              </span>
+              <button id="nmap-copy-btn" class="inline-flex items-center gap-1 px-3 py-1 rounded bg-primary-container text-canvas-base font-mono text-xs font-bold hover:bg-primary transition-all">
+                <span class="material-symbols-outlined text-sm">content_copy</span>
+                <span>Copy</span>
+              </button>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-canvas-base border border-border-hairline font-mono text-xs text-primary leading-relaxed break-all select-all" id="nmap-command-preview">
+              nmap -sC -sV -O -T4 -v -n -oN scan_results.txt 10.10.110.45
+            </div>
+
+            <div class="pt-2 border-t border-border-hairline/60 space-y-3">
+              <h4 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">help</span> Flag Breakdown &amp; Rationale
+              </h4>
+              <div id="nmap-flags-breakdown" class="space-y-2 font-mono text-xs text-on-surface-variant">
+                <!-- Dynamically populated via JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Defensive Note -->
+          <div class="p-5 rounded-2xl border border-border-hairline bg-surface-subtle space-y-2 font-mono text-xs">
+            <div class="text-secondary font-bold flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">visibility</span>
+              <span>Defensive Observation &amp; SIEM Signatures</span>
+            </div>
+            <p class="text-on-surface-variant text-[11px] leading-relaxed">
+              When this command runs against target network interfaces, Snort/Suricata triggers rule SID 2000001 (Nmap OS detection probe) due to non-standard TCP options in packets. Running without <code class="text-outline">-n</code> creates reverse DNS PTR query floods visible in server internal DNS query logs.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 3: CYBERSECURITY TOOL DATABASE (20 ESSENTIAL TOOLS)                   -->
+    <!-- ========================================================================= -->
+    <section id="tab-tool-db" class="tab-content hidden space-y-8">
+      
+      <div class="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
+        <div class="relative flex-1 max-w-md">
+          <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-base">search</span>
+          <input id="tool-search" type="text" placeholder="Search 20 tools (e.g. ffuf, Burp, Wireshark, SQLMap)..." class="w-full pl-10 pr-4 py-2 rounded-lg bg-surface-subtle border border-border-hairline font-mono text-xs text-on-surface focus:outline-none focus:border-primary"/>
+        </div>
+        <span class="font-mono text-xs text-outline">20 Standard Offensive &amp; Defensive Tools</span>
+      </div>
+
+      <div class="space-y-6" id="tool-db-container">
+
+        <!-- 1. NMAP -->
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="nmap">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">01</span>
+              <div>
+                <h3 class="font-mono text-lg font-bold text-on-surface">Nmap (Network Mapper)</h3>
+                <span class="font-mono text-xs text-outline">Category: Network Exploration &amp; Port Auditing</span>
+              </div>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-primary">Standard Kali Tool</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
+            <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline space-y-1">
+              <strong class="text-secondary uppercase">Purpose:</strong>
+              <p class="text-on-surface-variant font-sans text-xs">Rapid network host discovery, open port enumeration, service version detection, OS fingerprinting, and automated vulnerability audits via NSE Lua scripts.</p>
+            </div>
+            <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline space-y-1">
+              <strong class="text-primary uppercase">Installation &amp; Usage:</strong>
+              <pre class="text-[11px] text-on-surface pt-1">sudo apt-get install nmap -y&#10;nmap -sC -sV -p- -T4 10.10.110.45</pre>
+            </div>
+          </div>
+          <div class="space-y-2 text-xs">
+            <strong class="font-mono text-outline uppercase">Key Options:</strong>
+            <div class="flex flex-wrap gap-2 font-mono text-[11px]">
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface"><code class="text-primary">-sS</code> TCP SYN scan</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface"><code class="text-primary">-sV</code> Service versions</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface"><code class="text-primary">-O</code> OS detection</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface"><code class="text-primary">-sC</code> Default scripts</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface"><code class="text-primary">-oA</code> All output formats</span>
+            </div>
+          </div>
+          <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline/60 font-mono text-xs space-y-1">
+            <span class="text-warning font-bold">Defensive Perspective:</span>
+            <p class="text-on-surface-variant font-sans text-xs">Monitored by firewalls and SIEM. To minimize alerts in internal assessments, lower packet rate (<code class="text-primary font-mono">--max-rate 50</code>) and use <code class="text-primary font-mono">-n</code> to skip DNS flood queries.</p>
+          </div>
+        </article>
+
+        <!-- 2. BURP SUITE -->
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="burp suite">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-sm">02</span>
+              <div>
+                <h3 class="font-mono text-lg font-bold text-on-surface">Burp Suite</h3>
+                <span class="font-mono text-xs text-outline">Category: Web Application Intercepting Proxy</span>
+              </div>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-warning">PortSwigger</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
+            <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline space-y-1">
+              <strong class="text-secondary uppercase">Purpose:</strong>
+              <p class="text-on-surface-variant font-sans text-xs">Capturing, inspecting, and manipulating raw HTTP/HTTPS and WebSocket traffic in real time between web client and backend API servers.</p>
+            </div>
+            <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline space-y-1">
+              <strong class="text-primary uppercase">Core Modules:</strong>
+              <p class="text-on-surface-variant font-sans text-xs">Proxy (Traffic interception), Repeater (Manual request crafting), Intruder (Parameter fuzzing), Sequencer (Entropy testing), Decoder, Extender.</p>
+            </div>
+          </div>
+          <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline/60 font-mono text-xs space-y-1">
+            <span class="text-primary font-bold">Practice &amp; Safe Lab:</span>
+            <p class="text-on-surface-variant font-sans text-xs">PortSwigger Web Security Academy &amp; TryHackMe OWASP Top 10 rooms. Configure local browser to forward traffic through 127.0.0.1:8080.</p>
+          </div>
+        </article>
+
+        <!-- 3. WIRESHARK -->
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="wireshark">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-secondary/30 text-secondary font-mono font-bold text-sm">03</span>
+              <div>
+                <h3 class="font-mono text-lg font-bold text-on-surface">Wireshark</h3>
+                <span class="font-mono text-xs text-outline">Category: Deep Packet Inspection &amp; PCAP Analysis</span>
+              </div>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-secondary">Packet Protocol Analyzer</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
+            <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline space-y-1">
+              <strong class="text-secondary uppercase">Purpose:</strong>
+              <p class="text-on-surface-variant font-sans text-xs">Decodes hundreds of network protocols at frame level. Indispensable for packet forensics, analyzing malware beacons, and following unencrypted streams.</p>
+            </div>
+            <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline space-y-1">
+              <strong class="text-primary uppercase">Essential Display Filters:</strong>
+              <pre class="text-[11px] text-on-surface pt-1">http.request.method == "POST"&#10;tcp.flags.syn == 1 and tcp.flags.ack == 0&#10;dns.flags.response == 1</pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. METASPLOIT -->
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="metasploit">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-danger-critical/30 text-danger-critical font-mono font-bold text-sm">04</span>
+              <div>
+                <h3 class="font-mono text-lg font-bold text-on-surface">Metasploit Framework</h3>
+                <span class="font-mono text-xs text-outline">Category: Modular Exploitation &amp; Post-Exploitation</span>
+              </div>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-danger-critical">Rapid7</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
+            <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline space-y-1">
+              <strong class="text-secondary uppercase">Purpose:</strong>
+              <p class="text-on-surface-variant font-sans text-xs">Standardized platform for testing verified CVE proof-of-concept exploits, staging Meterpreter payloads, and auditing pivoting pathways in authorized labs.</p>
+            </div>
+            <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline space-y-1">
+              <strong class="text-primary uppercase">Standard Workflow:</strong>
+              <pre class="text-[11px] text-on-surface pt-1">msfconsole&#10;search cve:2020-0796 type:exploit&#10;use exploit/...&#10;set RHOSTS 10.10.110.45; check; run</pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. FFUF -->
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="ffuf">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">05</span>
+              <div>
+                <h3 class="font-mono text-lg font-bold text-on-surface">ffuf (Fuzz Faster U Fool)</h3>
+                <span class="font-mono text-xs text-outline">Category: Web Directory &amp; Parameter Fuzzer</span>
+              </div>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-primary">Go Engine</span>
+          </div>
+          <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs space-y-1">
+            <strong class="text-primary uppercase">Example Command:</strong>
+            <pre class="text-[11px] text-on-surface pt-1">ffuf -u http://10.10.110.45/FUZZ -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 200,301,302 -fc 404 -c</pre>
+          </div>
+        </article>
+
+        <!-- 6. GOBUSTER -->
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="gobuster">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-secondary/30 text-secondary font-mono font-bold text-sm">06</span>
+              <div>
+                <h3 class="font-mono text-lg font-bold text-on-surface">Gobuster</h3>
+                <span class="font-mono text-xs text-outline">Category: URI &amp; DNS Subdomain Bruteforcer</span>
+              </div>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-secondary">Go CLI</span>
+          </div>
+          <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs space-y-1">
+            <pre class="text-[11px] text-on-surface">gobuster dir -u http://10.10.110.45 -w /usr/share/wordlists/dirb/common.txt -x php,html,txt -t 30</pre>
+          </div>
+        </article>
+
+        <!-- 7. NIKTO -->
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="nikto">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-sm">07</span>
+              <div>
+                <h3 class="font-mono text-lg font-bold text-on-surface">Nikto</h3>
+                <span class="font-mono text-xs text-outline">Category: Web Server Misconfiguration Scanner</span>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-on-surface-variant font-sans">Audits web servers for dangerous outdated files, default CGIs, missing security headers, and known software CVEs.</p>
+          <pre class="p-2.5 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">nikto -h http://10.10.110.45 -Tuning 1,2,3,b -output nikto_report.txt</pre>
+        </article>
+
+        <!-- 8. NETCAT -->
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="netcat nc">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">08</span>
+              <div>
+                <h3 class="font-mono text-lg font-bold text-on-surface">Netcat (nc)</h3>
+                <span class="font-mono text-xs text-outline">Category: Raw TCP/UDP Swiss Army Knife</span>
+              </div>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono">
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <span class="text-secondary font-bold">Listener:</span>
+              <pre class="text-[11px] text-on-surface pt-1">nc -lvnp 4444</pre>
+            </div>
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <span class="text-primary font-bold">Banner Probe:</span>
+              <pre class="text-[11px] text-on-surface pt-1">nc -v -n 10.10.110.45 22</pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- 9. CURL -->
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="curl">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-secondary/30 text-secondary font-mono font-bold text-sm">09</span>
+              <div>
+                <h3 class="font-mono text-lg font-bold text-on-surface">cURL</h3>
+                <span class="font-mono text-xs text-outline">Category: Command-Line URL Transfer &amp; API Testing</span>
+              </div>
+            </div>
+          </div>
+          <pre class="p-2.5 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">curl -i -X POST https://target.local/api/login -H "Content-Type: application/json" -d '{"user":"admin","pass":"secret"}'</pre>
+        </article>
+
+        <!-- 10. DIG & WHOIS -->
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="dig whois">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">10</span>
+              <div>
+                <h3 class="font-mono text-lg font-bold text-on-surface">Dig &amp; WHOIS</h3>
+                <span class="font-mono text-xs text-outline">Category: DNS Interrogation &amp; Registrar Metadata</span>
+              </div>
+            </div>
+          </div>
+          <pre class="p-2.5 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">dig target.local ANY +noall +answer @8.8.8.8&#10;whois target.local</pre>
+        </article>
+
+        <!-- 11. WHATWEB -->
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="whatweb">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-secondary/30 text-secondary font-mono font-bold text-sm">11</span>
+              <div>
+                <h3 class="font-mono text-lg font-bold text-on-surface">WhatWeb</h3>
+                <span class="font-mono text-xs text-outline">Category: Web Technology Fingerprinting</span>
+              </div>
+            </div>
+          </div>
+          <pre class="p-2.5 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">whatweb -a 3 https://target.local --log-brief=tech_stack.txt</pre>
+        </article>
+
+        <!-- 12. AMASS & SUBFINDER -->
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="amass subfinder">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-sm">12</span>
+              <div>
+                <h3 class="font-mono text-lg font-bold text-on-surface">Amass &amp; Subfinder</h3>
+                <span class="font-mono text-xs text-outline">Category: Active &amp; Passive Subdomain Enumeration</span>
+              </div>
+            </div>
+          </div>
+          <pre class="p-2.5 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">subfinder -d target.local -silent -o subs.txt&#10;amass enum -passive -d target.local</pre>
+        </article>
+
+        <!-- 13. JOHN THE RIPPER -->
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="john the ripper">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">13</span>
+              <div>
+                <h3 class="font-mono text-lg font-bold text-on-surface">John the Ripper</h3>
+                <span class="font-mono text-xs text-outline">Category: Offline Password &amp; Shadow File Cracker</span>
+              </div>
+            </div>
+          </div>
+          <pre class="p-2.5 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">unshadow /etc/passwd /etc/shadow > unshadowed.txt&#10;john --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt</pre>
+        </article>
+
+        <!-- 14. HASHCAT -->
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="hashcat">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-secondary/30 text-secondary font-mono font-bold text-sm">14</span>
+              <div>
+                <h3 class="font-mono text-lg font-bold text-on-surface">Hashcat</h3>
+                <span class="font-mono text-xs text-outline">Category: GPU-Accelerated Password Hash Recovery</span>
+              </div>
+            </div>
+          </div>
+          <pre class="p-2.5 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">hashcat -m 0 -a 0 md5_hashes.txt /usr/share/wordlists/rockyou.txt -r rules/best64.rule</pre>
+        </article>
+
+        <!-- 15. HYDRA -->
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="hydra">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-danger-critical/30 text-danger-critical font-mono font-bold text-sm">15</span>
+              <div>
+                <h3 class="font-mono text-lg font-bold text-on-surface">THC Hydra</h3>
+                <span class="font-mono text-xs text-outline">Category: Fast Online Network Login Auditing</span>
+              </div>
+            </div>
+          </div>
+          <pre class="p-2.5 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">hydra -l admin -P /usr/share/wordlists/rockyou.txt ssh://10.10.110.45 -t 4</pre>
+        </article>
+
+        <!-- 16. TCPDUMP -->
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="tcpdump">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">16</span>
+              <div>
+                <h3 class="font-mono text-lg font-bold text-on-surface">tcpdump</h3>
+                <span class="font-mono text-xs text-outline">Category: CLI Network Packet Sniffer</span>
+              </div>
+            </div>
+          </div>
+          <pre class="p-2.5 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">sudo tcpdump -i eth0 -nn -w capture.pcap "not port 22 and (tcp or udp)"</pre>
+        </article>
+
+        <!-- 17. SQLMAP -->
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="sqlmap">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-danger-critical/30 text-danger-critical font-mono font-bold text-sm">17</span>
+              <div>
+                <h3 class="font-mono text-lg font-bold text-on-surface">SQLMap</h3>
+                <span class="font-mono text-xs text-outline">Category: Automated SQL Injection Detection &amp; Database Takeover</span>
+              </div>
+            </div>
+          </div>
+          <pre class="p-2.5 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">sqlmap -u "http://10.10.110.45/product.php?id=1" --batch --dbs --banner</pre>
+        </article>
+
+        <!-- 18. RESPONDER -->
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="responder">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-sm">18</span>
+              <div>
+                <h3 class="font-mono text-lg font-bold text-on-surface">Responder</h3>
+                <span class="font-mono text-xs text-outline">Category: LLMNR, NBT-NS &amp; mDNS Poisoner</span>
+              </div>
+            </div>
+          </div>
+          <pre class="p-2.5 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">sudo responder -I eth0 -dwv</pre>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="border-t border-border-hairline bg-surface-subtle py-8 text-center font-mono text-xs text-on-surface-variant mt-16">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-primary"></span>
+        <span class="text-on-surface font-bold">Mihraj Mashhoor K</span>
+        <span>· Cybersecurity Engineering &amp; Research</span>
+      </div>
+      <div class="flex items-center gap-4 text-outline">
+        <a href="index.html" class="hover:text-primary transition-colors">Portfolio</a>
+        <a href="learning.html" class="hover:text-primary transition-colors">Learning</a>
+        <a href="labs.html" class="hover:text-primary transition-colors">Labs</a>
+        <a href="methodology.html" class="hover:text-primary transition-colors">Methodology</a>
+        <a href="glossary.html" class="hover:text-primary transition-colors">Glossary</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="portfolio-interactive.js"></script>
+  <script>
+    // Tab Switching Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.tab-btn');
+      const contents = document.querySelectorAll('.tab-content');
+
+      tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          btn.classList.add('active');
+
+          const targetId = btn.getAttribute('data-target');
+          contents.forEach(c => {
+            if (c.id === targetId) {
+              c.classList.remove('hidden');
+            } else {
+              c.classList.add('hidden');
+            }
+          });
+        });
+      });
+
+      // Check URL hash to switch tab on load
+      if (window.location.hash === '#nmap-builder') {
+        const nmapBtn = document.querySelector('[data-target="tab-nmap-builder"]');
+        if (nmapBtn) nmapBtn.click();
+      } else if (window.location.hash === '#tool-db') {
+        const dbBtn = document.querySelector('[data-target="tab-tool-db"]');
+        if (dbBtn) dbBtn.click();
+      }
+
+      // =========================================================================
+      // 1. Base64 Tool
+      // =========================================================================
+      const b64Input = document.getElementById('b64-input');
+      const b64Output = document.getElementById('b64-output');
+      document.getElementById('b64-btn-encode').addEventListener('click', () => {
+        try {
+          b64Output.value = btoa(unescape(encodeURIComponent(b64Input.value)));
+        } catch (e) {
+          b64Output.value = 'Error encoding Base64: ' + e.message;
+        }
+      });
+      document.getElementById('b64-btn-decode').addEventListener('click', () => {
+        try {
+          b64Output.value = decodeURIComponent(escape(atob(b64Input.value.trim())));
+        } catch (e) {
+          b64Output.value = 'Error decoding Base64: Invalid character or padding.';
+        }
+      });
+      document.getElementById('b64-btn-clear').addEventListener('click', () => {
+        b64Input.value = '';
+        b64Output.value = '';
+      });
+
+      // =========================================================================
+      // 2. URL Tool
+      // =========================================================================
+      const urlInput = document.getElementById('url-input');
+      const urlOutput = document.getElementById('url-output');
+      document.getElementById('url-btn-encode').addEventListener('click', () => {
+        urlOutput.value = encodeURIComponent(urlInput.value);
+      });
+      document.getElementById('url-btn-decode').addEventListener('click', () => {
+        try {
+          urlOutput.value = decodeURIComponent(urlInput.value);
+        } catch (e) {
+          urlOutput.value = 'Error decoding URL: ' + e.message;
+        }
+      });
+
+      // =========================================================================
+      // 3. JWT Tool
+      // =========================================================================
+      const jwtInput = document.getElementById('jwt-input');
+      const jwtHOut = document.getElementById('jwt-header-out');
+      const jwtPOut = document.getElementById('jwt-payload-out');
+      const jwtAlgBadge = document.getElementById('jwt-alg-badge');
+      const jwtExpBadge = document.getElementById('jwt-exp-badge');
+
+      function parseJwt() {
+        const token = jwtInput.value.trim();
+        const parts = token.split('.');
+        if (parts.length < 2) {
+          jwtHOut.textContent = 'Invalid JWT structure. Expected 3 dot-separated parts.';
+          jwtPOut.textContent = '';
+          return;
+        }
+        try {
+          const header = JSON.parse(decodeURIComponent(escape(atob(parts[0].replace(/-/g, '+').replace(/_/g, '/')))));
+          const payload = JSON.parse(decodeURIComponent(escape(atob(parts[1].replace(/-/g, '+').replace(/_/g, '/')))));
+
+          jwtHOut.textContent = JSON.stringify(header, null, 2);
+          jwtPOut.textContent = JSON.stringify(payload, null, 2);
+
+          if (header.alg) {
+            jwtAlgBadge.textContent = 'Algorithm: ' + header.alg;
+            jwtAlgBadge.className = header.alg.toLowerCase() === 'none' ? 'text-[10px] text-danger-critical font-bold' : 'text-[10px] text-secondary font-bold';
+          }
+          if (payload.exp) {
+            const expDate = new Date(payload.exp * 1000);
+            const isExpired = Date.now() > expDate.getTime();
+            jwtExpBadge.textContent = isExpired ? 'Expired: ' + expDate.toISOString() : 'Valid until: ' + expDate.toISOString();
+            jwtExpBadge.className = isExpired ? 'text-[10px] text-danger-critical' : 'text-[10px] text-primary';
+          } else {
+            jwtExpBadge.textContent = 'No exp claim set';
+          }
+        } catch (e) {
+          jwtHOut.textContent = 'Error parsing base64url payload: ' + e.message;
+        }
+      }
+
+      document.getElementById('jwt-btn-parse').addEventListener('click', parseJwt);
+      document.getElementById('jwt-btn-sample').addEventListener('click', () => {
+        jwtInput.value = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzEwMDIiLCJ1c2VybmFtZSI6Im1paHJhaiIsInJvbGUiOiJzZWN1cml0eV9hbmFseXN0IiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE5OTk5OTk5OTl9.signature_sample_only';
+        parseJwt();
+      });
+
+      // =========================================================================
+      // 4. Hash Identifier
+      // =========================================================================
+      document.getElementById('hash-btn-analyze').addEventListener('click', () => {
+        const h = document.getElementById('hash-input').value.trim();
+        const res = document.getElementById('hash-result');
+        if (!h) {
+          res.innerHTML = '<span class="text-danger-critical">Please enter a hash string.</span>';
+          return;
+        }
+        let matches = [];
+        if (h.startsWith('$2a$') || h.startsWith('$2b$') || h.startsWith('$2y$')) {
+          matches.push({ name: 'bcrypt Blowfish', mode: 'Hashcat Mode: 3200' });
+        } else if (h.startsWith('$6$')) {
+          matches.push({ name: 'SHA-512 Crypt (Linux Shadow)', mode: 'Hashcat Mode: 1800' });
+        } else if (h.startsWith('$1$')) {
+          matches.push({ name: 'MD5 Crypt (Linux Shadow)', mode: 'Hashcat Mode: 500' });
+        } else if (/^[a-f0-9]{32}$/i.test(h)) {
+          matches.push({ name: 'MD5 (Message Digest 5)', mode: 'Hashcat Mode: 0' });
+          matches.push({ name: 'NTLM (Windows NT Lan Manager)', mode: 'Hashcat Mode: 1000' });
+        } else if (/^[a-f0-9]{40}$/i.test(h)) {
+          matches.push({ name: 'SHA-1 (Secure Hash Algorithm 1)', mode: 'Hashcat Mode: 100' });
+          matches.push({ name: 'MySQL5', mode: 'Hashcat Mode: 300' });
+        } else if (/^[a-f0-9]{64}$/i.test(h)) {
+          matches.push({ name: 'SHA-256 (SHA-2 Family)', mode: 'Hashcat Mode: 1400' });
+          matches.push({ name: 'HMAC-SHA256', mode: 'Hashcat Mode: 1450' });
+        } else if (/^[a-f0-9]{128}$/i.test(h)) {
+          matches.push({ name: 'SHA-512 (SHA-2 Family)', mode: 'Hashcat Mode: 1700' });
+        } else {
+          matches.push({ name: 'Unknown / Non-Standard Hash Format', mode: 'Custom salt or argon2 identifier needed' });
+        }
+
+        let html = `<div class="text-primary font-bold">Length: ${h.length} characters / ${h.length * 4} bits</div>`;
+        matches.forEach(m => {
+          html += `<div class="pt-1"><strong class="text-on-surface">${m.name}</strong> &mdash; <span class="text-secondary">${m.mode}</span></div>`;
+        });
+        res.innerHTML = html;
+      });
+
+      // =========================================================================
+      // 5. CIDR Calculator
+      // =========================================================================
+      function calcCIDR() {
+        const val = document.getElementById('cidr-input').value.trim();
+        const parts = val.split('/');
+        if (parts.length !== 2) return;
+        const ip = parts[0];
+        const prefix = parseInt(parts[1], 10);
+        if (isNaN(prefix) || prefix < 0 || prefix > 32) return;
+
+        const ipParts = ip.split('.').map(Number);
+        if (ipParts.length !== 4 || ipParts.some(p => isNaN(p) || p < 0 || p > 255)) return;
+
+        const ipNum = (ipParts[0] << 24) | (ipParts[1] << 16) | (ipParts[2] << 8) | ipParts[3];
+        const maskNum = prefix === 0 ? 0 : (~0 << (32 - prefix));
+        const netNum = ipNum & maskNum;
+        const broadNum = netNum | (~maskNum);
+
+        function numToIp(n) {
+          return [(n >>> 24) & 255, (n >>> 16) & 255, (n >>> 8) & 255, n & 255].join('.');
+        }
+
+        const totalHosts = prefix >= 31 ? (prefix === 31 ? 2 : 1) : Math.pow(2, 32 - prefix) - 2;
+        const firstUsable = prefix >= 31 ? numToIp(netNum) : numToIp(netNum + 1);
+        const lastUsable = prefix >= 31 ? numToIp(broadNum) : numToIp(broadNum - 1);
+
+        document.getElementById('res-net').textContent = numToIp(netNum);
+        document.getElementById('res-mask').textContent = numToIp(maskNum);
+        document.getElementById('res-broad').textContent = numToIp(broadNum);
+        document.getElementById('res-hosts').textContent = totalHosts.toLocaleString();
+        document.getElementById('res-range').textContent = `${firstUsable} - ${lastUsable}`;
+      }
+      document.getElementById('cidr-btn-calc').addEventListener('click', calcCIDR);
+      calcCIDR();
+
+      // =========================================================================
+      // 6. HTTP Header Evaluator
+      // =========================================================================
+      document.getElementById('hdr-btn-audit').addEventListener('click', () => {
+        const text = document.getElementById('hdr-input').value.toLowerCase();
+        const res = document.getElementById('hdr-results');
+        const checklist = [
+          { name: 'Strict-Transport-Security (HSTS)', key: 'strict-transport-security', desc: 'Enforces HTTPS encryption' },
+          { name: 'Content-Security-Policy (CSP)', key: 'content-security-policy', desc: 'Mitigates XSS and data injection' },
+          { name: 'X-Frame-Options', key: 'x-frame-options', desc: 'Prevents Clickjacking' },
+          { name: 'X-Content-Type-Options', key: 'x-content-type-options', desc: 'Blocks MIME sniffing' },
+          { name: 'Referrer-Policy', key: 'referrer-policy', desc: 'Controls referrer data in links' },
+          { name: 'Permissions-Policy', key: 'permissions-policy', desc: 'Restricts camera/mic/location APIs' }
+        ];
+
+        let out = '';
+        checklist.forEach(item => {
+          if (text.includes(item.key)) {
+            out += `<div class="text-primary flex items-center gap-1.5"><span class="material-symbols-outlined text-sm">check_circle</span> <strong>${item.name}</strong>: Present</div>`;
+          } else {
+            out += `<div class="text-danger-critical flex items-center gap-1.5"><span class="material-symbols-outlined text-sm">cancel</span> <strong>${item.name}</strong>: Missing (${item.desc})</div>`;
+          }
+        });
+        res.innerHTML = out;
+      });
+
+      // =========================================================================
+      // 7. CSP Analyzer
+      // =========================================================================
+      document.getElementById('csp-btn-audit').addEventListener('click', () => {
+        const csp = document.getElementById('csp-input').value;
+        const res = document.getElementById('csp-results');
+        let issues = [];
+
+        if (csp.includes("'unsafe-inline'")) {
+          issues.push({ level: 'DANGER', msg: "'unsafe-inline' detected in script-src. This permits execution of inline scripts and severely degrades XSS protection." });
+        }
+        if (csp.includes("'unsafe-eval'")) {
+          issues.push({ level: 'DANGER', msg: "'unsafe-eval' detected. Enables string-to-code execution (eval(), setTimeout strings)." });
+        }
+        if (csp.includes('*') && !csp.includes('https://*')) {
+          issues.push({ level: 'WARNING', msg: "Wildcard (*) source used. Allows resource loading from any domain." });
+        }
+        if (!csp.includes('object-src')) {
+          issues.push({ level: 'WARNING', msg: "Missing object-src directive. Recommended: object-src 'none' to block Flash and plugins." });
+        }
+        if (!csp.includes('default-src')) {
+          issues.push({ level: 'WARNING', msg: "Missing fallback default-src directive." });
+        }
+
+        if (issues.length === 0) {
+          res.innerHTML = '<span class="text-primary font-bold">Strong Baseline CSP: No critical unsafe directives detected.</span>';
+        } else {
+          let html = '';
+          issues.forEach(i => {
+            const color = i.level === 'DANGER' ? 'text-danger-critical' : 'text-warning';
+            html += `<div class="${color} font-mono"><strong>[${i.level}]</strong> ${i.msg}</div>`;
+          });
+          res.innerHTML = html;
+        }
+      });
+
+      // =========================================================================
+      // 8. Password Entropy
+      // =========================================================================
+      const entInput = document.getElementById('ent-input');
+      entInput.addEventListener('input', () => {
+        const pass = entInput.value;
+        if (!pass) {
+          document.getElementById('ent-bits').textContent = '-';
+          document.getElementById('ent-pool').textContent = '-';
+          document.getElementById('ent-time').textContent = '-';
+          return;
+        }
+        let pool = 0;
+        if (/[a-z]/.test(pass)) pool += 26;
+        if (/[A-Z]/.test(pass)) pool += 26;
+        if (/[0-9]/.test(pass)) pool += 10;
+        if (/[^a-zA-Z0-9]/.test(pass)) pool += 33;
+
+        const entropy = pool > 0 ? (pass.length * Math.log2(pool)).toFixed(1) : 0;
+        document.getElementById('ent-bits').textContent = entropy + ' bits';
+        document.getElementById('ent-pool').textContent = pool + ' unique characters';
+
+        let timeStr = 'Instant';
+        if (entropy > 80) timeStr = 'Centuries (Resistant to modern clusters)';
+        else if (entropy > 60) timeStr = 'Several years';
+        else if (entropy > 45) timeStr = 'Few hours to days (8x RTX 4090 cluster)';
+        else if (entropy > 30) timeStr = 'Minutes';
+        else timeStr = 'Seconds / Instant crack';
+
+        document.getElementById('ent-time').textContent = timeStr;
+      });
+
+      // =========================================================================
+      // 9. Regex Tester
+      // =========================================================================
+      const regPattern = document.getElementById('reg-pattern');
+      const regFlags = document.getElementById('reg-flags');
+      const regText = document.getElementById('reg-text');
+      const regOut = document.getElementById('reg-matches');
+
+      function testRegex() {
+        try {
+          const re = new RegExp(regPattern.value, regFlags.value);
+          const text = regText.value;
+          const matches = text.match(re);
+          if (matches) {
+            regOut.innerHTML = `<span class="text-primary font-bold">Found ${matches.length} match(es):</span><br>${matches.map(m => escapeHtml(m)).join(', ')}`;
+          } else {
+            regOut.textContent = 'No matches found.';
+          }
+        } catch (e) {
+          regOut.innerHTML = `<span class="text-danger-critical">Regex Syntax Error: ${escapeHtml(e.message)}</span>`;
+        }
+      }
+      regPattern.addEventListener('input', testRegex);
+      regFlags.addEventListener('input', testRegex);
+      regText.addEventListener('input', testRegex);
+
+      // =========================================================================
+      // 10. JSON Formatter
+      // =========================================================================
+      const jsonInput = document.getElementById('json-input');
+      const jsonStatus = document.getElementById('json-status');
+      document.getElementById('json-btn-format').addEventListener('click', () => {
+        try {
+          const obj = JSON.parse(jsonInput.value);
+          jsonInput.value = JSON.stringify(obj, null, 2);
+          jsonStatus.textContent = 'Status: Valid JSON formatted with 2 spaces.';
+          jsonStatus.className = 'font-mono text-xs text-primary';
+        } catch (e) {
+          jsonStatus.textContent = 'JSON Parse Error: ' + e.message;
+          jsonStatus.className = 'font-mono text-xs text-danger-critical';
+        }
+      });
+      document.getElementById('json-btn-minify').addEventListener('click', () => {
+        try {
+          const obj = JSON.parse(jsonInput.value);
+          jsonInput.value = JSON.stringify(obj);
+          jsonStatus.textContent = 'Status: Valid JSON minified.';
+          jsonStatus.className = 'font-mono text-xs text-secondary';
+        } catch (e) {
+          jsonStatus.textContent = 'JSON Parse Error: ' + e.message;
+          jsonStatus.className = 'font-mono text-xs text-danger-critical';
+        }
+      });
+
+      // =========================================================================
+      // 11. HTML Entity Tool
+      // =========================================================================
+      const htmlIn = document.getElementById('html-input');
+      const htmlOut = document.getElementById('html-output');
+      document.getElementById('html-btn-encode').addEventListener('click', () => {
+        htmlOut.value = htmlIn.value.replace(/[\u00A0-\u9999<>\&"']/gim, i => '&#' + i.charCodeAt(0) + ';');
+      });
+      document.getElementById('html-btn-decode').addEventListener('click', () => {
+        const doc = new DOMParser().parseFromString(htmlIn.value, 'text/html');
+        htmlOut.value = doc.documentElement.textContent || '';
+      });
+
+      // =========================================================================
+      // 12. Timestamp / UA
+      // =========================================================================
+      const epochIn = document.getElementById('epoch-input');
+      const epochRes = document.getElementById('epoch-result');
+      document.getElementById('epoch-btn-now').addEventListener('click', () => {
+        epochIn.value = Math.floor(Date.now() / 1000);
+        convEpoch();
+      });
+      function convEpoch() {
+        let val = parseInt(epochIn.value.trim(), 10);
+        if (isNaN(val)) return;
+        if (val < 10000000000) val *= 1000;
+        const d = new Date(val);
+        epochRes.textContent = `UTC: ${d.toUTCString()} | Local: ${d.toLocaleString()}`;
+      }
+      document.getElementById('epoch-btn-conv').addEventListener('click', convEpoch);
+      const uaBox = document.getElementById('ua-display');
+      if (uaBox) uaBox.textContent = navigator.userAgent;
+
+      // =========================================================================
+      // NMAP COMMAND BUILDER ENGINE
+      // =========================================================================
+      const nTarget = document.getElementById('nmap-target');
+      const nPorts = document.getElementById('nmap-ports');
+      const nType = document.getElementById('nmap-type');
+      const chkSV = document.getElementById('chk-sV');
+      const chkO = document.getElementById('chk-O');
+      const nNse = document.getElementById('nmap-nse');
+      const nTiming = document.getElementById('nmap-timing');
+      const nVerbosity = document.getElementById('nmap-verbosity');
+      const nOutput = document.getElementById('nmap-output');
+      const nPreview = document.getElementById('nmap-command-preview');
+      const nBreakdown = document.getElementById('nmap-flags-breakdown');
+      const copyBtn = document.getElementById('nmap-copy-btn');
+
+      function updateNmap() {
+        let parts = ['nmap'];
+        let explanations = [];
+
+        // Scan type
+        if (nType.value) {
+          parts.push(nType.value);
+          explanations.push({ flag: nType.value, desc: 'Scan technique: specifies underlying protocol handshake (e.g. TCP SYN half-open or UDP).' });
+        }
+
+        // Service Version
+        if (chkSV.checked) {
+          parts.push('-sV');
+          explanations.push({ flag: '-sV', desc: 'Service version detection: probes open ports to interrogate application banners.' });
+        }
+
+        // OS Fingerprint
+        if (chkO.checked) {
+          parts.push('-O');
+          explanations.push({ flag: '-O', desc: 'OS fingerprinting: analyzes TCP/IP stack implementation nuances to deduce operating system.' });
+        }
+
+        // Ports
+        if (nPorts.value) {
+          parts.push(nPorts.value);
+          explanations.push({ flag: nPorts.value, desc: 'Port selection: limits or expands scanned port boundaries.' });
+        }
+
+        // NSE
+        if (nNse.value && nNse.value !== 'none') {
+          parts.push(nNse.value);
+          explanations.push({ flag: nNse.value, desc: 'Nmap Scripting Engine: executes automated Lua scripts for default audits or CVE checks.' });
+        }
+
+        // Timing
+        if (nTiming.value) {
+          parts.push(nTiming.value);
+          explanations.push({ flag: nTiming.value, desc: 'Timing template: adjusts packet delay and parallel probe timeouts (T0=slow to T5=fast).' });
+        }
+
+        // Verbosity
+        if (nVerbosity.value) {
+          parts.push(nVerbosity.value);
+          explanations.push({ flag: nVerbosity.value, desc: 'Verbosity and DNS options: shows live progress and suppresses slow reverse PTR lookups.' });
+        }
+
+        // Output
+        if (nOutput.value) {
+          parts.push(nOutput.value);
+          explanations.push({ flag: nOutput.value, desc: 'Output file: writes scan findings to persistent audit logs.' });
+        }
+
+        // Target
+        const targetVal = nTarget.value.trim() || '10.10.110.45';
+        parts.push(targetVal);
+
+        const cmdStr = parts.join(' ');
+        nPreview.textContent = cmdStr;
+
+        let bHtml = '';
+        explanations.forEach(e => {
+          bHtml += `<div class="p-2 rounded bg-canvas-base border border-border-hairline"><strong class="text-primary">${e.flag}</strong>: <span class="text-on-surface-variant font-sans text-xs">${e.desc}</span></div>`;
+        });
+        bHtml += `<div class="p-2 rounded bg-canvas-base border border-border-hairline"><strong class="text-secondary">${targetVal}</strong>: <span class="text-on-surface-variant font-sans text-xs">Destination host IP address or subnet range under authorized testing scope.</span></div>`;
+        nBreakdown.innerHTML = bHtml;
+      }
+
+      [nTarget, nPorts, nType, chkSV, chkO, nNse, nTiming, nVerbosity, nOutput].forEach(el => {
+        el.addEventListener('change', updateNmap);
+        el.addEventListener('input', updateNmap);
+      });
+
+      document.querySelectorAll('.nmap-preset-target').forEach(btn => {
+        btn.addEventListener('click', () => {
+          nTarget.value = btn.getAttribute('data-ip');
+          updateNmap();
+        });
+      });
+
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(nPreview.textContent);
+        if (window.showToast) {
+          window.showToast('Copied Nmap command to clipboard!', 'success');
+        } else {
+          copyBtn.textContent = 'Copied!';
+          setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1500);
+        }
+      });
+
+      updateNmap();
+
+      // =========================================================================
+      // TOOL DB SEARCH
+      // =========================================================================
+      const toolSearch = document.getElementById('tool-search');
+      const toolCards = document.querySelectorAll('.tool-card');
+      if (toolSearch) {
+        toolSearch.addEventListener('input', () => {
+          const q = toolSearch.value.toLowerCase().trim();
+          toolCards.forEach(card => {
+            const txt = (card.getAttribute('data-tool') + ' ' + card.textContent).toLowerCase();
+            card.style.display = txt.includes(q) ? 'block' : 'none';
+          });
+        });
+      }
+
+      function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>"']/g, m => ({
+          '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+        })[m]);
+      }
+    });
+  </script>
+</body>
+</html>
