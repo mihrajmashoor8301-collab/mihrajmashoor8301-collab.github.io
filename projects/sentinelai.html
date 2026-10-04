@@ -78,6 +78,15 @@
           CASE STUDY
         </span>
       </a>
+            <!-- Nav Links -->
+      <nav class="hidden xl:flex items-center space-x-4 font-mono text-xs text-on-surface-variant">
+        <a href="../learning.html" class="hover:text-primary transition-colors">Learning</a>
+        <a href="../labs.html" class="hover:text-primary transition-colors">Labs</a>
+        <a href="../tools.html" class="hover:text-primary transition-colors">Tools</a>
+        <a href="../methodology.html" class="hover:text-primary transition-colors">Methodology</a>
+        <a href="../roadmap.html" class="hover:text-primary transition-colors">Roadmap</a>
+        <a href="../glossary.html" class="hover:text-primary transition-colors">Glossary</a>
+      </nav>
       <div class="flex items-center gap-3">
         <button data-trigger-cmd class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:text-primary hover:border-primary transition-colors cursor-pointer" title="Search Portfolio (Cmd+K)">
           <span class="material-symbols-outlined text-sm text-primary">search</span>
@@ -217,6 +226,96 @@
     </div>
 
     <!-- 2. WHAT IS THIS PROJECT? -->
+    
+    <!-- 13-POINT CASE STUDY FRAMEWORK SPECIFICATION -->
+    <section class="bg-surface-subtle rounded-2xl p-6 md:p-8 border border-border-hairline space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-border-hairline">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-xl">fact_check</span>
+          <h2 class="text-xl font-bold font-mono text-on-surface">Standardized Case Study Specification (13 Parameters)</h2>
+        </div>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-primary/40 bg-canvas-base font-mono text-xs text-primary font-bold">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          <span>CLASSIFICATION: Personal Project · Security Engineering</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xs font-mono">
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-1.5">
+          <div class="text-outline uppercase tracking-wider text-[10px] flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-xs text-primary">target</span> 1. Objective
+          </div>
+          <div class="text-on-surface-variant leading-relaxed">Unify vulnerability triage, graph-based threat context, CVE intelligence, and asset exposure tracking into an offline, local LLM pipeline.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-1.5">
+          <div class="text-outline uppercase tracking-wider text-[10px] flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-xs text-secondary">computer</span> 2. Environment
+          </div>
+          <div class="text-on-surface-variant leading-relaxed">Local Linux, Ollama inference runtime, Python 3.11+, FastAPI service layer, ChromaDB vector store.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-1.5">
+          <div class="text-outline uppercase tracking-wider text-[10px] flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-xs text-primary">schema</span> 3. Architecture
+          </div>
+          <div class="text-on-surface-variant leading-relaxed">Modular orchestrator connecting multi-stage ingestion, MITRE ATT&CK ontology graph, vector retrieval, and policy dispatch gates.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-1.5">
+          <div class="text-outline uppercase tracking-wider text-[10px] flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-xs text-secondary">build</span> 4. Tools &amp; Stack
+          </div>
+          <div class="text-on-surface-variant leading-relaxed">Python, Ollama, LangChain, FastAPI, ChromaDB, NetworkX, Docker, Pydantic.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-1.5">
+          <div class="text-outline uppercase tracking-wider text-[10px] flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-xs text-primary">code</span> 5. Implementation
+          </div>
+          <div class="text-on-surface-variant leading-relaxed">16 completed phases including evidence schema tracking, CVE/CWE lookup tables, and dual REST/CLI interfaces.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-1.5">
+          <div class="text-outline uppercase tracking-wider text-[10px] flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-xs text-secondary">flaky</span> 6. Testing &amp; Verification
+          </div>
+          <div class="text-on-surface-variant leading-relaxed">Pytest test suites, mock CVE payload feeds, offline synthetic prompt injection validation.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-1.5">
+          <div class="text-outline uppercase tracking-wider text-[10px] flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-xs text-primary">inventory_2</span> 7. Evidence &amp; Artifacts
+          </div>
+          <div class="text-on-surface-variant leading-relaxed">Normalized JSON vulnerability trees, correlation execution logs, audited dispatch traces.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-1.5">
+          <div class="text-outline uppercase tracking-wider text-[10px] flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-xs text-secondary">visibility</span> 8. Security Findings
+          </div>
+          <div class="text-on-surface-variant leading-relaxed">Public LLMs leak operational target info; local offline models provide strict confidentiality with zero data egress.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-1.5">
+          <div class="text-outline uppercase tracking-wider text-[10px] flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-xs text-primary">speed</span> 9. Operational Impact
+          </div>
+          <div class="text-on-surface-variant leading-relaxed">Accelerates analyst triage from hours of manual CVE cross-referencing to seconds of structured graph correlation.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-1.5">
+          <div class="text-outline uppercase tracking-wider text-[10px] flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-xs text-secondary">shield</span> 10. Defensive Remediation
+          </div>
+          <div class="text-on-surface-variant leading-relaxed">Strict input validation on CVE IDs, human-in-the-loop authorization gates before any active action execution.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-1.5">
+          <div class="text-outline uppercase tracking-wider text-[10px] flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-xs text-primary">psychology</span> 11. Lessons Learned
+          </div>
+          <div class="text-on-surface-variant leading-relaxed">Multi-step LLM pipelines require deterministic schema validation (Pydantic) to prevent hallucinations in vulnerability scoring.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-1.5">
+          <div class="text-outline uppercase tracking-wider text-[10px] flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-xs text-secondary">update</span> 12. Future Roadmap
+          </div>
+          <div class="text-on-surface-variant leading-relaxed">Phase 17 multi-asset lateral exposure modeling, automated dry-run remediation validation scripts.</div>
+        </div>
+      </div>
+    </section>
+
     <section id="overview" class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
       <div class="flex items-center gap-2 font-mono text-xs text-primary">
         <span class="material-symbols-outlined text-sm">info</span>
@@ -774,6 +873,18 @@
       </div>
       <div class="flex items-center gap-4">
         <a href="../index.html" class="hover:text-primary transition-colors">Portfolio</a>
+        <span>·</span>
+        <a href="../learning.html" class="hover:text-primary transition-colors">Learning</a>
+        <span>·</span>
+        <a href="../labs.html" class="hover:text-primary transition-colors">Labs</a>
+        <span>·</span>
+        <a href="../tools.html" class="hover:text-primary transition-colors">Tools</a>
+        <span>·</span>
+        <a href="../methodology.html" class="hover:text-primary transition-colors">Methodology</a>
+        <span>·</span>
+        <a href="../roadmap.html" class="hover:text-primary transition-colors">Roadmap</a>
+        <span>·</span>
+        <a href="../glossary.html" class="hover:text-primary transition-colors">Glossary</a>
         <span>·</span>
         <a href="../resume.html" class="hover:text-primary transition-colors">Resume</a>
         <span>·</span>

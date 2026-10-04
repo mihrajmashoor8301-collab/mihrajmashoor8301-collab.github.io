@@ -78,6 +78,15 @@
           CASE STUDY
         </span>
       </a>
+            <!-- Nav Links -->
+      <nav class="hidden xl:flex items-center space-x-4 font-mono text-xs text-on-surface-variant">
+        <a href="../learning.html" class="hover:text-primary transition-colors">Learning</a>
+        <a href="../labs.html" class="hover:text-primary transition-colors">Labs</a>
+        <a href="../tools.html" class="hover:text-primary transition-colors">Tools</a>
+        <a href="../methodology.html" class="hover:text-primary transition-colors">Methodology</a>
+        <a href="../roadmap.html" class="hover:text-primary transition-colors">Roadmap</a>
+        <a href="../glossary.html" class="hover:text-primary transition-colors">Glossary</a>
+      </nav>
       <div class="flex items-center gap-3">
         <button data-trigger-cmd class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:text-primary hover:border-primary transition-colors cursor-pointer" title="Search Portfolio (Cmd+K)">
           <span class="material-symbols-outlined text-sm text-primary">search</span>
@@ -215,6 +224,96 @@
     </div>
 
     <!-- 2. WHAT IS THIS PROJECT? -->
+    
+    <!-- 13-POINT CASE STUDY FRAMEWORK SPECIFICATION -->
+    <section class="bg-surface-subtle rounded-2xl p-6 md:p-8 border border-border-hairline space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-border-hairline">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-xl">fact_check</span>
+          <h2 class="text-xl font-bold font-mono text-on-surface">Standardized Case Study Specification (13 Parameters)</h2>
+        </div>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-primary/40 bg-canvas-base font-mono text-xs text-primary font-bold">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          <span>CLASSIFICATION: Personal Project · Full-Stack Architecture</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xs font-mono">
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-1.5">
+          <div class="text-outline uppercase tracking-wider text-[10px] flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-xs text-primary">target</span> 1. Objective
+          </div>
+          <div class="text-on-surface-variant leading-relaxed">Architect a modular, observable full-stack foundation for hosting multi-agent AI tools with secure sandboxing and API gateways.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-1.5">
+          <div class="text-outline uppercase tracking-wider text-[10px] flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-xs text-secondary">computer</span> 2. Environment
+          </div>
+          <div class="text-on-surface-variant leading-relaxed">Linux, Node.js/TypeScript, Python FastAPI, PostgreSQL, Redis, Docker Compose.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-1.5">
+          <div class="text-outline uppercase tracking-wider text-[10px] flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-xs text-primary">schema</span> 3. Architecture
+          </div>
+          <div class="text-on-surface-variant leading-relaxed">Microservice architecture with reverse proxy API gateway, event message bus, isolated agent execution workers, and responsive web frontend.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-1.5">
+          <div class="text-outline uppercase tracking-wider text-[10px] flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-xs text-secondary">build</span> 4. Tools &amp; Stack
+          </div>
+          <div class="text-on-surface-variant leading-relaxed">FastAPI, Node.js, Docker, Redis, Tailwind CSS, WebSockets, JWT.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-1.5">
+          <div class="text-outline uppercase tracking-wider text-[10px] flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-xs text-primary">code</span> 5. Implementation
+          </div>
+          <div class="text-on-surface-variant leading-relaxed">Role-based access control (RBAC), WebSocket streaming for real-time agent output, distributed task queue.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-1.5">
+          <div class="text-outline uppercase tracking-wider text-[10px] flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-xs text-secondary">flaky</span> 6. Testing &amp; Verification
+          </div>
+          <div class="text-on-surface-variant leading-relaxed">API endpoint fuzzing, load testing with Locust, WebSocket connection stability under network degradation.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-1.5">
+          <div class="text-outline uppercase tracking-wider text-[10px] flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-xs text-primary">inventory_2</span> 7. Evidence &amp; Artifacts
+          </div>
+          <div class="text-on-surface-variant leading-relaxed">Docker container telemetry, OpenAPI specifications, structured JSON audit logs.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-1.5">
+          <div class="text-outline uppercase tracking-wider text-[10px] flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-xs text-secondary">visibility</span> 8. Security Findings
+          </div>
+          <div class="text-on-surface-variant leading-relaxed">Asynchronous task queues and WebSocket backpressure handling are required to prevent server starvation during intensive model generation.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-1.5">
+          <div class="text-outline uppercase tracking-wider text-[10px] flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-xs text-primary">speed</span> 9. Operational Impact
+          </div>
+          <div class="text-on-surface-variant leading-relaxed">Standardized development platform accelerating the deployment of specialized security agents and internal tools.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-1.5">
+          <div class="text-outline uppercase tracking-wider text-[10px] flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-xs text-secondary">shield</span> 10. Defensive Remediation
+          </div>
+          <div class="text-on-surface-variant leading-relaxed">Rate limiting, JWT expiration and revocation, CORS restrictions, strict Docker container network isolation.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-1.5">
+          <div class="text-outline uppercase tracking-wider text-[10px] flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-xs text-primary">psychology</span> 11. Lessons Learned
+          </div>
+          <div class="text-on-surface-variant leading-relaxed">Decoupling the inference server from the application backend provides independent scalability and crash resilience.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-1.5">
+          <div class="text-outline uppercase tracking-wider text-[10px] flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-xs text-secondary">update</span> 12. Future Roadmap
+          </div>
+          <div class="text-on-surface-variant leading-relaxed">Kubernetes deployment manifests and OpenTelemetry tracing integration.</div>
+        </div>
+      </div>
+    </section>
+
     <section id="overview" class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline space-y-6">
       <div class="flex items-center gap-2 font-mono text-xs text-primary">
         <span class="material-symbols-outlined text-sm">info</span>
@@ -756,6 +855,18 @@
       </div>
       <div class="flex items-center gap-4">
         <a href="../index.html" class="hover:text-primary transition-colors">Portfolio</a>
+        <span>·</span>
+        <a href="../learning.html" class="hover:text-primary transition-colors">Learning</a>
+        <span>·</span>
+        <a href="../labs.html" class="hover:text-primary transition-colors">Labs</a>
+        <span>·</span>
+        <a href="../tools.html" class="hover:text-primary transition-colors">Tools</a>
+        <span>·</span>
+        <a href="../methodology.html" class="hover:text-primary transition-colors">Methodology</a>
+        <span>·</span>
+        <a href="../roadmap.html" class="hover:text-primary transition-colors">Roadmap</a>
+        <span>·</span>
+        <a href="../glossary.html" class="hover:text-primary transition-colors">Glossary</a>
         <span>·</span>
         <a href="../resume.html" class="hover:text-primary transition-colors">Resume</a>
         <span>·</span>
