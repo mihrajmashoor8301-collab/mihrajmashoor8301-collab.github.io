@@ -28,6 +28,10 @@
       <span class="material-symbols-outlined" style="font-size: 16px;">apps</span>
       <span>Modules (15)</span>
     </a>
+    <a href="../theory.html" style="color: #4CD7F6;">
+      <span class="material-symbols-outlined" style="font-size: 16px;">psychology</span>
+      <span>Theory</span>
+    </a>
     <a href="../learning.html">
       <span class="material-symbols-outlined" style="font-size: 16px;">school</span>
       <span>Learning</span>
@@ -66,6 +70,7 @@
 <div class="mobile-drawer" id="mobile-drawer">
   <div class="mobile-drawer-nav">
     <a href="index.html">📚 All Modules (15)</a>
+    <a href="../theory.html" style="color: #4CD7F6; font-weight: bold;">🧠 Cybersecurity Theory &amp; Concepts</a>
     <a href="../learning.html" style="color: #4EDEA3;">🎓 Cybersecurity Learning Hub</a>
     <a href="../labs.html" style="color: #4CD7F6;">🧪 Interactive Security Labs</a>
     <a href="../tools.html" style="color: #4EDEA3;">🛠️ Security Toolkit &amp; Nmap Builder</a>
@@ -201,183 +206,212 @@
     </div>
 
     <div class="module-grid">
-    <a class="card" href="nmap.html">
+    <!-- 01 — Foundations -->
+    <a class="card" href="modules/pentest-methodology.html">
       <div class="card-header">
         <span class="card-number">MODULE // 01</span>
-        <span class="card-badge badge-existing">Handbook Core</span>
+        <span class="card-badge badge-foundation">FOUNDATION</span>
       </div>
-      <h3>Nmap Reconnaissance & Scanning</h3>
-      <p>Discover live hosts, port states, service versions, NSE scripts, and scanning workflows.</p>
+      <h3>01 — Foundations &amp; Ethics</h3>
+      <p>Security fundamentals, CIA Triad, scoping rules of engagement (ROE), ethics, and authorized testing methodology.</p>
       <div class="card-footer">
-        <span>⏱ 15 min read</span>
+        <span style="color: var(--secondary);">Theory: Core Pillars</span>
         <span class="cta">Read Module →</span>
       </div>
     </a>
-    <a class="card" href="linux.html">
+
+    <!-- 02 — Computer & OS Fundamentals -->
+    <a class="card" href="../theory.html#computer-fundamentals">
       <div class="card-header">
         <span class="card-number">MODULE // 02</span>
-        <span class="card-badge badge-existing">Handbook Core</span>
+        <span class="card-badge badge-foundation">FOUNDATION</span>
       </div>
-      <h3>Linux Essentials for Practitioners</h3>
-      <p>Filesystem navigation, permissions, process control, systemctl, and essential administrative utilities.</p>
+      <h3>02 — Computer &amp; OS Fundamentals</h3>
+      <p>CPU registers, RAM addressability, processes, threads, system calls, virtual memory, and kernel privilege boundaries.</p>
       <div class="card-footer">
-        <span>⏱ 12 min read</span>
-        <span class="cta">Read Module →</span>
+        <span style="color: var(--secondary);">Theory: Hardware &amp; OS</span>
+        <span class="cta">Explore Theory →</span>
       </div>
     </a>
-    <a class="card" href="metasploit.html">
+
+    <!-- 03 — Linux -->
+    <a class="card" href="linux.html">
       <div class="card-header">
         <span class="card-number">MODULE // 03</span>
-        <span class="card-badge badge-existing">Handbook Core</span>
+        <span class="card-badge badge-beginner">BEGINNER</span>
       </div>
-      <h3>Metasploit Framework Fundamentals</h3>
-      <p>Exploit modules, auxiliary scanners, payloads, Meterpreter fundamentals, and workspace organization.</p>
+      <h3>03 — Linux Essentials for Practitioners</h3>
+      <p>POSIX filesystem hierarchy, chmod/chown permissions, process controls (ps, top), systemd units, and admin commands.</p>
       <div class="card-footer">
-        <span>⏱ 18 min read</span>
+        <span style="color: var(--primary);">Lab: Linux Permissions</span>
         <span class="cta">Read Module →</span>
       </div>
     </a>
-    <a class="card" href="searchsploit.html">
-      <div class="card-header">
-        <span class="card-number">MODULE // 04</span>
-        <span class="card-badge badge-existing">Handbook Core</span>
-      </div>
-      <h3>Searchsploit & Vulnerability Research</h3>
-      <p>Query Exploit-DB locally, examine public proof-of-concept code, and research CVE applicability.</p>
-      <div class="card-footer">
-        <span>⏱ 10 min read</span>
-        <span class="cta">Read Module →</span>
-      </div>
-    </a>
-    <a class="card" href="modules/web-security.html">
-      <div class="card-header">
-        <span class="card-number">MODULE // 05</span>
-        <span class="card-badge badge-thm">TryHackMe Practical</span>
-      </div>
-      <h3>Web Application Security Fundamentals</h3>
-      <p>OWASP Top 10 concepts, SQL injection, XSS, parameter tampering (IDOR), and Burp Suite proxy testing.</p>
-      <div class="card-footer">
-        <span>⏱ 20 min read</span>
-        <span class="cta">Read Module →</span>
-      </div>
-    </a>
+
+    <!-- 04 — Networking -->
     <a class="card" href="modules/network-security.html">
       <div class="card-header">
-        <span class="card-number">MODULE // 06</span>
-        <span class="card-badge badge-thm">TryHackMe Practical</span>
+        <span class="card-number">MODULE // 04</span>
+        <span class="card-badge badge-beginner">BEGINNER</span>
       </div>
-      <h3>Network Security & Packet Analysis</h3>
-      <p>TCP/IP structures, 3-way handshakes, Wireshark packet capture, display filters, and network inspection.</p>
+      <h3>04 — Networking &amp; Packet Analysis</h3>
+      <p>TCP/IP stack, 3-way handshakes, tcpdump capture filters, and Wireshark protocol analysis.</p>
       <div class="card-footer">
-        <span>⏱ 16 min read</span>
+        <span style="color: var(--secondary);">Theory: OSI &amp; TCP/IP</span>
         <span class="cta">Read Module →</span>
       </div>
     </a>
-    <a class="card" href="modules/privilege-escalation.html">
+
+    <!-- 05 — Reconnaissance -->
+    <a class="card" href="modules/reconnaissance.html">
+      <div class="card-header">
+        <span class="card-number">MODULE // 05</span>
+        <span class="card-badge badge-beginner">BEGINNER</span>
+      </div>
+      <h3>05 — Reconnaissance &amp; OSINT</h3>
+      <p>Passive intelligence gathering, WHOIS, DNS record querying (dig/nslookup), Certificate Transparency, and surface mapping.</p>
+      <div class="card-footer">
+        <span style="color: var(--primary);">Lab: Recon Vectors</span>
+        <span class="cta">Read Module →</span>
+      </div>
+    </a>
+
+    <!-- 06 — Enumeration -->
+    <a class="card" href="nmap.html">
+      <div class="card-header">
+        <span class="card-number">MODULE // 06</span>
+        <span class="card-badge badge-intermediate">INTERMEDIATE</span>
+      </div>
+      <h3>06 — Enumeration &amp; Nmap Scanning</h3>
+      <p>Active port discovery, SYN stealth sweeps (-sS), service version fingerprinting (-sV), and NSE vulnerability scripts.</p>
+      <div class="card-footer">
+        <span style="color: var(--primary);">Lab: Network Service Enum</span>
+        <span class="cta">Read Module →</span>
+      </div>
+    </a>
+
+    <!-- 07 — Web Security -->
+    <a class="card" href="modules/web-security.html">
       <div class="card-header">
         <span class="card-number">MODULE // 07</span>
-        <span class="card-badge badge-progress">In Progress · Lab Focus</span>
+        <span class="card-badge badge-intermediate">INTERMEDIATE</span>
       </div>
-      <h3>Privilege Escalation (Educational Labs)</h3>
-      <p>Foundational Linux privilege escalation vectors in authorized educational environments.</p>
+      <h3>07 — Web Application Security</h3>
+      <p>OWASP Top 10 vulnerabilities, Burp Suite proxy interception, endpoint fuzzing with ffuf, and parameter tampering.</p>
       <div class="card-footer">
-        <span>⏱ 14 min read</span>
+        <span style="color: var(--primary);">Labs: SQLi, XSS, IDOR</span>
         <span class="cta">Read Module →</span>
       </div>
     </a>
+
+    <!-- 08 — Credentials -->
     <a class="card" href="modules/credential-security.html">
       <div class="card-header">
         <span class="card-number">MODULE // 08</span>
-        <span class="card-badge badge-thm">TryHackMe Practical</span>
+        <span class="card-badge badge-intermediate">INTERMEDIATE</span>
       </div>
-      <h3>Credential Security & Hash Analysis</h3>
-      <p>Hash identification, offline dictionary verification with John the Ripper, and authentication defenses.</p>
+      <h3>08 — Credentials &amp; Hash Analysis</h3>
+      <p>Hash identification (MD5, SHA-256, NTLM), offline dictionary testing with John the Ripper, and credential defenses.</p>
       <div class="card-footer">
-        <span>⏱ 15 min read</span>
+        <span style="color: var(--secondary);">Theory: Password Hashing</span>
         <span class="cta">Read Module →</span>
       </div>
     </a>
-    <a class="card" href="modules/exploitation.html">
+
+    <!-- 09 — Privilege Escalation -->
+    <a class="card" href="modules/privilege-escalation.html">
       <div class="card-header">
         <span class="card-number">MODULE // 09</span>
-        <span class="card-badge badge-thm">TryHackMe Practical</span>
+        <span class="card-badge badge-advanced">ADVANCED</span>
       </div>
-      <h3>Controlled Exploitation & Post-Exploitation</h3>
-      <p>Controlled vulnerability validation in labs, reverse shell handling, post-exploitation discovery, and lab cleanup.</p>
+      <h3>09 — Privilege Escalation (Linux &amp; Windows)</h3>
+      <p>SUID binary escapes via GTFOBins, sudo misconfigurations, vulnerable cron jobs, and capabilities abuse.</p>
       <div class="card-footer">
-        <span>⏱ 18 min read</span>
+        <span style="color: var(--danger-critical);">Lab: SUID PrivEsc</span>
         <span class="cta">Read Module →</span>
       </div>
     </a>
-    <a class="card" href="modules/reconnaissance.html">
+
+    <!-- 10 — Exploitation -->
+    <a class="card" href="metasploit.html">
       <div class="card-header">
         <span class="card-number">MODULE // 10</span>
-        <span class="card-badge badge-thm">TryHackMe Practical</span>
+        <span class="card-badge badge-advanced">ADVANCED</span>
       </div>
-      <h3>Reconnaissance & Surface Enumeration</h3>
-      <p>Passive reconnaissance (WHOIS, DNS) vs active surface enumeration (port sweeps, web fuzzing with ffuf).</p>
+      <h3>10 — Controlled Exploitation &amp; MSF</h3>
+      <p>Authorized exploit staging, Metasploit auxiliary scanners, Meterpreter payloads, and reverse shell handlers.</p>
       <div class="card-footer">
-        <span>⏱ 15 min read</span>
+        <span style="color: var(--danger-critical);">Payloads Hub</span>
         <span class="cta">Read Module →</span>
       </div>
     </a>
+
+    <!-- 11 — Defensive Security -->
     <a class="card" href="modules/linux-security.html">
       <div class="card-header">
         <span class="card-number">MODULE // 11</span>
-        <span class="card-badge badge-thm">TryHackMe Practical</span>
+        <span class="card-badge badge-intermediate">INTERMEDIATE</span>
       </div>
-      <h3>Linux System Security & Defensive Hardening</h3>
-      <p>Hardening Linux hosts, firewall configuration (UFW), SSH key enforcement, and authentication log auditing.</p>
+      <h3>11 — Defensive Security &amp; Hardening</h3>
+      <p>Host hardening, UFW firewall filtering, SSH key authentication enforcement, and auditd/auth.log monitoring.</p>
       <div class="card-footer">
-        <span>⏱ 14 min read</span>
+        <span style="color: var(--secondary);">Theory: Zero Trust &amp; DMZ</span>
         <span class="cta">Read Module →</span>
       </div>
     </a>
-    <a class="card" href="modules/security-automation.html">
-      <div class="card-header">
-        <span class="card-number">MODULE // 12</span>
-        <span class="card-badge badge-project">Project Origin</span>
-      </div>
-      <h3>Security Automation with Python & Scripting</h3>
-      <p>Developing custom security tooling: socket probes, HTTP verification scripts, regex log parsers, and CLI interfaces.</p>
-      <div class="card-footer">
-        <span>⏱ 18 min read</span>
-        <span class="cta">Read Module →</span>
-      </div>
-    </a>
-    <a class="card" href="modules/ai-cybersecurity.html">
-      <div class="card-header">
-        <span class="card-number">MODULE // 13</span>
-        <span class="card-badge badge-project">Project Origin</span>
-      </div>
-      <h3>AI & Agentic Workflows in Cybersecurity</h3>
-      <p>Local offline LLMs (Ollama, Qwen3-Coder), automated triage, agentic security workflows, and prompt injection defense.</p>
-      <div class="card-footer">
-        <span>⏱ 20 min read</span>
-        <span class="cta">Read Module →</span>
-      </div>
-    </a>
+
+    <!-- 12 — Security Tools -->
     <a class="card" href="modules/tools-reference.html">
       <div class="card-header">
-        <span class="card-number">MODULE // 14</span>
-        <span class="card-badge badge-existing">Handbook Core</span>
+        <span class="card-number">MODULE // 12</span>
+        <span class="card-badge badge-reference">REFERENCE</span>
       </div>
-      <h3>Security Tools Command Index & Quick Reference</h3>
-      <p>High-density command index covering reconnaissance, web testing, exploitation, password analysis, and traffic tools.</p>
+      <h3>12 — Security Tools Master Command Index</h3>
+      <p>Master syntax reference for 25+ essential tools: Nmap, Burp, ffuf, Wireshark, Metasploit, Hydra, and SQLMap.</p>
       <div class="card-footer">
-        <span>⏱ 25 min ref</span>
+        <span style="color: var(--primary);">250+ Commands</span>
+        <span class="cta">Read Reference →</span>
+      </div>
+    </a>
+
+    <!-- 13 — Automation -->
+    <a class="card" href="modules/security-automation.html">
+      <div class="card-header">
+        <span class="card-number">MODULE // 13</span>
+        <span class="card-badge badge-intermediate">INTERMEDIATE</span>
+      </div>
+      <h3>13 — Security Automation with Python</h3>
+      <p>Building automated tooling: Socket port probes, HTTP vulnerability verifiers, regex log parsers, and CLI interfaces.</p>
+      <div class="card-footer">
+        <span style="color: var(--primary);">Python Tooling</span>
         <span class="cta">Read Module →</span>
       </div>
     </a>
-    <a class="card" href="modules/pentest-methodology.html">
+
+    <!-- 14 — Advanced Security -->
+    <a class="card" href="modules/ai-cybersecurity.html">
+      <div class="card-header">
+        <span class="card-number">MODULE // 14</span>
+        <span class="card-badge badge-advanced">ADVANCED</span>
+      </div>
+      <h3>14 — Advanced Security &amp; AI Agents</h3>
+      <p>Local AI models (Ollama, Qwen), automated vulnerability triage, agentic penetration workflows, and LLM defense.</p>
+      <div class="card-footer">
+        <span style="color: var(--warning);">AI Security</span>
+        <span class="cta">Read Module →</span>
+      </div>
+    </a>
+
+    <!-- 15 — Methodology & Reference -->
+    <a class="card" href="searchsploit.html">
       <div class="card-header">
         <span class="card-number">MODULE // 15</span>
-        <span class="card-badge badge-thm">TryHackMe Practical</span>
+        <span class="card-badge badge-reference">REFERENCE</span>
       </div>
-      <h3>Penetration Testing Methodology & Authorization</h3>
-      <p>Ethical assessment frameworks, rules of engagement (ROE), scoping documents, CVSS scoring, and technical reporting.</p>
+      <h3>15 — Methodology &amp; Vulnerability Research</h3>
+      <p>Searchsploit local Exploit-DB querying, offline proof-of-concept analysis, CVE triage, and reporting frameworks.</p>
       <div class="card-footer">
-        <span>⏱ 16 min read</span>
+        <span style="color: var(--primary);">Exploit-DB CLI</span>
         <span class="cta">Read Module →</span>
       </div>
     </a>

@@ -1,0 +1,2668 @@
+<!DOCTYPE html>
+<html class="scroll-smooth dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Cybersecurity Theory &amp; Concepts System | Endlessus</title>
+  <meta content="Comprehensive cybersecurity theory, conceptual foundations, and technical architecture: Computer Fundamentals, Operating Systems, Networking, OSI &amp; TCP/IP Models, Packet Journey, Web Protocols, Cryptography, Database Theory, Active Directory, Detection, and Defense." name="description"/>
+  <link rel="icon" type="image/png" href="logo2.png"/>
+  <link rel="canonical" href="https://endlessus.in/theory.html"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Cybersecurity Theory &amp; Concepts System | Endlessus"/>
+  <meta property="og:description" content="The definitive theoretical foundation for cybersecurity: Computer Fundamentals, OS Internals, Networking Models, Packet Journey, Web Architecture, Cryptography, Detection, and Defense."/>
+  <meta property="og:image" content="https://endlessus.in/cover.png"/>
+  <meta property="og:url" content="https://endlessus.in/theory.html"/>
+  <meta property="og:type" content="article"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="tailwind.cdn.js"></script>
+  <script>if(typeof tailwind==="undefined"){document.write('<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"><\/script>')}</script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'canvas-base': '#090D12',
+            'surface-subtle': '#0E131B',
+            'surface-raised': '#151D28',
+            'surface-container': '#122131',
+            'surface-bright': '#2c3a4c',
+            'border-hairline': '#1F2937',
+            'border-medium': '#2D3748',
+            'border-highlight': '#374151',
+            'primary': '#4EDEA3',
+            'primary-container': '#10b981',
+            'secondary': '#4CD7F6',
+            'on-surface': '#F3F4F6',
+            'on-surface-variant': '#8692A6',
+            'outline': '#64748B',
+            'warning': '#F59E0B',
+            'danger-critical': '#F43F5E',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #090D12; color: #F3F4F6; font-family: 'Inter', sans-serif; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; vertical-align: middle; line-height: 1; }
+    .telemetry-grid {
+      background-size: 32px 32px;
+      background-image:
+        linear-gradient(to right, rgba(31, 41, 55, 0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(31, 41, 55, 0.25) 1px, transparent 1px);
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #090D12; }
+    ::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #4EDEA3; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    section[id], article[id] { scroll-margin-top: 6.5rem; }
+    .code-diagram {
+      font-family: 'JetBrains Mono', monospace;
+      line-height: 1.4;
+      white-space: pre;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body class="bg-canvas-base text-on-surface antialiased telemetry-grid min-h-screen flex flex-col font-sans selection:bg-primary selection:text-canvas-base">
+
+  <!-- ========================================================================= -->
+  <!-- Top Navigation Bar                                                        -->
+  <!-- ========================================================================= -->
+  <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      
+      <!-- Brand & Status -->
+      <div class="flex items-center gap-3">
+        <a href="theory.html" class="flex items-center gap-2 group">
+          <span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
+          <span class="font-mono text-sm font-bold tracking-wider text-on-surface group-hover:text-primary transition-colors">ENDLESSUS</span>
+          <span class="text-outline text-xs font-mono">/</span>
+          <span class="font-mono text-xs text-secondary font-bold">THEORY &amp; CONCEPTS</span>
+        </a>
+        <span class="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded border border-secondary/30 bg-canvas-base font-mono text-[10px] text-secondary">
+          <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+          <span>WHY SYSTEMS WORK</span>
+        </span>
+      </div>
+
+      <!-- Core Ecosystem Navigation Links -->
+      <nav class="hidden xl:flex items-center space-x-3.5 font-mono text-xs tracking-wider">
+        <a href="theory.html" class="text-secondary font-bold border-b border-secondary pb-0.5">Theory</a>
+        <a href="learning.html" class="text-on-surface-variant hover:text-primary transition-colors">Learning Hub</a>
+        <a href="labs.html" class="text-on-surface-variant hover:text-primary transition-colors">Labs (12)</a>
+        <a href="handbook/index.html" class="text-on-surface-variant hover:text-primary transition-colors">Handbook</a>
+        <a href="roadmap.html" class="text-on-surface-variant hover:text-primary transition-colors">Roadmap</a>
+        <a href="tools.html" class="text-on-surface-variant hover:text-primary transition-colors">Tools</a>
+        <a href="terminal-lab.html" class="text-primary hover:text-secondary transition-colors font-bold">Terminal</a>
+        <a href="payloads.html" class="text-danger-critical hover:text-primary transition-colors font-bold">Payloads</a>
+      </nav>
+
+      <!-- Action Buttons with Portfolio Switcher -->
+      <div class="flex items-center gap-2">
+        <button data-trigger-cmd class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:text-primary hover:border-primary transition-colors cursor-pointer" title="Search Everything (Cmd+K)">
+          <span class="material-symbols-outlined text-sm text-primary">search</span>
+          <span class="hidden sm:inline text-[11px] text-outline">⌘K</span>
+        </button>
+        <button data-trigger-term class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded border border-primary/40 bg-canvas-base font-mono text-xs text-primary hover:bg-primary/10 transition-colors cursor-pointer" title="Terminal (~)">
+          <span class="material-symbols-outlined text-sm text-primary">terminal</span>
+          <span class="hidden sm:inline text-[11px] font-bold">CLI</span>
+        </button>
+        <a href="index.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-raised border border-primary/40 text-primary hover:bg-primary hover:text-canvas-base font-mono text-xs font-bold transition-all shadow-[0_0_12px_rgba(78,222,163,0.15)]" title="Return to Mihraj's Personal Cybersecurity Portfolio">
+          <span class="material-symbols-outlined text-sm">person</span>
+          <span>Mihraj Portfolio &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- Main Content Container                                                    -->
+  <!-- ========================================================================= -->
+  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 py-10 w-full space-y-14">
+
+    <!-- ======================================================================= -->
+    <!-- 1. Hero & The Core Learning Model Architecture                           -->
+    <!-- ======================================================================= -->
+    <section class="space-y-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-secondary/30 bg-surface-subtle font-mono text-xs text-secondary">
+        <span class="material-symbols-outlined text-sm">menu_book</span>
+        <span>THE ARCHITECTURAL FOUNDATION OF CYBERSECURITY</span>
+      </div>
+      
+      <div class="space-y-3">
+        <h1 class="text-3xl sm:text-5xl font-black text-on-surface tracking-tight font-mono">
+          Cybersecurity <span class="text-secondary">Theory &amp; Concepts</span> System
+        </h1>
+        <p class="text-sm sm:text-base text-on-surface-variant max-w-4xl leading-relaxed">
+          Before running an exploit or analyzing a packet, you must understand <strong class="text-on-surface">why systems behave the way they do</strong>. 
+          Endlessus Theory establishes deep conceptual models across computer hardware, kernel internals, network protocol architectures, cryptographic mathematics, web communication pipelines, and enterprise defenses.
+        </p>
+      </div>
+
+      <!-- Core Learning Ecosystem Triad: Theory vs Handbook vs Labs -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono">
+        <div class="p-5 rounded-xl border-2 border-secondary/40 bg-surface-subtle shadow-lg space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-secondary font-bold text-xs uppercase tracking-wider flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-base">psychology</span> THEORY
+            </span>
+            <span class="text-[10px] px-2 py-0.5 rounded bg-secondary/15 text-secondary">YOU ARE HERE</span>
+          </div>
+          <div class="text-lg font-bold text-on-surface">Why Things Work</div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Teaches architecture, underlying protocols, hardware buses, kernel memory models, execution contexts, and defensive mathematics.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-xl border border-border-hairline bg-surface-subtle hover:border-primary/40 transition-colors space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-primary font-bold text-xs uppercase tracking-wider flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-base">terminal</span> HANDBOOK
+            </span>
+            <a href="handbook/index.html" class="text-[10px] text-primary hover:underline">15 Modules &rarr;</a>
+          </div>
+          <div class="text-lg font-bold text-on-surface">How To Use Commands</div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Provides syntax breakdowns, flag options, copyable real-world commands, utility manuals, output analysis, and quick reference cheatsheets.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-xl border border-border-hairline bg-surface-subtle hover:border-primary/40 transition-colors space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-primary font-bold text-xs uppercase tracking-wider flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-base">science</span> LABS
+            </span>
+            <a href="labs.html" class="text-[10px] text-primary hover:underline">12 Workstations &rarr;</a>
+          </div>
+          <div class="text-lg font-bold text-on-surface">How To Practice</div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Hands-on interactive workstations, dedicated POSIX terminals, scenarios, progressive hints, answers, and defensive remediations.
+          </p>
+        </div>
+      </div>
+
+      <!-- The Complete 11-Stage Progression Chain -->
+      <div class="p-5 rounded-2xl border border-border-hairline bg-surface-subtle space-y-3">
+        <div class="flex items-center justify-between font-mono text-xs">
+          <span class="text-secondary font-bold flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">route</span>
+            <span>THE ENDLESSUS COGNITIVE LEARNING PIPELINE</span>
+          </span>
+          <span class="text-[11px] text-outline hidden md:inline">FOUNDATION TO MASTERY</span>
+        </div>
+        <div class="overflow-x-auto no-scrollbar py-2">
+          <div class="flex items-center gap-2 font-mono text-[11px] min-w-[900px]">
+            <span class="px-2.5 py-1.5 rounded-lg bg-surface-raised border border-secondary/40 text-secondary font-bold">1. THEORY</span>
+            <span class="text-outline">&rarr;</span>
+            <span class="px-2.5 py-1.5 rounded-lg bg-surface-raised border border-border-hairline text-on-surface">2. CONCEPT</span>
+            <span class="text-outline">&rarr;</span>
+            <span class="px-2.5 py-1.5 rounded-lg bg-surface-raised border border-border-hairline text-on-surface">3. TECHNICAL</span>
+            <span class="text-outline">&rarr;</span>
+            <span class="px-2.5 py-1.5 rounded-lg bg-surface-raised border border-border-hairline text-on-surface">4. EXAMPLE</span>
+            <span class="text-outline">&rarr;</span>
+            <span class="px-2.5 py-1.5 rounded-lg bg-surface-raised border border-border-hairline text-primary font-semibold">5. TOOL</span>
+            <span class="text-outline">&rarr;</span>
+            <span class="px-2.5 py-1.5 rounded-lg bg-surface-raised border border-border-hairline text-primary font-semibold">6. PRACTICE</span>
+            <span class="text-outline">&rarr;</span>
+            <span class="px-2.5 py-1.5 rounded-lg bg-surface-raised border border-primary/40 text-primary font-bold">7. LAB</span>
+            <span class="text-outline">&rarr;</span>
+            <span class="px-2.5 py-1.5 rounded-lg bg-surface-raised border border-danger-critical/40 text-danger-critical font-bold">8. ATTACK</span>
+            <span class="text-outline">&rarr;</span>
+            <span class="px-2.5 py-1.5 rounded-lg bg-surface-raised border border-warning/40 text-warning font-bold">9. DETECTION</span>
+            <span class="text-outline">&rarr;</span>
+            <span class="px-2.5 py-1.5 rounded-lg bg-surface-raised border border-secondary/40 text-secondary font-bold">10. DEFENSE</span>
+            <span class="text-outline">&rarr;</span>
+            <span class="px-2.5 py-1.5 rounded-lg bg-surface-raised border border-border-hairline text-on-surface">11. ADVANCED</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- Sticky Quick-Navigation Index Bar                                       -->
+    <!-- ======================================================================= -->
+    <nav class="sticky top-16 z-30 -mx-4 sm:-mx-6 px-4 sm:px-6 py-2.5 bg-canvas-base/90 backdrop-blur-md border-y border-border-hairline flex items-center gap-2 overflow-x-auto no-scrollbar font-mono text-xs">
+      <span class="text-outline text-[11px] shrink-0 uppercase tracking-wider hidden lg:inline">Theory Modules:</span>
+      <a href="#computer-fundamentals" class="px-2.5 py-1 rounded bg-surface-subtle hover:bg-secondary/15 hover:text-secondary text-on-surface-variant border border-border-hairline shrink-0 transition-colors">01. Hardware &amp; OS</a>
+      <a href="#operating-systems" class="px-2.5 py-1 rounded bg-surface-subtle hover:bg-secondary/15 hover:text-secondary text-on-surface-variant border border-border-hairline shrink-0 transition-colors">02. OS Internals</a>
+      <a href="#networking-fundamentals" class="px-2.5 py-1 rounded bg-surface-subtle hover:bg-secondary/15 hover:text-secondary text-on-surface-variant border border-border-hairline shrink-0 transition-colors">03. Networking</a>
+      <a href="#osi-model" class="px-2.5 py-1 rounded bg-surface-subtle hover:bg-secondary/15 hover:text-secondary text-on-surface-variant border border-border-hairline shrink-0 transition-colors">04. OSI Model</a>
+      <a href="#tcp-ip-model" class="px-2.5 py-1 rounded bg-surface-subtle hover:bg-secondary/15 hover:text-secondary text-on-surface-variant border border-border-hairline shrink-0 transition-colors">05. TCP/IP</a>
+      <a href="#packet-journey" class="px-2.5 py-1 rounded bg-surface-subtle hover:bg-secondary/15 hover:text-secondary text-on-surface-variant border border-border-hairline shrink-0 transition-colors">06. Packet Journey</a>
+      <a href="#web-fundamentals" class="px-2.5 py-1 rounded bg-surface-subtle hover:bg-secondary/15 hover:text-secondary text-on-surface-variant border border-border-hairline shrink-0 transition-colors">07. Web &amp; HTTP</a>
+      <a href="#database-theory" class="px-2.5 py-1 rounded bg-surface-subtle hover:bg-secondary/15 hover:text-secondary text-on-surface-variant border border-border-hairline shrink-0 transition-colors">08. SQL &amp; DB</a>
+      <a href="#cryptography-theory" class="px-2.5 py-1 rounded bg-surface-subtle hover:bg-secondary/15 hover:text-secondary text-on-surface-variant border border-border-hairline shrink-0 transition-colors">09. Cryptography</a>
+      <a href="#auth-authorization" class="px-2.5 py-1 rounded bg-surface-subtle hover:bg-secondary/15 hover:text-secondary text-on-surface-variant border border-border-hairline shrink-0 transition-colors">10. Auth &amp; Access</a>
+      <a href="#security-fundamentals" class="px-2.5 py-1 rounded bg-surface-subtle hover:bg-secondary/15 hover:text-secondary text-on-surface-variant border border-border-hairline shrink-0 transition-colors">11. Security Core</a>
+      <a href="#detection-theory" class="px-2.5 py-1 rounded bg-surface-subtle hover:bg-secondary/15 hover:text-secondary text-on-surface-variant border border-border-hairline shrink-0 transition-colors">12. Detection &amp; SIEM</a>
+      <a href="#defensive-architecture" class="px-2.5 py-1 rounded bg-surface-subtle hover:bg-secondary/15 hover:text-secondary text-on-surface-variant border border-border-hairline shrink-0 transition-colors">13. Architecture</a>
+      <a href="#cloud-containers" class="px-2.5 py-1 rounded bg-surface-subtle hover:bg-secondary/15 hover:text-secondary text-on-surface-variant border border-border-hairline shrink-0 transition-colors">14. Cloud &amp; Docker</a>
+      <a href="#active-directory" class="px-2.5 py-1 rounded bg-surface-subtle hover:bg-secondary/15 hover:text-secondary text-on-surface-variant border border-border-hairline shrink-0 transition-colors">15. Active Directory</a>
+      <a href="#comparisons" class="px-2.5 py-1 rounded bg-surface-subtle hover:bg-secondary/15 hover:text-secondary text-on-surface-variant border border-border-hairline shrink-0 transition-colors">16. Comparisons (16)</a>
+      <a href="#knowledge-checks" class="px-2.5 py-1 rounded bg-surface-subtle hover:bg-secondary/15 hover:text-secondary text-on-surface-variant border border-border-hairline shrink-0 transition-colors">17. Knowledge Checks</a>
+      <a href="#learning-paths" class="px-2.5 py-1 rounded bg-surface-subtle hover:bg-secondary/15 hover:text-secondary text-on-surface-variant border border-border-hairline shrink-0 transition-colors">18. Paths (5)</a>
+    </nav>
+
+    <!-- ======================================================================= -->
+    <!-- 01. COMPUTER FUNDAMENTALS (LEVEL 1 FOUNDATION)                          -->
+    <!-- ======================================================================= -->
+    <section id="computer-fundamentals" class="space-y-6">
+      <div class="flex items-center justify-between border-b border-border-hairline pb-3">
+        <div>
+          <span class="font-mono text-xs text-secondary font-bold tracking-wider">LEVEL 01 // FOUNDATION</span>
+          <h2 class="text-2xl font-bold font-mono text-on-surface mt-1">Computer Fundamentals &amp; Hardware Abstractions</h2>
+        </div>
+        <span class="text-xs font-mono px-2.5 py-1 rounded bg-surface-raised border border-border-hairline text-outline">CORE ARCHITECTURE</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Main Content -->
+        <div class="lg:col-span-8 space-y-6 text-sm text-on-surface-variant leading-relaxed">
+          <p>
+            A computer is a general-purpose electronic machine capable of accepting input, storing instructions and data, executing logical and arithmetic operations at immense speeds, and outputting meaningful results (Von Neumann Architecture). In cybersecurity, hardware boundaries determine memory safety, instruction execution privileges, and physical isolation guarantees.
+          </p>
+
+          <!-- Hardware Breakdown Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+              <div class="flex items-center gap-2 text-primary font-mono font-bold text-xs">
+                <span class="material-symbols-outlined text-sm">memory</span>
+                <span>CPU (Central Processing Unit)</span>
+              </div>
+              <p class="text-xs">
+                The computational engine executing instructions via the <strong>Fetch-Decode-Execute</strong> cycle. Contains the ALU (Arithmetic Logic Unit), Control Unit, and high-speed hardware Registers (e.g., RIP instruction pointer, RSP stack pointer).
+              </p>
+              <div class="text-[11px] font-mono text-outline border-t border-border-hairline pt-2">
+                Security: Spectre/Meltdown exploit CPU speculative execution and branch prediction caches.
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+              <div class="flex items-center gap-2 text-secondary font-mono font-bold text-xs">
+                <span class="material-symbols-outlined text-sm">developer_board</span>
+                <span>RAM (Random Access Memory)</span>
+              </div>
+              <p class="text-xs">
+                Volatile high-speed working storage directly addressable by the CPU. Every running program, decrypted secret, and live network socket resides in RAM.
+              </p>
+              <div class="text-[11px] font-mono text-outline border-t border-border-hairline pt-2">
+                Security: RAM dumping &amp; memory forensics extract unencrypted plaintext credentials and malware payloads.
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+              <div class="flex items-center gap-2 text-warning font-mono font-bold text-xs">
+                <span class="material-symbols-outlined text-sm">hard_drive</span>
+                <span>Non-Volatile Storage (SSD / NVMe / HDD)</span>
+              </div>
+              <p class="text-xs">
+                Persistent block storage holding filesystems, operating system binaries, database tables, and configuration files across power cycles.
+              </p>
+              <div class="text-[11px] font-mono text-outline border-t border-border-hairline pt-2">
+                Security: Full-disk encryption (LUKS / BitLocker) protects persistent storage at rest from physical theft.
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+              <div class="flex items-center gap-2 text-on-surface font-mono font-bold text-xs">
+                <span class="material-symbols-outlined text-sm">hub</span>
+                <span>Motherboard &amp; System Buses</span>
+              </div>
+              <p class="text-xs">
+                The circuit board connecting all components via high-speed buses (PCIe, SATA, USB). Houses the BIOS/UEFI firmware that initializes the hardware.
+              </p>
+              <div class="text-[11px] font-mono text-outline border-t border-border-hairline pt-2">
+                Security: UEFI Secure Boot verifies cryptographically signed bootloader signatures against tampering.
+              </div>
+            </div>
+          </div>
+
+          <!-- Dual-Explanation Pattern: Process vs Thread -->
+          <div class="p-5 rounded-xl border border-secondary/30 bg-surface-subtle space-y-4">
+            <div class="font-mono text-xs font-bold text-secondary flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">compare_arrows</span>
+              <span>CORE ABSTRACTION: PROCESSES VS THREADS</span>
+            </div>
+
+            <!-- Process Card -->
+            <div class="space-y-2 border-b border-border-hairline pb-4">
+              <div class="font-mono text-xs font-bold text-on-surface flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-primary"></span>
+                <span>What is a Process?</span>
+              </div>
+              <div class="p-2.5 rounded bg-canvas-base border border-border-hairline text-xs font-mono text-primary">
+                🟢 Simple: "A process is a running instance of a program."
+              </div>
+              <p class="text-xs text-on-surface-variant">
+                <strong>Technical Definition:</strong> An isolated operating system execution context allocated its own private virtual memory space (Text, Data, BSS, Heap, Stack), a distinct Process Identifier (PID), environment variables, security context/credentials (UID/GID), and an open File Descriptor table. Processes cannot read or write to another process's memory without explicit IPC or debugging privileges.
+              </p>
+            </div>
+
+            <!-- Thread Card -->
+            <div class="space-y-2">
+              <div class="font-mono text-xs font-bold text-on-surface flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                <span>What is a Thread?</span>
+              </div>
+              <div class="p-2.5 rounded bg-canvas-base border border-border-hairline text-xs font-mono text-secondary">
+                🔵 Simple: "A worker inside a process that executes instructions."
+              </div>
+              <p class="text-xs text-on-surface-variant">
+                <strong>Technical Definition:</strong> The smallest schedulable unit of CPU execution. Multiple threads within the same process share the process's address space, code segment, and heap memory, but maintain independent thread execution contexts (registers, program counter, and private stack frame). Concurrency errors like race conditions emerge when multiple threads modify shared variables without synchronization locks.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar: Theory Bridge & Academic Revision -->
+        <div class="lg:col-span-4 space-y-4 font-mono text-xs">
+          <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-3">
+            <span class="text-primary font-bold flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">link</span>
+              <span>THEORY &rarr; HANDBOOK &rarr; LAB</span>
+            </span>
+            <div class="space-y-2 text-[11px]">
+              <div><strong class="text-secondary">Theory:</strong> Hardware, CPU registers, process isolation</div>
+              <div><strong class="text-primary">Handbook:</strong> <a href="handbook/linux.html" class="underline hover:text-primary">Linux CLI, `ps aux`, `top`, `/proc`</a></div>
+              <div><strong class="text-danger-critical">Lab:</strong> <a href="labs.html#lab-permissions" class="underline hover:text-danger-critical">Permissions &amp; Octal Modes</a></div>
+              <div><strong class="text-warning">Terminal:</strong> Run <code class="text-primary font-bold">ps aux</code> in sandbox</div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+            <span class="text-secondary font-bold flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">fact_check</span>
+              <span>ACADEMIC REVISION NOTES</span>
+            </span>
+            <ul class="space-y-1.5 text-[11px] text-on-surface-variant list-disc list-inside">
+              <li>Von Neumann: Stored-program architecture</li>
+              <li>Ring 0: Kernel mode (all instructions allowed)</li>
+              <li>Ring 3: User space (restricted CPU mode)</li>
+              <li>Context Switch: Saving state of one process &amp; restoring another</li>
+              <li>Process Isolation: Enforced by the MMU (Memory Management Unit)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 02. OPERATING SYSTEM THEORY                                             -->
+    <!-- ======================================================================= -->
+    <section id="operating-systems" class="space-y-6">
+      <div class="flex items-center justify-between border-b border-border-hairline pb-3">
+        <div>
+          <span class="font-mono text-xs text-secondary font-bold tracking-wider">LEVEL 02 // SYSTEM INTERNALS</span>
+          <h2 class="text-2xl font-bold font-mono text-on-surface mt-1">Operating System Theory &amp; Kernel Architecture</h2>
+        </div>
+        <span class="text-xs font-mono px-2.5 py-1 rounded bg-surface-raised border border-border-hairline text-outline">PRIVILEGE BOUNDARIES</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 text-sm text-on-surface-variant leading-relaxed">
+        <div class="lg:col-span-8 space-y-6">
+          <p>
+            An operating system (OS) is the software layer mediating between physical hardware and application software. It manages hardware resources, enforces access control boundaries, abstracts devices via drivers, and schedules concurrent workloads.
+          </p>
+
+          <!-- Kernel vs User Space Diagram -->
+          <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-3">
+            <div class="font-mono text-xs font-bold text-primary flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">shield</span>
+              <span>CPU EXECUTION RINGS &amp; THE SYSTEM CALL GATEWAY</span>
+            </div>
+            
+            <div class="p-4 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs space-y-3">
+              <div class="p-3 rounded bg-surface-raised border border-secondary/30">
+                <div class="text-secondary font-bold mb-1">USER SPACE (Ring 3) — Untrusted Applications &amp; Utilities</div>
+                <div class="text-outline text-[11px]">Web Browser, Python Scripts, Bash Shell, Nmap, Web Servers (Nginx)</div>
+                <div class="text-[10px] text-on-surface-variant mt-1">&bull; Cannot access physical hardware directly &bull; Restricted memory access</div>
+              </div>
+
+              <div class="flex items-center justify-center gap-2 text-outline text-[11px] py-1 font-bold">
+                <span>&darr;</span>
+                <span class="px-2 py-0.5 rounded bg-warning/20 text-warning border border-warning/30">SYSTEM CALL BOUNDARY (int 0x80 / syscall instruction)</span>
+                <span>&uarr;</span>
+              </div>
+
+              <div class="p-3 rounded bg-danger-critical/10 border border-danger-critical/30">
+                <div class="text-danger-critical font-bold mb-1">KERNEL SPACE (Ring 0) — Privileged Supervisor Mode</div>
+                <div class="text-outline text-[11px]">Process Scheduler, Virtual Memory Manager, Hardware Drivers, TCP/IP Stack, VFS</div>
+                <div class="text-[10px] text-on-surface-variant mt-1">&bull; Full unrestricted hardware control &bull; Kernel panic if crash occurs</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deep Concepts Matrix -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+              <div class="font-mono text-xs font-bold text-on-surface">Virtual Memory &amp; Paging</div>
+              <p class="text-xs">
+                The OS presents each process with the illusion of a continuous, private address space. Physical memory is divided into fixed-size <strong>Pages</strong> (usually 4KB). The <strong>MMU (Memory Management Unit)</strong> translates virtual addresses to physical RAM addresses via Page Tables.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+              <div class="font-mono text-xs font-bold text-on-surface">Process Memory Layout (Stack vs Heap)</div>
+              <p class="text-xs">
+                <strong>Stack:</strong> Fast, contiguous LIFO memory storing function call frames, local variables, and return addresses. Grows downward.<br/>
+                <strong>Heap:</strong> Dynamic memory allocated at runtime via <code class="text-primary font-mono">malloc()</code> / <code class="text-primary font-mono">new</code>. Grows upward.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+              <div class="font-mono text-xs font-bold text-on-surface">Virtual Filesystem (VFS) &amp; Inodes</div>
+              <p class="text-xs">
+                In Linux, "Everything is a file". An <strong>Inode</strong> is a data structure storing file metadata (permissions, UID, size, timestamp, data block pointers) — but NOT the filename. Filenames are directory entries pointing to inode numbers.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+              <div class="font-mono text-xs font-bold text-on-surface">Environment Variables &amp; PATH Traversal</div>
+              <p class="text-xs">
+                Key-value pairs inherited by child processes. The <code class="text-secondary font-mono">PATH</code> variable defines directories searched for executable binaries. Misconfigured paths (e.g., writable directory listed first) allow binary hijacking and privilege escalation.
+              </p>
+            </div>
+          </div>
+
+          <!-- Security Connection: Privilege Escalation -->
+          <div class="p-4 rounded-xl border border-warning/30 bg-surface-subtle space-y-2">
+            <div class="font-mono text-xs font-bold text-warning flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">security_update_warning</span>
+              <span>HOW OS THEORY POWERS PRIVILEGE ESCALATION</span>
+            </div>
+            <p class="text-xs">
+              When an attacker gains a low-privileged shell, they exploit OS design primitives:
+              <strong>SUID Binaries</strong> execute with the file owner's privileges (often UID 0 root) instead of the caller's;
+              <strong>Kernel Exploits</strong> corrupt kernel page tables or memory structures (Dirty COW, Dirty Pipe) to flip the caller's process token to UID 0;
+              <strong>Cron Jobs</strong> running as root without strict path controls can be tricked into executing attacker-controlled scripts.
+            </p>
+            <div class="pt-2 flex flex-wrap gap-2 text-xs font-mono">
+              <a href="labs.html#lab-suid" class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline text-primary hover:border-primary">Practice Lab: SUID PrivEsc &rarr;</a>
+              <a href="handbook/modules/privilege-escalation.html" class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline text-secondary hover:border-secondary">Handbook: PrivEsc Module &rarr;</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar: POSIX Permissions & SUID Matrix -->
+        <div class="lg:col-span-4 space-y-4 font-mono text-xs">
+          <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-3">
+            <span class="text-secondary font-bold flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">lock</span>
+              <span>POSIX PERMISSION OCTAL MODES</span>
+            </span>
+            <div class="p-3 rounded bg-canvas-base border border-border-hairline text-[11px] space-y-2">
+              <div class="flex justify-between border-b border-border-hairline pb-1 font-bold text-on-surface">
+                <span>Value</span><span>Permission</span><span>Binary</span>
+              </div>
+              <div class="flex justify-between text-primary"><span>4</span><span>Read (r)</span><span>100</span></div>
+              <div class="flex justify-between text-secondary"><span>2</span><span>Write (w)</span><span>010</span></div>
+              <div class="flex justify-between text-warning"><span>1</span><span>Execute (x)</span><span>001</span></div>
+              <div class="flex justify-between text-on-surface border-t border-border-hairline pt-1 font-bold">
+                <span>7</span><span>r + w + x</span><span>111</span>
+              </div>
+            </div>
+            <p class="text-[11px] text-outline">
+              Special bits: SUID (4000), SGID (2000), Sticky Bit (1000). e.g., <code class="text-primary font-bold">4755</code> = SUID root rwxr-xr-x.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2 text-[11px]">
+            <span class="text-primary font-bold flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">memory</span>
+              <span>INTER-PROCESS COMMUNICATION (IPC)</span>
+            </span>
+            <div class="space-y-1 text-on-surface-variant">
+              <div>&bull; <strong>Pipes (|):</strong> Unidirectional byte stream between parent &amp; child.</div>
+              <div>&bull; <strong>Sockets:</strong> Bidirectional IPC across network or Unix domain.</div>
+              <div>&bull; <strong>Signals:</strong> Asynchronous alerts (SIGINT 2, SIGKILL 9, SIGTERM 15).</div>
+              <div>&bull; <strong>Shared Memory:</strong> Fastest IPC; direct simultaneous RAM mapping.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 03. NETWORKING THEORY — MAJOR PATH                                     -->
+    <!-- ======================================================================= -->
+    <section id="networking-fundamentals" class="space-y-6">
+      <div class="flex items-center justify-between border-b border-border-hairline pb-3">
+        <div>
+          <span class="font-mono text-xs text-secondary font-bold tracking-wider">LEVEL 03 // COMMUNICATION PREREQUISITE</span>
+          <h2 class="text-2xl font-bold font-mono text-on-surface mt-1">Networking Theory, Addressing &amp; Infrastructure</h2>
+        </div>
+        <span class="text-xs font-mono px-2.5 py-1 rounded bg-surface-raised border border-border-hairline text-outline">NETWORK ARCHITECTURE</span>
+      </div>
+
+      <div class="space-y-6 text-sm text-on-surface-variant leading-relaxed">
+        <p>
+          A computer network is an interconnected group of nodes sharing data over transmission media using standardized protocols. 
+          Without networking, cybersecurity would be reduced to physical security. Every modern attack surface — from port scanning to web exploitation — traverses network stacks.
+        </p>
+
+        <!-- Network Scope Grid: LAN vs WAN vs Internet -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-xs">
+          <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+            <span class="text-primary font-bold text-sm">LAN (Local Area Network)</span>
+            <p class="text-on-surface-variant text-[11px] leading-relaxed">
+              High-speed, geographically restricted network (home, office, campus). Managed by a single organization. Switched Layer 2 Ethernet &amp; 802.11 Wi-Fi.
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+            <span class="text-secondary font-bold text-sm">WAN (Wide Area Network)</span>
+            <p class="text-on-surface-variant text-[11px] leading-relaxed">
+              Spans broad geographical regions (cities, countries). Interconnects multiple LANs via telecommunication providers, leased fiber, and MPLS/SD-WAN.
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+            <span class="text-warning font-bold text-sm">The Internet</span>
+            <p class="text-on-surface-variant text-[11px] leading-relaxed">
+              A global public "network of networks" interconnected by Autonomous Systems (AS) using BGP (Border Gateway Protocol) and the TCP/IP suite.
+            </p>
+          </div>
+        </div>
+
+        <!-- Addressing Architecture: IPv4, IPv6, MAC, Subnetting -->
+        <div class="p-6 rounded-2xl bg-surface-subtle border border-border-hairline space-y-5">
+          <div class="font-mono text-xs font-bold text-secondary flex items-center justify-between">
+            <span class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">numbers</span>
+              <span>NETWORK ADDRESSING TIERS: PHYSICAL VS LOGICAL VS PORT</span>
+            </span>
+            <span class="text-outline">RFC 1918 &amp; IEEE 802</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <div class="text-primary font-bold">1. MAC Address (Layer 2)</div>
+              <div class="text-on-surface text-[11px]">48 bits (6 bytes): <code class="text-primary">00:1A:2B:3C:4D:5E</code></div>
+              <p class="text-on-surface-variant text-[11px] leading-relaxed">
+                Burned into network interface hardware. First 24 bits = OUI (vendor). Last 24 bits = unique device identifier. Operates only on local subnet.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <div class="text-secondary font-bold">2. IPv4 Address (Layer 3)</div>
+              <div class="text-on-surface text-[11px]">32 bits (4 octets): <code class="text-secondary">192.168.1.100</code></div>
+              <p class="text-on-surface-variant text-[11px] leading-relaxed">
+                Routable logical address across network boundaries. Divided into Network bits and Host bits via Subnet Mask (/24 = 255.255.255.0).
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <div class="text-warning font-bold">3. Port Number (Layer 4)</div>
+              <div class="text-on-surface text-[11px]">16 bits (0 – 65,535): <code class="text-warning">:80, :443, :22</code></div>
+              <p class="text-on-surface-variant text-[11px] leading-relaxed">
+                Identifies which specific process/service on the host should receive the incoming packet. 0-1023: Well-known; 1024-49151: Registered; 49152+: Ephemeral.
+              </p>
+            </div>
+          </div>
+
+          <!-- RFC 1918 Private IP Ranges Reference -->
+          <div class="p-4 rounded-lg bg-surface-raised border border-border-hairline space-y-2">
+            <div class="font-mono text-xs font-bold text-on-surface">RFC 1918 Private IP Ranges (Non-Routable on Public Internet)</div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 font-mono text-[11px]">
+              <div class="p-2 rounded bg-canvas-base border border-border-hairline"><strong class="text-primary">Class A:</strong> 10.0.0.0/8 (16.7M hosts)</div>
+              <div class="p-2 rounded bg-canvas-base border border-border-hairline"><strong class="text-secondary">Class B:</strong> 172.16.0.0/12 (1M hosts)</div>
+              <div class="p-2 rounded bg-canvas-base border border-border-hairline"><strong class="text-warning">Class C:</strong> 192.168.0.0/16 (65K hosts)</div>
+            </div>
+            <p class="text-[11px] text-outline font-mono">
+              Special addresses: <code class="text-primary">127.0.0.1</code> (Loopback/localhost), <code class="text-secondary">169.254.0.0/16</code> (APIPA link-local auto-assigned).
+            </p>
+          </div>
+        </div>
+
+        <!-- Network Protocols Encyclopedia -->
+        <div class="space-y-3">
+          <h3 class="text-lg font-bold font-mono text-on-surface">Core Network Protocols Breakdown</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 font-mono text-xs">
+            <div class="p-3 rounded-lg bg-surface-subtle border border-border-hairline space-y-1">
+              <div class="text-primary font-bold">ARP (Address Resolution Protocol)</div>
+              <p class="text-[11px] text-on-surface-variant">Maps IP addresses (Layer 3) to MAC addresses (Layer 2) on local Ethernet subnets. Vulnerable to ARP poisoning/spoofing.</p>
+            </div>
+            <div class="p-3 rounded-lg bg-surface-subtle border border-border-hairline space-y-1">
+              <div class="text-secondary font-bold">ICMP (Internet Control Message Protocol)</div>
+              <p class="text-[11px] text-on-surface-variant">Diagnostics and error reporting (ping, traceroute). Packets report TTL Exceeded or Host Unreachable.</p>
+            </div>
+            <div class="p-3 rounded-lg bg-surface-subtle border border-border-hairline space-y-1">
+              <div class="text-warning font-bold">DNS (Domain Name System) — Port 53</div>
+              <p class="text-[11px] text-on-surface-variant">Translates human domain names into machine IPs. Record types: A (IPv4), AAAA (IPv6), CNAME (alias), MX (mail), TXT (SPF/DKIM).</p>
+            </div>
+            <div class="p-3 rounded-lg bg-surface-subtle border border-border-hairline space-y-1">
+              <div class="text-primary font-bold">DHCP (Dynamic Host Configuration) — Port 67/68</div>
+              <p class="text-[11px] text-on-surface-variant">Automatically issues IP, subnet mask, default gateway, and DNS servers via DORA (Discover, Offer, Request, ACK).</p>
+            </div>
+            <div class="p-3 rounded-lg bg-surface-subtle border border-border-hairline space-y-1">
+              <div class="text-secondary font-bold">TCP vs UDP (Transport Layer)</div>
+              <p class="text-[11px] text-on-surface-variant">TCP ensures reliable in-order byte delivery with 3-way handshake. UDP provides fast, low-overhead, stateless transmission.</p>
+            </div>
+            <div class="p-3 rounded-lg bg-surface-subtle border border-border-hairline space-y-1">
+              <div class="text-danger-critical font-bold">SSH (Secure Shell) — Port 22</div>
+              <p class="text-[11px] text-on-surface-variant">Encrypted remote administration replacing Telnet. Uses asymmetric key exchange (ECDHE) and symmetric AES session encryption.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 04. THE OSI 7-LAYER MODEL (INTERACTIVE VISUAL EXPLORER)                 -->
+    <!-- ======================================================================= -->
+    <section id="osi-model" class="space-y-6">
+      <div class="flex items-center justify-between border-b border-border-hairline pb-3">
+        <div>
+          <span class="font-mono text-xs text-secondary font-bold tracking-wider">LEVEL 04 // INTERACTIVE ARCHITECTURE</span>
+          <h2 class="text-2xl font-bold font-mono text-on-surface mt-1">The OSI 7-Layer Model Interactive Explorer</h2>
+        </div>
+        <span class="text-xs font-mono px-2.5 py-1 rounded bg-secondary/10 border border-secondary/30 text-secondary">CLICK LAYERS TO INSPECT</span>
+      </div>
+
+      <p class="text-sm text-on-surface-variant leading-relaxed">
+        The Open Systems Interconnection (OSI) reference model characterizes communication functions into 7 distinct abstraction layers. 
+        In cybersecurity, attack vectors and defensive controls align precisely with these layers.
+      </p>
+
+      <!-- Interactive 7-Layer Stack -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start font-mono">
+        <!-- Layer Buttons Stack -->
+        <div class="lg:col-span-5 space-y-2" id="osi-layer-buttons">
+          <button type="button" class="osi-btn w-full p-3 rounded-xl border border-secondary bg-secondary/10 text-left transition-all hover:border-secondary flex items-center justify-between cursor-pointer" data-layer="7">
+            <div class="flex items-center gap-3">
+              <span class="px-2 py-0.5 rounded bg-secondary/20 text-secondary font-bold text-xs">L7</span>
+              <div>
+                <div class="font-bold text-on-surface text-sm">Application Layer</div>
+                <div class="text-[11px] text-on-surface-variant">HTTP, HTTPS, DNS, SSH, FTP, SMTP</div>
+              </div>
+            </div>
+            <span class="text-[11px] text-secondary font-bold">DATA</span>
+          </button>
+
+          <button type="button" class="osi-btn w-full p-3 rounded-xl border border-border-hairline bg-surface-subtle text-left transition-all hover:border-secondary/60 flex items-center justify-between cursor-pointer" data-layer="6">
+            <div class="flex items-center gap-3">
+              <span class="px-2 py-0.5 rounded bg-surface-raised text-outline font-bold text-xs">L6</span>
+              <div>
+                <div class="font-bold text-on-surface text-sm">Presentation Layer</div>
+                <div class="text-[11px] text-on-surface-variant">TLS/SSL, ASCII, UTF-8, Base64, gzip</div>
+              </div>
+            </div>
+            <span class="text-[11px] text-outline font-bold">DATA</span>
+          </button>
+
+          <button type="button" class="osi-btn w-full p-3 rounded-xl border border-border-hairline bg-surface-subtle text-left transition-all hover:border-secondary/60 flex items-center justify-between cursor-pointer" data-layer="5">
+            <div class="flex items-center gap-3">
+              <span class="px-2 py-0.5 rounded bg-surface-raised text-outline font-bold text-xs">L5</span>
+              <div>
+                <div class="font-bold text-on-surface text-sm">Session Layer</div>
+                <div class="text-[11px] text-on-surface-variant">RPC, NetBIOS, SOCKS, Session Management</div>
+              </div>
+            </div>
+            <span class="text-[11px] text-outline font-bold">DATA</span>
+          </button>
+
+          <button type="button" class="osi-btn w-full p-3 rounded-xl border border-border-hairline bg-surface-subtle text-left transition-all hover:border-secondary/60 flex items-center justify-between cursor-pointer" data-layer="4">
+            <div class="flex items-center gap-3">
+              <span class="px-2 py-0.5 rounded bg-surface-raised text-outline font-bold text-xs">L4</span>
+              <div>
+                <div class="font-bold text-on-surface text-sm">Transport Layer</div>
+                <div class="text-[11px] text-on-surface-variant">TCP, UDP, Port Numbers (0-65535)</div>
+              </div>
+            </div>
+            <span class="text-[11px] text-primary font-bold">SEGMENT</span>
+          </button>
+
+          <button type="button" class="osi-btn w-full p-3 rounded-xl border border-border-hairline bg-surface-subtle text-left transition-all hover:border-secondary/60 flex items-center justify-between cursor-pointer" data-layer="3">
+            <div class="flex items-center gap-3">
+              <span class="px-2 py-0.5 rounded bg-surface-raised text-outline font-bold text-xs">L3</span>
+              <div>
+                <div class="font-bold text-on-surface text-sm">Network Layer</div>
+                <div class="text-[11px] text-on-surface-variant">IPv4, IPv6, ICMP, Routers, BGP</div>
+              </div>
+            </div>
+            <span class="text-[11px] text-warning font-bold">PACKET</span>
+          </button>
+
+          <button type="button" class="osi-btn w-full p-3 rounded-xl border border-border-hairline bg-surface-subtle text-left transition-all hover:border-secondary/60 flex items-center justify-between cursor-pointer" data-layer="2">
+            <div class="flex items-center gap-3">
+              <span class="px-2 py-0.5 rounded bg-surface-raised text-outline font-bold text-xs">L2</span>
+              <div>
+                <div class="font-bold text-on-surface text-sm">Data Link Layer</div>
+                <div class="text-[11px] text-on-surface-variant">Ethernet, MAC Addresses, ARP, Switches</div>
+              </div>
+            </div>
+            <span class="text-[11px] text-secondary font-bold">FRAME</span>
+          </button>
+
+          <button type="button" class="osi-btn w-full p-3 rounded-xl border border-border-hairline bg-surface-subtle text-left transition-all hover:border-secondary/60 flex items-center justify-between cursor-pointer" data-layer="1">
+            <div class="flex items-center gap-3">
+              <span class="px-2 py-0.5 rounded bg-surface-raised text-outline font-bold text-xs">L1</span>
+              <div>
+                <div class="font-bold text-on-surface text-sm">Physical Layer</div>
+                <div class="text-[11px] text-on-surface-variant">Cat6 RJ45, Fiber Optic, Wi-Fi Radio, Bits</div>
+              </div>
+            </div>
+            <span class="text-[11px] text-danger-critical font-bold">BITS</span>
+          </button>
+        </div>
+
+        <!-- Layer Dynamic Details Card -->
+        <div class="lg:col-span-7 p-6 rounded-2xl bg-surface-subtle border border-border-hairline space-y-4" id="osi-details-pane">
+          <div class="flex items-center justify-between border-b border-border-hairline pb-3">
+            <div>
+              <span class="text-xs text-secondary font-bold" id="osi-detail-number">LAYER 07</span>
+              <h3 class="text-xl font-bold text-on-surface" id="osi-detail-title">Application Layer</h3>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-secondary/15 text-secondary text-xs font-bold" id="osi-detail-unit">PDU: DATA</span>
+          </div>
+
+          <div class="space-y-3 text-xs leading-relaxed">
+            <div>
+              <strong class="text-on-surface">What It Does:</strong>
+              <p class="text-on-surface-variant mt-1" id="osi-detail-purpose">
+                Directly interacts with end-user applications. Provides network services like web browsing (HTTP/HTTPS), file transfer (FTP), domain resolution (DNS), and email transmission (SMTP).
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline">
+                <span class="text-secondary font-bold">Protocols &amp; Addressing:</span>
+                <p class="text-on-surface-variant mt-1" id="osi-detail-protocols">HTTP, HTTPS, DNS, SSH, FTP, SMTP. Addresses: URLs, Hostnames, Email addresses.</p>
+              </div>
+              <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline">
+                <span class="text-primary font-bold">Security Relevance:</span>
+                <p class="text-on-surface-variant mt-1" id="osi-detail-relevance">Accepts untrusted user input directly. Contains the highest density of business logic vulnerabilities.</p>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-lg bg-danger-critical/10 border border-danger-critical/30 space-y-1">
+              <span class="text-danger-critical font-bold">Typical Attacks:</span>
+              <p class="text-on-surface-variant" id="osi-detail-attacks">SQL Injection, Cross-Site Scripting (XSS), IDOR, Command Injection, CSRF, API abuse, brute-force attacks.</p>
+            </div>
+
+            <div class="p-3 rounded-lg bg-secondary/10 border border-secondary/30 space-y-1">
+              <span class="text-secondary font-bold">Defensive Considerations:</span>
+              <p class="text-on-surface-variant" id="osi-detail-defense">Web Application Firewalls (WAF), input validation &amp; sanitization, prepared statements, secure headers (CSP, HSTS), rate limiting.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 05. TCP/IP MODEL & OSI VS TCP/IP COMPARISON                             -->
+    <!-- ======================================================================= -->
+    <section id="tcp-ip-model" class="space-y-6">
+      <div class="flex items-center justify-between border-b border-border-hairline pb-3">
+        <div>
+          <span class="font-mono text-xs text-secondary font-bold tracking-wider">LEVEL 05 // REAL-WORLD PROTOCOL SUITE</span>
+          <h2 class="text-2xl font-bold font-mono text-on-surface mt-1">TCP/IP Model &amp; OSI vs TCP/IP Comparison</h2>
+        </div>
+        <span class="text-xs font-mono px-2.5 py-1 rounded bg-surface-raised border border-border-hairline text-outline">PRACTICAL ARCHITECTURE</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 text-sm text-on-surface-variant leading-relaxed">
+        <div class="lg:col-span-6 space-y-4">
+          <p>
+            While the OSI model is a 7-layer theoretical reference framework created by the International Organization for Standardization, 
+            the <strong>TCP/IP Model</strong> (also known as the Internet Protocol Suite or DoD Model) is the practical, 4-layer architecture that actually powers the global Internet.
+          </p>
+
+          <!-- 4-Layer Breakdown -->
+          <div class="space-y-2 font-mono text-xs">
+            <div class="p-3 rounded-xl bg-surface-subtle border border-border-hairline flex items-center justify-between">
+              <div>
+                <span class="text-secondary font-bold">1. Application Layer</span>
+                <div class="text-[11px] text-outline">Combines OSI L7, L6, L5 &bull; HTTP, DNS, SSH, TLS</div>
+              </div>
+              <span class="text-[11px] text-secondary">User Interface &amp; Services</span>
+            </div>
+
+            <div class="p-3 rounded-xl bg-surface-subtle border border-border-hairline flex items-center justify-between">
+              <div>
+                <span class="text-primary font-bold">2. Transport Layer</span>
+                <div class="text-[11px] text-outline">Matches OSI L4 &bull; TCP, UDP &bull; Port Addressing</div>
+              </div>
+              <span class="text-[11px] text-primary">End-to-End Reliability</span>
+            </div>
+
+            <div class="p-3 rounded-xl bg-surface-subtle border border-border-hairline flex items-center justify-between">
+              <div>
+                <span class="text-warning font-bold">3. Internet Layer</span>
+                <div class="text-[11px] text-outline">Matches OSI L3 &bull; IPv4, IPv6, ICMP, Routing</div>
+              </div>
+              <span class="text-[11px] text-warning">Logical Routing</span>
+            </div>
+
+            <div class="p-3 rounded-xl bg-surface-subtle border border-border-hairline flex items-center justify-between">
+              <div>
+                <span class="text-on-surface font-bold">4. Network Access (Link) Layer</span>
+                <div class="text-[11px] text-outline">Combines OSI L2 &amp; L1 &bull; Ethernet, Wi-Fi, MAC, Hardware</div>
+              </div>
+              <span class="text-[11px] text-outline">Physical &amp; Local Framing</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="lg:col-span-6 p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3 font-mono text-xs">
+          <div class="text-primary font-bold flex items-center gap-1.5 border-b border-border-hairline pb-2">
+            <span class="material-symbols-outlined text-sm">compare</span>
+            <span>OSI VS TCP/IP COMPARISON MATRIX</span>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="border-b border-border-hairline text-outline text-[11px]">
+                  <th class="py-2">Dimension</th>
+                  <th class="py-2 text-secondary">OSI Reference Model</th>
+                  <th class="py-2 text-primary">TCP/IP Suite Model</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-border-hairline/60 text-[11px]">
+                <tr>
+                  <td class="py-2 font-bold text-on-surface">Layers</td>
+                  <td class="py-2 text-secondary">7 Distinct Layers</td>
+                  <td class="py-2 text-primary">4 Consolidated Layers</td>
+                </tr>
+                <tr>
+                  <td class="py-2 font-bold text-on-surface">Purpose</td>
+                  <td class="py-2">Theoretical standard &amp; academic reference</td>
+                  <td class="py-2">Functional implementation of the Internet</td>
+                </tr>
+                <tr>
+                  <td class="py-2 font-bold text-on-surface">Real-world usage</td>
+                  <td class="py-2">Concept reference (e.g. "Layer 7 firewall")</td>
+                  <td class="py-2">Installed in all operating system kernels</td>
+                </tr>
+                <tr>
+                  <td class="py-2 font-bold text-on-surface">Session &amp; Presentation</td>
+                  <td class="py-2">Separated into dedicated layers</td>
+                  <td class="py-2">Handled directly within Application code/TLS</td>
+                </tr>
+                <tr>
+                  <td class="py-2 font-bold text-on-surface">Security Relevance</td>
+                  <td class="py-2">Defense-in-depth classification</td>
+                  <td class="py-2">Packet capture &amp; firewall implementation</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 06. PACKET JOURNEY — "WHAT HAPPENS WHEN I VISIT A WEBSITE?"            -->
+    <!-- ======================================================================= -->
+    <section id="packet-journey" class="space-y-6">
+      <div class="flex items-center justify-between border-b border-border-hairline pb-3">
+        <div>
+          <span class="font-mono text-xs text-secondary font-bold tracking-wider">LEVEL 06 // INTERACTIVE PACKET TRACE</span>
+          <h2 class="text-2xl font-bold font-mono text-on-surface mt-1">Packet Journey: "What Happens When I Visit a Website?"</h2>
+        </div>
+        <span class="text-xs font-mono px-2.5 py-1 rounded bg-secondary/10 border border-secondary/30 text-secondary">10-STEP COMPLETE WALKTHROUGH</span>
+      </div>
+
+      <p class="text-sm text-on-surface-variant leading-relaxed">
+        Understanding what happens from the millisecond a user presses <kbd class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-primary">Enter</kbd> to when the rendered DOM appears is the ultimate test of networking, cryptography, operating systems, and web architecture knowledge.
+      </p>
+
+      <!-- Step Navigator -->
+      <div class="p-6 rounded-2xl bg-surface-subtle border border-border-hairline space-y-6">
+        <!-- Step Indicator Bar -->
+        <div class="flex items-center justify-between flex-wrap gap-2 font-mono text-xs border-b border-border-hairline pb-4">
+          <span class="text-primary font-bold flex items-center gap-1.5" id="journey-step-badge">
+            <span class="material-symbols-outlined text-sm">flight_takeoff</span>
+            <span>STEP 1 OF 10: USER TYPES URL</span>
+          </span>
+          <div class="flex items-center gap-2">
+            <button type="button" id="journey-prev-btn" class="px-3 py-1 rounded bg-surface-raised border border-border-hairline text-on-surface hover:text-primary transition-colors cursor-pointer disabled:opacity-40">&larr; Previous</button>
+            <button type="button" id="journey-next-btn" class="px-3 py-1 rounded bg-primary text-canvas-base font-bold transition-colors cursor-pointer hover:bg-primary-container">Next Step &rarr;</button>
+          </div>
+        </div>
+
+        <!-- Dynamic Content Card -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div class="lg:col-span-7 space-y-3">
+            <h3 class="text-xl font-bold font-mono text-on-surface" id="journey-title">1. User Inputs URL &amp; Browser Cache Check</h3>
+            <p class="text-sm text-on-surface-variant leading-relaxed" id="journey-desc">
+              The user enters <code class="text-secondary font-mono">https://endlessus.in/login</code>. The browser parses the scheme (<code class="text-primary font-mono">https</code>), host (<code class="text-primary font-mono">endlessus.in</code>), and path (<code class="text-primary font-mono">/login</code>). It immediately inspects its local in-memory DNS cache and HSTS preload list to determine whether HTTPS must be strictly enforced.
+            </p>
+            <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-outline space-y-1" id="journey-tech">
+              <div>&bull; <strong>Layer:</strong> Application (OSI Layer 7)</div>
+              <div>&bull; <strong>Operating System:</strong> Checks <code class="text-primary">/etc/hosts</code> (Linux) or <code class="text-primary">C:\Windows\System32\drivers\etc\hosts</code> (Windows) before external queries.</div>
+            </div>
+          </div>
+
+          <!-- Code / Diagram Simulation -->
+          <div class="lg:col-span-5 p-4 rounded-xl bg-canvas-base border border-border-hairline font-mono text-xs space-y-2">
+            <div class="text-[11px] text-outline border-b border-border-hairline pb-1 flex justify-between">
+              <span>SECURITY TOOL EQUIVALENT</span>
+              <span class="text-primary" id="journey-tool-name">Browser DevTools</span>
+            </div>
+            <pre class="text-primary text-[11px] overflow-x-auto whitespace-pre-wrap" id="journey-code">
+# Inspect DNS resolution manually:
+$ dig +trace endlessus.in
+# Or verify HTTP Strict Transport Security:
+$ curl -ivs https://endlessus.in | grep -i strict-transport
+            </pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 07. WEB FUNDAMENTALS & HTTP REQUEST / RESPONSE THEORY                   -->
+    <!-- ======================================================================= -->
+    <section id="web-fundamentals" class="space-y-6">
+      <div class="flex items-center justify-between border-b border-border-hairline pb-3">
+        <div>
+          <span class="font-mono text-xs text-secondary font-bold tracking-wider">LEVEL 07 // APPLICATION LAYER</span>
+          <h2 class="text-2xl font-bold font-mono text-on-surface mt-1">Web Fundamentals &amp; HTTP Request / Response Anatomy</h2>
+        </div>
+        <span class="text-xs font-mono px-2.5 py-1 rounded bg-surface-raised border border-border-hairline text-outline">HTTP/1.1 &amp; HTTP/2</span>
+      </div>
+
+      <div class="space-y-6 text-sm text-on-surface-variant leading-relaxed">
+        <p>
+          The World Wide Web is an application-layer information system operating on top of the physical Internet. 
+          Web applications operate on a strict <strong>Request-Response model</strong> using HTTP (Hypertext Transfer Protocol). 
+          Every web vulnerability (SQLi, XSS, CSRF, IDOR) is ultimately manifested in manipulated HTTP parameters, headers, or responses.
+        </p>
+
+        <!-- Interactive HTTP Request / Response Dual Inspector -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 font-mono text-xs">
+          <!-- Request Inspector -->
+          <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-4">
+            <div class="flex items-center justify-between border-b border-border-hairline pb-2">
+              <span class="text-secondary font-bold flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">arrow_upward</span>
+                <span>ANATOMY OF AN HTTP REQUEST</span>
+              </span>
+              <span class="text-[10px] text-outline">CLIENT &rarr; SERVER</span>
+            </div>
+
+            <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline text-[11px] space-y-2">
+              <div class="p-2 rounded bg-surface-raised border border-secondary/40">
+                <div class="text-secondary font-bold">1. Request Line: <code class="text-on-surface">POST /api/v1/login HTTP/1.1</code></div>
+                <div class="text-outline text-[10px] mt-0.5">Method (POST) + Resource Path (/api/v1/login) + Protocol Version (HTTP/1.1)</div>
+              </div>
+
+              <div class="p-2 rounded bg-surface-raised border border-border-hairline space-y-1 text-[10px]">
+                <div><strong class="text-primary">Host:</strong> <span class="text-on-surface">api.endlessus.in</span> <span class="text-outline">(Mandatory in HTTP/1.1 for Virtual Hosts)</span></div>
+                <div><strong class="text-primary">User-Agent:</strong> <span class="text-on-surface">Mozilla/5.0 (X11; Linux x86_64)</span></div>
+                <div><strong class="text-primary">Content-Type:</strong> <span class="text-on-surface">application/json</span></div>
+                <div><strong class="text-primary">Cookie:</strong> <span class="text-secondary">session=8f7e2a...; csrf_token=a90b</span></div>
+                <div><strong class="text-primary">Authorization:</strong> <span class="text-warning">Bearer eyJhbGciOi...</span></div>
+              </div>
+
+              <div class="p-2 rounded bg-danger-critical/10 border border-danger-critical/30 text-[10px]">
+                <div class="text-danger-critical font-bold">Request Body (Payload):</div>
+                <pre class="text-on-surface mt-1">{ "username": "admin", "password": "SuperSecretPassword123!" }</pre>
+              </div>
+            </div>
+            <p class="text-[11px] text-outline">
+              Security note: In Burp Suite, this is the exact plaintext message intercepted in the Proxy tab before reaching the server.
+            </p>
+          </div>
+
+          <!-- Response Inspector -->
+          <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-4">
+            <div class="flex items-center justify-between border-b border-border-hairline pb-2">
+              <span class="text-primary font-bold flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">arrow_downward</span>
+                <span>ANATOMY OF AN HTTP RESPONSE</span>
+              </span>
+              <span class="text-[10px] text-outline">SERVER &rarr; CLIENT</span>
+            </div>
+
+            <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline text-[11px] space-y-2">
+              <div class="p-2 rounded bg-surface-raised border border-primary/40">
+                <div class="text-primary font-bold">1. Status Line: <code class="text-on-surface">HTTP/1.1 200 OK</code></div>
+                <div class="text-outline text-[10px] mt-0.5">Protocol (HTTP/1.1) + Status Code (200) + Reason Phrase (OK)</div>
+              </div>
+
+              <div class="p-2 rounded bg-surface-raised border border-border-hairline space-y-1 text-[10px]">
+                <div><strong class="text-secondary">Content-Type:</strong> <span class="text-on-surface">application/json; charset=utf-8</span></div>
+                <div><strong class="text-secondary">Set-Cookie:</strong> <span class="text-warning">session=8f7e2a; Secure; HttpOnly; SameSite=Strict</span></div>
+                <div><strong class="text-secondary">Content-Security-Policy:</strong> <span class="text-on-surface">default-src 'self'</span></div>
+                <div><strong class="text-secondary">X-Frame-Options:</strong> <span class="text-on-surface">DENY</span></div>
+                <div><strong class="text-secondary">X-Content-Type-Options:</strong> <span class="text-on-surface">nosniff</span></div>
+              </div>
+
+              <div class="p-2 rounded bg-primary/10 border border-primary/30 text-[10px]">
+                <div class="text-primary font-bold">Response Body (Payload):</div>
+                <pre class="text-on-surface mt-1">{ "status": "success", "userId": 104, "role": "admin" }</pre>
+              </div>
+            </div>
+            <p class="text-[11px] text-outline">
+              Critical cookie flags: <code class="text-warning">HttpOnly</code> prevents JavaScript XSS theft; <code class="text-warning">Secure</code> enforces HTTPS; <code class="text-warning">SameSite=Strict</code> defends against CSRF.
+            </p>
+          </div>
+        </div>
+
+        <!-- HTTP Methods & Status Codes Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
+          <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+            <span class="text-secondary font-bold">HTTP Methods (Verbs)</span>
+            <div class="space-y-1 text-[11px]">
+              <div><strong class="text-primary">GET:</strong> Retrieve resource. Idempotent &amp; safe (should not alter state).</div>
+              <div><strong class="text-secondary">POST:</strong> Submit data to server (form submissions, logins, object creation).</div>
+              <div><strong class="text-warning">PUT:</strong> Complete replacement of the target resource.</div>
+              <div><strong class="text-danger-critical">DELETE:</strong> Remove the specified resource.</div>
+              <div><strong class="text-outline">OPTIONS:</strong> CORS preflight requests checking allowed methods.</div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+            <span class="text-primary font-bold">Status Code Families</span>
+            <div class="space-y-1 text-[11px]">
+              <div><strong class="text-primary">2xx (Success):</strong> 200 OK, 201 Created, 204 No Content.</div>
+              <div><strong class="text-secondary">3xx (Redirection):</strong> 301 Moved Permanently, 302 Found, 304 Not Modified.</div>
+              <div><strong class="text-warning">4xx (Client Error):</strong> 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found.</div>
+              <div><strong class="text-danger-critical">5xx (Server Error):</strong> 500 Internal Error, 502 Bad Gateway, 503 Unavailable.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 08. DATABASE THEORY & SQL FUNDAMENTALS                                  -->
+    <!-- ======================================================================= -->
+    <section id="database-theory" class="space-y-6">
+      <div class="flex items-center justify-between border-b border-border-hairline pb-3">
+        <div>
+          <span class="font-mono text-xs text-secondary font-bold tracking-wider">LEVEL 08 // DATA PERSISTENCE</span>
+          <h2 class="text-2xl font-bold font-mono text-on-surface mt-1">Database Theory &amp; SQL Query Architecture</h2>
+        </div>
+        <span class="text-xs font-mono px-2.5 py-1 rounded bg-surface-raised border border-border-hairline text-outline">RDBMS &amp; SQLi FOUNDATION</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 text-sm text-on-surface-variant leading-relaxed">
+        <div class="lg:col-span-8 space-y-5">
+          <p>
+            A database is an organized collection of structured data stored electronically in a computer system. 
+            Before attempting to exploit or defend against <strong>SQL Injection (SQLi)</strong>, you must understand the grammar, schema architecture, and parser logic of relational databases (RDBMS).
+          </p>
+
+          <!-- Relational Concepts -->
+          <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-3 font-mono text-xs">
+            <div class="text-primary font-bold">Relational Schema Building Blocks</div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[11px]">
+              <div>&bull; <strong>Tables:</strong> Named relations containing columns (attributes) and rows (records).</div>
+              <div>&bull; <strong>Primary Key (PK):</strong> Unique column identifier for each row (e.g., `user_id = 42`).</div>
+              <div>&bull; <strong>Foreign Key (FK):</strong> Column in one table referencing the Primary Key of another.</div>
+              <div>&bull; <strong>Relationships:</strong> One-to-One, One-to-Many (Users &rarr; Orders), Many-to-Many.</div>
+            </div>
+          </div>
+
+          <!-- The Root Cause of SQL Injection Diagram -->
+          <div class="p-5 rounded-xl border border-danger-critical/30 bg-surface-subtle space-y-3 font-mono text-xs">
+            <div class="font-bold text-danger-critical flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">bug_report</span>
+              <span>HOW UNESCAPED STRING CONCATENATION BREAKS SQL SYNTAX</span>
+            </div>
+
+            <div class="space-y-2 text-[11px]">
+              <div>1. Developer writes dynamic string query in application code:</div>
+              <div class="p-2.5 rounded bg-canvas-base border border-border-hairline text-outline">
+                query = "SELECT * FROM users WHERE username = '" + <span class="text-danger-critical">userInput</span> + "' AND password = '" + pass + "'";
+              </div>
+
+              <div>2. Attacker provides input designed to close string literal and alter boolean logic:</div>
+              <div class="p-2 rounded bg-danger-critical/15 text-danger-critical font-bold">
+                admin' OR '1'='1' -- 
+              </div>
+
+              <div>3. SQL parser interprets the injected quotes as SQL syntax rather than literal data:</div>
+              <div class="p-2.5 rounded bg-canvas-base border border-border-hairline text-on-surface">
+                SELECT * FROM users WHERE username = '<span class="text-danger-critical">admin' OR '1'='1</span>' --' AND password = '...';
+              </div>
+              <p class="text-outline text-[11px]">
+                The database evaluates <code class="text-primary">'1'='1'</code> as TRUE, and the <code class="text-primary">--</code> comment sequence discards the password check entirely.
+              </p>
+            </div>
+          </div>
+
+          <!-- Defensive Remediation: Prepared Statements -->
+          <div class="p-4 rounded-xl border border-primary/30 bg-surface-subtle space-y-2 font-mono text-xs">
+            <div class="text-primary font-bold flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">verified_user</span>
+              <span>THE DEFENSIVE CURE: PREPARED STATEMENTS (PARAMETERIZATION)</span>
+            </div>
+            <p class="text-xs text-on-surface-variant">
+              In parameterized queries, the SQL query structure is compiled by the database engine <em>first</em> with placeholders (<code class="text-primary font-bold">?</code> or <code class="text-primary font-bold">:username</code>). 
+              User input is sent in a separate protocol phase and treated strictly as literal string values — never as executable SQL tokens.
+            </p>
+            <div class="pt-2">
+              <a href="labs.html#lab-sqli" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-primary text-canvas-base font-bold text-xs hover:bg-primary-container">
+                <span>Practice SQLi Lab Workstation &rarr;</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar: Core SQL Commands Reference -->
+        <div class="lg:col-span-4 space-y-4 font-mono text-xs">
+          <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-3">
+            <span class="text-secondary font-bold flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">code</span>
+              <span>STANDARD SQL COMMANDS</span>
+            </span>
+            <div class="space-y-2 text-[11px]">
+              <div>
+                <strong class="text-primary">SELECT:</strong> Read data
+                <div class="text-outline text-[10px]">SELECT email FROM users WHERE id = 1;</div>
+              </div>
+              <div>
+                <strong class="text-secondary">INSERT:</strong> Add records
+                <div class="text-outline text-[10px]">INSERT INTO logs (event) VALUES ('auth_ok');</div>
+              </div>
+              <div>
+                <strong class="text-warning">UPDATE:</strong> Modify records
+                <div class="text-outline text-[10px]">UPDATE accounts SET balance = 500 WHERE id = 2;</div>
+              </div>
+              <div>
+                <strong class="text-danger-critical">DELETE:</strong> Remove records
+                <div class="text-outline text-[10px]">DELETE FROM sessions WHERE expired = 1;</div>
+              </div>
+              <div>
+                <strong class="text-on-surface">JOIN:</strong> Combine tables
+                <div class="text-outline text-[10px]">SELECT u.name, o.total FROM users u JOIN orders o ON u.id = o.user_id;</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 09. CRYPTOGRAPHY THEORY                                                 -->
+    <!-- ======================================================================= -->
+    <section id="cryptography-theory" class="space-y-6">
+      <div class="flex items-center justify-between border-b border-border-hairline pb-3">
+        <div>
+          <span class="font-mono text-xs text-secondary font-bold tracking-wider">LEVEL 09 // MATHEMATICAL SECURITY</span>
+          <h2 class="text-2xl font-bold font-mono text-on-surface mt-1">Cryptography Theory: Ciphers, Hashes &amp; PKI</h2>
+        </div>
+        <span class="text-xs font-mono px-2.5 py-1 rounded bg-surface-raised border border-border-hairline text-outline">CONFIDENTIALITY &amp; INTEGRITY</span>
+      </div>
+
+      <div class="space-y-6 text-sm text-on-surface-variant leading-relaxed">
+        <p>
+          Cryptography is the science of securing communication against adversaries using mathematical primitives. 
+          It provides three indispensable security guarantees: <strong>Confidentiality</strong> (encryption), <strong>Integrity</strong> (hashing &amp; MACs), and <strong>Authenticity / Non-Repudiation</strong> (digital signatures &amp; PKI).
+        </p>
+
+        <!-- Triad Comparison Matrix: Encryption vs Encoding vs Hashing -->
+        <div class="p-6 rounded-2xl bg-surface-subtle border-2 border-secondary/40 space-y-4 font-mono">
+          <div class="flex items-center justify-between">
+            <span class="text-secondary font-bold text-xs uppercase tracking-wider flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">visibility</span>
+              <span>ESSENTIAL DISTINCTION: ENCRYPTION VS ENCODING VS HASHING</span>
+            </span>
+            <span class="text-outline text-[11px] hidden sm:inline">FREQUENTLY CONFUSED CONCEPTS</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+            <!-- Encryption -->
+            <div class="p-4 rounded-xl bg-canvas-base border border-secondary/40 space-y-2">
+              <div class="text-secondary font-bold text-sm">ENCRYPTION</div>
+              <div class="text-[11px] text-primary font-semibold">&bull; Two-way (Reversible with Secret Key)</div>
+              <p class="text-on-surface-variant text-[11px]">
+                Transforms plaintext into ciphertext using a cryptographic algorithm and secret key. Confidentiality is preserved even if the ciphertext is intercepted.
+              </p>
+              <div class="text-[10px] text-outline border-t border-border-hairline pt-2">
+                Examples: AES-256-GCM, RSA-4096, ChaCha20.
+              </div>
+            </div>
+
+            <!-- Encoding -->
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <div class="text-on-surface font-bold text-sm">ENCODING</div>
+              <div class="text-[11px] text-warning font-semibold">&bull; Two-way (Reversible by ANYONE, NO Key)</div>
+              <p class="text-on-surface-variant text-[11px]">
+                Transforms data into a different format for safe transmission across binary-incompatible systems. <strong>Provides ZERO security or confidentiality.</strong>
+              </p>
+              <div class="text-[10px] text-outline border-t border-border-hairline pt-2">
+                Examples: Base64, URL Encoding (%20), Hexadecimal, ASCII.
+              </div>
+            </div>
+
+            <!-- Hashing -->
+            <div class="p-4 rounded-xl bg-canvas-base border border-primary/40 space-y-2">
+              <div class="text-primary font-bold text-sm">HASHING</div>
+              <div class="text-[11px] text-danger-critical font-semibold">&bull; One-way (Mathematically Irreversible)</div>
+              <p class="text-on-surface-variant text-[11px]">
+                Maps arbitrary-length input to a fixed-size digest. Impossible to invert. Changing 1 bit completely scrambles the output digest (Avalanche Effect).
+              </p>
+              <div class="text-[10px] text-outline border-t border-border-hairline pt-2">
+                Examples: SHA-256, SHA-512, bcrypt, Argon2.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Symmetric vs Asymmetric Cryptography -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 font-mono text-xs">
+          <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3">
+            <span class="text-primary font-bold text-sm flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-base">key</span>
+              <span>Symmetric Cryptography (Shared Secret)</span>
+            </span>
+            <p class="text-on-surface-variant text-[11px] leading-relaxed">
+              The exact same secret key is used for both encryption and decryption. Extremely fast and computationally lightweight. Used for bulk data transmission (disk encryption, TLS payload sessions).
+            </p>
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline text-[11px]">
+              <div>&bull; <strong>AES (Advanced Encryption Standard):</strong> 128, 192, or 256-bit block cipher. Modes: GCM (authenticated), CBC.</div>
+              <div>&bull; <strong>ChaCha20-Poly1305:</strong> Stream cipher optimized for devices without hardware AES instructions.</div>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3">
+            <span class="text-secondary font-bold text-sm flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-base">vpn_key</span>
+              <span>Asymmetric Cryptography (Public / Private Pair)</span>
+            </span>
+            <p class="text-on-surface-variant text-[11px] leading-relaxed">
+              Uses mathematically linked key pairs: a <strong>Public Key</strong> (freely shared to encrypt or verify signatures) and a <strong>Private Key</strong> (kept secret to decrypt or create signatures). Solves the key exchange problem.
+            </p>
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline text-[11px]">
+              <div>&bull; <strong>RSA:</strong> Based on the prime factorization hardness problem (2048 to 4096-bit).</div>
+              <div>&bull; <strong>ECC (Elliptic Curve Cryptography):</strong> Curve25519, ECDSA. Much smaller keys (256-bit) with equivalent security.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 10. AUTHENTICATION & AUTHORIZATION THEORY                              -->
+    <!-- ======================================================================= -->
+    <section id="auth-authorization" class="space-y-6">
+      <div class="flex items-center justify-between border-b border-border-hairline pb-3">
+        <div>
+          <span class="font-mono text-xs text-secondary font-bold tracking-wider">LEVEL 10 // ACCESS CONTROL</span>
+          <h2 class="text-2xl font-bold font-mono text-on-surface mt-1">Authentication vs Authorization &amp; Token Architecture</h2>
+        </div>
+        <span class="text-xs font-mono px-2.5 py-1 rounded bg-surface-raised border border-border-hairline text-outline">IDENTITY &amp; TOKENS</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 text-sm text-on-surface-variant leading-relaxed">
+        <div class="lg:col-span-8 space-y-6">
+          <!-- AuthN vs AuthZ Dual Card -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs">
+            <div class="p-4 rounded-xl bg-surface-subtle border border-secondary/40 space-y-2">
+              <span class="text-secondary font-bold text-sm flex items-center gap-1">
+                <span class="material-symbols-outlined text-base">badge</span>
+                <span>Authentication (AuthN)</span>
+              </span>
+              <div class="p-2 rounded bg-canvas-base border border-border-hairline text-secondary font-bold">
+                "Who are you?"
+              </div>
+              <p class="text-on-surface-variant text-[11px]">
+                Validating the claimed identity of a user or system. Verified via Factors: Something you know (password), something you have (TOTP token, smartcard), something you are (biometrics).
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-surface-subtle border border-primary/40 space-y-2">
+              <span class="text-primary font-bold text-sm flex items-center gap-1">
+                <span class="material-symbols-outlined text-base">gavel</span>
+                <span>Authorization (AuthZ)</span>
+              </span>
+              <div class="p-2 rounded bg-canvas-base border border-border-hairline text-primary font-bold">
+                "What are you allowed to do?"
+              </div>
+              <p class="text-on-surface-variant text-[11px]">
+                Validating whether an authenticated identity has permission to perform an action or read a specific object. Enforced via RBAC (roles) or ABAC (attributes).
+              </p>
+            </div>
+          </div>
+
+          <!-- JWT Token Theory Breakdown -->
+          <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3 font-mono text-xs">
+            <div class="font-bold text-on-surface flex items-center justify-between">
+              <span class="text-secondary flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">token</span>
+                <span>JSON WEB TOKEN (JWT) ARCHITECTURE</span>
+              </span>
+              <span class="text-outline text-[11px]">RFC 7519</span>
+            </div>
+
+            <p class="text-xs text-on-surface-variant">
+              A stateless, self-contained compact token format divided into three Base64URL-encoded parts separated by periods:
+              <code class="text-danger-critical font-bold">Header</code>.<code class="text-secondary font-bold">Payload</code>.<code class="text-primary font-bold">Signature</code>
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px]">
+              <div class="p-3 rounded bg-canvas-base border border-danger-critical/30 space-y-1">
+                <span class="text-danger-critical font-bold">1. Header</span>
+                <p class="text-outline text-[10px]">Algorithm &amp; token type ({ "alg": "HS256", "typ": "JWT" }).</p>
+              </div>
+              <div class="p-3 rounded bg-canvas-base border border-secondary/30 space-y-1">
+                <span class="text-secondary font-bold">2. Payload</span>
+                <p class="text-outline text-[10px]">Claims ({ "sub": "104", "name": "Mihraj", "role": "user" }).</p>
+              </div>
+              <div class="p-3 rounded bg-canvas-base border border-primary/30 space-y-1">
+                <span class="text-primary font-bold">3. Signature</span>
+                <p class="text-outline text-[10px]">HMACSHA256(Header + Payload, Secret). Verifies integrity.</p>
+              </div>
+            </div>
+
+            <div class="p-3 rounded bg-warning/10 border border-warning/30 text-[11px] text-on-surface-variant">
+              <strong class="text-warning">Security Vulnerability Note:</strong> 
+              If the server accepts <code class="text-on-surface">"alg": "none"</code>, an attacker can modify the payload (e.g. change <code class="text-primary">"role": "admin"</code>) and delete the signature, achieving complete privilege escalation.
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar: Access Control Models -->
+        <div class="lg:col-span-4 space-y-4 font-mono text-xs">
+          <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-3">
+            <span class="text-secondary font-bold flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">admin_panel_settings</span>
+              <span>ACCESS CONTROL MODELS</span>
+            </span>
+            <div class="space-y-2 text-[11px]">
+              <div>
+                <strong class="text-on-surface">DAC (Discretionary Access Control):</strong>
+                <p class="text-outline text-[10px]">Object owners decide permissions (e.g., standard Linux chmod/chown).</p>
+              </div>
+              <div>
+                <strong class="text-primary">MAC (Mandatory Access Control):</strong>
+                <p class="text-outline text-[10px]">Enforced strictly by central policy/labels (SELinux, Bell-LaPadula).</p>
+              </div>
+              <div>
+                <strong class="text-secondary">RBAC (Role-Based Access Control):</strong>
+                <p class="text-outline text-[10px]">Permissions mapped to job roles (Admin, Auditor, User).</p>
+              </div>
+              <div>
+                <strong class="text-warning">ABAC (Attribute-Based Access Control):</strong>
+                <p class="text-outline text-[10px]">Evaluated dynamically based on user role, time, IP, and location.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+            <span class="text-danger-critical font-bold text-xs flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">warning</span>
+              <span>CONNECTED VULNERABILITIES</span>
+            </span>
+            <div class="space-y-1 text-[11px]">
+              <div>&bull; <a href="labs.html#lab-idor" class="text-primary hover:underline font-bold">IDOR (Broken Object Auth)</a></div>
+              <div>&bull; <a href="labs.html#lab-auth" class="text-secondary hover:underline font-bold">Logic Auth Bypass Lab</a></div>
+              <div>&bull; <a href="labs.html#lab-jwt" class="text-warning hover:underline font-bold">JWT Signature Stripping Lab</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 11. SECURITY FUNDAMENTALS & VOCABULARY MATRIX                           -->
+    <!-- ======================================================================= -->
+    <section id="security-fundamentals" class="space-y-6">
+      <div class="flex items-center justify-between border-b border-border-hairline pb-3">
+        <div>
+          <span class="font-mono text-xs text-secondary font-bold tracking-wider">LEVEL 11 // CANONICAL TERMINOLOGY</span>
+          <h2 class="text-2xl font-bold font-mono text-on-surface mt-1">Cybersecurity Fundamentals &amp; Threat Model Vocabulary</h2>
+        </div>
+        <span class="text-xs font-mono px-2.5 py-1 rounded bg-surface-raised border border-border-hairline text-outline">CIA TRIAD &amp; STANDARDS</span>
+      </div>
+
+      <!-- CIA Triad Card -->
+      <div class="p-6 rounded-2xl bg-surface-subtle border border-border-hairline space-y-4">
+        <div class="font-mono text-xs font-bold text-primary flex items-center justify-between">
+          <span class="flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">change_history</span>
+            <span>THE FOUNDATIONAL CIA TRIAD + AUTHENTICITY</span>
+          </span>
+          <span class="text-outline">SECURITY PILLARS</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-xs">
+          <div class="p-4 rounded-xl bg-canvas-base border border-secondary/40 space-y-2">
+            <span class="text-secondary font-bold text-sm">CONFIDENTIALITY</span>
+            <p class="text-on-surface-variant text-[11px]">
+              Ensuring sensitive data is accessed only by authorized entities. Preserved by encryption (AES, TLS), strict access controls, and least privilege.
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-canvas-base border border-primary/40 space-y-2">
+            <span class="text-primary font-bold text-sm">INTEGRITY</span>
+            <p class="text-on-surface-variant text-[11px]">
+              Ensuring information remains authentic, accurate, and uncorrupted by unauthorized modification. Preserved by hashing (SHA-256), HMACs, and digital signatures.
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-canvas-base border border-warning/40 space-y-2">
+            <span class="text-warning font-bold text-sm">AVAILABILITY</span>
+            <p class="text-on-surface-variant text-[11px]">
+              Ensuring authorized users have timely and dependable access to information and systems. Preserved by redundancy, DDoS mitigation, and tested backups.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Terminology 4-Part Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
+        <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-danger-critical text-sm">Vulnerability</span>
+            <span class="text-[10px] text-outline">WEAKNESS</span>
+          </div>
+          <div class="text-[11px] text-primary">🟢 Simple: "A flaw or weakness in a system."</div>
+          <p class="text-[11px] text-on-surface-variant"><strong>Technical:</strong> A defect in software code, hardware logic, or security configuration that can be leveraged by an adversary to violate the security policy.</p>
+          <div class="text-[10px] text-outline border-t border-border-hairline pt-1">Example: Missing input sanitization in an SQL query (CWE-89).</div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-warning text-sm">Exploit</span>
+            <span class="text-[10px] text-outline">MECHANISM</span>
+          </div>
+          <div class="text-[11px] text-secondary">🔵 Simple: "The method or code that takes advantage of the flaw."</div>
+          <p class="text-[11px] text-on-surface-variant"><strong>Technical:</strong> A crafted piece of software, payload sequence, or set of commands that takes advantage of a vulnerability to trigger unintended behavior.</p>
+          <div class="text-[10px] text-outline border-t border-border-hairline pt-1">Example: A Python script sending crafted packets to trigger RCE.</div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-secondary text-sm">CVE vs CWE vs CVSS</span>
+            <span class="text-[10px] text-outline">STANDARDS</span>
+          </div>
+          <div class="text-[11px] text-on-surface-variant space-y-1">
+            <div>&bull; <strong>CVE:</strong> Common Vulnerabilities &amp; Exposures (Unique catalog ID, e.g. CVE-2021-44228).</div>
+            <div>&bull; <strong>CWE:</strong> Common Weakness Enumeration (Category of flaw, e.g. CWE-79 XSS).</div>
+            <div>&bull; <strong>CVSS:</strong> Common Vulnerability Scoring System (0.0 – 10.0 severity metric).</div>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-primary text-sm">IOC vs TTP</span>
+            <span class="text-[10px] text-outline">THREAT TELEMETRY</span>
+          </div>
+          <div class="text-[11px] text-on-surface-variant space-y-1">
+            <div>&bull; <strong>IOC (Indicators of Compromise):</strong> Forensic evidence of attack (SHA256 hashes, malicious C2 IP addresses, suspicious domain names).</div>
+            <div>&bull; <strong>TTP (Tactics, Techniques &amp; Procedures):</strong> Adversary behavior patterns documented in the MITRE ATT&amp;CK framework.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 12. DETECTION THEORY & SIEM TELEMETRY                                   -->
+    <!-- ======================================================================= -->
+    <section id="detection-theory" class="space-y-6">
+      <div class="flex items-center justify-between border-b border-border-hairline pb-3">
+        <div>
+          <span class="font-mono text-xs text-secondary font-bold tracking-wider">LEVEL 12 // DEFENDER PERSPECTIVE</span>
+          <h2 class="text-2xl font-bold font-mono text-on-surface mt-1">Detection Theory: Logs, SIEM, EDR &amp; Telemetry</h2>
+        </div>
+        <span class="text-xs font-mono px-2.5 py-1 rounded bg-surface-raised border border-border-hairline text-outline">BLUE TEAM ARCHITECTURE</span>
+      </div>
+
+      <div class="space-y-6 text-sm text-on-surface-variant leading-relaxed">
+        <p>
+          Offensive security cannot be separated from detection. Every attacker action generates telemetry: packets cross network switches, system calls cross the kernel boundary, process trees spawn child binaries, and authentication services log outcomes.
+        </p>
+
+        <!-- Detection Architecture Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-xs">
+          <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+            <span class="text-primary font-bold">SIEM (Security Information &amp; Event Management)</span>
+            <p class="text-on-surface-variant text-[11px] leading-relaxed">
+              Aggregates, normalizes, and indexes log streams from hundreds of servers, firewalls, and cloud providers. Correlation rules trigger high-priority alerts on multi-stage attack patterns.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+            <span class="text-secondary font-bold">EDR (Endpoint Detection &amp; Response)</span>
+            <p class="text-on-surface-variant text-[11px] leading-relaxed">
+              Lightweight agents installed on host machines monitoring process creation hierarchies (Sysmon/auditd), memory injection, API hooking, and suspicious behavioral anomalies.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+            <span class="text-warning font-bold">IDS / IPS (Intrusion Detection &amp; Prevention)</span>
+            <p class="text-on-surface-variant text-[11px] leading-relaxed">
+              Deep packet inspection sensors (Suricata, Snort) evaluating network traffic against known exploit signatures and protocol anomalies. An IPS drops malicious packets inline.
+            </p>
+          </div>
+        </div>
+
+        <!-- How Offensive Activity Appears to Defenders -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3 font-mono text-xs">
+          <div class="font-bold text-on-surface flex items-center justify-between border-b border-border-hairline pb-2">
+            <span class="text-secondary flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">visibility</span>
+              <span>HOW ATTACKS LOOK IN DEFENDER TELEMETRY</span>
+            </span>
+            <span class="text-outline text-[11px]">TELEMETRY FOOTPRINTS</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-[11px]">
+            <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline space-y-1">
+              <span class="text-primary font-bold">Nmap Port Scan:</span>
+              <p class="text-outline">Generates thousands of half-open TCP SYN packets within seconds from a single IP, causing hundreds of RST responses and triggering firewall scan threshold alerts.</p>
+            </div>
+
+            <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline space-y-1">
+              <span class="text-secondary font-bold">Web Fuzzing (ffuf):</span>
+              <p class="text-outline">Web server access logs show an unnatural spike of 500+ requests per second resulting in 404 Not Found status codes with identical User-Agents.</p>
+            </div>
+
+            <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline space-y-1">
+              <span class="text-warning font-bold">Brute Force / Credential Stuffing:</span>
+              <p class="text-outline">Authentication logs (<code class="text-primary">/var/log/auth.log</code> or Windows Event ID 4625) record continuous failed login attempts against varying usernames.</p>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <a href="labs.html#lab-logs" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-raised border border-primary/40 text-primary font-bold text-xs hover:bg-primary hover:text-canvas-base transition-colors">
+              <span>Practice: Security Incident Log Analysis Lab &rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 13. DEFENSIVE SECURITY & ARCHITECTURE THEORY                            -->
+    <!-- ======================================================================= -->
+    <section id="defensive-architecture" class="space-y-6">
+      <div class="flex items-center justify-between border-b border-border-hairline pb-3">
+        <div>
+          <span class="font-mono text-xs text-secondary font-bold tracking-wider">LEVEL 13 // HARDENING &amp; ZONING</span>
+          <h2 class="text-2xl font-bold font-mono text-on-surface mt-1">Security Architecture: Defense-in-Depth &amp; Zero Trust</h2>
+        </div>
+        <span class="text-xs font-mono px-2.5 py-1 rounded bg-surface-raised border border-border-hairline text-outline">ENTERPRISE HARDENING</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 text-sm text-on-surface-variant leading-relaxed">
+        <div class="lg:col-span-8 space-y-6">
+          <p>
+            Modern cybersecurity assumes that perimeter breaches are inevitable. Rather than relying on a hard outer shell and soft internal network, enterprise security architectures employ <strong>Defense-in-Depth</strong> and <strong>Zero Trust Architecture (ZTA)</strong>.
+          </p>
+
+          <!-- Enterprise DMZ Diagram -->
+          <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3 font-mono text-xs">
+            <div class="font-bold text-secondary flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">account_tree</span>
+              <span>ENTERPRISE SEGMENTATION: DMZ &amp; ISOLATED DATA TIERS</span>
+            </div>
+
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-3 text-[11px]">
+              <div class="flex items-center justify-between p-2 rounded bg-surface-raised border border-danger-critical/30">
+                <span class="text-danger-critical font-bold">1. Public Internet</span>
+                <span class="text-outline">Untrusted Clients &amp; Adversaries</span>
+              </div>
+              <div class="text-center text-outline">&darr; Edge Firewall (Stateful Packet Inspection)</div>
+
+              <div class="flex items-center justify-between p-2.5 rounded bg-warning/10 border border-warning/30">
+                <div>
+                  <span class="text-warning font-bold">2. Demilitarized Zone (DMZ)</span>
+                  <div class="text-outline text-[10px]">WAF &bull; Reverse Proxy (Nginx) &bull; Public Web Servers</div>
+                </div>
+                <span class="text-[10px] text-warning">Semi-Trusted</span>
+              </div>
+              <div class="text-center text-outline">&darr; Internal Firewall (Strict Port-Specific Rules)</div>
+
+              <div class="flex items-center justify-between p-2.5 rounded bg-primary/10 border border-primary/30">
+                <div>
+                  <span class="text-primary font-bold">3. Internal Application Tier</span>
+                  <div class="text-outline text-[10px]">Microservices &bull; Business Logic &bull; Bastion Host Access Only</div>
+                </div>
+                <span class="text-[10px] text-primary">Trusted Private Subnet</span>
+              </div>
+              <div class="text-center text-outline">&darr; Zero Public Routing</div>
+
+              <div class="flex items-center justify-between p-2.5 rounded bg-secondary/10 border border-secondary/30">
+                <div>
+                  <span class="text-secondary font-bold">4. Database &amp; Storage Tier</span>
+                  <div class="text-outline text-[10px]">PostgreSQL &bull; Redis &bull; Encrypted at Rest &bull; No Internet Egress</div>
+                </div>
+                <span class="text-[10px] text-secondary">Highly Restricted Core</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar: Zero Trust Principles -->
+        <div class="lg:col-span-4 space-y-4 font-mono text-xs">
+          <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-3">
+            <span class="text-primary font-bold flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">verified</span>
+              <span>ZERO TRUST PRINCIPLES (NIST SP 800-207)</span>
+            </span>
+            <div class="space-y-2 text-[11px] text-on-surface-variant">
+              <div>&bull; <strong>Verify Explicitly:</strong> Always authenticate and authorize based on all available data points (identity, location, device health).</div>
+              <div>&bull; <strong>Least Privilege Access:</strong> Limit user access with Just-In-Time (JIT) and Just-Enough-Access (JEA).</div>
+              <div>&bull; <strong>Assume Breach:</strong> Minimize blast radius through microsegmentation and end-to-end encryption.</div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2 text-[11px]">
+            <span class="text-secondary font-bold">THE 3-2-1 BACKUP RULE</span>
+            <p class="text-outline">
+              3 total copies of critical data, on 2 different storage media types, with 1 copy stored offsite/immutable to survive ransomware.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 14. CLOUD & CONTAINER THEORY                                            -->
+    <!-- ======================================================================= -->
+    <section id="cloud-containers" class="space-y-6">
+      <div class="flex items-center justify-between border-b border-border-hairline pb-3">
+        <div>
+          <span class="font-mono text-xs text-secondary font-bold tracking-wider">LEVEL 14 // VIRTUALIZATION &amp; DEVOPS</span>
+          <h2 class="text-2xl font-bold font-mono text-on-surface mt-1">Cloud Computing &amp; Container Architecture</h2>
+        </div>
+        <span class="text-xs font-mono px-2.5 py-1 rounded bg-surface-raised border border-border-hairline text-outline">DOCKER &amp; SHARED RESPONSIBILITY</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 text-sm text-on-surface-variant leading-relaxed font-mono">
+        <div class="lg:col-span-6 space-y-4">
+          <div class="font-bold text-on-surface text-base">Cloud Service Models &amp; Shared Responsibility</div>
+          <div class="space-y-2 text-xs">
+            <div class="p-3 rounded-lg bg-surface-subtle border border-border-hairline">
+              <strong class="text-secondary">IaaS (Infrastructure as a Service):</strong>
+              <p class="text-[11px] text-outline mt-1">Provider manages physical hardware/datacenter; customer manages OS, runtime, and apps (AWS EC2, Azure VMs).</p>
+            </div>
+            <div class="p-3 rounded-lg bg-surface-subtle border border-border-hairline">
+              <strong class="text-primary">PaaS (Platform as a Service):</strong>
+              <p class="text-[11px] text-outline mt-1">Provider manages hardware, OS, and runtime; customer manages application code and data (AWS Elastic Beanstalk, Heroku).</p>
+            </div>
+            <div class="p-3 rounded-lg bg-surface-subtle border border-border-hairline">
+              <strong class="text-warning">SaaS (Software as a Service):</strong>
+              <p class="text-[11px] text-outline mt-1">Provider manages the entire application stack; customer manages users and access policies (M365, Google Workspace).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6 space-y-4">
+          <div class="font-bold text-on-surface text-base">Containers vs Virtual Machines: Linux Primitives</div>
+          <p class="text-xs text-on-surface-variant">
+            Virtual machines virtualize the hardware via a Hypervisor and run a full guest OS. Containers share the host kernel and rely on native Linux kernel isolation primitives:
+          </p>
+          <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2 text-xs">
+            <div>&bull; <strong class="text-primary">Namespaces:</strong> Provide isolated views of system resources (<code class="text-on-surface">pid</code> for processes, <code class="text-on-surface">net</code> for network interfaces, <code class="text-on-surface">mnt</code> for filesystem mount points).</div>
+            <div>&bull; <strong class="text-secondary">cgroups (Control Groups):</strong> Enforce hardware resource limits (CPU quotas, memory caps, block I/O).</div>
+            <div>&bull; <strong class="text-danger-critical">Capabilities:</strong> Slices root powers into granular permissions (<code class="text-on-surface">CAP_NET_BIND_SERVICE</code>). Running with <code class="text-danger-critical">--privileged</code> disables these protections!</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 15. ACTIVE DIRECTORY THEORY                                             -->
+    <!-- ======================================================================= -->
+    <section id="active-directory" class="space-y-6">
+      <div class="flex items-center justify-between border-b border-border-hairline pb-3">
+        <div>
+          <span class="font-mono text-xs text-secondary font-bold tracking-wider">LEVEL 15 // ENTERPRISE IDENTITY</span>
+          <h2 class="text-2xl font-bold font-mono text-on-surface mt-1">Active Directory Theory &amp; Kerberos Protocol Architecture</h2>
+        </div>
+        <span class="text-xs font-mono px-2.5 py-1 rounded bg-surface-raised border border-border-hairline text-outline">ENTERPRISE DOMAINS</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 text-sm text-on-surface-variant leading-relaxed font-mono">
+        <div class="lg:col-span-8 space-y-5">
+          <p class="text-xs">
+            Active Directory Domain Services (AD DS) is Microsoft's directory service managing identity, authorization, and centralized device management across 90%+ of global enterprises. 
+            Understanding Domain Controllers, Forests, Trees, OUs, and authentication protocols is mandatory before attempting AD penetration testing.
+          </p>
+
+          <!-- Kerberos Authentication Ticket Flow -->
+          <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3 text-xs">
+            <div class="font-bold text-secondary flex items-center justify-between border-b border-border-hairline pb-2">
+              <span class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">vpn_key</span>
+                <span>KERBEROS TICKET-GRANTING PROTOCOL FLOW (PORT 88)</span>
+              </span>
+              <span class="text-outline text-[11px]">TGT &amp; TGS</span>
+            </div>
+
+            <div class="space-y-2 text-[11px]">
+              <div class="p-2 rounded bg-canvas-base border border-border-hairline">
+                <strong class="text-primary">1. AS-REQ &amp; AS-REP:</strong> User sends timestamp encrypted with their password hash. KDC (Authentication Server) validates and returns a <strong>TGT (Ticket Granting Ticket)</strong> encrypted with the <code class="text-secondary">krbtgt</code> account key.
+              </div>
+              <div class="p-2 rounded bg-canvas-base border border-border-hairline">
+                <strong class="text-secondary">2. TGS-REQ &amp; TGS-REP:</strong> User presents TGT to request access to a specific service. The KDC verifies the TGT and issues a <strong>TGS (Service Ticket)</strong> encrypted with the target service account's password hash.
+              </div>
+              <div class="p-2 rounded bg-canvas-base border border-border-hairline">
+                <strong class="text-warning">3. AP-REQ &amp; AP-REP:</strong> User presents the TGS to the target application server (e.g. MSSQL or SMB share) to establish an authenticated session.
+              </div>
+            </div>
+
+            <!-- Kerberoasting Link -->
+            <div class="p-3 rounded-lg bg-danger-critical/10 border border-danger-critical/30 text-[11px] text-on-surface-variant">
+              <strong class="text-danger-critical">Offensive Relevance (Kerberoasting):</strong>
+              Any authenticated domain user can request a TGS for any service with a Service Principal Name (SPN). Because the ticket is encrypted with the service account's password hash, attackers extract it from memory and crack it offline with Hashcat or John the Ripper.
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar: AD Architecture Glossary -->
+        <div class="lg:col-span-4 space-y-3 text-xs">
+          <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+            <span class="text-primary font-bold">Key Active Directory Objects</span>
+            <div class="space-y-1.5 text-[11px] text-on-surface-variant">
+              <div>&bull; <strong>Domain Controller (DC):</strong> Server hosting AD DS and KDC.</div>
+              <div>&bull; <strong>Forest:</strong> Ultimate security boundary in Active Directory.</div>
+              <div>&bull; <strong>OU (Organizational Unit):</strong> Subdivision for organizing users and applying GPOs.</div>
+              <div>&bull; <strong>GPO (Group Policy Object):</strong> Centralized configuration policies.</div>
+              <div>&bull; <strong>NTLM:</strong> Legacy challenge-response protocol (vulnerable to relaying).</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 16. THEORY COMPARISONS (16 COMPLETE DEDICATED CARDS)                    -->
+    <!-- ======================================================================= -->
+    <section id="comparisons" class="space-y-6">
+      <div class="flex items-center justify-between border-b border-border-hairline pb-3">
+        <div>
+          <span class="font-mono text-xs text-secondary font-bold tracking-wider">LEVEL 16 // SIDE-BY-SIDE MASTERY</span>
+          <h2 class="text-2xl font-bold font-mono text-on-surface mt-1">16 Canonical Cybersecurity Comparisons</h2>
+        </div>
+        <span class="text-xs font-mono px-2.5 py-1 rounded bg-secondary/10 border border-secondary/30 text-secondary">REVISION &amp; INTERVIEW CHEATSHEETS</span>
+      </div>
+
+      <p class="text-sm text-on-surface-variant leading-relaxed">
+        Mastering cybersecurity requires understanding the subtle yet critical distinctions between closely related concepts. 
+        Explore 16 comprehensive side-by-side comparisons covering network protocols, security controls, testing methodologies, and threat categories.
+      </p>
+
+      <!-- Grid of 16 Comparison Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
+        <!-- 1. TCP vs UDP -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3">
+          <div class="flex justify-between items-center border-b border-border-hairline pb-2">
+            <span class="text-primary font-bold text-sm">01. TCP vs UDP</span>
+            <span class="text-outline text-[10px]">LAYER 4 TRANSPORT</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-[11px]">
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-primary">TCP (Connection-Oriented):</strong>
+              <p class="text-outline text-[10px] mt-1">3-way handshake, in-order delivery, flow control, retransmission. Slower. Used by HTTP, SSH.</p>
+            </div>
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-secondary">UDP (Connectionless):</strong>
+              <p class="text-outline text-[10px] mt-1">No handshake, best-effort delivery, minimal 8-byte header. Faster. Used by DNS, DHCP, VoIP.</p>
+            </div>
+          </div>
+          <div class="text-[10px] text-on-surface-variant">Security: TCP requires SYN flood defense; UDP is easily spoofed for amplification DDoS.</div>
+        </div>
+
+        <!-- 2. OSI vs TCP/IP -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3">
+          <div class="flex justify-between items-center border-b border-border-hairline pb-2">
+            <span class="text-secondary font-bold text-sm">02. OSI vs TCP/IP</span>
+            <span class="text-outline text-[10px]">MODELS</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-[11px]">
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-secondary">OSI (7 Layers):</strong>
+              <p class="text-outline text-[10px] mt-1">Theoretical framework separating session and presentation layers for architectural study.</p>
+            </div>
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-primary">TCP/IP (4 Layers):</strong>
+              <p class="text-outline text-[10px] mt-1">Practical internet standard implemented directly in all OS network driver stacks.</p>
+            </div>
+          </div>
+          <div class="text-[10px] text-on-surface-variant">Security: OSI maps defense-in-depth; TCP/IP maps socket programming and raw packets.</div>
+        </div>
+
+        <!-- 3. HTTP vs HTTPS -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3">
+          <div class="flex justify-between items-center border-b border-border-hairline pb-2">
+            <span class="text-warning font-bold text-sm">03. HTTP vs HTTPS</span>
+            <span class="text-outline text-[10px]">WEB PROTOCOLS</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-[11px]">
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-danger-critical">HTTP (Port 80):</strong>
+              <p class="text-outline text-[10px] mt-1">Cleartext transmission. Subject to passive eavesdropping and MitM tampering.</p>
+            </div>
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-primary">HTTPS (Port 443):</strong>
+              <p class="text-outline text-[10px] mt-1">Encapsulated in TLS 1.3 encryption. Provides confidentiality, integrity, and server identity validation.</p>
+            </div>
+          </div>
+          <div class="text-[10px] text-on-surface-variant">Security: HSTS header forces browsers to refuse unencrypted HTTP fallback.</div>
+        </div>
+
+        <!-- 4. AuthN vs AuthZ -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3">
+          <div class="flex justify-between items-center border-b border-border-hairline pb-2">
+            <span class="text-primary font-bold text-sm">04. Authentication vs Authorization</span>
+            <span class="text-outline text-[10px]">ACCESS</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-[11px]">
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-secondary">Authentication (AuthN):</strong>
+              <p class="text-outline text-[10px] mt-1">"Who are you?" Validates identity using passwords, MFA tokens, or certificates.</p>
+            </div>
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-primary">Authorization (AuthZ):</strong>
+              <p class="text-outline text-[10px] mt-1">"What can you do?" Checks permissions against roles and access policies.</p>
+            </div>
+          </div>
+          <div class="text-[10px] text-on-surface-variant">Security: AuthN flaw = credential stuffing; AuthZ flaw = IDOR (Insecure Direct Object Reference).</div>
+        </div>
+
+        <!-- 5. Encryption vs Hashing -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3">
+          <div class="flex justify-between items-center border-b border-border-hairline pb-2">
+            <span class="text-secondary font-bold text-sm">05. Encryption vs Hashing</span>
+            <span class="text-outline text-[10px]">CRYPTOGRAPHY</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-[11px]">
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-secondary">Encryption:</strong>
+              <p class="text-outline text-[10px] mt-1">Two-way reversible with secret key. Protects confidentiality of data in transit/rest.</p>
+            </div>
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-primary">Hashing:</strong>
+              <p class="text-outline text-[10px] mt-1">One-way mathematical function. Irreversible. Protects integrity and stored passwords.</p>
+            </div>
+          </div>
+          <div class="text-[10px] text-on-surface-variant">Security: Never encrypt passwords; always hash them using salted Argon2 or bcrypt.</div>
+        </div>
+
+        <!-- 6. Symmetric vs Asymmetric -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3">
+          <div class="flex justify-between items-center border-b border-border-hairline pb-2">
+            <span class="text-warning font-bold text-sm">06. Symmetric vs Asymmetric Encryption</span>
+            <span class="text-outline text-[10px]">CIPHERS</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-[11px]">
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-primary">Symmetric (AES):</strong>
+              <p class="text-outline text-[10px] mt-1">One shared secret key for encryption &amp; decryption. Extremely fast throughput.</p>
+            </div>
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-secondary">Asymmetric (RSA/ECC):</strong>
+              <p class="text-outline text-[10px] mt-1">Public key encrypts; Private key decrypts. Slower; solves key exchange.</p>
+            </div>
+          </div>
+          <div class="text-[10px] text-on-surface-variant">Security: TLS uses asymmetric keys for the handshake, then switches to symmetric AES for speed.</div>
+        </div>
+
+        <!-- 7. Encoding vs Encryption -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3">
+          <div class="flex justify-between items-center border-b border-border-hairline pb-2">
+            <span class="text-danger-critical font-bold text-sm">07. Encoding vs Encryption</span>
+            <span class="text-outline text-[10px]">DATA FORMAT</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-[11px]">
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-warning">Encoding (Base64):</strong>
+              <p class="text-outline text-[10px] mt-1">Data format translation without a key. Anyone can reverse it. ZERO security.</p>
+            </div>
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-primary">Encryption (AES):</strong>
+              <p class="text-outline text-[10px] mt-1">Mathematical protection requiring a secret key. Confidentiality guaranteed.</p>
+            </div>
+          </div>
+          <div class="text-[10px] text-on-surface-variant">Security: Base64 obfuscation does not provide security against inspection.</div>
+        </div>
+
+        <!-- 8. IDS vs IPS -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3">
+          <div class="flex justify-between items-center border-b border-border-hairline pb-2">
+            <span class="text-primary font-bold text-sm">08. IDS vs IPS</span>
+            <span class="text-outline text-[10px]">INTRUSION DEFENSE</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-[11px]">
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-secondary">IDS (Passive Sensor):</strong>
+              <p class="text-outline text-[10px] mt-1">Listens out-of-band via SPAN/TAP port. Detects threats and generates alerts.</p>
+            </div>
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-primary">IPS (Inline Guard):</strong>
+              <p class="text-outline text-[10px] mt-1">Sits inline in the network traffic path. Actively blocks and drops malicious packets.</p>
+            </div>
+          </div>
+          <div class="text-[10px] text-on-surface-variant">Security: IPS risk = false positives blocking legitimate traffic; IDS risk = lag in containment.</div>
+        </div>
+
+        <!-- 9. Firewall vs WAF -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3">
+          <div class="flex justify-between items-center border-b border-border-hairline pb-2">
+            <span class="text-secondary font-bold text-sm">09. Firewall vs WAF</span>
+            <span class="text-outline text-[10px]">FILTERING</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-[11px]">
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-primary">Network Firewall (L3/L4):</strong>
+              <p class="text-outline text-[10px] mt-1">Filters by source IP, destination IP, and port number. Blind to HTTP payloads.</p>
+            </div>
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-secondary">WAF (L7 Application):</strong>
+              <p class="text-outline text-[10px] mt-1">Inspects HTTP headers, cookies, and JSON/POST bodies for SQLi, XSS, and CSRF.</p>
+            </div>
+          </div>
+          <div class="text-[10px] text-on-surface-variant">Security: A network firewall allows port 443; only a WAF analyzes what is inside the 443 stream.</div>
+        </div>
+
+        <!-- 10. Vulnerability vs Exploit -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3">
+          <div class="flex justify-between items-center border-b border-border-hairline pb-2">
+            <span class="text-danger-critical font-bold text-sm">10. Vulnerability vs Exploit</span>
+            <span class="text-outline text-[10px]">OFFENSIVE CORE</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-[11px]">
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-warning">Vulnerability (Weakness):</strong>
+              <p class="text-outline text-[10px] mt-1">The defect or bug in software code, configuration, or human procedure.</p>
+            </div>
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-danger-critical">Exploit (Attack Tool):</strong>
+              <p class="text-outline text-[10px] mt-1">The crafted input, script, or binary engineered to trigger the flaw.</p>
+            </div>
+          </div>
+          <div class="text-[10px] text-on-surface-variant">Security: A vulnerability exists whether or not a public exploit has been developed.</div>
+        </div>
+
+        <!-- 11. CVE vs CWE vs CVSS -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3">
+          <div class="flex justify-between items-center border-b border-border-hairline pb-2">
+            <span class="text-warning font-bold text-sm">11. CVE vs CWE vs CVSS</span>
+            <span class="text-outline text-[10px]">VULN METRICS</span>
+          </div>
+          <div class="grid grid-cols-3 gap-1.5 text-[10px]">
+            <div class="p-2 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-primary">CVE:</strong> Specific instance ID (CVE-2021-44228).
+            </div>
+            <div class="p-2 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-secondary">CWE:</strong> Flaw category type (CWE-89 SQLi).
+            </div>
+            <div class="p-2 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-warning">CVSS:</strong> Numerical severity (0.0 to 10.0).
+            </div>
+          </div>
+          <div class="text-[10px] text-on-surface-variant">Security: CVSS scores above 9.0 are classified as Critical requiring rapid patching.</div>
+        </div>
+
+        <!-- 12. Virus vs Worm vs Trojan -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3">
+          <div class="flex justify-between items-center border-b border-border-hairline pb-2">
+            <span class="text-danger-critical font-bold text-sm">12. Virus vs Worm vs Trojan</span>
+            <span class="text-outline text-[10px]">MALWARE</span>
+          </div>
+          <div class="grid grid-cols-3 gap-1.5 text-[10px]">
+            <div class="p-2 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-danger-critical">Virus:</strong> Attaches to host file; needs human execution.
+            </div>
+            <div class="p-2 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-warning">Worm:</strong> Self-replicating across networks without human action.
+            </div>
+            <div class="p-2 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-secondary">Trojan:</strong> Disguised as legitimate software to deceive user.
+            </div>
+          </div>
+          <div class="text-[10px] text-on-surface-variant">Security: WannaCry was a worm combining an exploit (EternalBlue) with ransomware.</div>
+        </div>
+
+        <!-- 13. Process vs Thread -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3">
+          <div class="flex justify-between items-center border-b border-border-hairline pb-2">
+            <span class="text-primary font-bold text-sm">13. Process vs Thread</span>
+            <span class="text-outline text-[10px]">OS CONCURRENCY</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-[11px]">
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-primary">Process:</strong>
+              <p class="text-outline text-[10px] mt-1">Independent address space, private file descriptors. Heavyweight context switch.</p>
+            </div>
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-secondary">Thread:</strong>
+              <p class="text-outline text-[10px] mt-1">Shares process heap and code; has private stack. Lightweight execution unit.</p>
+            </div>
+          </div>
+          <div class="text-[10px] text-on-surface-variant">Security: Thread concurrency bugs cause race conditions and Time-of-Check Time-of-Use (TOCTOU) flaws.</div>
+        </div>
+
+        <!-- 14. TCP Scan vs UDP Scan -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3">
+          <div class="flex justify-between items-center border-b border-border-hairline pb-2">
+            <span class="text-secondary font-bold text-sm">14. TCP Scan vs UDP Scan</span>
+            <span class="text-outline text-[10px]">PORT SCANNING</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-[11px]">
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-primary">TCP SYN Scan (-sS):</strong>
+              <p class="text-outline text-[10px] mt-1">Fast and deterministic. SYN-ACK = Open; RST = Closed. Minimal timeout latency.</p>
+            </div>
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-warning">UDP Scan (-sU):</strong>
+              <p class="text-outline text-[10px] mt-1">Slow. No response could mean open or filtered. Relies on ICMP Port Unreachable.</p>
+            </div>
+          </div>
+          <div class="text-[10px] text-on-surface-variant">Security: Operating systems rate-limit ICMP responses, making full 65,535 UDP scans take hours.</div>
+        </div>
+
+        <!-- 15. Passive vs Active Recon -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3">
+          <div class="flex justify-between items-center border-b border-border-hairline pb-2">
+            <span class="text-primary font-bold text-sm">15. Passive vs Active Recon</span>
+            <span class="text-outline text-[10px]">INTELLIGENCE</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-[11px]">
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-secondary">Passive Recon:</strong>
+              <p class="text-outline text-[10px] mt-1">Zero packets sent to target. Uses OSINT, WHOIS, Certificate Transparency, Google Dorks.</p>
+            </div>
+            <div class="p-2.5 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-danger-critical">Active Recon:</strong>
+              <p class="text-outline text-[10px] mt-1">Direct interaction with target assets via Nmap, ffuf, Nikto. Generates log telemetry.</p>
+            </div>
+          </div>
+          <div class="text-[10px] text-on-surface-variant">Security: Passive recon is invisible to target defenders; active recon triggers IDS/SIEM alerts.</div>
+        </div>
+
+        <!-- 16. Black vs White vs Grey Box -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3">
+          <div class="flex justify-between items-center border-b border-border-hairline pb-2">
+            <span class="text-warning font-bold text-sm">16. Black vs White vs Grey Box Testing</span>
+            <span class="text-outline text-[10px]">METHODOLOGY</span>
+          </div>
+          <div class="grid grid-cols-3 gap-1.5 text-[10px]">
+            <div class="p-2 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-danger-critical">Black Box:</strong> Zero prior knowledge. Simulates external attacker.
+            </div>
+            <div class="p-2 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-secondary">Grey Box:</strong> Partial user knowledge (e.g. low-priv credentials).
+            </div>
+            <div class="p-2 rounded bg-canvas-base border border-border-hairline">
+              <strong class="text-primary">White Box:</strong> Full source code, architecture diagrams &amp; root access.
+            </div>
+          </div>
+          <div class="text-[10px] text-on-surface-variant">Security: White box provides the most comprehensive vulnerability coverage; black box tests perimeter posture.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 17. THEORY KNOWLEDGE CHECKS (INTERACTIVE QUIZZES)                       -->
+    <!-- ======================================================================= -->
+    <section id="knowledge-checks" class="space-y-6">
+      <div class="flex items-center justify-between border-b border-border-hairline pb-3">
+        <div>
+          <span class="font-mono text-xs text-secondary font-bold tracking-wider">LEVEL 17 // CONCEPT REINFORCEMENT</span>
+          <h2 class="text-2xl font-bold font-mono text-on-surface mt-1">Interactive Theory Knowledge Checks</h2>
+        </div>
+        <span class="text-xs font-mono px-2.5 py-1 rounded bg-secondary/10 border border-secondary/30 text-secondary">LIGHTWEIGHT VALIDATION</span>
+      </div>
+
+      <p class="text-sm text-on-surface-variant leading-relaxed">
+        Test your theoretical understanding across networking, operating systems, web protocols, and cryptography. Select an answer to reveal immediate technical explanations.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 font-mono text-xs" id="quiz-container">
+        <!-- Question 1: OSI Routing -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-4 quiz-card" data-correct="C">
+          <div class="text-primary font-bold">1. Which OSI layer handles logical addressing and packet routing?</div>
+          <div class="space-y-2">
+            <button type="button" class="quiz-option w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline text-left hover:border-secondary transition-colors cursor-pointer" data-choice="A">A. Data Link Layer (Layer 2)</button>
+            <button type="button" class="quiz-option w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline text-left hover:border-secondary transition-colors cursor-pointer" data-choice="B">B. Transport Layer (Layer 4)</button>
+            <button type="button" class="quiz-option w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline text-left hover:border-secondary transition-colors cursor-pointer" data-choice="C">C. Network Layer (Layer 3)</button>
+            <button type="button" class="quiz-option w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline text-left hover:border-secondary transition-colors cursor-pointer" data-choice="D">D. Application Layer (Layer 7)</button>
+          </div>
+          <div class="quiz-feedback hidden p-3 rounded-lg text-[11px] leading-relaxed"></div>
+        </div>
+
+        <!-- Question 2: TCP Handshake -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-4 quiz-card" data-correct="B">
+          <div class="text-primary font-bold">2. What packet does a server return in response to an initial TCP SYN?</div>
+          <div class="space-y-2">
+            <button type="button" class="quiz-option w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline text-left hover:border-secondary transition-colors cursor-pointer" data-choice="A">A. ACK packet</button>
+            <button type="button" class="quiz-option w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline text-left hover:border-secondary transition-colors cursor-pointer" data-choice="B">B. SYN-ACK packet</button>
+            <button type="button" class="quiz-option w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline text-left hover:border-secondary transition-colors cursor-pointer" data-choice="C">C. FIN packet</button>
+            <button type="button" class="quiz-option w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline text-left hover:border-secondary transition-colors cursor-pointer" data-choice="D">D. RST packet</button>
+          </div>
+          <div class="quiz-feedback hidden p-3 rounded-lg text-[11px] leading-relaxed"></div>
+        </div>
+
+        <!-- Question 3: Process vs Thread -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-4 quiz-card" data-correct="D">
+          <div class="text-primary font-bold">3. What memory segment is privately held by each individual thread?</div>
+          <div class="space-y-2">
+            <button type="button" class="quiz-option w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline text-left hover:border-secondary transition-colors cursor-pointer" data-choice="A">A. The Heap memory</button>
+            <button type="button" class="quiz-option w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline text-left hover:border-secondary transition-colors cursor-pointer" data-choice="B">B. Global Variables / BSS Segment</button>
+            <button type="button" class="quiz-option w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline text-left hover:border-secondary transition-colors cursor-pointer" data-choice="C">C. Text / Code Segment</button>
+            <button type="button" class="quiz-option w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline text-left hover:border-secondary transition-colors cursor-pointer" data-choice="D">D. The Thread Stack &amp; CPU Registers</button>
+          </div>
+          <div class="quiz-feedback hidden p-3 rounded-lg text-[11px] leading-relaxed"></div>
+        </div>
+
+        <!-- Question 4: SQL Injection Cure -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-4 quiz-card" data-correct="A">
+          <div class="text-primary font-bold">4. What is the fundamental defensive cure for SQL Injection vulnerabilities?</div>
+          <div class="space-y-2">
+            <button type="button" class="quiz-option w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline text-left hover:border-secondary transition-colors cursor-pointer" data-choice="A">A. Parameterized Queries (Prepared Statements)</button>
+            <button type="button" class="quiz-option w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline text-left hover:border-secondary transition-colors cursor-pointer" data-choice="B">B. Base64 encoding user input before query insertion</button>
+            <button type="button" class="quiz-option w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline text-left hover:border-secondary transition-colors cursor-pointer" data-choice="C">C. Blacklisting single quotes with simple string replace</button>
+            <button type="button" class="quiz-option w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline text-left hover:border-secondary transition-colors cursor-pointer" data-choice="D">D. Encrypting the database table with AES-256</button>
+          </div>
+          <div class="quiz-feedback hidden p-3 rounded-lg text-[11px] leading-relaxed"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 18. FIVE STRUCTURED LEARNING PATHS                                      -->
+    <!-- ======================================================================= -->
+    <section id="learning-paths" class="space-y-6">
+      <div class="flex items-center justify-between border-b border-border-hairline pb-3">
+        <div>
+          <span class="font-mono text-xs text-secondary font-bold tracking-wider">LEVEL 18 // SYSTEMATIC PROGRESSION</span>
+          <h2 class="text-2xl font-bold font-mono text-on-surface mt-1">Five Structured Cybersecurity Learning Paths</h2>
+        </div>
+        <span class="text-xs font-mono px-2.5 py-1 rounded bg-surface-raised border border-border-hairline text-outline">CAREER ALIGNMENT</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 font-mono text-xs">
+        <!-- Path 1: Complete Beginner -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-primary/40 space-y-3">
+          <span class="px-2 py-0.5 rounded bg-primary/20 text-primary font-bold text-[10px]">PATH 01 // FOUNDATION</span>
+          <h3 class="text-base font-bold text-on-surface">Complete Beginner</h3>
+          <p class="text-[11px] text-on-surface-variant leading-relaxed">
+            Zero prior experience. Starts with hardware and builds systematically to practical surface testing.
+          </p>
+          <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline text-[11px] space-y-1 text-on-surface-variant">
+            <div>1. Computer Basics &amp; Hardware</div>
+            <div>2. Networking &amp; TCP/IP Models</div>
+            <div>3. Linux Essentials &amp; CLI</div>
+            <div>4. Web Fundamentals (HTTP/HTML)</div>
+            <div>5. Cybersecurity Core Terminology</div>
+            <div>6. Passive Reconnaissance</div>
+            <div>7. Port Enumeration (Nmap)</div>
+            <div>8. Web Application Testing</div>
+          </div>
+        </div>
+
+        <!-- Path 2: Junior Pentester -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-secondary/40 space-y-3">
+          <span class="px-2 py-0.5 rounded bg-secondary/20 text-secondary font-bold text-[10px]">PATH 02 // OFFENSIVE</span>
+          <h3 class="text-base font-bold text-on-surface">Junior Penetration Tester</h3>
+          <p class="text-[11px] text-on-surface-variant leading-relaxed">
+            Focused on offensive methodology, vulnerability discovery, and structured reporting.
+          </p>
+          <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline text-[11px] space-y-1 text-on-surface-variant">
+            <div>1. Networking &amp; Packet Analysis</div>
+            <div>2. Linux Administration</div>
+            <div>3. Reconnaissance (WHOIS, DNS, OSINT)</div>
+            <div>4. Active Scanning (Nmap, ffuf)</div>
+            <div>5. Web Vulnerabilities (OWASP Top 10)</div>
+            <div>6. Burp Suite Interception &amp; Repeater</div>
+            <div>7. Linux Privilege Escalation (SUID, sudo)</div>
+            <div>8. Documentation &amp; Remediation Reporting</div>
+          </div>
+        </div>
+
+        <!-- Path 3: Blue Team / Defensive -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-warning/40 space-y-3">
+          <span class="px-2 py-0.5 rounded bg-warning/20 text-warning font-bold text-[10px]">PATH 03 // DEFENSIVE</span>
+          <h3 class="text-base font-bold text-on-surface">Blue Team / SOC Analyst</h3>
+          <p class="text-[11px] text-on-surface-variant leading-relaxed">
+            Focused on system telemetry, log correlation, incident triage, and defense-in-depth.
+          </p>
+          <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline text-[11px] space-y-1 text-on-surface-variant">
+            <div>1. Networking &amp; Flow Analysis</div>
+            <div>2. Operating System Internals</div>
+            <div>3. Security Fundamentals &amp; Controls</div>
+            <div>4. System Logs (auth.log, Sysmon)</div>
+            <div>5. SIEM &amp; Correlation Detection</div>
+            <div>6. Incident Response Phases (NIST)</div>
+            <div>7. System Hardening (CIS Benchmarks)</div>
+            <div>8. Threat Hunting with MITRE ATT&amp;CK</div>
+          </div>
+        </div>
+
+        <!-- Path 4: Security Engineer -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3">
+          <span class="px-2 py-0.5 rounded bg-surface-raised text-outline font-bold text-[10px]">PATH 04 // ENGINEERING</span>
+          <h3 class="text-base font-bold text-on-surface">Security Engineer</h3>
+          <p class="text-[11px] text-on-surface-variant leading-relaxed">
+            Building resilient systems, cloud infrastructure, container isolation, and automation.
+          </p>
+          <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline text-[11px] space-y-1 text-on-surface-variant">
+            <div>1. Operating Systems &amp; Scripting (Python)</div>
+            <div>2. Network Architecture &amp; Segmentation</div>
+            <div>3. Cryptography &amp; Public Key Infrastructure</div>
+            <div>4. Web Application Security Architecture</div>
+            <div>5. Cloud Security (AWS/Azure IAM &amp; VPC)</div>
+            <div>6. Container Security (Docker Isolation)</div>
+            <div>7. Identity &amp; Access Management (IAM / ZTA)</div>
+            <div>8. Security Automation &amp; CI/CD Pipelines</div>
+          </div>
+        </div>
+
+        <!-- Path 5: Security Research -->
+        <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-3">
+          <span class="px-2 py-0.5 rounded bg-surface-raised text-outline font-bold text-[10px]">PATH 05 // RESEARCH</span>
+          <h3 class="text-base font-bold text-on-surface">Security Research</h3>
+          <p class="text-[11px] text-on-surface-variant leading-relaxed">
+            Low-level systems analysis, vulnerability research, and protocol internals.
+          </p>
+          <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline text-[11px] space-y-1 text-on-surface-variant">
+            <div>1. C Programming &amp; Assembly (x86-64)</div>
+            <div>2. Operating System Kernel Internals</div>
+            <div>3. Network Protocol Engineering</div>
+            <div>4. Memory Corruption (Stack / Heap Overflows)</div>
+            <div>5. Cryptographic Protocol Analysis</div>
+            <div>6. Reverse Engineering Concepts</div>
+            <div>7. Vulnerability Research Methodology</div>
+            <div>8. Exploit Proof-of-Concept Validation</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 19. ACADEMIC & UNIVERSITY REVISION QUICK REFERENCE                      -->
+    <!-- ======================================================================= -->
+    <section id="academic-revision" class="space-y-6">
+      <div class="flex items-center justify-between border-b border-border-hairline pb-3">
+        <div>
+          <span class="font-mono text-xs text-secondary font-bold tracking-wider">LEVEL 19 // ACADEMIC SUPPORT</span>
+          <h2 class="text-2xl font-bold font-mono text-on-surface mt-1">Academic &amp; University Revision Quick Reference</h2>
+        </div>
+        <span class="text-xs font-mono px-2.5 py-1 rounded bg-surface-raised border border-border-hairline text-outline">EXAM &amp; INTERVIEW REVIEW</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
+        <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+          <span class="text-primary font-bold">10 Key Facts to Remember</span>
+          <ul class="space-y-1 text-[11px] text-on-surface-variant list-disc list-inside">
+            <li>A process owns virtual memory; threads inside it share memory.</li>
+            <li>MAC addresses operate on Layer 2; IP addresses operate on Layer 3.</li>
+            <li>TCP uses a 3-way handshake (SYN, SYN-ACK, ACK); UDP is connectionless.</li>
+            <li>DNS resolves names to IPs; ARP resolves IPs to MAC addresses.</li>
+            <li>Base64 is encoding (reversible, no key); AES is encryption (needs key).</li>
+            <li>Hashing is one-way and cannot be decrypted.</li>
+            <li>Same-Origin Policy restricts scripts across different origin domains.</li>
+            <li>Prepared statements prevent SQLi by compiling query structure first.</li>
+            <li>SUID binaries execute with file owner privileges rather than the caller.</li>
+            <li>Zero Trust principle: "Never trust, always verify."</li>
+          </ul>
+        </div>
+
+        <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+          <span class="text-secondary font-bold">Real-World Enterprise Scenario</span>
+          <p class="text-[11px] text-on-surface-variant leading-relaxed">
+            <strong>Scenario:</strong> A user clicks a malicious email link while connected to an enterprise network.<br/>
+            <strong>Architectural Controls:</strong>
+          </p>
+          <ul class="space-y-1 text-[10px] text-outline list-disc list-inside">
+            <li>DNS Firewall blocks domain resolution using Threat Intelligence feeds.</li>
+            <li>Network Segmentation prevents the infected host from reaching the database VLAN.</li>
+            <li>Endpoint EDR detects abnormal child process spawning from Word/Outlook.</li>
+            <li>Least Privilege ensures the user does not possess local administrative rights.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- Footer                                                                    -->
+  <!-- ========================================================================= -->
+  <footer class="w-full border-t border-border-hairline bg-surface-subtle/80 py-8 px-4 sm:px-6 font-mono text-xs text-outline mt-16">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2 text-on-surface">
+        <span class="w-2 h-2 rounded-full bg-secondary"></span>
+        <span class="font-bold">ENDLESSUS THEORY &amp; CONCEPTS ECOSYSTEM</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="learning.html" class="hover:text-primary transition-colors">Learning Hub</a>
+        <a href="labs.html" class="hover:text-primary transition-colors">Practical Labs</a>
+        <a href="handbook/index.html" class="hover:text-primary transition-colors">Handbook</a>
+        <a href="roadmap.html" class="hover:text-primary transition-colors">Roadmap</a>
+        <a href="tools.html" class="hover:text-primary transition-colors">Tools</a>
+        <a href="terminal-lab.html" class="hover:text-primary transition-colors">Terminal Lab</a>
+        <a href="index.html" class="text-primary hover:underline">Mihraj Mashhoor K Portfolio &rarr;</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- Interactive Client-Side Engine for Theory Page                            -->
+  <!-- ========================================================================= -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. OSI 7-Layer Model Interactive Explorer
+      const osiData = {
+        7: {
+          number: 'LAYER 07',
+          title: 'Application Layer',
+          unit: 'PDU: DATA',
+          purpose: 'Directly interfaces with human users and software applications. Formulates structured requests and interprets responses across standard network protocols.',
+          protocols: 'HTTP, HTTPS, DNS, SSH, FTP, SMTP, IMAP, DHCP, SNMP. Addressing: URLs, FQDNs, Email addresses.',
+          relevance: 'Accepts untrusted input directly from public users. Holds the greatest concentration of software vulnerabilities and custom logic bugs.',
+          attacks: 'SQL Injection, Cross-Site Scripting (XSS), IDOR, Command Injection, CSRF, API Abuse, Directory Traversal, Brute-Force.',
+          defense: 'Web Application Firewalls (WAF), parameterized database queries, input validation & sanitization, strict CSP headers, rate limiting, and MFA.'
+        },
+        6: {
+          number: 'LAYER 06',
+          title: 'Presentation Layer',
+          unit: 'PDU: DATA',
+          purpose: 'Ensures data is readable between diverse systems through translation, character encoding, compression, and cryptographic encryption/decryption.',
+          protocols: 'TLS/SSL, ASCII, UTF-8, Unicode, Base64, gzip, JPEG, PNG, ASN.1 serialization.',
+          relevance: 'Responsible for cryptographic confidentiality in transit. Vulnerabilities emerge when ciphers are weak or encoding is misinterpreted.',
+          attacks: 'Downgrade attacks (POODLE, BEAST), SSL stripping, XML External Entity (XXE) attacks, and deserialization vulnerabilities.',
+          defense: 'Enforcing TLS 1.3, disabling deprecated cipher suites (RC4, 3DES), using safe deserialization parsers, and strict input validation.'
+        },
+        5: {
+          number: 'LAYER 05',
+          title: 'Session Layer',
+          unit: 'PDU: DATA',
+          purpose: 'Establishes, manages, synchronizes, and terminates communication sessions between local and remote applications.',
+          protocols: 'NetBIOS, RPC (Remote Procedure Call), SOCKS5, Named Pipes, PPTP, SMPP.',
+          relevance: 'Controls session lifecycle and authentication persistence. Broken sessions allow attackers to impersonate authorized users.',
+          attacks: 'Session hijacking, session fixation, replay attacks, RPC buffer overflows, and NetBIOS enumeration.',
+          defense: 'Cryptographically random session tokens, strict timeout expirations, HttpOnly & Secure cookie flags, and session regeneration on privilege escalation.'
+        },
+        4: {
+          number: 'LAYER 04',
+          title: 'Transport Layer',
+          unit: 'PDU: SEGMENT / DATAGRAM',
+          purpose: 'Provides end-to-end communication, service-level multiplexing via 16-bit Port Numbers (0-65535), flow control, and error detection.',
+          protocols: 'TCP (Transmission Control Protocol), UDP (User Datagram Protocol), SCTP. Addressing: Port Numbers (e.g. :80, :443, :22).',
+          relevance: 'Enables port scanning and service fingerprinting. Controls whether communication is connection-oriented or connectionless.',
+          attacks: 'SYN Flood DDoS, Port Scanning (Nmap SYN scan), TCP Session Hijacking, UDP Amplification, Reset attacks (TCP RST injection).',
+          defense: 'SYN Cookies, stateful packet inspection firewalls, port knocking, strict egress filtering, and rate limiting.'
+        },
+        3: {
+          number: 'LAYER 03',
+          title: 'Network Layer',
+          unit: 'PDU: PACKET',
+          purpose: 'Provides logical addressing (IP addresses) and path determination (routing) across interconnected subnets and autonomous systems.',
+          protocols: 'IPv4, IPv6, ICMP, IPsec, BGP, OSPF, RIP. Addressing: Logical IP Addresses (e.g. 192.168.1.1, 2001:db8::1).',
+          relevance: 'Defines network perimeters and routing boundaries. Attackers spoof IP addresses to conceal origin or bypass basic filters.',
+          attacks: 'IP Spoofing, ICMP Ping Floods, BGP Hijacking, Smurf attacks, Route poisoning, Man-in-the-Middle routing.',
+          defense: 'Network segmentation, Access Control Lists (ACLs), BGP RPKI validation, disabling unused ICMP types, and IPsec VPNs.'
+        },
+        2: {
+          number: 'LAYER 02',
+          title: 'Data Link Layer',
+          unit: 'PDU: FRAME',
+          purpose: 'Provides node-to-node transfer between directly connected devices on the same physical link. Manages Media Access Control (MAC) and error framing.',
+          protocols: 'Ethernet (IEEE 802.3), Wi-Fi (IEEE 802.11), ARP, PPP, VLAN tagging (IEEE 802.1Q). Addressing: 48-bit MAC Addresses.',
+          relevance: 'Local subnet security. Devices on the same Layer 2 broadcast domain can intercept unencrypted traffic if switches are fooled.',
+          attacks: 'ARP Poisoning / Spoofing, MAC Flooding (CAM table exhaustion), VLAN Hopping, DHCP Starvation, Rogue Access Points.',
+          defense: 'Dynamic ARP Inspection (DAI), Port Security (limiting MAC addresses per port), 802.1X network authentication, and private VLANs.'
+        },
+        1: {
+          number: 'LAYER 01',
+          title: 'Physical Layer',
+          unit: 'PDU: BITS',
+          purpose: 'Transmits raw unstructured bitstreams over physical transmission media via electrical pulses, light flashes, or radio frequency waves.',
+          protocols: 'Cat6/Cat6a Copper Ethernet, Single/Multi-mode Fiber Optic, Wi-Fi 2.4/5/6 GHz Radio, Bluetooth, USB, DSL.',
+          relevance: 'Physical security of hardware. If an adversary gains physical access to the device or transmission line, logical controls can be bypassed.',
+          attacks: 'Hardware keylogging, cable tapping (fiber tapping), RF jamming, Evil Maid attacks, USB Rubber Ducky injection.',
+          defense: 'Physical access controls (biometric doors, CCTV, tamper seals), disabling unused USB ports via BIOS, 802.1AE MACsec link encryption.'
+        }
+      };
+
+      const osiButtons = document.querySelectorAll('.osi-btn');
+      osiButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          osiButtons.forEach(b => {
+            b.classList.remove('border-secondary', 'bg-secondary/10');
+            b.classList.add('border-border-hairline', 'bg-surface-subtle');
+            const badge = b.querySelector('.px-2');
+            if (badge) {
+              badge.classList.remove('bg-secondary/20', 'text-secondary');
+              badge.classList.add('bg-surface-raised', 'text-outline');
+            }
+          });
+
+          btn.classList.remove('border-border-hairline', 'bg-surface-subtle');
+          btn.classList.add('border-secondary', 'bg-secondary/10');
+          const badge = btn.querySelector('.px-2');
+          if (badge) {
+            badge.classList.remove('bg-surface-raised', 'text-outline');
+            badge.classList.add('bg-secondary/20', 'text-secondary');
+          }
+
+          const layer = btn.getAttribute('data-layer');
+          const data = osiData[layer];
+          if (!data) return;
+
+          document.getElementById('osi-detail-number').textContent = data.number;
+          document.getElementById('osi-detail-title').textContent = data.title;
+          document.getElementById('osi-detail-unit').textContent = data.unit;
+          document.getElementById('osi-detail-purpose').textContent = data.purpose;
+          document.getElementById('osi-detail-protocols').textContent = data.protocols;
+          document.getElementById('osi-detail-relevance').textContent = data.relevance;
+          document.getElementById('osi-detail-attacks').textContent = data.attacks;
+          document.getElementById('osi-detail-defense').textContent = data.defense;
+        });
+      });
+
+      // 2. Packet Journey Interactive Stepper
+      const journeySteps = [
+        {
+          num: 1,
+          badge: 'STEP 1 OF 10: USER TYPES URL',
+          title: '1. User Inputs URL & Browser Cache Check',
+          desc: 'The user enters https://endlessus.in/login. The browser parses scheme, hostname, and path. It checks its local DNS cache and HSTS preload list to enforce HTTPS.',
+          tech: '• Layer: Application (L7) • OS: Checks /etc/hosts before querying network resolvers.',
+          tool: 'Browser DevTools',
+          code: '# Inspect DNS resolution manually:\n$ dig +trace endlessus.in\n# Or verify HTTP Strict Transport Security:\n$ curl -ivs https://endlessus.in | grep -i strict-transport'
+        },
+        {
+          num: 2,
+          badge: 'STEP 2 OF 10: DNS RESOLUTION HIERARCHY',
+          title: '2. Recursive DNS Resolution Hierarchy',
+          desc: 'If not in browser cache, OS queries the configured DNS resolver (e.g., 1.1.1.1). The recursive resolver traverses Root (.) -> TLD (.in) -> Authoritative Nameserver to retrieve the A/AAAA record.',
+          tech: '• Layer: Application (L7) over UDP Port 53. Fast, stateless 512-byte datagrams.',
+          tool: 'Dig / Nslookup',
+          code: '$ dig A endlessus.in +noall +answer\nendlessus.in.   300   IN   A   185.199.108.153'
+        },
+        {
+          num: 3,
+          badge: 'STEP 3 OF 10: ROUTING TABLE LOOKUP',
+          title: '3. Kernel Routing Table & Subnet Evaluation',
+          desc: 'The kernel checks its routing table to determine if destination IP 185.199.108.153 is on the local subnet or must be forwarded through the Default Gateway (router).',
+          tech: '• Layer: Network (L3). Evaluates CIDR subnet masks (/24).',
+          tool: 'ip route / netstat',
+          code: '$ ip route show\ndefault via 192.168.1.1 dev eth0 proto dhcp metric 100\n192.168.1.0/24 dev eth0 proto kernel scope link src 192.168.1.50'
+        },
+        {
+          num: 4,
+          badge: 'STEP 4 OF 10: ARP RESOLUTION FOR GATEWAY',
+          title: '4. Layer 2 ARP Resolution for Default Gateway MAC',
+          desc: 'To send the packet to the router, the host needs the router\'s Layer 2 physical MAC address. It inspects its ARP cache; if missing, it broadcasts: "Who has 192.168.1.1? Tell 192.168.1.50".',
+          tech: '• Layer: Data Link (L2). Broadcasts to FF:FF:FF:FF:FF:FF.',
+          tool: 'arp / ip neigh',
+          code: '$ ip neigh show\n192.168.1.1 dev eth0 lladdr e4:5f:01:23:45:67 REACHABLE'
+        },
+        {
+          num: 5,
+          badge: 'STEP 5 OF 10: TCP 3-WAY HANDSHAKE',
+          title: '5. Reliable TCP 3-Way Handshake (Port 443)',
+          desc: 'The client initiates a reliable connection: Client sends [SYN] (Seq=x) -> Server replies [SYN, ACK] (Seq=y, Ack=x+1) -> Client replies [ACK] (Seq=x+1, Ack=y+1). The connection is now ESTABLISHED.',
+          tech: '• Layer: Transport (L4). Negotiates MSS (Maximum Segment Size) and Window Scaling.',
+          tool: 'tcpdump / Wireshark',
+          code: '$ sudo tcpdump -nn -i eth0 "tcp[tcpflags] & (tcp-syn|tcp-ack) != 0"\n10:15:02.100 IP 192.168.1.50.54321 > 185.199.108.153.443: Flags [S], seq 1001\n10:15:02.140 IP 185.199.108.153.443 > 192.168.1.50.54321: Flags [S.], seq 2001, ack 1002\n10:15:02.141 IP 192.168.1.50.54321 > 185.199.108.153.443: Flags [.], ack 2002'
+        },
+        {
+          num: 6,
+          badge: 'STEP 6 OF 10: TLS 1.3 CRYPTOGRAPHIC HANDSHAKE',
+          title: '6. TLS 1.3 Cryptographic Key Exchange',
+          desc: 'Client sends ClientHello with supported cipher suites and ephemeral Diffie-Hellman public key share. Server returns ServerHello, X.509 Certificate, and its key share. Both compute shared secret without sending it over the wire!',
+          tech: '• Layer: Presentation / Application (L6/L7). AES-256-GCM symmetric session established.',
+          tool: 'OpenSSL s_client',
+          code: '$ openssl s_client -connect endlessus.in:443 -tls1_3\nTLSv1.3, Cipher is TLS_AES_256_GCM_SHA384\nPeer signing digest: SHA256\nVerification: OK'
+        },
+        {
+          num: 7,
+          badge: 'STEP 7 OF 10: HTTP GET REQUEST SENT',
+          title: '7. Encrypted HTTP Request Transmission',
+          desc: 'The browser generates the formatted HTTP request: GET /login HTTP/1.1 with Host, User-Agent, and Cookie headers. This is encrypted with the symmetric session key and transmitted.',
+          tech: '• Layer: Application (L7) payload encapsulated in TLS record frames.',
+          tool: 'Burp Suite / Curl',
+          code: 'GET /login HTTP/1.1\nHost: endlessus.in\nUser-Agent: Mozilla/5.0 (X11; Linux x86_64)\nAccept: text/html,application/xhtml+xml\nSec-Fetch-Site: none'
+        },
+        {
+          num: 8,
+          badge: 'STEP 8 OF 10: SERVER REVERSE PROXY & DB',
+          title: '8. Server-Side Processing (Reverse Proxy & Database)',
+          desc: 'The server\'s edge reverse proxy (Nginx) terminates TLS, runs WAF pattern checks, routes the request to the upstream application service, which queries the database for user session state.',
+          tech: '• Layer: Application & Database tier behind enterprise DMZ.',
+          tool: 'Nginx / App Server',
+          code: '# Nginx access log entry generated:\n192.168.1.50 - - [04/Oct/2026:10:15:03 +0000] "GET /login HTTP/1.1" 200 4520 "-" "Mozilla/5.0"'
+        },
+        {
+          num: 9,
+          badge: 'STEP 9 OF 10: HTTP 200 OK RESPONSE',
+          title: '9. Encrypted HTTP Response Delivered',
+          desc: 'The server constructs the response: HTTP/1.1 200 OK, with security headers (CSP, X-Frame-Options, Set-Cookie), followed by the HTML markup payload. Transmitted over the encrypted TLS channel.',
+          tech: '• Layer: Application (L7) response formatted with MIME type text/html.',
+          tool: 'Curl Response Headers',
+          code: 'HTTP/1.1 200 OK\nContent-Type: text/html; charset=UTF-8\nContent-Security-Policy: default-src \'self\'\nSet-Cookie: session=ab12; Secure; HttpOnly; SameSite=Strict'
+        },
+        {
+          num: 10,
+          badge: 'STEP 10 OF 10: BROWSER DOM RENDERING',
+          title: '10. Browser Rendering, DOM Parsing & Execution',
+          desc: 'The browser decrypts the response body, parses the HTML DOM tree, downloads and compiles linked CSS (CSSOM) and JS scripts, builds the Render Tree, computes layout, and paints pixels to screen.',
+          tech: '• Client Application: JavaScript engine runs in isolated sandbox with SOP enforcement.',
+          tool: 'Browser Performance DevTools',
+          code: '# Critical Rendering Path complete:\nDOM Parsing -> CSSOM Construction -> Render Tree -> Layout -> Paint'
+        }
+      ];
+
+      let currentStepIdx = 0;
+      const stepBadge = document.getElementById('journey-step-badge');
+      const stepTitle = document.getElementById('journey-title');
+      const stepDesc = document.getElementById('journey-desc');
+      const stepTech = document.getElementById('journey-tech');
+      const stepToolName = document.getElementById('journey-tool-name');
+      const stepCode = document.getElementById('journey-code');
+      const prevBtn = document.getElementById('journey-prev-btn');
+      const nextBtn = document.getElementById('journey-next-btn');
+
+      function updateJourney() {
+        const step = journeySteps[currentStepIdx];
+        if (!step) return;
+
+        stepBadge.querySelector('span:last-child').textContent = step.badge;
+        stepTitle.textContent = step.title;
+        stepDesc.textContent = step.desc;
+        stepTech.innerHTML = step.tech;
+        stepToolName.textContent = step.tool;
+        stepCode.textContent = step.code;
+
+        prevBtn.disabled = currentStepIdx === 0;
+        nextBtn.textContent = currentStepIdx === journeySteps.length - 1 ? 'Start Over ↺' : 'Next Step →';
+      }
+
+      if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+          if (currentStepIdx > 0) {
+            currentStepIdx--;
+            updateJourney();
+          }
+        });
+
+        nextBtn.addEventListener('click', () => {
+          if (currentStepIdx < journeySteps.length - 1) {
+            currentStepIdx++;
+          } else {
+            currentStepIdx = 0;
+          }
+          updateJourney();
+        });
+      }
+
+      // 3. Knowledge Checks Interactive Quiz Engine
+      const quizExplanations = {
+        0: {
+          A: "Incorrect. Layer 2 handles MAC addressing and framing on the local subnet.",
+          B: "Incorrect. Layer 4 handles port numbers and end-to-end transport (TCP/UDP).",
+          C: "Correct! Layer 3 (Network Layer) is responsible for logical IP addressing and path determination (routing) across subnets.",
+          D: "Incorrect. Layer 7 handles application protocols (HTTP, DNS, SSH)."
+        },
+        1: {
+          A: "Incorrect. An ACK is the 3rd step sent by the client, not the server's initial reply.",
+          B: "Correct! The server responds with a SYN-ACK packet, acknowledging the client's sequence number and proposing its own.",
+          C: "Incorrect. A FIN packet initiates connection teardown.",
+          D: "Incorrect. An RST packet is sent if the target port is closed."
+        },
+        2: {
+          A: "Incorrect. The heap memory is shared among all threads in the process.",
+          B: "Incorrect. Global/BSS variables are accessible to all threads in the process.",
+          C: "Incorrect. The code/text segment is read-only and shared by all threads.",
+          D: "Correct! Each thread maintains its own private execution stack (local variables, call frames) and register state, while sharing heap and global data."
+        },
+        3: {
+          A: "Correct! Parameterized queries (prepared statements) ensure user input is treated strictly as literal data rather than executable SQL syntax tokens.",
+          B: "Incorrect. Base64 encoding does not sanitize dangerous SQL characters.",
+          C: "Incorrect. Blacklisting characters is easily bypassed with alternative SQL syntax.",
+          D: "Incorrect. Disk encryption does not protect against query logic manipulation."
+        }
+      };
+
+      document.querySelectorAll('.quiz-card').forEach((card, cardIdx) => {
+        const correctChoice = card.getAttribute('data-correct');
+        const feedbackBox = card.querySelector('.quiz-feedback');
+        const options = card.querySelectorAll('.quiz-option');
+
+        options.forEach(opt => {
+          opt.addEventListener('click', () => {
+            const choice = opt.getAttribute('data-choice');
+            const isCorrect = choice === correctChoice;
+
+            options.forEach(o => {
+              o.classList.remove('border-primary', 'bg-primary/20', 'border-danger-critical', 'bg-danger-critical/20');
+              o.classList.add('border-border-hairline', 'bg-canvas-base');
+            });
+
+            feedbackBox.classList.remove('hidden', 'bg-primary/10', 'text-primary', 'border-primary/30', 'bg-danger-critical/10', 'text-danger-critical', 'border-danger-critical/30');
+            feedbackBox.classList.add('border');
+
+            if (isCorrect) {
+              opt.classList.remove('border-border-hairline', 'bg-canvas-base');
+              opt.classList.add('border-primary', 'bg-primary/20');
+              feedbackBox.classList.add('bg-primary/10', 'text-primary', 'border-primary/30');
+              feedbackBox.innerHTML = `<strong>✓ Correct!</strong> ${quizExplanations[cardIdx][choice]}`;
+            } else {
+              opt.classList.remove('border-border-hairline', 'bg-canvas-base');
+              opt.classList.add('border-danger-critical', 'bg-danger-critical/20');
+              feedbackBox.classList.add('bg-danger-critical/10', 'text-danger-critical', 'border-danger-critical/30');
+              feedbackBox.innerHTML = `<strong>✗ Incorrect.</strong> ${quizExplanations[cardIdx][choice]}`;
+            }
+          });
+        });
+      });
+    });
+  </script>
+  <script src="portfolio-interactive.js"></script>
+</body>
+</html>

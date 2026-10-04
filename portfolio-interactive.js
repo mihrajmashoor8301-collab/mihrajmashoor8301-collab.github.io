@@ -40,6 +40,54 @@
   // 1. DATASET FOR COMMAND PALETTE SEARCH
   // =========================================================================
   const SEARCH_ITEMS = [
+    // Dedicated Theory & Concepts Hub (The Architectural Foundation)
+    { title: 'Cybersecurity Theory & Concepts System', type: 'THEORY', url: root + 'theory.html', desc: 'Why systems work: Hardware, OS Internals, OSI & TCP/IP, Packet Journey, Cryptography, Database & Zero Trust', keywords: 'theory concepts why systems work hardware os internals networking osi tcp ip packet journey web crypto active directory detection' },
+    { title: 'The OSI 7-Layer Interactive Model', type: 'THEORY', url: root + 'theory.html#osi-model', desc: 'Interactive 7-layer architecture, PDU encapsulation, protocols, security relevance & layer defenses', keywords: 'osi 7 layers application presentation session transport network data link physical encapsulation' },
+    { title: 'TCP & Networking Protocols Theory', type: 'THEORY', url: root + 'theory.html#networking-fundamentals', desc: 'TCP connection reliability, 3-way handshake, sequence numbers, IPv4/IPv6, CIDR, and ports', keywords: 'tcp networking theory ip udp handshake transmission ports addresses protocols' },
+    { title: 'TCP/IP 4-Layer Model Architecture', type: 'THEORY', url: root + 'theory.html#tcp-ip-model', desc: 'Practical internet protocol architecture: Application, Transport, Internet, and Link layers', keywords: 'tcp ip model internet transport application link dod network' },
+    { title: 'Packet Journey: "What Happens When I Visit a Website?"', type: 'THEORY', url: root + 'theory.html#packet-journey', desc: '10-step complete visual trace from browser input to DNS, ARP, TCP, TLS, HTTP, and DOM render', keywords: 'packet journey visit website browser dns arp tcp handshake tls http request response' },
+    { title: 'Computer Hardware & Process Internals', type: 'THEORY', url: root + 'theory.html#computer-fundamentals', desc: 'CPU registers, RAM addressability, processes, threads, virtual memory, and kernel mode', keywords: 'computer fundamentals cpu ram storage processes threads kernel user space hardware' },
+    { title: 'Operating System Internals & Memory Architecture', type: 'THEORY', url: root + 'theory.html#operating-systems', desc: 'Kernel rings, virtual memory paging, stack vs heap, inodes, system calls & permissions', keywords: 'os operating system kernel virtual memory paging stack heap syscalls permissions suid' },
+    { title: 'Database Theory & SQL Query Architecture', type: 'THEORY', url: root + 'theory.html#database-theory', desc: 'Relational schemas, primary/foreign keys, SQL grammar, and the root cause of injection', keywords: 'database theory sql rdbms tables select insert sqli injection prepared statements' },
+    { title: 'Cryptography: Ciphers, Hashes & PKI', type: 'THEORY', url: root + 'theory.html#cryptography-theory', desc: 'Symmetric AES, Asymmetric RSA/ECC, one-way hashing, salts, entropy & digital certificates', keywords: 'cryptography aes rsa ecc hashing sha256 encryption pki tls salts digital signatures' },
+    { title: 'Detection Theory: Logs, SIEM, EDR & Telemetry', type: 'THEORY', url: root + 'theory.html#detection-theory', desc: 'Defender perspective: How attacks appear in syslog, auth.log, SIEM correlation & EDR', keywords: 'detection theory siem edr logs telemetry ids ips incident analysis blue team' },
+    { title: 'Security Architecture: DMZ & Zero Trust', type: 'THEORY', url: root + 'theory.html#defensive-architecture', desc: 'Enterprise segmentation, DMZ tiers, microsegmentation, and NIST Zero Trust Architecture', keywords: 'security architecture dmz firewall zero trust defense in depth microsegmentation' },
+    { title: 'Active Directory & Kerberos Architecture', type: 'THEORY', url: root + 'theory.html#active-directory', desc: 'Enterprise identity: Domain Controllers, Forests, GPOs, and Kerberos TGT/TGS tickets', keywords: 'active directory kerberos domain controller forest gpo tgt tgs roasting ntlm' },
+    { title: 'Cloud Computing & Container Isolation Theory', type: 'THEORY', url: root + 'theory.html#cloud-containers', desc: 'IaaS/PaaS/SaaS, Linux namespaces (pid, net, mnt), cgroups limits & container escapes', keywords: 'cloud container docker namespaces cgroups capabilities isolation iaas paas saas shared responsibility' },
+    { title: 'Authentication, Session & JWT Architecture', type: 'THEORY', url: root + 'theory.html#auth-authorization', desc: 'Stateless JWT signature verification, cookie security flags, session handling & RBAC', keywords: 'jwt json web token session cookies authentication authorization mfa tokens rbac abac oauth' },
+    { title: 'Cybersecurity Fundamentals: CIA, CVE & MITRE', type: 'THEORY', url: root + 'theory.html#security-fundamentals', desc: 'Core cybersecurity vocabulary: CIA Triad, CVSS scoring formulas, IOCs, and MITRE matrix', keywords: 'security fundamentals cia triad threat vulnerability exploit risk cve cwe cvss ioc ttp mitre attack' },
+    { title: 'Attack vs Defense Lifecycle Methodology', type: 'THEORY', url: root + 'theory.html#attack-defense-theory', desc: 'Systematic security progression: Vulnerability -> Exploit -> Payload -> Impact -> Detection -> Mitigation', keywords: 'attack defense lifecycle vulnerability exploit payload impact detection mitigation' },
+
+    // Conceptual Comparisons & Primitives
+    { title: '16 Canonical Cybersecurity Comparisons', type: 'CONCEPTS', url: root + 'theory.html#comparisons', desc: 'Side-by-side matrices: TCP vs UDP, OSI vs TCP/IP, AuthN vs AuthZ, Encryption vs Hashing, etc.', keywords: 'comparisons tcp vs udp osi vs tcp ip authn authz encryption hashing symmetric asymmetric' },
+    { title: 'TCP vs UDP Transport Comparison', type: 'CONCEPTS', url: root + 'theory.html#comparisons', desc: 'Connection-oriented reliability & flow control vs connectionless low-latency datagrams', keywords: 'tcp vs udp transport layer comparison handshake connection oriented connectionless' },
+    { title: 'OSI vs TCP/IP Suite Comparison', type: 'CONCEPTS', url: root + 'theory.html#tcp-ip-model', desc: 'Academic 7-layer model vs practical 4-layer internet protocol implementation comparison matrix', keywords: 'osi vs tcp ip comparison 7 layers 4 layers practical theoretical differences' },
+    { title: 'Encryption vs Encoding vs Hashing', type: 'CONCEPTS', url: root + 'theory.html#cryptography-theory', desc: 'Reversible with key vs format translation without key vs one-way mathematical digest', keywords: 'encryption vs encoding vs hashing base64 aes sha256 comparison difference' },
+    { title: 'Authentication vs Authorization (AuthN vs AuthZ)', type: 'CONCEPTS', url: root + 'theory.html#auth-authorization', desc: '"Who are you?" identity verification vs "What can you do?" permission control', keywords: 'authentication vs authorization authn authz access control identity permissions' },
+    { title: 'Firewall vs Web Application Firewall (WAF)', type: 'CONCEPTS', url: root + 'theory.html#comparisons', desc: 'Layer 3/4 packet filtering vs Layer 7 HTTP application payload inspection', keywords: 'firewall vs waf layer 3 4 layer 7 packet filtering http inspection' },
+    { title: 'Intrusion Detection (IDS) vs Intrusion Prevention (IPS)', type: 'CONCEPTS', url: root + 'theory.html#comparisons', desc: 'Out-of-band passive alerting sensors vs active inline traffic-dropping prevention', keywords: 'ids vs ips sensor inline passive active packet drop suricata snort' },
+    { title: 'Passive vs Active Reconnaissance', type: 'CONCEPTS', url: root + 'theory.html#comparisons', desc: 'Zero-touch external intelligence gathering vs direct packet transmission against target systems', keywords: 'passive vs active reconnaissance osint footprinting scanning whois dns nmap' },
+
+    // Practical Commands
+    { title: 'Nmap TCP SYN Port Scan (-sS)', type: 'COMMANDS', url: root + 'handbook/nmap.html', desc: 'Stealth half-open TCP port discovery: $ sudo nmap -sS -p- 192.168.1.10', keywords: 'nmap tcp syn scan command -ss port scanning half open' },
+    { title: 'tcpdump Raw Packet Capture Filter', type: 'COMMANDS', url: root + 'handbook/modules/network-security.html', desc: 'Capture TCP SYN/ACK flags: $ sudo tcpdump -nn -i eth0 "tcp[tcpflags] & tcp-syn != 0"', keywords: 'tcpdump command packet capture pcap tcp traffic sniffer' },
+    { title: 'chmod Octal & SUID Permission Configuration', type: 'COMMANDS', url: root + 'handbook/linux.html', desc: 'Configure permissions and SUID bits: $ chmod 4755 binary, $ find / -perm -u=s', keywords: 'chmod chown permissions suid octal command 4755' },
+    { title: 'ffuf Web Directory Fuzzing Command', type: 'COMMANDS', url: root + 'handbook/modules/web-security.html', desc: 'Endpoint fuzzing: $ ffuf -w common.txt -u http://TARGET/FUZZ -mc 200,301,302', keywords: 'ffuf command fuzzing web endpoints wordlist directory' },
+    { title: 'John the Ripper Hash Cracking Command', type: 'COMMANDS', url: root + 'handbook/modules/credential-security.html', desc: 'Offline wordlist attack: $ john --wordlist=rockyou.txt hashes.txt', keywords: 'john the ripper command password hash crack rockyou' },
+
+    // Practical Tools
+    { title: 'Wireshark Network Protocol Analyzer', type: 'TOOLS', url: root + 'handbook/modules/network-security.html', desc: 'Deep packet inspection, protocol dissectors, and TCP stream reassembly', keywords: 'wireshark tool packet capture protocol analyzer pcap filters' },
+    { title: 'Burp Suite Web Security Proxy', type: 'TOOLS', url: root + 'handbook/modules/web-security.html', desc: 'HTTP request/response interception, manual repeater, and parameter tampering', keywords: 'burp suite tool proxy repeater web security intercept' },
+    { title: 'Metasploit Framework (MSF)', type: 'TOOLS', url: root + 'handbook/metasploit.html', desc: 'Exploit development, auxiliary modules, Meterpreter payloads & listeners', keywords: 'metasploit tool msfconsole exploit payload listener' },
+    { title: 'Searchsploit Local Exploit-DB', type: 'TOOLS', url: root + 'handbook/searchsploit.html', desc: 'Offline command-line query tool for the Exploit-DB security archive', keywords: 'searchsploit tool cve exploit-db offline archive' },
+
+    // Key Vulnerabilities
+    { title: 'SQL Injection (SQLi) CWE-89', type: 'VULNERABILITIES', url: root + 'handbook/modules/web-security.html', desc: 'Dynamic query string concatenation flaws; cured by prepared statements', keywords: 'sqli sql injection vulnerability cwe-89 authentication bypass database' },
+    { title: 'Cross-Site Scripting (XSS) CWE-79', type: 'VULNERABILITIES', url: root + 'handbook/modules/web-security.html', desc: 'Client-side script execution in victim browser; mitigated by CSP and sanitization', keywords: 'xss cross site scripting vulnerability cwe-79 reflected stored dom' },
+    { title: 'Linux SUID Binary Privilege Escalation', type: 'VULNERABILITIES', url: root + 'handbook/modules/privilege-escalation.html', desc: 'Execution with root file owner permissions enabling GTFOBins shell escapes', keywords: 'suid privilege escalation vulnerability root gtfobins linux privesc' },
+    { title: 'Insecure Direct Object Reference (IDOR) CWE-639', type: 'VULNERABILITIES', url: root + 'handbook/modules/web-security.html', desc: 'Parameter tampering accessing unauthorized user records without authorization', keywords: 'idor broken object authorization vulnerability cwe-639 parameter tampering' },
+    { title: 'TCP SYN Flood Denial of Service', type: 'VULNERABILITIES', url: root + 'handbook/modules/network-security.html', desc: 'Half-open connection exhaustion attack against TCP connection backlogs', keywords: 'tcp syn flood vulnerability denial of service ddos backlog' },
+
     // Core Platform Hubs & Practice Labs
     { title: 'Cybersecurity Learning Hub', type: 'LEARNING', url: root + 'learning.html', desc: '12 core cybersecurity disciplines: Networking, Linux, Web, Recon, PrivEsc, Cloud, Docker, Tools', keywords: 'learning hub networking linux web security recon enumeration privesc auth wireless cloud docker osint' },
     { title: 'Interactive Security Toolkit', type: 'TOOLKIT', url: root + 'tools.html', desc: '13 zero-telemetry in-browser tools: JWT Inspector, CIDR Calc, Base64, Hash ID, CSP Analyzer', keywords: 'toolkit tools jwt base64 url hash identifier cidr calculator csp headers entropy regex json timestamp' },
@@ -2056,46 +2104,107 @@ PORT      STATE SERVICE
       }
 
       selectedIndex = 0;
-      resultsContainer.innerHTML = filteredItems.map((item, idx) => {
-        const typeBadge = {
-          'PORTFOLIO': 'text-primary border-primary/40 bg-primary/10 font-bold',
-          'PLATFORM': 'text-secondary border-secondary/40 bg-secondary/10 font-bold',
-          'LEARNING': 'text-secondary border-secondary/40 bg-secondary/10 font-bold',
-          'LABS': 'text-primary border-primary/40 bg-primary/10 font-bold',
-          'TOOLKIT': 'text-warning-elevated border-warning-elevated/40 bg-warning-elevated/10',
-          'DATABASE': 'text-secondary border-secondary/30 bg-secondary/10',
-          'METHODOLOGY': 'text-primary border-primary/30 bg-primary/10',
-          'ROADMAP': 'text-secondary border-secondary/30 bg-secondary/10',
-          'GLOSSARY': 'text-outline border-border-hairline bg-canvas-base',
-          'CHEATSHEET': 'text-danger-critical border-danger-critical/40 bg-danger-critical/10 font-bold',
-          'SANDBOX': 'text-primary border-primary/50 bg-primary/20 font-bold',
-          'CASE STUDY': 'text-primary border-primary/30 bg-primary/10',
-          'PAGE': 'text-secondary border-secondary/30 bg-secondary/10',
-          'SECTION': 'text-on-surface border-border-hairline bg-canvas-base',
-          'MODULE': 'text-warning-elevated border-warning-elevated/30 bg-warning-elevated/10',
-          'KNOWLEDGE BASE': 'text-secondary border-secondary/30 bg-secondary/10',
-          'ACTION': 'text-primary border-primary/40 bg-canvas-base font-bold',
-          'EXTERNAL': 'text-outline border-border-hairline bg-canvas-base'
-        }[item.type] || 'text-outline border-border-hairline bg-canvas-base';
 
-        return `
-          <div class="cmd-item p-3 rounded-xl flex items-center justify-between gap-3 cursor-pointer transition-colors ${idx === 0 ? 'bg-surface-raised border border-primary/40 text-on-surface' : 'hover:bg-surface-raised text-on-surface-variant'}"
-               data-index="${idx}">
-            <div class="flex items-center gap-2.5 min-w-0">
-              <span class="material-symbols-outlined text-sm text-outline shrink-0">
-                ${item.type === 'SANDBOX' ? 'terminal' : item.type === 'CASE STUDY' ? 'schema' : item.type === 'MODULE' || item.type === 'KNOWLEDGE BASE' ? 'menu_book' : item.type === 'ACTION' ? 'play_arrow' : 'arrow_right_alt'}
-              </span>
-              <div class="truncate">
-                <div class="font-bold text-on-surface truncate">${item.title}</div>
-                <div class="text-[11px] text-outline truncate">${item.desc}</div>
-              </div>
-            </div>
-            <span class="px-2 py-0.5 rounded border text-[9px] font-mono shrink-0 uppercase tracking-wider ${typeBadge}">
-              ${item.type}
-            </span>
+      // Group filtered results into canonical learning taxonomy
+      const groups = [
+        { name: 'THEORY & ARCHITECTURE', types: ['THEORY'] },
+        { name: 'CONCEPTS & COMPARISONS', types: ['CONCEPTS'] },
+        { name: 'COMMANDS & SYNTAX', types: ['COMMANDS'] },
+        { name: 'SECURITY TOOLS', types: ['TOOLS', 'TOOLKIT', 'DATABASE'] },
+        { name: 'VULNERABILITY CLASSES', types: ['VULNERABILITIES'] },
+        { name: 'PRACTICE LABS & SANDBOXES', types: ['LABS', 'SANDBOX'] },
+        { name: 'LEARNING PATHS & MODULES', types: ['LEARNING', 'ROADMAP', 'MODULE', 'KNOWLEDGE BASE', 'METHODOLOGY'] },
+        { name: 'PORTFOLIO & CASE STUDIES', types: ['PORTFOLIO', 'CASE STUDY', 'PAGE', 'CHEATSHEET', 'ACTION', 'EXTERNAL', 'SECTION', 'GLOSSARY', 'PLATFORM'] }
+      ];
+
+      // Re-order filteredItems by group order so keyboard navigation matches visual rendering
+      const sortedItems = [];
+      const renderedGroups = [];
+
+      groups.forEach(grp => {
+        const itemsInGrp = filteredItems.filter(item => grp.types.includes(item.type));
+        if (itemsInGrp.length > 0) {
+          renderedGroups.push({ groupName: grp.name, items: itemsInGrp, startIndex: sortedItems.length });
+          itemsInGrp.forEach(item => sortedItems.push(item));
+        }
+      });
+
+      // Catch any unmapped types
+      const otherItems = filteredItems.filter(item => !sortedItems.includes(item));
+      if (otherItems.length > 0) {
+        renderedGroups.push({ groupName: 'OTHER ASSETS', items: otherItems, startIndex: sortedItems.length });
+        otherItems.forEach(item => sortedItems.push(item));
+      }
+
+      filteredItems = sortedItems;
+
+      const typeBadge = {
+        'THEORY': 'text-secondary border-secondary/40 bg-secondary/15 font-bold',
+        'CONCEPTS': 'text-primary border-primary/40 bg-primary/15 font-bold',
+        'COMMANDS': 'text-warning-elevated border-warning-elevated/40 bg-warning-elevated/15 font-bold',
+        'TOOLS': 'text-secondary border-secondary/40 bg-secondary/10 font-bold',
+        'VULNERABILITIES': 'text-danger-critical border-danger-critical/40 bg-danger-critical/15 font-bold',
+        'PORTFOLIO': 'text-primary border-primary/40 bg-primary/10 font-bold',
+        'PLATFORM': 'text-secondary border-secondary/40 bg-secondary/10 font-bold',
+        'LEARNING': 'text-secondary border-secondary/40 bg-secondary/10 font-bold',
+        'LABS': 'text-primary border-primary/40 bg-primary/10 font-bold',
+        'TOOLKIT': 'text-warning-elevated border-warning-elevated/40 bg-warning-elevated/10',
+        'DATABASE': 'text-secondary border-secondary/30 bg-secondary/10',
+        'METHODOLOGY': 'text-primary border-primary/30 bg-primary/10',
+        'ROADMAP': 'text-secondary border-secondary/30 bg-secondary/10',
+        'GLOSSARY': 'text-outline border-border-hairline bg-canvas-base',
+        'CHEATSHEET': 'text-danger-critical border-danger-critical/40 bg-danger-critical/10 font-bold',
+        'SANDBOX': 'text-primary border-primary/50 bg-primary/20 font-bold',
+        'CASE STUDY': 'text-primary border-primary/30 bg-primary/10',
+        'PAGE': 'text-secondary border-secondary/30 bg-secondary/10',
+        'SECTION': 'text-on-surface border-border-hairline bg-canvas-base',
+        'MODULE': 'text-warning-elevated border-warning-elevated/30 bg-warning-elevated/10',
+        'KNOWLEDGE BASE': 'text-secondary border-secondary/30 bg-secondary/10',
+        'ACTION': 'text-primary border-primary/40 bg-canvas-base font-bold',
+        'EXTERNAL': 'text-outline border-border-hairline bg-canvas-base'
+      };
+
+      let html = '';
+      renderedGroups.forEach(grp => {
+        html += `
+          <div class="px-3 pt-3 pb-1 text-[10px] font-mono font-bold text-outline tracking-wider flex items-center justify-between border-b border-border-hairline/40">
+            <span>${grp.groupName}</span>
+            <span>(${grp.items.length})</span>
           </div>
         `;
-      }).join('');
+        grp.items.forEach(item => {
+          const globalIdx = sortedItems.indexOf(item);
+          const isSelected = globalIdx === 0;
+          const badgeClass = typeBadge[item.type] || 'text-outline border-border-hairline bg-canvas-base';
+          const icon = item.type === 'THEORY' ? 'psychology' :
+                       item.type === 'CONCEPTS' ? 'compare_arrows' :
+                       item.type === 'COMMANDS' ? 'terminal' :
+                       item.type === 'TOOLS' ? 'build' :
+                       item.type === 'VULNERABILITIES' ? 'bug_report' :
+                       item.type === 'LABS' || item.type === 'SANDBOX' ? 'science' :
+                       item.type === 'CASE STUDY' ? 'schema' :
+                       item.type === 'MODULE' || item.type === 'KNOWLEDGE BASE' ? 'menu_book' :
+                       item.type === 'ACTION' ? 'play_arrow' : 'arrow_right_alt';
+
+          html += `
+            <div class="cmd-item p-3 rounded-xl flex items-center justify-between gap-3 cursor-pointer transition-colors ${isSelected ? 'bg-surface-raised border border-primary/40 text-on-surface' : 'hover:bg-surface-raised text-on-surface-variant'}"
+                 data-index="${globalIdx}">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="material-symbols-outlined text-sm text-outline shrink-0">${icon}</span>
+                <div class="truncate">
+                  <div class="font-bold text-on-surface truncate">${item.title}</div>
+                  <div class="text-[11px] text-outline truncate">${item.desc}</div>
+                </div>
+              </div>
+              <span class="px-2 py-0.5 rounded border text-[9px] font-mono shrink-0 uppercase tracking-wider ${badgeClass}">
+                ${item.type}
+              </span>
+            </div>
+          `;
+        });
+      });
+
+      resultsContainer.innerHTML = html;
 
       resultsContainer.querySelectorAll('.cmd-item').forEach(el => {
         el.addEventListener('click', () => {
