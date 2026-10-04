@@ -1423,6 +1423,7 @@
   </footer>
 
   <script src="portfolio-interactive.js"></script>
+  <script src="lab-engine.js"></script>
   <script>
     // =========================================================================
     // COMPLETE PRACTICAL LABS WORKSPACE & INTERACTIVE CLI ENGINE
@@ -2454,52 +2455,65 @@
     }
 
     // Check Task and Save State
+    function getCompletedTaskIndices(labId) {
+      if (window.LabEngine) {
+        const session = window.LabEngine.getSession(labId);
+        if (session && session.completedTasks) {
+          return Array.from(session.completedTasks);
+        }
+      }
+      const key = `endlessus_tasks_${labId}`;
+      return JSON.parse(localStorage.getItem(key) || '[]');
+    }
+
     function markTaskCompleted(idx) {
       if (!activeLabId) return;
+      if (window.LabEngine) {
+        const session = window.LabEngine.getSession(activeLabId);
+        if (session) {
+          session.completedTasks.add(idx);
+          if (window.LabEngine.saveSession) {
+            window.LabEngine.saveSession(session);
+          }
+        }
+      }
       const key = `endlessus_tasks_${activeLabId}`;
       let saved = JSON.parse(localStorage.getItem(key) || '[]');
       if (!saved.includes(idx)) {
         saved.push(idx);
         localStorage.setItem(key, JSON.stringify(saved));
-        renderTasksChecklist(activeLabId);
       }
+      renderTasksChecklist(activeLabId);
     }
 
     function renderTasksChecklist(labId) {
       const lab = LAB_CATALOG[labId];
       if (!lab) return;
-      const key = `endlessus_tasks_${labId}`;
-      const saved = JSON.parse(localStorage.getItem(key) || '[]');
+      const doneIndices = getCompletedTaskIndices(labId);
       const total = lab.tasks.length;
-      const done = saved.length;
+      const done = doneIndices.length;
       const pct = Math.min(100, Math.round((done / total) * 100));
 
       wsTasksCount.textContent = `${done} / ${total} Completed (${pct}%)`;
       wsTasksBar.style.width = `${pct}%`;
 
       wsTasksList.innerHTML = lab.tasks.map((taskText, idx) => {
-        const isDone = saved.includes(idx);
+        const isDone = doneIndices.includes(idx);
         return `
-          <label class="flex items-start gap-2.5 p-2 rounded-lg ${isDone ? 'bg-primary/10 border-primary/30' : 'bg-surface-raised border-border-hairline'} border cursor-pointer hover:border-primary/40 transition-all select-none">
-            <input type="checkbox" class="task-checkbox mt-0.5 rounded border-border-hairline text-primary focus:ring-0 cursor-pointer" data-task-idx="${idx}" ${isDone ? 'checked' : ''} />
-            <span class="text-[11px] leading-relaxed ${isDone ? 'text-primary font-semibold line-through opacity-80' : 'text-on-surface'}">${escapeHtml(taskText)}</span>
-          </label>
+          <div class="flex items-start gap-2.5 p-2 rounded-lg ${isDone ? 'bg-primary/10 border-primary/30' : 'bg-surface-raised border-border-hairline'} border transition-all select-none">
+            <span class="material-symbols-outlined text-sm mt-0.5 shrink-0 ${isDone ? 'text-primary' : 'text-outline/60'}">
+              ${isDone ? 'check_circle' : 'radio_button_unchecked'}
+            </span>
+            <div class="flex-1 space-y-0.5">
+              <div class="flex items-center justify-between gap-1">
+                <span class="text-[10px] font-mono font-bold uppercase tracking-wider ${isDone ? 'text-primary' : 'text-outline'}">Task ${idx + 1}</span>
+                <span class="text-[9px] px-1.5 py-0.5 rounded font-mono ${isDone ? 'bg-primary/20 text-primary font-bold' : 'bg-canvas-base border border-border-hairline text-outline'}">${isDone ? 'COMPLETED' : 'PENDING'}</span>
+              </div>
+              <span class="text-[11px] leading-relaxed block ${isDone ? 'text-primary font-semibold' : 'text-on-surface'}">${escapeHtml(taskText)}</span>
+            </div>
+          </div>
         `;
       }).join('');
-
-      wsTasksList.querySelectorAll('.task-checkbox').forEach(cb => {
-        cb.addEventListener('change', (e) => {
-          const idx = parseInt(cb.getAttribute('data-task-idx'), 10);
-          let current = JSON.parse(localStorage.getItem(key) || '[]');
-          if (cb.checked) {
-            if (!current.includes(idx)) current.push(idx);
-          } else {
-            current = current.filter(i => i !== idx);
-          }
-          localStorage.setItem(key, JSON.stringify(current));
-          renderTasksChecklist(labId);
-        });
-      });
     }
 
     // Unlock Walkthrough
@@ -2516,7 +2530,12 @@
       if (!lab) return;
 
       activeLabId = labId;
-      isElevatedRoot = false;
+      if (window.LabEngine) {
+        const session = window.LabEngine.getSession(labId);
+        isElevatedRoot = session ? session.isElevatedRoot : false;
+      } else {
+        isElevatedRoot = false;
+      }
       wsSection.classList.remove('hidden');
       resumeWorkspaceBtn.classList.remove('hidden');
 
@@ -2611,8 +2630,9 @@
       renderTasksChecklist(labId);
 
       // Terminal Header & Prompt
-      wsTermPrompt.textContent = lab.promptUser;
-      wsTermTitle.textContent = `${lab.promptUser.split('@')[0]}@${lab.targetHost}`;
+      const currentPrompt = isElevatedRoot ? 'root@sec-station:~#' : lab.promptUser.trim();
+      wsTermPrompt.textContent = currentPrompt;
+      wsTermTitle.textContent = isElevatedRoot ? `root@${lab.targetHost}` : `${lab.promptUser.split('@')[0]}@${lab.targetHost}`;
 
       // Start Uptime Timer
       if (labUptimeTimer) clearInterval(labUptimeTimer);
@@ -2634,7 +2654,7 @@
           </div>
           <div>[*] Provisioning target container: <span class="text-secondary font-bold">${lab.targetHost}</span></div>
           <div>[*] Attaching virtual network interface and service routes...</div>
-          <div class="text-primary font-bold">[✓] Lab Ready: Scoped shell initialized (${lab.promptUser.trim()})</div>
+          <div class="text-primary font-bold">[✓] Lab Ready: Scoped shell initialized (${currentPrompt})</div>
           <div class="text-[10px] text-outline">Type 'help' to view available commands, or click any command in the briefing pane.</div>
         </div>
       `;
@@ -2689,7 +2709,7 @@
     function verifyWorkspaceFlag() {
       if (!activeLabId) return;
       const lab = LAB_CATALOG[activeLabId];
-      const val = wsFlagInput.value.trim().toLowerCase();
+      const val = wsFlagInput.value.trim();
 
       if (!val) {
         wsFlagFeedback.classList.remove('hidden');
@@ -2698,15 +2718,24 @@
         return;
       }
 
-      const validFlags = LAB_FLAGS[activeLabId] || [];
-      const isCorrect = validFlags.some(f => val === f.toLowerCase() || val.includes(f.toLowerCase()));
+      let isCorrect = false;
+      let xpEarned = lab.xp || 75;
+
+      if (window.LabEngine) {
+        const verifyRes = window.LabEngine.verifyFlag(activeLabId, val);
+        isCorrect = verifyRes.success;
+        if (verifyRes.xp) xpEarned = verifyRes.xp;
+      } else {
+        const validFlags = LAB_FLAGS[activeLabId] || [];
+        isCorrect = validFlags.some(f => val.toLowerCase() === f.toLowerCase() || val.toLowerCase().includes(f.toLowerCase()));
+      }
 
       if (isCorrect) {
-        // Award XP and complete
+        // Award XP and complete in CyberOps
         if (window.CyberOps) {
-          window.CyberOps.completeLab(activeLabId, lab.title, lab.xp);
+          window.CyberOps.completeLab(activeLabId, lab.title, xpEarned);
         }
-        // Check off all tasks
+        // Check off all tasks in session and UI
         const key = `endlessus_tasks_${activeLabId}`;
         const allIndices = lab.tasks.map((_, i) => i);
         localStorage.setItem(key, JSON.stringify(allIndices));
@@ -2721,11 +2750,11 @@
         wsFlagFeedback.innerHTML = `
           <div class="font-bold flex items-center gap-1.5 text-sm">
             <span class="material-symbols-outlined text-base">check_circle</span>
-            <span>FLAG VERIFIED! +${lab.xp} CYBEROPS XP CLAIMED!</span>
+            <span>FLAG VERIFIED! +${xpEarned} CYBEROPS XP CLAIMED!</span>
           </div>
           <div class="text-on-surface text-[11px]">Excellent investigation. Walkthrough and production defense code unlocked below.</div>
         `;
-        if (window.showToast) window.showToast(`Lab Solved! +${lab.xp} XP Awarded`, 'success');
+        if (window.showToast) window.showToast(`Lab Solved! +${xpEarned} XP Awarded`, 'success');
       } else {
         wsFlagFeedback.classList.remove('hidden');
         wsFlagFeedback.className = 'p-2.5 rounded-lg bg-danger-critical/10 border border-danger-critical/40 text-danger-critical text-xs font-sans space-y-1';
@@ -2746,9 +2775,9 @@
     });
 
     // =========================================================================
-    // DEDICATED WORKSPACE TERMINAL COMMAND EXECUTOR
+    // DEDICATED WORKSPACE TERMINAL COMMAND EXECUTOR (POWERED BY LABENGINE)
     // =========================================================================
-    function executeInWorkspace(cmdRaw) {
+    async function executeInWorkspace(cmdRaw) {
       const cmd = cmdRaw.trim();
       if (!cmd) return;
       termHistory.push(cmd);
@@ -2764,458 +2793,123 @@
         </div>
       `);
 
+      wsTermInput.value = '';
+
       if (cmd.toLowerCase() === 'clear' || cmd.toLowerCase() === 'cls') {
         wsTermOutput.innerHTML = '';
-        wsTermInput.value = '';
         return;
       }
 
-      // Execute and get authentic output
-      const outputHtml = processLabCommand(cmd);
-      if (outputHtml) {
-        appendTermOutput(outputHtml);
-      }
-
-      wsTermInput.value = '';
-      wsTermOutput.scrollTop = wsTermOutput.scrollHeight;
-    }
-
-    function processLabCommand(cmd) {
-      const lower = cmd.toLowerCase().trim();
-      const lab = LAB_CATALOG[activeLabId] || {};
-
-      // Universal Commands
-      if (lower === 'help') {
-        return `
-          <div class="p-2.5 rounded bg-canvas-base border border-border-hairline space-y-1.5 text-xs text-on-surface">
-            <div class="text-primary font-bold">AVAILABLE COMMANDS FOR ${lab.title ? lab.title.toUpperCase() : 'THIS LAB'}:</div>
-            <div class="grid grid-cols-2 gap-1 text-[11px] text-outline font-mono">
-              <div><span class="text-primary font-bold">ls / ls -la</span> - List directory files</div>
-              <div><span class="text-primary font-bold">cat &lt;file&gt;</span> - Read file contents</div>
-              <div><span class="text-secondary font-bold">whoami / id</span> - Current user &amp; EUID</div>
-              <div><span class="text-secondary font-bold">pwd / uname</span> - Working dir &amp; kernel</div>
-              <div><span class="text-warning font-bold">curl &lt;url&gt;</span> - HTTP web request probe</div>
-              <div><span class="text-warning font-bold">find / grep</span> - File &amp; content search</div>
-              <div><span class="text-danger-critical font-bold">nmap / nc</span> - Port scan &amp; banner grab</div>
-              <div><span class="text-outline font-bold">clear / exit</span> - Reset buffer / exit lab</div>
-            </div>
-            <div class="text-[10px] text-primary pt-1">Tip: Click any command in the 'Relevant Commands' briefing pane to run automatically!</div>
-          </div>
-        `;
-      }
-
-      if (lower === 'whoami') {
-        markTaskCompleted(0);
-        if (isElevatedRoot) return `<div class="text-danger-critical font-bold">root</div>`;
-        return `<div class="text-primary font-bold">${escapeHtml(lab.credentials ? lab.credentials.split(':')[0] : 'guest')}</div>`;
-      }
-
-      if (lower === 'id') {
-        markTaskCompleted(0);
-        if (isElevatedRoot) return `<div class="text-danger-critical font-bold">uid=0(root) gid=0(root) groups=0(root)</div>`;
-        return `<div class="text-on-surface font-mono">uid=1001(${escapeHtml(lab.credentials ? lab.credentials.split(':')[0] : 'guest')}) gid=1001 groups=1001</div>`;
-      }
-
-      if (lower === 'pwd') {
-        return `<div class="text-on-surface font-mono">${lab.targetPort && lab.targetPort.includes('/var/www') ? '/var/www/html' : '/home/guest'}</div>`;
-      }
-
-      if (lower === 'exit') {
+      if (cmd.toLowerCase() === 'exit') {
         closeLabWorkspace();
-        return '';
+        return;
       }
 
-      // =======================================================================
-      // SPECIFIC LAB COMMAND ROUTING
-      // =======================================================================
+      if (!window.LabEngine) {
+        appendTermOutput(`
+          <div class="text-danger-critical font-mono text-[11px] mt-1">Lab execution engine is loading... Please wait or refresh the page.</div>
+        `);
+        wsTermOutput.scrollTop = wsTermOutput.scrollHeight;
+        return;
+      }
 
-      // LAB 01: HTTP SECURITY HEADERS
-      if (activeLabId === 'lab-headers') {
-        if (lower.startsWith('curl -i') || lower.startsWith('curl -s -d') || lower.startsWith('curl')) {
-          markTaskCompleted(0);
-          markTaskCompleted(1);
-          markTaskCompleted(2);
-          markTaskCompleted(3);
-          return `
-            <div class="p-3 rounded bg-canvas-base border border-border-hairline space-y-1 font-mono text-[11px]">
-              <div class="text-secondary font-bold">HTTP/1.1 200 OK</div>
-              <div>Date: Sun, 04 Oct 2026 12:00:00 GMT</div>
-              <div class="text-danger-critical">Server: Apache/2.4.41 (Ubuntu)  &lt;-- [LEAKING SERVER VERSION]</div>
-              <div class="text-danger-critical">X-Powered-By: PHP/7.4.3       &lt;-- [LEAKING FRAMEWORK VERSION]</div>
-              <div class="text-warning">Set-Cookie: session_id=abc12345; Path=/ &lt;-- [MISSING HttpOnly, Secure, SameSite]</div>
-              <div>Content-Type: text/html; charset=UTF-8</div>
-              <div>Content-Length: 1420</div>
-              <div class="pt-2 text-outline border-t border-border-hairline/60">
-                [AUDIT FINDINGS]: Missing Strict-Transport-Security (HSTS), Content-Security-Policy (CSP), and X-Frame-Options.<br/>
-                <span class="text-primary font-bold">AUDIT TOKEN: flag{strict_transport_security_csp}</span>
+      try {
+        const res = await window.LabEngine.execute(activeLabId, cmd);
+
+        if (res.isClear) {
+          wsTermOutput.innerHTML = '';
+          return;
+        }
+
+        // Update elevation & prompt if changed
+        if (res.isRoot !== undefined) {
+          isElevatedRoot = res.isRoot;
+          const lab = LAB_CATALOG[activeLabId];
+          wsTermPrompt.textContent = isElevatedRoot ? 'root@sec-station:~#' : (lab ? lab.promptUser.trim() : 'learner@lab:~$');
+          wsTermTitle.textContent = isElevatedRoot ? `root@${lab ? lab.targetHost : 'sec-station'}` : (lab ? `${lab.promptUser.split('@')[0]}@${lab.targetHost}` : 'terminal');
+        }
+
+        // Render stdout
+        if (res.stdout) {
+          appendTermOutput(`
+            <pre class="font-mono text-[11px] whitespace-pre-wrap leading-relaxed select-text text-on-surface mt-1">${escapeHtml(res.stdout)}</pre>
+          `);
+        }
+
+        // Render stderr
+        if (res.stderr) {
+          appendTermOutput(`
+            <pre class="font-mono text-[11px] whitespace-pre-wrap leading-relaxed select-text text-danger-critical mt-1">${escapeHtml(res.stderr)}</pre>
+          `);
+        }
+
+        // Render structured diagnostic feedback if available
+        if (res.feedback) {
+          let badgeClass = 'bg-warning/15 border-warning/40 text-warning';
+          let icon = 'info';
+          let title = 'DIAGNOSTIC FEEDBACK';
+
+          if (res.feedback.type === 'syntax_error') {
+            badgeClass = 'bg-warning/15 border-warning/40 text-warning';
+            icon = 'warning';
+            title = 'SYNTAX DIAGNOSTIC';
+          } else if (res.feedback.type === 'wrong_target') {
+            badgeClass = 'bg-secondary/15 border-secondary/40 text-secondary';
+            icon = 'radar';
+            title = 'TARGET SCOPE DIAGNOSTIC';
+          } else if (res.feedback.type === 'permission_denied') {
+            badgeClass = 'bg-danger-critical/15 border-danger-critical/40 text-danger-critical';
+            icon = 'lock';
+            title = 'PERMISSION ENFORCEMENT';
+          } else if (res.feedback.type === 'tool_restricted') {
+            badgeClass = 'bg-warning/15 border-warning/40 text-warning';
+            icon = 'block';
+            title = 'TOOL POLICY RESTRICTION';
+          } else if (res.feedback.type === 'objective_complete') {
+            badgeClass = 'bg-primary/15 border-primary/40 text-primary';
+            icon = 'check_circle';
+            title = 'OBJECTIVE RECOGNIZED';
+          }
+
+          appendTermOutput(`
+            <div class="my-2 p-2.5 rounded-lg border ${badgeClass} font-mono text-[11px] space-y-1">
+              <div class="font-bold flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-xs">${icon}</span>
+                <span>${title}</span>
               </div>
+              <div class="text-on-surface leading-relaxed">${escapeHtml(res.feedback.message)}</div>
+              ${res.feedback.hint ? `<div class="text-primary text-[10px] mt-1 pt-1 border-t border-border-hairline/40">💡 Hint: ${escapeHtml(res.feedback.hint)}</div>` : ''}
             </div>
-          `;
+          `);
         }
-        if (lower.includes('security.conf') || lower.includes('cat /etc/nginx')) {
-          markTaskCompleted(4);
-          return `
-            <pre class="p-3 rounded bg-canvas-base border border-primary/40 text-primary font-mono text-[11px] overflow-x-auto">
-# Hardened Nginx Production Directive
-add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
-add_header Content-Security-Policy "default-src 'self'; frame-ancestors 'none';" always;
-add_header X-Frame-Options "DENY" always;
-add_header X-Content-Type-Options "nosniff" always;
-server_tokens off;
-# Flag: flag{strict_transport_security_csp}</pre>
-          `;
-        }
-        if (lower === 'ls' || lower.startsWith('ls ')) {
-          return `<div class="font-mono text-[11px]">audit_notes.txt  response.txt  staging.acmefin.local.crt</div>`;
-        }
-        if (lower.startsWith('cat response.txt') || lower.startsWith('cat audit_notes.txt')) {
-          return `<div class="font-mono text-[11px] bg-canvas-base p-2 rounded border border-border-hairline">Server: Apache/2.4.41\nCookie lacks HttpOnly\nFlag token: flag{strict_transport_security_csp}</div>`;
-        }
-      }
 
-      // LAB 02: LINUX PERMISSIONS
-      if (activeLabId === 'lab-permissions') {
-        if (lower.startsWith('ls')) {
-          markTaskCompleted(0);
-          markTaskCompleted(1);
-          return `
-            <div class="font-mono text-[11px] whitespace-pre text-on-surface bg-canvas-base p-2 rounded border border-border-hairline leading-tight">
-total 28
-drwxr-xr-x 2 www-data www-data 4096 Oct 04 09:00 .
-drwxr-xr-x 4 root     root     4096 Oct 04 08:30 ..
-<span class="text-danger-critical font-bold">-rwxrwxrwx 1 www-data www-data 1024 Oct 04 09:00 config.php  &lt;-- [777 WORLD-WRITABLE]</span>
--rw-r--r-- 1 www-data www-data  842 Oct 04 08:45 index.php
--rw-r--r-- 1 www-data www-data  412 Oct 04 08:50 db.sql</div>
-          `;
-        }
-        if (lower.includes('stat')) {
-          markTaskCompleted(2);
-          return `<div class="font-mono text-danger-critical font-bold">777 config.php (Access: rwxrwxrwx)</div>`;
-        }
-        if (lower.includes('cat config.php')) {
-          markTaskCompleted(3);
-          return `
-            <pre class="p-3 rounded bg-canvas-base border border-primary/40 text-on-surface font-mono text-[11px]">
-&lt;?php
-// AcmeFintech Database Configuration
-// WARNING: File has world-writable 777 permissions!
-$db_host = "localhost";
-$db_user = "db_admin";
-$db_pass = "P@ssw0rd2026!";
-$db_name = "acme_production";
-// Security Audit Flag: flag{chmod_600_config_rw}
-?&gt;</pre>
-          `;
-        }
-        if (lower.includes('chmod 600') || lower.includes('chmod 640')) {
-          markTaskCompleted(4);
-          return `<div class="p-2 rounded bg-canvas-base border border-primary/50 text-primary font-bold text-xs">[✓] Permissions updated: -rw------- 1 www-data www-data config.php (Least privilege 600 enforced!)</div>`;
-        }
-      }
-
-      // LAB 03: SUID PRIVESC
-      if (activeLabId === 'lab-suid') {
-        if (lower.includes('-perm -4000') || lower.includes('-perm /4000') || lower.includes('4000')) {
-          markTaskCompleted(1);
-          markTaskCompleted(2);
-          return `
-            <div class="font-mono text-[11px] bg-canvas-base p-2.5 rounded border border-border-hairline space-y-0.5 text-on-surface">
-              <div class="text-outline font-bold">HUNTING SUID BINARIES (-perm -4000):</div>
-              <div>/usr/bin/passwd</div>
-              <div>/usr/bin/sudo</div>
-              <div>/usr/bin/chsh</div>
-              <div class="text-danger-critical font-bold">/usr/bin/find  &lt;-- [POTENTIAL MISCONFIGURATION: SUID bit enabled (rwsr-xr-x)!]</div>
-              <div>/usr/bin/newgrp</div>
-              <div>/usr/bin/gpasswd</div>
-              <div>/bin/ping</div>
-              <div>/bin/mount</div>
-            </div>
-          `;
-        }
-        if (lower.includes('find') && (lower.includes('-exec') || lower.includes('/bin/sh'))) {
-          markTaskCompleted(3);
-          isElevatedRoot = true;
-          wsTermPrompt.textContent = 'root@sec-station:~#';
-          wsTermTitle.textContent = 'root@sec-station (EUID=0)';
-          return `
-            <div class="p-3 rounded bg-canvas-base border border-primary/50 text-xs font-mono space-y-1">
-              <div class="text-primary font-bold"># ROOT SHELL SPAWNED (EUID=0)</div>
-              <div>root@sec-station:~# whoami</div>
-              <div class="text-danger-critical font-bold">root (uid=0 gid=0 groups=0(root))</div>
-              <div class="text-outline text-[10px]">Privilege boundary bypassed! Run 'cat /root/flag.txt' to retrieve final flag.</div>
-            </div>
-          `;
-        }
-        if (lower.includes('flag.txt') || lower.includes('/root/flag')) {
-          markTaskCompleted(4);
-          return `<div class="p-2.5 rounded bg-canvas-base border border-primary/50 font-bold text-primary text-xs select-all">flag{suid_find_root_euid0}</div>`;
-        }
-      }
-
-      // LAB 04: AUTHENTICATION BYPASS
-      if (activeLabId === 'lab-auth') {
-        if (lower.includes('curl') && (lower.includes('admin') || lower.includes('--') || lower.includes('1=1'))) {
-          markTaskCompleted(1);
-          markTaskCompleted(2);
-          markTaskCompleted(3);
-          markTaskCompleted(4);
-          return `
-            <pre class="p-3 rounded bg-canvas-base border border-primary/50 text-primary font-mono text-[11px] overflow-x-auto">
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "status": "success",
-  "authenticated": true,
-  "user": "admin",
-  "role": "system_administrator",
-  "token": "flag{rate_limit_429_bcrypt}",
-  "message": "SQL Injection authentication bypass successful. Password condition truncated."
-}</pre>
-          `;
-        }
-        if (lower.includes('server.js') || lower.includes('cat')) {
-          markTaskCompleted(0);
-          return `
-            <pre class="p-3 rounded bg-canvas-base border border-border-hairline text-on-surface font-mono text-[11px] overflow-x-auto">
-app.post('/login', (req, res) => {
-  const { user, pass } = req.body;
-  // VULNERABLE: Direct string interpolation into query
-  const query = "SELECT * FROM users WHERE username = '" + user + "' AND password = '" + pass + "'";
-  db.get(query, (err, row) => {
-    if (row) res.json({ status: "success", role: row.role, token: "flag{rate_limit_429_bcrypt}" });
-    else res.status(401).json({ status: "failed" });
-  });
-});</pre>
-          `;
-        }
-      }
-
-      // LAB 05: IDOR
-      if (activeLabId === 'lab-idor') {
-        if (lower.includes('10043')) {
-          markTaskCompleted(3);
-          markTaskCompleted(4);
-          return `
-            <pre class="p-3 rounded bg-canvas-base border border-primary/50 text-primary font-mono text-[11px] overflow-x-auto">
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "invoice_id": 10043,
-  "owner_id": 1,
-  "client": "Executive Board",
-  "amount": "$250,000.00",
-  "details": "Merger Acquisition Audit",
-  "flag": "flag{server_side_authz_session_token}"
-}</pre>
-          `;
-        }
-        if (lower.includes('9482')) {
-          markTaskCompleted(0);
-          markTaskCompleted(1);
-          return `<pre class="p-2.5 rounded bg-canvas-base border border-border-hairline text-on-surface text-[11px] font-mono">{"invoice_id":9482,"owner_id":410,"amount":"$450.00","details":"Standard Consulting"}</pre>`;
-        }
-        if (lower.includes('9481')) {
-          markTaskCompleted(2);
-          return `<pre class="p-2.5 rounded bg-canvas-base border border-warning/40 text-warning text-[11px] font-mono">{"invoice_id":9481,"owner_id":409,"client":"Jane Doe","amount":"$1,200.00"} &lt;-- IDOR LEAK</pre>`;
-        }
-      }
-
-      // LAB 06: SQL INJECTION
-      if (activeLabId === 'lab-sqli') {
-        if (lower.includes('order by 3')) {
-          markTaskCompleted(1);
-          return `<div class="p-2 rounded bg-canvas-base border border-primary/40 text-primary text-[11px] font-mono">HTTP/1.1 200 OK - Query executed cleanly (3 columns present).</div>`;
-        }
-        if (lower.includes('order by 4')) {
-          return `<div class="p-2 rounded bg-canvas-base border border-danger-critical/40 text-danger-critical text-[11px] font-mono">HTTP 500: Unknown column '4' in 'order clause'</div>`;
-        }
-        if (lower.includes('union') || lower.includes('users')) {
-          markTaskCompleted(2);
-          markTaskCompleted(3);
-          markTaskCompleted(4);
-          return `
-            <div class="p-3 rounded bg-canvas-base border border-primary/50 text-xs font-mono space-y-1">
-              <div class="text-primary font-bold">SQL UNION INJECTION SUCCESSFUL:</div>
-              <div class="text-on-surface whitespace-pre leading-tight text-[11px]">
-+----+----------+----------------------------------+
-| id | username | password                         |
-+----+----------+----------------------------------+
-| 1  | admin    | e10adc3949ba59abbe56e057f20f883e |
-| 2  | analyst  | 098f6bcd4621d373cade4e832627b4f6 |
-+----+----------+----------------------------------+</div>
-              <div class="text-primary font-bold text-[11px] pt-1">DATABASE FLAG: flag{parameterized_queries_prepared_statement}</div>
-            </div>
-          `;
-        }
-        if (lower.includes('sqlmap')) {
-          return `<div class="text-primary font-mono text-[11px]">[*] available databases: [information_schema, starlight_portal, users_production]</div>`;
-        }
-      }
-
-      // LAB 07: XSS CONCEPTS
-      if (activeLabId === 'lab-xss') {
-        if (lower.includes('onfocus') || lower.includes('autofocus') || lower.includes('alert')) {
-          markTaskCompleted(2);
-          markTaskCompleted(3);
-          markTaskCompleted(4);
-          return `
-            <div class="p-3 rounded bg-canvas-base border border-primary/50 text-xs font-mono space-y-1.5">
-              <div class="text-primary font-bold">[XSS BROWSER SIMULATION]: Attribute Context Breakout Verified!</div>
-              <div class="p-2 rounded bg-surface-raised border border-border-hairline text-danger-critical text-[11px]">
-                &lt;input type="text" name="search" value="" onfocus="alert(document.domain)" autofocus=""&gt;
+        // Render newly completed tasks
+        if (res.newlyCompleted && res.newlyCompleted.length > 0) {
+          res.newlyCompleted.forEach(t => {
+            appendTermOutput(`
+              <div class="my-2.5 p-3 rounded-lg bg-primary/15 border border-primary/50 text-primary font-mono text-xs space-y-1">
+                <div class="font-bold flex items-center gap-1.5 text-sm">
+                  <span class="material-symbols-outlined text-base">task_alt</span>
+                  <span>TASK OBJECTIVE COMPLETED: [Task ${t.index + 1}] ${escapeHtml(t.title)}</span>
+                </div>
+                <div class="text-[11px] text-on-surface leading-relaxed">${escapeHtml(t.note)}</div>
               </div>
-              <div class="text-on-surface text-[11px]">Event 'onfocus' triggered immediately upon DOM rendering without needing &lt;script&gt; tags.</div>
-              <div class="text-primary font-bold text-[11px]">FLAG: flag{context_aware_output_encoding_csp}</div>
-            </div>
-          `;
+            `);
+          });
+          // Synchronize checklist UI in briefing pane
+          renderTasksChecklist(activeLabId);
+          if (window.showToast) {
+            window.showToast(`Objective completed: Task ${res.newlyCompleted[0].index + 1}`, 'success');
+          }
         }
-        if (lower.includes('search?q=test') || lower.includes('curl')) {
-          markTaskCompleted(0);
-          markTaskCompleted(1);
-          return `<div class="p-2 rounded bg-canvas-base border border-border-hairline text-on-surface text-[11px] font-mono">&lt;input type="text" name="search" value="test"&gt;</div>`;
-        }
+      } catch (err) {
+        console.error('[executeInWorkspace error]', err);
+        appendTermOutput(`
+          <div class="text-danger-critical font-mono text-[11px] mt-1">Execution error: ${escapeHtml(err.message || String(err))}</div>
+        `);
       }
 
-      // LAB 08: CSRF
-      if (activeLabId === 'lab-csrf') {
-        if (lower.includes('curl') || lower.includes('transfer')) {
-          markTaskCompleted(0);
-          markTaskCompleted(1);
-          markTaskCompleted(3);
-          markTaskCompleted(4);
-          return `
-            <div class="p-3 rounded bg-canvas-base border border-primary/50 text-xs font-mono space-y-1">
-              <div class="text-secondary font-bold">HTTP/1.1 200 OK</div>
-              <div class="text-primary font-bold">[+] Transfer of $5,000 to ATTACKER executed!</div>
-              <div class="text-on-surface text-[11px]">Server accepted state change without checking any anti-CSRF synchronizer token. Cookies lacked SameSite=Strict.</div>
-              <div class="text-primary font-bold text-[11px] pt-1">REMEDIATION FLAG: flag{samesite_strict_anti_csrf_token}</div>
-            </div>
-          `;
-        }
-        if (lower.includes('exploit.html') || lower.includes('cat')) {
-          markTaskCompleted(2);
-          return `<pre class="p-2.5 rounded bg-canvas-base border border-border-hairline text-[11px] text-on-surface font-mono">&lt;form action="http://bank.target.local/transfer" method="POST" id="csrfForm"&gt;\n  &lt;input type="hidden" name="to_account" value="ATTACKER"&gt;\n  &lt;input type="hidden" name="amount" value="5000"&gt;\n&lt;/form&gt;\n&lt;script&gt;document.getElementById('csrfForm').submit();&lt;/script&gt;</pre>`;
-        }
-      }
-
-      // LAB 09: NETWORK ENUMERATION
-      if (activeLabId === 'lab-network') {
-        if (lower.includes('nmap') || lower.includes('scan')) {
-          markTaskCompleted(0);
-          markTaskCompleted(1);
-          return `
-            <div class="p-3 rounded bg-canvas-base border border-primary/40 text-xs font-mono space-y-1">
-              <div class="text-primary font-bold">Nmap 7.94 scan report for 10.10.110.45</div>
-              <div class="text-on-surface whitespace-pre leading-tight text-[11px]">
-PORT     STATE SERVICE     VERSION
-<span class="text-danger-critical font-bold">21/tcp   open  ftp         vsftpd 2.3.4 (Backdoor CVE-2011-2523)</span>
-22/tcp   open  ssh         OpenSSH 8.9p1 Ubuntu
-80/tcp   open  http        Apache httpd 2.4.52
-445/tcp  open  netbios-ssn Samba smbd 4.15.5
-3306/tcp open  mysql       MySQL 8.0.35</div>
-              <div class="text-primary font-bold text-[11px] pt-1">FLAG: flag{closed_filtered_port_21_backdoor}</div>
-            </div>
-          `;
-        }
-        if (lower.includes('nc') || lower.includes('netcat')) {
-          markTaskCompleted(2);
-          markTaskCompleted(4);
-          return `<div class="p-2.5 rounded bg-canvas-base border border-primary/40 font-mono text-[11px] text-primary">220 (vsFTPd 2.3.4) - Authorized Lab. FLAG: flag{closed_filtered_port_21_backdoor}</div>`;
-        }
-        if (lower.includes('smbclient')) {
-          markTaskCompleted(3);
-          return `<div class="p-2.5 rounded bg-canvas-base border border-secondary/40 font-mono text-[11px] text-secondary">Sharename: backups (Disk: Anonymous Read Permitted)</div>`;
-        }
-      }
-
-      // LAB 10: LOG ANALYSIS
-      if (activeLabId === 'lab-logs') {
-        if (lower.includes('auth.log') || lower.includes('failed password') || lower.includes('192.168.1.50')) {
-          markTaskCompleted(3);
-          markTaskCompleted(4);
-          return `
-            <div class="p-3 rounded bg-canvas-base border border-primary/50 text-xs font-mono space-y-1">
-              <div class="text-danger-critical font-bold">[SOC TRIAGE ALERT]: Sustained SSH brute-force assault isolated!</div>
-              <div class="text-on-surface text-[11px]">Oct 04 08:10:01 sec-station sshd[2410]: Failed password for invalid user admin from <span class="text-danger-critical font-bold">192.168.1.50</span> port 44102 ssh2</div>
-              <div class="text-on-surface text-[11px]">Oct 04 08:10:03 sec-station sshd[2412]: Failed password for root from <span class="text-danger-critical font-bold">192.168.1.50</span> port 44104 ssh2</div>
-              <div class="text-primary font-bold text-[11px] pt-1">TRIAGE FLAG: flag{failed_ssh_brute_force_192_168_1_50}</div>
-            </div>
-          `;
-        }
-        if (lower.includes('access.log') || lower.includes('cat')) {
-          markTaskCompleted(0);
-          markTaskCompleted(1);
-          markTaskCompleted(2);
-          return `
-            <div class="font-mono text-[11px] bg-canvas-base p-2.5 rounded border border-border-hairline space-y-1 text-on-surface">
-              <div>192.168.1.105 - - [04/Oct/2026:08:12:01] "GET /index.php?page=../../../../etc/passwd HTTP/1.1" 200 2410</div>
-              <div>192.168.1.105 - - [04/Oct/2026:08:12:45] "POST /upload.php HTTP/1.1" 200 152</div>
-              <div class="text-danger-critical font-bold">192.168.1.105 - - [04/Oct/2026:08:13:02] "GET /uploads/shell.php?cmd=whoami HTTP/1.1" 200 45</div>
-            </div>
-          `;
-        }
-      }
-
-      // LAB 11: JWT SECURITY
-      if (activeLabId === 'lab-jwt') {
-        if (lower.includes('forge') || lower.includes('none') || lower.includes('python3')) {
-          markTaskCompleted(2);
-          markTaskCompleted(3);
-          markTaskCompleted(4);
-          return `
-            <div class="p-3 rounded bg-canvas-base border border-primary/50 text-xs font-mono space-y-1.5">
-              <div class="text-primary font-bold">[+] Generated unsigned forged token with alg: "none"</div>
-              <div class="p-2 rounded bg-surface-raised border border-border-hairline text-secondary text-[11px] break-all select-all">
-                eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlIjoic3VwZXJhZG1pbiIsImV4cCI6MTk5OTk5OTk5OX0.
-              </div>
-              <div class="text-on-surface text-[11px]">Server accepted unsigned token and elevated role to superadmin!</div>
-              <div class="text-primary font-bold text-[11px]">FLAG: flag{none_algorithm_signature_verification}</div>
-            </div>
-          `;
-        }
-        if (lower.includes('token.txt') || lower.includes('cat')) {
-          markTaskCompleted(0);
-          markTaskCompleted(1);
-          return `<div class="p-2 rounded bg-canvas-base border border-border-hairline text-[11px] text-on-surface font-mono break-all">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZ3Vlc3QiLCJyb2xlIjoidXNlciJ9.9D9k7e...</div>`;
-        }
-      }
-
-      // LAB 12: CRYPTOGRAPHY
-      if (activeLabId === 'lab-crypto') {
-        if (lower.includes('crack') || lower.includes('python3') || lower.includes('solution')) {
-          markTaskCompleted(2);
-          markTaskCompleted(3);
-          markTaskCompleted(4);
-          return `
-            <div class="p-3 rounded bg-canvas-base border border-primary/50 text-xs font-mono space-y-1.5">
-              <div class="text-primary font-bold">[+] Single-Byte XOR Frequency Analysis Complete (256 keys tested)</div>
-              <div class="text-on-surface text-[11px]">Optimal Key Found: <span class="text-secondary font-bold">0x58 ('X')</span> (Confidence score: 88.4%)</div>
-              <div class="p-2 rounded bg-surface-raised border border-border-hairline text-primary font-bold text-[11px] select-all">
-                PLAINTEXT: "Cooking MC's like a pound of bacon"
-              </div>
-              <div class="text-primary font-bold text-[11px]">DEFENSIVE FLAG: flag{aes_gcm_authenticated_encryption}</div>
-            </div>
-          `;
-        }
-        if (lower.includes('ciphertext') || lower.includes('cat')) {
-          markTaskCompleted(0);
-          markTaskCompleted(1);
-          return `<div class="p-2 rounded bg-canvas-base border border-border-hairline text-[11px] text-on-surface font-mono">1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736</div>`;
-        }
-      }
-
-      // Standard Fallback Linux Commands
-      if (lower.startsWith('cat ')) {
-        const file = cmd.split(' ')[1] || '';
-        return `<div class="p-2 rounded bg-canvas-base border border-border-hairline text-[11px] text-on-surface font-mono">[${escapeHtml(file)}]: Content inspected. Run 'help' to review lab specific files.</div>`;
-      }
-      if (lower.startsWith('ls')) {
-        return `<div class="font-mono text-[11px] text-on-surface">notes.txt  target_info.log  config.env</div>`;
-      }
-
-      return `<div class="text-warning text-xs font-mono">Command '${escapeHtml(cmd)}' executed. Type <span class="text-primary font-bold">help</span> or check the Relevant Commands panel.</div>`;
+      wsTermOutput.scrollTop = wsTermOutput.scrollHeight;
     }
 
     // =========================================================================
@@ -3244,12 +2938,33 @@ PORT     STATE SERVICE     VERSION
           }
         } else if (e.key === 'Tab') {
           e.preventDefault();
-          const current = wsTermInput.value.trim().toLowerCase();
-          if (!current || !activeLabId) return;
+          const val = wsTermInput.value;
+          if (!val || !activeLabId) return;
           const lab = LAB_CATALOG[activeLabId];
-          const cmds = (lab ? lab.commands.map(c => c.cmd) : []).concat(['help', 'clear', 'whoami', 'id', 'pwd', 'ls', 'cat', 'exit']);
-          const match = cmds.find(c => c.startsWith(current));
-          if (match) wsTermInput.value = match;
+          const current = val.trim().toLowerCase();
+
+          // Command autocompletion
+          const cmds = (lab ? lab.commands.map(c => c.cmd) : []).concat(['help', 'clear', 'whoami', 'id', 'pwd', 'ls', 'cat', 'find', 'stat', 'chmod', 'curl', 'exit']);
+          const cmdMatch = cmds.find(c => c.toLowerCase().startsWith(current));
+          if (cmdMatch && !val.includes(' ')) {
+            wsTermInput.value = cmdMatch;
+            return;
+          }
+
+          // File autocompletion for file arguments
+          if (window.LabEngine && (val.startsWith('cat ') || val.startsWith('ls ') || val.startsWith('stat ') || val.startsWith('chmod '))) {
+            const parts = val.split(' ');
+            const partial = parts[parts.length - 1];
+            const session = window.LabEngine.getSession(activeLabId);
+            if (session && session.vfs) {
+              const files = session.vfs.list(session.cwd);
+              const fileMatch = files.find(f => f.startsWith(partial));
+              if (fileMatch) {
+                parts[parts.length - 1] = fileMatch;
+                wsTermInput.value = parts.join(' ');
+              }
+            }
+          }
         }
       });
 
@@ -3295,11 +3010,14 @@ PORT     STATE SERVICE     VERSION
 
       // Reset Lab Button
       document.getElementById('ws-reset-btn').addEventListener('click', () => {
-        if (confirm("Reset current lab session? This will reinitialize the sandbox and clear task progress for this lab.")) {
+        if (confirm("Reset current lab session? This will restore initial file states, reset privileges, and clear task progress for this lab.")) {
           if (activeLabId) {
+            if (window.LabEngine) {
+              window.LabEngine.resetLab(activeLabId);
+            }
             localStorage.removeItem(`endlessus_tasks_${activeLabId}`);
             openLabWorkspace(activeLabId);
-            if (window.showToast) window.showToast('Lab reinitialized', 'info');
+            if (window.showToast) window.showToast('Lab sandbox reinitialized to pristine state', 'info');
           }
         }
       });
@@ -3368,22 +3086,31 @@ PORT     STATE SERVICE     VERSION
           const title = container.getAttribute('data-title') || labId;
           const xp = parseInt(container.getAttribute('data-xp') || '75', 10);
           const input = container.querySelector('.lab-flag-input');
-          const val = input ? input.value.trim().toLowerCase() : '';
+          const val = input ? input.value.trim() : '';
 
           if (!val) {
             if (window.showToast) window.showToast('Please enter a flag or key token to verify.', 'warn');
             return;
           }
 
-          const validFlags = LAB_FLAGS[labId] || [];
-          const isCorrect = validFlags.some(f => val === f.toLowerCase() || val.includes(f.toLowerCase()));
+          let isCorrect = false;
+          let earnedXp = xp;
+
+          if (window.LabEngine) {
+            const verifyRes = window.LabEngine.verifyFlag(labId, val);
+            isCorrect = verifyRes.success;
+            if (verifyRes.xp) earnedXp = verifyRes.xp;
+          } else {
+            const validFlags = LAB_FLAGS[labId] || [];
+            isCorrect = validFlags.some(f => val.toLowerCase() === f.toLowerCase() || val.toLowerCase().includes(f.toLowerCase()));
+          }
 
           if (isCorrect) {
             if (window.CyberOps) {
-              window.CyberOps.completeLab(labId, title, xp);
+              window.CyberOps.completeLab(labId, title, earnedXp);
             }
             updateSolvedHUD();
-            if (window.showToast) window.showToast(`Lab Solved! +${xp} XP Awarded`, 'success');
+            if (window.showToast) window.showToast(`Lab Solved! +${earnedXp} XP Awarded`, 'success');
           } else {
             if (window.showToast) window.showToast('Incorrect flag. Check the hints and walkthrough.', 'warn');
           }
@@ -3398,6 +3125,17 @@ PORT     STATE SERVICE     VERSION
 
       // Initial HUD sync
       updateSolvedHUD();
+
+      // Initialize LabEngine and probe backend
+      if (window.LabEngine && window.LabEngine.init) {
+        window.LabEngine.init().then(hasBackend => {
+          if (hasBackend) {
+            console.log('[LabEngine] Connected to local lab backend server.');
+          } else {
+            console.log('[LabEngine] Running in high-fidelity virtual client sandbox.');
+          }
+        });
+      }
     });
   </script>
 </body>
