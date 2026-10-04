@@ -176,6 +176,35 @@
     { level: 5, title: 'Advanced Cyber Operator', minXp: 1400, maxXp: 999999 }
   ];
 
+  // =========================================================================
+  // 2.0 IMMUTABLE PORTFOLIO OWNER PROFILE (VERIFIED CREDENTIALS)
+  // =========================================================================
+  const PORTFOLIO_PROFILE = {
+    name: 'Mihraj Mashhoor K',
+    handle: 'mihrajmashoor8301',
+    role: 'Cybersecurity Student & Hands-On Security Practitioner',
+    specialization: 'Offensive Security, Active Directory, Linux Privilege Escalation, Tool Engineering',
+    education: {
+      degree: 'B.Tech in Computer Science and Engineering (Cyber Security)',
+      institution: 'MES College of Engineering, Kuttippuram',
+      cgpa: '7.9',
+      gradYear: '2026'
+    },
+    metrics: {
+      thmRank: 'Top 2% Globally',
+      thmRooms: '140+',
+      caseStudies: 7,
+      authoredLabs: 12,
+      handbookModules: 15,
+      browserTools: 13,
+      certifications: [
+        'Google Cybersecurity Professional Certificate',
+        'Cisco Networking Basics & Ethical Hacker Introduction'
+      ]
+    }
+  };
+  window.PORTFOLIO_PROFILE = PORTFOLIO_PROFILE;
+
   const CyberOps = {
     STORAGE_KEY: 'endlessus_cyber_ops_v1',
     getState: function() {

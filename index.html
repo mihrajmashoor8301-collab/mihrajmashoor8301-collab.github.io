@@ -134,17 +134,25 @@
         SYS_SEC: READY
       </span>
 </a>
-<nav class="hidden xl:flex items-center space-x-5 font-mono text-xs tracking-wider">
-<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#about">About</a>
-<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#skills">Skills</a>
-<a class="text-primary border-b-2 border-primary pb-1" href="#projects">Projects</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors" href="learning.html" title="12 Cybersecurity Disciplines">Learning</a>
+<nav class="hidden xl:flex items-center space-x-3.5 font-mono text-xs tracking-wider">
+<!-- PORTFOLIO (AUTHOR) GROUP -->
+<div class="flex items-center space-x-3 text-on-surface-variant">
+<a class="hover:text-primary transition-colors" href="#about">About</a>
+<a class="hover:text-primary transition-colors" href="#skills">Skills</a>
+<a class="hover:text-primary transition-colors text-primary font-bold border-b border-primary pb-0.5" href="#projects">Projects</a>
+<a class="hover:text-primary transition-colors" href="#certifications">Certs</a>
+<a class="hover:text-primary transition-colors" href="resume.html">Resume</a>
+</div>
+
+<span class="text-border-hairline text-sm select-none">|</span>
+
+<!-- LEARNING PLATFORM (FOR LEARNERS) GROUP -->
+<div class="flex items-center space-x-3">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="learning.html" title="12 Cybersecurity Disciplines">Learning Hub</a>
 <a class="text-on-surface-variant hover:text-primary transition-colors" href="labs.html" title="12 Practical Safe Labs">Labs</a>
 <a class="text-on-surface-variant hover:text-primary transition-colors" href="tools.html" title="13 Browser Tools & 20 Tool DB">Tools</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors" href="methodology.html" title="12-Stage Pentest Methodology">Methodology</a>
 <a class="text-on-surface-variant hover:text-primary transition-colors" href="roadmap.html" title="Interactive Roadmap Tracker">Roadmap</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors" href="glossary.html" title="60+ Cybersecurity Definitions">Glossary</a>
-<a class="text-secondary hover:text-primary transition-colors flex items-center gap-1 font-bold" href="terminal-lab.html">
+<a class="text-secondary hover:text-primary transition-colors flex items-center gap-1 font-bold" href="terminal-lab.html" title="Interactive Practice CLI Terminal">
   <span>Terminal</span>
   <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
 </a>
@@ -152,7 +160,7 @@
   <span>Payloads</span>
   <span class="w-1.5 h-1.5 rounded-full bg-danger-critical animate-ping"></span>
 </a>
-<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#certifications">Certs</a>
+</div>
 </nav>
 <div class="flex items-center space-x-2 sm:space-x-3">
 <button data-trigger-cmd class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:text-primary hover:border-primary transition-colors cursor-pointer" title="Search Portfolio (Cmd+K or /)">
@@ -191,14 +199,28 @@
 <span>Terminal (`)</span>
 </button>
 </div>
-<div class="grid grid-cols-2 gap-2 text-xs">
-<a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="#about">About</a>
-<a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="#skills">Skills</a>
-<a class="block py-1.5 text-primary font-bold" href="#projects">Projects</a>
-<a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="#certifications">Certificates</a>
+
+<!-- Mobile Portfolio Group -->
+<div class="font-mono text-[10px] text-primary uppercase tracking-wider font-bold flex items-center gap-1">
+  <span class="material-symbols-outlined text-xs">person</span>
+  <span>Portfolio &amp; Credentials</span>
 </div>
+<div class="grid grid-cols-2 gap-2 text-xs">
+<a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="#about">&bull; About Me</a>
+<a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="#skills">&bull; Skills Matrix</a>
+<a class="block py-1.5 text-primary font-bold" href="#projects">&bull; Projects (7)</a>
+<a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="#certifications">&bull; Certificates</a>
+<a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="resume.html">&bull; Full Resume</a>
+<a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="#contact">&bull; Contact Me</a>
+</div>
+
 <hr class="border-border-hairline/60"/>
-<div class="font-mono text-[10px] text-outline uppercase tracking-wider">Security Platform Hubs</div>
+
+<!-- Mobile Learning Platform Group -->
+<div class="font-mono text-[10px] text-secondary uppercase tracking-wider font-bold flex items-center gap-1">
+  <span class="material-symbols-outlined text-xs">school</span>
+  <span>Cybersecurity Learning Platform</span>
+</div>
 <div class="grid grid-cols-2 gap-2 text-xs">
 <a class="block py-1 text-on-surface-variant hover:text-primary" href="learning.html">&bull; Learning Hub</a>
 <a class="block py-1 text-on-surface-variant hover:text-primary" href="labs.html">&bull; 12 Labs Hub</a>
@@ -222,7 +244,7 @@
 </a>
 <a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-primary-container text-canvas-base font-mono text-xs font-bold" href="CV_2026_UPDATED.pdf" target="_blank">
 <span class="material-symbols-outlined text-sm">description</span>
-<span>Resume</span>
+<span>Resume PDF</span>
 </a>
 </div>
 </div>
@@ -443,69 +465,73 @@
 </section>
 
 <!-- ========================================================================= -->
-<!-- 2.5 Cyber Dashboard & Gamification HUD                                    -->
+<!-- 2.5 Portfolio Dashboard & Verified Credentials HUD                        -->
 <!-- ========================================================================= -->
 <section class="max-w-7xl mx-auto px-6 py-8 border-t border-border-hairline" id="cyber-dashboard">
-  <!-- Gamification Status HUD Banner -->
+  <!-- Author Operational Standing & Verified Credentials HUD Banner -->
   <div class="p-5 rounded-2xl bg-surface-subtle border border-primary/40 shadow-[0_4px_30px_rgba(0,0,0,0.5)] mb-8 relative overflow-hidden">
     <div class="absolute -right-16 -top-16 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
     <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5 relative z-10">
       
-      <!-- Operator Status Left -->
+      <!-- Portfolio Owner Profile Left -->
       <div class="flex items-center gap-3.5">
         <div class="w-12 h-12 rounded-xl bg-canvas-base border border-primary/50 flex items-center justify-center text-primary shadow-[0_0_15px_rgba(78,222,163,0.25)] shrink-0">
-          <span class="material-symbols-outlined text-2xl">shield</span>
+          <span class="material-symbols-outlined text-2xl">verified_user</span>
         </div>
         <div>
           <div class="flex items-center gap-2">
-            <span class="font-mono text-xs text-primary font-bold tracking-wider uppercase cyberops-rank-title">Novice Operator</span>
-            <span class="px-2 py-0.5 rounded-full bg-primary/10 border border-primary/30 text-primary font-mono text-[10px] font-bold cyberops-level-val">LVL 1</span>
+            <span class="font-mono text-xs text-primary font-bold tracking-wider uppercase">Mihraj Mashhoor K</span>
+            <span class="px-2 py-0.5 rounded-full bg-primary/10 border border-primary/30 text-primary font-mono text-[10px] font-bold">PORTFOLIO OWNER</span>
           </div>
-          <div class="font-mono text-[11px] text-outline mt-0.5">
-            Operator Console // Verified Local Gamification Engine
+          <div class="font-mono text-[11px] text-on-surface-variant mt-0.5">
+            B.Tech Computer Science &amp; Engineering (Cyber Security) &bull; CGPA 7.9 &bull; MES College of Engineering
           </div>
         </div>
       </div>
 
-      <!-- XP Progress Center -->
+      <!-- Verified Global Standing Center -->
       <div class="flex-1 max-w-md space-y-1.5 font-mono">
         <div class="flex justify-between items-center text-xs">
-          <span class="text-outline text-[11px]">XP Progression:</span>
-          <span class="text-primary font-bold cyberops-xp-val">0 XP</span>
+          <span class="text-outline text-[11px]">Global Standing:</span>
+          <span class="text-primary font-bold">TryHackMe Top 2% Globally</span>
         </div>
         <div class="w-full h-2.5 bg-canvas-base rounded-full overflow-hidden border border-border-hairline">
-          <div class="h-full bg-gradient-to-r from-primary to-secondary transition-all duration-500 cyberops-progress-bar" style="width: 0%;"></div>
+          <div class="h-full bg-gradient-to-r from-primary to-secondary" style="width: 98%;"></div>
         </div>
         <div class="flex justify-between text-[10px] text-outline">
-          <span>Earn XP by completing labs, challenges &amp; terminal tasks</span>
-          <button data-trigger-term class="text-secondary font-bold hover:underline cursor-pointer flex items-center gap-0.5">Launch CLI &rarr;</button>
+          <span>140+ Hands-On Rooms Completed &bull; Google Certified</span>
+          <a href="#certifications" class="text-secondary font-bold hover:underline cursor-pointer flex items-center gap-0.5">View Verified Certs &rarr;</a>
         </div>
       </div>
 
-      <!-- Quick Metrics Right -->
+      <!-- Verified Metrics Right -->
       <div class="flex items-center gap-3 font-mono text-xs border-t lg:border-t-0 pt-3 lg:pt-0 border-border-hairline/60">
-        <div class="px-3.5 py-2 rounded-xl bg-canvas-base border border-border-hairline text-center min-w-[75px]">
-          <div class="text-secondary font-bold text-sm cyberops-labs-count">0</div>
-          <div class="text-[9px] text-outline uppercase tracking-wider">Labs Done</div>
+        <div class="px-3.5 py-2 rounded-xl bg-canvas-base border border-border-hairline text-center min-w-[75px]" title="7 Production Projects / Case Studies">
+          <div class="text-secondary font-bold text-sm">7</div>
+          <div class="text-[9px] text-outline uppercase tracking-wider">Case Studies</div>
         </div>
-        <div class="px-3.5 py-2 rounded-xl bg-canvas-base border border-border-hairline text-center min-w-[75px]">
-          <div class="text-warning font-bold text-sm cyberops-badges-count">0/9</div>
-          <div class="text-[9px] text-outline uppercase tracking-wider">Badges</div>
+        <div class="px-3.5 py-2 rounded-xl bg-canvas-base border border-border-hairline text-center min-w-[75px]" title="12 Interactive Practical Labs Authored">
+          <div class="text-primary font-bold text-sm">12</div>
+          <div class="text-[9px] text-outline uppercase tracking-wider">Authored Labs</div>
         </div>
-        <button data-trigger-term class="px-3.5 py-2.5 rounded-xl bg-primary/10 hover:bg-primary border border-primary/40 text-primary hover:text-canvas-base font-bold text-xs transition-all flex items-center gap-1.5 shadow-[0_0_15px_rgba(78,222,163,0.15)] cursor-pointer">
-          <span class="material-symbols-outlined text-sm">terminal</span>
-          <span class="hidden sm:inline">CLI Console</span>
-        </button>
+        <div class="px-3.5 py-2 rounded-xl bg-canvas-base border border-border-hairline text-center min-w-[75px]" title="15 CLI Command Handbook Modules">
+          <div class="text-warning font-bold text-sm">15</div>
+          <div class="text-[9px] text-outline uppercase tracking-wider">CLI Modules</div>
+        </div>
+        <a href="learning.html" class="px-3.5 py-2.5 rounded-xl bg-secondary/10 hover:bg-secondary border border-secondary/40 text-secondary hover:text-canvas-base font-bold text-xs transition-all flex items-center gap-1.5 shadow-[0_0_15px_rgba(76,215,246,0.15)] cursor-pointer" title="Go to Learning Platform (For Learners)">
+          <span class="material-symbols-outlined text-sm">school</span>
+          <span class="hidden sm:inline">Learning Hub</span>
+        </a>
       </div>
 
     </div>
   </div>
 
-  <!-- Manual Activity & Zero-Fabrication Disclosure Badge -->
+  <!-- Profile Standing & Zero-Fabrication Disclosure Badge -->
   <div class="flex items-center justify-between mb-6 flex-wrap gap-2">
     <div class="flex items-center gap-2 font-mono text-xs text-primary font-bold">
       <span class="material-symbols-outlined text-sm">dashboard</span>
-      <span>CYBERSECURITY DASHBOARD // OPERATIONAL OVERVIEW</span>
+      <span>PORTFOLIO PROFILE // VERIFIED CREDENTIALS &amp; OPERATIONAL METRICS</span>
     </div>
     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-subtle border border-primary/30 font-mono text-[10px] text-on-surface-variant">
       <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
@@ -513,7 +539,7 @@
     </div>
   </div>
 
-  <!-- 4 Pillars Grid: Who I Am / What I Build / What I Am Learning / What You Can Interact With -->
+  <!-- 4 Pillars Grid: Who I Am / What I Build / Focus & Specialization / Authored Learning Platform -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
     <!-- Pillar 1: Who I Am -->
     <div class="p-5 rounded-xl bg-surface-subtle border border-border-hairline hover:border-primary/40 transition-all flex flex-col justify-between">
@@ -549,37 +575,37 @@
       </div>
     </div>
 
-    <!-- Pillar 3: What I Am Learning -->
+    <!-- Pillar 3: Technical Focus & Specialization -->
     <div class="p-5 rounded-xl bg-surface-subtle border border-border-hairline hover:border-warning-elevated/40 transition-all flex flex-col justify-between">
       <div class="space-y-2">
         <div class="w-9 h-9 rounded-lg bg-warning-elevated/10 text-warning-elevated flex items-center justify-center font-mono">
-          <span class="material-symbols-outlined text-xl">route</span>
+          <span class="material-symbols-outlined text-xl">psychology</span>
         </div>
-        <div class="font-bold text-sm text-on-surface">What I Learn</div>
+        <div class="font-bold text-sm text-on-surface">Cybersecurity Focus &amp; Specialization</div>
         <p class="text-xs text-on-surface-variant leading-relaxed">
-          Active Directory attack vectors (Kerberoasting, AS-REP roasting), Linux kernel privileges, eBPF telemetry, buffer overflow fundamentals, and structured red-team vs blue-team methodology.
+          Hands-on technical specialization in Offensive Security, Active Directory attack paths (Kerberoasting, AS-REP roasting), Linux kernel privilege boundaries, Web App Pentesting (OWASP Top 10), and Security Automation.
         </p>
       </div>
       <div class="pt-3 mt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[11px]">
-        <a href="roadmap.html" class="text-warning-elevated hover:underline font-bold flex items-center gap-0.5">11-Track Roadmap &rarr;</a>
-        <a href="learning.html" class="text-outline hover:text-on-surface">Hub ↗</a>
+        <a href="#skills" class="text-warning-elevated hover:underline font-bold flex items-center gap-0.5">Technical Skills &rarr;</a>
+        <a href="#projects" class="text-outline hover:text-on-surface">Case Studies ↗</a>
       </div>
     </div>
 
-    <!-- Pillar 4: What You Can Interact With -->
+    <!-- Pillar 4: Authored Learning Platform -->
     <div class="p-5 rounded-xl bg-surface-subtle border border-border-hairline hover:border-primary/40 transition-all flex flex-col justify-between">
       <div class="space-y-2">
         <div class="w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-mono">
-          <span class="material-symbols-outlined text-xl">terminal</span>
+          <span class="material-symbols-outlined text-xl">school</span>
         </div>
-        <div class="font-bold text-sm text-on-surface">Interact Live</div>
+        <div class="font-bold text-sm text-on-surface">Authored Learning Platform</div>
         <p class="text-xs text-on-surface-variant leading-relaxed">
-          12 safe practical labs with answers &amp; defense, 13 in-browser security tools (zero data egress), interactive Nmap command generator, and full-fidelity Quake-style browser terminal (~).
+          Authored educational resources for the community: 12 interactive practical labs with live terminals, 13 in-browser security tools (zero data egress), 15-module command handbook, and guided roadmaps.
         </p>
       </div>
       <div class="pt-3 mt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[11px]">
-        <a href="labs.html" class="text-primary hover:underline font-bold flex items-center gap-0.5">12 Labs &rarr;</a>
-        <a href="tools.html" class="text-secondary hover:underline font-bold">Tools Suite &rarr;</a>
+        <a href="learning.html" class="text-primary hover:underline font-bold flex items-center gap-0.5">Learning Hub &rarr;</a>
+        <a href="labs.html" class="text-secondary hover:underline font-bold">12 Labs Hub &rarr;</a>
       </div>
     </div>
   </div>
@@ -1982,7 +2008,7 @@
           <span class="material-symbols-outlined text-sm">verified</span>
           <span>Submit Triage Analysis</span>
         </button>
-        <span class="text-[10px] font-mono text-outline">Awards XP to CyberOps HUD</span>
+        <span class="text-[10px] font-mono text-outline">Interactive Technical Knowledge Check</span>
       </div>
     </div>
   </div>
@@ -3853,7 +3879,7 @@ Actionable Mitigation:
         fb.innerHTML = `
           <div class="text-primary font-bold flex items-center gap-1.5">
             <span class="material-symbols-outlined text-sm">check_circle</span>
-            <span>CORRECT TRIAGE! [+50 CYBEROPS XP AWARDED]</span>
+            <span>CORRECT TRIAGE! [+50 XP to Learner Session]</span>
           </div>
           <div class="text-[11px] text-on-surface-variant font-sans leading-relaxed mt-1">
             <strong>CVE-2020-0796 (SMBGhost)</strong> is a critical pre-authentication vulnerability in Microsoft Server Message Block 3.1.1 (SMBv3). An integer overflow in <code>srv2.sys</code> decompression allows remote code execution without credentials.
