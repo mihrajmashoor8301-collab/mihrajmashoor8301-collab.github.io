@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html class="scroll-smooth dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Cybersecurity Practical Labs Hub | Mihraj Mashhoor K</title>
+  <meta content="12 self-contained, safe interactive cybersecurity labs covering HTTP Security Headers, Linux Permissions, SUID PrivEsc, Auth Bypass, IDOR, SQLi, XSS, CSRF, Network Enumeration, Log Analysis, JWT Security, and Cryptography." name="description"/>
+  <link rel="icon" type="image/png" href="logo2.png"/>
+  <link rel="canonical" href="https://endlessus.in/labs.html"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Cybersecurity Practical Labs Hub | Mihraj Mashhoor K"/>
+  <meta property="og:description" content="12 self-contained safe interactive cybersecurity labs with scenarios, tasks, hints, answers, explanations, and defense."/>
+  <meta property="og:image" content="https://endlessus.in/cover.png"/>
+  <meta property="og:url" content="https://endlessus.in/labs.html"/>
+  <meta property="og:type" content="website"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'canvas-base': '#090D12',
+            'surface-subtle': '#0E131B',
+            'surface-raised': '#151D28',
+            'surface-container': '#122131',
+            'border-hairline': '#1F2937',
+            'border-medium': '#2D3748',
+            'primary': '#4EDEA3',
+            'primary-container': '#10b981',
+            'secondary': '#4CD7F6',
+            'on-surface': '#F3F4F6',
+            'on-surface-variant': '#8692A6',
+            'outline': '#64748B',
+            'warning': '#F59E0B',
+            'danger-critical': '#F43F5E',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #090D12; color: #F3F4F6; font-family: 'Inter', sans-serif; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; vertical-align: middle; line-height: 1; }
+    .telemetry-grid {
+      background-size: 32px 32px;
+      background-image:
+        linear-gradient(to right, rgba(31, 41, 55, 0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(31, 41, 55, 0.25) 1px, transparent 1px);
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #090D12; }
+    ::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #4EDEA3; }
+  </style>
+</head>
+<body class="bg-canvas-base text-on-surface antialiased telemetry-grid min-h-screen flex flex-col font-sans selection:bg-primary selection:text-canvas-base">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2 group">
+          <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+          <span class="font-mono text-sm font-bold tracking-wider text-on-surface group-hover:text-primary transition-colors">MIHRAJ.IO</span>
+          <span class="text-outline text-xs font-mono">/</span>
+          <span class="font-mono text-xs text-primary font-bold">LABS HUB</span>
+        </a>
+        <span class="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded border border-primary/30 bg-canvas-base font-mono text-[10px] text-primary">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          <span>12 SAFE SIMULATED CHALLENGES</span>
+        </span>
+      </div>
+
+      <nav class="hidden xl:flex items-center space-x-5 font-mono text-xs text-on-surface-variant">
+        <a href="index.html" class="hover:text-primary transition-colors">Portfolio</a>
+        <a href="learning.html" class="hover:text-primary transition-colors">Learning</a>
+        <a href="labs.html" class="text-primary font-bold border-b border-primary pb-0.5">Labs</a>
+        <a href="tools.html" class="hover:text-primary transition-colors">Toolkit &amp; DB</a>
+        <a href="methodology.html" class="hover:text-primary transition-colors">Methodology</a>
+        <a href="roadmap.html" class="hover:text-primary transition-colors">Roadmap</a>
+        <a href="glossary.html" class="hover:text-primary transition-colors">Glossary</a>
+        <a href="payloads.html" class="text-danger-critical hover:text-primary transition-colors">Payloads</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button data-trigger-cmd class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:text-primary hover:border-primary transition-colors cursor-pointer" title="Search Everything (Cmd+K)">
+          <span class="material-symbols-outlined text-sm text-primary">search</span>
+          <span class="hidden sm:inline text-[11px] text-outline">⌘K</span>
+        </button>
+        <button data-trigger-term class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded border border-primary/40 bg-canvas-base font-mono text-xs text-primary hover:bg-primary/10 transition-colors cursor-pointer" title="Terminal (~)">
+          <span class="material-symbols-outlined text-sm text-primary">terminal</span>
+          <span class="hidden sm:inline text-[11px] font-bold">CLI</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 py-10 w-full space-y-10">
+
+    <!-- Header / Banner -->
+    <div class="space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-surface-subtle font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">science</span>
+        <span>SAFE, AUTHORIZED EDUCATIONAL SIMULATION LABS</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black text-on-surface tracking-tight font-mono">
+        Practical Cybersecurity <span class="text-primary">Labs</span>
+      </h1>
+      <p class="text-sm sm:text-base text-on-surface-variant max-w-3xl leading-relaxed">
+        12 self-contained interactive cybersecurity labs executing safely inside fictionalized, local environments. Each lab provides clear objectives, realistic enterprise scenarios, progressive hints, answers with full technical breakdowns, and defensive remediation patterns.
+      </p>
+
+      <div class="p-3 rounded-lg border border-warning/30 bg-surface-subtle flex items-center gap-2 font-mono text-xs text-warning">
+        <span class="material-symbols-outlined text-base">verified_user</span>
+        <span>Ethical Notice: All labs utilize isolated sandboxes or fictionalized local targets. Never attack systems without explicit written permission.</span>
+      </div>
+    </div>
+
+    <!-- Quick Lab Filter / Navigation -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 font-mono text-xs">
+      <a href="#lab-headers" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">01. HTTP Headers</a>
+      <a href="#lab-permissions" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">02. Linux Permissions</a>
+      <a href="#lab-suid" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">03. SUID PrivEsc</a>
+      <a href="#lab-auth" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">04. Authentication</a>
+      <a href="#lab-idor" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">05. Authz / IDOR</a>
+      <a href="#lab-sqli" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">06. SQL Injection</a>
+      <a href="#lab-xss" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">07. XSS Concepts</a>
+      <a href="#lab-csrf" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">08. CSRF Tokens</a>
+      <a href="#lab-network" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">09. Network Enum</a>
+      <a href="#lab-logs" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">10. Log Analysis</a>
+      <a href="#lab-jwt" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">11. JWT Security</a>
+      <a href="#lab-crypto" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">12. Cryptography</a>
+    </div>
+
+    <!-- Labs List -->
+    <div class="space-y-8">
+
+      <!-- ===================================================================== -->
+      <!-- LAB 01: HTTP SECURITY HEADERS                                         -->
+      <!-- ===================================================================== -->
+      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl" id="lab-headers">
+        <header class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline/60 pb-4">
+          <div class="flex items-center gap-3">
+            <span class="p-2.5 rounded-xl bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">LAB 01</span>
+            <div>
+              <h2 class="text-xl font-bold text-on-surface font-mono">HTTP Security Headers Hardening</h2>
+              <span class="font-mono text-xs text-outline">Category: Defensive Web Security &amp; Browser Protections</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 font-mono text-xs">
+            <span class="px-2.5 py-0.5 rounded bg-primary/10 border border-primary/30 text-primary font-semibold">Difficulty: Beginner</span>
+            <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-border-hairline text-outline">Est: 15 mins</span>
+          </div>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
+          <div class="p-3.5 rounded-xl bg-canvas-base border border-border-hairline space-y-1">
+            <span class="text-secondary font-bold uppercase">Objective:</span>
+            <p class="text-on-surface-variant font-sans text-xs">Identify missing defense-in-depth headers on an unhardened banking API response and construct a compliant Nginx configuration block.</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-canvas-base border border-border-hairline space-y-1">
+            <span class="text-primary font-bold uppercase">Scenario:</span>
+            <p class="text-on-surface-variant font-sans text-xs">AcmeFintech's staging environment at <code class="text-primary font-mono">https://staging.acmefin.local</code> returns no CSP, allows framing by third parties, and accepts unencrypted HTTP downgrades.</p>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2 font-mono text-xs">
+          <span class="text-outline uppercase font-bold">Simulated Server Response Headers:</span>
+          <pre class="p-3 rounded-lg bg-surface-subtle text-on-surface overflow-x-auto border border-border-hairline/60">
+HTTP/1.1 200 OK
+Server: Apache/2.4.41 (Ubuntu)
+Content-Type: text/html; charset=UTF-8
+X-Powered-By: PHP/7.4.3
+Set-Cookie: session_id=abc12345; Path=/</pre>
+        </div>
+
+        <!-- Task & Hints -->
+        <div class="space-y-3 font-mono text-xs">
+          <div class="text-on-surface font-bold flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm text-primary">task</span>
+            <span>Task: Audit the 4 missing critical headers and cookie flags.</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button class="hint-btn px-3 py-1 rounded bg-surface-raised border border-border-hairline hover:border-primary text-outline hover:text-on-surface" data-target="hint-h1">Hint 1</button>
+            <button class="hint-btn px-3 py-1 rounded bg-surface-raised border border-border-hairline hover:border-primary text-outline hover:text-on-surface" data-target="hint-h2">Hint 2</button>
+            <button class="ans-btn px-3 py-1 rounded bg-primary-container text-canvas-base font-bold hover:bg-primary">Reveal Walkthrough &amp; Defense</button>
+          </div>
+          <div id="hint-h1" class="hidden p-3 rounded-lg bg-canvas-base border border-border-hairline text-outline">
+            Hint 1: If the site is framed in an iframe, what header prevents Clickjacking? Look into <code class="text-primary">X-Frame-Options</code> or CSP <code class="text-primary">frame-ancestors</code>.
+          </div>
+          <div id="hint-h2" class="hidden p-3 rounded-lg bg-canvas-base border border-border-hairline text-outline">
+            Hint 2: Notice the <code class="text-primary">session_id</code> cookie is missing <code class="text-primary">HttpOnly</code>, <code class="text-primary">Secure</code>, and <code class="text-primary">SameSite=Strict</code> flags.
+          </div>
+          <div id="ans-headers" class="hidden p-4 rounded-xl bg-canvas-base border border-primary/40 space-y-2 text-on-surface">
+            <strong class="text-primary font-bold">Official Walkthrough &amp; Solution:</strong>
+            <p class="font-sans text-xs text-on-surface-variant leading-relaxed">
+              The response leaks underlying server version banners (<code class="text-outline font-mono">Server</code>, <code class="text-outline font-mono">X-Powered-By</code>) assisting attacker enumeration. It lacks <code class="text-secondary font-mono">Strict-Transport-Security</code> (allowing SSL stripping), <code class="text-secondary font-mono">X-Frame-Options: DENY</code> (permitting Clickjacking), <code class="text-secondary font-mono">X-Content-Type-Options: nosniff</code> (permitting MIME confusion), and <code class="text-secondary font-mono">Content-Security-Policy</code>.
+            </p>
+            <strong class="text-secondary font-bold block pt-1">Hardened Nginx Configuration:</strong>
+            <pre class="p-2.5 rounded bg-surface-subtle text-primary text-[11px] overflow-x-auto">
+add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
+add_header Content-Security-Policy "default-src 'self'; frame-ancestors 'none';" always;
+add_header X-Frame-Options "DENY" always;
+add_header X-Content-Type-Options "nosniff" always;
+server_tokens off;</pre>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===================================================================== -->
+      <!-- LAB 02: LINUX PERMISSIONS (RWX & OCTAL)                               -->
+      <!-- ===================================================================== -->
+      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl" id="lab-permissions">
+        <header class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline/60 pb-4">
+          <div class="flex items-center gap-3">
+            <span class="p-2.5 rounded-xl bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">LAB 02</span>
+            <div>
+              <h2 class="text-xl font-bold text-on-surface font-mono">Linux Permissions &amp; Octal Masking</h2>
+              <span class="font-mono text-xs text-outline">Category: System Administration &amp; Access Controls</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 font-mono text-xs">
+            <span class="px-2.5 py-0.5 rounded bg-primary/10 border border-primary/30 text-primary font-semibold">Difficulty: Beginner</span>
+            <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-border-hairline text-outline">Est: 15 mins</span>
+          </div>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
+          <div class="p-3.5 rounded-xl bg-canvas-base border border-border-hairline space-y-1">
+            <span class="text-secondary font-bold uppercase">Objective:</span>
+            <p class="text-on-surface-variant font-sans text-xs">Calculate octal notation permissions and identify the security hazard in a world-writable configuration file.</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-canvas-base border border-border-hairline space-y-1">
+            <span class="text-primary font-bold uppercase">Scenario:</span>
+            <p class="text-on-surface-variant font-sans text-xs">A junior administrator ran a script to fix permission issues on a database credentials file located at <code class="text-primary font-mono">/var/www/html/config.php</code>.</p>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline font-mono text-xs space-y-1">
+          <span class="text-outline uppercase font-bold">ls -l Output:</span>
+          <pre class="p-3 rounded-lg bg-surface-subtle text-danger-critical overflow-x-auto">-rwxrwxrwx 1 www-data www-data 1024 Oct 04 09:00 config.php</pre>
+        </div>
+
+        <div class="space-y-3 font-mono text-xs">
+          <div class="flex flex-wrap gap-2">
+            <button class="hint-btn px-3 py-1 rounded bg-surface-raised border border-border-hairline hover:border-primary text-outline hover:text-on-surface" data-target="hint-p1">Hint 1</button>
+            <button class="ans-btn px-3 py-1 rounded bg-primary-container text-canvas-base font-bold hover:bg-primary">Reveal Walkthrough &amp; Defense</button>
+          </div>
+          <div id="hint-p1" class="hidden p-3 rounded-lg bg-canvas-base border border-border-hairline text-outline">
+            Hint: <code class="text-danger-critical">rwxrwxrwx</code> equals octal 777. Any unprivileged local user (guest, mail, ftp) can overwrite database passwords or inject PHP backdoors.
+          </div>
+          <div id="ans-permissions" class="hidden p-4 rounded-xl bg-canvas-base border border-primary/40 space-y-2 text-on-surface">
+            <strong class="text-primary font-bold">Solution &amp; Hardening:</strong>
+            <p class="font-sans text-xs text-on-surface-variant leading-relaxed">
+              Octal 777 allows any user on the machine to modify or delete the file. For sensitive configuration files, permissions must be restricted to <code class="text-primary font-mono">600</code> (read/write owner only) or <code class="text-primary font-mono">640</code> (read group only).
+            </p>
+            <pre class="p-2.5 rounded bg-surface-subtle text-primary text-[11px] overflow-x-auto">
+sudo chown www-data:www-data /var/www/html/config.php
+sudo chmod 600 /var/www/html/config.php</pre>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===================================================================== -->
+      <!-- LAB 03: SUID PRIVILEGE ESCALATION                                     -->
+      <!-- ===================================================================== -->
+      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl" id="lab-suid">
+        <header class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline/60 pb-4">
+          <div class="flex items-center gap-3">
+            <span class="p-2.5 rounded-xl bg-canvas-base border border-danger-critical/30 text-danger-critical font-mono font-bold text-sm">LAB 03</span>
+            <div>
+              <h2 class="text-xl font-bold text-on-surface font-mono">SUID Binary Privilege Escalation</h2>
+              <span class="font-mono text-xs text-outline">Category: Offensive Linux &amp; Local Privilege Escalation</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 font-mono text-xs">
+            <span class="px-2.5 py-0.5 rounded bg-warning/10 border border-warning/30 text-warning font-semibold">Difficulty: Intermediate</span>
+            <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-border-hairline text-outline">Est: 25 mins</span>
+          </div>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
+          <div class="p-3.5 rounded-xl bg-canvas-base border border-border-hairline space-y-1">
+            <span class="text-secondary font-bold uppercase">Objective:</span>
+            <p class="text-on-surface-variant font-sans text-xs">Analyze the output of a SUID audit command and exploit a misconfigured standard binary to spawn a root shell.</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-canvas-base border border-border-hairline space-y-1">
+            <span class="text-primary font-bold uppercase">Scenario:</span>
+            <p class="text-on-surface-variant font-sans text-xs">You have obtained an unprivileged shell as user <code class="text-outline font-mono">guest</code> on a simulated Linux lab server. The admin set SUID on several utilities for convenience.</p>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline font-mono text-xs space-y-1">
+          <span class="text-outline uppercase font-bold">find / -perm -4000 -type f 2>/dev/null Results:</span>
+          <pre class="p-3 rounded-lg bg-surface-subtle text-on-surface overflow-x-auto">
+/usr/bin/passwd
+/usr/bin/sudo
+/usr/bin/chsh
+/usr/bin/find    <-- Unusual SUID binary
+/usr/bin/newgrp</pre>
+        </div>
+
+        <div class="space-y-3 font-mono text-xs">
+          <div class="flex flex-wrap gap-2">
+            <button class="hint-btn px-3 py-1 rounded bg-surface-raised border border-border-hairline hover:border-primary text-outline hover:text-on-surface" data-target="hint-s1">Hint 1</button>
+            <button class="ans-btn px-3 py-1 rounded bg-primary-container text-canvas-base font-bold hover:bg-primary">Reveal Walkthrough &amp; Defense</button>
+          </div>
+          <div id="hint-s1" class="hidden p-3 rounded-lg bg-canvas-base border border-border-hairline text-outline">
+            Hint: Check GTFOBins for <code class="text-primary">find</code>. The <code class="text-primary">-exec</code> flag can invoke <code class="text-primary">/bin/sh -p</code> to preserve effective root permissions.
+          </div>
+          <div id="ans-suid" class="hidden p-4 rounded-xl bg-canvas-base border border-primary/40 space-y-2 text-on-surface">
+            <strong class="text-primary font-bold">Exploit Command &amp; Defense:</strong>
+            <pre class="p-2.5 rounded bg-surface-subtle text-danger-critical text-[11px] overflow-x-auto">/usr/bin/find . -exec /bin/sh -p \; -quit</pre>
+            <p class="font-sans text-xs text-on-surface-variant leading-relaxed">
+              Because <code class="text-primary font-mono">find</code> carries SUID root, executing <code class="text-primary font-mono">/bin/sh -p</code> preserves the effective UID (<code class="text-danger-critical font-mono">euid=0</code>).
+            </p>
+            <strong class="text-secondary font-bold block pt-1">Defensive Hardening:</strong>
+            <pre class="p-2.5 rounded bg-surface-subtle text-primary text-[11px] overflow-x-auto">sudo chmod u-s /usr/bin/find</pre>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===================================================================== -->
+      <!-- LAB 04: AUTHENTICATION BYPASS                                         -->
+      <!-- ===================================================================== -->
+      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl" id="lab-auth">
+        <header class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline/60 pb-4">
+          <div class="flex items-center gap-3">
+            <span class="p-2.5 rounded-xl bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-sm">LAB 04</span>
+            <div>
+              <h2 class="text-xl font-bold text-on-surface font-mono">Authentication Logic Flaw &amp; SQLi Bypass</h2>
+              <span class="font-mono text-xs text-outline">Category: Web Application Authentication</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 font-mono text-xs">
+            <span class="px-2.5 py-0.5 rounded bg-primary/10 border border-primary/30 text-primary font-semibold">Difficulty: Beginner</span>
+            <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-border-hairline text-outline">Est: 20 mins</span>
+          </div>
+        </header>
+
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline font-mono text-xs space-y-2">
+          <span class="text-outline uppercase font-bold">Vulnerable Backend Code (PHP):</span>
+          <pre class="p-3 rounded-lg bg-surface-subtle text-danger-critical overflow-x-auto">
+$username = $_POST['user'];
+$password = $_POST['pass'];
+$query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+$result = mysqli_query($conn, $query);
+if (mysqli_num_rows($result) > 0) {
+    $_SESSION['auth'] = true;
+    $_SESSION['user'] = $username;
+}</pre>
+        </div>
+
+        <div class="space-y-3 font-mono text-xs">
+          <div class="flex flex-wrap gap-2">
+            <button class="hint-btn px-3 py-1 rounded bg-surface-raised border border-border-hairline hover:border-primary text-outline hover:text-on-surface" data-target="hint-a1">Hint 1</button>
+            <button class="ans-btn px-3 py-1 rounded bg-primary-container text-canvas-base font-bold hover:bg-primary">Reveal Walkthrough &amp; Defense</button>
+          </div>
+          <div id="hint-a1" class="hidden p-3 rounded-lg bg-canvas-base border border-border-hairline text-outline">
+            Hint: If <code class="text-primary">username</code> is set to <code class="text-primary">admin'--</code>, what happens to the password check condition in the SQL statement?
+          </div>
+          <div id="ans-auth" class="hidden p-4 rounded-xl bg-canvas-base border border-primary/40 space-y-2 text-on-surface">
+            <strong class="text-primary font-bold">Exploit Input &amp; Defense:</strong>
+            <p class="font-sans text-xs text-on-surface-variant">Injecting <code class="text-danger-critical font-mono">admin'--</code> truncates the query to <code class="text-outline font-mono">SELECT * FROM users WHERE username = 'admin'</code>, logging in as admin without knowing the password.</p>
+            <strong class="text-secondary font-bold block pt-1">Defensive Prepared Statement (PDO):</strong>
+            <pre class="p-2.5 rounded bg-surface-subtle text-primary text-[11px] overflow-x-auto">
+$stmt = $pdo->prepare('SELECT id, password_hash FROM users WHERE username = :user');
+$stmt->execute(['user' => $username]);
+$user = $stmt->fetch();
+if ($user && password_verify($password, $user['password_hash'])) {
+    // Validated login
+}</pre>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===================================================================== -->
+      <!-- LAB 05: IDOR & BROKEN AUTHORIZATION                                   -->
+      <!-- ===================================================================== -->
+      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl" id="lab-idor">
+        <header class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline/60 pb-4">
+          <div class="flex items-center gap-3">
+            <span class="p-2.5 rounded-xl bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-sm">LAB 05</span>
+            <div>
+              <h2 class="text-xl font-bold text-on-surface font-mono">Insecure Direct Object Reference (IDOR)</h2>
+              <span class="font-mono text-xs text-outline">Category: Broken Object-Level Authorization (BOLA)</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 font-mono text-xs">
+            <span class="px-2.5 py-0.5 rounded bg-warning/10 border border-warning/30 text-warning font-semibold">Difficulty: Intermediate</span>
+            <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-border-hairline text-outline">Est: 20 mins</span>
+          </div>
+        </header>
+
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline font-mono text-xs space-y-2">
+          <span class="text-outline uppercase font-bold">API Endpoint Scenario:</span>
+          <pre class="p-3 rounded-lg bg-surface-subtle text-on-surface overflow-x-auto">
+GET /api/v1/invoices/9482 HTTP/1.1
+Host: api.targetfin.local
+Authorization: Bearer eyJhbGciOi... (Logged in as User 410)
+
+Response:
+{ "invoice_id": 9482, "owner_id": 410, "amount": "$450.00", "details": "Consulting" }</pre>
+        </div>
+
+        <div class="space-y-3 font-mono text-xs">
+          <div class="flex flex-wrap gap-2">
+            <button class="hint-btn px-3 py-1 rounded bg-surface-raised border border-border-hairline hover:border-primary text-outline hover:text-on-surface" data-target="hint-id1">Hint 1</button>
+            <button class="ans-btn px-3 py-1 rounded bg-primary-container text-canvas-base font-bold hover:bg-primary">Reveal Walkthrough &amp; Defense</button>
+          </div>
+          <div id="hint-id1" class="hidden p-3 rounded-lg bg-canvas-base border border-border-hairline text-outline">
+            Hint: What happens if the authenticated user changes the URL path to <code class="text-primary">/api/v1/invoices/9481</code>? Does the server check if <code class="text-primary">owner_id === session.userId</code>?
+          </div>
+          <div id="ans-idor" class="hidden p-4 rounded-xl bg-canvas-base border border-primary/40 space-y-2 text-on-surface">
+            <strong class="text-primary font-bold">Remediation Blueprint:</strong>
+            <p class="font-sans text-xs text-on-surface-variant">The server blindly fetched the invoice by ID from the database without checking if the requesting user's identity matches the invoice owner.</p>
+            <pre class="p-2.5 rounded bg-surface-subtle text-primary text-[11px] overflow-x-auto">
+// Hardened Node.js Express route
+app.get('/api/v1/invoices/:id', authMiddleware, async (req, res) => {
+  const invoice = await db.Invoices.findOne({
+    where: { id: req.params.id, owner_id: req.user.id } // Enforces ownership
+  });
+  if (!invoice) return res.status(404).json({ error: "Invoice not found or unauthorized" });
+  res.json(invoice);
+});</pre>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===================================================================== -->
+      <!-- LAB 06: SQL INJECTION CONCEPTS                                        -->
+      <!-- ===================================================================== -->
+      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl" id="lab-sqli">
+        <header class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline/60 pb-4">
+          <div class="flex items-center gap-3">
+            <span class="p-2.5 rounded-xl bg-canvas-base border border-danger-critical/30 text-danger-critical font-mono font-bold text-sm">LAB 06</span>
+            <div>
+              <h2 class="text-xl font-bold text-on-surface font-mono">UNION-Based SQL Injection</h2>
+              <span class="font-mono text-xs text-outline">Category: Server-Side Database Injection</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 font-mono text-xs">
+            <span class="px-2.5 py-0.5 rounded bg-warning/10 border border-warning/30 text-warning font-semibold">Difficulty: Intermediate</span>
+            <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-border-hairline text-outline">Est: 30 mins</span>
+          </div>
+        </header>
+
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline font-mono text-xs space-y-2">
+          <span class="text-outline uppercase font-bold">Target URI:</span>
+          <pre class="p-3 rounded-lg bg-surface-subtle text-on-surface overflow-x-auto">http://target.local/catalog.php?category=1' UNION SELECT 1,username,password FROM users-- -</pre>
+        </div>
+
+        <div class="space-y-3 font-mono text-xs">
+          <div class="flex flex-wrap gap-2">
+            <button class="ans-btn px-3 py-1 rounded bg-primary-container text-canvas-base font-bold hover:bg-primary">Reveal Walkthrough &amp; Defense</button>
+          </div>
+          <div id="ans-sqli" class="hidden p-4 rounded-xl bg-canvas-base border border-primary/40 space-y-2 text-on-surface">
+            <strong class="text-primary font-bold">SQL Injection Fundamentals:</strong>
+            <p class="font-sans text-xs text-on-surface-variant">The <code class="text-primary font-mono">UNION SELECT</code> operator merges attacker-controlled query results with the original catalog display. To succeed, the injected SELECT statement must have the exact same number of columns and compatible datatypes as the original query.</p>
+            <strong class="text-secondary font-bold block pt-1">Defensive Rule:</strong>
+            <p class="font-sans text-xs text-on-surface-variant">Always use parameterized queries. Never concatenate variables into SQL strings.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===================================================================== -->
+      <!-- LAB 07: CROSS-SITE SCRIPTING (XSS)                                    -->
+      <!-- ===================================================================== -->
+      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl" id="lab-xss">
+        <header class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline/60 pb-4">
+          <div class="flex items-center gap-3">
+            <span class="p-2.5 rounded-xl bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-sm">LAB 07</span>
+            <div>
+              <h2 class="text-xl font-bold text-on-surface font-mono">Reflected XSS &amp; Context Escaping</h2>
+              <span class="font-mono text-xs text-outline">Category: Client-Side Code Injection</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 font-mono text-xs">
+            <span class="px-2.5 py-0.5 rounded bg-primary/10 border border-primary/30 text-primary font-semibold">Difficulty: Beginner</span>
+            <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-border-hairline text-outline">Est: 20 mins</span>
+          </div>
+        </header>
+
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline font-mono text-xs space-y-2">
+          <span class="text-outline uppercase font-bold">Vulnerable HTML Context:</span>
+          <pre class="p-3 rounded-lg bg-surface-subtle text-danger-critical overflow-x-auto">&lt;input type="text" name="search" value="USER_INPUT_REFLECTED_HERE"&gt;</pre>
+        </div>
+
+        <div class="space-y-3 font-mono text-xs">
+          <div class="flex flex-wrap gap-2">
+            <button class="ans-btn px-3 py-1 rounded bg-primary-container text-canvas-base font-bold hover:bg-primary">Reveal Walkthrough &amp; Defense</button>
+          </div>
+          <div id="ans-xss" class="hidden p-4 rounded-xl bg-canvas-base border border-primary/40 space-y-2 text-on-surface">
+            <strong class="text-primary font-bold">Exploit Payload:</strong>
+            <pre class="p-2.5 rounded bg-surface-subtle text-danger-critical text-[11px] overflow-x-auto">" onfocus="alert(document.domain)" autofocus="</pre>
+            <p class="font-sans text-xs text-on-surface-variant">Because input reflects within an HTML attribute, simply injecting <code class="text-outline font-mono">&lt;script&gt;</code> might fail if brackets are sanitized. Escaping the attribute context via double quotes (<code class="text-primary font-mono">"</code>) triggers event handlers cleanly.</p>
+            <strong class="text-secondary font-bold block pt-1">Defensive Rule:</strong>
+            <p class="font-sans text-xs text-on-surface-variant">Apply context-aware attribute encoding (e.g. <code class="text-primary font-mono">&amp;quot;</code>) and deploy strict Content-Security-Policy.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===================================================================== -->
+      <!-- LAB 08: CSRF CONCEPTS                                                 -->
+      <!-- ===================================================================== -->
+      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl" id="lab-csrf">
+        <header class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline/60 pb-4">
+          <div class="flex items-center gap-3">
+            <span class="p-2.5 rounded-xl bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-sm">LAB 08</span>
+            <div>
+              <h2 class="text-xl font-bold text-on-surface font-mono">Cross-Site Request Forgery (CSRF) &amp; SameSite</h2>
+              <span class="font-mono text-xs text-outline">Category: Cross-Origin Session Exploitation</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 font-mono text-xs">
+            <span class="px-2.5 py-0.5 rounded bg-warning/10 border border-warning/30 text-warning font-semibold">Difficulty: Intermediate</span>
+            <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-border-hairline text-outline">Est: 25 mins</span>
+          </div>
+        </header>
+
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline font-mono text-xs space-y-2">
+          <span class="text-outline uppercase font-bold">Attacker PoC Web Page:</span>
+          <pre class="p-3 rounded-lg bg-surface-subtle text-on-surface overflow-x-auto">
+&lt;form action="https://bank.target.local/transfer" method="POST" id="csrfForm"&gt;
+  &lt;input type="hidden" name="to_account" value="ATTACKER_ACCOUNT"&gt;
+  &lt;input type="hidden" name="amount" value="5000"&gt;
+&lt;/form&gt;
+&lt;script&gt;document.getElementById('csrfForm').submit();&lt;/script&gt;</pre>
+        </div>
+
+        <div class="space-y-3 font-mono text-xs">
+          <div class="flex flex-wrap gap-2">
+            <button class="ans-btn px-3 py-1 rounded bg-primary-container text-canvas-base font-bold hover:bg-primary">Reveal Walkthrough &amp; Defense</button>
+          </div>
+          <div id="ans-csrf" class="hidden p-4 rounded-xl bg-canvas-base border border-primary/40 space-y-2 text-on-surface">
+            <strong class="text-primary font-bold">Remediation:</strong>
+            <p class="font-sans text-xs text-on-surface-variant">The bank accepted the state-changing POST request because the victim's browser automatically transmitted session cookies. Defense requires Cryptographically random Synchronizer Anti-CSRF tokens and setting cookies to <code class="text-primary font-mono">SameSite=Strict</code>.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===================================================================== -->
+      <!-- LAB 09: NETWORK ENUMERATION                                           -->
+      <!-- ===================================================================== -->
+      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl" id="lab-network">
+        <header class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline/60 pb-4">
+          <div class="flex items-center gap-3">
+            <span class="p-2.5 rounded-xl bg-canvas-base border border-secondary/30 text-secondary font-mono font-bold text-sm">LAB 09</span>
+            <div>
+              <h2 class="text-xl font-bold text-on-surface font-mono">Network Service &amp; SMB Enumeration</h2>
+              <span class="font-mono text-xs text-outline">Category: Active Scanning &amp; Service Probing</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 font-mono text-xs">
+            <span class="px-2.5 py-0.5 rounded bg-primary/10 border border-primary/30 text-primary font-semibold">Difficulty: Beginner</span>
+            <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-border-hairline text-outline">Est: 20 mins</span>
+          </div>
+        </header>
+
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline font-mono text-xs space-y-2">
+          <span class="text-outline uppercase font-bold">Nmap Scan Findings:</span>
+          <pre class="p-3 rounded-lg bg-surface-subtle text-secondary overflow-x-auto">
+PORT    STATE SERVICE     VERSION
+22/tcp  open  ssh         OpenSSH 8.9p1 Ubuntu
+80/tcp  open  http        Apache httpd 2.4.52
+445/tcp open  netbios-ssn Samba smbd 4.6.2 (workgroup: WORKGROUP)</pre>
+        </div>
+
+        <div class="space-y-3 font-mono text-xs">
+          <div class="flex flex-wrap gap-2">
+            <button class="ans-btn px-3 py-1 rounded bg-primary-container text-canvas-base font-bold hover:bg-primary">Reveal Walkthrough &amp; Defense</button>
+          </div>
+          <div id="ans-network" class="hidden p-4 rounded-xl bg-canvas-base border border-primary/40 space-y-2 text-on-surface">
+            <strong class="text-primary font-bold">Enumeration Commands:</strong>
+            <pre class="p-2.5 rounded bg-surface-subtle text-primary text-[11px] overflow-x-auto">
+# Enumerate anonymous SMB shares
+smbclient -N -L //10.10.110.45/
+# Connect to exposed backup share
+smbclient //10.10.110.45/backups -N</pre>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===================================================================== -->
+      <!-- LAB 10: LOG ANALYSIS & FORENSICS                                      -->
+      <!-- ===================================================================== -->
+      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl" id="lab-logs">
+        <header class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline/60 pb-4">
+          <div class="flex items-center gap-3">
+            <span class="p-2.5 rounded-xl bg-canvas-base border border-secondary/30 text-secondary font-mono font-bold text-sm">LAB 10</span>
+            <div>
+              <h2 class="text-xl font-bold text-on-surface font-mono">Web Access Log Forensics</h2>
+              <span class="font-mono text-xs text-outline">Category: Defensive Telemetry &amp; Threat Detection</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 font-mono text-xs">
+            <span class="px-2.5 py-0.5 rounded bg-warning/10 border border-warning/30 text-warning font-semibold">Difficulty: Intermediate</span>
+            <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-border-hairline text-outline">Est: 25 mins</span>
+          </div>
+        </header>
+
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline font-mono text-xs space-y-2">
+          <span class="text-outline uppercase font-bold">Apache Access Log Sample:</span>
+          <pre class="p-3 rounded-lg bg-surface-subtle text-on-surface overflow-x-auto text-[11px]">
+192.168.1.105 - - [04/Oct/2026:08:12:01] "GET /index.php?page=../../../../etc/passwd HTTP/1.1" 200 2410 "-" "curl/7.81.0"
+192.168.1.105 - - [04/Oct/2026:08:12:45] "POST /upload.php HTTP/1.1" 200 152 "-" "Mozilla/5.0"
+192.168.1.105 - - [04/Oct/2026:08:13:02] "GET /uploads/shell.php?cmd=whoami HTTP/1.1" 200 45 "-" "curl/7.81.0"</pre>
+        </div>
+
+        <div class="space-y-3 font-mono text-xs">
+          <div class="flex flex-wrap gap-2">
+            <button class="ans-btn px-3 py-1 rounded bg-primary-container text-canvas-base font-bold hover:bg-primary">Reveal Walkthrough &amp; Defense</button>
+          </div>
+          <div id="ans-logs" class="hidden p-4 rounded-xl bg-canvas-base border border-primary/40 space-y-2 text-on-surface">
+            <strong class="text-primary font-bold">Incident Response Analysis:</strong>
+            <p class="font-sans text-xs text-on-surface-variant">The attacker performed Path Traversal on <code class="text-outline font-mono">/index.php</code>, then uploaded an unvalidated PHP web shell via <code class="text-outline font-mono">/upload.php</code>, and executed arbitrary commands (<code class="text-danger-critical font-mono">cmd=whoami</code>).</p>
+            <strong class="text-secondary font-bold block pt-1">Detection Rule (Suricata):</strong>
+            <pre class="p-2.5 rounded bg-surface-subtle text-primary text-[11px] overflow-x-auto">alert http any any -> any any (msg:"Path Traversal Attempt"; content:"/etc/passwd"; sid:1000002; rev:1;)</pre>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===================================================================== -->
+      <!-- LAB 11: JWT SECURITY                                                  -->
+      <!-- ===================================================================== -->
+      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl" id="lab-jwt">
+        <header class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline/60 pb-4">
+          <div class="flex items-center gap-3">
+            <span class="p-2.5 rounded-xl bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">LAB 11</span>
+            <div>
+              <h2 class="text-xl font-bold text-on-surface font-mono">JWT "None" Algorithm Exploitation</h2>
+              <span class="font-mono text-xs text-outline">Category: Cryptographic Token Flaws</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 font-mono text-xs">
+            <span class="px-2.5 py-0.5 rounded bg-warning/10 border border-warning/30 text-warning font-semibold">Difficulty: Intermediate</span>
+            <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-border-hairline text-outline">Est: 20 mins</span>
+          </div>
+        </header>
+
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline font-mono text-xs space-y-2">
+          <span class="text-outline uppercase font-bold">Decoded Header &amp; Payload:</span>
+          <pre class="p-3 rounded-lg bg-surface-subtle text-primary overflow-x-auto">
+Header:  {"alg": "none", "typ": "JWT"}
+Payload: {"user": "admin", "role": "superadmin", "exp": 1999999999}
+Signature: (Empty)</pre>
+        </div>
+
+        <div class="space-y-3 font-mono text-xs">
+          <div class="flex flex-wrap gap-2">
+            <button class="ans-btn px-3 py-1 rounded bg-primary-container text-canvas-base font-bold hover:bg-primary">Reveal Walkthrough &amp; Defense</button>
+          </div>
+          <div id="ans-jwt" class="hidden p-4 rounded-xl bg-canvas-base border border-primary/40 space-y-2 text-on-surface">
+            <strong class="text-primary font-bold">Defensive Remediation:</strong>
+            <p class="font-sans text-xs text-on-surface-variant">Never accept <code class="text-danger-critical font-mono">none</code> algorithm. Enforce specific expected algorithms (e.g. <code class="text-primary font-mono">algorithms: ['RS256']</code>) in JWT verification libraries.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===================================================================== -->
+      <!-- LAB 12: BASIC CRYPTOGRAPHY                                            -->
+      <!-- ===================================================================== -->
+      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl" id="lab-crypto">
+        <header class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline/60 pb-4">
+          <div class="flex items-center gap-3">
+            <span class="p-2.5 rounded-xl bg-canvas-base border border-secondary/30 text-secondary font-mono font-bold text-sm">LAB 12</span>
+            <div>
+              <h2 class="text-xl font-bold text-on-surface font-mono">XOR &amp; Frequency Analysis Decryption</h2>
+              <span class="font-mono text-xs text-outline">Category: Practical Cryptanalysis</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 font-mono text-xs">
+            <span class="px-2.5 py-0.5 rounded bg-primary/10 border border-primary/30 text-primary font-semibold">Difficulty: Beginner</span>
+            <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-border-hairline text-outline">Est: 20 mins</span>
+          </div>
+        </header>
+
+        <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline font-mono text-xs space-y-2">
+          <span class="text-outline uppercase font-bold">Ciphertext (Hex):</span>
+          <pre class="p-3 rounded-lg bg-surface-subtle text-secondary overflow-x-auto">1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736</pre>
+        </div>
+
+        <div class="space-y-3 font-mono text-xs">
+          <div class="flex flex-wrap gap-2">
+            <button class="ans-btn px-3 py-1 rounded bg-primary-container text-canvas-base font-bold hover:bg-primary">Reveal Walkthrough &amp; Defense</button>
+          </div>
+          <div id="ans-crypto" class="hidden p-4 rounded-xl bg-canvas-base border border-primary/40 space-y-2 text-on-surface">
+            <strong class="text-primary font-bold">Cryptanalysis Walkthrough:</strong>
+            <p class="font-sans text-xs text-on-surface-variant">Single-byte XOR ciphers can be cracked by brute-forcing all 256 possible byte values and scoring outputs based on English letter frequency (ETAOIN SHRDLU). The decrypted message reveals: <code class="text-primary font-mono">"Cooking MC's like a pound of bacon"</code> with key byte <code class="text-secondary font-mono">0x58 ('X')</code>.</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="border-t border-border-hairline bg-surface-subtle py-8 text-center font-mono text-xs text-on-surface-variant mt-16">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-primary"></span>
+        <span class="text-on-surface font-bold">Mihraj Mashhoor K</span>
+        <span>· Cybersecurity Engineering &amp; Research</span>
+      </div>
+      <div class="flex items-center gap-4 text-outline">
+        <a href="index.html" class="hover:text-primary transition-colors">Portfolio</a>
+        <a href="learning.html" class="hover:text-primary transition-colors">Learning</a>
+        <a href="tools.html" class="hover:text-primary transition-colors">Toolkit</a>
+        <a href="methodology.html" class="hover:text-primary transition-colors">Methodology</a>
+        <a href="glossary.html" class="hover:text-primary transition-colors">Glossary</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="portfolio-interactive.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Hints toggle
+      document.querySelectorAll('.hint-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = document.getElementById(btn.getAttribute('data-target'));
+          if (target) {
+            target.classList.toggle('hidden');
+          }
+        });
+      });
+
+      // Answer reveal toggle
+      document.querySelectorAll('.ans-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const card = btn.closest('article');
+          const ansBox = card.querySelector('[id^="ans-"]');
+          if (ansBox) {
+            ansBox.classList.toggle('hidden');
+            btn.textContent = ansBox.classList.contains('hidden') ? 'Reveal Walkthrough & Defense' : 'Hide Walkthrough';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

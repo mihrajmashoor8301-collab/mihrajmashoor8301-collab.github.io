@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html class="scroll-smooth dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Penetration Testing Methodology &amp; Attack/Defense Matrix | Mihraj Mashhoor K</title>
+  <meta content="Interactive 12-stage ethical penetration testing methodology framework and comprehensive Attack / Detection / Defense matrix covering 10 major vulnerabilities." name="description"/>
+  <link rel="icon" type="image/png" href="logo2.png"/>
+  <link rel="canonical" href="https://endlessus.in/methodology.html"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Pentest Methodology &amp; Attack/Defense Matrix | Mihraj Mashhoor K"/>
+  <meta property="og:description" content="Structured 12-stage authorized assessment methodology with three-perspective analysis for 10 core vulnerability classes."/>
+  <meta property="og:image" content="https://endlessus.in/cover.png"/>
+  <meta property="og:url" content="https://endlessus.in/methodology.html"/>
+  <meta property="og:type" content="article"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'canvas-base': '#090D12',
+            'surface-subtle': '#0E131B',
+            'surface-raised': '#151D28',
+            'surface-container': '#122131',
+            'border-hairline': '#1F2937',
+            'border-medium': '#2D3748',
+            'primary': '#4EDEA3',
+            'primary-container': '#10b981',
+            'secondary': '#4CD7F6',
+            'on-surface': '#F3F4F6',
+            'on-surface-variant': '#8692A6',
+            'outline': '#64748B',
+            'warning': '#F59E0B',
+            'danger-critical': '#F43F5E',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #090D12; color: #F3F4F6; font-family: 'Inter', sans-serif; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; vertical-align: middle; line-height: 1; }
+    .telemetry-grid {
+      background-size: 32px 32px;
+      background-image:
+        linear-gradient(to right, rgba(31, 41, 55, 0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(31, 41, 55, 0.25) 1px, transparent 1px);
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #090D12; }
+    ::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #4EDEA3; }
+  </style>
+</head>
+<body class="bg-canvas-base text-on-surface antialiased telemetry-grid min-h-screen flex flex-col font-sans selection:bg-primary selection:text-canvas-base">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2 group">
+          <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+          <span class="font-mono text-sm font-bold tracking-wider text-on-surface group-hover:text-primary transition-colors">MIHRAJ.IO</span>
+          <span class="text-outline text-xs font-mono">/</span>
+          <span class="font-mono text-xs text-primary font-bold">METHODOLOGY</span>
+        </a>
+        <span class="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded border border-primary/30 bg-canvas-base font-mono text-[10px] text-primary">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          <span>12 STAGES · ATTACK / DETECTION / DEFENSE</span>
+        </span>
+      </div>
+
+      <nav class="hidden xl:flex items-center space-x-5 font-mono text-xs text-on-surface-variant">
+        <a href="index.html" class="hover:text-primary transition-colors">Portfolio</a>
+        <a href="learning.html" class="hover:text-primary transition-colors">Learning</a>
+        <a href="labs.html" class="hover:text-primary transition-colors">Labs</a>
+        <a href="tools.html" class="hover:text-primary transition-colors">Toolkit &amp; DB</a>
+        <a href="methodology.html" class="text-primary font-bold border-b border-primary pb-0.5">Methodology</a>
+        <a href="roadmap.html" class="hover:text-primary transition-colors">Roadmap</a>
+        <a href="glossary.html" class="hover:text-primary transition-colors">Glossary</a>
+        <a href="payloads.html" class="text-danger-critical hover:text-primary transition-colors">Payloads</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button data-trigger-cmd class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:text-primary hover:border-primary transition-colors cursor-pointer" title="Search Everything (Cmd+K)">
+          <span class="material-symbols-outlined text-sm text-primary">search</span>
+          <span class="hidden sm:inline text-[11px] text-outline">⌘K</span>
+        </button>
+        <button data-trigger-term class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded border border-primary/40 bg-canvas-base font-mono text-xs text-primary hover:bg-primary/10 transition-colors cursor-pointer" title="Terminal (~)">
+          <span class="material-symbols-outlined text-sm text-primary">terminal</span>
+          <span class="hidden sm:inline text-[11px] font-bold">CLI</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 py-10 w-full space-y-12">
+
+    <!-- Header / Banner -->
+    <div class="space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-surface-subtle font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">account_tree</span>
+        <span>STANDARDIZED OFFENSIVE &amp; DEFENSIVE LIFECYCLE</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black text-on-surface tracking-tight font-mono">
+        Penetration Testing <span class="text-primary">Methodology</span>
+      </h1>
+      <p class="text-sm sm:text-base text-on-surface-variant max-w-3xl leading-relaxed">
+        A professional 12-stage ethical security assessment pipeline mapped directly to NIST SP 800-115, PTES, and OWASP frameworks, followed by a tri-perspective Attack / Detection / Defense matrix for 10 critical vulnerability classes.
+      </p>
+
+      <!-- Jump buttons -->
+      <div class="flex flex-wrap gap-3 pt-2 font-mono text-xs">
+        <a href="#stages" class="px-4 py-2 rounded-lg bg-primary-container text-canvas-base font-bold hover:bg-primary transition-all">
+          <span>Jump to 12-Stage Pipeline</span> &darr;
+        </a>
+        <a href="#matrix" class="px-4 py-2 rounded-lg bg-surface-subtle border border-border-hairline text-secondary hover:border-secondary transition-all">
+          <span>Jump to Attack / Detection / Defense Matrix</span> &darr;
+        </a>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 1: 12-STAGE PENETRATION TESTING LIFECYCLE                         -->
+    <!-- ========================================================================= -->
+    <section id="stages" class="space-y-8">
+      
+      <div class="border-b border-border-hairline pb-4 flex items-center justify-between">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold font-mono text-on-surface flex items-center gap-2">
+            <span class="text-primary">01.</span>
+            <span>The 12-Stage Assessment Pipeline</span>
+          </h2>
+          <span class="text-xs font-mono text-outline">Scope &rarr; Retesting with tooling, commands, and telemetry mapping</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- STAGE 01: SCOPE -->
+        <div class="p-5 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all flex flex-col justify-between" id="stage-scope">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-primary/30 font-mono text-xs font-bold text-primary">STAGE 01</span>
+              <span class="material-symbols-outlined text-outline text-lg">contract</span>
+            </div>
+            <h3 class="font-mono text-base font-bold text-on-surface">Scope &amp; Rules of Engagement</h3>
+            <p class="text-xs text-on-surface-variant font-sans leading-relaxed">
+              Establishing formal written authorization, Rules of Engagement (ROE), testing windows, emergency contact protocols, in-scope IP CIDRs/domains, and explicitly out-of-scope production assets.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-border-hairline/60 space-y-1 font-mono text-[11px]">
+            <div class="text-secondary font-bold">Key Artifacts:</div>
+            <div class="text-outline">Signed SOW, NDA, Emergency Escalation Matrix</div>
+          </div>
+        </div>
+
+        <!-- STAGE 02: RECONNAISSANCE -->
+        <div class="p-5 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all flex flex-col justify-between" id="stage-recon">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-primary/30 font-mono text-xs font-bold text-primary">STAGE 02</span>
+              <span class="material-symbols-outlined text-outline text-lg">radar</span>
+            </div>
+            <h3 class="font-mono text-base font-bold text-on-surface">Reconnaissance (Passive OSINT)</h3>
+            <p class="text-xs text-on-surface-variant font-sans leading-relaxed">
+              Harvesting publicly available domain records, Certificate Transparency logs, employee emails, leaked credentials, and Shodan asset telemetry without direct packet interaction.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-border-hairline/60 space-y-1 font-mono text-[11px]">
+            <div class="text-secondary font-bold">Tools &amp; Commands:</div>
+            <div class="text-outline">subfinder, theHarvester, crt.sh, Shodan</div>
+          </div>
+        </div>
+
+        <!-- STAGE 03: ENUMERATION -->
+        <div class="p-5 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all flex flex-col justify-between" id="stage-enum">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-primary/30 font-mono text-xs font-bold text-primary">STAGE 03</span>
+              <span class="material-symbols-outlined text-outline text-lg">search_insights</span>
+            </div>
+            <h3 class="font-mono text-base font-bold text-on-surface">Active Enumeration &amp; Probing</h3>
+            <p class="text-xs text-on-surface-variant font-sans leading-relaxed">
+              Port scanning, protocol interrogation, web directory fuzzing, SMB share inspection, and RPC endpoint queries to map open services and software versions.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-border-hairline/60 space-y-1 font-mono text-[11px]">
+            <div class="text-secondary font-bold">Tools &amp; Commands:</div>
+            <div class="text-outline">nmap -sC -sV, ffuf, gobuster, smbclient</div>
+          </div>
+        </div>
+
+        <!-- STAGE 04: VULN DISCOVERY -->
+        <div class="p-5 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all flex flex-col justify-between" id="stage-vuln">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-warning/30 font-mono text-xs font-bold text-warning">STAGE 04</span>
+              <span class="material-symbols-outlined text-outline text-lg">pest_control</span>
+            </div>
+            <h3 class="font-mono text-base font-bold text-on-surface">Vulnerability Discovery</h3>
+            <p class="text-xs text-on-surface-variant font-sans leading-relaxed">
+              Cross-referencing enumerated banners with CVE databases, Exploit-DB, and security advisories to detect outdated daemons and known unpatched flaws.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-border-hairline/60 space-y-1 font-mono text-[11px]">
+            <div class="text-secondary font-bold">Tools &amp; References:</div>
+            <div class="text-outline">searchsploit, NVD, VulnDB, cve.mitre.org</div>
+          </div>
+        </div>
+
+        <!-- STAGE 05: VALIDATION -->
+        <div class="p-5 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all flex flex-col justify-between" id="stage-validation">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-warning/30 font-mono text-xs font-bold text-warning">STAGE 05</span>
+              <span class="material-symbols-outlined text-outline text-lg">fact_check</span>
+            </div>
+            <h3 class="font-mono text-base font-bold text-on-surface">Vulnerability Validation (PoC)</h3>
+            <p class="text-xs text-on-surface-variant font-sans leading-relaxed">
+              Eliminating false positives through benign, non-destructive validation probes (e.g. confirming version behavior via harmless curl headers or time delays).
+            </p>
+          </div>
+          <div class="pt-3 border-t border-border-hairline/60 space-y-1 font-mono text-[11px]">
+            <div class="text-secondary font-bold">Approach:</div>
+            <div class="text-outline">Manual Proof of Concept (Zero DoS risk)</div>
+          </div>
+        </div>
+
+        <!-- STAGE 06: EXPLOITATION -->
+        <div class="p-5 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all flex flex-col justify-between" id="stage-exploit">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-danger-critical/30 font-mono text-xs font-bold text-danger-critical">STAGE 06</span>
+              <span class="material-symbols-outlined text-outline text-lg">bolt</span>
+            </div>
+            <h3 class="font-mono text-base font-bold text-on-surface">Controlled Exploitation</h3>
+            <p class="text-xs text-on-surface-variant font-sans leading-relaxed">
+              Executing authorized, controlled exploits to demonstrate verifiable business risk and establish initial foothold within agreed engagement constraints.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-border-hairline/60 space-y-1 font-mono text-[11px]">
+            <div class="text-secondary font-bold">Tools &amp; Frameworks:</div>
+            <div class="text-outline">Metasploit, Burp Repeater, custom Python PoCs</div>
+          </div>
+        </div>
+
+        <!-- STAGE 07: PRIVILEGE ESCALATION -->
+        <div class="p-5 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all flex flex-col justify-between" id="stage-privesc">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-danger-critical/30 font-mono text-xs font-bold text-danger-critical">STAGE 07</span>
+              <span class="material-symbols-outlined text-outline text-lg">upgrade</span>
+            </div>
+            <h3 class="font-mono text-base font-bold text-on-surface">Privilege Escalation</h3>
+            <p class="text-xs text-on-surface-variant font-sans leading-relaxed">
+              Auditing local host configurations, SUID binaries, misconfigured sudoers, cron permissions, and kernel versions to escalate from low-privilege service accounts to root/admin.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-border-hairline/60 space-y-1 font-mono text-[11px]">
+            <div class="text-secondary font-bold">Commands &amp; Hub:</div>
+            <div class="text-outline">sudo -l, SUID find, GTFOBins, LinPEAS</div>
+          </div>
+        </div>
+
+        <!-- STAGE 08: POST-EXPLOITATION -->
+        <div class="p-5 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all flex flex-col justify-between" id="stage-post">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-danger-critical/30 font-mono text-xs font-bold text-danger-critical">STAGE 08</span>
+              <span class="material-symbols-outlined text-outline text-lg">hub</span>
+            </div>
+            <h3 class="font-mono text-base font-bold text-on-surface">Post-Exploitation &amp; Pivoting</h3>
+            <p class="text-xs text-on-surface-variant font-sans leading-relaxed">
+              Evaluating the blast radius: examining internal dual-homed network interfaces, database connection strings, and credential caches to demonstrate lateral movement potential.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-border-hairline/60 space-y-1 font-mono text-[11px]">
+            <div class="text-secondary font-bold">Concepts:</div>
+            <div class="text-outline">SSH local port forwarding, Chisel, ProxyChains</div>
+          </div>
+        </div>
+
+        <!-- STAGE 09: EVIDENCE -->
+        <div class="p-5 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all flex flex-col justify-between" id="stage-evidence">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-secondary/30 font-mono text-xs font-bold text-secondary">STAGE 09</span>
+              <span class="material-symbols-outlined text-outline text-lg">photo_camera</span>
+            </div>
+            <h3 class="font-mono text-base font-bold text-on-surface">Evidence Collection &amp; Chain</h3>
+            <p class="text-xs text-on-surface-variant font-sans leading-relaxed">
+              Capturing exact terminal logs, HTTP request/response pairs, timestamps, and hashes. Documenting precise steps to reproduce findings without ambiguous claims.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-border-hairline/60 space-y-1 font-mono text-[11px]">
+            <div class="text-secondary font-bold">Integrity Rule:</div>
+            <div class="text-outline">SHA256 evidence hashing, timestamped logs</div>
+          </div>
+        </div>
+
+        <!-- STAGE 10: REPORTING -->
+        <div class="p-5 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all flex flex-col justify-between" id="stage-reporting">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-secondary/30 font-mono text-xs font-bold text-secondary">STAGE 10</span>
+              <span class="material-symbols-outlined text-outline text-lg">description</span>
+            </div>
+            <h3 class="font-mono text-base font-bold text-on-surface">Technical Reporting &amp; CVSS</h3>
+            <p class="text-xs text-on-surface-variant font-sans leading-relaxed">
+              Translating technical findings into actionable executive summaries and detailed developer remediation guides with standardized CVSS v3.1/v4.0 risk scoring and CWE references.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-border-hairline/60 space-y-1 font-mono text-[11px]">
+            <div class="text-secondary font-bold">Standard:</div>
+            <div class="text-outline">Executive Summary + CVSS Vector Breakdown</div>
+          </div>
+        </div>
+
+        <!-- STAGE 11: REMEDIATION -->
+        <div class="p-5 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all flex flex-col justify-between" id="stage-remediation">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-primary/30 font-mono text-xs font-bold text-primary">STAGE 11</span>
+              <span class="material-symbols-outlined text-outline text-lg">build_circle</span>
+            </div>
+            <h3 class="font-mono text-base font-bold text-on-surface">Remediation Guidance</h3>
+            <p class="text-xs text-on-surface-variant font-sans leading-relaxed">
+              Collaborating with engineering teams to provide robust code-level patches, WAF rules, and configuration changes rather than superficial band-aids.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-border-hairline/60 space-y-1 font-mono text-[11px]">
+            <div class="text-secondary font-bold">Defense:</div>
+            <div class="text-outline">Parameterized queries, CSP, least-privilege IAM</div>
+          </div>
+        </div>
+
+        <!-- STAGE 12: RETESTING -->
+        <div class="p-5 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all flex flex-col justify-between" id="stage-retesting">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-primary/30 font-mono text-xs font-bold text-primary">STAGE 12</span>
+              <span class="material-symbols-outlined text-outline text-lg">verified</span>
+            </div>
+            <h3 class="font-mono text-base font-bold text-on-surface">Retesting &amp; Attestation</h3>
+            <p class="text-xs text-on-surface-variant font-sans leading-relaxed">
+              Re-executing the original proof of concept against updated staging/production code to verify that the vulnerability is closed and no regression flaws were introduced.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-border-hairline/60 space-y-1 font-mono text-[11px]">
+            <div class="text-secondary font-bold">Outcome:</div>
+            <div class="text-outline">Official Letter of Attestation &amp; Clean Bill</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 2: ATTACK / DETECTION / DEFENSE MATRIX                            -->
+    <!-- ========================================================================= -->
+    <section id="matrix" class="space-y-8 pt-8 border-t border-border-hairline">
+      
+      <div class="space-y-2">
+        <h2 class="text-xl sm:text-2xl font-bold font-mono text-on-surface flex items-center gap-2">
+          <span class="text-primary">02.</span>
+          <span>Attack / Detection / Defense Matrix</span>
+        </h2>
+        <p class="text-xs sm:text-sm font-mono text-on-surface-variant max-w-3xl">
+          Three-perspective engineering analysis for 10 major vulnerabilities: how attackers test and validate in authorized labs, what defenders observe in SIEM/WAF telemetry, and how engineers remediate the root cause in code.
+        </p>
+      </div>
+
+      <div class="space-y-6">
+
+        <!-- 1. XSS -->
+        <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all">
+          <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-xs">VULN 01</span>
+              <h3 class="font-mono text-base font-bold text-on-surface">Cross-Site Scripting (XSS - Reflected &amp; Stored)</h3>
+            </div>
+            <span class="font-mono text-xs text-outline">CWE-79</span>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 text-xs font-mono">
+            <div class="p-4 rounded-xl bg-canvas-base border border-danger-critical/30 space-y-2">
+              <div class="text-danger-critical font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">bolt</span> Offensive View (Authorized Lab)
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Inject benign probes like <code class="text-primary font-mono">&lt;script&gt;alert(1)&lt;/script&gt;</code> or event handlers <code class="text-primary font-mono">" onfocus="alert(1)</code> into input fields. Verify if browser parses input as active JavaScript rather than text.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-secondary/30 space-y-2">
+              <div class="text-secondary font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">visibility</span> Detection View (Defender)
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                WAF rule alerts on <code class="text-outline font-mono">&lt;script&gt;</code>, <code class="text-outline font-mono">javascript:</code>, and <code class="text-outline font-mono">onerror=</code> in HTTP query strings. CSP violation report sent to <code class="text-outline font-mono">report-uri</code> endpoint.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-primary/30 space-y-2">
+              <div class="text-primary font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">shield</span> Defense View (Remediation)
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Context-aware output encoding (DOMPurify, HTML entity encoding), store session cookies with <code class="text-primary font-mono">HttpOnly; Secure; SameSite=Strict</code>, and deploy strict CSP without <code class="text-danger-critical font-mono">'unsafe-inline'</code>.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. SQL INJECTION -->
+        <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all">
+          <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-danger-critical/30 text-danger-critical font-mono font-bold text-xs">VULN 02</span>
+              <h3 class="font-mono text-base font-bold text-on-surface">SQL Injection (SQLi)</h3>
+            </div>
+            <span class="font-mono text-xs text-outline">CWE-89</span>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 text-xs font-mono">
+            <div class="p-4 rounded-xl bg-canvas-base border border-danger-critical/30 space-y-2">
+              <div class="text-danger-critical font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">bolt</span> Offensive View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Send single quote <code class="text-primary font-mono">'</code> or Boolean payloads <code class="text-primary font-mono">' OR 1=1--</code>. Observe database syntax errors or altered query results. Use UNION to extract schema metadata.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-secondary/30 space-y-2">
+              <div class="text-secondary font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">visibility</span> Detection View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Database server logs showing SQL syntax errors (MySQL error 1064). WAF signatures flagging keywords <code class="text-outline font-mono">UNION SELECT</code>, <code class="text-outline font-mono">information_schema</code>, or SQL comments <code class="text-outline font-mono">-- -</code>.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-primary/30 space-y-2">
+              <div class="text-primary font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">shield</span> Defense View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Strict parameterized queries (PreparedStatements) across all database adapters. Apply database user least privilege (read-only where possible).
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. CSRF -->
+        <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all">
+          <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-xs">VULN 03</span>
+              <h3 class="font-mono text-base font-bold text-on-surface">Cross-Site Request Forgery (CSRF)</h3>
+            </div>
+            <span class="font-mono text-xs text-outline">CWE-352</span>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 text-xs font-mono">
+            <div class="p-4 rounded-xl bg-canvas-base border border-danger-critical/30 space-y-2">
+              <div class="text-danger-critical font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">bolt</span> Offensive View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Host an external webpage with an auto-submitting HTML form targeting a sensitive state-changing action (e.g. <code class="text-primary font-mono">POST /email/change</code>) without an anti-CSRF token.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-secondary/30 space-y-2">
+              <div class="text-secondary font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">visibility</span> Detection View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                HTTP request <code class="text-outline font-mono">Referer</code> or <code class="text-outline font-mono">Origin</code> header mismatch compared to target <code class="text-outline font-mono">Host</code> domain.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-primary/30 space-y-2">
+              <div class="text-primary font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">shield</span> Defense View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Cryptographically random Synchronizer Token Pattern, validate <code class="text-primary font-mono">Origin</code> headers, and enforce <code class="text-primary font-mono">SameSite=Lax</code> or <code class="text-primary font-mono">Strict</code> on session cookies.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. IDOR -->
+        <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all">
+          <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-xs">VULN 04</span>
+              <h3 class="font-mono text-base font-bold text-on-surface">Insecure Direct Object Reference (IDOR)</h3>
+            </div>
+            <span class="font-mono text-xs text-outline">CWE-639</span>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 text-xs font-mono">
+            <div class="p-4 rounded-xl bg-canvas-base border border-danger-critical/30 space-y-2">
+              <div class="text-danger-critical font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">bolt</span> Offensive View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Log in as User A, request object ID of User B via URL parameter or JSON body (e.g. <code class="text-primary font-mono">GET /document?id=5001</code>). If data returns with HTTP 200, IDOR is confirmed.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-secondary/30 space-y-2">
+              <div class="text-secondary font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">visibility</span> Detection View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Application audit logs show sequential iteration of numeric object IDs by a single authenticated session within short intervals.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-primary/30 space-y-2">
+              <div class="text-primary font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">shield</span> Defense View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Enforce record-level authorization in API middleware: verify <code class="text-primary font-mono">object.owner_id === req.user.id</code> before returning database records. Use random UUIDv4.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. SSRF -->
+        <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all">
+          <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-danger-critical/30 text-danger-critical font-mono font-bold text-xs">VULN 05</span>
+              <h3 class="font-mono text-base font-bold text-on-surface">Server-Side Request Forgery (SSRF)</h3>
+            </div>
+            <span class="font-mono text-xs text-outline">CWE-918</span>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 text-xs font-mono">
+            <div class="p-4 rounded-xl bg-canvas-base border border-danger-critical/30 space-y-2">
+              <div class="text-danger-critical font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">bolt</span> Offensive View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Supply internal loopback addresses (<code class="text-primary font-mono">http://127.0.0.1:8000/</code>) or cloud metadata endpoints (<code class="text-primary font-mono">http://169.254.169.254/latest/meta-data/</code>) to webhook or URL-import fields.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-secondary/30 space-y-2">
+              <div class="text-secondary font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">visibility</span> Detection View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Outbound connection attempts from web servers to RFC 1918 private subnets or link-local addresses logged in firewall traffic flows.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-primary/30 space-y-2">
+              <div class="text-primary font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">shield</span> Defense View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Strict domain allowlists, resolve DNS and block private IP ranges (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 127.0.0.1), and enforce IMDSv2 in cloud hosts.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6. PATH TRAVERSAL -->
+        <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all">
+          <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-xs">VULN 06</span>
+              <h3 class="font-mono text-base font-bold text-on-surface">Path Traversal &amp; LFI</h3>
+            </div>
+            <span class="font-mono text-xs text-outline">CWE-22</span>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 text-xs font-mono">
+            <div class="p-4 rounded-xl bg-canvas-base border border-danger-critical/30 space-y-2">
+              <div class="text-danger-critical font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">bolt</span> Offensive View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Inject directory traversal sequences like <code class="text-primary font-mono">../../../../etc/passwd</code> or URL-encoded <code class="text-primary font-mono">%2e%2e%2f</code> into file-download or template-loading parameters.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-secondary/30 space-y-2">
+              <div class="text-secondary font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">visibility</span> Detection View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Web server access logs capturing <code class="text-outline font-mono">..</code> patterns in URI path. System audit logs tracking web server process reading sensitive files outside docroot.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-primary/30 space-y-2">
+              <div class="text-primary font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">shield</span> Defense View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Use an allowlist of permitted filenames, strip path characters using <code class="text-primary font-mono">basename()</code>, or verify canonical paths with <code class="text-primary font-mono">realpath()</code> against base directory.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 7. COMMAND INJECTION -->
+        <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all">
+          <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-danger-critical/30 text-danger-critical font-mono font-bold text-xs">VULN 07</span>
+              <h3 class="font-mono text-base font-bold text-on-surface">Remote Command Injection (CMDi)</h3>
+            </div>
+            <span class="font-mono text-xs text-outline">CWE-78</span>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 text-xs font-mono">
+            <div class="p-4 rounded-xl bg-canvas-base border border-danger-critical/30 space-y-2">
+              <div class="text-danger-critical font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">bolt</span> Offensive View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Append shell metacharacters (<code class="text-primary font-mono">;</code>, <code class="text-primary font-mono">&amp;&amp;</code>, <code class="text-primary font-mono">|</code>, <code class="text-primary font-mono">`whoami`</code>) into fields passed to system execution functions like <code class="text-outline font-mono">exec()</code> or <code class="text-outline font-mono">system()</code>.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-secondary/30 space-y-2">
+              <div class="text-secondary font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">visibility</span> Detection View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                EDR / Sysmon alerts detecting web server process (<code class="text-outline font-mono">nginx</code>, <code class="text-outline font-mono">php-fpm</code>, <code class="text-outline font-mono">node</code>) spawning shell processes (<code class="text-secondary font-mono">/bin/sh</code>, <code class="text-secondary font-mono">cmd.exe</code>).
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-primary/30 space-y-2">
+              <div class="text-primary font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">shield</span> Defense View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Avoid calling system shells. Use native API libraries instead of invoking shell commands. If execution is mandatory, pass arguments as discrete arrays without shell interpolation.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 8. AUTHENTICATION FLAWS -->
+        <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all">
+          <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-xs">VULN 08</span>
+              <h3 class="font-mono text-base font-bold text-on-surface">Broken Authentication &amp; Brute Force</h3>
+            </div>
+            <span class="font-mono text-xs text-outline">CWE-287</span>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 text-xs font-mono">
+            <div class="p-4 rounded-xl bg-canvas-base border border-danger-critical/30 space-y-2">
+              <div class="text-danger-critical font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">bolt</span> Offensive View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Perform automated dictionary attacks or credential stuffing without triggering account lockouts or CAPTCHA barriers. Exploit password reset token predictability.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-secondary/30 space-y-2">
+              <div class="text-secondary font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">visibility</span> Detection View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                High frequency of HTTP 401 Unauthorized responses originating from single IP subnets or targeting sequential username lists.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-primary/30 space-y-2">
+              <div class="text-primary font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">shield</span> Defense View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Mandatory Multi-Factor Authentication (MFA / FIDO2), rate limiting via IP and username, progressive delays on failed attempts, and secure password hashing (Argon2id).
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 9. PRIVILEGE ESCALATION -->
+        <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all">
+          <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-danger-critical/30 text-danger-critical font-mono font-bold text-xs">VULN 09</span>
+              <h3 class="font-mono text-base font-bold text-on-surface">Linux SUID &amp; Sudo Misconfigurations</h3>
+            </div>
+            <span class="font-mono text-xs text-outline">CWE-250</span>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 text-xs font-mono">
+            <div class="p-4 rounded-xl bg-canvas-base border border-danger-critical/30 space-y-2">
+              <div class="text-danger-critical font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">bolt</span> Offensive View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Check <code class="text-primary font-mono">sudo -l</code> and search for SUID binaries with GTFOBins bypasses. Abuse writable cron jobs or PATH hijacking to run commands as root.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-secondary/30 space-y-2">
+              <div class="text-secondary font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">visibility</span> Detection View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Auditd records <code class="text-secondary font-mono">execve</code> syscalls where <code class="text-secondary font-mono">euid=0</code> from non-root parent process trees. Sudo executions logged in <code class="text-outline font-mono">/var/log/auth.log</code>.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-primary/30 space-y-2">
+              <div class="text-primary font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">shield</span> Defense View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Strip unnecessary SUID bits (<code class="text-primary font-mono">chmod u-s</code>), restrict sudo rules to specific executables without wildcards, and mount <code class="text-outline font-mono">/tmp</code> with <code class="text-primary font-mono">nosuid,noexec</code>.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 10. WEAK CREDENTIALS -->
+        <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all">
+          <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-xs">VULN 10</span>
+              <h3 class="font-mono text-base font-bold text-on-surface">Default &amp; Weak Credentials</h3>
+            </div>
+            <span class="font-mono text-xs text-outline">CWE-1392</span>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 text-xs font-mono">
+            <div class="p-4 rounded-xl bg-canvas-base border border-danger-critical/30 space-y-2">
+              <div class="text-danger-critical font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">bolt</span> Offensive View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Test factory default usernames and passwords on appliances, routers, database engines, and management panels (e.g. <code class="text-primary font-mono">admin:admin</code>, <code class="text-primary font-mono">root:toor</code>, <code class="text-primary font-mono">tomcat:s3cret</code>).
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-secondary/30 space-y-2">
+              <div class="text-secondary font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">visibility</span> Detection View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Successful logins to privileged accounts occurring from previously unseen external IP addresses or during off-business hours.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-primary/30 space-y-2">
+              <div class="text-primary font-bold flex items-center gap-1.5 uppercase">
+                <span class="material-symbols-outlined text-sm">shield</span> Defense View
+              </div>
+              <p class="text-on-surface-variant font-sans text-xs leading-relaxed">
+                Force password change on initial system boot, enforce minimum 16-character password complexity, and disable standard vendor default accounts.
+              </p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="border-t border-border-hairline bg-surface-subtle py-8 text-center font-mono text-xs text-on-surface-variant mt-16">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-primary"></span>
+        <span class="text-on-surface font-bold">Mihraj Mashhoor K</span>
+        <span>· Cybersecurity Engineering &amp; Research</span>
+      </div>
+      <div class="flex items-center gap-4 text-outline">
+        <a href="index.html" class="hover:text-primary transition-colors">Portfolio</a>
+        <a href="learning.html" class="hover:text-primary transition-colors">Learning</a>
+        <a href="labs.html" class="hover:text-primary transition-colors">Labs</a>
+        <a href="tools.html" class="hover:text-primary transition-colors">Toolkit</a>
+        <a href="glossary.html" class="hover:text-primary transition-colors">Glossary</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="portfolio-interactive.js"></script>
+</body>
+</html>
