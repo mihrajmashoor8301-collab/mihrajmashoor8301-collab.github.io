@@ -154,6 +154,174 @@
   window.showToast = showToast;
 
   // =========================================================================
+  // 2.1 GAMIFICATION ENGINE (CYBEROPS XP & BADGES)
+  // =========================================================================
+  const CYBER_BADGES = {
+    terminal_init: { id: 'terminal_init', name: 'Shell Initiated', icon: 'terminal', desc: 'Opened interactive terminal or executed a command' },
+    first_blood: { id: 'first_blood', name: 'First Blood', icon: 'flag', desc: 'Solved your first practical cybersecurity lab' },
+    recon_scout: { id: 'recon_scout', name: 'Recon Scout', icon: 'radar', desc: 'Conducted network reconnaissance using Nmap' },
+    hash_breaker: { id: 'hash_breaker', name: 'Hash Breaker', icon: 'password', desc: 'Recovered a cryptographic password hash' },
+    privesc_root: { id: 'privesc_root', name: 'EUID=0 Root', icon: 'shield_person', desc: 'Achieved simulated root privilege escalation' },
+    roadmap_scholar: { id: 'roadmap_scholar', name: 'Knowledge Seeker', icon: 'school', desc: 'Completed a track in the Cybersecurity Roadmap' },
+    daily_solver: { id: 'daily_solver', name: 'Daily Briefing', icon: 'bolt', desc: 'Successfully solved a Daily Cyber Challenge scenario' },
+    toolsmith: { id: 'toolsmith', name: 'Toolsmith', icon: 'construction', desc: 'Analyzed tokens, headers or CIDR with the security toolkit' },
+    master_operator: { id: 'master_operator', name: 'Master Operator', icon: 'military_tech', desc: 'Earned 1000+ total CyberOps XP' }
+  };
+
+  const LEVELS = [
+    { level: 1, title: 'Novice Operator', minXp: 0, maxXp: 149 },
+    { level: 2, title: 'Recon Specialist', minXp: 150, maxXp: 399 },
+    { level: 3, title: 'Vulnerability Analyst', minXp: 400, maxXp: 799 },
+    { level: 4, title: 'Exploit Researcher', minXp: 800, maxXp: 1399 },
+    { level: 5, title: 'Advanced Cyber Operator', minXp: 1400, maxXp: 999999 }
+  ];
+
+  const CyberOps = {
+    STORAGE_KEY: 'endlessus_cyber_ops_v1',
+    getState: function() {
+      try {
+        const raw = localStorage.getItem(this.STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed && typeof parsed.xp === 'number') {
+            if (!Array.isArray(parsed.completedLabs)) parsed.completedLabs = [];
+            if (!Array.isArray(parsed.completedTracks)) parsed.completedTracks = [];
+            if (!Array.isArray(parsed.badges)) parsed.badges = [];
+            if (typeof parsed.dailyChallenges !== 'object' || !parsed.dailyChallenges) parsed.dailyChallenges = {};
+            return parsed;
+          }
+        }
+      } catch (e) {}
+      return {
+        xp: 0,
+        level: 1,
+        title: 'Novice Operator',
+        completedLabs: [],
+        completedTracks: [],
+        dailyChallenges: {},
+        badges: [],
+        lastActive: Date.now()
+      };
+    },
+    saveState: function(state) {
+      try {
+        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {}
+      this.updateHUD();
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('cyberops:updated', { detail: state }));
+      }
+    },
+    getLevelInfo: function(xp) {
+      for (let i = LEVELS.length - 1; i >= 0; i--) {
+        if (xp >= LEVELS[i].minXp) {
+          const currentTier = LEVELS[i];
+          const nextTier = LEVELS[i + 1] || null;
+          let progress = 100;
+          if (nextTier) {
+            const range = nextTier.minXp - currentTier.minXp;
+            const earned = xp - currentTier.minXp;
+            progress = Math.min(100, Math.max(0, Math.round((earned / range) * 100)));
+          }
+          return {
+            level: currentTier.level,
+            title: currentTier.title,
+            minXp: currentTier.minXp,
+            nextXp: nextTier ? nextTier.minXp : currentTier.maxXp,
+            progress: progress
+          };
+        }
+      }
+      return { level: 1, title: 'Novice Operator', minXp: 0, nextXp: 150, progress: 0 };
+    },
+    addXP: function(amount, reason = '') {
+      const state = this.getState();
+      const prevLvl = state.level;
+      state.xp = Math.max(0, state.xp + amount);
+      const lvlInfo = this.getLevelInfo(state.xp);
+      state.level = lvlInfo.level;
+      state.title = lvlInfo.title;
+      state.lastActive = Date.now();
+
+      if (state.xp >= 1000 && !state.badges.includes('master_operator')) {
+        state.badges.push('master_operator');
+        if (window.showToast) window.showToast('BADGE UNLOCKED: Master Operator (1000+ XP)!', 'success');
+      }
+
+      this.saveState(state);
+
+      if (window.showToast && amount > 0) {
+        window.showToast(`+${amount} XP · ${reason || 'Activity recorded'}`, 'success');
+      }
+
+      if (state.level > prevLvl) {
+        setTimeout(() => {
+          if (window.showToast) {
+            window.showToast(`RANK PROMOTED: Level ${state.level} [${state.title}]!`, 'success', 5000);
+          }
+        }, 800);
+      }
+      return state;
+    },
+    unlockBadge: function(badgeId) {
+      if (!CYBER_BADGES[badgeId]) return;
+      const state = this.getState();
+      if (!state.badges.includes(badgeId)) {
+        state.badges.push(badgeId);
+        this.saveState(state);
+        if (window.showToast) {
+          window.showToast(`BADGE UNLOCKED: ${CYBER_BADGES[badgeId].name}!`, 'success', 4500);
+        }
+      }
+    },
+    completeLab: function(labId, labTitle = '', xpReward = 75) {
+      const state = this.getState();
+      if (!state.completedLabs.includes(labId)) {
+        state.completedLabs.push(labId);
+        this.saveState(state);
+        this.addXP(xpReward, `Solved Lab: ${labTitle || labId}`);
+        if (!state.badges.includes('first_blood')) {
+          this.unlockBadge('first_blood');
+        }
+        return true;
+      }
+      return false;
+    },
+    completeTrack: function(trackId, trackTitle = '', xpReward = 50) {
+      const state = this.getState();
+      if (!state.completedTracks.includes(trackId)) {
+        state.completedTracks.push(trackId);
+        this.saveState(state);
+        this.addXP(xpReward, `Completed Track: ${trackTitle || trackId}`);
+        if (!state.badges.includes('roadmap_scholar')) {
+          this.unlockBadge('roadmap_scholar');
+        }
+        return true;
+      }
+      return false;
+    },
+    updateHUD: function() {
+      const state = this.getState();
+      const lvlInfo = this.getLevelInfo(state.xp);
+
+      document.querySelectorAll('.cyberops-xp-val').forEach(el => el.textContent = `${state.xp} XP`);
+      document.querySelectorAll('.cyberops-level-val').forEach(el => el.textContent = `LVL ${lvlInfo.level}`);
+      document.querySelectorAll('.cyberops-rank-title').forEach(el => el.textContent = lvlInfo.title);
+      document.querySelectorAll('.cyberops-progress-bar').forEach(el => {
+        el.style.width = `${lvlInfo.progress}%`;
+      });
+      document.querySelectorAll('.cyberops-badges-count').forEach(el => {
+        el.textContent = `${state.badges.length}/${Object.keys(CYBER_BADGES).length}`;
+      });
+      document.querySelectorAll('.cyberops-labs-count').forEach(el => {
+        el.textContent = `${state.completedLabs.length}`;
+      });
+    }
+  };
+  window.CyberOps = CyberOps;
+  window.CYBER_BADGES = CYBER_BADGES;
+
+  // =========================================================================
   // 3. GLOBAL READING PROGRESS BAR (FIXED TOP)
   // =========================================================================
   function initProgressBar() {
@@ -1370,18 +1538,374 @@ PORT      STATE SERVICE
             </div>
           `;
 
+        case 'neofetch':
+        case 'fastfetch': {
+          const state = (window.CyberOps && window.CyberOps.getState) ? window.CyberOps.getState() : { xp: 0, level: 1, title: 'Novice Operator' };
+          const lvlInfo = (window.CyberOps && window.CyberOps.getLevelInfo) ? window.CyberOps.getLevelInfo(state.xp) : { level: 1, title: 'Novice Operator' };
+          return `
+            <div class="font-mono text-xs flex flex-col md:flex-row gap-4 p-3 bg-canvas-base border border-primary/40 rounded-xl my-1">
+              <div class="text-primary font-bold whitespace-pre select-none leading-none hidden sm:block text-[11px]">
+  ..............
+            ..,;:ccc,.
+          ......'':::;ccc.
+                 ':::;cc;.
+                  ':::;c;
+                   ':::;;
+       .:*:..      .:::;
+     .::::::::.    .::;
+    .:::::::::::...::;
+    ':::::::::::;::;
+     '::::::::::;::;
+       '::::::::::;
+           '::::::;
+               '::;
+              </div>
+              <div class="space-y-1 text-[11px] leading-relaxed flex-1">
+                <div class="text-primary font-bold text-sm">mihraj@sec-station</div>
+                <div class="text-outline text-[10px]">─────────────────────────────</div>
+                <div><span class="text-secondary font-bold">OS:</span> Kali GNU/Linux Rolling x86_64 / Endlessus Engine v4.0</div>
+                <div><span class="text-secondary font-bold">Host:</span> MSI Katana 15 / AMD Ryzen 7 &amp; NVIDIA RTX 4070 (12GB VRAM)</div>
+                <div><span class="text-secondary font-bold">Kernel:</span> 6.8.12-1kali1-amd64</div>
+                <div><span class="text-secondary font-bold">Uptime:</span> 142 days, 18 hours, 40 mins</div>
+                <div><span class="text-secondary font-bold">Shell:</span> bash 5.2.21 / CyberCLI v4.0</div>
+                <div><span class="text-secondary font-bold">Identity:</span> Mihraj Mashhoor K (Offensive Security Student &amp; AI Practitioner)</div>
+                <div><span class="text-secondary font-bold">Education:</span> B.Tech Computer Science &amp; Cybersecurity (CGPA 7.9)</div>
+                <div><span class="text-secondary font-bold">Standing:</span> <span class="text-primary font-bold">TryHackMe Top 2% Globally (140+ Rooms Completed)</span></div>
+                <div><span class="text-secondary font-bold">Certifications:</span> Google Cybersecurity Professional, THM Pre-Security, THM 101</div>
+                <div><span class="text-secondary font-bold">Operator Level:</span> <span class="text-primary font-bold">LVL ${lvlInfo.level} · ${lvlInfo.title} (${state.xp} XP)</span></div>
+                <div><span class="text-secondary font-bold">Core Stack:</span> Python, C, Bash, Nmap, Burp Suite, Metasploit, Ollama, SQLite</div>
+                <div class="flex items-center gap-1.5 mt-2 pt-1 border-t border-border-hairline">
+                  <span class="inline-block w-3 h-3 rounded-full bg-[#090D12] border border-border-hairline"></span>
+                  <span class="inline-block w-3 h-3 rounded-full bg-[#4EDEA3]"></span>
+                  <span class="inline-block w-3 h-3 rounded-full bg-[#4CD7F6]"></span>
+                  <span class="inline-block w-3 h-3 rounded-full bg-[#F59E0B]"></span>
+                  <span class="inline-block w-3 h-3 rounded-full bg-[#F43F5E]"></span>
+                  <span class="inline-block w-3 h-3 rounded-full bg-[#A855F7]"></span>
+                  <span class="inline-block w-3 h-3 rounded-full bg-[#E5E7EB]"></span>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        case 'whoami':
+        case 'about':
+        case 'bio': {
+          return `
+            <div class="p-3 rounded bg-canvas-base border border-primary/40 space-y-2 text-xs">
+              <div class="text-primary font-bold text-sm">MIHRAJ MASHOOR K // OPERATIONAL PROFILE</div>
+              <div class="text-on-surface leading-relaxed text-[11px]">
+                I am a B.Tech Cybersecurity student (CGPA 7.9) focusing on practical offensive security, penetration testing workflows, and local AI agent infrastructure.
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] font-mono pt-1">
+                <div class="p-2 rounded bg-surface-raised border border-border-hairline">
+                  <div class="text-secondary font-bold">Competitive Standing</div>
+                  <div>• TryHackMe: <span class="text-primary font-bold">Top 2% Globally</span></div>
+                  <div>• Rooms Solved: <span class="text-primary font-bold">140+ Rooms</span></div>
+                  <div>• Streaks &amp; Badges: Linux, Web, Network</div>
+                </div>
+                <div class="p-2 rounded bg-surface-raised border border-border-hairline">
+                  <div class="text-secondary font-bold">Credentials &amp; Certs</div>
+                  <div>• Google Cybersecurity Professional</div>
+                  <div>• TryHackMe Pre-Security Certified</div>
+                  <div>• TryHackMe Cyber Security 101</div>
+                </div>
+              </div>
+              <div class="text-outline text-[11px]">
+                Engineering Philosophy: Real-world security requires understanding how software, operating systems, and network protocols break from first principles.
+              </div>
+              <div class="flex items-center gap-2 pt-1">
+                <a href="${root}resume.html" class="text-primary underline font-bold text-[11px]">View Full Browser Resume ↗</a>
+                <span class="text-outline">·</span>
+                <a href="${root}CV_2026_UPDATED.pdf" target="_blank" class="text-secondary underline font-bold text-[11px]">Download CV PDF ↗</a>
+              </div>
+            </div>
+          `;
+        }
+
+        case 'skills': {
+          return `
+            <div class="space-y-2 text-xs">
+              <div class="text-primary font-bold text-sm">AUTHENTIC TECHNICAL SKILLS MATRIX</div>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px] font-mono">
+                <div class="p-2.5 rounded bg-surface-raised border border-primary/30 space-y-1">
+                  <div class="text-primary font-bold">OFFENSIVE SECURITY</div>
+                  <div>• Nmap SYN &amp; Script Scanning</div>
+                  <div>• Web App Pentesting (OWASP Top 10)</div>
+                  <div>• Linux Privilege Escalation (SUID/Sudo)</div>
+                  <div>• Metasploit &amp; Exploit-DB Research</div>
+                  <div>• Hydra &amp; Hashcat Password Auditing</div>
+                  <div>• Gobuster / ffuf Endpoint Fuzzing</div>
+                </div>
+                <div class="p-2.5 rounded bg-surface-raised border border-secondary/30 space-y-1">
+                  <div class="text-secondary font-bold">DEFENSIVE &amp; ANALYSIS</div>
+                  <div>• Wireshark Packet Inspection</div>
+                  <div>• HTTP Security Headers &amp; CSP</div>
+                  <div>• Linux Auth &amp; Web Log Forensics</div>
+                  <div>• MITRE ATT&amp;CK Mapping</div>
+                  <div>• JWT &amp; Authz Vulnerability Analysis</div>
+                  <div>• Defensive Remediation Guidance</div>
+                </div>
+                <div class="p-2.5 rounded bg-surface-raised border border-warning/30 space-y-1">
+                  <div class="text-warning font-bold">SYSTEMS &amp; LOCAL AI</div>
+                  <div>• Python 3, C, Bash Scripting</div>
+                  <div>• Linux Systems Administration</div>
+                  <div>• Docker Container Security</div>
+                  <div>• SQLite &amp; ChromaDB Architecture</div>
+                  <div>• Local LLM Stacks (Ollama, Qwen)</div>
+                  <div>• Git, GitHub Pages, Linux CLI</div>
+                </div>
+              </div>
+              <div class="text-outline text-[10px]">All skills verified through completed coursework, TryHackMe labs, and hands-on repository projects.</div>
+            </div>
+          `;
+        }
+
+        case 'projects': {
+          return `
+            <div class="space-y-2 text-xs">
+              <div class="text-primary font-bold text-sm">SECURITY &amp; SYSTEMS CASE STUDIES (7)</div>
+              <div class="space-y-1.5 text-[11px] font-mono">
+                <div class="p-2 rounded bg-surface-raised border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                  <div>
+                    <a href="${root}projects/opencode-persistent-memory.html" class="text-secondary font-bold hover:underline">1. OpenCode Persistent Memory</a>
+                    <div class="text-outline text-[10px]">SQLite-authoritative dual-engine local memory system for autonomous coding.</div>
+                  </div>
+                  <span class="text-primary text-[10px] shrink-0 font-bold">Local AI / Systems</span>
+                </div>
+                <div class="p-2 rounded bg-surface-raised border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                  <div>
+                    <a href="${root}projects/sentinelai.html" class="text-secondary font-bold hover:underline">2. SentinelAI: Vuln Intelligence</a>
+                    <div class="text-outline text-[10px]">Vulnerability intelligence knowledge graph engine with MITRE ATT&amp;CK mapping.</div>
+                  </div>
+                  <span class="text-danger-critical text-[10px] shrink-0 font-bold">Vuln Intel</span>
+                </div>
+                <div class="p-2 rounded bg-surface-raised border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                  <div>
+                    <a href="${root}projects/autonomous-pentesting-agent.html" class="text-secondary font-bold hover:underline">3. Autonomous Pentesting Agent</a>
+                    <div class="text-outline text-[10px]">AI-assisted authorized security testing framework on owned targets.</div>
+                  </div>
+                  <span class="text-primary text-[10px] shrink-0 font-bold">Offensive AI</span>
+                </div>
+                <div class="p-2 rounded bg-surface-raised border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                  <div>
+                    <a href="${root}projects/cyberai.html" class="text-secondary font-bold hover:underline">4. CyberAI: Local Security Platform</a>
+                    <div class="text-outline text-[10px]">Local cybersecurity AI platform powered by Qwen-Coder on private hardware.</div>
+                  </div>
+                  <span class="text-secondary text-[10px] shrink-0 font-bold">Security Agent</span>
+                </div>
+                <div class="p-2 rounded bg-surface-raised border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                  <div>
+                    <a href="${root}projects/cybersecurity-handbook.html" class="text-secondary font-bold hover:underline">5. Cybersecurity Handbook</a>
+                    <div class="text-outline text-[10px]">15-module command knowledge base and CLI practitioner reference manual.</div>
+                  </div>
+                  <span class="text-warning text-[10px] shrink-0 font-bold">Knowledge Base</span>
+                </div>
+              </div>
+              <div class="text-outline text-[10px]">Explore all projects on the homepage or click any title to view deep architecture specs.</div>
+            </div>
+          `;
+        }
+
+        case 'handbook': {
+          return `
+            <div class="p-3 rounded bg-canvas-base border border-secondary/40 space-y-2 text-xs">
+              <div class="text-secondary font-bold flex items-center justify-between">
+                <span>ETHICAL HACKER'S COMMAND HANDBOOK (15 MODULES)</span>
+                <a href="${root}handbook/index.html" class="px-2 py-0.5 rounded bg-secondary/20 text-secondary hover:bg-secondary hover:text-canvas-base text-[10px] font-bold">OPEN KB ↗</a>
+              </div>
+              <div class="text-outline text-[11px]">Comprehensive command-line knowledge base with zero-bloat syntax references:</div>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-[11px] font-mono pt-1">
+                <a href="${root}handbook/nmap.html" class="p-1.5 rounded bg-surface-raised border border-border-hairline hover:border-secondary text-center text-primary font-bold">Nmap Scanning</a>
+                <a href="${root}handbook/linux.html" class="p-1.5 rounded bg-surface-raised border border-border-hairline hover:border-secondary text-center text-secondary font-bold">Linux Security</a>
+                <a href="${root}handbook/metasploit.html" class="p-1.5 rounded bg-surface-raised border border-border-hairline hover:border-secondary text-center text-danger-critical font-bold">Metasploit</a>
+                <a href="${root}handbook/searchsploit.html" class="p-1.5 rounded bg-surface-raised border border-border-hairline hover:border-secondary text-center text-warning font-bold">SearchSploit</a>
+              </div>
+            </div>
+          `;
+        }
+
+        case 'resume':
+        case 'cv': {
+          return `
+            <div class="p-3 rounded bg-canvas-base border border-primary/40 space-y-2 text-xs">
+              <div class="text-primary font-bold">CURRICULUM VITAE &amp; RESUME // MIHRAJ MASHOOR K</div>
+              <div class="text-on-surface text-[11px]">B.Tech Computer Science &amp; Cybersecurity | TryHackMe Top 2% Globally | Google Cybersecurity Certified</div>
+              <div class="flex items-center gap-3 pt-1">
+                <a href="${root}resume.html" class="px-3 py-1.5 rounded bg-primary/20 text-primary border border-primary/40 hover:bg-primary hover:text-canvas-base font-bold text-[11px] transition-all">Open Browser Resume ↗</a>
+                <a href="${root}CV_2026_UPDATED.pdf" target="_blank" class="px-3 py-1.5 rounded bg-surface-raised text-on-surface border border-border-hairline hover:border-secondary hover:text-secondary font-bold text-[11px] transition-all">Download PDF (CV_2026_UPDATED.pdf) ↗</a>
+              </div>
+            </div>
+          `;
+        }
+
+        case 'xp':
+        case 'stats':
+        case 'profile': {
+          const state = (window.CyberOps && window.CyberOps.getState) ? window.CyberOps.getState() : { xp: 0, level: 1, title: 'Novice Operator', completedLabs: [], completedTracks: [], badges: [] };
+          const lvlInfo = (window.CyberOps && window.CyberOps.getLevelInfo) ? window.CyberOps.getLevelInfo(state.xp) : { level: 1, title: 'Novice Operator', progress: 0, nextXp: 150 };
+          return `
+            <div class="p-3 rounded bg-canvas-base border border-primary/40 space-y-2.5 text-xs font-mono">
+              <div class="flex items-center justify-between text-primary font-bold">
+                <span class="flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-sm">military_tech</span>
+                  <span>CYBEROPS OPERATOR PROFILE // STATUS</span>
+                </span>
+                <span class="px-2 py-0.5 rounded bg-primary/20 text-primary text-[10px]">OPERATOR LVL ${lvlInfo.level}</span>
+              </div>
+              <div class="space-y-1 text-[11px]">
+                <div class="flex justify-between">
+                  <span class="text-outline">Rank Title:</span>
+                  <span class="text-on-surface font-bold">${lvlInfo.title}</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-outline">Total CyberOps XP:</span>
+                  <span class="text-primary font-bold">${state.xp} XP</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-outline">Next Promotion Tier:</span>
+                  <span class="text-secondary font-bold">${lvlInfo.nextXp} XP (${lvlInfo.progress}% complete)</span>
+                </div>
+                <div class="w-full bg-surface-raised rounded-full h-1.5 overflow-hidden my-1">
+                  <div class="bg-primary h-full transition-all" style="width: ${lvlInfo.progress}%"></div>
+                </div>
+                <div class="flex justify-between pt-1">
+                  <span class="text-outline">Completed Labs:</span>
+                  <span class="text-on-surface">${state.completedLabs.length} / 12</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-outline">Roadmap Tracks Mastered:</span>
+                  <span class="text-on-surface">${state.completedTracks.length} / 11</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-outline">Badges Unlocked:</span>
+                  <span class="text-warning font-bold">${state.badges.length} / ${Object.keys(CYBER_BADGES || {}).length}</span>
+                </div>
+              </div>
+              <div class="text-outline text-[10px]">Earn more XP by solving practical labs, checking off roadmap tracks, and completing daily challenges!</div>
+            </div>
+          `;
+        }
+
+        case 'badges': {
+          const state = (window.CyberOps && window.CyberOps.getState) ? window.CyberOps.getState() : { badges: [] };
+          const allBadges = window.CYBER_BADGES || {};
+          return `
+            <div class="p-3 rounded bg-canvas-base border border-warning/40 space-y-2 text-xs">
+              <div class="text-warning font-bold flex items-center justify-between">
+                <span>CYBEROPS BADGES &amp; ACHIEVEMENTS</span>
+                <span class="text-[10px] text-outline">${state.badges.length} Unlocked</span>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] font-mono">
+                ${Object.values(allBadges).map(b => {
+                  const unlocked = state.badges.includes(b.id);
+                  return `
+                    <div class="p-2 rounded ${unlocked ? 'bg-primary/10 border-primary/40 text-on-surface' : 'bg-surface-raised border-border-hairline text-outline opacity-60'} border flex items-start gap-2">
+                      <span class="material-symbols-outlined text-sm ${unlocked ? 'text-primary' : 'text-outline'} mt-0.5">${b.icon}</span>
+                      <div>
+                        <div class="${unlocked ? 'text-primary font-bold' : 'text-outline'}">${b.name} ${unlocked ? '✓' : '🔒'}</div>
+                        <div class="text-[10px]">${b.desc}</div>
+                      </div>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          `;
+        }
+
+        case 'challenge': {
+          const answer = arg1.trim();
+          if (!answer) {
+            return `
+              <div class="p-3 rounded bg-canvas-base border border-secondary/40 space-y-2 text-xs font-mono">
+                <div class="text-secondary font-bold flex items-center justify-between">
+                  <span>DAILY CYBER CHALLENGE // SCENARIO TRIAGE (OCT 2026)</span>
+                  <span class="px-2 py-0.5 rounded bg-primary/20 text-primary text-[10px] font-bold">+50 XP</span>
+                </div>
+                <div class="text-on-surface leading-relaxed text-[11px]">
+                  <strong>Scenario:</strong> During a network audit, you discover an open TCP port 445 on a Windows host. Traffic capture analysis reveals an unauthenticated client initiating an SMBv3 negotiate dialect with compression transform header 0x0311, immediately triggering a kernel pool memory corruption in <code>srv2.sys</code> decompression routines.
+                </div>
+                <div class="space-y-1 text-[11px] text-outline">
+                  <div>1) CVE-2017-0144 (EternalBlue)</div>
+                  <div>2) CVE-2020-0796 (SMBGhost)</div>
+                  <div>3) CVE-2024-3094 (XZ Utils Backdoor)</div>
+                  <div>4) CVE-2021-44228 (Log4Shell)</div>
+                </div>
+                <div class="text-primary font-bold text-[11px] pt-1">
+                  Type: <code class="text-secondary">challenge 2</code> (or 1, 3, 4) to submit your triage answer!
+                </div>
+              </div>
+            `;
+          }
+
+          if (answer === '2' || answer.toLowerCase().includes('smbghost') || answer.includes('0796')) {
+            if (window.CyberOps) {
+              window.CyberOps.addXP(50, 'Solved Daily Cyber Challenge (CVE-2020-0796)');
+              window.CyberOps.unlockBadge('daily_solver');
+            }
+            return `
+              <div class="p-3 rounded bg-canvas-base border border-primary/50 text-xs font-mono space-y-1.5">
+                <div class="text-primary font-bold">✓ CORRECT! [+50 XP AWARDED]</div>
+                <div class="text-on-surface text-[11px]">
+                  <strong>CVE-2020-0796 (SMBGhost)</strong> affects Windows 10 versions 1903/1909. It stems from improper validation of the OriginalCompressedDataSize field during SMBv3.1.1 packet decompression in <code>srv2.sys</code>, leading to an integer overflow and remote kernel code execution.
+                </div>
+                <div class="text-outline text-[10px]">Mitigation: Disable SMBv3 compression (Set-ItemProperty -Path "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\Parameters" DisableCompression -Type DWORD -Value 1 -Force) or apply Microsoft security bulletin KB4551762.</div>
+              </div>
+            `;
+          }
+
+          return `
+            <div class="p-2.5 rounded bg-canvas-base border border-warning/40 text-xs font-mono space-y-1">
+              <div class="text-warning font-bold">INCORRECT TRIAGE</div>
+              <div class="text-outline text-[11px]">Hint: EternalBlue (CVE-2017-0144) targeted SMBv1 (SRV.sys). This vulnerability targets SMBv3.1.1 compression. Review option 2!</div>
+            </div>
+          `;
+        }
+
+        case 'flag': {
+          if (window.CyberOps) {
+            window.CyberOps.addXP(50, 'Discovered Terminal Easter Egg Flag');
+          }
+          return `
+            <div class="p-3 rounded bg-canvas-base border border-primary/50 text-xs font-mono space-y-1">
+              <div class="text-primary font-bold">🎉 EASTER EGG DISCOVERED! [+50 XP]</div>
+              <div class="text-on-surface select-all font-bold">FLAG: endlessus{t3rm1n4l_0p3r4t0r_2026}</div>
+              <div class="text-outline text-[10px]">Curiosity and deep terminal exploration are the hallmark of every great security researcher.</div>
+            </div>
+          `;
+        }
+
+        case 'secret': {
+          return `
+            <div class="p-3 rounded bg-canvas-base border border-secondary/40 text-xs font-mono space-y-1">
+              <div class="text-secondary font-bold">[CONFIDENTIAL ENCRYPTED TRANSMISSION]</div>
+              <div class="text-on-surface select-all text-[11px]">Hex: 456e646c6573737573202d2053656375726974792066726f6d206669727374207072696e6369706c65732e</div>
+              <div class="text-outline text-[10px]">Tip: Use the Base64 &amp; Hex tool in <a href="${root}tools.html" class="text-secondary underline">tools.html</a> to decode!</div>
+            </div>
+          `;
+        }
+
         case 'help':
           return `
             <div class="space-y-2 text-xs">
               <div class="text-outline font-bold">Available Sandbox Commands:</div>
               <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-on-surface font-mono text-[11px]">
+                <div><span class="text-primary font-bold">neofetch</span> - System &amp; operator specs</div>
+                <div><span class="text-primary font-bold">about / whoami</span> - Professional bio</div>
+                <div><span class="text-primary font-bold">skills</span> - Technical skills matrix</div>
+                <div><span class="text-primary font-bold">projects</span> - 7 security case studies</div>
+                <div><span class="text-secondary font-bold">xp / stats</span> - Operator level &amp; XP</div>
+                <div><span class="text-warning font-bold">badges</span> - Unlocked achievements</div>
+                <div><span class="text-secondary font-bold">challenge</span> - Daily cyber triage</div>
                 <div><span class="text-primary font-bold">learning</span> - 12-domain learning hub</div>
                 <div><span class="text-primary font-bold">labs</span> - 12 safe interactive labs</div>
                 <div><span class="text-primary font-bold">tools</span> - In-browser security suite</div>
-                <div><span class="text-secondary font-bold">methodology</span> - 12-stage pentest pipeline</div>
-                <div><span class="text-primary font-bold">roadmap</span> - Interactive skill tracker</div>
+                <div><span class="text-secondary font-bold">handbook</span> - Command handbook KB</div>
+                <div><span class="text-secondary font-bold">methodology</span> - 12-stage pentest</div>
+                <div><span class="text-primary font-bold">roadmap</span> - Skill progress tracker</div>
                 <div><span class="text-primary font-bold">glossary</span> - 60+ security definitions</div>
-                <div><span class="text-danger-critical font-bold">payloads</span> - RCE, CMDi &amp; LFI cheatsheet</div>
+                <div><span class="text-danger-critical font-bold">payloads</span> - RCE, CMDi &amp; LFI bypass</div>
                 <div><span class="text-primary font-bold">nmap</span> - Port &amp; service scanner</div>
                 <div><span class="text-warning font-bold">gobuster</span> - Web directory fuzzer</div>
                 <div><span class="text-warning font-bold">hydra</span> - Network login cracker</div>
@@ -1393,6 +1917,7 @@ PORT      STATE SERVICE
                 <div><span class="text-on-surface font-bold">ls / cat / grep</span> - Linux file operations</div>
                 <div><span class="text-on-surface font-bold">find / sudo -l</span> - Privilege escalation</div>
                 <div><span class="text-primary font-bold">theme</span> - Toggle accent colors</div>
+                <div><span class="text-primary font-bold">flag / secret</span> - Easter egg challenges</div>
                 <div><span class="text-outline font-bold">clear</span> - Clear terminal buffer</div>
               </div>
               <div class="text-outline text-[10px]">Tip: Press <kbd class="px-1 rounded bg-surface-raised border border-border-hairline">TAB</kbd> to autocomplete commands.</div>
@@ -1684,10 +2209,13 @@ PORT      STATE SERVICE
     let matrixCanvas = null;
 
     const AUTOCOMPLETE_COMMANDS = [
-      'help', 'payloads', 'rce', 'lfi', 'revshell', 'roadmap', 'learn', 'targets', 'cheatsheet', 'whoami', 'skills', 'projects', 'tryhackme', 'cat resume',
+      'help', 'neofetch', 'fastfetch', 'about', 'whoami', 'bio', 'skills', 'projects', 'resume', 'cat resume', 'contact',
+      'xp', 'stats', 'profile', 'badges', 'challenge', 'flag', 'secret',
+      'learning', 'labs', 'tools', 'toolkit', 'handbook', 'methodology', 'roadmap', 'glossary', 'payloads', 'rce', 'lfi', 'revshell', 'targets', 'cheatsheet',
+      'tryhackme', 'thm', 'cve', 'vuln', 'uptime', 'date', 'theme',
       'ls', 'pwd', 'cd', 'cat', 'grep', 'find', 'chmod', 'ps', 'uname', 'ifconfig', 'df', 'free', 'history',
       'nmap', 'gobuster', 'ffuf', 'hydra', 'hashcat', 'john', 'sqlmap', 'nc', 'searchsploit', 'msfconsole',
-      'matrix', 'theme', 'uptime', 'date', 'sudo', 'echo', 'clear', 'exit'
+      'matrix', 'sudo', 'echo', 'clear', 'exit'
     ];
 
     function stopMatrixRain() {
@@ -1761,6 +2289,18 @@ PORT      STATE SERVICE
       historyIndex = history.length;
 
       appendOutput(`<div class="flex items-center gap-2 mt-2"><span class="text-primary font-bold">guest@sec-station:~/lab$</span> <span class="text-on-surface">${escapeHtml(cmd)}</span></div>`);
+
+      if (window.CyberOps) {
+        window.CyberOps.unlockBadge('terminal_init');
+        const lower = cmd.toLowerCase();
+        if (lower.startsWith('nmap')) {
+          window.CyberOps.unlockBadge('recon_scout');
+        } else if (lower.startsWith('hashcat') || lower.startsWith('john')) {
+          window.CyberOps.unlockBadge('hash_breaker');
+        } else if (lower.includes('find') && lower.includes('-exec')) {
+          window.CyberOps.unlockBadge('privesc_root');
+        }
+      }
 
       if (cmd.toLowerCase() === 'clear' || cmd.toLowerCase() === 'cls') {
         stopMatrixRain();
@@ -2050,6 +2590,9 @@ PORT      STATE SERVICE
     initCodeCopy();
     initProjectFilters();
     initCounters();
+    if (window.CyberOps && typeof window.CyberOps.updateHUD === 'function') {
+      window.CyberOps.updateHUD();
+    }
   }
 
   if (document.readyState === 'loading') {

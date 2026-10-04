@@ -504,6 +504,104 @@
           <span class="text-primary">→</span>
           <span>AUTHORIZED DISPATCH &amp; AUDITING</span>
         </div>
+
+        <!-- Interactive SentinelAI Data-Flow Inspector -->
+        <div id="sentinel-flow-inspector" class="mt-6 p-4 sm:p-5 rounded-xl bg-surface-raised border border-primary/40 space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline pb-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-base">account_tree</span>
+              <span class="font-mono text-xs font-bold text-on-surface uppercase tracking-wider">SentinelAI Data-Flow Inspector // 4-Tier Pipeline Simulation</span>
+            </div>
+            <div class="flex items-center gap-2 font-mono text-[11px]">
+              <span class="text-outline">Tier:</span>
+              <span id="sentinel-flow-tier-num" class="px-2 py-0.5 rounded bg-primary/20 text-primary font-bold">1 / 4</span>
+            </div>
+          </div>
+
+          <!-- Step Buttons Selector -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="sentinel-flow-buttons">
+            <button type="button" data-tier="0" class="sentinel-tier-btn px-3 py-2.5 rounded text-left border border-primary bg-primary/10 text-primary font-mono text-xs font-semibold transition-all">
+              <div class="text-[10px] text-outline">TIER 1</div>
+              <div class="truncate font-bold">Ingestion &amp; Recon</div>
+            </button>
+            <button type="button" data-tier="1" class="sentinel-tier-btn px-3 py-2.5 rounded text-left border border-border-hairline bg-canvas-base text-on-surface-variant hover:border-primary/50 font-mono text-xs transition-all">
+              <div class="text-[10px] text-outline">TIER 2</div>
+              <div class="truncate font-bold">Knowledge Core</div>
+            </button>
+            <button type="button" data-tier="2" class="sentinel-tier-btn px-3 py-2.5 rounded text-left border border-border-hairline bg-canvas-base text-on-surface-variant hover:border-primary/50 font-mono text-xs transition-all">
+              <div class="text-[10px] text-outline">TIER 3</div>
+              <div class="truncate font-bold">Ollama Local AI</div>
+            </button>
+            <button type="button" data-tier="3" class="sentinel-tier-btn px-3 py-2.5 rounded text-left border border-border-hairline bg-canvas-base text-on-surface-variant hover:border-primary/50 font-mono text-xs transition-all">
+              <div class="text-[10px] text-outline">TIER 4</div>
+              <div class="truncate font-bold">Dispatch &amp; Policy</div>
+            </button>
+          </div>
+
+          <!-- Inspector Display Card -->
+          <div class="p-4 rounded-lg bg-canvas-base border border-border-hairline space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border-hairline/60 pb-2.5">
+              <div>
+                <h4 id="sentinel-tier-title" class="font-mono text-sm font-bold text-on-surface flex items-center gap-2">
+                  <span class="material-symbols-outlined text-secondary text-base">input</span>
+                  <span>Tier 1: Multi-Stage Telemetry Ingestion</span>
+                </h4>
+                <p id="sentinel-tier-desc" class="text-xs text-on-surface-variant mt-1 font-mono">
+                  Parses raw Nmap service banners, asset-software discovery maps, and target network scan logs into normalized JSON telemetry.
+                </p>
+              </div>
+              <div class="flex flex-wrap items-center gap-2 self-start sm:self-center shrink-0">
+                <span id="sentinel-tier-latency" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-[11px] text-primary font-bold">
+                  <span class="material-symbols-outlined text-xs">speed</span>
+                  <span>Latency: &lt; 25ms</span>
+                </span>
+                <span id="sentinel-tier-boundary" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-[11px] text-secondary font-bold">
+                  <span class="material-symbols-outlined text-xs">shield</span>
+                  <span>Boundary: Ingestion Sanitizer</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- In-Flight JSON Payload Terminal -->
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between text-[11px] font-mono text-outline">
+                <span class="flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                  In-Flight Pipeline Data (JSON)
+                </span>
+                <button type="button" id="copy-sentinel-payload-btn" class="hover:text-primary transition-colors flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs">content_copy</span>
+                  <span id="copy-sentinel-payload-text">Copy Payload</span>
+                </button>
+              </div>
+              <pre class="p-3.5 rounded bg-surface-base border border-border-hairline overflow-x-auto text-[11px] font-mono text-primary/95 leading-relaxed selection:bg-primary/20"><code id="sentinel-tier-json">{
+  "event": "ingest.scan_telemetry",
+  "target_asset": "192.168.10.45",
+  "hostname": "prod-api-gw.internal",
+  "scanned_ports": [
+    {"port": 22, "service": "ssh", "product": "OpenSSH", "version": "8.2p1"},
+    {"port": 80, "service": "http", "product": "nginx", "version": "1.18.0"},
+    {"port": 8080, "service": "http-proxy", "product": "Apache Tomcat", "version": "9.0.30"}
+  ],
+  "os_fingerprint": "Linux 5.4.0-generic Ubuntu 20.04",
+  "ingestion_status": "NORMALIZED_JSON_V2"
+}</code></pre>
+            </div>
+
+            <!-- Controls (Prev / Next Stepper) -->
+            <div class="flex items-center justify-between pt-1">
+              <button type="button" id="sentinel-prev-btn" class="px-3 py-1.5 rounded bg-surface-raised border border-border-hairline text-outline font-mono text-xs hover:text-on-surface transition-colors flex items-center gap-1 disabled:opacity-40 disabled:cursor-not-allowed">
+                <span class="material-symbols-outlined text-sm">arrow_back</span>
+                <span>Previous Tier</span>
+              </button>
+              <span class="font-mono text-[11px] text-outline hidden sm:inline">Click any tier to inspect live data-flow telemetry</span>
+              <button type="button" id="sentinel-next-btn" class="px-3 py-1.5 rounded bg-primary/10 border border-primary/40 text-primary font-mono text-xs font-semibold hover:bg-primary hover:text-canvas-base transition-colors flex items-center gap-1">
+                <span>Next Tier</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Architectural Component Breakdown Table -->
@@ -897,5 +995,176 @@
   </footer>
 
   <script src="../portfolio-interactive.js"></script>
+  <script>
+    (function initSentinelInspector() {
+      const tiers = [
+        {
+          num: '1 / 4',
+          title: 'Tier 1: Multi-Stage Telemetry Ingestion',
+          icon: 'input',
+          iconColor: 'text-secondary',
+          desc: 'Parses raw Nmap service banners, asset-software discovery maps, and target network scan logs into normalized JSON telemetry.',
+          latency: 'Latency: < 25ms',
+          boundary: 'Boundary: Ingestion Sanitizer',
+          json: JSON.stringify({
+            event: "ingest.scan_telemetry",
+            target_asset: "192.168.10.45",
+            hostname: "prod-api-gw.internal",
+            scanned_ports: [
+              { port: 22, service: "ssh", product: "OpenSSH", version: "8.2p1" },
+              { port: 80, service: "http", product: "nginx", version: "1.18.0" },
+              { port: 8080, service: "http-proxy", product: "Apache Tomcat", version: "9.0.30" }
+            ],
+            os_fingerprint: "Linux 5.4.0-generic Ubuntu 20.04",
+            ingestion_status: "NORMALIZED_JSON_V2"
+          }, null, 2)
+        },
+        {
+          num: '2 / 4',
+          title: 'Tier 2: Knowledge Graph & Contextual Exposure Core',
+          icon: 'hub',
+          iconColor: 'text-primary',
+          desc: 'Cross-references parsed service banners against MITRE ATT&CK tactics, CVE databases, and local graph edges to compute contextual attack exposure.',
+          latency: 'Latency: < 40ms',
+          boundary: 'Boundary: Graph Memory (NetworkX/SQLite)',
+          json: JSON.stringify({
+            component: "knowledge_graph_matcher",
+            asset_node: "node_api_gw_8080",
+            matched_cves: [
+              {
+                cve_id: "CVE-2020-1938",
+                alias: "Ghostcat (Apache JServ Protocol)",
+                cvss_v3: 9.8,
+                severity: "CRITICAL",
+                mitre_tactic: "TA0001: Initial Access",
+                mitre_technique: "T1190: Exploit Public-Facing Application"
+              }
+            ],
+            graph_edges_updated: 4,
+            exposure_weight: 0.89
+          }, null, 2)
+        },
+        {
+          num: '3 / 4',
+          title: 'Tier 3: Air-Gapped Local Neural Inference (Ollama RAG)',
+          icon: 'memory',
+          iconColor: 'text-secondary',
+          desc: 'Executes offline LLM reasoning over RAG context to triage exposure severity, identify root causes, and generate containment recommendations without external data leaks.',
+          latency: 'Latency: ~180ms (GPU Direct)',
+          boundary: 'Boundary: Zero Cloud Egress (100% Offline)',
+          json: JSON.stringify({
+            inference_model: "mistral:instruct-7b",
+            prompt_tokens: 512,
+            temperature: 0.1,
+            triage_verdict: {
+              priority: "P0_IMMEDIATE_ACTION",
+              root_cause: "AJP protocol connector enabled on default port 8009 without secret authorization",
+              confidence: 0.96,
+              recommended_patch: "Disable AJP connector in server.xml or enforce secretRequired=\"true\" and bind address to 127.0.0.1",
+              containment_command: "iptables -A INPUT -p tcp --dport 8009 -j DROP"
+            }
+          }, null, 2)
+        },
+        {
+          num: '4 / 4',
+          title: 'Tier 4: Policy Enforcement, Dispatch & Immutable Audit',
+          icon: 'verified_user',
+          iconColor: 'text-primary',
+          desc: 'Validates analyst approvals, executes containment actions via CLI or REST endpoints, and records cryptographically signed audit logs.',
+          latency: 'Latency: < 10ms',
+          boundary: 'Boundary: Policy Gate & Audit Trail (WORM)',
+          json: JSON.stringify({
+            dispatch_id: "disp_88204b",
+            operator_id: "mihraj-mashhoor",
+            action: "AUTOMATED_CONTAINMENT_DISPATCH",
+            target: "192.168.10.45:8009",
+            policy_approval: "HUMAN_IN_THE_LOOP_CONFIRMED",
+            audit_signature: "sha256:7f9a1c4e8b2d35f7902d185e921fa403...verified",
+            remediation_status: "POLICY_APPLIED",
+            evidence_stored: "/var/log/sentinelai/audit/disp_88204b.json"
+          }, null, 2)
+        }
+      ];
+
+      let currentTier = 0;
+      const tierNumEl = document.getElementById('sentinel-flow-tier-num');
+      const titleEl = document.getElementById('sentinel-tier-title');
+      const descEl = document.getElementById('sentinel-tier-desc');
+      const latencyEl = document.getElementById('sentinel-tier-latency');
+      const boundaryEl = document.getElementById('sentinel-tier-boundary');
+      const jsonEl = document.getElementById('sentinel-tier-json');
+      const prevBtn = document.getElementById('sentinel-prev-btn');
+      const nextBtn = document.getElementById('sentinel-next-btn');
+      const copyBtn = document.getElementById('copy-sentinel-payload-btn');
+      const copyTextEl = document.getElementById('copy-sentinel-payload-text');
+      const buttons = document.querySelectorAll('.sentinel-tier-btn');
+
+      if (!titleEl || !jsonEl) return;
+
+      function updateTier(index) {
+        currentTier = index;
+        const tier = tiers[currentTier];
+        if (tierNumEl) tierNumEl.textContent = tier.num;
+        if (titleEl) {
+          titleEl.innerHTML = `<span class="material-symbols-outlined ${tier.iconColor} text-base">${tier.icon}</span><span>${tier.title}</span>`;
+        }
+        if (descEl) descEl.textContent = tier.desc;
+        if (latencyEl) {
+          latencyEl.innerHTML = `<span class="material-symbols-outlined text-xs">speed</span><span>${tier.latency}</span>`;
+        }
+        if (boundaryEl) {
+          boundaryEl.innerHTML = `<span class="material-symbols-outlined text-xs">shield</span><span>${tier.boundary}</span>`;
+        }
+        if (jsonEl) jsonEl.textContent = tier.json;
+
+        if (prevBtn) prevBtn.disabled = currentTier === 0;
+        if (nextBtn) {
+          nextBtn.disabled = currentTier === tiers.length - 1;
+          if (nextBtn.disabled) {
+            nextBtn.classList.add('opacity-40', 'cursor-not-allowed');
+          } else {
+            nextBtn.classList.remove('opacity-40', 'cursor-not-allowed');
+          }
+        }
+
+        buttons.forEach((btn, idx) => {
+          if (idx === currentTier) {
+            btn.className = 'sentinel-tier-btn px-3 py-2.5 rounded text-left border border-primary bg-primary/10 text-primary font-mono text-xs font-semibold transition-all';
+          } else {
+            btn.className = 'sentinel-tier-btn px-3 py-2.5 rounded text-left border border-border-hairline bg-canvas-base text-on-surface-variant hover:border-primary/50 font-mono text-xs transition-all';
+          }
+        });
+      }
+
+      buttons.forEach((btn, idx) => {
+        btn.addEventListener('click', () => updateTier(idx));
+      });
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          if (currentTier > 0) updateTier(currentTier - 1);
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          if (currentTier < tiers.length - 1) updateTier(currentTier + 1);
+        });
+      }
+
+      if (copyBtn) {
+        copyBtn.addEventListener('click', () => {
+          if (jsonEl) {
+            navigator.clipboard.writeText(jsonEl.textContent).then(() => {
+              if (copyTextEl) {
+                copyTextEl.textContent = 'Copied!';
+                setTimeout(() => { copyTextEl.textContent = 'Copy Payload'; }, 2000);
+              }
+            });
+          }
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

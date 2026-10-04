@@ -129,6 +129,20 @@
         A triple-layer cybersecurity engineering workspace: 13 instant in-browser analytical utilities (100% processed locally without uploading sensitive data), an interactive educational Nmap command builder with live flag explanations, and a reference manual for 20 essential security tools.
       </p>
 
+      <!-- Gamification Operator HUD Status Bar -->
+      <div class="p-3.5 sm:p-4 rounded-xl border border-primary/30 bg-surface-subtle flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
+        <div class="flex items-center gap-3">
+          <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+          <span class="text-on-surface font-bold">OPERATOR TOOLKIT // LOCAL WORKSPACE</span>
+          <span class="px-2 py-0.5 rounded bg-primary/10 border border-primary/30 text-primary font-bold" id="tools-operator-tier">Novice Operator</span>
+        </div>
+        <div class="flex items-center gap-4 text-[11px]">
+          <span class="text-outline">XP: <strong class="text-primary font-bold" id="tools-operator-xp">0 XP</strong></span>
+          <span class="text-outline">Tools Dispatched: <strong class="text-secondary font-bold" id="tools-used-counter">0 / 13</strong></span>
+          <span class="text-outline hidden sm:inline">Badge: <strong class="text-primary font-bold">Toolsmith (+10 XP)</strong></span>
+        </div>
+      </div>
+
       <!-- Main Navigation Tabs -->
       <div class="flex flex-wrap gap-2 pt-2 border-b border-border-hairline pb-4 font-mono text-xs">
         <button data-target="tab-browser-tools" class="tab-btn active px-4 py-2 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-2">
@@ -156,20 +170,21 @@
         <span>Zero-Telemetry Guarantee: All inputs (Base64, JWT, Hashes, Headers) are processed strictly within your local browser DOM.</span>
       </div>
 
-      <!-- Quick Tool Selector Grid -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2 font-mono text-xs">
+      <!-- Quick Tool Selector Grid (13 In-Browser Utilities) -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 font-mono text-xs">
         <a href="#tool-base64" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">Base64</a>
         <a href="#tool-url" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">URL Encode</a>
-        <a href="#jwt-tool" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">JWT Inspector</a>
-        <a href="#tool-hash" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">Hash Identifier</a>
-        <a href="#cidr-calc" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">CIDR Calculator</a>
+        <a href="#jwt-tool" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">JWT Inspect</a>
+        <a href="#tool-hash" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">Hash Ident</a>
+        <a href="#cidr-calc" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">CIDR Calc</a>
         <a href="#tool-headers" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">HTTP Headers</a>
         <a href="#csp-tool" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">CSP Analyzer</a>
-        <a href="#tool-entropy" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">Password Entropy</a>
+        <a href="#tool-entropy" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">Entropy</a>
         <a href="#tool-regex" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">Regex Tester</a>
-        <a href="#tool-json" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">JSON Formatter</a>
-        <a href="#tool-html" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">HTML Entities</a>
-        <a href="#tool-epoch" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">Timestamp / Epoch</a>
+        <a href="#tool-json" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">JSON Format</a>
+        <a href="#tool-html" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">HTML Entity</a>
+        <a href="#tool-epoch" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">Timestamp</a>
+        <a href="#tool-ua" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">UA / Platform</a>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -414,14 +429,14 @@
           <textarea id="html-output" rows="2" readonly class="w-full p-2.5 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-primary focus:outline-none"></textarea>
         </div>
 
-        <!-- 12. EPOCH TIMESTAMP CONVERTER & USER-AGENT -->
+        <!-- 12. EPOCH TIMESTAMP CONVERTER -->
         <div class="p-5 rounded-xl border border-border-hairline bg-surface-subtle space-y-4" id="tool-epoch">
           <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-secondary text-xl">schedule</span>
-              <h3 class="font-mono text-sm font-bold text-on-surface">12. UNIX Epoch Timestamp &amp; 13. UA Parser</h3>
+              <h3 class="font-mono text-sm font-bold text-on-surface">12. UNIX Epoch Timestamp Converter</h3>
             </div>
-            <span class="text-[10px] font-mono text-outline">Forensics</span>
+            <span class="text-[10px] font-mono text-outline">Forensic Timestamps</span>
           </div>
           <div class="space-y-2">
             <div class="flex gap-2">
@@ -431,9 +446,25 @@
             </div>
             <div id="epoch-result" class="p-2.5 rounded-lg bg-canvas-base border border-border-hairline font-mono text-xs text-secondary">UTC: - | Local: -</div>
           </div>
-          <div class="pt-2 border-t border-border-hairline/60 space-y-1">
-            <span class="font-mono text-xs text-outline">Your Browser User-Agent String:</span>
-            <div id="ua-display" class="p-2.5 rounded-lg bg-canvas-base border border-border-hairline font-mono text-[11px] text-on-surface-variant break-all"></div>
+          <p class="text-[11px] font-mono text-outline">Essential for forensic log triage, incident timelines, and correlating web proxy or syslog timestamps.</p>
+        </div>
+
+        <!-- 13. USER-AGENT & CLIENT FINGERPRINT INSPECTOR -->
+        <div class="p-5 rounded-xl border border-border-hairline bg-surface-subtle space-y-4" id="tool-ua">
+          <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-xl">fingerprint</span>
+              <h3 class="font-mono text-sm font-bold text-on-surface">13. Client Fingerprint &amp; UA Inspector</h3>
+            </div>
+            <span class="text-[10px] font-mono text-outline">Recon &amp; Privacy</span>
+          </div>
+          <div class="space-y-2">
+            <span class="font-mono text-xs text-outline">Client Browser User-Agent:</span>
+            <div id="ua-display" class="p-2.5 rounded-lg bg-canvas-base border border-border-hairline font-mono text-[11px] text-primary break-all"></div>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-[11px] font-mono">
+            <div class="p-2 rounded bg-canvas-base border border-border-hairline"><span class="text-outline">Platform:</span> <span id="ua-platform" class="text-on-surface font-bold">Detecting...</span></div>
+            <div class="p-2 rounded bg-canvas-base border border-border-hairline"><span class="text-outline">Screen:</span> <span id="ua-screen" class="text-on-surface font-bold">Detecting...</span></div>
           </div>
         </div>
 
@@ -630,10 +661,20 @@
         <span class="font-mono text-xs text-outline">20 Standard Offensive &amp; Defensive Tools</span>
       </div>
 
+      <!-- Tool Database Category Filter Tabs -->
+      <div class="flex flex-wrap gap-2 font-mono text-xs" id="tool-db-filters">
+        <button type="button" data-filter="all" class="tool-filter-btn active px-3 py-1.5 rounded-lg border border-primary bg-primary/10 text-primary font-bold transition-all">All Tools (20)</button>
+        <button type="button" data-filter="recon" class="tool-filter-btn px-3 py-1.5 rounded-lg border border-border-hairline bg-canvas-base text-on-surface-variant hover:border-primary/50 transition-all">Recon &amp; OSINT</button>
+        <button type="button" data-filter="web" class="tool-filter-btn px-3 py-1.5 rounded-lg border border-border-hairline bg-canvas-base text-on-surface-variant hover:border-primary/50 transition-all">Web Security</button>
+        <button type="button" data-filter="network" class="tool-filter-btn px-3 py-1.5 rounded-lg border border-border-hairline bg-canvas-base text-on-surface-variant hover:border-primary/50 transition-all">Network &amp; Sniffing</button>
+        <button type="button" data-filter="password" class="tool-filter-btn px-3 py-1.5 rounded-lg border border-border-hairline bg-canvas-base text-on-surface-variant hover:border-primary/50 transition-all">Password &amp; Hash</button>
+        <button type="button" data-filter="exploit" class="tool-filter-btn px-3 py-1.5 rounded-lg border border-border-hairline bg-canvas-base text-on-surface-variant hover:border-primary/50 transition-all">Exploit &amp; PrivEsc</button>
+      </div>
+
       <div class="space-y-6" id="tool-db-container">
 
         <!-- 1. NMAP -->
-        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="nmap">
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="nmap" data-category="network recon">
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">01</span>
@@ -642,7 +683,13 @@
                 <span class="font-mono text-xs text-outline">Category: Network Exploration &amp; Port Auditing</span>
               </div>
             </div>
-            <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-primary">Standard Kali Tool</span>
+            <div class="flex items-center gap-2">
+              <a href="handbook/nmap.html" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-primary font-mono text-xs text-primary transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-xs">menu_book</span>
+                <span>Handbook</span>
+              </a>
+              <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-primary">Standard Kali Tool</span>
+            </div>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
             <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline space-y-1">
@@ -671,7 +718,7 @@
         </article>
 
         <!-- 2. BURP SUITE -->
-        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="burp suite">
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="burp suite" data-category="web">
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-sm">02</span>
@@ -680,7 +727,13 @@
                 <span class="font-mono text-xs text-outline">Category: Web Application Intercepting Proxy</span>
               </div>
             </div>
-            <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-warning">PortSwigger</span>
+            <div class="flex items-center gap-2">
+              <a href="labs.html#lab-sqli" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-secondary font-mono text-xs text-secondary transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-xs">science</span>
+                <span>Web Lab</span>
+              </a>
+              <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-warning">PortSwigger</span>
+            </div>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
             <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline space-y-1">
@@ -699,7 +752,7 @@
         </article>
 
         <!-- 3. WIRESHARK -->
-        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="wireshark">
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="wireshark" data-category="network">
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-secondary/30 text-secondary font-mono font-bold text-sm">03</span>
@@ -708,7 +761,13 @@
                 <span class="font-mono text-xs text-outline">Category: Deep Packet Inspection &amp; PCAP Analysis</span>
               </div>
             </div>
-            <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-secondary">Packet Protocol Analyzer</span>
+            <div class="flex items-center gap-2">
+              <a href="labs.html#lab-wireshark" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-secondary font-mono text-xs text-secondary transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-xs">science</span>
+                <span>Packet Lab</span>
+              </a>
+              <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-secondary">Packet Analyzer</span>
+            </div>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
             <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline space-y-1">
@@ -723,7 +782,7 @@
         </article>
 
         <!-- 4. METASPLOIT -->
-        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="metasploit">
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="metasploit" data-category="exploit">
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-danger-critical/30 text-danger-critical font-mono font-bold text-sm">04</span>
@@ -732,7 +791,13 @@
                 <span class="font-mono text-xs text-outline">Category: Modular Exploitation &amp; Post-Exploitation</span>
               </div>
             </div>
-            <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-danger-critical">Rapid7</span>
+            <div class="flex items-center gap-2">
+              <a href="handbook/metasploit.html" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-primary font-mono text-xs text-primary transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-xs">menu_book</span>
+                <span>Handbook</span>
+              </a>
+              <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-danger-critical">Rapid7</span>
+            </div>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
             <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline space-y-1">
@@ -747,7 +812,7 @@
         </article>
 
         <!-- 5. FFUF -->
-        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="ffuf">
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="ffuf" data-category="web recon">
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">05</span>
@@ -765,7 +830,7 @@
         </article>
 
         <!-- 6. GOBUSTER -->
-        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="gobuster">
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="gobuster" data-category="web recon">
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-secondary/30 text-secondary font-mono font-bold text-sm">06</span>
@@ -782,7 +847,7 @@
         </article>
 
         <!-- 7. NIKTO -->
-        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="nikto">
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="nikto" data-category="web recon">
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-sm">07</span>
@@ -797,7 +862,7 @@
         </article>
 
         <!-- 8. NETCAT -->
-        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="netcat nc">
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="netcat nc" data-category="network exploit">
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">08</span>
@@ -820,7 +885,7 @@
         </article>
 
         <!-- 9. CURL -->
-        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="curl">
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="curl" data-category="web network">
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-secondary/30 text-secondary font-mono font-bold text-sm">09</span>
@@ -834,7 +899,7 @@
         </article>
 
         <!-- 10. DIG & WHOIS -->
-        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="dig whois">
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="dig whois" data-category="recon">
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">10</span>
@@ -848,7 +913,7 @@
         </article>
 
         <!-- 11. WHATWEB -->
-        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="whatweb">
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="whatweb" data-category="recon web">
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-secondary/30 text-secondary font-mono font-bold text-sm">11</span>
@@ -862,7 +927,7 @@
         </article>
 
         <!-- 12. AMASS & SUBFINDER -->
-        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="amass subfinder">
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="amass subfinder" data-category="recon">
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-sm">12</span>
@@ -876,7 +941,7 @@
         </article>
 
         <!-- 13. JOHN THE RIPPER -->
-        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="john the ripper">
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="john the ripper" data-category="password">
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">13</span>
@@ -885,12 +950,16 @@
                 <span class="font-mono text-xs text-outline">Category: Offline Password &amp; Shadow File Cracker</span>
               </div>
             </div>
+            <a href="labs.html#lab-hashes" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-primary font-mono text-xs text-primary transition-colors flex items-center gap-1">
+              <span class="material-symbols-outlined text-xs">science</span>
+              <span>Hash Lab</span>
+            </a>
           </div>
           <pre class="p-2.5 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">unshadow /etc/passwd /etc/shadow > unshadowed.txt&#10;john --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt</pre>
         </article>
 
         <!-- 14. HASHCAT -->
-        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="hashcat">
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="hashcat" data-category="password">
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-secondary/30 text-secondary font-mono font-bold text-sm">14</span>
@@ -899,12 +968,16 @@
                 <span class="font-mono text-xs text-outline">Category: GPU-Accelerated Password Hash Recovery</span>
               </div>
             </div>
+            <a href="labs.html#lab-hashes" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-secondary font-mono text-xs text-secondary transition-colors flex items-center gap-1">
+              <span class="material-symbols-outlined text-xs">science</span>
+              <span>Hash Lab</span>
+            </a>
           </div>
           <pre class="p-2.5 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">hashcat -m 0 -a 0 md5_hashes.txt /usr/share/wordlists/rockyou.txt -r rules/best64.rule</pre>
         </article>
 
         <!-- 15. HYDRA -->
-        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="hydra">
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="hydra" data-category="password">
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-danger-critical/30 text-danger-critical font-mono font-bold text-sm">15</span>
@@ -913,12 +986,16 @@
                 <span class="font-mono text-xs text-outline">Category: Fast Online Network Login Auditing</span>
               </div>
             </div>
+            <a href="labs.html#lab-hydra" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-primary font-mono text-xs text-primary transition-colors flex items-center gap-1">
+              <span class="material-symbols-outlined text-xs">science</span>
+              <span>Hydra Lab</span>
+            </a>
           </div>
           <pre class="p-2.5 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">hydra -l admin -P /usr/share/wordlists/rockyou.txt ssh://10.10.110.45 -t 4</pre>
         </article>
 
         <!-- 16. TCPDUMP -->
-        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="tcpdump">
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="tcpdump" data-category="network">
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">16</span>
@@ -932,7 +1009,7 @@
         </article>
 
         <!-- 17. SQLMAP -->
-        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="sqlmap">
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="sqlmap" data-category="web exploit">
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-danger-critical/30 text-danger-critical font-mono font-bold text-sm">17</span>
@@ -941,12 +1018,16 @@
                 <span class="font-mono text-xs text-outline">Category: Automated SQL Injection Detection &amp; Database Takeover</span>
               </div>
             </div>
+            <a href="labs.html#lab-sqli" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-secondary font-mono text-xs text-secondary transition-colors flex items-center gap-1">
+              <span class="material-symbols-outlined text-xs">science</span>
+              <span>SQLi Lab</span>
+            </a>
           </div>
           <pre class="p-2.5 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">sqlmap -u "http://10.10.110.45/product.php?id=1" --batch --dbs --banner</pre>
         </article>
 
         <!-- 18. RESPONDER -->
-        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="responder">
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="responder" data-category="network exploit">
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-sm">18</span>
@@ -957,6 +1038,80 @@
             </div>
           </div>
           <pre class="p-2.5 rounded bg-canvas-base border border-border-hairline font-mono text-xs text-on-surface">sudo responder -I eth0 -dwv</pre>
+        </article>
+
+        <!-- 19. LINPEAS / WINPEAS -->
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="linpeas winpeas privilege escalation peass" data-category="exploit">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">19</span>
+              <div>
+                <h3 class="font-mono text-lg font-bold text-on-surface">LinPEAS &amp; WinPEAS (PEASS-ng)</h3>
+                <span class="font-mono text-xs text-outline">Category: Automated Privilege Escalation Enumeration</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <a href="handbook/linux.html" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-primary font-mono text-xs text-primary transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-xs">menu_book</span>
+                <span>Linux Handbook</span>
+              </a>
+              <a href="labs.html#lab-privesc" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-secondary font-mono text-xs text-secondary transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-xs">science</span>
+                <span>Lab #7</span>
+              </a>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
+            <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline space-y-1">
+              <strong class="text-secondary uppercase">Purpose:</strong>
+              <p class="text-on-surface-variant font-sans text-xs">Searches for all possible local privilege escalation vectors on Linux, Windows, and macOS targets: misconfigured SUIDs, sudo rights, cronjobs, unquoted service paths, tokens, and kernel exploits.</p>
+            </div>
+            <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline space-y-1">
+              <strong class="text-primary uppercase">Execution (In-Memory / Non-Destructive):</strong>
+              <pre class="text-[11px] text-on-surface pt-1"># In-memory execution without touching disk&#10;curl -L https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh | sh&#10;./linpeas.sh -a &gt; /dev/shm/linpeas.txt</pre>
+            </div>
+          </div>
+          <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline/60 font-mono text-xs space-y-1">
+            <span class="text-warning font-bold">Defensive Triage:</span>
+            <p class="text-on-surface-variant font-sans text-xs">RED/YELLOW highlights in output indicate 99% privilege escalation pathways. Enforce principle of least privilege, audit sudoers file, remove unneeded SUID bits (<code class="text-primary font-mono">chmod u-s</code>), and monitor process spawning via Auditd.</p>
+          </div>
+        </article>
+
+        <!-- 20. SEARCHSPLOIT -->
+        <article class="tool-card p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 hover:border-primary/40 transition-all" data-tool="searchsploit exploitdb cve offline" data-category="exploit recon">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-3">
+              <span class="p-2 rounded-lg bg-canvas-base border border-secondary/30 text-secondary font-mono font-bold text-sm">20</span>
+              <div>
+                <h3 class="font-mono text-lg font-bold text-on-surface">Searchsploit (Exploit-DB CLI)</h3>
+                <span class="font-mono text-xs text-outline">Category: Offline Exploit &amp; CVE PoC Query Engine</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <a href="handbook/searchsploit.html" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-primary font-mono text-xs text-primary transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-xs">menu_book</span>
+                <span>Searchsploit Handbook</span>
+              </a>
+              <a href="labs.html#lab-cve" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-secondary font-mono text-xs text-secondary transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-xs">science</span>
+                <span>Lab #10</span>
+              </a>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
+            <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline space-y-1">
+              <strong class="text-secondary uppercase">Purpose:</strong>
+              <p class="text-on-surface-variant font-sans text-xs">Performs ultra-fast offline queries against a local copy of the entire Exploit-DB repository directly from your terminal, without needing an active internet connection.</p>
+            </div>
+            <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline space-y-1">
+              <strong class="text-primary uppercase">Common Commands:</strong>
+              <pre class="text-[11px] text-on-surface pt-1">searchsploit apache 2.4.49&#10;searchsploit -cve 2024-3094&#10;searchsploit -m 48260  # Copy exploit PoC to current dir</pre>
+            </div>
+          </div>
+          <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline/60 font-mono text-xs space-y-1">
+            <span class="text-primary font-bold">Safe Usage in Labs:</span>
+            <p class="text-on-surface-variant font-sans text-xs">Always inspect downloaded PoC source code before execution (<code class="text-primary font-mono">searchsploit -x [ID]</code>) to verify safety and understand the vulnerability payload structure.</p>
+          </div>
         </article>
 
       </div>
@@ -1355,7 +1510,11 @@
       }
       document.getElementById('epoch-btn-conv').addEventListener('click', convEpoch);
       const uaBox = document.getElementById('ua-display');
+      const uaPlatform = document.getElementById('ua-platform');
+      const uaScreen = document.getElementById('ua-screen');
       if (uaBox) uaBox.textContent = navigator.userAgent;
+      if (uaPlatform) uaPlatform.textContent = navigator.platform || navigator.userAgentData?.platform || 'Linux / x86_64';
+      if (uaScreen) uaScreen.textContent = `${window.screen.width}x${window.screen.height} (${window.screen.colorDepth}-bit)`;
 
       // =========================================================================
       // NMAP COMMAND BUILDER ENGINE
@@ -1465,19 +1624,95 @@
       updateNmap();
 
       // =========================================================================
-      // TOOL DB SEARCH
+      // TOOL DB SEARCH & CATEGORY FILTER
       // =========================================================================
       const toolSearch = document.getElementById('tool-search');
       const toolCards = document.querySelectorAll('.tool-card');
-      if (toolSearch) {
-        toolSearch.addEventListener('input', () => {
-          const q = toolSearch.value.toLowerCase().trim();
-          toolCards.forEach(card => {
-            const txt = (card.getAttribute('data-tool') + ' ' + card.textContent).toLowerCase();
-            card.style.display = txt.includes(q) ? 'block' : 'none';
-          });
+      const filterBtns = document.querySelectorAll('.tool-filter-btn');
+      let currentFilter = 'all';
+
+      function applyToolFilters() {
+        const q = (toolSearch ? toolSearch.value : '').toLowerCase().trim();
+        toolCards.forEach(card => {
+          const cat = card.getAttribute('data-category') || '';
+          const matchCategory = (currentFilter === 'all') || cat.includes(currentFilter);
+          const txt = (card.getAttribute('data-tool') + ' ' + card.textContent).toLowerCase();
+          const matchQuery = !q || txt.includes(q);
+          card.style.display = (matchCategory && matchQuery) ? 'block' : 'none';
         });
       }
+
+      if (toolSearch) {
+        toolSearch.addEventListener('input', applyToolFilters);
+      }
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => {
+            b.classList.remove('active', 'border-primary', 'bg-primary/10', 'text-primary', 'font-bold');
+            b.classList.add('border-border-hairline', 'bg-canvas-base', 'text-on-surface-variant');
+          });
+          btn.classList.add('active', 'border-primary', 'bg-primary/10', 'text-primary', 'font-bold');
+          btn.classList.remove('border-border-hairline', 'bg-canvas-base', 'text-on-surface-variant');
+          currentFilter = btn.getAttribute('data-filter') || 'all';
+          applyToolFilters();
+        });
+      });
+
+      // =========================================================================
+      // OPERATOR TOOLKIT GAMIFICATION HUD
+      // =========================================================================
+      const dispatchedTools = new Set();
+      function recordToolDispatch(toolKey) {
+        dispatchedTools.add(toolKey);
+        const counterEl = document.getElementById('tools-used-counter');
+        if (counterEl) counterEl.textContent = `${dispatchedTools.size} / 13`;
+        if (window.CyberOps) {
+          window.CyberOps.addXP(10, 'toolsmith');
+        }
+      }
+
+      function updateToolsHUD() {
+        if (!window.CyberOps) return;
+        const state = window.CyberOps.getState();
+        const tierEl = document.getElementById('tools-operator-tier');
+        const xpEl = document.getElementById('tools-operator-xp');
+        if (tierEl) tierEl.textContent = state.operatorTier;
+        if (xpEl) xpEl.textContent = `${state.xp} XP`;
+      }
+      updateToolsHUD();
+      window.addEventListener('cyberops:updated', updateToolsHUD);
+
+      // Attach dispatch hooks to all 13 in-browser interactive tools
+      ['b64-btn-encode', 'b64-btn-decode'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('click', () => recordToolDispatch('base64'));
+      });
+      ['url-btn-encode', 'url-btn-decode'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('click', () => recordToolDispatch('url'));
+      });
+      const jwtBtn = document.getElementById('jwt-btn-decode');
+      if (jwtBtn) jwtBtn.addEventListener('click', () => recordToolDispatch('jwt'));
+      const hashBtn = document.getElementById('hash-btn-ident');
+      if (hashBtn) hashBtn.addEventListener('click', () => recordToolDispatch('hash'));
+      const cidrBtn = document.getElementById('cidr-btn-calc');
+      if (cidrBtn) cidrBtn.addEventListener('click', () => recordToolDispatch('cidr'));
+      const secHdrBtn = document.getElementById('hdr-btn-analyze');
+      if (secHdrBtn) secHdrBtn.addEventListener('click', () => recordToolDispatch('headers'));
+      const cspBtn = document.getElementById('csp-btn-audit');
+      if (cspBtn) cspBtn.addEventListener('click', () => recordToolDispatch('csp'));
+      const entropyIn = document.getElementById('entropy-input');
+      if (entropyIn) entropyIn.addEventListener('input', () => recordToolDispatch('entropy'));
+      const regexBtn = document.getElementById('regex-btn-test');
+      if (regexBtn) regexBtn.addEventListener('click', () => recordToolDispatch('regex'));
+      const jsonBtn = document.getElementById('json-btn-format');
+      if (jsonBtn) jsonBtn.addEventListener('click', () => recordToolDispatch('json'));
+      const htmlBtn = document.getElementById('html-btn-encode');
+      if (htmlBtn) htmlBtn.addEventListener('click', () => recordToolDispatch('html'));
+      const epochBtn = document.getElementById('epoch-btn-conv');
+      if (epochBtn) epochBtn.addEventListener('click', () => recordToolDispatch('epoch'));
+      if (uaBox) recordToolDispatch('ua');
 
       function escapeHtml(str) {
         if (!str) return '';

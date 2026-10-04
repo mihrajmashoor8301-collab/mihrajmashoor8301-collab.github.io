@@ -441,6 +441,150 @@
 </div>
 </div>
 </section>
+
+<!-- ========================================================================= -->
+<!-- 2.5 Cyber Dashboard & Gamification HUD                                    -->
+<!-- ========================================================================= -->
+<section class="max-w-7xl mx-auto px-6 py-8 border-t border-border-hairline" id="cyber-dashboard">
+  <!-- Gamification Status HUD Banner -->
+  <div class="p-5 rounded-2xl bg-surface-subtle border border-primary/40 shadow-[0_4px_30px_rgba(0,0,0,0.5)] mb-8 relative overflow-hidden">
+    <div class="absolute -right-16 -top-16 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5 relative z-10">
+      
+      <!-- Operator Status Left -->
+      <div class="flex items-center gap-3.5">
+        <div class="w-12 h-12 rounded-xl bg-canvas-base border border-primary/50 flex items-center justify-center text-primary shadow-[0_0_15px_rgba(78,222,163,0.25)] shrink-0">
+          <span class="material-symbols-outlined text-2xl">shield</span>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-xs text-primary font-bold tracking-wider uppercase cyberops-rank-title">Novice Operator</span>
+            <span class="px-2 py-0.5 rounded-full bg-primary/10 border border-primary/30 text-primary font-mono text-[10px] font-bold cyberops-level-val">LVL 1</span>
+          </div>
+          <div class="font-mono text-[11px] text-outline mt-0.5">
+            Operator Console // Verified Local Gamification Engine
+          </div>
+        </div>
+      </div>
+
+      <!-- XP Progress Center -->
+      <div class="flex-1 max-w-md space-y-1.5 font-mono">
+        <div class="flex justify-between items-center text-xs">
+          <span class="text-outline text-[11px]">XP Progression:</span>
+          <span class="text-primary font-bold cyberops-xp-val">0 XP</span>
+        </div>
+        <div class="w-full h-2.5 bg-canvas-base rounded-full overflow-hidden border border-border-hairline">
+          <div class="h-full bg-gradient-to-r from-primary to-secondary transition-all duration-500 cyberops-progress-bar" style="width: 0%;"></div>
+        </div>
+        <div class="flex justify-between text-[10px] text-outline">
+          <span>Earn XP by completing labs, challenges &amp; terminal tasks</span>
+          <button data-trigger-term class="text-secondary font-bold hover:underline cursor-pointer flex items-center gap-0.5">Launch CLI &rarr;</button>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Right -->
+      <div class="flex items-center gap-3 font-mono text-xs border-t lg:border-t-0 pt-3 lg:pt-0 border-border-hairline/60">
+        <div class="px-3.5 py-2 rounded-xl bg-canvas-base border border-border-hairline text-center min-w-[75px]">
+          <div class="text-secondary font-bold text-sm cyberops-labs-count">0</div>
+          <div class="text-[9px] text-outline uppercase tracking-wider">Labs Done</div>
+        </div>
+        <div class="px-3.5 py-2 rounded-xl bg-canvas-base border border-border-hairline text-center min-w-[75px]">
+          <div class="text-warning font-bold text-sm cyberops-badges-count">0/9</div>
+          <div class="text-[9px] text-outline uppercase tracking-wider">Badges</div>
+        </div>
+        <button data-trigger-term class="px-3.5 py-2.5 rounded-xl bg-primary/10 hover:bg-primary border border-primary/40 text-primary hover:text-canvas-base font-bold text-xs transition-all flex items-center gap-1.5 shadow-[0_0_15px_rgba(78,222,163,0.15)] cursor-pointer">
+          <span class="material-symbols-outlined text-sm">terminal</span>
+          <span class="hidden sm:inline">CLI Console</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Manual Activity & Zero-Fabrication Disclosure Badge -->
+  <div class="flex items-center justify-between mb-6 flex-wrap gap-2">
+    <div class="flex items-center gap-2 font-mono text-xs text-primary font-bold">
+      <span class="material-symbols-outlined text-sm">dashboard</span>
+      <span>CYBERSECURITY DASHBOARD // OPERATIONAL OVERVIEW</span>
+    </div>
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-subtle border border-primary/30 font-mono text-[10px] text-on-surface-variant">
+      <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+      <span>STATUS: ACTIVE PROFILE // OCTOBER 2026 // ZERO-FABRICATION VERIFIED</span>
+    </div>
+  </div>
+
+  <!-- 4 Pillars Grid: Who I Am / What I Build / What I Am Learning / What You Can Interact With -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <!-- Pillar 1: Who I Am -->
+    <div class="p-5 rounded-xl bg-surface-subtle border border-border-hairline hover:border-primary/40 transition-all flex flex-col justify-between">
+      <div class="space-y-2">
+        <div class="w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-mono">
+          <span class="material-symbols-outlined text-xl">person</span>
+        </div>
+        <div class="font-bold text-sm text-on-surface">Who I Am</div>
+        <p class="text-xs text-on-surface-variant leading-relaxed">
+          B.Tech Cybersecurity student (CGPA 7.9). TryHackMe Top 2% Globally (140+ rooms), Google Cybersecurity Professional certified, passionate about understanding how systems break from first principles.
+        </p>
+      </div>
+      <div class="pt-3 mt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[11px]">
+        <a href="#about" class="text-primary hover:underline font-bold flex items-center gap-0.5">Read Bio &rarr;</a>
+        <a href="CV_2026_UPDATED.pdf" target="_blank" class="text-outline hover:text-on-surface">CV PDF ↗</a>
+      </div>
+    </div>
+
+    <!-- Pillar 2: What I Build -->
+    <div class="p-5 rounded-xl bg-surface-subtle border border-border-hairline hover:border-secondary/40 transition-all flex flex-col justify-between">
+      <div class="space-y-2">
+        <div class="w-9 h-9 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center font-mono">
+          <span class="material-symbols-outlined text-xl">schema</span>
+        </div>
+        <div class="font-bold text-sm text-on-surface">What I Build</div>
+        <p class="text-xs text-on-surface-variant leading-relaxed">
+          High-performance security tools &amp; local AI systems: SQLite-authoritative persistent memory for coding agents, SentinelAI vulnerability intelligence graphs, and 15-module CLI handbooks.
+        </p>
+      </div>
+      <div class="pt-3 mt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[11px]">
+        <a href="#projects" class="text-secondary hover:underline font-bold flex items-center gap-0.5">Case Studies &rarr;</a>
+        <span class="text-outline">7 Projects</span>
+      </div>
+    </div>
+
+    <!-- Pillar 3: What I Am Learning -->
+    <div class="p-5 rounded-xl bg-surface-subtle border border-border-hairline hover:border-warning-elevated/40 transition-all flex flex-col justify-between">
+      <div class="space-y-2">
+        <div class="w-9 h-9 rounded-lg bg-warning-elevated/10 text-warning-elevated flex items-center justify-center font-mono">
+          <span class="material-symbols-outlined text-xl">route</span>
+        </div>
+        <div class="font-bold text-sm text-on-surface">What I Learn</div>
+        <p class="text-xs text-on-surface-variant leading-relaxed">
+          Active Directory attack vectors (Kerberoasting, AS-REP roasting), Linux kernel privileges, eBPF telemetry, buffer overflow fundamentals, and structured red-team vs blue-team methodology.
+        </p>
+      </div>
+      <div class="pt-3 mt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[11px]">
+        <a href="roadmap.html" class="text-warning-elevated hover:underline font-bold flex items-center gap-0.5">11-Track Roadmap &rarr;</a>
+        <a href="learning.html" class="text-outline hover:text-on-surface">Hub ↗</a>
+      </div>
+    </div>
+
+    <!-- Pillar 4: What You Can Interact With -->
+    <div class="p-5 rounded-xl bg-surface-subtle border border-border-hairline hover:border-primary/40 transition-all flex flex-col justify-between">
+      <div class="space-y-2">
+        <div class="w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-mono">
+          <span class="material-symbols-outlined text-xl">terminal</span>
+        </div>
+        <div class="font-bold text-sm text-on-surface">Interact Live</div>
+        <p class="text-xs text-on-surface-variant leading-relaxed">
+          12 safe practical labs with answers &amp; defense, 13 in-browser security tools (zero data egress), interactive Nmap command generator, and full-fidelity Quake-style browser terminal (~).
+        </p>
+      </div>
+      <div class="pt-3 mt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[11px]">
+        <a href="labs.html" class="text-primary hover:underline font-bold flex items-center gap-0.5">12 Labs &rarr;</a>
+        <a href="tools.html" class="text-secondary hover:underline font-bold">Tools Suite &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ========================================================================= -->
 <!-- 3. About Section: Academic Depth & Practical Learning                    -->
 <!-- ========================================================================= -->
@@ -1388,48 +1532,90 @@
       Structured, practical educational environments covering 140+ completed challenge rooms across recon, enumeration, Linux, networking, web security, authentication, password attacks, exploitation concepts, privilege escalation, and security tooling.
     </p>
 </div>
-<!-- Visual Testing Methodology Chain -->
-<div class="bg-surface-subtle p-6 rounded-xl border border-primary/30 mb-8">
-<div class="flex items-center justify-between mb-4">
-<span class="font-mono text-xs text-primary font-bold tracking-wider">
-        PRACTICAL LEARNING METHODOLOGY PIPELINE (AUTHORIZED EDUCATIONAL TARGETS)
+<!-- Interactive Cyber Mission Control: 7-Stage Pentest Lifecycle -->
+<div class="bg-surface-subtle p-6 rounded-2xl border border-primary/40 mb-8 shadow-xl" id="cyber-mission-control">
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+    <div>
+      <span class="font-mono text-xs text-primary font-bold tracking-wider flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-sm">radar</span>
+        <span>CYBER MISSION CONTROL // 7-STAGE PENETRATION TESTING LIFECYCLE</span>
       </span>
-<span class="font-mono text-[10px] text-outline">SCOPED &amp; SYSTEMATIC</span>
-</div>
-<div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-2 font-mono text-xs">
-<a href="handbook/modules/reconnaissance.html" class="p-2.5 rounded bg-canvas-base border border-border-hairline hover:border-primary hover:bg-primary/5 transition-all flex flex-col items-center text-center group cursor-pointer" title="Step 01: Passive & Active Reconnaissance Guide">
-<span class="text-outline text-[10px] group-hover:text-primary transition-colors">STEP 01</span>
-<span class="text-primary font-bold mt-0.5 flex items-center gap-0.5">RECON <span class="text-[9px] opacity-0 group-hover:opacity-100 transition-opacity">↗</span></span>
-</a>
-<a href="handbook/nmap.html" class="p-2.5 rounded bg-canvas-base border border-border-hairline hover:border-secondary hover:bg-secondary/5 transition-all flex flex-col items-center text-center group cursor-pointer" title="Step 02: Nmap Port Enumeration & Service Fingerprinting">
-<span class="text-outline text-[10px] group-hover:text-secondary transition-colors">STEP 02</span>
-<span class="text-secondary font-bold mt-0.5 flex items-center gap-0.5">ENUM <span class="text-[9px] opacity-0 group-hover:opacity-100 transition-opacity">↗</span></span>
-</a>
-<a href="handbook/modules/web-security.html" class="p-2.5 rounded bg-canvas-base border border-border-hairline hover:border-primary hover:bg-primary/5 transition-all flex flex-col items-center text-center group cursor-pointer" title="Step 03: Web Content Discovery & Parameter Fuzzing">
-<span class="text-outline text-[10px] group-hover:text-on-surface transition-colors">STEP 03</span>
-<span class="text-on-surface font-bold mt-0.5 flex items-center gap-0.5">DISCOVERY <span class="text-[9px] opacity-0 group-hover:opacity-100 transition-opacity">↗</span></span>
-</a>
-<a href="handbook/modules/tools-reference.html" class="p-2.5 rounded bg-canvas-base border border-border-hairline hover:border-primary hover:bg-primary/5 transition-all flex flex-col items-center text-center group cursor-pointer" title="Step 04: Vulnerability Validation & Banner Analysis">
-<span class="text-outline text-[10px] group-hover:text-primary transition-colors">STEP 04</span>
-<span class="text-primary font-bold mt-0.5 flex items-center gap-0.5">VALIDATE <span class="text-[9px] opacity-0 group-hover:opacity-100 transition-opacity">↗</span></span>
-</a>
-<a href="payloads.html" class="p-2.5 rounded bg-canvas-base border border-danger-critical/30 hover:border-danger-critical hover:bg-danger-critical/5 transition-all flex flex-col items-center text-center group cursor-pointer" title="Step 05: Controlled Exploit Concepts & Shell Handling">
-<span class="text-outline text-[10px] group-hover:text-danger-critical transition-colors">STEP 05</span>
-<span class="text-danger-critical font-bold mt-0.5 text-[11px] flex items-center gap-0.5">EXPLOITS <span class="text-[9px] opacity-0 group-hover:opacity-100 transition-opacity">↗</span></span>
-</a>
-<a href="handbook/modules/privilege-escalation.html" class="p-2.5 rounded bg-canvas-base border border-border-hairline hover:border-secondary hover:bg-secondary/5 transition-all flex flex-col items-center text-center group cursor-pointer" title="Step 06: Linux & Windows Privilege Escalation Guide">
-<span class="text-outline text-[10px] group-hover:text-secondary transition-colors">STEP 06</span>
-<span class="text-secondary font-bold mt-0.5 text-[11px] flex items-center gap-0.5">PRIVESC <span class="text-[9px] opacity-0 group-hover:opacity-100 transition-opacity">↗</span></span>
-</a>
-<a href="handbook/modules/pentest-methodology.html" class="p-2.5 rounded bg-canvas-base border border-border-hairline hover:border-primary hover:bg-primary/5 transition-all flex flex-col items-center text-center group cursor-pointer" title="Step 07: Evidence Documentation & CVSS Scoring">
-<span class="text-outline text-[10px] group-hover:text-on-surface transition-colors">STEP 07</span>
-<span class="text-on-surface font-bold mt-0.5 text-[11px] flex items-center gap-0.5">EVIDENCE <span class="text-[9px] opacity-0 group-hover:opacity-100 transition-opacity">↗</span></span>
-</a>
-<a href="handbook/modules/pentest-methodology.html" class="p-2.5 rounded bg-canvas-base border border-primary/40 hover:border-primary hover:bg-primary/10 transition-all flex flex-col items-center text-center group cursor-pointer" title="Step 08: Remediation & Defensive Security Hardening">
-<span class="text-outline text-[10px] group-hover:text-primary transition-colors">STEP 08</span>
-<span class="text-primary font-bold mt-0.5 text-[11px] flex items-center gap-0.5">REMEDIATE <span class="text-[9px] opacity-0 group-hover:opacity-100 transition-opacity">↗</span></span>
-</a>
-</div>
+      <p class="text-xs text-on-surface-variant font-sans mt-0.5">Click any stage to inspect operational objectives, primary toolchains, safe commands, and corresponding handbook chapters.</p>
+    </div>
+    <span class="px-2 py-0.5 rounded bg-primary/10 border border-primary/30 text-primary font-mono text-[10px] font-bold self-start sm:self-auto shrink-0">INTERACTIVE PIPELINE</span>
+  </div>
+
+  <!-- 7 Clickable Stage Buttons -->
+  <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 font-mono text-xs mb-4" id="mission-stages-nav">
+    <button type="button" class="mission-stage-btn active p-2.5 rounded-xl bg-canvas-base border border-primary text-primary font-bold transition-all text-center flex flex-col items-center cursor-pointer shadow-[0_0_15px_rgba(78,222,163,0.2)]" data-stage="recon">
+      <span class="text-[9px] text-outline">STAGE 01</span>
+      <span class="text-xs font-bold mt-0.5">RECON</span>
+    </button>
+    <button type="button" class="mission-stage-btn p-2.5 rounded-xl bg-canvas-base border border-border-hairline text-on-surface hover:border-secondary hover:text-secondary font-bold transition-all text-center flex flex-col items-center cursor-pointer" data-stage="enum">
+      <span class="text-[9px] text-outline">STAGE 02</span>
+      <span class="text-xs font-bold mt-0.5">ENUM</span>
+    </button>
+    <button type="button" class="mission-stage-btn p-2.5 rounded-xl bg-canvas-base border border-border-hairline text-on-surface hover:border-warning-elevated hover:text-warning-elevated font-bold transition-all text-center flex flex-col items-center cursor-pointer" data-stage="web">
+      <span class="text-[9px] text-outline">STAGE 03</span>
+      <span class="text-xs font-bold mt-0.5">WEB SEC</span>
+    </button>
+    <button type="button" class="mission-stage-btn p-2.5 rounded-xl bg-canvas-base border border-border-hairline text-on-surface hover:border-danger-critical hover:text-danger-critical font-bold transition-all text-center flex flex-col items-center cursor-pointer" data-stage="exploit">
+      <span class="text-[9px] text-outline">STAGE 04</span>
+      <span class="text-xs font-bold mt-0.5">EXPLOIT</span>
+    </button>
+    <button type="button" class="mission-stage-btn p-2.5 rounded-xl bg-canvas-base border border-border-hairline text-on-surface hover:border-secondary hover:text-secondary font-bold transition-all text-center flex flex-col items-center cursor-pointer" data-stage="privesc">
+      <span class="text-[9px] text-outline">STAGE 05</span>
+      <span class="text-xs font-bold mt-0.5">PRIVESC</span>
+    </button>
+    <button type="button" class="mission-stage-btn p-2.5 rounded-xl bg-canvas-base border border-border-hairline text-on-surface hover:border-primary hover:text-primary font-bold transition-all text-center flex flex-col items-center cursor-pointer" data-stage="post">
+      <span class="text-[9px] text-outline">STAGE 06</span>
+      <span class="text-xs font-bold mt-0.5">POST-EXP</span>
+    </button>
+    <button type="button" class="mission-stage-btn p-2.5 rounded-xl bg-canvas-base border border-border-hairline text-on-surface hover:border-primary hover:text-primary font-bold transition-all text-center flex flex-col items-center cursor-pointer" data-stage="report">
+      <span class="text-[9px] text-outline">STAGE 07</span>
+      <span class="text-xs font-bold mt-0.5">DEFENSE</span>
+    </button>
+  </div>
+
+  <!-- Dynamic Stage Details Card -->
+  <div id="mission-stage-display" class="p-5 rounded-xl bg-canvas-base border border-primary/30 relative">
+    <div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
+      <div class="space-y-2 flex-1">
+        <div class="flex items-center gap-2">
+          <span class="px-2 py-0.5 rounded bg-primary/10 border border-primary/30 text-primary font-mono text-[10px] font-bold" id="ms-num">STAGE 01 OF 07</span>
+          <h3 class="text-base font-bold text-on-surface font-mono" id="ms-title">Reconnaissance &amp; OSINT Discovery</h3>
+        </div>
+        <p class="text-xs text-on-surface-variant font-sans leading-relaxed" id="ms-desc">
+          Map the target attack surface without direct alert generation. Interrogate DNS zones, query public certificate transparency logs, enumerate external assets, and index subdomains.
+        </p>
+        <div class="flex flex-wrap items-center gap-1.5 pt-1" id="ms-tools">
+          <span class="text-[10px] font-mono text-outline mr-1">Primary Tools:</span>
+          <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline font-mono text-[10px] text-primary">whois</span>
+          <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline font-mono text-[10px] text-primary">amass</span>
+          <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline font-mono text-[10px] text-primary">subfinder</span>
+          <span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline font-mono text-[10px] text-primary">dig</span>
+        </div>
+      </div>
+
+      <div class="md:w-80 space-y-2 shrink-0">
+        <div class="text-[10px] font-mono text-outline uppercase">Representative Safe Command:</div>
+        <div class="p-2.5 rounded bg-surface-raised border border-border-hairline font-mono text-[11px] text-primary flex items-center justify-between">
+          <code class="truncate mr-2" id="ms-cmd">subfinder -d target.lab -silent | httpx -title</code>
+          <button class="text-outline hover:text-primary transition-colors copy-code-btn" title="Copy Command">
+            <span class="material-symbols-outlined text-sm">content_copy</span>
+          </button>
+        </div>
+        <div class="flex items-center gap-2 pt-1 font-mono text-[11px]">
+          <a href="handbook/modules/reconnaissance.html" id="ms-hb-link" class="flex-1 py-1.5 px-2 rounded bg-surface-raised border border-border-hairline hover:border-primary text-center text-primary font-bold transition-all text-[10px]">
+            Handbook Manual ↗
+          </a>
+          <a href="labs.html#lab-network" id="ms-lab-link" class="flex-1 py-1.5 px-2 rounded bg-primary/10 border border-primary/40 hover:bg-primary hover:text-canvas-base text-center text-primary font-bold transition-all text-[10px]">
+            Practice Lab ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- Hands-on Workflows & Lab Architecture Setup -->
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -1572,8 +1758,364 @@
 <span class="text-primary font-mono">// NON_COMMERCIAL_LAB</span>
 </div>
 </div>
-</div>
 </section>
+
+<!-- ========================================================================= -->
+<!-- 5D. Interactive Concept Visualizer, Daily Challenge, CVE Intel & Journey  -->
+<!-- ========================================================================= -->
+<section class="max-w-7xl mx-auto px-6 py-12 border-t border-border-hairline" id="interactive-hub">
+  <div class="flex items-center gap-2 mb-2 font-mono text-xs text-primary">
+    <span class="material-symbols-outlined text-sm">science</span>
+    <span>PRACTICAL LABS &amp; CVE INTELLIGENCE // 03D</span>
+  </div>
+  <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+    <div>
+      <h2 class="text-2xl lg:text-3xl font-bold text-on-surface">
+        Interactive Concept Visualizer, Daily Challenge &amp; CVE Feed
+      </h2>
+      <p class="text-sm text-on-surface-variant max-w-3xl mt-1">
+        Hands-on browser simulators demonstrating protocol behavior, AST injection mechanics, live daily scenario triage, and technical analysis of modern high-impact CVEs.
+      </p>
+    </div>
+    <span class="px-2.5 py-1 rounded bg-primary/10 border border-primary/30 text-primary font-mono text-xs font-bold self-start md:self-auto shrink-0 flex items-center gap-1.5">
+      <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+      <span>CLIENT-SIDE SANDBOX</span>
+    </span>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+    <!-- Left Column (7 cols): Interactive Concept Visualizer -->
+    <div class="lg:col-span-7 bg-surface-subtle p-6 rounded-2xl border border-border-hairline flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between pb-3 border-b border-border-hairline mb-4">
+          <span class="font-mono text-xs font-bold text-primary flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">visibility</span>
+            <span>INTERACTIVE CONCEPT VISUALIZER</span>
+          </span>
+          <!-- Tab Switches -->
+          <div class="flex items-center gap-1 font-mono text-xs">
+            <button id="concept-tab-tcp" class="px-2.5 py-1 rounded-lg bg-primary/10 border border-primary/40 text-primary font-bold transition-all cursor-pointer">
+              TCP Handshake
+            </button>
+            <button id="concept-tab-sqli" class="px-2.5 py-1 rounded-lg bg-canvas-base border border-border-hairline text-outline hover:text-on-surface transition-all cursor-pointer">
+              SQLi vs AST
+            </button>
+          </div>
+        </div>
+
+        <!-- Tab 1: TCP Handshake Simulator -->
+        <div id="concept-view-tcp" class="space-y-4">
+          <div class="flex items-center justify-between text-xs font-mono">
+            <span class="text-outline">Step-by-step 3-way connection setup:</span>
+            <span class="text-secondary font-bold" id="tcp-step-indicator">STEP 1 OF 3: SYN TRANSMISSION</span>
+          </div>
+
+          <!-- Network Diagram Stepper -->
+          <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-4 font-mono text-xs">
+            <div class="flex items-center justify-between px-2">
+              <!-- Client Node -->
+              <div class="text-center">
+                <div class="w-10 h-10 rounded-xl bg-surface-raised border border-primary/50 flex items-center justify-center text-primary mx-auto mb-1">
+                  <span class="material-symbols-outlined text-lg">laptop_chromebook</span>
+                </div>
+                <div class="font-bold text-on-surface">Client</div>
+                <div class="text-[10px] text-outline">10.10.14.23:49152</div>
+                <div class="mt-1 px-1.5 py-0.5 rounded bg-surface-raised border border-primary/40 text-[10px] text-primary font-bold" id="tcp-client-state">SYN_SENT</div>
+              </div>
+
+              <!-- Animated Middle Packet Track -->
+              <div class="flex-1 px-4 text-center">
+                <div class="relative py-2">
+                  <div class="h-0.5 w-full bg-border-hairline"></div>
+                  <div id="tcp-packet-pill" class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-2.5 py-1 rounded-full bg-primary text-canvas-base text-[10px] font-bold shadow-[0_0_12px_rgba(78,222,163,0.4)] flex items-center gap-1 transition-all">
+                    <span>[SYN] SEQ=1000 &rarr;</span>
+                  </div>
+                </div>
+                <div class="text-[10px] text-outline mt-2" id="tcp-packet-desc">Client initiates connection with random ISN=1000</div>
+              </div>
+
+              <!-- Server Node -->
+              <div class="text-center">
+                <div class="w-10 h-10 rounded-xl bg-surface-raised border border-secondary/50 flex items-center justify-center text-secondary mx-auto mb-1">
+                  <span class="material-symbols-outlined text-lg">dns</span>
+                </div>
+                <div class="font-bold text-on-surface">Server</div>
+                <div class="text-[10px] text-outline">10.10.110.45:80</div>
+                <div class="mt-1 px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline text-[10px] text-outline" id="tcp-server-state">LISTEN</div>
+              </div>
+            </div>
+
+            <!-- Wireshark Filter & Raw Frame Preview -->
+            <div class="p-3 rounded-lg bg-surface-raised border border-border-hairline space-y-1">
+              <div class="flex justify-between items-center text-[10px]">
+                <span class="text-outline">WIRESHARK FILTER:</span>
+                <code class="text-primary" id="tcp-wireshark-filter">tcp.flags.syn == 1 &amp;&amp; tcp.flags.ack == 0</code>
+              </div>
+              <div class="text-outline text-[11px] leading-relaxed" id="tcp-frame-bytes">
+                Flags: 0x002 (SYN) · Seq: 1000 · Ack: 0 · Win: 64240 · MSS: 1460
+              </div>
+            </div>
+          </div>
+
+          <!-- Controls & Security Insights -->
+          <div class="flex flex-wrap items-center justify-between gap-2 pt-1 font-mono text-xs">
+            <div class="flex items-center gap-2">
+              <button id="tcp-btn-next" class="px-3.5 py-1.5 rounded-lg bg-primary text-canvas-base font-bold hover:opacity-90 transition-all flex items-center gap-1 cursor-pointer">
+                <span>Next Step</span> &rarr;
+              </button>
+              <button id="tcp-btn-reset" class="px-3 py-1.5 rounded-lg bg-canvas-base border border-border-hairline text-outline hover:text-on-surface transition-all cursor-pointer">
+                Reset
+              </button>
+            </div>
+            <a href="labs.html#lab-network" class="text-primary hover:underline text-[11px] flex items-center gap-0.5 font-bold">
+              Practice in Network Lab ↗
+            </a>
+          </div>
+
+          <div class="p-3 rounded-xl bg-canvas-base/80 border border-primary/20 text-[11px] leading-relaxed text-on-surface-variant font-sans">
+            <strong class="text-primary font-mono text-xs">Security Insight // SYN Flood &amp; SYN Cookies:</strong>
+            In a SYN flood denial-of-service attack, an adversary transmits millions of spoofed SYN packets without returning ACKs, exhausting the server's half-open connection backlog table. Linux mitigates this with <em>SYN Cookies</em> (<code>tcp_syncookies = 1</code>), encoding cryptographic connection state directly into the 32-bit Initial Sequence Number, eliminating kernel memory allocation until the final ACK arrives.
+          </div>
+        </div>
+
+        <!-- Tab 2: SQLi vs Parameterized Queries Simulator (Hidden by default) -->
+        <div id="concept-view-sqli" class="hidden space-y-4">
+          <div class="space-y-1">
+            <label class="block text-xs font-mono text-outline">Test Input Payload (User-Controlled String):</label>
+            <div class="flex gap-2">
+              <input type="text" id="sqli-test-input" value="admin' OR '1'='1" class="flex-1 px-3 py-2 rounded-lg bg-canvas-base border border-border-hairline text-xs font-mono text-on-surface focus:border-primary focus:outline-none" />
+              <button id="sqli-btn-eval" class="px-3 py-2 rounded-lg bg-secondary text-canvas-base font-mono text-xs font-bold hover:opacity-90 cursor-pointer">
+                Evaluate AST
+              </button>
+            </div>
+            <div class="flex flex-wrap gap-1.5 pt-1 text-[10px] font-mono">
+              <span class="text-outline">Presets:</span>
+              <button class="sqli-preset px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-outline hover:text-primary cursor-pointer" data-val="admin' OR '1'='1">Auth Bypass</button>
+              <button class="sqli-preset px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-outline hover:text-danger-critical cursor-pointer" data-val="105; DROP TABLE users;--">Stacked Query</button>
+              <button class="sqli-preset px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-outline hover:text-secondary cursor-pointer" data-val="standard_user">Legit User</button>
+            </div>
+          </div>
+
+          <!-- Comparison Display -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono">
+            <!-- Vulnerable Dynamic String -->
+            <div class="p-3.5 rounded-xl bg-canvas-base border border-danger-critical/40 space-y-2">
+              <div class="text-danger-critical font-bold flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">cancel</span>
+                <span>VULNERABLE (DYNAMIC CONCATENATION)</span>
+              </div>
+              <div class="p-2 rounded bg-surface-raised border border-border-hairline text-[11px] break-all leading-relaxed" id="sqli-dyn-query">
+                SELECT * FROM users WHERE user = '<span class="text-danger-critical font-bold">admin' OR '1'='1</span>' AND pass = '...';
+              </div>
+              <div class="text-[11px] text-danger-critical/90 font-sans leading-relaxed" id="sqli-dyn-ast">
+                <strong>AST Logic Hijacked:</strong> The injected quotes break string boundary. The database parser creates a new logical OR node evaluating to TRUE, authenticating without password!
+              </div>
+            </div>
+
+            <!-- Safe Prepared Statement -->
+            <div class="p-3.5 rounded-xl bg-canvas-base border border-primary/40 space-y-2">
+              <div class="text-primary font-bold flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+                <span>SAFE (PREPARED STATEMENT / AST FIXED)</span>
+              </div>
+              <div class="p-2 rounded bg-surface-raised border border-border-hairline text-[11px] break-all leading-relaxed" id="sqli-prep-query">
+                SELECT * FROM users WHERE user = <span class="text-primary font-bold">?</span> AND pass = <span class="text-primary font-bold">?</span>;
+              </div>
+              <div class="text-[11px] text-on-surface-variant font-sans leading-relaxed" id="sqli-prep-ast">
+                <strong>AST Precompiled:</strong> Query syntax tree is compiled before input binding. The entire payload is treated as a scalar literal, searching for a user named <code>admin' OR '1'='1</code>.
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-1 font-mono text-xs">
+            <span class="text-outline text-[11px]">Mitigation: Always use parameterized queries (PDO, PreparedStatement).</span>
+            <a href="labs.html#lab-sqli" class="text-primary hover:underline font-bold flex items-center gap-0.5">Solve SQLi Lab ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column (5 cols): Daily Cyber Challenge Component -->
+    <div class="lg:col-span-5 bg-surface-subtle p-6 rounded-2xl border border-secondary/40 flex flex-col justify-between">
+      <div class="space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b border-border-hairline">
+          <span class="font-mono text-xs font-bold text-secondary flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">bolt</span>
+            <span>DAILY CYBER CHALLENGE // TRIAGE SCENARIO</span>
+          </span>
+          <span class="px-2 py-0.5 rounded bg-primary/20 text-primary font-mono text-[10px] font-bold">+50 XP</span>
+        </div>
+
+        <div class="space-y-2 font-sans text-xs">
+          <div class="text-on-surface leading-relaxed">
+            <strong>Scenario Briefing:</strong> During network traffic analysis, an unauthenticated client initiates an SMBv3 negotiation with compression transform header <code>0x0311</code>, immediately causing a kernel pool memory corruption in <code>srv2.sys</code> decompression routines.
+          </div>
+          <div class="font-mono text-outline text-[11px]">Which CVE does this vulnerability pattern represent?</div>
+        </div>
+
+        <!-- 4 Options -->
+        <div class="space-y-2 font-mono text-xs" id="daily-challenge-options">
+          <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-canvas-base border border-border-hairline hover:border-primary/50 cursor-pointer transition-all">
+            <input type="radio" name="daily-cve" value="1" class="text-primary focus:ring-0" />
+            <span class="text-on-surface">1) CVE-2017-0144 (EternalBlue)</span>
+          </label>
+          <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-canvas-base border border-border-hairline hover:border-primary/50 cursor-pointer transition-all">
+            <input type="radio" name="daily-cve" value="2" class="text-primary focus:ring-0" />
+            <span class="text-on-surface">2) CVE-2020-0796 (SMBGhost)</span>
+          </label>
+          <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-canvas-base border border-border-hairline hover:border-primary/50 cursor-pointer transition-all">
+            <input type="radio" name="daily-cve" value="3" class="text-primary focus:ring-0" />
+            <span class="text-on-surface">3) CVE-2024-3094 (XZ Utils Backdoor)</span>
+          </label>
+          <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-canvas-base border border-border-hairline hover:border-primary/50 cursor-pointer transition-all">
+            <input type="radio" name="daily-cve" value="4" class="text-primary focus:ring-0" />
+            <span class="text-on-surface">4) CVE-2021-44228 (Log4Shell)</span>
+          </label>
+        </div>
+
+        <!-- Result feedback container -->
+        <div id="daily-challenge-feedback" class="hidden p-3 rounded-xl font-mono text-xs space-y-1"></div>
+      </div>
+
+      <div class="pt-4 mt-4 border-t border-border-hairline flex items-center justify-between">
+        <button id="daily-challenge-submit-btn" class="px-4 py-2 rounded-xl bg-primary text-canvas-base font-mono text-xs font-bold hover:opacity-90 transition-all flex items-center gap-1.5 cursor-pointer shadow-[0_0_15px_rgba(78,222,163,0.2)]">
+          <span class="material-symbols-outlined text-sm">verified</span>
+          <span>Submit Triage Analysis</span>
+        </button>
+        <span class="text-[10px] font-mono text-outline">Awards XP to CyberOps HUD</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Curated Security Updates / CVE Intelligence Feed -->
+  <div class="mb-12">
+    <div class="flex items-center justify-between mb-4">
+      <div class="flex items-center gap-2 font-mono text-xs text-primary font-bold">
+        <span class="material-symbols-outlined text-sm">rss_feed</span>
+        <span>CURATED CVE INTELLIGENCE FEED // CRITICAL TECHNICAL TRIAGE</span>
+      </div>
+      <span class="text-[10px] font-mono text-outline">ACTIVE RESEARCH NOTES</span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <!-- CVE 1: XZ Utils -->
+      <div class="p-5 rounded-xl bg-surface-subtle border border-danger-critical/40 hover:border-danger-critical transition-all flex flex-col justify-between">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2 py-0.5 rounded bg-danger-critical/10 text-danger-critical font-mono text-[10px] font-bold border border-danger-critical/30">CVSS 10.0 CRITICAL</span>
+            <span class="text-[10px] font-mono text-outline">SUPPLY CHAIN</span>
+          </div>
+          <h3 class="font-bold text-sm text-on-surface font-mono">CVE-2024-3094 · XZ Utils Embedded Backdoor</h3>
+          <p class="text-xs text-on-surface-variant font-sans leading-relaxed">
+            Multi-stage malicious payload hidden in upstream release tarballs. Hooked <code>RSA_public_decrypt</code> in OpenSSH via <code>liblzma.so.5</code> during systemd startup to allow pre-auth arbitrary remote command execution.
+          </p>
+        </div>
+        <div class="pt-3 mt-3 border-t border-border-hairline space-y-1 font-mono text-[10px]">
+          <div class="text-outline">Detection: Audit liblzma versions (5.6.0 &amp; 5.6.1 compromised)</div>
+          <div class="text-primary">Defense: Downgrade to 5.4.x, mandate signed reproducible builds</div>
+        </div>
+      </div>
+
+      <!-- CVE 2: regreSSHion -->
+      <div class="p-5 rounded-xl bg-surface-subtle border border-warning-elevated/40 hover:border-warning-elevated transition-all flex flex-col justify-between">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2 py-0.5 rounded bg-warning-elevated/10 text-warning-elevated font-mono text-[10px] font-bold border border-warning-elevated/30">CVSS 8.1 HIGH</span>
+            <span class="text-[10px] font-mono text-outline">RACE CONDITION</span>
+          </div>
+          <h3 class="font-bold text-sm text-on-surface font-mono">CVE-2024-6387 · regreSSHion OpenSSH RCE</h3>
+          <p class="text-xs text-on-surface-variant font-sans leading-relaxed">
+            Signal handler race condition (<code>SIGALRM</code>) in default OpenSSH server (<code>sshd</code>) on glibc-based Linux. An unauthenticated remote attacker can trigger heap state corruption to achieve root code execution.
+          </p>
+        </div>
+        <div class="pt-3 mt-3 border-t border-border-hairline space-y-1 font-mono text-[10px]">
+          <div class="text-outline">Detection: Audit sshd logs for abrupt SIGALRM timeout terminations</div>
+          <div class="text-warning-elevated">Defense: Upgrade OpenSSH &gt;= 9.8p1 or set LoginGraceTime 0 (DoS tradeoff)</div>
+        </div>
+      </div>
+
+      <!-- CVE 3: HTTP/2 Rapid Reset -->
+      <div class="p-5 rounded-xl bg-surface-subtle border border-secondary/40 hover:border-secondary transition-all flex flex-col justify-between">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2 py-0.5 rounded bg-secondary/10 text-secondary font-mono text-[10px] font-bold border border-secondary/30">CVSS 7.5 HIGH</span>
+            <span class="text-[10px] font-mono text-outline">PROTOCOL DDOS</span>
+          </div>
+          <h3 class="font-bold text-sm text-on-surface font-mono">CVE-2023-44487 · HTTP/2 Rapid Reset</h3>
+          <p class="text-xs text-on-surface-variant font-sans leading-relaxed">
+            Abuse of the HTTP/2 stream multiplexing cancellation mechanism. Attackers send hundreds of thousands of request streams and immediately cancel them with <code>RST_STREAM</code>, overwhelming backend reverse proxies.
+          </p>
+        </div>
+        <div class="pt-3 mt-3 border-t border-border-hairline space-y-1 font-mono text-[10px]">
+          <div class="text-outline">Detection: Monitor abnormal ratio of RST_STREAM to DATA frames</div>
+          <div class="text-secondary">Defense: Enforce RST_STREAM velocity caps in NGINX, HAProxy, Envoy</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Personal Journey & Milestones Timeline -->
+  <div>
+    <div class="flex items-center justify-between mb-4">
+      <div class="flex items-center gap-2 font-mono text-xs text-primary font-bold">
+        <span class="material-symbols-outlined text-sm">history_edu</span>
+        <span>ACADEMIC &amp; PRACTICAL LEARNING JOURNEY // TIMELINE</span>
+      </div>
+      <span class="text-[10px] font-mono text-outline">2023 &mdash; 2026</span>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- 2023 -->
+      <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-xs font-bold text-outline">2023</span>
+          <span class="w-2 h-2 rounded-full bg-outline"></span>
+        </div>
+        <div class="font-bold text-sm text-on-surface font-mono">Systems &amp; Foundations</div>
+        <p class="text-xs text-on-surface-variant font-sans leading-relaxed">
+          Mastered C programming, memory addressing, POSIX pointers, computer architecture, TCP/IP networking, and initial Linux command-line workflows.
+        </p>
+      </div>
+
+      <!-- 2024 -->
+      <div class="p-4 rounded-xl bg-surface-subtle border border-primary/30 space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-xs font-bold text-primary">2024</span>
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+        </div>
+        <div class="font-bold text-sm text-on-surface font-mono">TryHackMe Top 2%</div>
+        <p class="text-xs text-on-surface-variant font-sans leading-relaxed">
+          Solved 140+ challenge rooms in authorized labs. Earned Pre-Security and Cyber Security 101 credentials. Began deep exploration of web vulnerabilities and SUID privilege escalation.
+        </p>
+      </div>
+
+      <!-- 2025 -->
+      <div class="p-4 rounded-xl bg-surface-subtle border border-secondary/30 space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-xs font-bold text-secondary">2025</span>
+          <span class="w-2 h-2 rounded-full bg-secondary"></span>
+        </div>
+        <div class="font-bold text-sm text-on-surface font-mono">Google Cybersecurity Certified</div>
+        <p class="text-xs text-on-surface-variant font-sans leading-relaxed">
+          Completed Google Cybersecurity Professional Certificate. Practiced Python security automation, SIEM triage, Wireshark packet analysis, and formal incident documentation.
+        </p>
+      </div>
+
+      <!-- 2026 -->
+      <div class="p-4 rounded-xl bg-surface-subtle border border-primary/40 space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-xs font-bold text-primary">2026 (Current)</span>
+          <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+        </div>
+        <div class="font-bold text-sm text-on-surface font-mono">Tooling &amp; Local AI Research</div>
+        <p class="text-xs text-on-surface-variant font-sans leading-relaxed">
+          Building high-performance local AI security infrastructure, SQLite-authoritative persistent memory for coding agents, SentinelAI knowledge graphs, and the Ethical Hacker Handbook.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ========================================================================= -->
 <!-- 6. Featured Projects Section                                              -->
 <!-- ========================================================================= -->
@@ -3036,6 +3578,320 @@ Actionable Mitigation:
   });
 
   window.openToolInspector = openToolInspector;
+
+  // =========================================================================
+  // MISSION CONTROL INTERACTIVE STAGES
+  // =========================================================================
+  const MISSION_STAGES = {
+    recon: {
+      num: 'STAGE 01 OF 07',
+      title: 'Reconnaissance & OSINT Discovery',
+      desc: 'Map the target attack surface without direct alert generation. Interrogate DNS zones, query public certificate transparency logs, enumerate external assets, and index subdomains.',
+      tools: ['whois', 'amass', 'subfinder', 'dig', 'theHarvester'],
+      cmd: 'subfinder -d target.lab -silent | httpx -title',
+      hbLink: 'handbook/modules/reconnaissance.html',
+      labLink: 'labs.html#lab-network'
+    },
+    enum: {
+      num: 'STAGE 02 OF 07',
+      title: 'Network & Service Enumeration',
+      desc: 'Active port discovery and software version interrogation. Probe listening TCP/UDP services, identify running operating systems, and evaluate banner responses for misconfigurations.',
+      tools: ['nmap', 'rustscan', 'netcat', 'ss / netstat'],
+      cmd: 'nmap -sS -sV -sC -p- -T4 --open -oN initial_scan.log 10.10.110.45',
+      hbLink: 'handbook/nmap.html',
+      labLink: 'labs.html#lab-network'
+    },
+    web: {
+      num: 'STAGE 03 OF 07',
+      title: 'Web Application Security & Endpoint Discovery',
+      desc: 'Audit web endpoints for OWASP Top 10 vulnerabilities. Fuzz hidden paths, probe API parameters, inspect cookie session attributes, and detect access control flaws.',
+      tools: ['burp-suite', 'ffuf', 'gobuster', 'sqlmap', 'nikto'],
+      cmd: 'ffuf -u http://10.10.110.45/FUZZ -w /usr/share/wordlists/dirb/common.txt -mc 200,301,403',
+      hbLink: 'handbook/modules/web-security.html',
+      labLink: 'labs.html#lab-sqli'
+    },
+    exploit: {
+      num: 'STAGE 04 OF 07',
+      title: 'Vulnerability Validation & Controlled Exploitation',
+      desc: 'Validate identified exposures using reproducible, minimal proof-of-concept payloads in authorized lab environments to demonstrate architectural risk.',
+      tools: ['searchsploit', 'msfconsole', 'pwntools', 'custom-py'],
+      cmd: 'searchsploit "vsftpd 2.3.4" -m 49757',
+      hbLink: 'handbook/metasploit.html',
+      labLink: 'payloads.html'
+    },
+    privesc: {
+      num: 'STAGE 05 OF 07',
+      title: 'Privilege Escalation (Linux & Windows)',
+      desc: 'Enumerate local security vectors to elevate from low-privileged service accounts (e.g. www-data) to superuser (root / SYSTEM) via misconfigured SUID binaries or sudo rules.',
+      tools: ['linpeas', 'find -perm 4000', 'sudo -l', 'winpeas'],
+      cmd: 'find / -perm -4000 -type f -exec ls -la {} + 2>/dev/null',
+      hbLink: 'handbook/modules/privilege-escalation.html',
+      labLink: 'labs.html#lab-suid'
+    },
+    post: {
+      num: 'STAGE 06 OF 07',
+      title: 'Post-Exploitation & Credential Auditing',
+      desc: 'Audit local filesystem permissions, recover weak configuration hashes, verify data isolation, and trace potential internal network pivot paths.',
+      tools: ['hashcat', 'john-the-ripper', 'chisel', 'mimikatz'],
+      cmd: 'hashcat -m 0 hashes.txt /usr/share/wordlists/rockyou.txt',
+      hbLink: 'handbook/modules/credential-security.html',
+      labLink: 'labs.html#lab-jwt'
+    },
+    report: {
+      num: 'STAGE 07 OF 07',
+      title: 'Defensive Remediation & Verification Retesting',
+      desc: 'Formalize findings into actionable CVSS 3.1 reports. Provide defensive teams with specific code patches, systemd service limits, and verify security fixes.',
+      tools: ['cvss-calc', 'git diff', 'sysctl', 'auditd'],
+      cmd: 'git diff patch_fix.diff && sudo systemctl restart target.service',
+      hbLink: 'handbook/modules/pentest-methodology.html',
+      labLink: 'methodology.html'
+    }
+  };
+
+  function initMissionControl() {
+    const nav = document.getElementById('mission-stages-nav');
+    if (!nav) return;
+
+    const btns = nav.querySelectorAll('.mission-stage-btn');
+    const numEl = document.getElementById('ms-num');
+    const titleEl = document.getElementById('ms-title');
+    const descEl = document.getElementById('ms-desc');
+    const toolsEl = document.getElementById('ms-tools');
+    const cmdEl = document.getElementById('ms-cmd');
+    const hbLink = document.getElementById('ms-hb-link');
+    const labLink = document.getElementById('ms-lab-link');
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const stageKey = btn.getAttribute('data-stage');
+        const data = MISSION_STAGES[stageKey];
+        if (!data) return;
+
+        btns.forEach(b => {
+          b.classList.remove('active', 'border-primary', 'text-primary', 'shadow-[0_0_15px_rgba(78,222,163,0.2)]');
+          b.classList.add('border-border-hairline', 'text-on-surface');
+        });
+
+        btn.classList.add('active', 'border-primary', 'text-primary', 'shadow-[0_0_15px_rgba(78,222,163,0.2)]');
+        btn.classList.remove('border-border-hairline', 'text-on-surface');
+
+        if (numEl) numEl.textContent = data.num;
+        if (titleEl) titleEl.textContent = data.title;
+        if (descEl) descEl.textContent = data.desc;
+        if (cmdEl) cmdEl.textContent = data.cmd;
+        if (hbLink) hbLink.href = data.hbLink;
+        if (labLink) labLink.href = data.labLink;
+
+        if (toolsEl) {
+          toolsEl.innerHTML = `
+            <span class="text-[10px] font-mono text-outline mr-1">Primary Tools:</span>
+            ${data.tools.map(t => `<span class="px-2 py-0.5 rounded bg-surface-raised border border-border-hairline font-mono text-[10px] text-primary">${t}</span>`).join('')}
+          `;
+        }
+      });
+    });
+  }
+
+  // =========================================================================
+  // CONCEPT VISUALIZER: TCP HANDSHAKE & SQLI AST
+  // =========================================================================
+  function initConceptVisualizer() {
+    const tabTcp = document.getElementById('concept-tab-tcp');
+    const tabSqli = document.getElementById('concept-tab-sqli');
+    const viewTcp = document.getElementById('concept-view-tcp');
+    const viewSqli = document.getElementById('concept-view-sqli');
+
+    if (tabTcp && tabSqli && viewTcp && viewSqli) {
+      tabTcp.addEventListener('click', () => {
+        tabTcp.className = 'px-2.5 py-1 rounded-lg bg-primary/10 border border-primary/40 text-primary font-bold transition-all cursor-pointer';
+        tabSqli.className = 'px-2.5 py-1 rounded-lg bg-canvas-base border border-border-hairline text-outline hover:text-on-surface transition-all cursor-pointer';
+        viewTcp.classList.remove('hidden');
+        viewSqli.classList.add('hidden');
+      });
+
+      tabSqli.addEventListener('click', () => {
+        tabSqli.className = 'px-2.5 py-1 rounded-lg bg-secondary/10 border border-secondary/40 text-secondary font-bold transition-all cursor-pointer';
+        tabTcp.className = 'px-2.5 py-1 rounded-lg bg-canvas-base border border-border-hairline text-outline hover:text-on-surface transition-all cursor-pointer';
+        viewSqli.classList.remove('hidden');
+        viewTcp.classList.add('hidden');
+      });
+    }
+
+    // TCP Stepper
+    let tcpStep = 1;
+    const tcpSteps = [
+      {
+        step: 1,
+        title: 'STEP 1 OF 3: SYN TRANSMISSION',
+        clientState: 'SYN_SENT',
+        serverState: 'LISTEN',
+        packet: '[SYN] SEQ=1000 &rarr;',
+        desc: 'Client initiates connection with random Initial Sequence Number (ISN=1000)',
+        filter: 'tcp.flags.syn == 1 && tcp.flags.ack == 0',
+        bytes: 'Flags: 0x002 (SYN) · Seq: 1000 · Ack: 0 · Win: 64240 · MSS: 1460'
+      },
+      {
+        step: 2,
+        title: 'STEP 2 OF 3: SYN-ACK ACKNOWLEDGMENT',
+        clientState: 'SYN_SENT',
+        serverState: 'SYN_RCVD',
+        packet: '&larr; [SYN, ACK] SEQ=5000, ACK=1001',
+        desc: 'Server acknowledges client ISN (ACK=1001) and generates server ISN=5000',
+        filter: 'tcp.flags.syn == 1 && tcp.flags.ack == 1',
+        bytes: 'Flags: 0x012 (SYN, ACK) · Seq: 5000 · Ack: 1001 · Win: 65160 · MSS: 1460'
+      },
+      {
+        step: 3,
+        title: 'STEP 3 OF 3: FINAL ACK & ESTABLISHMENT',
+        clientState: 'ESTABLISHED',
+        serverState: 'ESTABLISHED',
+        packet: '[ACK] SEQ=1001, ACK=5001 &rarr;',
+        desc: 'Client acknowledges server ISN (ACK=5001). Bi-directional TCP stream established!',
+        filter: 'tcp.flags.ack == 1 && tcp.flags.syn == 0',
+        bytes: 'Flags: 0x010 (ACK) · Seq: 1001 · Ack: 5001 · Win: 64240 · State: ESTABLISHED'
+      }
+    ];
+
+    const btnNext = document.getElementById('tcp-btn-next');
+    const btnReset = document.getElementById('tcp-btn-reset');
+    const indicator = document.getElementById('tcp-step-indicator');
+    const cState = document.getElementById('tcp-client-state');
+    const sState = document.getElementById('tcp-server-state');
+    const pill = document.getElementById('tcp-packet-pill');
+    const pDesc = document.getElementById('tcp-packet-desc');
+    const filter = document.getElementById('tcp-wireshark-filter');
+    const bytes = document.getElementById('tcp-frame-bytes');
+
+    function renderTcpStep(s) {
+      const d = tcpSteps[s - 1];
+      if (!d) return;
+      if (indicator) indicator.textContent = d.title;
+      if (cState) {
+        cState.textContent = d.clientState;
+        cState.className = d.clientState === 'ESTABLISHED' ? 'mt-1 px-1.5 py-0.5 rounded bg-primary/20 text-primary font-bold' : 'mt-1 px-1.5 py-0.5 rounded bg-surface-raised border border-primary/40 text-primary font-bold';
+      }
+      if (sState) {
+        sState.textContent = d.serverState;
+        sState.className = d.serverState === 'ESTABLISHED' ? 'mt-1 px-1.5 py-0.5 rounded bg-primary/20 text-primary font-bold' : 'mt-1 px-1.5 py-0.5 rounded bg-surface-raised border border-secondary/40 text-secondary font-bold';
+      }
+      if (pill) pill.innerHTML = d.packet;
+      if (pDesc) pDesc.textContent = d.desc;
+      if (filter) filter.textContent = d.filter;
+      if (bytes) bytes.textContent = d.bytes;
+    }
+
+    if (btnNext) {
+      btnNext.addEventListener('click', () => {
+        tcpStep = tcpStep >= 3 ? 1 : tcpStep + 1;
+        renderTcpStep(tcpStep);
+      });
+    }
+
+    if (btnReset) {
+      btnReset.addEventListener('click', () => {
+        tcpStep = 1;
+        renderTcpStep(tcpStep);
+      });
+    }
+
+    // SQLi Evaluator
+    const sqliInput = document.getElementById('sqli-test-input');
+    const sqliBtn = document.getElementById('sqli-btn-eval');
+    const dynQuery = document.getElementById('sqli-dyn-query');
+    const prepQuery = document.getElementById('sqli-prep-query');
+
+    function escapeHtmlSimple(str) {
+      if (!str) return '';
+      return str.replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m]);
+    }
+
+    function evalSqli(val) {
+      const sanitized = escapeHtmlSimple(val);
+      if (dynQuery) {
+        dynQuery.innerHTML = `SELECT * FROM users WHERE user = '<span class="text-danger-critical font-bold">${sanitized}</span>' AND pass = '...';`;
+      }
+      if (prepQuery) {
+        prepQuery.innerHTML = `SELECT * FROM users WHERE user = <span class="text-primary font-bold">?</span> AND pass = <span class="text-primary font-bold">?</span>; <span class="text-[10px] text-outline block mt-1">Bound Param: "${sanitized}"</span>`;
+      }
+    }
+
+    if (sqliBtn && sqliInput) {
+      sqliBtn.addEventListener('click', () => evalSqli(sqliInput.value));
+      sqliInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') evalSqli(sqliInput.value);
+      });
+    }
+
+    document.querySelectorAll('.sqli-preset').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = btn.getAttribute('data-val') || '';
+        if (sqliInput) sqliInput.value = val;
+        evalSqli(val);
+      });
+    });
+  }
+
+  // =========================================================================
+  // DAILY CYBER CHALLENGE SUBMISSION
+  // =========================================================================
+  function initDailyChallenge() {
+    const btn = document.getElementById('daily-challenge-submit-btn');
+    const fb = document.getElementById('daily-challenge-feedback');
+    if (!btn || !fb) return;
+
+    btn.addEventListener('click', () => {
+      const selected = document.querySelector('input[name="daily-cve"]:checked');
+      if (!selected) {
+        fb.className = 'p-3 rounded-xl bg-surface-raised border border-warning-elevated/50 font-mono text-xs text-warning-elevated space-y-1 block';
+        fb.innerHTML = `<span>⚠ Please select one of the four vulnerability options before submitting.</span>`;
+        return;
+      }
+
+      const val = selected.value;
+      if (val === '2') {
+        fb.className = 'p-3 rounded-xl bg-primary/10 border border-primary/50 font-mono text-xs text-on-surface space-y-1 block shadow-[0_0_15px_rgba(78,222,163,0.15)]';
+        fb.innerHTML = `
+          <div class="text-primary font-bold flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">check_circle</span>
+            <span>CORRECT TRIAGE! [+50 CYBEROPS XP AWARDED]</span>
+          </div>
+          <div class="text-[11px] text-on-surface-variant font-sans leading-relaxed mt-1">
+            <strong>CVE-2020-0796 (SMBGhost)</strong> is a critical pre-authentication vulnerability in Microsoft Server Message Block 3.1.1 (SMBv3). An integer overflow in <code>srv2.sys</code> decompression allows remote code execution without credentials.
+          </div>
+          <div class="text-[10px] text-outline font-mono mt-1">Mitigation: Disable SMBv3 compression via PowerShell or apply KB4551762.</div>
+        `;
+
+        if (window.CyberOps) {
+          window.CyberOps.addXP(50, 'Solved Daily Cyber Challenge');
+          window.CyberOps.unlockBadge('daily_solver');
+        }
+      } else {
+        fb.className = 'p-3 rounded-xl bg-danger-critical/10 border border-danger-critical/40 font-mono text-xs text-on-surface space-y-1 block';
+        fb.innerHTML = `
+          <div class="text-danger-critical font-bold flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">cancel</span>
+            <span>INCORRECT TRIAGE</span>
+          </div>
+          <div class="text-[11px] text-on-surface-variant font-sans mt-0.5">
+            Notice that this vulnerability specifically affects SMBv3.1.1 packet decompression (dialect 0x0311). EternalBlue targeted SMBv1. Review option 2!
+          </div>
+        `;
+      }
+    });
+  }
+
+  // Initialize interactive components on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      initMissionControl();
+      initConceptVisualizer();
+      initDailyChallenge();
+    });
+  } else {
+    initMissionControl();
+    initConceptVisualizer();
+    initDailyChallenge();
+  }
 </script>
 <script src="portfolio-interactive.js"></script>
 </body></html>

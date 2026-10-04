@@ -589,6 +589,107 @@
           <span class="text-secondary font-bold">&rarr;</span>
           <span>SQLITE COMMIT</span>
         </div>
+
+        <!-- Interactive Data-Flow Inspector (Live Pipeline Stepper) -->
+        <div id="architecture-flow-inspector" class="mt-6 p-4 sm:p-5 rounded-xl bg-surface-raised border border-primary/40 space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline pb-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-base">alt_route</span>
+              <span class="font-mono text-xs font-bold text-on-surface uppercase tracking-wider">Interactive Data-Flow Inspector // Step-by-Step Packet Simulation</span>
+            </div>
+            <div class="flex items-center gap-2 font-mono text-[11px]">
+              <span class="text-outline">Step:</span>
+              <span id="opencode-flow-step-num" class="px-2 py-0.5 rounded bg-primary/20 text-primary font-bold">1 / 6</span>
+            </div>
+          </div>
+
+          <!-- Step Buttons Selector -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2" id="opencode-flow-buttons">
+            <button type="button" data-step="0" class="opencode-step-btn px-2.5 py-2 rounded text-left border border-primary bg-primary/10 text-primary font-mono text-xs font-semibold transition-all">
+              <div class="text-[10px] text-outline">STEP 01</div>
+              <div class="truncate font-bold">chat.message</div>
+            </button>
+            <button type="button" data-step="1" class="opencode-step-btn px-2.5 py-2 rounded text-left border border-border-hairline bg-canvas-base text-on-surface-variant hover:border-primary/50 font-mono text-xs transition-all">
+              <div class="text-[10px] text-outline">STEP 02</div>
+              <div class="truncate font-bold">Relevance Gate</div>
+            </button>
+            <button type="button" data-step="2" class="opencode-step-btn px-2.5 py-2 rounded text-left border border-border-hairline bg-canvas-base text-on-surface-variant hover:border-primary/50 font-mono text-xs transition-all">
+              <div class="text-[10px] text-outline">STEP 03</div>
+              <div class="truncate font-bold">Ollama Extraction</div>
+            </button>
+            <button type="button" data-step="3" class="opencode-step-btn px-2.5 py-2 rounded text-left border border-border-hairline bg-canvas-base text-on-surface-variant hover:border-primary/50 font-mono text-xs transition-all">
+              <div class="text-[10px] text-outline">STEP 04</div>
+              <div class="truncate font-bold">SQLite Commit</div>
+            </button>
+            <button type="button" data-step="4" class="opencode-step-btn px-2.5 py-2 rounded text-left border border-border-hairline bg-canvas-base text-on-surface-variant hover:border-primary/50 font-mono text-xs transition-all">
+              <div class="text-[10px] text-outline">STEP 05</div>
+              <div class="truncate font-bold">Chroma Vector</div>
+            </button>
+            <button type="button" data-step="5" class="opencode-step-btn px-2.5 py-2 rounded text-left border border-border-hairline bg-canvas-base text-on-surface-variant hover:border-primary/50 font-mono text-xs transition-all">
+              <div class="text-[10px] text-outline">STEP 06</div>
+              <div class="truncate font-bold">Dual Retrieval</div>
+            </button>
+          </div>
+
+          <!-- Inspector Display Card -->
+          <div class="p-4 rounded-lg bg-canvas-base border border-border-hairline space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border-hairline/60 pb-2.5">
+              <div>
+                <h4 id="opencode-stage-title" class="font-mono text-sm font-bold text-on-surface flex items-center gap-2">
+                  <span class="material-symbols-outlined text-primary text-base">input</span>
+                  <span>1: chat.message Hook (OpenCode IDE Client)</span>
+                </h4>
+                <p id="opencode-stage-desc" class="text-xs text-on-surface-variant mt-1 font-mono">
+                  Intercepts user queries in the IDE conversation loop, captures active repository workspace root, and prepares the telemetry payload for validation.
+                </p>
+              </div>
+              <div class="flex flex-wrap items-center gap-2 self-start sm:self-center shrink-0">
+                <span id="opencode-stage-latency" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-[11px] text-primary font-bold">
+                  <span class="material-symbols-outlined text-xs">speed</span>
+                  <span>Latency: &lt; 2ms</span>
+                </span>
+                <span id="opencode-stage-boundary" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-[11px] text-secondary font-bold">
+                  <span class="material-symbols-outlined text-xs">shield</span>
+                  <span>Boundary: Host Memory</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- In-Flight JSON Payload Terminal -->
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between text-[11px] font-mono text-outline">
+                <span class="flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                  In-Flight Telemetry Payload (JSON)
+                </span>
+                <button type="button" id="copy-opencode-payload-btn" class="hover:text-primary transition-colors flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs">content_copy</span>
+                  <span id="copy-opencode-payload-text">Copy Payload</span>
+                </button>
+              </div>
+              <pre class="p-3.5 rounded bg-surface-base border border-border-hairline overflow-x-auto text-[11px] font-mono text-primary/95 leading-relaxed selection:bg-primary/20"><code id="opencode-stage-json">{
+  "event": "chat.message",
+  "session_id": "ses_9941a_prod",
+  "project_root": "/home/mihraj/projects/auth-microservice",
+  "raw_prompt": "Refactor JWT claims validation to handle RS256 rotation keys from JWKS cache",
+  "timestamp": "2026-10-04T10:14:22.108Z"
+}</code></pre>
+            </div>
+
+            <!-- Controls (Prev / Next Stepper) -->
+            <div class="flex items-center justify-between pt-1">
+              <button type="button" id="opencode-prev-btn" class="px-3 py-1.5 rounded bg-surface-raised border border-border-hairline text-outline font-mono text-xs hover:text-on-surface transition-colors flex items-center gap-1 disabled:opacity-40 disabled:cursor-not-allowed">
+                <span class="material-symbols-outlined text-sm">arrow_back</span>
+                <span>Previous Stage</span>
+              </button>
+              <span class="font-mono text-[11px] text-outline hidden sm:inline">Click any step or use controls to inspect telemetry</span>
+              <button type="button" id="opencode-next-btn" class="px-3 py-1.5 rounded bg-primary/10 border border-primary/40 text-primary font-mono text-xs font-semibold hover:bg-primary hover:text-canvas-base transition-colors flex items-center gap-1">
+                <span>Next Stage</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Component Breakdown Table -->
@@ -1467,5 +1568,190 @@ memory_id = cursor.lastrowid
   </footer>
 
   <script src="../portfolio-interactive.js"></script>
+  <script>
+    (function initOpencodeInspector() {
+      const stages = [
+        {
+          num: '1 / 6',
+          title: '1: chat.message Hook (OpenCode IDE Client)',
+          desc: 'Intercepts user queries in the IDE conversation loop, captures active repository workspace root, and prepares the telemetry payload for validation.',
+          latency: 'Latency: < 2ms',
+          boundary: 'Boundary: Host Memory',
+          json: JSON.stringify({
+            event: "chat.message",
+            session_id: "ses_9941a_prod",
+            project_root: "/home/mihraj/projects/auth-microservice",
+            raw_prompt: "Refactor JWT claims validation to handle RS256 rotation keys from JWKS cache",
+            timestamp: "2026-10-04T10:14:22.108Z"
+          }, null, 2)
+        },
+        {
+          num: '2 / 6',
+          title: '2: Relevance Gate & Secret Redactor',
+          desc: 'Evaluates message substance (>= 180 chars or intent keywords). Passes query through 5 compiled regex filters redacting private keys, API tokens, passwords, and bearer headers.',
+          latency: 'Latency: < 8ms',
+          boundary: 'Boundary: Zero Egress Sanitization',
+          json: JSON.stringify({
+            evaluation: "SUBSTANTIAL_INTENT",
+            gate_passed: true,
+            secret_redaction: {
+              patterns_scanned: 5,
+              secrets_scrubbed: 0,
+              status: "CLEAN"
+            },
+            sanitized_query: "Refactor JWT claims validation to handle RS256 rotation keys from JWKS cache",
+            query_hash: "e9b21a8f4c7d032e"
+          }, null, 2)
+        },
+        {
+          num: '3 / 6',
+          title: '3: Ollama Semantic Chat Extractor (gemma4:12b)',
+          desc: 'Asynchronous session idle extractor synthesizes architectural decisions, tech constraints, and persistent context facts into normalized JSON schemas with confidence scores.',
+          latency: 'Latency: ~120ms (Local GPU Tensor Cores)',
+          boundary: 'Boundary: Localhost (127.0.0.1:11434)',
+          json: JSON.stringify({
+            model: "gemma4:12b",
+            temperature: 0.0,
+            extracted_facts: [
+              {
+                category: "ARCHITECTURE",
+                fact: "Authentication microservice uses JWKS RS256 key rotation with 15-minute in-memory cache",
+                confidence: 0.94,
+                scope: "/home/mihraj/projects/auth-microservice"
+              }
+            ]
+          }, null, 2)
+        },
+        {
+          num: '4 / 6',
+          title: '4: SQLite Authoritative Commit',
+          desc: 'Computes MD5 unique deduplication hash, verifies 64 KiB quota limit, executes atomic INSERT OR IGNORE into relational memories table with WAL mode durability.',
+          latency: 'Latency: < 4ms',
+          boundary: 'Boundary: Local File System (0600 POSIX)',
+          json: JSON.stringify({
+            storage_tier: "SQLITE_AUTHORITATIVE",
+            table: "memories",
+            action: "COMMIT",
+            id: 142,
+            hash: "d41d8cd98f00b204e9800998ecf8427e",
+            wal_checkpoint: "OK",
+            db_path: "~/.config/opencode/memory/store.db"
+          }, null, 2)
+        },
+        {
+          num: '5 / 6',
+          title: '5: Chroma Vector Embedding (nomic-embed-text)',
+          desc: 'Generates 768-dimensional dense vector embeddings via local Ollama endpoint; upserts vector coordinates and metadata into the Chroma memories collection for cosine distance retrieval.',
+          latency: 'Latency: ~45ms',
+          boundary: 'Boundary: Local Ephemeral Index',
+          json: JSON.stringify({
+            embedding_model: "nomic-embed-text",
+            dimensions: 768,
+            collection: "memories",
+            doc_id: "mem_142",
+            metadata: {
+              project: "auth-microservice",
+              created_at: 1791104062
+            },
+            index_status: "SYNCED"
+          }, null, 2)
+        },
+        {
+          num: '6 / 6',
+          title: '6: Dual-Engine Hybrid Retrieval & Injection',
+          desc: 'Merges vector cosine similarity matches (distance <= 0.35) with SQLite FTS keyword matches. Ranks top 4 notes, formats untrusted XML payload, and injects into LLM system prompt.',
+          latency: 'Latency: < 15ms',
+          boundary: 'Boundary: Sandbox XML Context Block',
+          json: JSON.stringify({
+            matches_returned: 2,
+            vector_hits: 1,
+            keyword_hits: 1,
+            injection_token_count: 148,
+            payload_format: "<persistent-memory scope=\"auth-microservice\">[Fact 142] ...</persistent-memory>",
+            resilience_fallback_ready: true
+          }, null, 2)
+        }
+      ];
+
+      let currentStep = 0;
+      const stepNumEl = document.getElementById('opencode-flow-step-num');
+      const titleEl = document.getElementById('opencode-stage-title');
+      const descEl = document.getElementById('opencode-stage-desc');
+      const latencyEl = document.getElementById('opencode-stage-latency');
+      const boundaryEl = document.getElementById('opencode-stage-boundary');
+      const jsonEl = document.getElementById('opencode-stage-json');
+      const prevBtn = document.getElementById('opencode-prev-btn');
+      const nextBtn = document.getElementById('opencode-next-btn');
+      const copyBtn = document.getElementById('copy-opencode-payload-btn');
+      const copyTextEl = document.getElementById('copy-opencode-payload-text');
+      const buttons = document.querySelectorAll('.opencode-step-btn');
+
+      if (!titleEl || !jsonEl) return;
+
+      function updateStep(index) {
+        currentStep = index;
+        const stage = stages[currentStep];
+        if (stepNumEl) stepNumEl.textContent = stage.num;
+        if (titleEl) {
+          titleEl.innerHTML = `<span class="material-symbols-outlined text-primary text-base">input</span><span>${stage.title}</span>`;
+        }
+        if (descEl) descEl.textContent = stage.desc;
+        if (latencyEl) {
+          latencyEl.innerHTML = `<span class="material-symbols-outlined text-xs">speed</span><span>${stage.latency}</span>`;
+        }
+        if (boundaryEl) {
+          boundaryEl.innerHTML = `<span class="material-symbols-outlined text-xs">shield</span><span>${stage.boundary}</span>`;
+        }
+        if (jsonEl) jsonEl.textContent = stage.json;
+
+        if (prevBtn) prevBtn.disabled = currentStep === 0;
+        if (nextBtn) {
+          nextBtn.disabled = currentStep === stages.length - 1;
+          if (nextBtn.disabled) {
+            nextBtn.classList.add('opacity-40', 'cursor-not-allowed');
+          } else {
+            nextBtn.classList.remove('opacity-40', 'cursor-not-allowed');
+          }
+        }
+
+        buttons.forEach((btn, idx) => {
+          if (idx === currentStep) {
+            btn.className = 'opencode-step-btn px-2.5 py-2 rounded text-left border border-primary bg-primary/10 text-primary font-mono text-xs font-semibold transition-all';
+          } else {
+            btn.className = 'opencode-step-btn px-2.5 py-2 rounded text-left border border-border-hairline bg-canvas-base text-on-surface-variant hover:border-primary/50 font-mono text-xs transition-all';
+          }
+        });
+      }
+
+      buttons.forEach((btn, idx) => {
+        btn.addEventListener('click', () => updateStep(idx));
+      });
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          if (currentStep > 0) updateStep(currentStep - 1);
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          if (currentStep < stages.length - 1) updateStep(currentStep + 1);
+        });
+      }
+
+      if (copyBtn) {
+        copyBtn.addEventListener('click', () => {
+          if (jsonEl) {
+            navigator.clipboard.writeText(jsonEl.textContent).then(() => {
+              if (copyTextEl) {
+                copyTextEl.textContent = 'Copied!';
+                setTimeout(() => { copyTextEl.textContent = 'Copy Payload'; }, 2000);
+              }
+            });
+          }
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

@@ -129,6 +129,60 @@
       </div>
     </div>
 
+    <!-- Gamification HUD Status Bar on Labs -->
+    <div class="p-4 sm:p-5 rounded-2xl bg-surface-subtle border border-primary/40 shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-canvas-base border border-primary/50 flex items-center justify-center text-primary shadow-[0_0_12px_rgba(78,222,163,0.25)] shrink-0">
+          <span class="material-symbols-outlined text-xl">military_tech</span>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-xs text-primary font-bold tracking-wider uppercase cyberops-rank-title">Novice Operator</span>
+            <span class="px-2 py-0.5 rounded-full bg-primary/10 border border-primary/30 text-primary font-mono text-[10px] font-bold cyberops-level-val">LVL 1</span>
+          </div>
+          <div class="font-mono text-[11px] text-outline mt-0.5">Solve labs to earn CyberOps XP and promote your operator tier</div>
+        </div>
+      </div>
+
+      <div class="flex-1 max-w-sm space-y-1 font-mono">
+        <div class="flex justify-between items-center text-xs">
+          <span class="text-outline text-[11px]">XP Progress:</span>
+          <span class="text-primary font-bold cyberops-xp-val">0 XP</span>
+        </div>
+        <div class="w-full h-2 bg-canvas-base rounded-full overflow-hidden border border-border-hairline">
+          <div class="h-full bg-gradient-to-r from-primary to-secondary transition-all duration-500 cyberops-progress-bar" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3 font-mono text-xs">
+        <div class="px-3.5 py-1.5 rounded-xl bg-canvas-base border border-border-hairline text-center">
+          <span class="text-secondary font-bold text-sm" id="labs-solved-counter">0 / 12</span>
+          <span class="text-[9px] text-outline block uppercase">Solved</span>
+        </div>
+        <button data-trigger-term class="px-3.5 py-2 rounded-xl bg-primary/10 hover:bg-primary border border-primary/40 text-primary hover:text-canvas-base font-bold text-xs transition-all flex items-center gap-1 cursor-pointer">
+          <span class="material-symbols-outlined text-sm">terminal</span>
+          <span>CLI</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Difficulty Tier Tabs -->
+    <div class="flex flex-wrap items-center gap-2 font-mono text-xs" id="lab-tier-filters">
+      <span class="text-outline text-[11px] mr-1 hidden sm:inline">DIFFICULTY TIER:</span>
+      <button class="lab-tier-btn active px-3.5 py-1.5 rounded-lg border border-primary/50 bg-primary/10 text-primary font-bold transition-all cursor-pointer" data-tier="all">
+        All Labs (12)
+      </button>
+      <button class="lab-tier-btn px-3.5 py-1.5 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-primary hover:border-primary/40 transition-all cursor-pointer" data-tier="beginner">
+        Beginner (5)
+      </button>
+      <button class="lab-tier-btn px-3.5 py-1.5 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-secondary hover:border-secondary/40 transition-all cursor-pointer" data-tier="intermediate">
+        Intermediate (4)
+      </button>
+      <button class="lab-tier-btn px-3.5 py-1.5 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-danger-critical hover:border-danger-critical/40 transition-all cursor-pointer" data-tier="advanced">
+        Advanced (3)
+      </button>
+    </div>
+
     <!-- Quick Lab Filter / Navigation -->
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 font-mono text-xs">
       <a href="#lab-headers" class="p-2.5 rounded-lg bg-surface-subtle border border-border-hairline hover:border-primary/50 text-center transition-all">01. HTTP Headers</a>
@@ -151,7 +205,7 @@
       <!-- ===================================================================== -->
       <!-- LAB 01: HTTP SECURITY HEADERS                                         -->
       <!-- ===================================================================== -->
-      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl" id="lab-headers">
+      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl lab-card" id="lab-headers" data-difficulty="beginner">
         <header class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline/60 pb-4">
           <div class="flex items-center gap-3">
             <span class="p-2.5 rounded-xl bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">LAB 01</span>
@@ -218,12 +272,23 @@ add_header X-Content-Type-Options "nosniff" always;
 server_tokens off;</pre>
           </div>
         </div>
+        <!-- Flag Submission & Verification Row -->
+        <div class="lab-flag-container p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 font-mono text-xs" data-lab="lab-headers" data-title="HTTP Headers Hardening" data-xp="75">
+          <div class="flex items-center gap-2 flex-1">
+            <span class="text-primary font-bold whitespace-nowrap">FLAG / KEY:</span>
+            <input type="text" class="lab-flag-input flex-1 px-3 py-1.5 rounded-lg bg-surface-raised border border-border-hairline text-on-surface focus:border-primary focus:outline-none text-xs" placeholder="e.g. flag{...} or key token" />
+          </div>
+          <button type="button" class="lab-verify-btn px-4 py-1.5 rounded-lg bg-primary/20 text-primary border border-primary/40 hover:bg-primary hover:text-canvas-base font-bold transition-all shrink-0 cursor-pointer flex items-center justify-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">flag</span>
+            <span>Verify Flag (+75 XP)</span>
+          </button>
+        </div>
       </article>
 
       <!-- ===================================================================== -->
       <!-- LAB 02: LINUX PERMISSIONS (RWX & OCTAL)                               -->
       <!-- ===================================================================== -->
-      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl" id="lab-permissions">
+      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl lab-card" id="lab-permissions" data-difficulty="beginner">
         <header class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline/60 pb-4">
           <div class="flex items-center gap-3">
             <span class="p-2.5 rounded-xl bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">LAB 02</span>
@@ -272,12 +337,23 @@ sudo chown www-data:www-data /var/www/html/config.php
 sudo chmod 600 /var/www/html/config.php</pre>
           </div>
         </div>
+        <!-- Flag Submission & Verification Row -->
+        <div class="lab-flag-container p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 font-mono text-xs" data-lab="lab-permissions" data-title="Linux Permissions & Octal Masking" data-xp="75">
+          <div class="flex items-center gap-2 flex-1">
+            <span class="text-primary font-bold whitespace-nowrap">FLAG / KEY:</span>
+            <input type="text" class="lab-flag-input flex-1 px-3 py-1.5 rounded-lg bg-surface-raised border border-border-hairline text-on-surface focus:border-primary focus:outline-none text-xs" placeholder="e.g. flag{...} or key token" />
+          </div>
+          <button type="button" class="lab-verify-btn px-4 py-1.5 rounded-lg bg-primary/20 text-primary border border-primary/40 hover:bg-primary hover:text-canvas-base font-bold transition-all shrink-0 cursor-pointer flex items-center justify-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">flag</span>
+            <span>Verify Flag (+75 XP)</span>
+          </button>
+        </div>
       </article>
 
       <!-- ===================================================================== -->
       <!-- LAB 03: SUID PRIVILEGE ESCALATION                                     -->
       <!-- ===================================================================== -->
-      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl" id="lab-suid">
+      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl lab-card" id="lab-suid" data-difficulty="advanced">
         <header class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline/60 pb-4">
           <div class="flex items-center gap-3">
             <span class="p-2.5 rounded-xl bg-canvas-base border border-danger-critical/30 text-danger-critical font-mono font-bold text-sm">LAB 03</span>
@@ -331,12 +407,23 @@ sudo chmod 600 /var/www/html/config.php</pre>
             <pre class="p-2.5 rounded bg-surface-subtle text-primary text-[11px] overflow-x-auto">sudo chmod u-s /usr/bin/find</pre>
           </div>
         </div>
+        <!-- Flag Submission & Verification Row -->
+        <div class="lab-flag-container p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 font-mono text-xs" data-lab="lab-suid" data-title="SUID Privilege Escalation" data-xp="100">
+          <div class="flex items-center gap-2 flex-1">
+            <span class="text-primary font-bold whitespace-nowrap">FLAG / KEY:</span>
+            <input type="text" class="lab-flag-input flex-1 px-3 py-1.5 rounded-lg bg-surface-raised border border-border-hairline text-on-surface focus:border-primary focus:outline-none text-xs" placeholder="e.g. flag{...} or key token" />
+          </div>
+          <button type="button" class="lab-verify-btn px-4 py-1.5 rounded-lg bg-primary/20 text-primary border border-primary/40 hover:bg-primary hover:text-canvas-base font-bold transition-all shrink-0 cursor-pointer flex items-center justify-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">flag</span>
+            <span>Verify Flag (+100 XP)</span>
+          </button>
+        </div>
       </article>
 
       <!-- ===================================================================== -->
       <!-- LAB 04: AUTHENTICATION BYPASS                                         -->
       <!-- ===================================================================== -->
-      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl" id="lab-auth">
+      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl lab-card" id="lab-auth" data-difficulty="beginner">
         <header class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline/60 pb-4">
           <div class="flex items-center gap-3">
             <span class="p-2.5 rounded-xl bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-sm">LAB 04</span>
@@ -385,12 +472,23 @@ if ($user && password_verify($password, $user['password_hash'])) {
 }</pre>
           </div>
         </div>
+        <!-- Flag Submission & Verification Row -->
+        <div class="lab-flag-container p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 font-mono text-xs" data-lab="lab-auth" data-title="Authentication Bypass & Brute-Force Defense" data-xp="75">
+          <div class="flex items-center gap-2 flex-1">
+            <span class="text-primary font-bold whitespace-nowrap">FLAG / KEY:</span>
+            <input type="text" class="lab-flag-input flex-1 px-3 py-1.5 rounded-lg bg-surface-raised border border-border-hairline text-on-surface focus:border-primary focus:outline-none text-xs" placeholder="e.g. flag{...} or key token" />
+          </div>
+          <button type="button" class="lab-verify-btn px-4 py-1.5 rounded-lg bg-primary/20 text-primary border border-primary/40 hover:bg-primary hover:text-canvas-base font-bold transition-all shrink-0 cursor-pointer flex items-center justify-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">flag</span>
+            <span>Verify Flag (+75 XP)</span>
+          </button>
+        </div>
       </article>
 
       <!-- ===================================================================== -->
       <!-- LAB 05: IDOR & BROKEN AUTHORIZATION                                   -->
       <!-- ===================================================================== -->
-      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl" id="lab-idor">
+      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl lab-card" id="lab-idor" data-difficulty="intermediate">
         <header class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline/60 pb-4">
           <div class="flex items-center gap-3">
             <span class="p-2.5 rounded-xl bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-sm">LAB 05</span>
@@ -438,12 +536,23 @@ app.get('/api/v1/invoices/:id', authMiddleware, async (req, res) => {
 });</pre>
           </div>
         </div>
+        <!-- Flag Submission & Verification Row -->
+        <div class="lab-flag-container p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 font-mono text-xs" data-lab="lab-idor" data-title="Insecure Direct Object Reference (IDOR)" data-xp="85">
+          <div class="flex items-center gap-2 flex-1">
+            <span class="text-primary font-bold whitespace-nowrap">FLAG / KEY:</span>
+            <input type="text" class="lab-flag-input flex-1 px-3 py-1.5 rounded-lg bg-surface-raised border border-border-hairline text-on-surface focus:border-primary focus:outline-none text-xs" placeholder="e.g. flag{...} or key token" />
+          </div>
+          <button type="button" class="lab-verify-btn px-4 py-1.5 rounded-lg bg-primary/20 text-primary border border-primary/40 hover:bg-primary hover:text-canvas-base font-bold transition-all shrink-0 cursor-pointer flex items-center justify-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">flag</span>
+            <span>Verify Flag (+85 XP)</span>
+          </button>
+        </div>
       </article>
 
       <!-- ===================================================================== -->
       <!-- LAB 06: SQL INJECTION CONCEPTS                                        -->
       <!-- ===================================================================== -->
-      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl" id="lab-sqli">
+      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl lab-card" id="lab-sqli" data-difficulty="advanced">
         <header class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline/60 pb-4">
           <div class="flex items-center gap-3">
             <span class="p-2.5 rounded-xl bg-canvas-base border border-danger-critical/30 text-danger-critical font-mono font-bold text-sm">LAB 06</span>
@@ -474,12 +583,23 @@ app.get('/api/v1/invoices/:id', authMiddleware, async (req, res) => {
             <p class="font-sans text-xs text-on-surface-variant">Always use parameterized queries. Never concatenate variables into SQL strings.</p>
           </div>
         </div>
+        <!-- Flag Submission & Verification Row -->
+        <div class="lab-flag-container p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 font-mono text-xs" data-lab="lab-sqli" data-title="SQL Injection AST & Parameterization" data-xp="100">
+          <div class="flex items-center gap-2 flex-1">
+            <span class="text-primary font-bold whitespace-nowrap">FLAG / KEY:</span>
+            <input type="text" class="lab-flag-input flex-1 px-3 py-1.5 rounded-lg bg-surface-raised border border-border-hairline text-on-surface focus:border-primary focus:outline-none text-xs" placeholder="e.g. flag{...} or key token" />
+          </div>
+          <button type="button" class="lab-verify-btn px-4 py-1.5 rounded-lg bg-primary/20 text-primary border border-primary/40 hover:bg-primary hover:text-canvas-base font-bold transition-all shrink-0 cursor-pointer flex items-center justify-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">flag</span>
+            <span>Verify Flag (+100 XP)</span>
+          </button>
+        </div>
       </article>
 
       <!-- ===================================================================== -->
       <!-- LAB 07: CROSS-SITE SCRIPTING (XSS)                                    -->
       <!-- ===================================================================== -->
-      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl" id="lab-xss">
+      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl lab-card" id="lab-xss" data-difficulty="intermediate">
         <header class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline/60 pb-4">
           <div class="flex items-center gap-3">
             <span class="p-2.5 rounded-xl bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-sm">LAB 07</span>
@@ -511,12 +631,23 @@ app.get('/api/v1/invoices/:id', authMiddleware, async (req, res) => {
             <p class="font-sans text-xs text-on-surface-variant">Apply context-aware attribute encoding (e.g. <code class="text-primary font-mono">&amp;quot;</code>) and deploy strict Content-Security-Policy.</p>
           </div>
         </div>
+        <!-- Flag Submission & Verification Row -->
+        <div class="lab-flag-container p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 font-mono text-xs" data-lab="lab-xss" data-title="Cross-Site Scripting (XSS) Sanitization" data-xp="85">
+          <div class="flex items-center gap-2 flex-1">
+            <span class="text-primary font-bold whitespace-nowrap">FLAG / KEY:</span>
+            <input type="text" class="lab-flag-input flex-1 px-3 py-1.5 rounded-lg bg-surface-raised border border-border-hairline text-on-surface focus:border-primary focus:outline-none text-xs" placeholder="e.g. flag{...} or key token" />
+          </div>
+          <button type="button" class="lab-verify-btn px-4 py-1.5 rounded-lg bg-primary/20 text-primary border border-primary/40 hover:bg-primary hover:text-canvas-base font-bold transition-all shrink-0 cursor-pointer flex items-center justify-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">flag</span>
+            <span>Verify Flag (+85 XP)</span>
+          </button>
+        </div>
       </article>
 
       <!-- ===================================================================== -->
       <!-- LAB 08: CSRF CONCEPTS                                                 -->
       <!-- ===================================================================== -->
-      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl" id="lab-csrf">
+      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl lab-card" id="lab-csrf" data-difficulty="intermediate">
         <header class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline/60 pb-4">
           <div class="flex items-center gap-3">
             <span class="p-2.5 rounded-xl bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-sm">LAB 08</span>
@@ -550,12 +681,23 @@ app.get('/api/v1/invoices/:id', authMiddleware, async (req, res) => {
             <p class="font-sans text-xs text-on-surface-variant">The bank accepted the state-changing POST request because the victim's browser automatically transmitted session cookies. Defense requires Cryptographically random Synchronizer Anti-CSRF tokens and setting cookies to <code class="text-primary font-mono">SameSite=Strict</code>.</p>
           </div>
         </div>
+        <!-- Flag Submission & Verification Row -->
+        <div class="lab-flag-container p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 font-mono text-xs" data-lab="lab-csrf" data-title="CSRF Token Validation & SameSite Cookies" data-xp="85">
+          <div class="flex items-center gap-2 flex-1">
+            <span class="text-primary font-bold whitespace-nowrap">FLAG / KEY:</span>
+            <input type="text" class="lab-flag-input flex-1 px-3 py-1.5 rounded-lg bg-surface-raised border border-border-hairline text-on-surface focus:border-primary focus:outline-none text-xs" placeholder="e.g. flag{...} or key token" />
+          </div>
+          <button type="button" class="lab-verify-btn px-4 py-1.5 rounded-lg bg-primary/20 text-primary border border-primary/40 hover:bg-primary hover:text-canvas-base font-bold transition-all shrink-0 cursor-pointer flex items-center justify-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">flag</span>
+            <span>Verify Flag (+85 XP)</span>
+          </button>
+        </div>
       </article>
 
       <!-- ===================================================================== -->
       <!-- LAB 09: NETWORK ENUMERATION                                           -->
       <!-- ===================================================================== -->
-      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl" id="lab-network">
+      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl lab-card" id="lab-network" data-difficulty="intermediate">
         <header class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline/60 pb-4">
           <div class="flex items-center gap-3">
             <span class="p-2.5 rounded-xl bg-canvas-base border border-secondary/30 text-secondary font-mono font-bold text-sm">LAB 09</span>
@@ -592,12 +734,23 @@ smbclient -N -L //10.10.110.45/
 smbclient //10.10.110.45/backups -N</pre>
           </div>
         </div>
+        <!-- Flag Submission & Verification Row -->
+        <div class="lab-flag-container p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 font-mono text-xs" data-lab="lab-network" data-title="Network Enumeration & Service Fingerprinting" data-xp="85">
+          <div class="flex items-center gap-2 flex-1">
+            <span class="text-primary font-bold whitespace-nowrap">FLAG / KEY:</span>
+            <input type="text" class="lab-flag-input flex-1 px-3 py-1.5 rounded-lg bg-surface-raised border border-border-hairline text-on-surface focus:border-primary focus:outline-none text-xs" placeholder="e.g. flag{...} or key token" />
+          </div>
+          <button type="button" class="lab-verify-btn px-4 py-1.5 rounded-lg bg-primary/20 text-primary border border-primary/40 hover:bg-primary hover:text-canvas-base font-bold transition-all shrink-0 cursor-pointer flex items-center justify-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">flag</span>
+            <span>Verify Flag (+85 XP)</span>
+          </button>
+        </div>
       </article>
 
       <!-- ===================================================================== -->
       <!-- LAB 10: LOG ANALYSIS & FORENSICS                                      -->
       <!-- ===================================================================== -->
-      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl" id="lab-logs">
+      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl lab-card" id="lab-logs" data-difficulty="beginner">
         <header class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline/60 pb-4">
           <div class="flex items-center gap-3">
             <span class="p-2.5 rounded-xl bg-canvas-base border border-secondary/30 text-secondary font-mono font-bold text-sm">LAB 10</span>
@@ -631,12 +784,23 @@ smbclient //10.10.110.45/backups -N</pre>
             <pre class="p-2.5 rounded bg-surface-subtle text-primary text-[11px] overflow-x-auto">alert http any any -> any any (msg:"Path Traversal Attempt"; content:"/etc/passwd"; sid:1000002; rev:1;)</pre>
           </div>
         </div>
+        <!-- Flag Submission & Verification Row -->
+        <div class="lab-flag-container p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 font-mono text-xs" data-lab="lab-logs" data-title="Security Log Analysis & Incident Triage" data-xp="75">
+          <div class="flex items-center gap-2 flex-1">
+            <span class="text-primary font-bold whitespace-nowrap">FLAG / KEY:</span>
+            <input type="text" class="lab-flag-input flex-1 px-3 py-1.5 rounded-lg bg-surface-raised border border-border-hairline text-on-surface focus:border-primary focus:outline-none text-xs" placeholder="e.g. flag{...} or key token" />
+          </div>
+          <button type="button" class="lab-verify-btn px-4 py-1.5 rounded-lg bg-primary/20 text-primary border border-primary/40 hover:bg-primary hover:text-canvas-base font-bold transition-all shrink-0 cursor-pointer flex items-center justify-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">flag</span>
+            <span>Verify Flag (+75 XP)</span>
+          </button>
+        </div>
       </article>
 
       <!-- ===================================================================== -->
       <!-- LAB 11: JWT SECURITY                                                  -->
       <!-- ===================================================================== -->
-      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl" id="lab-jwt">
+      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl lab-card" id="lab-jwt" data-difficulty="advanced">
         <header class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline/60 pb-4">
           <div class="flex items-center gap-3">
             <span class="p-2.5 rounded-xl bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">LAB 11</span>
@@ -668,12 +832,23 @@ Signature: (Empty)</pre>
             <p class="font-sans text-xs text-on-surface-variant">Never accept <code class="text-danger-critical font-mono">none</code> algorithm. Enforce specific expected algorithms (e.g. <code class="text-primary font-mono">algorithms: ['RS256']</code>) in JWT verification libraries.</p>
           </div>
         </div>
+        <!-- Flag Submission & Verification Row -->
+        <div class="lab-flag-container p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 font-mono text-xs" data-lab="lab-jwt" data-title="JWT Signature Stripping & None Algorithm" data-xp="100">
+          <div class="flex items-center gap-2 flex-1">
+            <span class="text-primary font-bold whitespace-nowrap">FLAG / KEY:</span>
+            <input type="text" class="lab-flag-input flex-1 px-3 py-1.5 rounded-lg bg-surface-raised border border-border-hairline text-on-surface focus:border-primary focus:outline-none text-xs" placeholder="e.g. flag{...} or key token" />
+          </div>
+          <button type="button" class="lab-verify-btn px-4 py-1.5 rounded-lg bg-primary/20 text-primary border border-primary/40 hover:bg-primary hover:text-canvas-base font-bold transition-all shrink-0 cursor-pointer flex items-center justify-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">flag</span>
+            <span>Verify Flag (+100 XP)</span>
+          </button>
+        </div>
       </article>
 
       <!-- ===================================================================== -->
       <!-- LAB 12: BASIC CRYPTOGRAPHY                                            -->
       <!-- ===================================================================== -->
-      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl" id="lab-crypto">
+      <article class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5 hover:border-primary/40 transition-all shadow-xl lab-card" id="lab-crypto" data-difficulty="beginner">
         <header class="flex flex-wrap items-center justify-between gap-3 border-b border-border-hairline/60 pb-4">
           <div class="flex items-center gap-3">
             <span class="p-2.5 rounded-xl bg-canvas-base border border-secondary/30 text-secondary font-mono font-bold text-sm">LAB 12</span>
@@ -702,6 +877,17 @@ Signature: (Empty)</pre>
             <p class="font-sans text-xs text-on-surface-variant">Single-byte XOR ciphers can be cracked by brute-forcing all 256 possible byte values and scoring outputs based on English letter frequency (ETAOIN SHRDLU). The decrypted message reveals: <code class="text-primary font-mono">"Cooking MC's like a pound of bacon"</code> with key byte <code class="text-secondary font-mono">0x58 ('X')</code>.</p>
           </div>
         </div>
+        <!-- Flag Submission & Verification Row -->
+        <div class="lab-flag-container p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 font-mono text-xs" data-lab="lab-crypto" data-title="Cryptographic Misuse & Padding Oracle Basics" data-xp="75">
+          <div class="flex items-center gap-2 flex-1">
+            <span class="text-primary font-bold whitespace-nowrap">FLAG / KEY:</span>
+            <input type="text" class="lab-flag-input flex-1 px-3 py-1.5 rounded-lg bg-surface-raised border border-border-hairline text-on-surface focus:border-primary focus:outline-none text-xs" placeholder="e.g. flag{...} or key token" />
+          </div>
+          <button type="button" class="lab-verify-btn px-4 py-1.5 rounded-lg bg-primary/20 text-primary border border-primary/40 hover:bg-primary hover:text-canvas-base font-bold transition-all shrink-0 cursor-pointer flex items-center justify-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">flag</span>
+            <span>Verify Flag (+75 XP)</span>
+          </button>
+        </div>
       </article>
 
     </div>
@@ -727,6 +913,21 @@ Signature: (Empty)</pre>
 
   <script src="portfolio-interactive.js"></script>
   <script>
+    const LAB_FLAGS = {
+      'lab-headers': ['flag{strict_transport_security_csp}', 'nosniff', 'deny', 'hsts', 'csp', 'strict-transport-security'],
+      'lab-permissions': ['flag{chmod_600_config_rw}', '600', 'rw-------', 'chmod 600', 'chmod 640'],
+      'lab-suid': ['flag{suid_find_root_euid0}', 'find . -exec /bin/sh -p', '/bin/sh -p', 'find -exec', 'euid=0'],
+      'lab-auth': ['flag{rate_limit_429_bcrypt}', 'bcrypt', '429', 'rate limit', 'argon2'],
+      'lab-idor': ['flag{server_side_authz_session_token}', '10043', '403', 'authz', 'idor'],
+      'lab-sqli': ['flag{parameterized_queries_prepared_statement}', "admin' or '1'='1", "admin' or 1=1", 'prepared statement', 'parameterized'],
+      'lab-xss': ['flag{context_aware_output_encoding_csp}', 'htmlspecialchars', 'innertext', 'textcontent', 'encoding'],
+      'lab-csrf': ['flag{samesite_strict_anti_csrf_token}', 'samesite=strict', 'csrf_token', 'anti-csrf', 'samesite'],
+      'lab-network': ['flag{closed_filtered_port_21_backdoor}', '21/tcp', 'vsftpd 2.3.4', 'vsftpd', '21'],
+      'lab-logs': ['flag{failed_ssh_brute_force_192_168_1_50}', '192.168.1.50', 'failed password', 'ssh brute force', 'brute force'],
+      'lab-jwt': ['flag{none_algorithm_signature_verification}', 'none', 'alg: none', 'hs256', 'signature'],
+      'lab-crypto': ['flag{aes_gcm_authenticated_encryption}', 'aes-256-gcm', 'aes-gcm', 'gcm', 'authenticated encryption']
+    };
+
     document.addEventListener('DOMContentLoaded', () => {
       // Hints toggle
       document.querySelectorAll('.hint-btn').forEach(btn => {
@@ -749,6 +950,87 @@ Signature: (Empty)</pre>
           }
         });
       });
+
+      // Difficulty Tier Filtering
+      const tierBtns = document.querySelectorAll('.lab-tier-btn');
+      const labCards = document.querySelectorAll('.lab-card');
+
+      tierBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tier = btn.getAttribute('data-tier');
+          tierBtns.forEach(b => {
+            b.classList.remove('active', 'border-primary/50', 'bg-primary/10', 'text-primary');
+            b.classList.add('border-border-hairline', 'bg-surface-subtle', 'text-on-surface-variant');
+          });
+          btn.classList.add('active', 'border-primary/50', 'bg-primary/10', 'text-primary');
+          btn.classList.remove('border-border-hairline', 'bg-surface-subtle', 'text-on-surface-variant');
+
+          labCards.forEach(card => {
+            const cardDiff = card.getAttribute('data-difficulty');
+            if (tier === 'all' || cardDiff === tier) {
+              card.style.display = '';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // Flag Verification & Solved State Sync
+      function updateSolvedHUD() {
+        if (!window.CyberOps) return;
+        const state = window.CyberOps.getState();
+        const count = state.completedLabs ? state.completedLabs.length : 0;
+        const counterEl = document.getElementById('labs-solved-counter');
+        if (counterEl) counterEl.textContent = `${count} / 12`;
+
+        document.querySelectorAll('.lab-flag-container').forEach(container => {
+          const labId = container.getAttribute('data-lab');
+          if (state.completedLabs && state.completedLabs.includes(labId)) {
+            container.innerHTML = `
+              <div class="w-full flex items-center justify-between text-primary font-bold">
+                <span class="flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-base">check_circle</span>
+                  <span>LAB SOLVED // XP CLAIMED</span>
+                </span>
+                <span class="px-2 py-0.5 rounded bg-primary/20 text-primary text-[10px]">COMPLETED ✓</span>
+              </div>
+            `;
+            container.className = 'lab-flag-container p-3 rounded-xl bg-primary/10 border border-primary/40 font-mono text-xs';
+          }
+        });
+      }
+
+      document.querySelectorAll('.lab-verify-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const container = btn.closest('.lab-flag-container');
+          const labId = container.getAttribute('data-lab');
+          const title = container.getAttribute('data-title') || labId;
+          const xp = parseInt(container.getAttribute('data-xp') || '75', 10);
+          const input = container.querySelector('.lab-flag-input');
+          const val = input ? input.value.trim().toLowerCase() : '';
+
+          if (!val) {
+            if (window.showToast) window.showToast('Please enter a flag or key token to verify.', 'warn');
+            return;
+          }
+
+          const validFlags = LAB_FLAGS[labId] || [];
+          const isCorrect = validFlags.some(f => val === f.toLowerCase() || val.includes(f.toLowerCase()));
+
+          if (isCorrect) {
+            if (window.CyberOps) {
+              window.CyberOps.completeLab(labId, title, xp);
+            }
+            updateSolvedHUD();
+          } else {
+            if (window.showToast) window.showToast('Incorrect flag. Check the hints and walkthrough.', 'warn');
+          }
+        });
+      });
+
+      // Initial state sync
+      updateSolvedHUD();
     });
   </script>
 </body>

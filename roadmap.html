@@ -152,13 +152,84 @@
           </div>
         </div>
       </div>
+
+      <!-- Gamification HUD Status Bar on Roadmap -->
+      <div class="p-4 sm:p-5 rounded-2xl bg-surface-subtle border border-primary/40 shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-canvas-base border border-primary/50 flex items-center justify-center text-primary shadow-[0_0_12px_rgba(78,222,163,0.25)] shrink-0">
+            <span class="material-symbols-outlined text-xl">school</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-mono text-xs text-primary font-bold tracking-wider uppercase cyberops-rank-title">Novice Operator</span>
+              <span class="px-2 py-0.5 rounded-full bg-primary/10 border border-primary/30 text-primary font-mono text-[10px] font-bold cyberops-level-val">LVL 1</span>
+            </div>
+            <div class="font-mono text-[11px] text-outline mt-0.5">Complete competencies to earn CyberOps XP and promote your operator tier</div>
+          </div>
+        </div>
+
+        <div class="flex-1 max-w-sm space-y-1 font-mono">
+          <div class="flex justify-between items-center text-xs">
+            <span class="text-outline text-[11px]">XP Progress:</span>
+            <span class="text-primary font-bold cyberops-xp-val">0 XP</span>
+          </div>
+          <div class="w-full h-2 bg-canvas-base rounded-full overflow-hidden border border-border-hairline">
+            <div class="h-full bg-gradient-to-r from-primary to-secondary transition-all duration-500 cyberops-progress-bar" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 font-mono text-xs">
+          <div class="px-3.5 py-1.5 rounded-xl bg-canvas-base border border-border-hairline text-center">
+            <span class="text-warning font-bold text-sm cyberops-badges-count">0 / 9</span>
+            <span class="text-[9px] text-outline block uppercase">Badges</span>
+          </div>
+          <button data-trigger-term class="px-3.5 py-2 rounded-xl bg-primary/10 hover:bg-primary border border-primary/40 text-primary hover:text-canvas-base font-bold text-xs transition-all flex items-center gap-1 cursor-pointer">
+            <span class="material-symbols-outlined text-sm">terminal</span>
+            <span>CLI</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Visual Progression Flowchart Navigation -->
+      <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
+        <div class="flex items-center justify-between font-mono text-xs text-outline">
+          <span class="text-primary font-bold flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">route</span>
+            <span>LEARNING PROGRESSION FLOW (STEP 1 &rarr; STEP 11)</span>
+          </span>
+          <span class="text-[10px] hidden sm:inline">CLICK TRACK TO JUMP</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-1.5 font-mono text-[11px]">
+          <a href="#domain-1" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-primary text-on-surface-variant hover:text-primary transition-all">01. Net</a>
+          <span class="text-outline">&rarr;</span>
+          <a href="#domain-2" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-primary text-on-surface-variant hover:text-primary transition-all">02. Linux</a>
+          <span class="text-outline">&rarr;</span>
+          <a href="#domain-3" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-primary text-on-surface-variant hover:text-primary transition-all">03. Code</a>
+          <span class="text-outline">&rarr;</span>
+          <a href="#domain-4" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-secondary text-on-surface-variant hover:text-secondary transition-all">04. Web</a>
+          <span class="text-outline">&rarr;</span>
+          <a href="#domain-5" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-secondary text-on-surface-variant hover:text-secondary transition-all">05. Recon</a>
+          <span class="text-outline">&rarr;</span>
+          <a href="#domain-6" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-secondary text-on-surface-variant hover:text-secondary transition-all">06. Enum</a>
+          <span class="text-outline">&rarr;</span>
+          <a href="#domain-7" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-danger-critical text-on-surface-variant hover:text-danger-critical transition-all">07. Pentest</a>
+          <span class="text-outline">&rarr;</span>
+          <a href="#domain-8" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-danger-critical text-on-surface-variant hover:text-danger-critical transition-all">08. PrivEsc</a>
+          <span class="text-outline">&rarr;</span>
+          <a href="#domain-9" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-warning text-on-surface-variant hover:text-warning transition-all">09. AD</a>
+          <span class="text-outline">&rarr;</span>
+          <a href="#domain-10" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-primary text-on-surface-variant hover:text-primary transition-all">10. Cloud</a>
+          <span class="text-outline">&rarr;</span>
+          <a href="#domain-11" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-primary text-on-surface-variant hover:text-primary transition-all">11. Defense</a>
+        </div>
+      </div>
     </div>
 
     <!-- 11 Domain Roadmap Sections -->
     <div class="space-y-8" id="roadmap-domains">
 
       <!-- DOMAIN 1: NETWORKING -->
-      <section class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Networking">
+      <section class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Networking" id="domain-1">
         <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
           <div class="flex items-center gap-3">
             <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">01</span>
@@ -741,9 +812,17 @@
         if (select) {
           select.addEventListener('change', () => {
             const data = loadProgress();
+            const prev = data[id];
             data[id] = select.value;
             saveProgress(data);
             updateUI();
+
+            if (select.value === 'completed' && prev !== 'completed') {
+              if (window.CyberOps) {
+                const label = item.querySelector('span')?.textContent || id;
+                window.CyberOps.completeTrack(id, label, 25);
+              }
+            }
           });
         }
       });
