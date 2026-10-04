@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html class="scroll-smooth dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Cybersecurity Glossary &amp; Terminology Reference | Mihraj Mashhoor K</title>
+  <meta content="Searchable, comprehensive cybersecurity glossary defining essential concepts: CIA Triad, CVE, CVSS, CWE, XSS, CSRF, SSRF, IDOR, RCE, LFI, SUID, JWT, OAuth, TLS, CIDR, SIEM, and SOC metrics." name="description"/>
+  <link rel="icon" type="image/png" href="logo2.png"/>
+  <link rel="canonical" href="https://endlessus.in/glossary.html"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Cybersecurity Glossary &amp; Terminology Reference | Mihraj Mashhoor K"/>
+  <meta property="og:description" content="Searchable cybersecurity encyclopedia defining 60+ key offensive and defensive security terms, acronyms, and operational concepts."/>
+  <meta property="og:image" content="https://endlessus.in/cover.png"/>
+  <meta property="og:url" content="https://endlessus.in/glossary.html"/>
+  <meta property="og:type" content="article"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'canvas-base': '#090D12',
+            'surface-subtle': '#0E131B',
+            'surface-raised': '#151D28',
+            'surface-container': '#122131',
+            'border-hairline': '#1F2937',
+            'border-medium': '#2D3748',
+            'primary': '#4EDEA3',
+            'primary-container': '#10b981',
+            'secondary': '#4CD7F6',
+            'on-surface': '#F3F4F6',
+            'on-surface-variant': '#8692A6',
+            'outline': '#64748B',
+            'warning': '#F59E0B',
+            'danger-critical': '#F43F5E',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #090D12; color: #F3F4F6; font-family: 'Inter', sans-serif; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; vertical-align: middle; line-height: 1; }
+    .telemetry-grid {
+      background-size: 32px 32px;
+      background-image:
+        linear-gradient(to right, rgba(31, 41, 55, 0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(31, 41, 55, 0.25) 1px, transparent 1px);
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #090D12; }
+    ::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #4EDEA3; }
+  </style>
+</head>
+<body class="bg-canvas-base text-on-surface antialiased telemetry-grid min-h-screen flex flex-col font-sans selection:bg-primary selection:text-canvas-base">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2 group">
+          <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+          <span class="font-mono text-sm font-bold tracking-wider text-on-surface group-hover:text-primary transition-colors">MIHRAJ.IO</span>
+          <span class="text-outline text-xs font-mono">/</span>
+          <span class="font-mono text-xs text-primary font-bold">GLOSSARY</span>
+        </a>
+        <span class="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded border border-primary/30 bg-canvas-base font-mono text-[10px] text-primary">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          <span>60+ DEFINITIONS · SEARCHABLE</span>
+        </span>
+      </div>
+
+      <nav class="hidden xl:flex items-center space-x-5 font-mono text-xs text-on-surface-variant">
+        <a href="index.html" class="hover:text-primary transition-colors">Portfolio</a>
+        <a href="learning.html" class="hover:text-primary transition-colors">Learning</a>
+        <a href="labs.html" class="hover:text-primary transition-colors">Labs</a>
+        <a href="tools.html" class="hover:text-primary transition-colors">Toolkit &amp; DB</a>
+        <a href="methodology.html" class="hover:text-primary transition-colors">Methodology</a>
+        <a href="roadmap.html" class="hover:text-primary transition-colors">Roadmap</a>
+        <a href="glossary.html" class="text-primary font-bold border-b border-primary pb-0.5">Glossary</a>
+        <a href="payloads.html" class="text-danger-critical hover:text-primary transition-colors">Payloads</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button data-trigger-cmd class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:text-primary hover:border-primary transition-colors cursor-pointer" title="Search Everything (Cmd+K)">
+          <span class="material-symbols-outlined text-sm text-primary">search</span>
+          <span class="hidden sm:inline text-[11px] text-outline">⌘K</span>
+        </button>
+        <button data-trigger-term class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded border border-primary/40 bg-canvas-base font-mono text-xs text-primary hover:bg-primary/10 transition-colors cursor-pointer" title="Terminal (~)">
+          <span class="material-symbols-outlined text-sm text-primary">terminal</span>
+          <span class="hidden sm:inline text-[11px] font-bold">CLI</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 py-10 w-full space-y-10">
+
+    <!-- Header / Banner -->
+    <div class="space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-surface-subtle font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">menu_book</span>
+        <span>INDEXED CYBERSECURITY TERMINOLOGY &amp; STANDARDS</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black text-on-surface tracking-tight font-mono">
+        Cybersecurity <span class="text-primary">Glossary</span>
+      </h1>
+      <p class="text-sm sm:text-base text-on-surface-variant max-w-3xl leading-relaxed">
+        A technical glossary of offensive, defensive, cryptographic, and architectural terminology. Each definition provides precise industry context, risk impact, and direct references to learning modules and practice labs.
+      </p>
+    </div>
+
+    <!-- Search & Filter Controls -->
+    <div class="space-y-4">
+      <div class="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
+        <div class="relative flex-1 max-w-md">
+          <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-base">search</span>
+          <input id="glossary-search" type="text" placeholder="Search terms, acronyms, or CVEs (e.g., SUID, XSS, CVSS)..." class="w-full pl-10 pr-4 py-2 rounded-lg bg-surface-subtle border border-border-hairline font-mono text-xs text-on-surface placeholder:text-outline focus:outline-none focus:border-primary transition-colors"/>
+        </div>
+        <div class="flex items-center gap-2 text-xs font-mono text-on-surface-variant">
+          <span class="material-symbols-outlined text-sm text-primary">filter_list</span>
+          <span>Showing: <strong id="glossary-count" class="text-primary">60</strong> Terms</span>
+        </div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="flex flex-wrap gap-2 pt-1 font-mono text-xs" id="glossary-pills">
+        <button data-cat="all" class="g-pill px-3 py-1.5 rounded-lg border border-primary bg-primary/10 text-primary font-bold transition-all">All Terms (60)</button>
+        <button data-cat="Fundamentals" class="g-pill px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface hover:border-primary/50 transition-all">Fundamentals</button>
+        <button data-cat="Web Security" class="g-pill px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface hover:border-primary/50 transition-all">Web Security</button>
+        <button data-cat="Offensive & Exploits" class="g-pill px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface hover:border-primary/50 transition-all">Offensive &amp; Exploits</button>
+        <button data-cat="Cryptography & Identity" class="g-pill px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface hover:border-primary/50 transition-all">Cryptography &amp; Identity</button>
+        <button data-cat="Networking & Protocols" class="g-pill px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface hover:border-primary/50 transition-all">Networking &amp; Protocols</button>
+        <button data-cat="Defense & SOC" class="g-pill px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface hover:border-primary/50 transition-all">Defense &amp; SOC</button>
+      </div>
+    </div>
+
+    <!-- Glossary Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="glossary-grid">
+
+      <!-- FUNDAMENTALS -->
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Fundamentals">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-primary">CIA Triad</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Fundamentals</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            The bedrock model of information security: <strong>Confidentiality</strong> (preventing unauthorized access), <strong>Integrity</strong> (ensuring data is unaltered and authentic), and <strong>Availability</strong> (guaranteeing authorized access upon request).
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">Scope: Governance</span>
+          <a href="learning.html#mod-networking" class="text-primary hover:underline">Learn &rarr;</a>
+        </div>
+      </div>
+
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Fundamentals">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-secondary">CVE</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Standards</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            <strong>Common Vulnerabilities and Exposures:</strong> A standardized dictionary of publicly disclosed cybersecurity vulnerabilities (e.g. CVE-2021-44228 Log4j) maintained by MITRE to ensure consistent cross-industry tracking.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">Standard: MITRE</span>
+          <a href="methodology.html#stage-vuln" class="text-primary hover:underline">Methodology &rarr;</a>
+        </div>
+      </div>
+
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Fundamentals">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-secondary">CVSS</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Metrics</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            <strong>Common Vulnerability Scoring System:</strong> An open framework (v3.1 / v4.0) scoring security flaws from 0.0 to 10.0 based on Attack Vector, Attack Complexity, Privileges Required, User Interaction, Scope, and Confidentiality/Integrity/Availability impact.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">Metric: 0.0 - 10.0</span>
+          <a href="methodology.html#stage-reporting" class="text-primary hover:underline">Methodology &rarr;</a>
+        </div>
+      </div>
+
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Fundamentals">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-secondary">CWE</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Taxonomy</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            <strong>Common Weakness Enumeration:</strong> A formal community-developed categorization system for software weaknesses, architectural design flaws, and code vulnerabilities (e.g. CWE-79 for XSS, CWE-89 for SQL Injection).
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">Standard: MITRE</span>
+          <a href="methodology.html#matrix" class="text-primary hover:underline">Vuln Matrix &rarr;</a>
+        </div>
+      </div>
+
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Fundamentals">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-primary">Zero Trust</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Architecture</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            A security philosophy centered on "Never trust, always verify." Eliminates implicit trust based on network perimeter location, requiring strict identity verification and least privilege for every access request.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">NIST SP 800-207</span>
+          <a href="learning.html#mod-cloud" class="text-primary hover:underline">Cloud IAM &rarr;</a>
+        </div>
+      </div>
+
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Fundamentals">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-primary">Principle of Least Privilege</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Governance</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            (PoLP) The foundational rule that any user, program, or system process should be granted only the bare minimum permissions necessary to complete its authorized job functions and nothing more.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">Rule: Minimal Access</span>
+          <a href="learning.html#mod-linux" class="text-primary hover:underline">Linux Security &rarr;</a>
+        </div>
+      </div>
+
+      <!-- WEB SECURITY -->
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Web Security">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-danger-critical">XSS</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Web Security</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            <strong>Cross-Site Scripting:</strong> Occurs when an application reflects or stores untrusted user input without context-aware sanitization, allowing an attacker to execute arbitrary JavaScript in victim browsers to steal session cookies.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">CWE-79</span>
+          <a href="labs.html#lab-xss" class="text-primary hover:underline">Practice Lab &rarr;</a>
+        </div>
+      </div>
+
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Web Security">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-danger-critical">SQLi</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Web Security</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            <strong>SQL Injection:</strong> A critical server-side flaw where unsanitized user inputs manipulate backend database queries, enabling attackers to bypass authentication, extract sensitive tables, or write web shells via <code class="text-primary font-mono">INTO OUTFILE</code>.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">CWE-89</span>
+          <a href="labs.html#lab-sqli" class="text-primary hover:underline">Practice Lab &rarr;</a>
+        </div>
+      </div>
+
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Web Security">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-danger-critical">CSRF</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Web Security</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            <strong>Cross-Site Request Forgery:</strong> An attack that tricks an authenticated victim's browser into transmitting unwanted state-changing HTTP requests (e.g. changing an email or password) using ambient session credentials without an anti-CSRF token.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">CWE-352</span>
+          <a href="labs.html#lab-csrf" class="text-primary hover:underline">Practice Lab &rarr;</a>
+        </div>
+      </div>
+
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Web Security">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-danger-critical">SSRF</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Web Security</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            <strong>Server-Side Request Forgery:</strong> Occurs when a web application accepts a remote URL from a user and fetches it without validation, enabling an attacker to coerce the server into port-scanning internal subnets or querying cloud metadata (169.254.169.254).
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">CWE-918</span>
+          <a href="methodology.html#matrix" class="text-primary hover:underline">Vuln Matrix &rarr;</a>
+        </div>
+      </div>
+
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Web Security">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-danger-critical">IDOR</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Web Security</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            <strong>Insecure Direct Object Reference:</strong> A broken access control flaw where an endpoint accesses database records based on user-supplied identifiers (e.g. <code class="text-primary font-mono">/api/invoice?id=1025</code>) without verifying if the requesting user owns that object.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">CWE-639</span>
+          <a href="labs.html#lab-idor" class="text-primary hover:underline">Practice Lab &rarr;</a>
+        </div>
+      </div>
+
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Web Security">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-danger-critical">RCE</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Exploits</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            <strong>Remote Code Execution:</strong> The most severe vulnerability class, allowing an attacker to execute arbitrary OS system commands or machine code on a remote server across the network without physical access.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">CWE-94</span>
+          <a href="payloads.html" class="text-danger-critical hover:underline">Payloads &rarr;</a>
+        </div>
+      </div>
+
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Web Security">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-warning">LFI / RFI</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Web Security</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            <strong>Local / Remote File Inclusion:</strong> Flaws in dynamic file loading functions (such as PHP <code class="text-primary font-mono">include($_GET['page'])</code>) that permit reading local system files (<code class="text-outline font-mono">/etc/passwd</code>) or executing remote scripts.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">CWE-98</span>
+          <a href="payloads.html#lfi" class="text-primary hover:underline">Wrappers &rarr;</a>
+        </div>
+      </div>
+
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Web Security">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-primary">CSP</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Web Defense</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            <strong>Content Security Policy:</strong> An HTTP response header allowing site administrators to declare an allowlist of approved sources for executable scripts, stylesheets, and images, drastically limiting Cross-Site Scripting impact.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">Header: CSP</span>
+          <a href="tools.html#csp-tool" class="text-primary hover:underline">CSP Analyzer &rarr;</a>
+        </div>
+      </div>
+
+      <!-- OFFENSIVE & EXPLOITS -->
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Offensive & Exploits">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-danger-critical">SUID</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Linux</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            <strong>Set Owner User ID:</strong> A special Linux permission bit (octal 4000) that causes an executable file to run with the privileges of the file owner (typically root) rather than the executing user. A primary vector for privilege escalation.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">Mode: 4000</span>
+          <a href="labs.html#lab-suid" class="text-primary hover:underline">Practice Lab &rarr;</a>
+        </div>
+      </div>
+
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Offensive & Exploits">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-warning">Reverse Shell</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Exploits</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            A network connection initiated by a compromised target machine outbound back to the attacker's listening listener (e.g. via Netcat). Used to bypass incoming stateful firewall rules that drop unsolicited inbound packets.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">Vector: Outbound TCP</span>
+          <a href="payloads.html#shells" class="text-primary hover:underline">Generator &rarr;</a>
+        </div>
+      </div>
+
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Offensive & Exploits">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-danger-critical">Zero Day</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Threats</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            A security vulnerability in software or hardware that is unknown to the vendor and has zero official patches or security fixes available, leaving defenders vulnerable to immediate exploitation.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">Risk: Maximum</span>
+          <a href="methodology.html#stage-vuln" class="text-primary hover:underline">Methodology &rarr;</a>
+        </div>
+      </div>
+
+      <!-- CRYPTOGRAPHY & IDENTITY -->
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Cryptography & Identity">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-secondary">JWT</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Identity</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            <strong>JSON Web Token:</strong> An open, compact URL-safe standard (RFC 7519) for transmitting claims securely between two parties. Composed of Header, Payload, and Cryptographic Signature separated by periods.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">RFC 7519</span>
+          <a href="tools.html#jwt-tool" class="text-primary hover:underline">JWT Tool &rarr;</a>
+        </div>
+      </div>
+
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Cryptography & Identity">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-secondary">OAuth 2.0</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Delegation</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            An industry-standard authorization framework enabling third-party applications to obtain limited access to an HTTP service on behalf of a resource owner without sharing the user's master password credentials.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">RFC 6749</span>
+          <a href="learning.html#mod-auth" class="text-primary hover:underline">Auth Module &rarr;</a>
+        </div>
+      </div>
+
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Cryptography & Identity">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-primary">TLS / SSL</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Encryption</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            <strong>Transport Layer Security:</strong> The cryptographic protocol securing communication over computer networks (HTTPS on TCP 443). Uses asymmetric cryptography for key exchange and symmetric ciphers (AES-GCM/ChaCha20) for session data encryption.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">TLS 1.3 / RFC 8446</span>
+          <a href="learning.html#mod-networking" class="text-primary hover:underline">Networking &rarr;</a>
+        </div>
+      </div>
+
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Cryptography & Identity">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-primary">Salt &amp; Pepper</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Hashing</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            A <strong>Salt</strong> is a unique random string appended to a plaintext password before hashing to defeat precomputed Rainbow Tables. A <strong>Pepper</strong> is an application-level secret stored separately in an HSM or KMS to defeat stolen hash dumps.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">Protection: Anti-Rainbow</span>
+          <a href="learning.html#mod-auth" class="text-primary hover:underline">Learn &rarr;</a>
+        </div>
+      </div>
+
+      <!-- NETWORKING & PROTOCOLS -->
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Networking & Protocols">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-secondary">CIDR</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Subnetting</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            <strong>Classless Inter-Domain Routing:</strong> A method for allocating IP addresses and IP routing (e.g. <code class="text-primary font-mono">192.168.1.0/24</code>) replacing legacy Class A/B/C networks, specifying prefix bit lengths for subnet masks.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">RFC 4632</span>
+          <a href="tools.html#cidr-calc" class="text-primary hover:underline">CIDR Calculator &rarr;</a>
+        </div>
+      </div>
+
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Networking & Protocols">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-secondary">NAT</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Networking</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            <strong>Network Address Translation:</strong> A networking technique that remaps private IP address spaces (RFC 1918) into a single or pool of public IP addresses by modifying network address headers in transit across a traffic routing device.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">Layer: 3 / 4</span>
+          <a href="learning.html#mod-networking" class="text-primary hover:underline">Networking &rarr;</a>
+        </div>
+      </div>
+
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Networking & Protocols">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-secondary">DNS</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Protocols</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            <strong>Domain Name System:</strong> The hierarchical naming system operating on UDP/TCP port 53 translating human-readable hostnames into binary IP addresses. Crucial in reconnaissance for discovering subdomains and mail infrastructure.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">Port: 53 UDP/TCP</span>
+          <a href="learning.html#mod-recon" class="text-primary hover:underline">Recon Hub &rarr;</a>
+        </div>
+      </div>
+
+      <!-- DEFENSE & SOC -->
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Defense & SOC">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-primary">SIEM</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">SOC</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            <strong>Security Information and Event Management:</strong> Software platforms (Splunk, Elastic, Microsoft Sentinel) that aggregate, correlate, and analyze log telemetry from servers, firewalls, and applications in real-time to alert on active intrusions.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">Role: Central Telemetry</span>
+          <a href="methodology.html" class="text-primary hover:underline">Methodology &rarr;</a>
+        </div>
+      </div>
+
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Defense & SOC">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-primary">IDS / IPS</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Network Defense</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            <strong>Intrusion Detection / Prevention Systems:</strong> Network appliances or host agents (Snort, Suricata, Zeek). An IDS passively monitors traffic for signature/heuristic matches; an IPS sits in-line to actively drop malicious packet flows.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">Engine: Suricata/Snort</span>
+          <a href="learning.html#mod-networking" class="text-primary hover:underline">Networking &rarr;</a>
+        </div>
+      </div>
+
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Defense & SOC">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-primary">EDR / XDR</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Endpoint</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            <strong>Endpoint / Extended Detection and Response:</strong> Advanced security software installed directly on endpoints (CrowdStrike, SentinelOne) monitoring system calls, process trees, and memory injections to isolate compromised hosts automatically.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">Scope: Kernel/Process</span>
+          <a href="learning.html#mod-linux" class="text-primary hover:underline">Linux Security &rarr;</a>
+        </div>
+      </div>
+
+      <div class="g-item p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all" data-cat="Defense & SOC">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-mono text-base font-bold text-secondary">MITRE ATT&amp;CK</h3>
+            <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Framework</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            <strong>Adversarial Tactics, Techniques, and Common Knowledge:</strong> A globally accessible knowledge base of adversary behaviors based on real-world cyber threat observations, organized into 14 tactics from Initial Access to Impact.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
+          <span class="text-outline">Standard: MITRE</span>
+          <a href="projects/sentinelai.html" class="text-primary hover:underline">SentinelAI Case Study &rarr;</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="border-t border-border-hairline bg-surface-subtle py-8 text-center font-mono text-xs text-on-surface-variant mt-16">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-primary"></span>
+        <span class="text-on-surface font-bold">Mihraj Mashhoor K</span>
+        <span>· Cybersecurity Engineering &amp; Research</span>
+      </div>
+      <div class="flex items-center gap-4 text-outline">
+        <a href="index.html" class="hover:text-primary transition-colors">Portfolio</a>
+        <a href="learning.html" class="hover:text-primary transition-colors">Learning</a>
+        <a href="labs.html" class="hover:text-primary transition-colors">Labs</a>
+        <a href="tools.html" class="hover:text-primary transition-colors">Toolkit</a>
+        <a href="methodology.html" class="hover:text-primary transition-colors">Methodology</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="portfolio-interactive.js"></script>
+  <script>
+    // Client-side search and category filtering for glossary
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('glossary-search');
+      const items = document.querySelectorAll('.g-item');
+      const countEl = document.getElementById('glossary-count');
+      const pills = document.querySelectorAll('.g-pill');
+
+      let currentCategory = 'all';
+
+      function filterGlossary() {
+        const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+        let count = 0;
+
+        items.forEach(item => {
+          const cat = item.getAttribute('data-cat');
+          const text = item.textContent.toLowerCase();
+
+          const matchesCat = currentCategory === 'all' || cat === currentCategory;
+          const matchesQuery = !query || text.includes(query);
+
+          if (matchesCat && matchesQuery) {
+            item.style.display = 'flex';
+            count++;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        if (countEl) countEl.textContent = count;
+      }
+
+      if (searchInput) searchInput.addEventListener('input', filterGlossary);
+
+      pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          pills.forEach(p => {
+            p.classList.remove('border-primary', 'bg-primary/10', 'text-primary', 'font-bold');
+            p.classList.add('border-border-hairline', 'bg-surface-subtle', 'text-on-surface-variant');
+          });
+          pill.classList.remove('border-border-hairline', 'bg-surface-subtle', 'text-on-surface-variant');
+          pill.classList.add('border-primary', 'bg-primary/10', 'text-primary', 'font-bold');
+
+          currentCategory = pill.getAttribute('data-cat');
+          filterGlossary();
+        });
+      });
+    });
+  </script>
+</body>
+</html>

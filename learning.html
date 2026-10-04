@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html class="scroll-smooth dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Cybersecurity Learning Hub | Mihraj Mashhoor K</title>
+  <meta content="Comprehensive cybersecurity learning hub covering 12 core domains: Networking, Linux, Web Security, Recon, Enumeration, Privilege Escalation, Authentication, Wireless, Cloud, Docker, OSINT, and Security Tools with structured offensive and defensive blueprints." name="description"/>
+  <link rel="icon" type="image/png" href="logo2.png"/>
+  <link rel="canonical" href="https://endlessus.in/learning.html"/>
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Cybersecurity Learning Hub | Mihraj Mashhoor K"/>
+  <meta property="og:description" content="12 core cybersecurity disciplines with structured breakdowns: concepts, practical examples, commands, detection, defense, and hands-on labs."/>
+  <meta property="og:image" content="https://endlessus.in/cover.png"/>
+  <meta property="og:url" content="https://endlessus.in/learning.html"/>
+  <meta property="og:type" content="article"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'canvas-base': '#090D12',
+            'surface-subtle': '#0E131B',
+            'surface-raised': '#151D28',
+            'surface-container': '#122131',
+            'border-hairline': '#1F2937',
+            'border-medium': '#2D3748',
+            'primary': '#4EDEA3',
+            'primary-container': '#10b981',
+            'secondary': '#4CD7F6',
+            'on-surface': '#F3F4F6',
+            'on-surface-variant': '#8692A6',
+            'outline': '#64748B',
+            'warning': '#F59E0B',
+            'danger-critical': '#F43F5E',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #090D12; color: #F3F4F6; font-family: 'Inter', sans-serif; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; vertical-align: middle; line-height: 1; }
+    .telemetry-grid {
+      background-size: 32px 32px;
+      background-image:
+        linear-gradient(to right, rgba(31, 41, 55, 0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(31, 41, 55, 0.25) 1px, transparent 1px);
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #090D12; }
+    ::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #4EDEA3; }
+    details[open] summary .toggle-icon { transform: rotate(180deg); }
+  </style>
+</head>
+<body class="bg-canvas-base text-on-surface antialiased telemetry-grid min-h-screen flex flex-col font-sans selection:bg-primary selection:text-canvas-base">
+
+  <!-- ========================================================================= -->
+  <!-- Top Navigation Bar                                                        -->
+  <!-- ========================================================================= -->
+  <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      
+      <!-- Brand & Status -->
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2 group">
+          <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+          <span class="font-mono text-sm font-bold tracking-wider text-on-surface group-hover:text-primary transition-colors">MIHRAJ.IO</span>
+          <span class="text-outline text-xs font-mono">/</span>
+          <span class="font-mono text-xs text-primary font-bold">LEARNING HUB</span>
+        </a>
+        <span class="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded border border-primary/30 bg-canvas-base font-mono text-[10px] text-primary">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          <span>12 DOMAINS · THEORY &amp; PRACTICE</span>
+        </span>
+      </div>
+
+      <!-- Quick Nav Links -->
+      <nav class="hidden xl:flex items-center space-x-5 font-mono text-xs text-on-surface-variant">
+        <a href="index.html" class="hover:text-primary transition-colors">Portfolio</a>
+        <a href="learning.html" class="text-primary font-bold border-b border-primary pb-0.5">Learning</a>
+        <a href="labs.html" class="hover:text-primary transition-colors">Labs</a>
+        <a href="tools.html" class="hover:text-primary transition-colors">Toolkit &amp; DB</a>
+        <a href="methodology.html" class="hover:text-primary transition-colors">Methodology</a>
+        <a href="roadmap.html" class="hover:text-primary transition-colors">Roadmap</a>
+        <a href="glossary.html" class="hover:text-primary transition-colors">Glossary</a>
+        <a href="payloads.html" class="text-danger-critical hover:text-primary transition-colors">Payloads</a>
+        <a href="terminal-lab.html" class="text-secondary hover:text-primary transition-colors">Terminal</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2">
+        <button data-trigger-cmd class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:text-primary hover:border-primary transition-colors cursor-pointer" title="Search Everything (Cmd+K)">
+          <span class="material-symbols-outlined text-sm text-primary">search</span>
+          <span class="hidden sm:inline text-[11px] text-outline">⌘K</span>
+        </button>
+        <button data-trigger-term class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded border border-primary/40 bg-canvas-base font-mono text-xs text-primary hover:bg-primary/10 transition-colors cursor-pointer" title="Terminal (~)">
+          <span class="material-symbols-outlined text-sm text-primary">terminal</span>
+          <span class="hidden sm:inline text-[11px] font-bold">CLI</span>
+        </button>
+        <a href="index.html#projects" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-primary-container text-canvas-base font-mono text-xs font-bold hover:bg-primary transition-all">
+          <span>Projects</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 py-10 w-full space-y-12">
+
+    <!-- Hero / Header -->
+    <div class="space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-surface-subtle font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">school</span>
+        <span>FOUNDATIONAL &amp; ADVANCED CYBERSECURITY ARCHITECTURE</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black text-on-surface tracking-tight font-mono">
+        Cybersecurity <span class="text-primary">Learning Hub</span>
+      </h1>
+      <p class="text-sm sm:text-base text-on-surface-variant max-w-3xl leading-relaxed">
+        A structured, technically rigorous learning platform covering 12 foundational and specialized cybersecurity disciplines. Each topic includes foundational theory, practical examples, copyable commands, common pitfalls, telemetry-level detection, defensive remediation, and connected practice labs.
+      </p>
+
+      <!-- Knowledge Graph Quick Flow -->
+      <div class="p-4 rounded-xl border border-border-hairline bg-surface-subtle/80 backdrop-blur-sm space-y-3">
+        <div class="font-mono text-xs text-outline flex items-center justify-between">
+          <span class="flex items-center gap-1.5 text-secondary font-bold">
+            <span class="material-symbols-outlined text-sm">hub</span>
+            <span>CORE KNOWLEDGE PROGRESSION CHAINS</span>
+          </span>
+          <span class="text-[11px] text-outline hidden sm:inline">INTERCONNECTED CONCEPTS</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs">
+          <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline">
+            <div class="text-primary font-bold mb-1">Web Security Vector:</div>
+            <div class="text-on-surface-variant text-[11px] leading-relaxed">
+              HTTP &rarr; Cookies &rarr; Sessions &rarr; Authentication &rarr; Authorization &rarr; <span class="text-danger-critical font-bold">IDOR / Broken Access</span>
+            </div>
+          </div>
+          <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline">
+            <div class="text-secondary font-bold mb-1">Linux Escalation Vector:</div>
+            <div class="text-on-surface-variant text-[11px] leading-relaxed">
+              Linux CLI &rarr; Permissions (rwx) &rarr; SUID Bits &rarr; Capabilities &rarr; Cron &rarr; <span class="text-danger-critical font-bold">Root PrivEsc</span>
+            </div>
+          </div>
+          <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline">
+            <div class="text-warning font-bold mb-1">Offensive Surface Vector:</div>
+            <div class="text-on-surface-variant text-[11px] leading-relaxed">
+              OSINT &rarr; Passive DNS &rarr; Port Scanning (Nmap) &rarr; Web Fuzzing (ffuf) &rarr; <span class="text-danger-critical font-bold">Exploit Validation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search & Filter Controls -->
+    <div class="space-y-4">
+      <div class="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
+        <div class="relative flex-1 max-w-md">
+          <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-base">search</span>
+          <input id="learning-search" type="text" placeholder="Filter topics by keyword, command, or concept..." class="w-full pl-10 pr-4 py-2 rounded-lg bg-surface-subtle border border-border-hairline font-mono text-xs text-on-surface placeholder:text-outline focus:outline-none focus:border-primary transition-colors"/>
+        </div>
+        <div class="flex items-center gap-2 text-xs font-mono text-on-surface-variant">
+          <span class="material-symbols-outlined text-sm text-primary">filter_alt</span>
+          <span>Showing: <strong id="visible-count" class="text-primary">12</strong> / 12 Categories</span>
+        </div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="flex flex-wrap gap-2 pt-1 font-mono text-xs" id="category-pills">
+        <button data-cat="all" class="cat-pill px-3 py-1.5 rounded-lg border border-primary bg-primary/10 text-primary font-bold transition-all">All (12)</button>
+        <button data-cat="Networking" class="cat-pill px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface hover:border-primary/50 transition-all">Networking</button>
+        <button data-cat="Linux" class="cat-pill px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface hover:border-primary/50 transition-all">Linux</button>
+        <button data-cat="Web Security" class="cat-pill px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface hover:border-primary/50 transition-all">Web Security</button>
+        <button data-cat="Reconnaissance" class="cat-pill px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface hover:border-primary/50 transition-all">Reconnaissance</button>
+        <button data-cat="Enumeration" class="cat-pill px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface hover:border-primary/50 transition-all">Enumeration</button>
+        <button data-cat="Privilege Escalation" class="cat-pill px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface hover:border-primary/50 transition-all">Privilege Escalation</button>
+        <button data-cat="Authentication" class="cat-pill px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface hover:border-primary/50 transition-all">Authentication</button>
+        <button data-cat="Wireless Security" class="cat-pill px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface hover:border-primary/50 transition-all">Wireless Security</button>
+        <button data-cat="Cloud Security" class="cat-pill px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface hover:border-primary/50 transition-all">Cloud Security</button>
+        <button data-cat="Docker Security" class="cat-pill px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface hover:border-primary/50 transition-all">Docker Security</button>
+        <button data-cat="OSINT" class="cat-pill px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface hover:border-primary/50 transition-all">OSINT</button>
+        <button data-cat="Security Tools" class="cat-pill px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface hover:border-primary/50 transition-all">Security Tools</button>
+      </div>
+    </div>
+
+    <!-- Learning Modules Grid -->
+    <div class="space-y-8" id="modules-container">
+
+      <!-- ===================================================================== -->
+      <!-- MODULE 01: NETWORKING                                                 -->
+      <!-- ===================================================================== -->
+      <article class="learning-card rounded-2xl border border-border-hairline bg-surface-subtle overflow-hidden transition-all hover:border-primary/40 shadow-xl" data-category="Networking" id="mod-networking">
+        <header class="p-6 bg-surface-raised/60 border-b border-border-hairline flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <span class="p-3 rounded-xl bg-canvas-base border border-primary/30 text-primary shrink-0">
+              <span class="material-symbols-outlined text-2xl">router</span>
+            </span>
+            <div>
+              <div class="flex items-center gap-2 font-mono text-xs text-primary mb-1">
+                <span>MODULE 01</span>
+                <span>•</span>
+                <span class="px-2 py-0.5 rounded bg-canvas-base border border-primary/30 text-[10px]">NETWORKING</span>
+              </div>
+              <h2 class="text-xl sm:text-2xl font-bold text-on-surface font-mono">
+                Computer Networking &amp; Packet Fundamentals
+              </h2>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 self-start md:self-auto">
+            <a href="labs.html#lab-network" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-primary/10 border border-primary/30 font-mono text-xs text-primary hover:bg-primary hover:text-canvas-base transition-colors font-semibold">
+              <span class="material-symbols-outlined text-sm">science</span>
+              <span>Open Lab</span>
+            </a>
+            <a href="tools.html#cidr-calc" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-subtle border border-border-hairline font-mono text-xs text-on-surface hover:text-secondary transition-colors">
+              <span class="material-symbols-outlined text-sm">calculate</span>
+              <span>CIDR Tool</span>
+            </a>
+          </div>
+        </header>
+
+        <div class="p-6 space-y-6 text-sm">
+          <!-- 1. What is it & Why it matters -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h3 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">info</span> What is it?
+              </h3>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Networking is the protocol suite and packet architecture that enables computers to exchange data across Layer 2 (Data Link - MAC/ARP), Layer 3 (Network - IP/Routing), Layer 4 (Transport - TCP/UDP), and Layer 7 (Application - HTTP/DNS).
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h3 class="font-mono text-xs font-bold text-primary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">flag</span> Why does it matter?
+              </h3>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Every remote cyber attack and defensive telemetry feed originates from network packets. Without deep comprehension of TCP handshakes, ICMP error codes, and DNS resolution, diagnosing firewall bypasses or capturing intrusions is impossible.
+              </p>
+            </div>
+          </div>
+
+          <!-- Prerequisites & Core concept -->
+          <div class="space-y-3">
+            <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+              <span class="text-outline font-bold">PREREQUISITES:</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">Binary &amp; Hex notation</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">Client-Server model</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">Basic command line</span>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h4 class="font-mono text-xs font-bold text-on-surface uppercase">Core Concept: The TCP 3-Way Handshake &amp; State Machine</h4>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Transmission Control Protocol establishes a reliable bidirectional session via <code class="text-primary font-mono">SYN &rarr; SYN-ACK &rarr; ACK</code>. State machines maintain connection sequence numbers (<code class="text-secondary font-mono">SEQ</code>) and acknowledgment numbers (<code class="text-secondary font-mono">ACK</code>). Port scanners inspect how endpoints respond to flags: an open port replies with <code class="text-primary font-mono">SYN-ACK</code>, while a closed port returns <code class="text-danger-critical font-mono">RST</code>, and filtered ports silently drop or trigger ICMP unreachable packets.
+              </p>
+            </div>
+          </div>
+
+          <!-- Practical Example & Commands -->
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-3">
+              <h4 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">terminal</span> Practical Example &amp; Diagnostic Commands
+              </h4>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Diagnosing routing, DNS delays, and capturing live interface packets without external GUI tools:
+              </p>
+              <div class="relative code-container">
+                <pre class="p-3 rounded-lg bg-surface-subtle font-mono text-xs text-on-surface overflow-x-auto border border-border-hairline/60">
+<span class="text-outline"># 1. Inspect local routing table and default gateway</span>
+ip route show
+
+<span class="text-outline"># 2. Query authoritative DNS NS records for target domain</span>
+dig +short NS target-lab.local @1.1.1.1
+
+<span class="text-outline"># 3. Capture raw TCP SYN packets on interface eth0 using tcpdump</span>
+sudo tcpdump -i eth0 -nn -vv "tcp[tcpflags] & (tcp-syn) != 0 and port 443" -c 10</pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mistakes, Detection & Defense -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="p-4 rounded-xl bg-canvas-base border border-warning/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-warning flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">warning</span> Common Mistakes
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Confusing Layer 2 (MAC) scope with Layer 3 (IP) routing. Assuming UDP is untrackable rather than connectionless. Miscalculating subnet hosts by forgetting network and broadcast IDs.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-secondary/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-secondary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">visibility</span> Detection View
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                High volumes of unsolicited SYN packets with no following ACK trigger Zeek/Snort port-scan thresholds. Asymmetric routing alerts in firewall flow states.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-primary/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-primary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">shield</span> Defensive Controls
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Implement stateful packet inspection (iptables/nftables), rate-limit SYN requests via SYN cookies (<code class="text-primary font-mono">tcp_syncookies = 1</code>), and isolate subnets with VLAN 802.1Q.
+              </p>
+            </div>
+          </div>
+
+          <!-- Knowledge Flow Footer -->
+          <footer class="pt-4 border-t border-border-hairline flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+            <div class="flex items-center gap-2 text-on-surface-variant">
+              <span class="text-outline">CONNECTED TOPICS:</span>
+              <a href="#mod-linux" class="text-primary hover:underline">Linux OS</a> &rarr;
+              <a href="#mod-recon" class="text-secondary hover:underline">Reconnaissance</a> &rarr;
+              <a href="#mod-enum" class="text-warning hover:underline">Port Enumeration</a>
+            </div>
+            <a href="labs.html#lab-network" class="text-primary hover:underline font-bold flex items-center gap-1">
+              <span>Practice: Network Enumeration Lab &rarr;</span>
+            </a>
+          </footer>
+        </div>
+      </article>
+
+      <!-- ===================================================================== -->
+      <!-- MODULE 02: LINUX                                                      -->
+      <!-- ===================================================================== -->
+      <article class="learning-card rounded-2xl border border-border-hairline bg-surface-subtle overflow-hidden transition-all hover:border-primary/40 shadow-xl" data-category="Linux" id="mod-linux">
+        <header class="p-6 bg-surface-raised/60 border-b border-border-hairline flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <span class="p-3 rounded-xl bg-canvas-base border border-primary/30 text-primary shrink-0">
+              <span class="material-symbols-outlined text-2xl">terminal</span>
+            </span>
+            <div>
+              <div class="flex items-center gap-2 font-mono text-xs text-primary mb-1">
+                <span>MODULE 02</span>
+                <span>•</span>
+                <span class="px-2 py-0.5 rounded bg-canvas-base border border-primary/30 text-[10px]">LINUX</span>
+              </div>
+              <h2 class="text-xl sm:text-2xl font-bold text-on-surface font-mono">
+                Linux Administration, Shell Architecture &amp; Permissions
+              </h2>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 self-start md:self-auto">
+            <a href="labs.html#lab-permissions" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-primary/10 border border-primary/30 font-mono text-xs text-primary hover:bg-primary hover:text-canvas-base transition-colors font-semibold">
+              <span class="material-symbols-outlined text-sm">science</span>
+              <span>Permissions Lab</span>
+            </a>
+            <a href="handbook/linux.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-subtle border border-border-hairline font-mono text-xs text-on-surface hover:text-secondary transition-colors">
+              <span class="material-symbols-outlined text-sm">menu_book</span>
+              <span>Linux Handbook</span>
+            </a>
+          </div>
+        </header>
+
+        <div class="p-6 space-y-6 text-sm">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h3 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">info</span> What is it?
+              </h3>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Linux is the foundational operating system for 90%+ of cloud infrastructure, security tooling, and containerization. Understanding its POSIX permissions, procfs, file system hierarchy (/etc, /var, /dev), and IPC is vital.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h3 class="font-mono text-xs font-bold text-primary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">flag</span> Why does it matter?
+              </h3>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Most web vulnerabilities (LFI, command injection) terminate in a Linux shell. If an engineer cannot navigate file descriptors, parse logs with grep/awk, or identify SUID binaries, they cannot conduct incident response or privilege audits.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+              <span class="text-outline font-bold">PREREQUISITES:</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">Terminal Basics</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">File System Tree</span>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h4 class="font-mono text-xs font-bold text-on-surface uppercase">Core Concept: POSIX Permissions &amp; Special Bits (SUID/SGID/Sticky)</h4>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Standard Linux permissions use 3 sets of 3 bits (<code class="text-primary font-mono">rwx</code> for User, Group, Others). The special 4th octal bit governs execution context: <code class="text-danger-critical font-mono">SUID (4000)</code> forces the process to execute with the file owner's privileges (e.g. root), <code class="text-warning font-mono">SGID (2000)</code> enforces group ownership, and <code class="text-secondary font-mono">Sticky bit (1000)</code> prevents non-owners from deleting files in shared directories like <code class="text-outline font-mono">/tmp</code>.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-3">
+              <h4 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">terminal</span> Practical Inspection Commands
+              </h4>
+              <div class="relative code-container">
+                <pre class="p-3 rounded-lg bg-surface-subtle font-mono text-xs text-on-surface overflow-x-auto border border-border-hairline/60">
+<span class="text-outline"># 1. Audit all SUID executables across the entire filesystem</span>
+find / -perm -u=s -type f 2>/dev/null
+
+<span class="text-outline"># 2. Check current user sudo privileges without typing root password</span>
+sudo -l
+
+<span class="text-outline"># 3. Inspect open network listening ports and process PIDs</span>
+ss -tulnp
+
+<span class="text-outline"># 4. View recently logged-in users and failed SSH login attempts</span>
+last -n 10 && grep "Failed password" /var/log/auth.log 2>/dev/null | tail -n 5</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="p-4 rounded-xl bg-canvas-base border border-warning/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-warning flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">warning</span> Common Mistakes
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Applying <code class="text-danger-critical font-mono">chmod 777</code> to solve permission errors. Leaving writable scripts in cron schedules owned by root.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-secondary/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-secondary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">visibility</span> Detection View
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Auditd tracking rule <code class="text-secondary font-mono">-w /etc/shadow -p wa -k shadow_access</code>. Syslog spikes in authentication failures.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-primary/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-primary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">shield</span> Defensive Controls
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Enforce Principle of Least Privilege, mount partitions with <code class="text-primary font-mono">noexec,nosuid,nodev</code> on <code class="text-outline font-mono">/tmp</code>, and configure SELinux/AppArmor profiles.
+              </p>
+            </div>
+          </div>
+
+          <footer class="pt-4 border-t border-border-hairline flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+            <div class="flex items-center gap-2 text-on-surface-variant">
+              <span class="text-outline">CONNECTED TOPICS:</span>
+              <a href="#mod-privesc" class="text-danger-critical hover:underline">Privilege Escalation</a> &rarr;
+              <a href="#mod-docker" class="text-secondary hover:underline">Docker Security</a>
+            </div>
+            <a href="labs.html#lab-suid" class="text-primary hover:underline font-bold flex items-center gap-1">
+              <span>Practice: SUID Privilege Escalation Lab &rarr;</span>
+            </a>
+          </footer>
+        </div>
+      </article>
+
+      <!-- ===================================================================== -->
+      <!-- MODULE 03: WEB APPLICATION SECURITY                                   -->
+      <!-- ===================================================================== -->
+      <article class="learning-card rounded-2xl border border-border-hairline bg-surface-subtle overflow-hidden transition-all hover:border-primary/40 shadow-xl" data-category="Web Security" id="mod-web">
+        <header class="p-6 bg-surface-raised/60 border-b border-border-hairline flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <span class="p-3 rounded-xl bg-canvas-base border border-primary/30 text-primary shrink-0">
+              <span class="material-symbols-outlined text-2xl">web</span>
+            </span>
+            <div>
+              <div class="flex items-center gap-2 font-mono text-xs text-primary mb-1">
+                <span>MODULE 03</span>
+                <span>•</span>
+                <span class="px-2 py-0.5 rounded bg-canvas-base border border-primary/30 text-[10px]">WEB SECURITY</span>
+              </div>
+              <h2 class="text-xl sm:text-2xl font-bold text-on-surface font-mono">
+                Web Application Security &amp; OWASP Top 10
+              </h2>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 self-start md:self-auto">
+            <a href="labs.html#lab-sqli" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-primary/10 border border-primary/30 font-mono text-xs text-primary hover:bg-primary hover:text-canvas-base transition-colors font-semibold">
+              <span class="material-symbols-outlined text-sm">science</span>
+              <span>SQLi Lab</span>
+            </a>
+            <a href="tools.html#jwt-tool" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-subtle border border-border-hairline font-mono text-xs text-on-surface hover:text-secondary transition-colors">
+              <span class="material-symbols-outlined text-sm">verified_user</span>
+              <span>JWT Inspector</span>
+            </a>
+          </div>
+        </header>
+
+        <div class="p-6 space-y-6 text-sm">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h3 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">info</span> What is it?
+              </h3>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Web application security protects modern web applications, APIs (REST/GraphQL), and frontend frameworks from client-side and server-side flaws cataloged in the OWASP Top 10 (Injection, Broken Auth, SSRF, IDOR, Security Misconfig).
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h3 class="font-mono text-xs font-bold text-primary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">flag</span> Why does it matter?
+              </h3>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Web applications sit on public ports 80/443 without firewall barriers. A single unparameterized SQL query or unauthenticated API endpoint can expose the entire production customer database or yield server remote code execution (RCE).
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+              <span class="text-outline font-bold">PREREQUISITES:</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">HTTP Request/Response cycle</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">HTML/JS basics</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">SQL syntax</span>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h4 class="font-mono text-xs font-bold text-on-surface uppercase">Core Concept: Input Validation vs. Context-Aware Output Encoding</h4>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Vulnerabilities arise when untrusted user input is directly concatenated into an interpreter (SQL engine, OS shell, HTML DOM renderer). Security requires strict boundary separation: parameterize queries for databases (<code class="text-primary font-mono">PreparedStatements</code>), apply context-aware HTML/Attribute encoding for Cross-Site Scripting, and use strict allowlists for file inclusions.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-3">
+              <h4 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">terminal</span> Security Headers &amp; Curl Testing
+              </h4>
+              <div class="relative code-container">
+                <pre class="p-3 rounded-lg bg-surface-subtle font-mono text-xs text-on-surface overflow-x-auto border border-border-hairline/60">
+<span class="text-outline"># 1. Inspect HTTP security headers with curl</span>
+curl -s -I -X GET https://example-target.local | grep -iE "(strict-transport|content-security|x-frame|x-content)"
+
+<span class="text-outline"># 2. Test for unauthenticated IDOR by toggling userId in authorization headers</span>
+curl -s -X GET https://api.target.local/v1/profile/1002 -H "Authorization: Bearer USER_TOKEN_1001"</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="p-4 rounded-xl bg-canvas-base border border-warning/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-warning flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">warning</span> Common Mistakes
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Relying exclusively on client-side JavaScript validation. Storing JWTs with sensitive tokens in insecure <code class="text-danger-critical font-mono">localStorage</code> rather than <code class="text-primary font-mono">HttpOnly; Secure; SameSite=Strict</code> cookies.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-secondary/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-secondary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">visibility</span> Detection View
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                WAF rule matches on SQL syntax tokens (<code class="text-secondary font-mono">' UNION SELECT</code>, <code class="text-secondary font-mono">OR 1=1--</code>). ModSecurity alerts on script tags in URI parameters.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-primary/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-primary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">shield</span> Defensive Controls
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Use ORM with parameterized queries, deploy strict Content Security Policy (CSP), enforce anti-CSRF token verification, and implement robust Object-Level Authorization middleware.
+              </p>
+            </div>
+          </div>
+
+          <footer class="pt-4 border-t border-border-hairline flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+            <div class="flex items-center gap-2 text-on-surface-variant">
+              <span class="text-outline">CONNECTED TOPICS:</span>
+              <a href="#mod-auth" class="text-primary hover:underline">Authentication</a> &rarr;
+              <a href="methodology.html#matrix" class="text-danger-critical hover:underline">Attack/Defense Matrix</a>
+            </div>
+            <a href="labs.html#lab-xss" class="text-primary hover:underline font-bold flex items-center gap-1">
+              <span>Practice: XSS &amp; Security Headers Lab &rarr;</span>
+            </a>
+          </footer>
+        </div>
+      </article>
+
+      <!-- ===================================================================== -->
+      <!-- MODULE 04: RECONNAISSANCE                                             -->
+      <!-- ===================================================================== -->
+      <article class="learning-card rounded-2xl border border-border-hairline bg-surface-subtle overflow-hidden transition-all hover:border-primary/40 shadow-xl" data-category="Reconnaissance" id="mod-recon">
+        <header class="p-6 bg-surface-raised/60 border-b border-border-hairline flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <span class="p-3 rounded-xl bg-canvas-base border border-primary/30 text-primary shrink-0">
+              <span class="material-symbols-outlined text-2xl">radar</span>
+            </span>
+            <div>
+              <div class="flex items-center gap-2 font-mono text-xs text-primary mb-1">
+                <span>MODULE 04</span>
+                <span>•</span>
+                <span class="px-2 py-0.5 rounded bg-canvas-base border border-primary/30 text-[10px]">RECONNAISSANCE</span>
+              </div>
+              <h2 class="text-xl sm:text-2xl font-bold text-on-surface font-mono">
+                Reconnaissance &amp; Attack Surface Discovery
+              </h2>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 self-start md:self-auto">
+            <a href="tools.html#tool-db" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-primary/10 border border-primary/30 font-mono text-xs text-primary hover:bg-primary hover:text-canvas-base transition-colors font-semibold">
+              <span class="material-symbols-outlined text-sm">database</span>
+              <span>Recon Tools DB</span>
+            </a>
+            <a href="handbook/modules/reconnaissance.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-subtle border border-border-hairline font-mono text-xs text-on-surface hover:text-secondary transition-colors">
+              <span class="material-symbols-outlined text-sm">menu_book</span>
+              <span>Recon Handbook</span>
+            </a>
+          </div>
+        </header>
+
+        <div class="p-6 space-y-6 text-sm">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h3 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">info</span> What is it?
+              </h3>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Reconnaissance is the initial phase of security assessment where practitioners systematically map an organization's digital footprint using passive (non-intrusive OSINT) and active surface discovery techniques.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h3 class="font-mono text-xs font-bold text-primary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">flag</span> Why does it matter?
+              </h3>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Security is asymmetric: defenders must secure every sub-domain, staging server, and legacy API, whereas an attacker only needs one forgotten asset. Thorough reconnaissance identifies shadow IT before malicious actors exploit it.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+              <span class="text-outline font-bold">PREREQUISITES:</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">DNS Records (A, CNAME, MX, TXT)</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">WHOIS Protocol</span>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h4 class="font-mono text-xs font-bold text-on-surface uppercase">Core Concept: Passive OSINT vs. Active Footprinting</h4>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Passive reconnaissance interrogates third-party indices (Certificate Transparency logs via crt.sh, DNS caches, Shodan/Censys) without touching the target's network interfaces, leaving zero logs on the victim's server. Active footprinting initiates network connections (DNS zone transfers, ping sweeps, banner grabbing) and creates server-side audit logs.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-3">
+              <h4 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">terminal</span> Surface Mapping Commands
+              </h4>
+              <div class="relative code-container">
+                <pre class="p-3 rounded-lg bg-surface-subtle font-mono text-xs text-on-surface overflow-x-auto border border-border-hairline/60">
+<span class="text-outline"># 1. Query Certificate Transparency (CT) logs via crt.sh passively</span>
+curl -s "https://crt.sh/?q=%25.targetdomain.com&output=json" | jq -r '.[].name_value' | sort -u
+
+<span class="text-outline"># 2. Discover subdomains using Subfinder (passive sources)</span>
+subfinder -d targetdomain.com -silent -o subdomains.txt
+
+<span class="text-outline"># 3. Resolve active live HTTP/HTTPS hosts across discovered subdomains</span>
+cat subdomains.txt | httpx -silent -status-code -title</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="p-4 rounded-xl bg-canvas-base border border-warning/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-warning flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">warning</span> Common Mistakes
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Commencing intrusive active scans prior to formal authorization. Relying on a single passive source rather than multi-engine aggregation.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-secondary/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-secondary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">visibility</span> Detection View
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Anomalous spike in DNS TXT/ANY queries to authoritative nameservers. Rapid HTTP HEAD requests across dormant virtual hosts.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-primary/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-primary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">shield</span> Defensive Controls
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Disable DNS zone transfers (<code class="text-primary font-mono">allow-transfer { none; };</code>), decommission orphaned staging subdomains (prevent subdomain takeovers), and mask server version headers.
+              </p>
+            </div>
+          </div>
+
+          <footer class="pt-4 border-t border-border-hairline flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+            <div class="flex items-center gap-2 text-on-surface-variant">
+              <span class="text-outline">CONNECTED TOPICS:</span>
+              <a href="#mod-enum" class="text-primary hover:underline">Enumeration</a> &rarr;
+              <a href="#mod-osint" class="text-secondary hover:underline">OSINT</a> &rarr;
+              <a href="methodology.html#stage-recon" class="text-warning hover:underline">Methodology Stage 02</a>
+            </div>
+            <a href="tools.html#tool-db" class="text-primary hover:underline font-bold flex items-center gap-1">
+              <span>View Tools: Subfinder, Amass &amp; WhatWeb &rarr;</span>
+            </a>
+          </footer>
+        </div>
+      </article>
+
+      <!-- ===================================================================== -->
+      <!-- MODULE 05: ENUMERATION                                                -->
+      <!-- ===================================================================== -->
+      <article class="learning-card rounded-2xl border border-border-hairline bg-surface-subtle overflow-hidden transition-all hover:border-primary/40 shadow-xl" data-category="Enumeration" id="mod-enum">
+        <header class="p-6 bg-surface-raised/60 border-b border-border-hairline flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <span class="p-3 rounded-xl bg-canvas-base border border-primary/30 text-primary shrink-0">
+              <span class="material-symbols-outlined text-2xl">search_insights</span>
+            </span>
+            <div>
+              <div class="flex items-center gap-2 font-mono text-xs text-primary mb-1">
+                <span>MODULE 05</span>
+                <span>•</span>
+                <span class="px-2 py-0.5 rounded bg-canvas-base border border-primary/30 text-[10px]">ENUMERATION</span>
+              </div>
+              <h2 class="text-xl sm:text-2xl font-bold text-on-surface font-mono">
+                Port Scanning, Service Versioning &amp; Content Fuzzing
+              </h2>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 self-start md:self-auto">
+            <a href="tools.html#nmap-builder" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-primary/10 border border-primary/30 font-mono text-xs text-primary hover:bg-primary hover:text-canvas-base transition-colors font-semibold">
+              <span class="material-symbols-outlined text-sm">tune</span>
+              <span>Nmap Builder</span>
+            </a>
+            <a href="handbook/nmap.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-subtle border border-border-hairline font-mono text-xs text-on-surface hover:text-secondary transition-colors">
+              <span class="material-symbols-outlined text-sm">menu_book</span>
+              <span>Nmap Reference</span>
+            </a>
+          </div>
+        </header>
+
+        <div class="p-6 space-y-6 text-sm">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h3 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">info</span> What is it?
+              </h3>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Enumeration is the active interrogation of accessible network ports, service banners, operating systems, and web directories to extract detailed metadata regarding specific software versions and configuration parameters.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h3 class="font-mono text-xs font-bold text-primary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">flag</span> Why does it matter?
+              </h3>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Exploits are version-specific: an exploit for OpenSSH 7.2p1 (CVE-2016-6210 user enumeration) will fail on OpenSSH 8.9. Precise enumeration prevents firing broken payloads and avoids crashing mission-critical production services.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+              <span class="text-outline font-bold">PREREQUISITES:</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">TCP/UDP Transport mechanics</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">HTTP Status codes (200, 301, 401, 403)</span>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h4 class="font-mono text-xs font-bold text-on-surface uppercase">Core Concept: Multi-Stage Service Probing &amp; Fuzzing</h4>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Efficient enumeration follows a structured funnel: fast port discovery (<code class="text-primary font-mono">nmap -sS -p- --min-rate 1000</code>), followed by targeted deep banner analysis on verified open ports (<code class="text-secondary font-mono">-sC -sV</code>), and finally high-speed endpoint fuzzing using <code class="text-primary font-mono">ffuf</code> with SecLists to reveal hidden administrative routes, <code class="text-outline font-mono">.git</code> folders, and backup files.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-3">
+              <h4 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">terminal</span> Standard Enumeration Pipeline Commands
+              </h4>
+              <div class="relative code-container">
+                <pre class="p-3 rounded-lg bg-surface-subtle font-mono text-xs text-on-surface overflow-x-auto border border-border-hairline/60">
+<span class="text-outline"># 1. Full TCP port sweep with versioning and default scripts</span>
+nmap -sC -sV -p- --min-rate 1000 -oN initial_scan.txt 10.10.110.45
+
+<span class="text-outline"># 2. Web directory and endpoint discovery using ffuf</span>
+ffuf -u http://10.10.110.45/FUZZ -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 200,301,302 -c
+
+<span class="text-outline"># 3. Enumerate public SMB shares on Windows/Samba targets</span>
+smbclient -L //10.10.110.45 -N</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="p-4 rounded-xl bg-canvas-base border border-warning/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-warning flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">warning</span> Common Mistakes
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Only scanning top 1000 ports and missing high non-standard ports (e.g., node web app running on port 8080 or 8443). Flooding network with excessive min-rate causing dropped packets.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-secondary/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-secondary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">visibility</span> Detection View
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                SIEM alerts for TCP connect bursts across sequential ports. Web server access logs registering hundreds of 404 responses per second from automated directory fuzzers.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-primary/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-primary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">shield</span> Defensive Controls
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Deploy Fail2ban or Cloudflare WAF rate-limiting, disable directory indexing in web servers, strip service version headers, and bind administrative interfaces to internal loopback only.
+              </p>
+            </div>
+          </div>
+
+          <footer class="pt-4 border-t border-border-hairline flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+            <div class="flex items-center gap-2 text-on-surface-variant">
+              <span class="text-outline">CONNECTED TOPICS:</span>
+              <a href="#mod-web" class="text-primary hover:underline">Web Security</a> &rarr;
+              <a href="#mod-tools" class="text-secondary hover:underline">Security Tools</a> &rarr;
+              <a href="tools.html#nmap-builder" class="text-warning hover:underline">Interactive Nmap Builder</a>
+            </div>
+            <a href="tools.html#nmap-builder" class="text-primary hover:underline font-bold flex items-center gap-1">
+              <span>Open Interactive Nmap Command Builder &rarr;</span>
+            </a>
+          </footer>
+        </div>
+      </article>
+
+      <!-- ===================================================================== -->
+      <!-- MODULE 06: PRIVILEGE ESCALATION                                       -->
+      <!-- ===================================================================== -->
+      <article class="learning-card rounded-2xl border border-border-hairline bg-surface-subtle overflow-hidden transition-all hover:border-primary/40 shadow-xl" data-category="Privilege Escalation" id="mod-privesc">
+        <header class="p-6 bg-surface-raised/60 border-b border-border-hairline flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <span class="p-3 rounded-xl bg-canvas-base border border-danger-critical/30 text-danger-critical shrink-0">
+              <span class="material-symbols-outlined text-2xl">upgrade</span>
+            </span>
+            <div>
+              <div class="flex items-center gap-2 font-mono text-xs text-danger-critical mb-1">
+                <span>MODULE 06</span>
+                <span>•</span>
+                <span class="px-2 py-0.5 rounded bg-canvas-base border border-danger-critical/30 text-[10px]">PRIVILEGE ESCALATION</span>
+              </div>
+              <h2 class="text-xl sm:text-2xl font-bold text-on-surface font-mono">
+                Linux &amp; Windows Privilege Escalation Vectors
+              </h2>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 self-start md:self-auto">
+            <a href="labs.html#lab-suid" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-danger-critical/10 border border-danger-critical/30 font-mono text-xs text-danger-critical hover:bg-danger-critical hover:text-canvas-base transition-colors font-semibold">
+              <span class="material-symbols-outlined text-sm">science</span>
+              <span>SUID Lab</span>
+            </a>
+            <a href="handbook/modules/privilege-escalation.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-subtle border border-border-hairline font-mono text-xs text-on-surface hover:text-secondary transition-colors">
+              <span class="material-symbols-outlined text-sm">menu_book</span>
+              <span>PrivEsc Handbook</span>
+            </a>
+          </div>
+        </header>
+
+        <div class="p-6 space-y-6 text-sm">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h3 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">info</span> What is it?
+              </h3>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Privilege escalation is the phase where an attacker exploits system misconfigurations, kernel flaws, or overly permissive access controls to escalate from an unprivileged user (e.g. <code class="text-primary font-mono">www-data</code>) to <code class="text-danger-critical font-mono">root</code> or <code class="text-danger-critical font-mono">SYSTEM</code>.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h3 class="font-mono text-xs font-bold text-primary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">flag</span> Why does it matter?
+              </h3>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Initial access gives limited scope. An attacker with root control can dump credentials from <code class="text-outline font-mono">/etc/shadow</code> or LSASS, disable security logging, establish persistent backdoors, and move laterally across the entire corporate network.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+              <span class="text-outline font-bold">PREREQUISITES:</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">Linux Permissions</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">Sudoers Architecture</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">Environment Variables (PATH/LD_PRELOAD)</span>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h4 class="font-mono text-xs font-bold text-on-surface uppercase">Core Concept: GTFOBins &amp; SUID / Sudo Abuse</h4>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Many standard system binaries (such as <code class="text-primary font-mono">find</code>, <code class="text-primary font-mono">vim</code>, <code class="text-primary font-mono">cp</code>, <code class="text-primary font-mono">nmap</code>) contain built-in flags or shell escape capabilities. If granted the SUID bit or listed in <code class="text-outline font-mono">/etc/sudoers</code> with <code class="text-danger-critical font-mono">NOPASSWD</code>, an unprivileged user can spawn a shell running as root without needing a kernel exploit.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-3">
+              <h4 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">terminal</span> Privilege Auditing Commands
+              </h4>
+              <div class="relative code-container">
+                <pre class="p-3 rounded-lg bg-surface-subtle font-mono text-xs text-on-surface overflow-x-auto border border-border-hairline/60">
+<span class="text-outline"># 1. Audit user sudo rules</span>
+sudo -l
+
+<span class="text-outline"># 2. GTFOBins example: If find has SUID bit set, execute interactive shell</span>
+/usr/bin/find . -exec /bin/sh -p \; -quit
+
+<span class="text-outline"># 3. Check for writable cron script executions in /etc/crontab</span>
+cat /etc/crontab /etc/cron.*/* 2>/dev/null | grep -v "^#"</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="p-4 rounded-xl bg-canvas-base border border-warning/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-warning flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">warning</span> Common Mistakes
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Over-relying on automated scripts (LinPEAS) without reviewing basic manual vectors like <code class="text-outline font-mono">sudo -l</code> and process listings first. Running untrusted exploits blindly.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-secondary/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-secondary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">visibility</span> Detection View
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Auditd records <code class="text-danger-critical font-mono">execve</code> syscalls for binaries executing with <code class="text-danger-critical font-mono">euid=0</code> from non-root parent process trees. Sudo log entries in <code class="text-outline font-mono">/var/log/auth.log</code>.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-primary/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-primary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">shield</span> Defensive Controls
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Audit SUID binaries with <code class="text-primary font-mono">chmod u-s &lt;binary&gt;</code>, strictly limit sudoers commands without wildcards, disable root SSH logins, and keep system kernels patched.
+              </p>
+            </div>
+          </div>
+
+          <footer class="pt-4 border-t border-border-hairline flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+            <div class="flex items-center gap-2 text-on-surface-variant">
+              <span class="text-outline">CONNECTED TOPICS:</span>
+              <a href="#mod-linux" class="text-primary hover:underline">Linux Core</a> &rarr;
+              <a href="#mod-auth" class="text-secondary hover:underline">Authentication</a> &rarr;
+              <a href="methodology.html#stage-privesc" class="text-danger-critical hover:underline">Methodology Stage 07</a>
+            </div>
+            <a href="labs.html#lab-suid" class="text-primary hover:underline font-bold flex items-center gap-1">
+              <span>Practice: SUID Privilege Escalation Lab &rarr;</span>
+            </a>
+          </footer>
+        </div>
+      </article>
+
+      <!-- ===================================================================== -->
+      <!-- MODULE 07: AUTHENTICATION & SESSION SECURITY                         -->
+      <!-- ===================================================================== -->
+      <article class="learning-card rounded-2xl border border-border-hairline bg-surface-subtle overflow-hidden transition-all hover:border-primary/40 shadow-xl" data-category="Authentication" id="mod-auth">
+        <header class="p-6 bg-surface-raised/60 border-b border-border-hairline flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <span class="p-3 rounded-xl bg-canvas-base border border-primary/30 text-primary shrink-0">
+              <span class="material-symbols-outlined text-2xl">key</span>
+            </span>
+            <div>
+              <div class="flex items-center gap-2 font-mono text-xs text-primary mb-1">
+                <span>MODULE 07</span>
+                <span>•</span>
+                <span class="px-2 py-0.5 rounded bg-canvas-base border border-primary/30 text-[10px]">AUTHENTICATION</span>
+              </div>
+              <h2 class="text-xl sm:text-2xl font-bold text-on-surface font-mono">
+                Authentication, Session Architecture &amp; Token Security
+              </h2>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 self-start md:self-auto">
+            <a href="labs.html#lab-jwt" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-primary/10 border border-primary/30 font-mono text-xs text-primary hover:bg-primary hover:text-canvas-base transition-colors font-semibold">
+              <span class="material-symbols-outlined text-sm">science</span>
+              <span>JWT Lab</span>
+            </a>
+            <a href="tools.html#jwt-tool" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-subtle border border-border-hairline font-mono text-xs text-on-surface hover:text-secondary transition-colors">
+              <span class="material-symbols-outlined text-sm">badge</span>
+              <span>JWT Inspector Tool</span>
+            </a>
+          </div>
+        </header>
+
+        <div class="p-6 space-y-6 text-sm">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h3 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">info</span> What is it?
+              </h3>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Authentication verifies a digital subject's identity (Who are you?), while Session Management and Tokens (JWTs, OAuth tokens, session cookies) maintain that trusted state across stateless HTTP requests.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h3 class="font-mono text-xs font-bold text-primary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">flag</span> Why does it matter?
+              </h3>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Weak password hashing (MD5/SHA1 without salt), missing brute force lockouts, or flawed token verification (e.g. JWT "none" algorithm or weak HMAC secret) allow attackers to impersonate any user or administrator instantly.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+              <span class="text-outline font-bold">PREREQUISITES:</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">Cryptographic Hash Functions</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">Base64URL encoding</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">HTTP Headers</span>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h4 class="font-mono text-xs font-bold text-on-surface uppercase">Core Concept: JWT Anatomy &amp; Cryptographic Signatures</h4>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                A JSON Web Token consists of three base64url-encoded parts separated by dots: <code class="text-primary font-mono">HEADER.PAYLOAD.SIGNATURE</code>. The signature guarantees that claims cannot be tampered with in transit. Common implementation vulnerabilities include: accepting <code class="text-danger-critical font-mono">"alg": "none"</code>, HMAC-SHA256 signature verification using public RSA keys (algorithm confusion), and using easily crackable dictionary secrets.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-3">
+              <h4 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">terminal</span> Password Auditing &amp; JWT Verification
+              </h4>
+              <div class="relative code-container">
+                <pre class="p-3 rounded-lg bg-surface-subtle font-mono text-xs text-on-surface overflow-x-auto border border-border-hairline/60">
+<span class="text-outline"># 1. Offline dictionary audit of password hashes using John the Ripper</span>
+john --wordlist=/usr/share/wordlists/rockyou.txt hashes.txt
+
+<span class="text-outline"># 2. GPU-accelerated hash recovery using Hashcat (Mode 3200 = bcrypt)</span>
+hashcat -m 3200 -a 0 bcrypt_hashes.txt /usr/share/wordlists/rockyou.txt
+
+<span class="text-outline"># 3. Decode JWT header and payload in terminal using jq and base64</span>
+echo "HEADER_OR_PAYLOAD_STRING" | base64 -d | jq .</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="p-4 rounded-xl bg-canvas-base border border-warning/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-warning flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">warning</span> Common Mistakes
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Trusting claims without validating cryptographic signature. Not revoking tokens on password change or user termination.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-secondary/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-secondary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">visibility</span> Detection View
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Spike in failed HTTP 401/403 events from a single IP or user account indicates credential stuffing or brute force attacks.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-primary/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-primary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">shield</span> Defensive Controls
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Hash passwords with Argon2id or bcrypt (cost factor &ge; 12), enforce Multi-Factor Authentication (MFA), sign JWTs with asymmetric keys (RS256/ES256), and implement short token expiration (<code class="text-primary font-mono">exp</code>).
+              </p>
+            </div>
+          </div>
+
+          <footer class="pt-4 border-t border-border-hairline flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+            <div class="flex items-center gap-2 text-on-surface-variant">
+              <span class="text-outline">CONNECTED TOPICS:</span>
+              <a href="#mod-web" class="text-primary hover:underline">Web Security</a> &rarr;
+              <a href="tools.html#jwt-tool" class="text-secondary hover:underline">JWT Tool</a>
+            </div>
+            <a href="labs.html#lab-jwt" class="text-primary hover:underline font-bold flex items-center gap-1">
+              <span>Practice: JWT Security Lab &rarr;</span>
+            </a>
+          </footer>
+        </div>
+      </article>
+
+      <!-- ===================================================================== -->
+      <!-- MODULE 08: WIRELESS SECURITY                                          -->
+      <!-- ===================================================================== -->
+      <article class="learning-card rounded-2xl border border-border-hairline bg-surface-subtle overflow-hidden transition-all hover:border-primary/40 shadow-xl" data-category="Wireless Security" id="mod-wireless">
+        <header class="p-6 bg-surface-raised/60 border-b border-border-hairline flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <span class="p-3 rounded-xl bg-canvas-base border border-primary/30 text-primary shrink-0">
+              <span class="material-symbols-outlined text-2xl">wifi</span>
+            </span>
+            <div>
+              <div class="flex items-center gap-2 font-mono text-xs text-primary mb-1">
+                <span>MODULE 08</span>
+                <span>•</span>
+                <span class="px-2 py-0.5 rounded bg-canvas-base border border-primary/30 text-[10px]">WIRELESS SECURITY</span>
+              </div>
+              <h2 class="text-xl sm:text-2xl font-bold text-on-surface font-mono">
+                Wireless Protocols, 802.11 Auditing &amp; Defense
+              </h2>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 self-start md:self-auto">
+            <a href="tools.html#tool-db" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-primary/10 border border-primary/30 font-mono text-xs text-primary hover:bg-primary hover:text-canvas-base transition-colors font-semibold">
+              <span class="material-symbols-outlined text-sm">wifi_find</span>
+              <span>Wireless Tools</span>
+            </a>
+          </div>
+        </header>
+
+        <div class="p-6 space-y-6 text-sm">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h3 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">info</span> What is it?
+              </h3>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Wireless security encompasses the cryptographic protocols (WEP, WPA2-PSK, WPA3-SAE, 802.1X Enterprise) that secure radio frequency (RF) communications between client stations and wireless access points (APs).
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h3 class="font-mono text-xs font-bold text-primary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">flag</span> Why does it matter?
+              </h3>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                RF broadcast signals penetrate physical corporate walls and perimeters. A weak pre-shared key (PSK) allows an adversary in a nearby parking lot to decrypt employee network traffic or compromise internal corporate subnets directly.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+              <span class="text-outline font-bold">PREREQUISITES:</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">802.11 Frame Architecture</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">MAC Addresses</span>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h4 class="font-mono text-xs font-bold text-on-surface uppercase">Core Concept: The WPA2 4-Way Handshake &amp; PMKID Capture</h4>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                In WPA2-PSK, authentication derives a Pairwise Transient Key (PTK) from the Pairwise Master Key (PMK) using nonces (<code class="text-primary font-mono">ANonce</code>, <code class="text-primary font-mono">SNonce</code>) and MAC addresses. Capturing these 4 frames (or the modern clientless PMKID from the RSN IE) allows offline dictionary cracking without interacting further with the physical network.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-3">
+              <h4 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">terminal</span> Wireless Audit Commands (Authorized Lab RF Interface)
+              </h4>
+              <div class="relative code-container">
+                <pre class="p-3 rounded-lg bg-surface-subtle font-mono text-xs text-on-surface overflow-x-auto border border-border-hairline/60">
+<span class="text-outline"># 1. Enable monitor mode on wireless adapter</span>
+sudo airmon-ng start wlan0
+
+<span class="text-outline"># 2. Passive channel survey to observe BSSIDs and channel allocations</span>
+sudo airodump-ng wlan0mon
+
+<span class="text-outline"># 3. Capture EAPOL 4-way handshake on specific channel and target BSSID</span>
+sudo airodump-ng -c 6 --bssid AA:BB:CC:DD:EE:FF -w lab_capture wlan0mon</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="p-4 rounded-xl bg-canvas-base border border-warning/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-warning flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">warning</span> Common Mistakes
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Assuming SSID broadcasting disablement ("Hidden Network") provides security. Using WPA2-PSK with simple passwords in corporate settings.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-secondary/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-secondary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">visibility</span> Detection View
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Wireless Intrusion Prevention Systems (WIPS) alert on bursts of 802.11 deauthentication frames or rogue APs broadcasting identical SSIDs (Evil Twin).
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-primary/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-primary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">shield</span> Defensive Controls
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Deploy WPA3-Enterprise with Protected Management Frames (802.11w PMF) to prevent deauth attacks, isolate guests via client isolation, and authenticate via RADIUS/EAP-TLS.
+              </p>
+            </div>
+          </div>
+
+          <footer class="pt-4 border-t border-border-hairline flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+            <div class="flex items-center gap-2 text-on-surface-variant">
+              <span class="text-outline">CONNECTED TOPICS:</span>
+              <a href="#mod-networking" class="text-primary hover:underline">Networking Fundamentals</a> &rarr;
+              <a href="#mod-auth" class="text-secondary hover:underline">Authentication</a>
+            </div>
+            <a href="tools.html#tool-db" class="text-primary hover:underline font-bold flex items-center gap-1">
+              <span>View Tools Database &rarr;</span>
+            </a>
+          </footer>
+        </div>
+      </article>
+
+      <!-- ===================================================================== -->
+      <!-- MODULE 09: CLOUD SECURITY                                             -->
+      <!-- ===================================================================== -->
+      <article class="learning-card rounded-2xl border border-border-hairline bg-surface-subtle overflow-hidden transition-all hover:border-primary/40 shadow-xl" data-category="Cloud Security" id="mod-cloud">
+        <header class="p-6 bg-surface-raised/60 border-b border-border-hairline flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <span class="p-3 rounded-xl bg-canvas-base border border-primary/30 text-primary shrink-0">
+              <span class="material-symbols-outlined text-2xl">cloud_sync</span>
+            </span>
+            <div>
+              <div class="flex items-center gap-2 font-mono text-xs text-primary mb-1">
+                <span>MODULE 09</span>
+                <span>•</span>
+                <span class="px-2 py-0.5 rounded bg-canvas-base border border-primary/30 text-[10px]">CLOUD SECURITY</span>
+              </div>
+              <h2 class="text-xl sm:text-2xl font-bold text-on-surface font-mono">
+                Cloud Architecture, IAM Hardening &amp; SSRF Metadata
+              </h2>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 self-start md:self-auto">
+            <a href="labs.html#lab-idor" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-primary/10 border border-primary/30 font-mono text-xs text-primary hover:bg-primary hover:text-canvas-base transition-colors font-semibold">
+              <span class="material-symbols-outlined text-sm">science</span>
+              <span>Authorization Lab</span>
+            </a>
+          </div>
+        </header>
+
+        <div class="p-6 space-y-6 text-sm">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h3 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">info</span> What is it?
+              </h3>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Cloud security encompasses identity governance (IAM), compute boundaries, storage access policies (S3 buckets/blobs), and API control planes in AWS, GCP, and Azure under the Shared Responsibility Model.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h3 class="font-mono text-xs font-bold text-primary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">flag</span> Why does it matter?
+              </h3>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                In cloud environments, identity is the perimeter. Compromising an IAM access key with wildcard permissions (<code class="text-danger-critical font-mono">"Action": "*"</code>) gives complete administrative dominion over the organization's cloud infrastructure.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+              <span class="text-outline font-bold">PREREQUISITES:</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">IAM Roles &amp; Policies</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">Object Storage</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">REST API concepts</span>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h4 class="font-mono text-xs font-bold text-on-surface uppercase">Core Concept: The IMDS Metadata Service &amp; SSRF Pivot</h4>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Cloud instances query the link-local metadata address <code class="text-primary font-mono">http://169.254.169.254/latest/meta-data/</code> to retrieve runtime instance details. If a web application possesses a Server-Side Request Forgery (SSRF) flaw, an attacker forces the server to query its own metadata service and leak temporary IAM role security credentials (<code class="text-danger-critical font-mono">AccessKeyId, SecretAccessKey, Token</code>).
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-3">
+              <h4 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">terminal</span> Cloud CLI Security Inspection
+              </h4>
+              <div class="relative code-container">
+                <pre class="p-3 rounded-lg bg-surface-subtle font-mono text-xs text-on-surface overflow-x-auto border border-border-hairline/60">
+<span class="text-outline"># 1. Verify caller identity and ARN of active AWS credentials</span>
+aws sts get-caller-identity
+
+<span class="text-outline"># 2. Query IMDSv2 token (defense against classic SSRF attacks)</span>
+TOKEN=`curl -s -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"`
+curl -s -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/iam/security-credentials/
+
+<span class="text-outline"># 3. Check public bucket exposure on target S3 bucket</span>
+aws s3 ls s3://target-company-backups --no-sign-request</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="p-4 rounded-xl bg-canvas-base border border-warning/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-warning flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">warning</span> Common Mistakes
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Committing static AWS access keys to public GitHub repositories. Leaving S3 buckets open to <code class="text-danger-critical font-mono">AllUsers</code>. Running IMDSv1 instead of enforcing IMDSv2.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-secondary/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-secondary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">visibility</span> Detection View
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                AWS CloudTrail alerts on API calls from anomalous geographic regions or Tor exit nodes. GuardDuty flags API requests using temporary instance credentials from outside the VPC.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-primary/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-primary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">shield</span> Defensive Controls
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Enforce IMDSv2 (<code class="text-primary font-mono">HttpTokens=required</code>), implement Least Privilege IAM roles, enable S3 Block Public Access globally, and rotate credentials with AWS Secrets Manager.
+              </p>
+            </div>
+          </div>
+
+          <footer class="pt-4 border-t border-border-hairline flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+            <div class="flex items-center gap-2 text-on-surface-variant">
+              <span class="text-outline">CONNECTED TOPICS:</span>
+              <a href="#mod-web" class="text-primary hover:underline">Web Security (SSRF)</a> &rarr;
+              <a href="#mod-docker" class="text-secondary hover:underline">Container Security</a>
+            </div>
+            <a href="methodology.html#matrix" class="text-primary hover:underline font-bold flex items-center gap-1">
+              <span>View SSRF Attack / Defense Blueprint &rarr;</span>
+            </a>
+          </footer>
+        </div>
+      </article>
+
+      <!-- ===================================================================== -->
+      <!-- MODULE 10: DOCKER & CONTAINER SECURITY                                -->
+      <!-- ===================================================================== -->
+      <article class="learning-card rounded-2xl border border-border-hairline bg-surface-subtle overflow-hidden transition-all hover:border-primary/40 shadow-xl" data-category="Docker Security" id="mod-docker">
+        <header class="p-6 bg-surface-raised/60 border-b border-border-hairline flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <span class="p-3 rounded-xl bg-canvas-base border border-primary/30 text-primary shrink-0">
+              <span class="material-symbols-outlined text-2xl">deployed_code</span>
+            </span>
+            <div>
+              <div class="flex items-center gap-2 font-mono text-xs text-primary mb-1">
+                <span>MODULE 10</span>
+                <span>•</span>
+                <span class="px-2 py-0.5 rounded bg-canvas-base border border-primary/30 text-[10px]">DOCKER &amp; CONTAINERS</span>
+              </div>
+              <h2 class="text-xl sm:text-2xl font-bold text-on-surface font-mono">
+                Container Isolation, Breakout Vectors &amp; Hardening
+              </h2>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 self-start md:self-auto">
+            <a href="labs.html#lab-permissions" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-primary/10 border border-primary/30 font-mono text-xs text-primary hover:bg-primary hover:text-canvas-base transition-colors font-semibold">
+              <span class="material-symbols-outlined text-sm">science</span>
+              <span>Permissions Lab</span>
+            </a>
+          </div>
+        </header>
+
+        <div class="p-6 space-y-6 text-sm">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h3 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">info</span> What is it?
+              </h3>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Container security addresses the isolation boundaries established by Linux kernel namespaces (PID, net, mnt, ipc, uts, user) and control groups (cgroups), ensuring packaged microservices cannot compromise the underlying host OS.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h3 class="font-mono text-xs font-bold text-primary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">flag</span> Why does it matter?
+              </h3>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Containers share the host Linux kernel. Misconfigured flags like <code class="text-danger-critical font-mono">--privileged</code> or mounting the host Docker socket (<code class="text-outline font-mono">/var/run/docker.sock</code>) render the container boundary non-existent, permitting immediate root compromise of the physical host.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+              <span class="text-outline font-bold">PREREQUISITES:</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">Linux Kernel Namespaces</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">Unix Domain Sockets</span>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h4 class="font-mono text-xs font-bold text-on-surface uppercase">Core Concept: Container Escape Vectors (Mounted Sockets &amp; Privileged Mode)</h4>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                When a container has access to <code class="text-outline font-mono">/var/run/docker.sock</code>, it communicates directly with the Docker daemon running as root on the host. An adversary inside the container simply commands the host daemon to spawn a new container mounting the host's root filesystem (<code class="text-primary font-mono">-v /:/host</code>), completely bypassing all sandbox boundaries.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-3">
+              <h4 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">terminal</span> Container Audit Commands
+              </h4>
+              <div class="relative code-container">
+                <pre class="p-3 rounded-lg bg-surface-subtle font-mono text-xs text-on-surface overflow-x-auto border border-border-hairline/60">
+<span class="text-outline"># 1. Detect if executing inside a containerized environment</span>
+cat /proc/1/cgroup && ls -la /.dockerenv 2>/dev/null
+
+<span class="text-outline"># 2. Inspect Linux capabilities assigned to current container</span>
+capsh --print
+
+<span class="text-outline"># 3. Secure container execution (drop capabilities, read-only root, no-new-privileges)</span>
+docker run --read-only --cap-drop ALL --security-opt=no-new-privileges:true myapp:latest</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="p-4 rounded-xl bg-canvas-base border border-warning/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-warning flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">warning</span> Common Mistakes
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Running containers as default root user instead of declaring <code class="text-primary font-mono">USER nonroot</code> in Dockerfile. Storing hardcoded secrets in Docker image layers.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-secondary/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-secondary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">visibility</span> Detection View
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Falco / eBPF kernel telemetry detecting suspicious syscalls like <code class="text-secondary font-mono">ptrace</code> or interactive shell spawns (<code class="text-secondary font-mono">/bin/sh</code>) from containerized nginx processes.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-primary/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-primary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">shield</span> Defensive Controls
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Adopt rootless Docker or Podman, use minimal scratch/distroless base images, scan images in CI/CD with Trivy, and enforce AppArmor/Seccomp profiles.
+              </p>
+            </div>
+          </div>
+
+          <footer class="pt-4 border-t border-border-hairline flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+            <div class="flex items-center gap-2 text-on-surface-variant">
+              <span class="text-outline">CONNECTED TOPICS:</span>
+              <a href="#mod-linux" class="text-primary hover:underline">Linux System Security</a> &rarr;
+              <a href="#mod-cloud" class="text-secondary hover:underline">Cloud Security</a>
+            </div>
+            <a href="labs.html#lab-permissions" class="text-primary hover:underline font-bold flex items-center gap-1">
+              <span>Practice: Linux Permissions &amp; Isolation Lab &rarr;</span>
+            </a>
+          </footer>
+        </div>
+      </article>
+
+      <!-- ===================================================================== -->
+      <!-- MODULE 11: OSINT                                                      -->
+      <!-- ===================================================================== -->
+      <article class="learning-card rounded-2xl border border-border-hairline bg-surface-subtle overflow-hidden transition-all hover:border-primary/40 shadow-xl" data-category="OSINT" id="mod-osint">
+        <header class="p-6 bg-surface-raised/60 border-b border-border-hairline flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <span class="p-3 rounded-xl bg-canvas-base border border-primary/30 text-primary shrink-0">
+              <span class="material-symbols-outlined text-2xl">travel_explore</span>
+            </span>
+            <div>
+              <div class="flex items-center gap-2 font-mono text-xs text-primary mb-1">
+                <span>MODULE 11</span>
+                <span>•</span>
+                <span class="px-2 py-0.5 rounded bg-canvas-base border border-primary/30 text-[10px]">OSINT</span>
+              </div>
+              <h2 class="text-xl sm:text-2xl font-bold text-on-surface font-mono">
+                Open Source Intelligence (OSINT) &amp; Footprint Analysis
+              </h2>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 self-start md:self-auto">
+            <a href="tools.html#tool-db" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-primary/10 border border-primary/30 font-mono text-xs text-primary hover:bg-primary hover:text-canvas-base transition-colors font-semibold">
+              <span class="material-symbols-outlined text-sm">database</span>
+              <span>Tools DB</span>
+            </a>
+          </div>
+        </header>
+
+        <div class="p-6 space-y-6 text-sm">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h3 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">info</span> What is it?
+              </h3>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Open Source Intelligence (OSINT) involves collecting, analyzing, and correlating publicly accessible information from search engines, social media, public code repositories, and leaked data caches to build actionable intelligence on a target.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h3 class="font-mono text-xs font-bold text-primary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">flag</span> Why does it matter?
+              </h3>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Developers frequently commit API tokens to public GitHub repos, publish staging links in forum questions, or leave internal document metadata intact. OSINT reveals internal organizational architecture before a single packet touches the firewall.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+              <span class="text-outline font-bold">PREREQUISITES:</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">Search Operators (Google Dorks)</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">Document EXIF Metadata</span>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h4 class="font-mono text-xs font-bold text-on-surface uppercase">Core Concept: Correlation, Verification &amp; Operational Security (OPSEC)</h4>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Raw data is not intelligence until correlated across multiple independent sources. Practitioners must maintain strict OPSEC during investigation (isolated VPNs, sock puppets, clean browser instances) to avoid alerting targets or linking private identity to investigative activities.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-3">
+              <h4 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">terminal</span> Practical OSINT &amp; Metadata Commands
+              </h4>
+              <div class="relative code-container">
+                <pre class="p-3 rounded-lg bg-surface-subtle font-mono text-xs text-on-surface overflow-x-auto border border-border-hairline/60">
+<span class="text-outline"># 1. Extract EXIF metadata (author, software, creation time) from PDF/images</span>
+exiftool sample_report.pdf | grep -iE "(author|creator|producer|modifydate)"
+
+<span class="text-outline"># 2. Extract employee email addresses and subdomains using theHarvester</span>
+theHarvester -d targetcompany.com -b baidu,otx,threatcrowd -l 200
+
+<span class="text-outline"># 3. Google Dorking search examples:</span>
+# site:targetcompany.com filetype:env "DB_PASSWORD"
+# site:github.com "targetcompany.com" "api_key" OR "secret"</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="p-4 rounded-xl bg-canvas-base border border-warning/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-warning flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">warning</span> Common Mistakes
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Accepting unverified breach dumps without corroborating authenticity. Compromising investigator OPSEC by visiting social profiles while logged into personal accounts.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-secondary/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-secondary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">visibility</span> Detection View
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Third-party threat intelligence (HaveIBeenPwned, GitGuardian, Shodan) alerting security operations when corporate credentials appear on public paste sites.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-primary/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-primary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">shield</span> Defensive Controls
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Deploy automated pre-commit secret scanners (TruffleHog/GitLeaks), scrub document metadata before public release, and enforce domain privacy on WHOIS registrants.
+              </p>
+            </div>
+          </div>
+
+          <footer class="pt-4 border-t border-border-hairline flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+            <div class="flex items-center gap-2 text-on-surface-variant">
+              <span class="text-outline">CONNECTED TOPICS:</span>
+              <a href="#mod-recon" class="text-primary hover:underline">Reconnaissance</a> &rarr;
+              <a href="#mod-tools" class="text-secondary hover:underline">Security Tools</a>
+            </div>
+            <a href="tools.html#tool-db" class="text-primary hover:underline font-bold flex items-center gap-1">
+              <span>Explore OSINT Tools in Tool DB &rarr;</span>
+            </a>
+          </footer>
+        </div>
+      </article>
+
+      <!-- ===================================================================== -->
+      <!-- MODULE 12: CYBERSECURITY TOOLS ARCHITECTURE                           -->
+      <!-- ===================================================================== -->
+      <article class="learning-card rounded-2xl border border-border-hairline bg-surface-subtle overflow-hidden transition-all hover:border-primary/40 shadow-xl" data-category="Security Tools" id="mod-tools">
+        <header class="p-6 bg-surface-raised/60 border-b border-border-hairline flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <span class="p-3 rounded-xl bg-canvas-base border border-primary/30 text-primary shrink-0">
+              <span class="material-symbols-outlined text-2xl">home_repair_service</span>
+            </span>
+            <div>
+              <div class="flex items-center gap-2 font-mono text-xs text-primary mb-1">
+                <span>MODULE 12</span>
+                <span>•</span>
+                <span class="px-2 py-0.5 rounded bg-canvas-base border border-primary/30 text-[10px]">SECURITY TOOLS</span>
+              </div>
+              <h2 class="text-xl sm:text-2xl font-bold text-on-surface font-mono">
+                Cybersecurity Tooling Architecture &amp; Automation Pipelines
+              </h2>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 self-start md:self-auto">
+            <a href="tools.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-primary-container text-canvas-base font-mono text-xs font-bold hover:bg-primary transition-all">
+              <span class="material-symbols-outlined text-sm">build</span>
+              <span>Open Security Toolkit</span>
+            </a>
+          </div>
+        </header>
+
+        <div class="p-6 space-y-6 text-sm">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h3 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">info</span> What is it?
+              </h3>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Security tooling architecture covers the taxonomy and operational integration of specialized cybersecurity software: intercepting proxies (Burp), network scanners (Nmap/Wireshark), exploitation frameworks (Metasploit), and custom Python/Bash automation.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h3 class="font-mono text-xs font-bold text-primary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">flag</span> Why does it matter?
+              </h3>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Relying exclusively on point-and-click tools without understanding underlying protocol exchanges leads to false positives, overlooked logic flaws, and dangerous mistakes during authorized assessments.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+              <span class="text-outline font-bold">PREREQUISITES:</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">CLI fluency</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">Networking concepts</span>
+              <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">Python scripting</span>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-2">
+              <h4 class="font-mono text-xs font-bold text-on-surface uppercase">Core Concept: Tool Orchestration &amp; Scripted Automation</h4>
+              <p class="text-on-surface-variant text-xs sm:text-sm leading-relaxed">
+                Professional practitioners do not manually type disconnected commands. They pipe structured output (JSON/XML) between purpose-built tools: e.g. <code class="text-primary font-mono">subfinder &rarr; httpx &rarr; ffuf</code>, or write custom Python scripts using <code class="text-secondary font-mono">requests</code> and <code class="text-secondary font-mono">scapy</code> to validate findings cleanly and reproducibly.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-canvas-base border border-border-hairline space-y-3">
+              <h4 class="font-mono text-xs font-bold text-secondary uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">terminal</span> Python Security Automation Script Example
+              </h4>
+              <div class="relative code-container">
+                <pre class="p-3 rounded-lg bg-surface-subtle font-mono text-xs text-on-surface overflow-x-auto border border-border-hairline/60">
+<span class="text-outline"># Quick security header validator script in Python 3</span>
+import requests
+
+def audit_headers(url):
+    target_headers = ['Strict-Transport-Security', 'Content-Security-Policy', 'X-Frame-Options', 'X-Content-Type-Options']
+    r = requests.get(url, timeout=5)
+    print(f"[+] Status: {r.status_code}")
+    for h in target_headers:
+        val = r.headers.get(h)
+        status = "PASSED" if val else "MISSING"
+        color = "\033[92m" if val else "\033[91m"
+        print(f"{color}[{status}]\033[0m {h}: {val or 'Not Set'}")
+
+audit_headers("https://endlessus.in")</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="p-4 rounded-xl bg-canvas-base border border-warning/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-warning flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">warning</span> Common Mistakes
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Treating automated scanner reports as absolute truth without manual proof-of-concept verification. Running deafening automated scans that degrade client server performance.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-secondary/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-secondary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">visibility</span> Detection View
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Custom User-Agent strings (e.g. <code class="text-secondary font-mono">sqlmap/1.7#stable</code>, <code class="text-secondary font-mono">Nikto/2.1.6</code>) instantly trigger signature detection in Snort, Suricata, and ModSecurity.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-base border border-primary/30 space-y-1.5">
+              <div class="font-mono text-xs font-bold text-primary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">shield</span> Defensive Controls
+              </div>
+              <p class="text-on-surface-variant text-xs leading-relaxed">
+                Maintain continuous vulnerability management (Nessus/OpenVAS), establish automated static code analysis (SAST) in CI/CD, and run periodic authorized penetration tests.
+              </p>
+            </div>
+          </div>
+
+          <footer class="pt-4 border-t border-border-hairline flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+            <div class="flex items-center gap-2 text-on-surface-variant">
+              <span class="text-outline">CONNECTED TOPICS:</span>
+              <a href="tools.html" class="text-primary hover:underline">Interactive Toolkit</a> &rarr;
+              <a href="tools.html#nmap-builder" class="text-secondary hover:underline">Nmap Builder</a> &rarr;
+              <a href="methodology.html" class="text-warning hover:underline">Pentest Methodology</a>
+            </div>
+            <a href="tools.html" class="text-primary hover:underline font-bold flex items-center gap-1">
+              <span>Explore Interactive Security Toolkit &rarr;</span>
+            </a>
+          </footer>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="border-t border-border-hairline bg-surface-subtle py-8 text-center font-mono text-xs text-on-surface-variant mt-16">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-primary"></span>
+        <span class="text-on-surface font-bold">Mihraj Mashhoor K</span>
+        <span>· Cybersecurity Engineering &amp; Research</span>
+      </div>
+      <div class="flex items-center gap-4 text-outline">
+        <a href="index.html" class="hover:text-primary transition-colors">Portfolio</a>
+        <a href="labs.html" class="hover:text-primary transition-colors">Labs</a>
+        <a href="tools.html" class="hover:text-primary transition-colors">Toolkit</a>
+        <a href="methodology.html" class="hover:text-primary transition-colors">Methodology</a>
+        <a href="glossary.html" class="hover:text-primary transition-colors">Glossary</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="portfolio-interactive.js"></script>
+  <script>
+    // Client-side instant filter for Learning Hub
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('learning-search');
+      const cards = document.querySelectorAll('.learning-card');
+      const countEl = document.getElementById('visible-count');
+      const pills = document.querySelectorAll('.cat-pill');
+
+      let currentCategory = 'all';
+
+      function filterCards() {
+        const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+        let visible = 0;
+
+        cards.forEach(card => {
+          const cat = card.getAttribute('data-category');
+          const text = card.textContent.toLowerCase();
+
+          const matchesCategory = currentCategory === 'all' || cat === currentCategory;
+          const matchesQuery = !query || text.includes(query);
+
+          if (matchesCategory && matchesQuery) {
+            card.style.display = 'block';
+            visible++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        if (countEl) countEl.textContent = visible;
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener('input', filterCards);
+      }
+
+      pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          pills.forEach(p => {
+            p.classList.remove('border-primary', 'bg-primary/10', 'text-primary', 'font-bold');
+            p.classList.add('border-border-hairline', 'bg-surface-subtle', 'text-on-surface-variant');
+          });
+          pill.classList.remove('border-border-hairline', 'bg-surface-subtle', 'text-on-surface-variant');
+          pill.classList.add('border-primary', 'bg-primary/10', 'text-primary', 'font-bold');
+
+          currentCategory = pill.getAttribute('data-cat');
+          filterCards();
+        });
+      });
+    });
+  </script>
+</body>
+</html>
