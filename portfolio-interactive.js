@@ -24,11 +24,15 @@
 (function () {
   'use strict';
 
+  // Isolate handbook pages: the handbook uses its own dedicated handbook.css and handbook.js system.
+  // Prevent portfolio-wide interactive UI (terminal modal, floating dock, command palette) from injecting into handbook pages.
+  if (typeof window !== 'undefined' && window.location && window.location.pathname && window.location.pathname.includes('/handbook/')) {
+    return;
+  }
+
   // Determine relative root based on current URL path
   let root = './';
-  if (window.location.pathname.includes('/handbook/modules/')) {
-    root = '../../';
-  } else if (window.location.pathname.includes('/projects/') || window.location.pathname.includes('/handbook/')) {
+  if (window.location.pathname.includes('/projects/')) {
     root = '../';
   }
 
@@ -1661,7 +1665,7 @@ PORT      STATE SERVICE
             <span class="text-primary font-bold select-none shrink-0">guest@sec-station:~/lab$</span>
             <input id="terminal-input" type="text" 
                    class="flex-1 bg-transparent border-0 outline-none text-on-surface font-mono text-xs focus:ring-0 focus:outline-none"
-                   autocomplete="off" spellcheck="false" autofocus />
+                   autocomplete="off" spellcheck="false" />
           </div>
         </div>
       </div>
