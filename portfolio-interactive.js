@@ -36,10 +36,18 @@
   // 1. DATASET FOR COMMAND PALETTE SEARCH
   // =========================================================================
   const SEARCH_ITEMS = [
-    // Practice Lab & Cheatsheets
+    // Core Platform Hubs & Practice Labs
+    { title: 'Cybersecurity Learning Hub', type: 'LEARNING', url: root + 'learning.html', desc: '12 core cybersecurity disciplines: Networking, Linux, Web, Recon, PrivEsc, Cloud, Docker, Tools', keywords: 'learning hub networking linux web security recon enumeration privesc auth wireless cloud docker osint' },
+    { title: 'Interactive Security Toolkit', type: 'TOOLKIT', url: root + 'tools.html', desc: '13 zero-telemetry in-browser tools: JWT Inspector, CIDR Calc, Base64, Hash ID, CSP Analyzer', keywords: 'toolkit tools jwt base64 url hash identifier cidr calculator csp headers entropy regex json timestamp' },
+    { title: 'Interactive Nmap Command Builder', type: 'TOOLKIT', url: root + 'tools.html#nmap-builder', desc: 'Customizable Nmap command builder with live flag explanations & educational safety rules', keywords: 'nmap builder command generator scan ports syn os detection nse scripts timing verbosity' },
+    { title: 'Cybersecurity Tool Database (20 Tools)', type: 'DATABASE', url: root + 'tools.html#tool-db', desc: 'Complete manual for 20 essential tools: Nmap, Burp, Wireshark, Metasploit, ffuf, Hydra, SQLMap', keywords: 'tool database nmap burp suite wireshark metasploit ffuf gobuster nikto netcat curl dig whois amass john hashcat hydra tcpdump sqlmap responder' },
+    { title: 'Practical Cybersecurity Labs Hub', type: 'LABS', url: root + 'labs.html', desc: '12 safe, self-contained interactive cybersecurity labs with hints, answers, and defense', keywords: 'labs practical challenges headers permissions suid auth idor sqli xss csrf network logs jwt crypto' },
+    { title: '12-Stage Pentest Methodology', type: 'METHODOLOGY', url: root + 'methodology.html', desc: 'Comprehensive penetration testing lifecycle: Scope to Retesting with tools & commands', keywords: 'methodology pentest stages scope recon enumeration exploit privesc reporting remediation retesting' },
+    { title: 'Attack / Detection / Defense Matrix', type: 'METHODOLOGY', url: root + 'methodology.html#matrix', desc: 'Tri-perspective blueprints for 10 major vulnerabilities: XSS, SQLi, CSRF, IDOR, SSRF, CMDi', keywords: 'matrix attack detection defense xss sqli csrf idor ssrf path traversal cmdi auth privesc credentials' },
+    { title: 'Interactive Cybersecurity Roadmap', type: 'ROADMAP', url: root + 'roadmap.html', desc: '11-domain cybersecurity curriculum with localStorage progress tracking', keywords: 'roadmap tracker progress networking linux programming web recon pentest privesc active directory cloud soc defense' },
+    { title: 'Cybersecurity Glossary & Terminology', type: 'GLOSSARY', url: root + 'glossary.html', desc: '60+ indexed cybersecurity definitions: CIA Triad, CVE, CVSS, XSS, SUID, JWT, TLS, CIDR, SIEM', keywords: 'glossary dictionary terms cia triad cve cvss cwe xss csrf ssrf idor rce lfi suid jwt oauth tls dns cidr nat siem edr' },
     { title: 'Interactive Terminal Lab', type: 'SANDBOX', url: root + 'terminal-lab.html', desc: 'Interactive Linux & cybersecurity tools learning simulator with simulated outputs', keywords: 'terminal lab linux sandbox practice nmap hydra gobuster sqlmap metasploit fake outputs learn practice' },
-    { title: 'Cybersecurity Learning Roadmap', type: 'SANDBOX', url: root + 'terminal-lab.html#roadmap', desc: 'Guided 6-stage penetration testing methodology from host inspection to root privilege escalation', keywords: 'roadmap methodology pentesting stages curriculum progress nmap privesc' },
-    { title: 'Offensive Payloads Cheatsheet', type: 'SANDBOX', url: root + 'payloads.html', desc: 'TryHackMe-style cheatsheet for RCE, CMDi filter bypasses, LFI wrappers & reverse shells', keywords: 'payloads rce lfi cmdi command injection reverse shell bash php netcat bypass cheatsheet tryhackme' },
+    { title: 'Offensive Payloads Cheatsheet', type: 'CHEATSHEET', url: root + 'payloads.html', desc: 'TryHackMe-style cheatsheet for RCE, CMDi filter bypasses, LFI wrappers & reverse shells', keywords: 'payloads rce lfi cmdi command injection reverse shell bash php netcat bypass cheatsheet tryhackme' },
 
     // Case Studies
     { title: 'OpenCode Persistent Memory', type: 'CASE STUDY', url: root + 'projects/opencode-persistent-memory.html', desc: 'SQLite-authoritative local persistent memory & dual-engine retrieval for OpenCode', keywords: 'memory opencode sqlite chroma ollama local ai gemma nomic vector source verified' },
@@ -55,7 +63,6 @@
     { title: 'Certificates & Credentials', type: 'PAGE', url: root + 'certificates.html', desc: 'Verified security certificates: Google Cyber, TryHackMe Pre-Security & Cyber 101', keywords: 'certificates credentials google tryhackme coursera verify' },
     { title: 'Digital Certificate Viewer', type: 'PAGE', url: root + 'certificate-viewer.html', desc: 'Interactive digital credential inspection viewer with high-res zoom', keywords: 'certificate viewer zoom verification credential id' },
     { title: 'Cybersecurity Handbook (KB)', type: 'KNOWLEDGE BASE', url: root + 'handbook/index.html', desc: '15-module reference handbook covering Nmap, Linux, Metasploit & Web Security', keywords: 'handbook commands cheat sheet nmap metasploit linux reference' },
-    { title: 'Handbook Library & Catalog', type: 'KNOWLEDGE BASE', url: root + 'handbook/library.html', desc: 'Full modular catalog of cybersecurity references, tools and scripts', keywords: 'library handbook modules catalog references' },
     { title: 'About & Security Philosophy', type: 'SECTION', url: root + 'index.html#about', desc: 'Engineering background, student journey & security philosophy', keywords: 'about bio profile philosophy background' },
     { title: 'TryHackMe Achievements', type: 'SECTION', url: root + 'index.html#achievements', desc: 'Global Top 2% ranking, 140+ rooms completed, badges', keywords: 'tryhackme thm achievements ranking stats top 2% rooms' },
     { title: 'Skills & Technical Domains', type: 'SECTION', url: root + 'index.html#skills', desc: '9 specialized security domains across offensive & defensive tech', keywords: 'skills recon web network privesc wireless python ai' },
@@ -1282,16 +1289,95 @@ PORT      STATE SERVICE
           return `<div class="text-primary font-bold text-xs">Theme accent updated to: ${targetTheme.toUpperCase()} (${color})</div>`;
         }
 
+        case 'tools':
+        case 'toolkit':
+          return `
+            <div class="space-y-2 text-xs">
+              <div class="text-primary font-bold">Interactive Security Toolkit &amp; Tools Database:</div>
+              <div class="text-on-surface-variant font-sans text-xs">13 in-browser client-side utilities + 20 tool reference manuals + Nmap Builder.</div>
+              <div class="grid grid-cols-2 gap-2 text-[11px] text-on-surface font-mono pt-1">
+                <div>&bull; JWT Inspector &amp; Claims Analyzer</div>
+                <div>&bull; CIDR &amp; Subnet Calculator</div>
+                <div>&bull; Hash Identifier &amp; Mode Mapper</div>
+                <div>&bull; HTTP Security Header Evaluator</div>
+                <div>&bull; CSP Analyzer &amp; Directives Audit</div>
+                <div>&bull; Password Entropy Estimator</div>
+              </div>
+              <div class="pt-1"><a href="${root}tools.html" class="text-secondary underline font-bold">&rarr; Launch Full Security Toolkit &amp; DB (tools.html)</a></div>
+            </div>
+          `;
+
+        case 'labs':
+        case 'lab':
+          return `
+            <div class="space-y-2 text-xs">
+              <div class="text-primary font-bold">Practical Cybersecurity Labs Hub (12 Self-Contained Labs):</div>
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5 text-[11px] font-mono pt-1">
+                <div><span class="text-secondary">01.</span> HTTP Headers</div>
+                <div><span class="text-secondary">02.</span> Linux Permissions</div>
+                <div><span class="text-danger-critical">03.</span> SUID PrivEsc</div>
+                <div><span class="text-warning">04.</span> Authentication</div>
+                <div><span class="text-warning">05.</span> IDOR / Authz</div>
+                <div><span class="text-danger-critical">06.</span> SQL Injection</div>
+                <div><span class="text-secondary">07.</span> XSS Concepts</div>
+                <div><span class="text-secondary">08.</span> CSRF Tokens</div>
+                <div><span class="text-primary">09.</span> Network Enum</div>
+                <div><span class="text-primary">10.</span> Log Forensics</div>
+                <div><span class="text-warning">11.</span> JWT Security</div>
+                <div><span class="text-secondary">12.</span> Cryptography</div>
+              </div>
+              <div class="pt-1"><a href="${root}labs.html" class="text-primary underline font-bold">&rarr; Open Interactive Labs Hub (labs.html)</a></div>
+            </div>
+          `;
+
+        case 'learning':
+          return `
+            <div class="space-y-2 text-xs">
+              <div class="text-primary font-bold">Cybersecurity Learning Hub (12 Disciplines):</div>
+              <div class="text-on-surface-variant font-sans text-xs">Structured theory, practical examples, commands, detection, defense, and labs across: Networking, Linux, Web, Recon, Enum, PrivEsc, Auth, Wireless, Cloud, Docker, OSINT, and Tools.</div>
+              <div class="pt-1"><a href="${root}learning.html" class="text-primary underline font-bold">&rarr; Explore Learning Hub (learning.html)</a></div>
+            </div>
+          `;
+
+        case 'methodology':
+          return `
+            <div class="space-y-2 text-xs">
+              <div class="text-primary font-bold">12-Stage Penetration Testing Methodology &amp; Vuln Matrix:</div>
+              <div class="text-[11px] font-mono text-outline">Scope &rarr; Recon &rarr; Enum &rarr; Vuln &rarr; PoC &rarr; Exploit &rarr; PrivEsc &rarr; Post &rarr; Evidence &rarr; Report &rarr; Remediate &rarr; Retest</div>
+              <div class="pt-1"><a href="${root}methodology.html" class="text-secondary underline font-bold">&rarr; View Pentest Methodology &amp; Attack Matrix (methodology.html)</a></div>
+            </div>
+          `;
+
+        case 'glossary':
+          return `
+            <div class="space-y-2 text-xs">
+              <div class="text-primary font-bold">Cybersecurity Terminology &amp; Standards Glossary:</div>
+              <div class="text-on-surface-variant font-sans text-xs">60+ searchable definitions covering CIA Triad, CVE, CVSS, XSS, SUID, JWT, TLS, CIDR, SIEM, and SOC metrics.</div>
+              <div class="pt-1"><a href="${root}glossary.html" class="text-primary underline font-bold">&rarr; Search Glossary (glossary.html)</a></div>
+            </div>
+          `;
+
+        case 'roadmap':
+          return `
+            <div class="space-y-2 text-xs">
+              <div class="text-primary font-bold">Interactive Cybersecurity Roadmap Tracker:</div>
+              <div class="text-on-surface-variant font-sans text-xs">Track progress across 11 disciplines (Networking, Linux, Programming, Web, Recon, Enum, Pentest, PrivEsc, AD, Cloud, Defense) using localStorage.</div>
+              <div class="pt-1"><a href="${root}roadmap.html" class="text-primary underline font-bold">&rarr; Open Roadmap Tracker (roadmap.html)</a></div>
+            </div>
+          `;
+
         case 'help':
           return `
             <div class="space-y-2 text-xs">
               <div class="text-outline font-bold">Available Sandbox Commands:</div>
               <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-on-surface font-mono text-[11px]">
+                <div><span class="text-primary font-bold">learning</span> - 12-domain learning hub</div>
+                <div><span class="text-primary font-bold">labs</span> - 12 safe interactive labs</div>
+                <div><span class="text-primary font-bold">tools</span> - In-browser security suite</div>
+                <div><span class="text-secondary font-bold">methodology</span> - 12-stage pentest pipeline</div>
+                <div><span class="text-primary font-bold">roadmap</span> - Interactive skill tracker</div>
+                <div><span class="text-primary font-bold">glossary</span> - 60+ security definitions</div>
                 <div><span class="text-danger-critical font-bold">payloads</span> - RCE, CMDi &amp; LFI cheatsheet</div>
-                <div><span class="text-primary font-bold">roadmap</span> - 6-stage guided methodology</div>
-                <div><span class="text-primary font-bold">learn</span> - Interactive training modules</div>
-                <div><span class="text-secondary font-bold">targets</span> - Scoped lab machines</div>
-                <div><span class="text-primary font-bold">cheatsheet</span> - Quick flag references</div>
                 <div><span class="text-primary font-bold">nmap</span> - Port &amp; service scanner</div>
                 <div><span class="text-warning font-bold">gobuster</span> - Web directory fuzzer</div>
                 <div><span class="text-warning font-bold">hydra</span> - Network login cracker</div>
@@ -1302,7 +1388,6 @@ PORT      STATE SERVICE
                 <div><span class="text-secondary font-bold">nc</span> - Netcat reverse listener</div>
                 <div><span class="text-on-surface font-bold">ls / cat / grep</span> - Linux file operations</div>
                 <div><span class="text-on-surface font-bold">find / sudo -l</span> - Privilege escalation</div>
-                <div><span class="text-primary font-bold">matrix</span> - Digital rain canvas</div>
                 <div><span class="text-primary font-bold">theme</span> - Toggle accent colors</div>
                 <div><span class="text-outline font-bold">clear</span> - Clear terminal buffer</div>
               </div>

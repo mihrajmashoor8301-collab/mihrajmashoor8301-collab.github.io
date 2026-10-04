@@ -133,24 +133,25 @@
         SYS_SEC: READY
       </span>
 </a>
-<nav class="hidden md:flex items-center space-x-6 font-mono text-xs tracking-wider">
+<nav class="hidden xl:flex items-center space-x-5 font-mono text-xs tracking-wider">
 <a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#about">About</a>
-<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#achievements">Achievements</a>
 <a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#skills">Skills</a>
-<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#toolkit">Toolkit</a>
-<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#lab">Lab &amp; Flow</a>
 <a class="text-primary border-b-2 border-primary pb-1" href="#projects">Projects</a>
-<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#handbook">Handbook</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="learning.html" title="12 Cybersecurity Disciplines">Learning</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="labs.html" title="12 Practical Safe Labs">Labs</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="tools.html" title="13 Browser Tools & 20 Tool DB">Tools</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="methodology.html" title="12-Stage Pentest Methodology">Methodology</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="roadmap.html" title="Interactive Roadmap Tracker">Roadmap</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="glossary.html" title="60+ Cybersecurity Definitions">Glossary</a>
 <a class="text-secondary hover:text-primary transition-colors flex items-center gap-1 font-bold" href="terminal-lab.html">
-  <span>Terminal Lab</span>
+  <span>Terminal</span>
   <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
 </a>
 <a class="text-danger-critical hover:text-primary transition-colors flex items-center gap-1 font-bold" href="payloads.html" title="Offensive Security Payloads & Cheatsheet">
   <span>Payloads</span>
   <span class="w-1.5 h-1.5 rounded-full bg-danger-critical animate-ping"></span>
 </a>
-<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#certifications">Certifications</a>
-<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#roadmap">Roadmap</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#certifications">Certs</a>
 </nav>
 <div class="flex items-center space-x-2 sm:space-x-3">
 <button data-trigger-cmd class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:text-primary hover:border-primary transition-colors cursor-pointer" title="Search Portfolio (Cmd+K or /)">
@@ -172,13 +173,13 @@
 <a class="p-1.5 rounded border border-border-hairline text-on-surface-variant hover:text-primary hover:border-primary transition-colors flex items-center justify-center" href="https://github.com/mihrajmashoor8301-collab" rel="noopener noreferrer" target="_blank" title="GitHub Profile">
 <span class="material-symbols-outlined text-lg">code</span>
 </a>
-<button aria-label="Toggle Mobile Navigation" class="md:hidden p-1.5 rounded border border-border-hairline text-on-surface-variant hover:text-primary hover:border-primary transition-colors flex items-center justify-center" id="mobile-menu-btn">
+<button aria-label="Toggle Mobile Navigation" class="xl:hidden p-1.5 rounded border border-border-hairline text-on-surface-variant hover:text-primary hover:border-primary transition-colors flex items-center justify-center" id="mobile-menu-btn">
 <span class="material-symbols-outlined text-xl" id="menu-icon">menu</span>
 </button>
 </div>
 </div>
 <!-- Mobile Navigation Drawer -->
-<div class="hidden md:hidden bg-surface-subtle/95 backdrop-blur-xl border-b border-border-hairline px-6 py-4 space-y-3 font-mono text-xs tracking-wider shadow-2xl" id="mobile-menu">
+<div class="hidden xl:hidden bg-surface-subtle/95 backdrop-blur-xl border-b border-border-hairline px-6 py-4 space-y-3 font-mono text-xs tracking-wider shadow-2xl max-h-[85vh] overflow-y-auto" id="mobile-menu">
 <div class="flex items-center gap-2 pb-2 border-b border-border-hairline/60">
 <button data-trigger-cmd class="flex-1 inline-flex items-center justify-center gap-1.5 py-2 rounded bg-surface-raised border border-border-hairline text-on-surface hover:text-primary text-xs">
 <span class="material-symbols-outlined text-sm text-primary">search</span>
@@ -189,13 +190,22 @@
 <span>Terminal (`)</span>
 </button>
 </div>
+<div class="grid grid-cols-2 gap-2 text-xs">
 <a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="#about">About</a>
-<a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="#achievements">Achievements</a>
 <a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="#skills">Skills</a>
-<a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="#toolkit">Toolkit</a>
-<a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="#lab">Lab &amp; Flow</a>
 <a class="block py-1.5 text-primary font-bold" href="#projects">Projects</a>
-<a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="#handbook">Handbook</a>
+<a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="#certifications">Certificates</a>
+</div>
+<hr class="border-border-hairline/60"/>
+<div class="font-mono text-[10px] text-outline uppercase tracking-wider">Security Platform Hubs</div>
+<div class="grid grid-cols-2 gap-2 text-xs">
+<a class="block py-1 text-on-surface-variant hover:text-primary" href="learning.html">&bull; Learning Hub</a>
+<a class="block py-1 text-on-surface-variant hover:text-primary" href="labs.html">&bull; 12 Labs Hub</a>
+<a class="block py-1 text-on-surface-variant hover:text-primary" href="tools.html">&bull; Tools &amp; Nmap</a>
+<a class="block py-1 text-on-surface-variant hover:text-primary" href="methodology.html">&bull; Methodology</a>
+<a class="block py-1 text-on-surface-variant hover:text-primary" href="roadmap.html">&bull; Roadmap</a>
+<a class="block py-1 text-on-surface-variant hover:text-primary" href="glossary.html">&bull; Glossary</a>
+</div>
 <a class="block py-1.5 text-secondary font-bold hover:text-primary transition-colors flex items-center gap-1.5" href="terminal-lab.html">
   <span>Terminal Lab (Practice CLI)</span>
   <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
@@ -204,8 +214,6 @@
   <span>Payload Hub (RCE · CMDi · LFI)</span>
   <span class="w-1.5 h-1.5 rounded-full bg-danger-critical"></span>
 </a>
-<a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="#certifications">Certifications</a>
-<a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="#roadmap">Roadmap</a>
 <div class="pt-3 border-t border-border-hairline flex flex-wrap gap-2">
 <a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-border-hairline bg-surface-subtle font-mono text-xs text-on-surface hover:text-secondary" href="#contact">
 <span class="material-symbols-outlined text-sm">alternate_email</span>
@@ -250,6 +258,65 @@
 </div>
 <div class="h-4 w-[1px] bg-border-hairline hidden sm:block"></div>
 <span class="font-mono text-xs text-on-surface-variant">140+ TryHackMe rooms completed in authorized educational environments</span>
+</div>
+
+<!-- DUAL ENTRY PORTALS: FOR RECRUITERS & FOR LEARNERS (STEP 16) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+  <!-- RECRUITER PORTAL -->
+  <div class="p-3.5 rounded-xl border border-primary/40 bg-surface-subtle/90 space-y-2 hover:border-primary transition-all">
+    <div class="flex items-center justify-between">
+      <span class="font-mono text-[11px] font-bold text-primary flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-sm">badge</span>
+        <span>FOR RECRUITERS</span>
+      </span>
+      <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-primary/10 text-primary border border-primary/30">BRIEFING</span>
+    </div>
+    <p class="text-[11px] text-on-surface-variant font-sans leading-relaxed">
+      Fast-track access to production project case studies, verified certificates, downloadable CV, and skills matrix.
+    </p>
+    <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-[11px]">
+      <a href="#projects" class="px-2.5 py-1 rounded bg-primary-container text-canvas-base font-bold hover:bg-primary transition-all flex items-center gap-1">
+        <span>Projects</span> &rarr;
+      </a>
+      <a href="CV_2026_UPDATED.pdf" target="_blank" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline text-on-surface hover:text-primary hover:border-primary transition-all">
+        <span>Resume PDF</span>
+      </a>
+      <a href="certificates.html" class="px-2 py-1 rounded bg-canvas-base border border-border-hairline text-outline hover:text-on-surface transition-all">
+        <span>Certs</span>
+      </a>
+      <a href="#contact" class="px-2 py-1 rounded bg-canvas-base border border-border-hairline text-outline hover:text-on-surface transition-all">
+        <span>Contact</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- LEARNER & PRACTITIONER PORTAL -->
+  <div class="p-3.5 rounded-xl border border-secondary/40 bg-surface-subtle/90 space-y-2 hover:border-secondary transition-all">
+    <div class="flex items-center justify-between">
+      <span class="font-mono text-[11px] font-bold text-secondary flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-sm">terminal</span>
+        <span>FOR LEARNERS &amp; LABS</span>
+      </span>
+      <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-secondary/10 text-secondary border border-secondary/30">INTERACTIVE</span>
+    </div>
+    <p class="text-[11px] text-on-surface-variant font-sans leading-relaxed">
+      12 cybersecurity disciplines, 13 in-browser tools, Nmap builder, 12 practical labs, methodology, and roadmap.
+    </p>
+    <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-[11px]">
+      <a href="learning.html" class="px-2.5 py-1 rounded bg-secondary text-canvas-base font-bold hover:opacity-90 transition-all flex items-center gap-1">
+        <span>Learning Hub</span> &rarr;
+      </a>
+      <a href="labs.html" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline text-on-surface hover:text-secondary hover:border-secondary transition-all">
+        <span>12 Labs</span>
+      </a>
+      <a href="tools.html" class="px-2 py-1 rounded bg-canvas-base border border-border-hairline text-outline hover:text-on-surface transition-all">
+        <span>Tools &amp; DB</span>
+      </a>
+      <a href="roadmap.html" class="px-2 py-1 rounded bg-canvas-base border border-border-hairline text-outline hover:text-on-surface transition-all">
+        <span>Roadmap</span>
+      </a>
+    </div>
+  </div>
 </div>
 <div class="flex flex-wrap gap-3 sm:gap-4 pt-2">
 <a class="inline-flex items-center gap-2 px-5 py-2.5 rounded bg-primary-container text-canvas-base font-mono text-sm font-bold hover:bg-primary transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)]" href="#projects">
@@ -2162,6 +2229,26 @@
   <a href="projects/sentinelai.html" class="text-secondary hover:underline flex items-center gap-1 font-semibold">SentinelAI Case Study ↗</a>
 </div>
 </div>
+</div>
+
+<!-- Interactive Roadmap & Learning Hub Banner -->
+<div class="mt-8 p-6 rounded-xl border border-primary/30 bg-surface-subtle flex flex-col sm:flex-row items-center justify-between gap-4">
+  <div class="space-y-1">
+    <div class="font-mono text-xs text-primary font-bold flex items-center gap-2">
+      <span class="material-symbols-outlined text-base">timeline</span>
+      <span>INTERACTIVE CURRICULUM // BROWSER PROGRESS TRACKER</span>
+    </div>
+    <p class="text-xs sm:text-sm text-on-surface-variant">Track your mastery across 11 cybersecurity domains with live localStorage progress calculation, or explore deep technical blueprints in the Learning Hub.</p>
+  </div>
+  <div class="flex flex-wrap gap-2 shrink-0">
+    <a href="roadmap.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded bg-primary-container text-canvas-base font-mono text-xs font-bold hover:bg-primary transition-all shadow-[0_0_12px_rgba(16,185,129,0.25)]">
+      <span>Open Interactive Roadmap</span>
+      <span class="material-symbols-outlined text-sm">arrow_forward</span>
+    </a>
+    <a href="learning.html" class="inline-flex items-center gap-2 px-4 py-2.5 rounded bg-surface-raised border border-border-hairline text-on-surface font-mono text-xs hover:border-secondary hover:text-secondary transition-all">
+      <span>Learning Hub</span>
+    </a>
+  </div>
 </div>
 </section>
 <!-- ========================================================================= -->

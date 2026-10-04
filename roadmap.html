@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html class="scroll-smooth dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Interactive Cybersecurity Roadmap &amp; Progress Tracker | Mihraj Mashhoor K</title>
+  <meta content="Track your cybersecurity learning journey across 11 core disciplines with real-time browser localStorage progress tracking: Networking, Linux, Web, Pentesting, PrivEsc, AD, Cloud, and SOC Defense." name="description"/>
+  <link rel="icon" type="image/png" href="logo2.png"/>
+  <link rel="canonical" href="https://endlessus.in/roadmap.html"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Interactive Cybersecurity Roadmap | Mihraj Mashhoor K"/>
+  <meta property="og:description" content="11-category interactive cybersecurity roadmap with localStorage progress tracking across Not Started, Learning, Practicing, and Completed."/>
+  <meta property="og:image" content="https://endlessus.in/cover.png"/>
+  <meta property="og:url" content="https://endlessus.in/roadmap.html"/>
+  <meta property="og:type" content="website"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'canvas-base': '#090D12',
+            'surface-subtle': '#0E131B',
+            'surface-raised': '#151D28',
+            'surface-container': '#122131',
+            'border-hairline': '#1F2937',
+            'border-medium': '#2D3748',
+            'primary': '#4EDEA3',
+            'primary-container': '#10b981',
+            'secondary': '#4CD7F6',
+            'on-surface': '#F3F4F6',
+            'on-surface-variant': '#8692A6',
+            'outline': '#64748B',
+            'warning': '#F59E0B',
+            'danger-critical': '#F43F5E',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #090D12; color: #F3F4F6; font-family: 'Inter', sans-serif; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; vertical-align: middle; line-height: 1; }
+    .telemetry-grid {
+      background-size: 32px 32px;
+      background-image:
+        linear-gradient(to right, rgba(31, 41, 55, 0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(31, 41, 55, 0.25) 1px, transparent 1px);
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #090D12; }
+    ::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #4EDEA3; }
+  </style>
+</head>
+<body class="bg-canvas-base text-on-surface antialiased telemetry-grid min-h-screen flex flex-col font-sans selection:bg-primary selection:text-canvas-base">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2 group">
+          <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+          <span class="font-mono text-sm font-bold tracking-wider text-on-surface group-hover:text-primary transition-colors">MIHRAJ.IO</span>
+          <span class="text-outline text-xs font-mono">/</span>
+          <span class="font-mono text-xs text-primary font-bold">ROADMAP</span>
+        </a>
+        <span class="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded border border-primary/30 bg-canvas-base font-mono text-[10px] text-primary">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          <span>LOCALSTORAGE TRACKER · 11 DOMAINS</span>
+        </span>
+      </div>
+
+      <nav class="hidden xl:flex items-center space-x-5 font-mono text-xs text-on-surface-variant">
+        <a href="index.html" class="hover:text-primary transition-colors">Portfolio</a>
+        <a href="learning.html" class="hover:text-primary transition-colors">Learning</a>
+        <a href="labs.html" class="hover:text-primary transition-colors">Labs</a>
+        <a href="tools.html" class="hover:text-primary transition-colors">Toolkit &amp; DB</a>
+        <a href="methodology.html" class="hover:text-primary transition-colors">Methodology</a>
+        <a href="roadmap.html" class="text-primary font-bold border-b border-primary pb-0.5">Roadmap</a>
+        <a href="glossary.html" class="hover:text-primary transition-colors">Glossary</a>
+        <a href="payloads.html" class="text-danger-critical hover:text-primary transition-colors">Payloads</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button data-trigger-cmd class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:text-primary hover:border-primary transition-colors cursor-pointer" title="Search Everything (Cmd+K)">
+          <span class="material-symbols-outlined text-sm text-primary">search</span>
+          <span class="hidden sm:inline text-[11px] text-outline">⌘K</span>
+        </button>
+        <button data-trigger-term class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded border border-primary/40 bg-canvas-base font-mono text-xs text-primary hover:bg-primary/10 transition-colors cursor-pointer" title="Terminal (~)">
+          <span class="material-symbols-outlined text-sm text-primary">terminal</span>
+          <span class="hidden sm:inline text-[11px] font-bold">CLI</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 py-10 w-full space-y-10">
+
+    <!-- Header / Banner -->
+    <div class="space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-surface-subtle font-mono text-xs text-primary">
+        <span class="material-symbols-outlined text-sm">timeline</span>
+        <span>SELF-PACED SKILL PROGRESSION &amp; AUDIT PATHWAY</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black text-on-surface tracking-tight font-mono">
+        Cybersecurity <span class="text-primary">Roadmap</span>
+      </h1>
+      <p class="text-sm sm:text-base text-on-surface-variant max-w-3xl leading-relaxed">
+        An interactive syllabus structured across 11 core cybersecurity disciplines. Mark your state across each competency (<strong class="text-outline">Not Started</strong>, <strong class="text-secondary">Learning</strong>, <strong class="text-warning">Practicing</strong>, <strong class="text-primary">Completed</strong>). Your progress is automatically stored locally in your browser without requiring an account.
+      </p>
+
+      <!-- Overall Progress Telemetry Bar -->
+      <div class="p-6 rounded-2xl border border-primary/30 bg-surface-subtle shadow-xl space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-mono text-xs">
+          <div class="flex items-center gap-3">
+            <span class="text-outline uppercase font-bold">OVERALL ROADMAP COMPLETION:</span>
+            <span id="overall-percentage" class="text-primary font-bold text-base">0%</span>
+          </div>
+          <div class="flex items-center gap-4 text-[11px]">
+            <span class="flex items-center gap-1 text-primary"><span class="w-2 h-2 rounded-full bg-primary"></span> <span id="count-completed">0</span> Completed</span>
+            <span class="flex items-center gap-1 text-warning"><span class="w-2 h-2 rounded-full bg-warning"></span> <span id="count-practicing">0</span> Practicing</span>
+            <span class="flex items-center gap-1 text-secondary"><span class="w-2 h-2 rounded-full bg-secondary"></span> <span id="count-learning">0</span> Learning</span>
+            <span class="flex items-center gap-1 text-outline"><span class="w-2 h-2 rounded-full bg-border-hairline"></span> <span id="count-notstarted">0</span> Unstarted</span>
+          </div>
+        </div>
+
+        <div class="w-full h-3 rounded-full bg-canvas-base border border-border-hairline overflow-hidden flex">
+          <div id="bar-completed" class="bg-primary h-full transition-all duration-300" style="width: 0%"></div>
+          <div id="bar-practicing" class="bg-warning h-full transition-all duration-300" style="width: 0%"></div>
+          <div id="bar-learning" class="bg-secondary h-full transition-all duration-300" style="width: 0%"></div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-3 pt-2 text-[11px] font-mono text-outline">
+          <span>Synced locally with browser localStorage.</span>
+          <div class="flex gap-2">
+            <button id="roadmap-reset-btn" class="px-2.5 py-1 rounded bg-canvas-base border border-danger-critical/30 text-danger-critical hover:bg-danger-critical/10 transition-colors">Reset Progress</button>
+            <button id="roadmap-export-btn" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:text-on-surface transition-colors">Export JSON</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11 Domain Roadmap Sections -->
+    <div class="space-y-8" id="roadmap-domains">
+
+      <!-- DOMAIN 1: NETWORKING -->
+      <section class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Networking">
+        <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">01</span>
+            <h2 class="font-mono text-base font-bold text-on-surface">Networking Fundamentals</h2>
+          </div>
+          <span class="cat-stat font-mono text-xs text-primary font-bold">0 / 4 Complete</span>
+        </header>
+
+        <div class="space-y-3 font-mono text-xs">
+          <!-- Item 1 -->
+          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="net-osi">
+            <div class="space-y-1">
+              <div class="font-bold text-on-surface">OSI 7-Layer Model &amp; TCP/IP Stack</div>
+              <p class="text-[11px] text-on-surface-variant font-sans">Data encapsulation, Layer 2 MAC/ARP, Layer 3 IPv4/IPv6, Layer 4 TCP/UDP state tracking.</p>
+            </div>
+            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
+              <option value="not_started">Not Started</option>
+              <option value="learning">Learning</option>
+              <option value="practicing">Practicing</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="net-handshake">
+            <div class="space-y-1">
+              <div class="font-bold text-on-surface">TCP 3-Way Handshake &amp; Flags</div>
+              <p class="text-[11px] text-on-surface-variant font-sans">SYN, SYN-ACK, ACK exchanges, sequence/ack numbering, and port state responses.</p>
+            </div>
+            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
+              <option value="not_started">Not Started</option>
+              <option value="learning">Learning</option>
+              <option value="practicing">Practicing</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="net-cidr">
+            <div class="space-y-1">
+              <div class="font-bold text-on-surface">IPv4 Subnetting &amp; CIDR Math</div>
+              <p class="text-[11px] text-on-surface-variant font-sans">Calculating network IDs, broadcast addresses, subnet masks, and usable host ranges.</p>
+            </div>
+            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
+              <option value="not_started">Not Started</option>
+              <option value="learning">Learning</option>
+              <option value="practicing">Practicing</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="net-wireshark">
+            <div class="space-y-1">
+              <div class="font-bold text-on-surface">Packet Analysis with Wireshark &amp; tcpdump</div>
+              <p class="text-[11px] text-on-surface-variant font-sans">Capturing network streams, applying display filters, and reassembling TCP payloads.</p>
+            </div>
+            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
+              <option value="not_started">Not Started</option>
+              <option value="learning">Learning</option>
+              <option value="practicing">Practicing</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- DOMAIN 2: LINUX -->
+      <section class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Linux">
+        <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">02</span>
+            <h2 class="font-mono text-base font-bold text-on-surface">Linux Administration &amp; Hardening</h2>
+          </div>
+          <span class="cat-stat font-mono text-xs text-primary font-bold">0 / 4 Complete</span>
+        </header>
+
+        <div class="space-y-3 font-mono text-xs">
+          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="lin-cli">
+            <div class="space-y-1">
+              <div class="font-bold text-on-surface">Bash Shell Fluency &amp; Text Processing</div>
+              <p class="text-[11px] text-on-surface-variant font-sans">grep, awk, sed, cut, find, file descriptors, piping, and stdout/stderr redirection.</p>
+            </div>
+            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
+              <option value="not_started">Not Started</option>
+              <option value="learning">Learning</option>
+              <option value="practicing">Practicing</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+
+          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="lin-perm">
+            <div class="space-y-1">
+              <div class="font-bold text-on-surface">POSIX File Permissions &amp; SUID/SGID Bits</div>
+              <p class="text-[11px] text-on-surface-variant font-sans">Octal masks (755, 600, 4755), sticky bit on /tmp, and special permission risks.</p>
+            </div>
+            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
+              <option value="not_started">Not Started</option>
+              <option value="learning">Learning</option>
+              <option value="practicing">Practicing</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+
+          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="lin-sys">
+            <div class="space-y-1">
+              <div class="font-bold text-on-surface">Systemd, Processes &amp; Network Ports</div>
+              <p class="text-[11px] text-on-surface-variant font-sans">systemctl, journalctl, ps aux, ss -tulnp, cron jobs, and background service daemons.</p>
+            </div>
+            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
+              <option value="not_started">Not Started</option>
+              <option value="learning">Learning</option>
+              <option value="practicing">Practicing</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+
+          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="lin-audit">
+            <div class="space-y-1">
+              <div class="font-bold text-on-surface">Auditd, Syslog &amp; Auth Logs</div>
+              <p class="text-[11px] text-on-surface-variant font-sans">Inspecting /var/log/auth.log, auditctl rules for shadow files, and login forensics.</p>
+            </div>
+            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
+              <option value="not_started">Not Started</option>
+              <option value="learning">Learning</option>
+              <option value="practicing">Practicing</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- DOMAIN 3: PROGRAMMING & SCRIPTING -->
+      <section class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Programming">
+        <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">03</span>
+            <h2 class="font-mono text-base font-bold text-on-surface">Programming &amp; Scripting</h2>
+          </div>
+          <span class="cat-stat font-mono text-xs text-primary font-bold">0 / 3 Complete</span>
+        </header>
+
+        <div class="space-y-3 font-mono text-xs">
+          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="prog-py">
+            <div class="space-y-1">
+              <div class="font-bold text-on-surface">Python for Security Automation</div>
+              <p class="text-[11px] text-on-surface-variant font-sans">Using requests, socket, scapy, and json modules to build custom port checkers and API testers.</p>
+            </div>
+            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
+              <option value="not_started">Not Started</option>
+              <option value="learning">Learning</option>
+              <option value="practicing">Practicing</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+
+          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="prog-bash">
+            <div class="space-y-1">
+              <div class="font-bold text-on-surface">Bash Shell Scripting &amp; Loops</div>
+              <p class="text-[11px] text-on-surface-variant font-sans">Automating multi-tool pipelines, while read loops, parsing wordlists, and parallel jobs.</p>
+            </div>
+            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
+              <option value="not_started">Not Started</option>
+              <option value="learning">Learning</option>
+              <option value="practicing">Practicing</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+
+          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="prog-regex">
+            <div class="space-y-1">
+              <div class="font-bold text-on-surface">Regular Expressions (RegEx)</div>
+              <p class="text-[11px] text-on-surface-variant font-sans">Constructing capture groups, quantifiers, lookaheads for log extraction and pattern audits.</p>
+            </div>
+            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
+              <option value="not_started">Not Started</option>
+              <option value="learning">Learning</option>
+              <option value="practicing">Practicing</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- DOMAIN 4: WEB SECURITY -->
+      <section class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Web">
+        <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">04</span>
+            <h2 class="font-mono text-base font-bold text-on-surface">Web Application Security &amp; OWASP Top 10</h2>
+          </div>
+          <span class="cat-stat font-mono text-xs text-primary font-bold">0 / 4 Complete</span>
+        </header>
+
+        <div class="space-y-3 font-mono text-xs">
+          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="web-inj">
+            <div class="space-y-1">
+              <div class="font-bold text-on-surface">SQL Injection &amp; Command Injection</div>
+              <p class="text-[11px] text-on-surface-variant font-sans">UNION-based, Blind Boolean, and Error-based SQLi; shell metacharacter bypasses.</p>
+            </div>
+            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
+              <option value="not_started">Not Started</option>
+              <option value="learning">Learning</option>
+              <option value="practicing">Practicing</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+
+          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="web-client">
+            <div class="space-y-1">
+              <div class="font-bold text-on-surface">Cross-Site Scripting (XSS) &amp; CSRF</div>
+              <p class="text-[11px] text-on-surface-variant font-sans">Reflected, Stored, DOM XSS; CSP mitigation; anti-CSRF token validation.</p>
+            </div>
+            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
+              <option value="not_started">Not Started</option>
+              <option value="learning">Learning</option>
+              <option value="practicing">Practicing</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+
+          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="web-idor">
+            <div class="space-y-1">
+              <div class="font-bold text-on-surface">Insecure Direct Object References (IDOR) &amp; SSRF</div>
+              <p class="text-[11px] text-on-surface-variant font-sans">Broken object-level access controls on REST APIs; metadata querying via SSRF.</p>
+            </div>
+            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
+              <option value="not_started">Not Started</option>
+              <option value="learning">Learning</option>
+              <option value="practicing">Practicing</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+
+          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="web-burp">
+            <div class="space-y-1">
+              <div class="font-bold text-on-surface">Interception Proxying with Burp Suite</div>
+              <p class="text-[11px] text-on-surface-variant font-sans">Repeater analysis, parameter tampering, Match &amp; Replace rules, and request decoding.</p>
+            </div>
+            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
+              <option value="not_started">Not Started</option>
+              <option value="learning">Learning</option>
+              <option value="practicing">Practicing</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- DOMAINS 5-11 (CONCISE GRID) -->
+      <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <!-- DOMAIN 5: RECON & OSINT -->
+        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Recon">
+          <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="p-1.5 rounded bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">05</span>
+              <h3 class="font-mono text-sm font-bold text-on-surface">Reconnaissance &amp; OSINT</h3>
+            </div>
+            <span class="cat-stat font-mono text-xs text-primary font-bold">0 / 2 Complete</span>
+          </header>
+          <div class="space-y-2 font-mono text-xs">
+            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="rec-dns">
+              <span>Passive DNS &amp; Certificate Transparency (crt.sh, subfinder)</span>
+              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
+                <option value="not_started">Not Started</option>
+                <option value="learning">Learning</option>
+                <option value="practicing">Practicing</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="rec-dorks">
+              <span>Google Dorking &amp; GitHub Secret Leaks (GitLeaks/TruffleHog)</span>
+              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
+                <option value="not_started">Not Started</option>
+                <option value="learning">Learning</option>
+                <option value="practicing">Practicing</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- DOMAIN 6: ENUMERATION -->
+        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Enumeration">
+          <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="p-1.5 rounded bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">06</span>
+              <h3 class="font-mono text-sm font-bold text-on-surface">Enumeration &amp; Probing</h3>
+            </div>
+            <span class="cat-stat font-mono text-xs text-primary font-bold">0 / 2 Complete</span>
+          </header>
+          <div class="space-y-2 font-mono text-xs">
+            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="enum-nmap">
+              <span>Nmap Port Scanning, NSE Lua Scripts &amp; Banner Grabbing</span>
+              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
+                <option value="not_started">Not Started</option>
+                <option value="learning">Learning</option>
+                <option value="practicing">Practicing</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="enum-fuzz">
+              <span>Directory &amp; Parameter Fuzzing with ffuf / Gobuster</span>
+              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
+                <option value="not_started">Not Started</option>
+                <option value="learning">Learning</option>
+                <option value="practicing">Practicing</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- DOMAIN 7: PENTESTING CORE -->
+        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Pentesting">
+          <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="p-1.5 rounded bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">07</span>
+              <h3 class="font-mono text-sm font-bold text-on-surface">Penetration Testing Core</h3>
+            </div>
+            <span class="cat-stat font-mono text-xs text-primary font-bold">0 / 2 Complete</span>
+          </header>
+          <div class="space-y-2 font-mono text-xs">
+            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="pen-msf">
+              <span>Metasploit Framework, Meterpreter &amp; Payload Staging</span>
+              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
+                <option value="not_started">Not Started</option>
+                <option value="learning">Learning</option>
+                <option value="practicing">Practicing</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="pen-cve">
+              <span>Offline CVE Research &amp; SearchSploit Verification</span>
+              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
+                <option value="not_started">Not Started</option>
+                <option value="learning">Learning</option>
+                <option value="practicing">Practicing</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- DOMAIN 8: PRIVILEGE ESCALATION -->
+        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Privilege Escalation">
+          <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="p-1.5 rounded bg-canvas-base border border-danger-critical/30 text-danger-critical font-mono font-bold text-xs">08</span>
+              <h3 class="font-mono text-sm font-bold text-on-surface">Privilege Escalation</h3>
+            </div>
+            <span class="cat-stat font-mono text-xs text-primary font-bold">0 / 2 Complete</span>
+          </header>
+          <div class="space-y-2 font-mono text-xs">
+            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="priv-linux">
+              <span>Linux GTFOBins, SUID &amp; Sudoers Misconfigurations</span>
+              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
+                <option value="not_started">Not Started</option>
+                <option value="learning">Learning</option>
+                <option value="practicing">Practicing</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="priv-win">
+              <span>Windows PrivEsc Concepts (Token Impersonation &amp; Unquoted Services)</span>
+              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
+                <option value="not_started">Not Started</option>
+                <option value="learning">Learning</option>
+                <option value="practicing">Practicing</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- DOMAIN 9: ACTIVE DIRECTORY -->
+        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Active Directory">
+          <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="p-1.5 rounded bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">09</span>
+              <h3 class="font-mono text-sm font-bold text-on-surface">Active Directory Security</h3>
+            </div>
+            <span class="cat-stat font-mono text-xs text-primary font-bold">0 / 2 Complete</span>
+          </header>
+          <div class="space-y-2 font-mono text-xs">
+            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="ad-kerb">
+              <span>Kerberos Protocol, AS-REP Roasting &amp; Kerberoasting</span>
+              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
+                <option value="not_started">Not Started</option>
+                <option value="learning">Learning</option>
+                <option value="practicing">Practicing</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="ad-blood">
+              <span>BloodHound Attack Graphing &amp; Group Policy Audits</span>
+              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
+                <option value="not_started">Not Started</option>
+                <option value="learning">Learning</option>
+                <option value="practicing">Practicing</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- DOMAIN 10: CLOUD SECURITY -->
+        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Cloud">
+          <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="p-1.5 rounded bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">10</span>
+              <h3 class="font-mono text-sm font-bold text-on-surface">Cloud &amp; Container Security</h3>
+            </div>
+            <span class="cat-stat font-mono text-xs text-primary font-bold">0 / 2 Complete</span>
+          </header>
+          <div class="space-y-2 font-mono text-xs">
+            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="cld-iam">
+              <span>AWS/Azure Least-Privilege IAM &amp; IMDSv2 Hardening</span>
+              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
+                <option value="not_started">Not Started</option>
+                <option value="learning">Learning</option>
+                <option value="practicing">Practicing</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="cld-docker">
+              <span>Docker Sockets, Rootless Containers &amp; Trivy Scanning</span>
+              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
+                <option value="not_started">Not Started</option>
+                <option value="learning">Learning</option>
+                <option value="practicing">Practicing</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- DOMAIN 11: DEFENSIVE SECURITY -->
+        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 lg:col-span-2" data-cat="Defensive Security">
+          <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="p-1.5 rounded bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">11</span>
+              <h3 class="font-mono text-sm font-bold text-on-surface">Defensive Security &amp; SOC Operations</h3>
+            </div>
+            <span class="cat-stat font-mono text-xs text-primary font-bold">0 / 2 Complete</span>
+          </header>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs">
+            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="def-siem">
+              <span>SIEM Architecture (Splunk/Elastic) &amp; Log Correlation</span>
+              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
+                <option value="not_started">Not Started</option>
+                <option value="learning">Learning</option>
+                <option value="practicing">Practicing</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="def-mitre">
+              <span>MITRE ATT&amp;CK Tactic Mapping &amp; Incident Triage</span>
+              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
+                <option value="not_started">Not Started</option>
+                <option value="learning">Learning</option>
+                <option value="practicing">Practicing</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="border-t border-border-hairline bg-surface-subtle py-8 text-center font-mono text-xs text-on-surface-variant mt-16">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-primary"></span>
+        <span class="text-on-surface font-bold">Mihraj Mashhoor K</span>
+        <span>· Cybersecurity Engineering &amp; Research</span>
+      </div>
+      <div class="flex items-center gap-4 text-outline">
+        <a href="index.html" class="hover:text-primary transition-colors">Portfolio</a>
+        <a href="learning.html" class="hover:text-primary transition-colors">Learning</a>
+        <a href="labs.html" class="hover:text-primary transition-colors">Labs</a>
+        <a href="tools.html" class="hover:text-primary transition-colors">Toolkit</a>
+        <a href="glossary.html" class="hover:text-primary transition-colors">Glossary</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="portfolio-interactive.js"></script>
+  <script>
+    // LocalStorage-powered Roadmap Tracker Engine
+    document.addEventListener('DOMContentLoaded', () => {
+      const STORAGE_KEY = 'endlessus_cyber_roadmap_v1';
+      const items = document.querySelectorAll('.roadmap-item');
+      const totalCount = items.length;
+
+      function loadProgress() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : {};
+        } catch (e) {
+          return {};
+        }
+      }
+
+      function saveProgress(data) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        } catch (e) {}
+      }
+
+      function updateUI() {
+        const data = loadProgress();
+        let completed = 0;
+        let practicing = 0;
+        let learning = 0;
+        let notstarted = 0;
+
+        items.forEach(item => {
+          const id = item.getAttribute('data-id');
+          const select = item.querySelector('.status-select');
+          const status = data[id] || 'not_started';
+          if (select) {
+            select.value = status;
+            applySelectStyles(select, status);
+          }
+
+          if (status === 'completed') completed++;
+          else if (status === 'practicing') practicing++;
+          else if (status === 'learning') learning++;
+          else notstarted++;
+        });
+
+        // Update Overall Stats
+        const pct = Math.round((completed / totalCount) * 100);
+        document.getElementById('overall-percentage').textContent = pct + '%';
+        document.getElementById('count-completed').textContent = completed;
+        document.getElementById('count-practicing').textContent = practicing;
+        document.getElementById('count-learning').textContent = learning;
+        document.getElementById('count-notstarted').textContent = notstarted;
+
+        document.getElementById('bar-completed').style.width = ((completed / totalCount) * 100) + '%';
+        document.getElementById('bar-practicing').style.width = ((practicing / totalCount) * 100) + '%';
+        document.getElementById('bar-learning').style.width = ((learning / totalCount) * 100) + '%';
+
+        // Update category stats
+        document.querySelectorAll('.roadmap-category').forEach(catEl => {
+          const catItems = catEl.querySelectorAll('.roadmap-item');
+          let catComp = 0;
+          catItems.forEach(ci => {
+            const cid = ci.getAttribute('data-id');
+            if (data[cid] === 'completed') catComp++;
+          });
+          const statBadge = catEl.querySelector('.cat-stat');
+          if (statBadge) statBadge.textContent = `${catComp} / ${catItems.length} Complete`;
+        });
+      }
+
+      function applySelectStyles(select, status) {
+        select.classList.remove('text-primary', 'text-warning', 'text-secondary', 'text-outline', 'border-primary', 'border-warning', 'border-secondary');
+        if (status === 'completed') {
+          select.classList.add('text-primary', 'border-primary');
+        } else if (status === 'practicing') {
+          select.classList.add('text-warning', 'border-warning');
+        } else if (status === 'learning') {
+          select.classList.add('text-secondary', 'border-secondary');
+        } else {
+          select.classList.add('text-outline');
+        }
+      }
+
+      // Event Listeners for selects
+      items.forEach(item => {
+        const select = item.querySelector('.status-select');
+        const id = item.getAttribute('data-id');
+        if (select) {
+          select.addEventListener('change', () => {
+            const data = loadProgress();
+            data[id] = select.value;
+            saveProgress(data);
+            updateUI();
+          });
+        }
+      });
+
+      // Reset
+      document.getElementById('roadmap-reset-btn').addEventListener('click', () => {
+        if (confirm('Reset your roadmap progress back to 0%?')) {
+          localStorage.removeItem(STORAGE_KEY);
+          updateUI();
+          if (window.showToast) window.showToast('Roadmap progress reset.', 'info');
+        }
+      });
+
+      // Export
+      document.getElementById('roadmap-export-btn').addEventListener('click', () => {
+        const data = loadProgress();
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'cybersecurity_roadmap_progress.json';
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      updateUI();
+    });
+  </script>
+</body>
+</html>
