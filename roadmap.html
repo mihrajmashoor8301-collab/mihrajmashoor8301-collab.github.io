@@ -71,34 +71,26 @@
   <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <a href="index.html" class="flex items-center gap-2 group">
+        <a href="roadmap.html" class="flex items-center gap-2 group">
           <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
-          <span class="font-mono text-sm font-bold tracking-wider text-on-surface group-hover:text-primary transition-colors">MIHRAJ.IO</span>
+          <span class="font-mono text-sm font-bold tracking-wider text-on-surface group-hover:text-primary transition-colors">ENDLESSUS</span>
           <span class="text-outline text-xs font-mono">/</span>
           <span class="font-mono text-xs text-primary font-bold">ROADMAP</span>
         </a>
         <span class="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded border border-primary/30 bg-canvas-base font-mono text-[10px] text-primary">
           <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-          <span>LOCALSTORAGE TRACKER · 11 DOMAINS</span>
+          <span>5-STAGE PROGRESSION · 11 DOMAINS</span>
         </span>
       </div>
 
-      <nav class="hidden xl:flex items-center space-x-4 font-mono text-xs tracking-wider">
-        <div class="flex items-center space-x-3 text-on-surface-variant">
-          <a href="index.html" class="hover:text-primary transition-colors flex items-center gap-1">
-            <span>&larr; Portfolio (Mihraj)</span>
-          </a>
-          <a href="index.html#projects" class="hover:text-primary transition-colors">Projects</a>
-        </div>
-        <span class="text-border-hairline text-sm select-none">|</span>
-        <div class="flex items-center space-x-3">
-          <a href="learning.html" class="hover:text-primary transition-colors">Learning Hub</a>
-          <a href="labs.html" class="hover:text-primary transition-colors">12 Labs</a>
-          <a href="tools.html" class="hover:text-primary transition-colors">Tools</a>
-          <a href="roadmap.html" class="text-primary font-bold border-b border-primary pb-0.5">Roadmap</a>
-          <a href="payloads.html" class="text-danger-critical hover:text-primary transition-colors font-bold">Payloads</a>
-          <a href="terminal-lab.html" class="text-secondary hover:text-primary transition-colors font-bold">Terminal</a>
-        </div>
+      <nav class="hidden xl:flex items-center space-x-3.5 font-mono text-xs tracking-wider">
+        <a href="learning.html" class="text-on-surface-variant hover:text-primary transition-colors">Learn</a>
+        <a href="labs.html" class="text-on-surface-variant hover:text-primary transition-colors">Labs (12)</a>
+        <a href="handbook/index.html" class="text-on-surface-variant hover:text-primary transition-colors">Handbook</a>
+        <a href="roadmap.html" class="text-primary font-bold border-b border-primary pb-0.5">Roadmap</a>
+        <a href="tools.html" class="text-on-surface-variant hover:text-primary transition-colors">Tools</a>
+        <a href="terminal-lab.html" class="text-secondary hover:text-primary transition-colors font-bold">Terminal</a>
+        <a href="payloads.html" class="text-danger-critical hover:text-primary transition-colors font-bold">Payloads</a>
       </nav>
 
       <div class="flex items-center gap-2">
@@ -110,6 +102,10 @@
           <span class="material-symbols-outlined text-sm text-primary">terminal</span>
           <span class="hidden sm:inline text-[11px] font-bold">CLI</span>
         </button>
+        <a href="index.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-raised border border-primary/40 text-primary hover:bg-primary hover:text-canvas-base font-mono text-xs font-bold transition-all shadow-[0_0_12px_rgba(78,222,163,0.15)]" title="Return to Mihraj's Personal Cybersecurity Portfolio">
+          <span class="material-symbols-outlined text-sm">person</span>
+          <span>Mihraj Portfolio &rarr;</span>
+        </a>
       </div>
     </div>
   </header>
@@ -305,7 +301,7 @@
       </section>
 
       <!-- DOMAIN 2: LINUX -->
-      <section class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Linux">
+      <section class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Linux" id="domain-2">
         <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
           <div class="flex items-center gap-3">
             <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">02</span>
@@ -370,7 +366,7 @@
       </section>
 
       <!-- DOMAIN 3: PROGRAMMING & SCRIPTING -->
-      <section class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Programming">
+      <section class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Programming" id="domain-3">
         <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
           <div class="flex items-center gap-3">
             <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">03</span>
@@ -422,7 +418,7 @@
       </section>
 
       <!-- DOMAIN 4: WEB SECURITY -->
-      <section class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Web">
+      <section class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Web" id="domain-4">
         <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
           <div class="flex items-center gap-3">
             <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">04</span>
@@ -490,7 +486,7 @@
       <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
         <!-- DOMAIN 5: RECON & OSINT -->
-        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Recon">
+        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Recon" id="domain-5">
           <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-2">
               <span class="p-1.5 rounded bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">05</span>
@@ -521,7 +517,7 @@
         </div>
 
         <!-- DOMAIN 6: ENUMERATION -->
-        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Enumeration">
+        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Enumeration" id="domain-6">
           <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-2">
               <span class="p-1.5 rounded bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">06</span>
@@ -552,7 +548,7 @@
         </div>
 
         <!-- DOMAIN 7: PENTESTING CORE -->
-        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Pentesting">
+        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Pentesting" id="domain-7">
           <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-2">
               <span class="p-1.5 rounded bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">07</span>
@@ -583,7 +579,7 @@
         </div>
 
         <!-- DOMAIN 8: PRIVILEGE ESCALATION -->
-        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Privilege Escalation">
+        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Privilege Escalation" id="domain-8">
           <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-2">
               <span class="p-1.5 rounded bg-canvas-base border border-danger-critical/30 text-danger-critical font-mono font-bold text-xs">08</span>
@@ -614,7 +610,7 @@
         </div>
 
         <!-- DOMAIN 9: ACTIVE DIRECTORY -->
-        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Active Directory">
+        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Active Directory" id="domain-9">
           <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-2">
               <span class="p-1.5 rounded bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">09</span>
@@ -645,7 +641,7 @@
         </div>
 
         <!-- DOMAIN 10: CLOUD SECURITY -->
-        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Cloud">
+        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Cloud" id="domain-10">
           <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-2">
               <span class="p-1.5 rounded bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">10</span>
@@ -676,7 +672,7 @@
         </div>
 
         <!-- DOMAIN 11: DEFENSIVE SECURITY -->
-        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 lg:col-span-2" data-cat="Defensive Security">
+        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 lg:col-span-2" data-cat="Defensive Security" id="domain-11">
           <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-2">
               <span class="p-1.5 rounded bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">11</span>
