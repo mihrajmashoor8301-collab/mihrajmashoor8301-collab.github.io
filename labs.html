@@ -88,7 +88,10 @@
           <span class="material-symbols-outlined text-sm">psychology</span>
           <span>Theory</span>
         </a>
-        <a href="learning.html" class="text-on-surface-variant hover:text-primary transition-colors">Learn</a>
+        <a href="learning.html" class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 font-bold">
+          <span class="material-symbols-outlined text-sm">school</span>
+          <span>Learning Hub</span>
+        </a>
         <a href="labs.html" class="text-primary font-bold border-b border-primary pb-0.5">Labs (12)</a>
         <a href="handbook/index.html" class="text-on-surface-variant hover:text-primary transition-colors">Handbook</a>
         <a href="roadmap.html" class="text-on-surface-variant hover:text-primary transition-colors">Roadmap</a>
@@ -248,6 +251,12 @@
             <span class="material-symbols-outlined text-sm">psychology</span>
             <span class="hidden sm:inline">Concept Guide</span>
           </button>
+
+          <!-- Foundational Academy Room Link -->
+          <a id="ws-foundational-link" href="learning.html" target="_blank" class="px-3 py-1.5 rounded-lg border border-primary/40 bg-primary/10 hover:bg-primary text-primary hover:text-canvas-base font-mono text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 shadow-sm" title="Open Foundational Academy Room">
+            <span class="material-symbols-outlined text-sm">school</span>
+            <span class="hidden sm:inline">Foundational Room</span>
+          </a>
 
           <!-- Reset Button -->
           <button type="button" id="ws-reset-btn" class="p-1.5 rounded-lg border border-border-hairline hover:border-danger-critical text-outline hover:text-danger-critical transition-all cursor-pointer" title="Reset Room Sandbox to pristine state">
@@ -5368,6 +5377,27 @@
       document.getElementById('ws-target-port').textContent = room.targetPort;
       document.getElementById('ws-target-os').textContent = room.targetOS;
 
+      const foundationalMap = {
+        'lab-headers': 'room-30',
+        'lab-permissions': 'room-05',
+        'lab-auth': 'room-29',
+        'lab-idor': 'room-27',
+        'lab-sqli': 'room-25',
+        'lab-xss': 'room-26',
+        'lab-csrf': 'room-28',
+        'lab-network': 'room-20',
+        'lab-logs': 'room-22',
+        'lab-suid': 'room-31',
+        'lab-jwt': 'room-33',
+        'lab-crypto': 'room-34'
+      };
+      const foundLink = document.getElementById('ws-foundational-link');
+      if (foundLink) {
+        const foundRoom = foundationalMap[labId] || 'curriculum';
+        foundLink.href = 'learning.html#' + foundRoom;
+        foundLink.title = `View Foundational Curriculum Room for ${room.title}`;
+      }
+
       // Start Uptime Timer
       if (labUptimeTimer) clearInterval(labUptimeTimer);
       labUptimeSeconds = 0;
@@ -6107,14 +6137,43 @@
         });
       });
 
-      // Auto-open workspace if URL hash matches a lab, and react to hash changes
+      // Auto-open workspace if URL hash or query param matches a lab, and react to hash changes
       const checkHash = () => {
-        const hash = window.location.hash ? window.location.hash.substring(1) : '';
-        if (hash && LAB_CATALOG[hash]) {
-          if (activeLabId !== hash) {
-            openLabWorkspace(hash);
+        let lab = window.location.hash ? window.location.hash.substring(1) : '';
+        if (!lab && window.location.search) {
+          const params = new URLSearchParams(window.location.search);
+          lab = params.get('lab') || '';
+        }
+        if (lab) {
+          const aliasMap = {
+            'sqli': 'lab-sqli',
+            'xss': 'lab-xss',
+            'idor': 'lab-idor',
+            'csrf': 'lab-csrf',
+            'auth': 'lab-auth',
+            'headers': 'lab-headers',
+            'permissions': 'lab-permissions',
+            'suid': 'lab-suid',
+            'jwt': 'lab-jwt',
+            'crypto': 'lab-crypto',
+            'nmap': 'lab-network',
+            'packets': 'lab-network',
+            'network': 'lab-network',
+            'smb': 'lab-network',
+            'logs': 'lab-logs',
+            'capstone': 'lab-sqli'
+          };
+          if (aliasMap[lab]) {
+            lab = aliasMap[lab];
+          } else if (!lab.startsWith('lab-') && LAB_CATALOG['lab-' + lab]) {
+            lab = 'lab-' + lab;
           }
-        } else if (!hash && activeLabId) {
+        }
+        if (lab && LAB_CATALOG[lab]) {
+          if (activeLabId !== lab) {
+            openLabWorkspace(lab);
+          }
+        } else if (!lab && activeLabId) {
           closeLabWorkspace();
         }
       };
