@@ -884,13 +884,32 @@
 
       output.style.display = 'block';
 
-      const expected = room.tryInteractive.expectedCommand.trim().toLowerCase();
-      const entered = val.toLowerCase();
+      const expected = (room.tryInteractive && room.tryInteractive.expectedCommand) ? room.tryInteractive.expectedCommand.trim() : '';
+      const entered = val.trim();
 
-      if (entered === expected || entered.startsWith(expected.split(' ')[0])) {
-        output.innerHTML = `<span style="color: #4EDEA3;">cadet@endlessus:~$ ${escapeHtml(val)}</span>\n${escapeHtml(room.tryInteractive.simulatedOutput)}`;
+      // Tokenize by whitespace, ignoring duplicate spaces
+      const enteredTokens = entered.split(/\s+/).filter(Boolean);
+      const expectedTokens = expected.split(/\s+/).filter(Boolean);
+
+      const enteredExe = (enteredTokens[0] || '').toLowerCase();
+      const expectedExe = (expectedTokens[0] || '').toLowerCase();
+
+      // Check if command is an exact or normalized match
+      const isExact = entered.toLowerCase() === expected.toLowerCase();
+      const isTokenMatch = enteredTokens.length === expectedTokens.length &&
+                           enteredTokens.every((tok, idx) => tok.toLowerCase() === expectedTokens[idx].toLowerCase());
+
+      if (isExact || isTokenMatch) {
+        output.innerHTML = `<span style="color: #4EDEA3; font-weight: 600;">cadet@endlessus:~$ ${escapeHtml(val)}</span>\n${escapeHtml(room.tryInteractive.simulatedOutput)}`;
+      } else if (enteredExe === expectedExe && enteredTokens.length < expectedTokens.length) {
+        // Missing arguments / incomplete command
+        output.innerHTML = `<span style="color: #F87171; font-weight: 600;">cadet@endlessus:~$ ${escapeHtml(val)}</span>\n<span style="color: #F87171;">${escapeHtml(enteredExe)}: missing operand or required flags.</span>\nExpected command: <code>${escapeHtml(expected)}</code>\nTip: Enter the full command with all flags and arguments specified in the prompt.`;
+      } else if (enteredExe === expectedExe) {
+        // Wrong flags / arguments
+        output.innerHTML = `<span style="color: #F87171; font-weight: 600;">cadet@endlessus:~$ ${escapeHtml(val)}</span>\n<span style="color: #F87171;">${escapeHtml(enteredExe)}: unexpected option or argument for this objective.</span>\nExpected command: <code>${escapeHtml(expected)}</code>`;
       } else {
-        output.innerHTML = `<span style="color: #F87171;">cadet@endlessus:~$ ${escapeHtml(val)}</span>\nCommand executed. Expected: \`${escapeHtml(room.tryInteractive.expectedCommand)}\`.\n${escapeHtml(room.tryInteractive.simulatedOutput)}`;
+        // Unknown utility or wrong tool
+        output.innerHTML = `<span style="color: #F87171; font-weight: 600;">cadet@endlessus:~$ ${escapeHtml(val)}</span>\n<span style="color: #F87171;">bash: ${escapeHtml(enteredExe)}: command not found or not in scope for this mission.</span>\nExpected command: <code>${escapeHtml(expected)}</code>`;
       }
     };
 
