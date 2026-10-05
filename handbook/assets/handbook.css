@@ -26,6 +26,49 @@
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
+html.theme-normal {
+  --bg: #F8FAFC;
+  --bg-deep: #F1F5F9;
+  --surface: #FFFFFF;
+  --surface-raised: #F8FAFC;
+  --surface-subtle: #F1F5F9;
+  --surface-border: #E2E8F0;
+  --primary: #059669;
+  --primary-hover: #047857;
+  --primary-dim: rgba(5, 150, 105, 0.1);
+  --primary-glow: rgba(5, 150, 105, 0.2);
+  --secondary: #0284C7;
+  --secondary-dim: rgba(2, 132, 199, 0.1);
+  --warning: #D97706;
+  --warning-dim: rgba(217, 119, 6, 0.1);
+  --danger: #DC2626;
+  --text: #0F172A;
+  --text-muted: #475569;
+  --text-subtle: #64748B;
+  --line: #E2E8F0;
+  --line-light: #CBD5E1;
+  color-scheme: light;
+}
+
+html.theme-normal body {
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(5, 150, 105, 0.04) 0%, transparent 60%),
+    linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+}
+
+html.theme-normal .header {
+  background: rgba(255, 255, 255, 0.94);
+}
+
+html.theme-normal .mobile-drawer {
+  background: rgba(255, 255, 255, 0.98);
+}
+
+html.theme-normal .button {
+  color: #FFFFFF;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;

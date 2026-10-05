@@ -4,22 +4,35 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="icon" type="image/png" href="assets/favicon.png">
-  <title>The Ethical Hacker's Command Handbook · Cybersecurity Knowledge Base</title>
+  <title>The Ethical Hacker's Command Handbook · Endlessus Academy</title>
   <meta name="description" content="A comprehensive cybersecurity command reference covering Linux, Networking, Web Security, Nmap, Metasploit, Security Automation, and AI-assisted workflows.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('endlessus_learning_theme') || localStorage.getItem('endlessus_view_mode') || localStorage.getItem('theme') || 'normal';
+      if (savedTheme === 'hacker' || savedTheme === 'dark') {
+        document.documentElement.classList.add('dark', 'theme-hacker');
+        document.documentElement.classList.remove('theme-normal');
+      } else {
+        document.documentElement.classList.remove('dark', 'theme-hacker');
+        document.documentElement.classList.add('theme-normal');
+      }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <link rel="stylesheet" href="../academy.css">
   <link rel="stylesheet" href="assets/handbook.css">
 </head>
 <body>
 
 <header class="header">
-  <a class="brand" href="index.html">
-    <span class="mark">M</span>
+  <a class="brand" href="../learning.html">
+    <span class="mark" style="background: rgba(78, 222, 163, 0.15); border: 1px solid var(--primary); color: var(--primary);">E</span>
     <div class="brand-text">
-      <span>Security Knowledge Base</span>
-      <b>The Ethical Hacker's Command Handbook</b>
+      <span>Endlessus Academy</span>
+      <b>Command Handbook</b>
     </div>
   </a>
 
@@ -28,17 +41,17 @@
       <span class="material-symbols-outlined" style="font-size: 16px;">apps</span>
       <span>Modules (15)</span>
     </a>
-    <a href="../theory.html" style="color: #4CD7F6;">
+    <a href="../theory.html" style="color: var(--secondary);">
       <span class="material-symbols-outlined" style="font-size: 16px;">psychology</span>
       <span>Theory</span>
     </a>
     <a href="../learning.html">
       <span class="material-symbols-outlined" style="font-size: 16px;">school</span>
-      <span>Learning</span>
+      <span>Learning Hub</span>
     </a>
     <a href="../labs.html">
       <span class="material-symbols-outlined" style="font-size: 16px;">science</span>
-      <span>Labs</span>
+      <span>Labs (13)</span>
     </a>
     <a href="../tools.html">
       <span class="material-symbols-outlined" style="font-size: 16px;">build</span>
@@ -46,25 +59,43 @@
     </a>
     <a href="../terminal-lab.html">
       <span class="material-symbols-outlined" style="font-size: 16px;">terminal</span>
-      <span>Terminal Lab</span>
+      <span>Terminal</span>
     </a>
-    <a href="../payloads.html" style="color: #F43F5E;">
+    <a href="../payloads.html" style="color: var(--danger);">
       <span class="material-symbols-outlined" style="font-size: 16px;">security</span>
-      <span>Payload Hub</span>
+      <span>Payloads</span>
     </a>
     <a href="library.html">
       <span class="material-symbols-outlined" style="font-size: 16px;">library_books</span>
-      <span>PDF Library (30)</span>
+      <span>PDF Library</span>
     </a>
     <a href="../index.html" class="btn-portfolio">
-      <span class="material-symbols-outlined" style="font-size: 14px;">arrow_back</span>
+      <span class="material-symbols-outlined" style="font-size: 14px;">person</span>
       <span>Portfolio</span>
     </a>
   </nav>
 
-  <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
-    <span class="material-symbols-outlined">menu</span>
-  </button>
+  <div style="display: flex; align-items: center; gap: 0.5rem;">
+    <!-- Cmd+K trigger -->
+    <button data-trigger-cmd style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface-raised); font-family: var(--font-mono); font-size: 11px; color: var(--text); cursor: pointer;" title="Search Everything (Cmd+K)">
+      <span class="material-symbols-outlined" style="font-size: 14px; color: var(--primary);">search</span>
+      <span>⌘K</span>
+    </button>
+    <!-- Theme Toggle: Normal View vs Hacker View -->
+    <div style="display: flex; align-items: center; border: 1px solid var(--line); border-radius: 6px; padding: 2px; background: var(--surface-raised); font-family: var(--font-mono); font-size: 11px;">
+      <button type="button" id="theme-toggle-normal" style="padding: 3px 7px; border-radius: 4px; border: none; font-size: 11px; font-weight: bold; background: var(--primary); color: #fff; cursor: pointer;" title="Switch to Normal View (Light mode)">
+        <span class="material-symbols-outlined" style="font-size: 12px; vertical-align: middle;">light_mode</span>
+        <span>Normal</span>
+      </button>
+      <button type="button" id="theme-toggle-hacker" style="padding: 3px 7px; border-radius: 4px; border: none; font-size: 11px; font-weight: bold; background: transparent; color: var(--text-muted); cursor: pointer;" title="Switch to Hacker View (Dark HUD)">
+        <span class="material-symbols-outlined" style="font-size: 12px; vertical-align: middle;">terminal</span>
+        <span>Hacker</span>
+      </button>
+    </div>
+    <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+  </div>
 </header>
 
 <div class="mobile-drawer" id="mobile-drawer">
@@ -695,5 +726,6 @@
 </footer>
 
 <script src="assets/handbook.js"></script>
+<script src="../academy-nav.js"></script>
 </body>
 </html>

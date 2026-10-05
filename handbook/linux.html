@@ -6,7 +6,19 @@
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <title>Module 02: Linux Essentials for Practitioners · The Ethical Hacker's Command Handbook</title>
   <meta name="description" content="Filesystem navigation, permissions, process control, systemctl, and essential administrative utilities.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script>
+    (function() {
+      const savedTheme = localStorage.getItem('endlessus_learning_theme') || localStorage.getItem('endlessus_view_mode') || localStorage.getItem('theme') || 'normal';
+      if (savedTheme === 'hacker' || savedTheme === 'dark') {
+        document.documentElement.classList.add('dark', 'theme-hacker');
+        document.documentElement.classList.remove('theme-normal');
+      } else {
+        document.documentElement.classList.remove('dark', 'theme-hacker');
+        document.documentElement.classList.add('theme-normal');
+      }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">

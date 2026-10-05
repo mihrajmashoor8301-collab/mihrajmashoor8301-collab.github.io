@@ -235,6 +235,10 @@
   function renderStageNodes() {
     if (!elements.stageTrackNodes || typeof ENDLESSUS_STAGES === 'undefined') return;
 
+    // Identify current user progression stage
+    const nextUncompletedRoom = ENDLESSUS_ROOMS.find(r => !STATE.completedRooms.includes(r.id));
+    const currentActiveStageId = nextUncompletedRoom ? nextUncompletedRoom.stage : -1;
+
     let html = `
       <button type="button" class="lh-stage-node ${STATE.activeFilterStage === 'all' ? 'active' : ''}" data-stage-id="all">
         <span class="material-symbols-outlined" style="font-size: 14px;">apps</span>
@@ -246,13 +250,28 @@
       const stageRooms = ENDLESSUS_ROOMS.filter(r => r.stage === stage.id);
       const completedInStage = stageRooms.filter(r => STATE.completedRooms.includes(r.id)).length;
       const isComplete = stageRooms.length > 0 && completedInStage === stageRooms.length;
+      const isCurrent = stage.id === currentActiveStageId && !isComplete;
       const isActive = STATE.activeFilterStage === String(stage.id);
 
+      let stateClass = '';
+      let statusIndicator = '';
+
+      if (isComplete) {
+        stateClass = 'completed';
+        statusIndicator = '<span class="material-symbols-outlined" style="font-size: 13px; color: var(--lh-success);">check_circle</span>';
+      } else if (isCurrent) {
+        stateClass = 'current';
+        statusIndicator = '<span class="material-symbols-outlined" style="font-size: 13px; color: var(--lh-primary);">play_arrow</span>';
+      } else {
+        stateClass = 'available';
+        statusIndicator = `<span style="font-size: 10px; opacity: 0.7;">(${completedInStage}/${stageRooms.length})</span>`;
+      }
+
       html += `
-        <button type="button" class="lh-stage-node ${isActive ? 'active' : ''} ${isComplete ? 'completed' : ''}" data-stage-id="${stage.id}" title="${escapeHtml(stage.title)}">
+        <button type="button" class="lh-stage-node ${isActive ? 'active' : ''} ${stateClass}" data-stage-id="${stage.id}" title="${escapeHtml(stage.title)}">
           <span class="lh-stage-node-num">S${stage.number}</span>
           <span>${stage.title.split(':')[1] ? stage.title.split(':')[1].trim() : stage.title}</span>
-          ${isComplete ? '<span class="material-symbols-outlined" style="font-size: 13px;">check_circle</span>' : `<span style="font-size: 10px; opacity: 0.7;">(${completedInStage}/${stageRooms.length})</span>`}
+          ${statusIndicator}
         </button>
       `;
     });
@@ -469,19 +488,20 @@
   }
 
   // =========================================================================
-  // 5. PROGRESS BAR & UNIFIED STATS
+  // 5. PROGRESS BAR, CONTINUATION BANNER & UNIFIED STATS
   // =========================================================================
   function updateProgressUI() {
     const totalRooms = ENDLESSUS_ROOMS.length;
     const completedRoomsCount = STATE.completedRooms.length;
     const percentage = totalRooms > 0 ? Math.round((completedRoomsCount / totalRooms) * 100) : 0;
 
-    // Check labs progress
-    const totalLabs = typeof ENDLESSUS_PRACTICAL_LABS !== 'undefined' ? ENDLESSUS_PRACTICAL_LABS.length : 12;
+    // Authoritative 13 practical labs
+    const totalLabs = typeof ENDLESSUS_PRACTICAL_LABS !== 'undefined' ? ENDLESSUS_PRACTICAL_LABS.length : 13;
     const completedLabsCount = STATE.completedLabs.length;
+    const labPercentage = totalLabs > 0 ? Math.round((completedLabsCount / totalLabs) * 100) : 0;
 
     if (elements.progressText) {
-      elements.progressText.textContent = `Learning: ${completedRoomsCount}/${totalRooms} Rooms (${percentage}%) · Practice: ${completedLabsCount}/${totalLabs} Labs`;
+      elements.progressText.textContent = `Learning: ${completedRoomsCount}/${totalRooms} Rooms (${percentage}%) · Practice: ${completedLabsCount}/${totalLabs} Labs (${labPercentage}%)`;
     }
     if (elements.progressBar) {
       elements.progressBar.style.width = `${percentage}%`;
@@ -489,10 +509,87 @@
     if (elements.miniProgressText) {
       elements.miniProgressText.textContent = `Learn: ${completedRoomsCount}/${totalRooms} · Labs: ${completedLabsCount}/${totalLabs}`;
     }
+
+    // Render dynamic Continue Learning Experience
+    renderContinueLearningCard(completedRoomsCount, totalRooms, percentage, completedLabsCount, totalLabs, labPercentage);
+  }
+
+  function renderContinueLearningCard(completedRoomsCount, totalRooms, percentage, completedLabsCount, totalLabs, labPercentage) {
+    const continueSlot = document.getElementById('continue-learning-slot');
+    if (!continueSlot) return;
+
+    const nextRoom = ENDLESSUS_ROOMS.find(r => !STATE.completedRooms.includes(r.id));
+
+    if (!nextRoom) {
+      continueSlot.innerHTML = `
+        <div class="lh-continue-card">
+          <div class="lh-continue-info">
+            <div class="lh-continue-badge" style="background: rgba(22, 163, 74, 0.15); color: var(--lh-success);">
+              <span class="material-symbols-outlined" style="font-size: 14px;">emoji_events</span>
+              <span>Curriculum Completed</span>
+            </div>
+            <h2 class="lh-continue-title">You've Mastered All 40 Rooms!</h2>
+            <p class="lh-continue-desc">You have completed all foundational, networking, web security, and system exploitation rooms. Put your skills to the ultimate test in the hands-on capstone lab.</p>
+            <div class="lh-continue-meters">
+              <div class="lh-meter-row">
+                <span class="lh-meter-label">Learning Track</span>
+                <div class="lh-meter-bar-wrap"><div class="lh-meter-bar-fill" style="width: 100%; background: var(--lh-primary);"></div></div>
+                <span class="lh-meter-count">40/40 (100%)</span>
+              </div>
+              <div class="lh-meter-row">
+                <span class="lh-meter-label">Practice Track</span>
+                <div class="lh-meter-bar-wrap"><div class="lh-meter-bar-fill" style="width: ${labPercentage}%; background: var(--lh-secondary);"></div></div>
+                <span class="lh-meter-count">${completedLabsCount}/${totalLabs} (${labPercentage}%)</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <a href="labs.html?lab=lab-capstone" class="lh-continue-action-btn" style="text-decoration:none;">
+              <span>Launch Capstone Lab 13</span>
+              <span class="material-symbols-outlined">rocket_launch</span>
+            </a>
+          </div>
+        </div>
+      `;
+    } else {
+      const stageObj = ENDLESSUS_STAGES.find(s => s.id === nextRoom.stage) || ENDLESSUS_STAGES[0];
+      continueSlot.innerHTML = `
+        <div class="lh-continue-card">
+          <div class="lh-continue-info">
+            <div class="lh-continue-badge">
+              <span class="material-symbols-outlined" style="font-size: 14px;">play_circle</span>
+              <span>Current Objective · Stage ${stageObj.number}: ${stageObj.title.split(':')[1]?.trim() || stageObj.title}</span>
+            </div>
+            <h2 class="lh-continue-title">Next: ${nextRoom.id.toUpperCase()}: ${escapeHtml(nextRoom.title)}</h2>
+            <p class="lh-continue-desc">${escapeHtml(nextRoom.whyAreYouHere.substring(0, 130))}...</p>
+            <div class="lh-continue-meters">
+              <div class="lh-meter-row">
+                <span class="lh-meter-label">Learning Track</span>
+                <div class="lh-meter-bar-wrap"><div class="lh-meter-bar-fill" style="width: ${percentage}%; background: var(--lh-primary);"></div></div>
+                <span class="lh-meter-count">${completedRoomsCount}/${totalRooms} (${percentage}%)</span>
+              </div>
+              <div class="lh-meter-row">
+                <span class="lh-meter-label">Practice Track</span>
+                <div class="lh-meter-bar-wrap"><div class="lh-meter-bar-fill" style="width: ${labPercentage}%; background: var(--lh-secondary);"></div></div>
+                <span class="lh-meter-count">${completedLabsCount}/${totalLabs} (${labPercentage}%)</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <button type="button" class="lh-continue-action-btn" id="continue-learning-action-btn">
+              <span>Continue Learning</span>
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+      `;
+      const btn = document.getElementById('continue-learning-action-btn');
+      if (btn) btn.onclick = () => openRoom(nextRoom.id);
+    }
   }
 
   // =========================================================================
-  // 6. ROOM MODAL PLAYER (12-PART STRICT TEMPLATE)
+  // 6. ROOM MODAL PLAYER (5-PHASE STRICT STRUCTURE)
   // =========================================================================
   function openRoom(roomId) {
     const room = ENDLESSUS_ROOM_MAP[roomId];
@@ -509,6 +606,23 @@
       elements.modalBadge.className = `lh-room-difficulty lh-diff-${room.difficulty.toLowerCase().replace(/\s+/g, '-')}`;
     }
     if (elements.modalTime) elements.modalTime.textContent = `⏱ ${room.estimatedTime}`;
+
+    // Configure Prev / Next Room buttons
+    const roomIndex = ENDLESSUS_ROOMS.findIndex(r => r.id === room.id);
+    const prevRoomBtn = document.getElementById('modal-prev-room-btn');
+    const nextRoomBtn = document.getElementById('modal-next-room-btn');
+    if (prevRoomBtn) {
+      prevRoomBtn.disabled = roomIndex <= 0;
+      prevRoomBtn.onclick = () => {
+        if (roomIndex > 0) openRoom(ENDLESSUS_ROOMS[roomIndex - 1].id);
+      };
+    }
+    if (nextRoomBtn) {
+      nextRoomBtn.disabled = roomIndex >= ENDLESSUS_ROOMS.length - 1;
+      nextRoomBtn.onclick = () => {
+        if (roomIndex < ENDLESSUS_ROOMS.length - 1) openRoom(ENDLESSUS_ROOMS[roomIndex + 1].id);
+      };
+    }
 
     renderRoomTOC(room);
     renderRoomContent(room);
@@ -548,26 +662,29 @@
   function renderRoomTOC(room) {
     if (!elements.modalToc) return;
 
-    const sections = [
-      { id: "sec-why", label: "1. Why are you here?" },
-      { id: "sec-learn", label: "2. What you'll learn" },
-      { id: "sec-vocab", label: "3. New vocabulary" },
-      { id: "sec-lessons", label: "4. Core Concepts" },
-      { id: "sec-see", label: "5. Real Examples" },
-      { id: "sec-try", label: "6. Interactive Exercise" },
-      { id: "sec-questions", label: "7. Knowledge Questions" },
-      { id: "sec-task", label: "8. Practical Task" },
-      { id: "sec-hints", label: "9. Progressive Hints" },
-      { id: "sec-explain", label: "10. Result Explanation" },
-      { id: "sec-security", label: "11. Security Connection" },
-      { id: "sec-complete", label: "12. Room Completion" }
-    ];
+    elements.modalToc.innerHTML = `
+      <div class="lh-toc-phase-label">Phase 1 · Learn</div>
+      <a href="#sec-why" class="lh-toc-item active" data-target="sec-why"><span>1. Why are you here?</span></a>
+      <a href="#sec-learn" class="lh-toc-item" data-target="sec-learn"><span>2. What you'll learn</span></a>
+      <a href="#sec-vocab" class="lh-toc-item" data-target="sec-vocab"><span>3. New vocabulary</span></a>
+      <a href="#sec-lessons" class="lh-toc-item" data-target="sec-lessons"><span>4. Core Concepts</span></a>
 
-    elements.modalToc.innerHTML = sections.map(s => `
-      <a href="#${s.id}" class="lh-toc-item" data-target="${s.id}">
-        <span>${s.label}</span>
-      </a>
-    `).join('');
+      <div class="lh-toc-phase-label">Phase 2 · See</div>
+      <a href="#sec-see" class="lh-toc-item" data-target="sec-see"><span>5. Real Examples</span></a>
+
+      <div class="lh-toc-phase-label">Phase 3 · Try</div>
+      <a href="#sec-try" class="lh-toc-item" data-target="sec-try"><span>6. Interactive Exercise</span></a>
+      <a href="#sec-questions" class="lh-toc-item" data-target="sec-questions"><span>7. Knowledge Questions</span></a>
+      <a href="#sec-task" class="lh-toc-item" data-target="sec-task"><span>8. Practical Task</span></a>
+
+      <div class="lh-toc-phase-label">Phase 4 · Understand</div>
+      <a href="#sec-hints" class="lh-toc-item" data-target="sec-hints"><span>9. Progressive Hints</span></a>
+      <a href="#sec-explain" class="lh-toc-item" data-target="sec-explain"><span>10. Result Explanation</span></a>
+      <a href="#sec-security" class="lh-toc-item" data-target="sec-security"><span>11. Security Connection</span></a>
+
+      <div class="lh-toc-phase-label">Phase 5 · Finish</div>
+      <a href="#sec-complete" class="lh-toc-item" data-target="sec-complete"><span>12. Room Completion</span></a>
+    `;
 
     // Smooth scroll within modal
     elements.modalToc.querySelectorAll('.lh-toc-item').forEach(item => {
@@ -595,12 +712,39 @@
     }
   }
 
+  const ROOM_TO_PRACTICAL_LAB = {
+    'room-06': { id: 'lab-permissions', title: 'Lab 02: Linux Permissions & Octal Masking', desc: 'Audit permissions and isolate credential stores in a real Linux terminal.' },
+    'room-15': { id: 'lab-headers', title: 'Lab 01: HTTP Security Headers Hardening', desc: 'Configure CSP, HSTS, and X-Frame-Options headers on live web servers.' },
+    'room-17': { id: 'lab-auth', title: 'Lab 03: Authentication & Rate Limiting Bypass', desc: 'Bypass endpoint rate limits using X-Forwarded-For IP rotation.' },
+    'room-18': { id: 'lab-jwt', title: 'Lab 11: JWT None Algorithm Exploitation', desc: 'Forge administrator tokens using header none algorithm vulnerabilities.' },
+    'room-19': { id: 'lab-crypto', title: 'Lab 12: XOR & Frequency Analysis Decryption', desc: 'Perform frequency cryptanalysis to deduce multi-byte XOR keys.' },
+    'room-20': { id: 'lab-logs', title: 'Lab 09: Security Incident Log Analysis', desc: 'Analyze Apache and auth.log to detect attacker brute-force activity.' },
+    'room-23': { id: 'lab-xss', title: 'Lab 06: Reflected XSS & Context Escaping', desc: 'Escape JavaScript input contexts to trigger non-destructive alerts.' },
+    'room-24': { id: 'lab-sqli', title: 'Lab 05: UNION-Based SQL Injection', desc: 'Exploit SQL queries to extract private tables and schema structures.' },
+    'room-25': { id: 'lab-idor', title: 'Lab 04: Insecure Direct Object References', desc: 'Tamper with REST parameters to inspect unauthorized user records.' },
+    'room-26': { id: 'lab-csrf', title: 'Lab 07: CSRF & SameSite Protections', desc: 'Construct cross-site request forging forms and verify SameSite tokens.' },
+    'room-30': { id: 'lab-network', title: 'Lab 08: Network Service & SMB Enumeration', desc: 'Enumerate open ports with Nmap and extract null-session SMB shares.' },
+    'room-35': { id: 'lab-suid', title: 'Lab 10: SUID Privilege Escalation', desc: 'Exploit setuid binaries with GTFOBins techniques to escalate to root.' },
+    'room-40': { id: 'lab-capstone', title: 'Lab 13: Capstone Pentest: Final Enterprise Target', desc: 'Execute a full-scope authorized penetration test on an enterprise target.' }
+  };
+
   function renderRoomContent(room) {
     if (!elements.modalContent) return;
 
     const isCompleted = STATE.completedRooms.includes(room.id);
+    const relatedLab = ROOM_TO_PRACTICAL_LAB[room.id];
+    const nextRoomObj = room.nextRoomId ? ENDLESSUS_ROOM_MAP[room.nextRoomId] : null;
+    const nextBtnLabel = isCompleted
+      ? (nextRoomObj ? `Next: Room ${nextRoomObj.id.replace('room-', '')} (${escapeHtml(nextRoomObj.title)}) →` : 'Curriculum Completed 🏆')
+      : (nextRoomObj ? `Mark Complete & Advance to Room ${nextRoomObj.id.replace('room-', '')} →` : 'Mark Room Complete 🏆');
 
     let html = `
+      <!-- ================= PHASE 1: LEARN ================= -->
+      <div class="lh-phase-divider" style="margin-top: 0;">
+        <span class="lh-phase-tag">Phase 1 · Learn</span>
+        <span class="lh-phase-desc">Foundations & Core Principles</span>
+      </div>
+
       <!-- 1. Why are you here? -->
       <section class="lh-section-block" id="sec-why">
         <h3 class="lh-section-heading">
@@ -658,6 +802,12 @@
         `).join('')}
       </section>
 
+      <!-- ================= PHASE 2: SEE ================= -->
+      <div class="lh-phase-divider">
+        <span class="lh-phase-tag">Phase 2 · See</span>
+        <span class="lh-phase-desc">Authentic Demonstrations & Flowcharts</span>
+      </div>
+
       <!-- 5. Real Examples -->
       <section class="lh-section-block" id="sec-see">
         <h3 class="lh-section-heading">
@@ -672,6 +822,12 @@
           </div>
         `).join('')}
       </section>
+
+      <!-- ================= PHASE 3: TRY ================= -->
+      <div class="lh-phase-divider">
+        <span class="lh-phase-tag">Phase 3 · Try</span>
+        <span class="lh-phase-desc">Live Sandbox & Practical Verification</span>
+      </div>
 
       <!-- 6. Interactive Try Widget -->
       <section class="lh-section-block" id="sec-try">
@@ -700,7 +856,7 @@
         </div>
       </section>
 
-      <!-- 7. Knowledge Questions (Flags do not dominate!) -->
+      <!-- 7. Knowledge Questions -->
       <section class="lh-section-block" id="sec-questions">
         <h3 class="lh-section-heading">
           <span class="lh-section-badge">07</span>
@@ -731,7 +887,7 @@
       <section class="lh-section-block" id="sec-task">
         <h3 class="lh-section-heading">
           <span class="lh-section-badge">08</span>
-          <span>Practical Task</span>
+          <span>Practical Task & Pitfalls</span>
         </h3>
         ${room.tasks.map(t => `
           <div style="padding: 1.25rem; background: var(--lh-bg); border: 1px solid var(--lh-surface-border); border-radius: var(--lh-radius-md); margin-bottom: 1rem;">
@@ -740,6 +896,12 @@
           </div>
         `).join('')}
       </section>
+
+      <!-- ================= PHASE 4: UNDERSTAND ================= -->
+      <div class="lh-phase-divider">
+        <span class="lh-phase-tag">Phase 4 · Understand</span>
+        <span class="lh-phase-desc">Mental Models & Security Impact</span>
+      </div>
 
       <!-- 9. 5-Stage Progressive Hints System -->
       <section class="lh-section-block" id="sec-hints">
@@ -800,11 +962,17 @@
         ` : ''}
       </section>
 
+      <!-- ================= PHASE 5: FINISH ================= -->
+      <div class="lh-phase-divider">
+        <span class="lh-phase-tag">Phase 5 · Finish</span>
+        <span class="lh-phase-desc">Mastery & Next Progression</span>
+      </div>
+
       <!-- 12. Room Completion -->
       <section class="lh-section-block" id="sec-complete">
         <h3 class="lh-section-heading">
           <span class="lh-section-badge">12</span>
-          <span>Continue</span>
+          <span>Room Completion & Verification</span>
         </h3>
         <div class="lh-completion-summary">
           <div class="lh-completion-icon">
@@ -812,7 +980,7 @@
           </div>
           <h3 class="lh-completion-title">${isCompleted ? '✓ Room Completed' : 'Complete Room'}</h3>
           <p style="font-size: 0.88rem; color: var(--lh-text-muted);">
-            Log your completion to unlock the next room along your learning pathway.
+            Log your completion to record progress along your learning pathway.
           </p>
 
           <div class="lh-completion-lists">
@@ -836,8 +1004,25 @@
             </div>
           </div>
 
+          ${relatedLab ? `
+            <div class="lh-related-lab-card">
+              <div>
+                <div style="display: flex; align-items: center; gap: 0.4rem; color: var(--lh-secondary); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; font-family: var(--lh-font-mono);">
+                  <span class="material-symbols-outlined" style="font-size: 16px;">science</span>
+                  <span>Related Practical Lab Available</span>
+                </div>
+                <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--lh-text); margin: 0.2rem 0;">${escapeHtml(relatedLab.title)}</h4>
+                <p style="font-size: 0.8rem; color: var(--lh-text-muted); margin: 0;">${escapeHtml(relatedLab.desc)}</p>
+              </div>
+              <a href="labs.html?lab=${relatedLab.id}" class="lh-related-lab-btn">
+                <span>Open Lab</span>
+                <span class="material-symbols-outlined" style="font-size: 14px;">arrow_forward</span>
+              </a>
+            </div>
+          ` : ''}
+
           <button class="lh-next-room-btn" id="complete-room-btn">
-            <span>${isCompleted ? 'Next Recommended Room →' : 'Mark Complete & Continue →'}</span>
+            <span>${nextBtnLabel}</span>
           </button>
         </div>
       </section>

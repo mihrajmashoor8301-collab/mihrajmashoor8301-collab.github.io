@@ -1,15 +1,28 @@
 <!DOCTYPE html>
-<html class="scroll-smooth dark" lang="en">
+<html class="scroll-smooth" lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Offensive Security Payloads &amp; Exploitation Cheatsheet | Mihraj Mashhoor K</title>
+  <title>Interactive Payloads &amp; Exploitation Reference · Endlessus Academy</title>
   <meta content="Comprehensive TryHackMe and CTF-style offensive payload cheatsheet. Covers Remote Code Execution (RCE), Command Injection filter bypasses, Local File Inclusion (LFI), PHP wrappers, log poisoning, reverse shells, and TTY stabilization with dynamic IP/Port generators." name="description"/>
   <link rel="icon" type="image/png" href="logo2.png"/>
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('endlessus_learning_theme') || localStorage.getItem('endlessus_view_mode') || localStorage.getItem('theme') || 'normal';
+      if (savedTheme === 'hacker' || savedTheme === 'dark') {
+        document.documentElement.classList.add('dark', 'theme-hacker');
+        document.documentElement.classList.remove('theme-normal');
+      } else {
+        document.documentElement.classList.remove('dark', 'theme-hacker');
+        document.documentElement.classList.add('theme-normal');
+      }
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link rel="stylesheet" href="academy.css"/>
   <script src="tailwind.cdn.js"></script>
 <script>if(typeof tailwind==="undefined"){document.write('<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"><\/script>')}</script>
   <script>
@@ -18,19 +31,19 @@
       theme: {
         extend: {
           colors: {
-            'canvas-base': '#090D12',
-            'surface-subtle': '#0E131B',
-            'surface-raised': '#151D28',
-            'border-hairline': '#1F2937',
-            'border-medium': '#2D3748',
-            'primary': '#4EDEA3',
-            'primary-container': '#10b981',
-            'secondary': '#4CD7F6',
-            'on-surface': '#F3F4F6',
-            'on-surface-variant': '#8692A6',
-            'outline': '#64748B',
-            'warning': '#F59E0B',
-            'danger-critical': '#F43F5E',
+            'canvas-base': 'var(--color-canvas-base)',
+            'surface-subtle': 'var(--color-surface-subtle)',
+            'surface-raised': 'var(--color-surface-raised)',
+            'border-hairline': 'var(--color-border-hairline)',
+            'border-medium': 'var(--color-border-medium)',
+            'primary': 'var(--color-primary)',
+            'primary-container': 'var(--color-primary-container)',
+            'secondary': 'var(--color-secondary)',
+            'on-surface': 'var(--color-on-surface)',
+            'on-surface-variant': 'var(--color-on-surface-variant)',
+            'outline': 'var(--color-outline)',
+            'warning': 'var(--color-warning)',
+            'danger-critical': 'var(--color-danger-critical)',
           },
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
@@ -42,8 +55,8 @@
   </script>
   <style>
     body {
-      background-color: #090D12;
-      color: #F3F4F6;
+      background-color: var(--color-canvas-base);
+      color: var(--color-on-surface);
       font-family: 'Inter', sans-serif;
     }
     .material-symbols-outlined {
@@ -55,6 +68,11 @@
     .telemetry-grid {
       background-size: 32px 32px;
       background-image:
+        linear-gradient(to right, rgba(31, 41, 55, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(31, 41, 55, 0.08) 1px, transparent 1px);
+    }
+    html.dark .telemetry-grid {
+      background-image:
         linear-gradient(to right, rgba(31, 41, 55, 0.25) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(31, 41, 55, 0.25) 1px, transparent 1px);
     }
@@ -63,90 +81,272 @@
       height: 6px;
     }
     ::-webkit-scrollbar-track {
-      background: #090D12;
+      background: var(--color-canvas-base);
     }
     ::-webkit-scrollbar-thumb {
-      background: #1F2937;
+      background: var(--color-border-hairline);
       border-radius: 3px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #4EDEA3;
+      background: var(--color-primary);
     }
   </style>
 </head>
-<body class="bg-canvas-base text-on-surface antialiased telemetry-grid min-h-screen flex flex-col font-sans selection:bg-primary selection:text-canvas-base">
+<body class="bg-canvas-base text-on-surface antialiased telemetry-grid min-h-screen flex flex-col font-sans selection:bg-primary selection:text-white">
 
-  <!-- ========================================================================= -->
-  <!-- Top Navigation Bar                                                        -->
-  <!-- ========================================================================= -->
+  <!-- =========================================================================
+       ACADEMY UNIFIED HEADER
+       ========================================================================= -->
   <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
       
-      <!-- Brand & Status -->
+      <!-- Brand -->
       <div class="flex items-center gap-3">
-        <a href="learning.html" class="flex items-center gap-2 group">
-          <span class="w-2.5 h-2.5 rounded-full bg-danger-critical animate-pulse"></span>
-          <span class="font-mono text-sm font-bold tracking-wider text-on-surface group-hover:text-primary transition-colors">ENDLESSUS</span>
-          <span class="text-outline text-xs font-mono">/</span>
-          <span class="font-mono text-xs text-danger-critical font-bold">PAYLOAD HUB</span>
+        <a href="learning.html" class="flex items-center gap-2.5 group">
+          <span class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/40 text-primary flex items-center justify-center font-mono font-bold text-sm group-hover:scale-105 transition-transform">E</span>
+          <div class="flex flex-col">
+            <span class="font-bold text-sm tracking-tight text-on-surface group-hover:text-primary transition-colors">Endlessus Academy</span>
+            <span class="font-mono text-[10px] text-danger-critical tracking-wider uppercase font-bold">Payload Hub</span>
+          </div>
         </a>
-        <span class="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded border border-danger-critical/30 bg-canvas-base font-mono text-[10px] text-danger-critical">
-          <span class="w-1.5 h-1.5 rounded-full bg-danger-critical"></span>
-          <span>RCE · CMDi · LFI CHEATSHEET</span>
-        </span>
       </div>
 
-      <!-- Quick Nav Links -->
-      <nav class="hidden lg:flex items-center space-x-5 font-mono text-xs text-on-surface-variant">
-        <a href="theory.html" class="text-secondary hover:text-primary transition-colors flex items-center gap-1 font-bold">
-          <span class="material-symbols-outlined text-sm">psychology</span>
-          <span>Theory</span>
-        </a>
-        <a href="learning.html" class="hover:text-primary transition-colors flex items-center gap-1">
-          <span class="material-symbols-outlined text-sm">school</span>
-          <span>Learning Hub</span>
-        </a>
-        <a href="labs.html" class="hover:text-primary transition-colors flex items-center gap-1">
-          <span class="material-symbols-outlined text-sm">science</span>
-          <span>Labs</span>
-        </a>
-        <a href="tools.html" class="hover:text-primary transition-colors flex items-center gap-1">
-          <span class="material-symbols-outlined text-sm">build</span>
-          <span>Tools</span>
-        </a>
-        <a href="roadmap.html" class="hover:text-primary transition-colors flex items-center gap-1">
-          <span class="material-symbols-outlined text-sm">timeline</span>
-          <span>Roadmap</span>
-        </a>
-        <a href="terminal-lab.html" class="text-primary hover:text-primary/80 transition-colors flex items-center gap-1">
-          <span class="material-symbols-outlined text-sm">terminal</span>
-          <span>Terminal Lab</span>
-        </a>
-        <a href="handbook/index.html" class="hover:text-primary transition-colors flex items-center gap-1">
-          <span class="material-symbols-outlined text-sm">menu_book</span>
-          <span>Handbook</span>
+      <!-- Unified Hierarchy Navigation: Learn · Practice · Reference · Portfolio -->
+      <nav class="hidden lg:flex items-center space-x-1 text-xs">
+        
+        <!-- Learn Popover -->
+        <div class="relative group">
+          <button type="button" class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-raised transition-colors font-medium cursor-pointer" aria-haspopup="true">
+            <span class="material-symbols-outlined text-sm">school</span>
+            <span>Learn</span>
+            <span class="material-symbols-outlined text-xs">arrow_drop_down</span>
+          </button>
+          <div class="absolute left-0 mt-1 w-52 py-2 rounded-xl bg-surface-subtle border border-border-hairline shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all z-50">
+            <a href="learning.html#start-here" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-primary">play_arrow</span>
+              <div>
+                <div class="font-bold text-on-surface">Start Here</div>
+                <div class="text-[10px] text-outline">Zero prerequisites guide</div>
+              </div>
+            </a>
+            <a href="learning.html#curriculum" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-secondary">menu_book</span>
+              <div>
+                <div class="font-bold text-on-surface">Full Curriculum</div>
+                <div class="text-[10px] text-outline">40 guided core rooms</div>
+              </div>
+            </a>
+            <a href="learning.html#progress" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-warning">verified</span>
+              <div>
+                <div class="font-bold text-on-surface">My Progress</div>
+                <div class="text-[10px] text-outline">Track completion & badges</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Practice Popover (Active) -->
+        <div class="relative group">
+          <button type="button" class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-primary font-bold bg-primary/10 border border-primary/30 transition-colors cursor-pointer" aria-current="page" aria-haspopup="true">
+            <span class="material-symbols-outlined text-sm">science</span>
+            <span>Practice</span>
+            <span class="material-symbols-outlined text-xs">arrow_drop_down</span>
+          </button>
+          <div class="absolute left-0 mt-1 w-56 py-2 rounded-xl bg-surface-subtle border border-border-hairline shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all z-50">
+            <a href="labs.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-primary">science</span>
+              <div>
+                <div class="font-bold text-on-surface">Practical Labs</div>
+                <div class="text-[10px] text-outline">13 guided workspaces</div>
+              </div>
+            </a>
+            <a href="terminal-lab.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-secondary">terminal</span>
+              <div>
+                <div class="font-bold text-on-surface">Terminal Practice</div>
+                <div class="text-[10px] text-outline">Interactive Linux command sandbox</div>
+              </div>
+            </a>
+            <a href="payloads.html" class="flex items-center gap-2 px-3 py-2 text-xs text-primary font-bold bg-primary/10">
+              <span class="material-symbols-outlined text-sm text-danger-critical">code</span>
+              <div>
+                <div class="font-bold text-primary">Interactive Payloads</div>
+                <div class="text-[10px] text-outline">Live web exploit tester</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Reference Popover -->
+        <div class="relative group">
+          <button type="button" class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-raised transition-colors font-medium cursor-pointer" aria-haspopup="true">
+            <span class="material-symbols-outlined text-sm">library_books</span>
+            <span>Reference</span>
+            <span class="material-symbols-outlined text-xs">arrow_drop_down</span>
+          </button>
+          <div class="absolute left-0 mt-1 w-56 py-2 rounded-xl bg-surface-subtle border border-border-hairline shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all z-50">
+            <a href="theory.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-secondary">psychology</span>
+              <div>
+                <div class="font-bold text-on-surface">Theory &amp; Concepts</div>
+                <div class="text-[10px] text-outline">Theoretical cybersecurity foundations</div>
+              </div>
+            </a>
+            <a href="handbook/index.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-primary">menu_book</span>
+              <div>
+                <div class="font-bold text-on-surface">Command Handbook</div>
+                <div class="text-[10px] text-outline">15 modular security guides</div>
+              </div>
+            </a>
+            <a href="tools.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-warning">build</span>
+              <div>
+                <div class="font-bold text-on-surface">Security Tools</div>
+                <div class="text-[10px] text-outline">Tools encyclopedia &amp; Nmap builder</div>
+              </div>
+            </a>
+            <a href="methodology.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-danger-critical">security</span>
+              <div>
+                <div class="font-bold text-on-surface">Pentest Methodology</div>
+                <div class="text-[10px] text-outline">12-stage framework &amp; attack matrix</div>
+              </div>
+            </a>
+            <a href="glossary.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-secondary">auto_stories</span>
+              <div>
+                <div class="font-bold text-on-surface">Cybersecurity Glossary</div>
+                <div class="text-[10px] text-outline">60+ searchable terms &amp; concepts</div>
+              </div>
+            </a>
+            <a href="roadmap.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-accent">alt_route</span>
+              <div>
+                <div class="font-bold text-on-surface">Career Roadmap</div>
+                <div class="text-[10px] text-outline">11-discipline milestone map</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Portfolio Link -->
+        <a href="index.html" class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-raised transition-colors font-medium">
+          <span class="material-symbols-outlined text-sm">person</span>
+          <span>Portfolio</span>
         </a>
       </nav>
 
-      <!-- Action Buttons -->
+      <!-- Header Controls: Search, Theme Toggle, Mobile Toggle -->
       <div class="flex items-center gap-2 sm:gap-3">
-        <a href="terminal-lab.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-primary/40 bg-primary/10 font-mono text-xs text-primary hover:bg-primary hover:text-canvas-base transition-all font-bold cursor-pointer" title="Test payloads inside the Terminal Sandbox">
+        <a href="terminal-lab.html" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded border border-primary/40 bg-primary/10 font-mono text-xs text-primary hover:bg-primary hover:text-white transition-all font-bold cursor-pointer" title="Launch Interactive Terminal Lab">
           <span class="material-symbols-outlined text-sm">terminal</span>
-          <span class="hidden sm:inline">Launch Sandbox</span>
-          <span class="sm:hidden">Lab</span>
+          <span class="hidden sm:inline">Terminal Lab</span>
         </a>
-        <a href="#encoder-tool" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:text-secondary hover:border-secondary transition-colors" title="Jump to Interactive Payload Encoder">
-          <span class="material-symbols-outlined text-sm text-secondary">transform</span>
-          <span class="hidden sm:inline">Encoder</span>
-        </a>
-        <a href="index.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-secondary/40 bg-secondary/10 font-mono text-xs text-secondary hover:bg-secondary hover:text-canvas-base transition-all font-semibold" title="Return to Mihraj's Personal Cybersecurity Portfolio">
-          <span class="material-symbols-outlined text-sm">person</span>
-          <span class="hidden sm:inline">Mihraj Portfolio →</span>
-        </a>
-      </div>
+        
+        <!-- Search Trigger -->
+        <button data-trigger-cmd class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border-hairline bg-surface-raised text-xs text-on-surface hover:border-primary transition-colors cursor-pointer" title="Search Everything (Cmd+K)">
+          <span class="material-symbols-outlined text-sm text-primary">search</span>
+          <span class="hidden sm:inline text-[11px] text-outline">⌘K</span>
+        </button>
 
+        <!-- Theme Toggle: Normal View vs Hacker View -->
+        <div class="flex items-center border border-border-hairline rounded-lg p-0.5 bg-surface-raised text-xs font-mono">
+          <button type="button" id="theme-toggle-normal" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold bg-primary text-white" title="Switch to Normal View (Light mode)">
+            <span class="material-symbols-outlined text-xs">light_mode</span>
+            <span class="hidden sm:inline">Normal</span>
+          </button>
+          <button type="button" id="theme-toggle-hacker" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold text-outline hover:text-on-surface" title="Switch to Hacker View (Dark HUD)">
+            <span class="material-symbols-outlined text-xs">terminal</span>
+            <span class="hidden sm:inline">Hacker</span>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button type="button" id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" aria-label="Toggle Mobile Menu">
+          <span class="material-symbols-outlined text-base">menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Contextual Breadcrumb Sub-Header -->
+    <div class="border-t border-border-hairline bg-surface-raised/70 px-4 sm:px-6 py-2 text-xs">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <div class="flex items-center gap-1.5 text-on-surface-variant font-mono text-[11px]">
+          <a href="learning.html" class="hover:text-primary transition-colors flex items-center gap-1">
+            <span class="material-symbols-outlined text-xs">school</span>
+            <span>Academy</span>
+          </a>
+          <span class="text-outline">/</span>
+          <span>Practice</span>
+          <span class="text-outline">/</span>
+          <span class="text-primary font-bold">Interactive Payloads</span>
+        </div>
+        <div class="flex items-center gap-2 font-mono text-[11px]">
+          <span class="text-outline">Live Generator &middot; </span>
+          <a href="labs.html" class="text-primary hover:underline">13 Practical Labs &rarr;</a>
+        </div>
+      </div>
     </div>
   </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden lg:hidden">
+    <div class="fixed right-0 top-0 bottom-0 w-80 max-w-full bg-surface-subtle border-l border-border-hairline p-6 flex flex-col justify-between overflow-y-auto">
+      <div class="space-y-6">
+        <div class="flex items-center justify-between pb-4 border-b border-border-hairline">
+          <div class="flex items-center gap-2 font-bold text-sm text-on-surface">
+            <span class="w-6 h-6 rounded bg-primary/20 text-primary flex items-center justify-center font-mono text-xs">E</span>
+            <span>Academy Navigation</span>
+          </div>
+          <button id="mobile-drawer-close" class="p-1.5 rounded-lg text-on-surface-variant hover:text-on-surface">
+            <span class="material-symbols-outlined text-lg">close</span>
+          </button>
+        </div>
+
+        <div class="space-y-4 text-xs font-mono">
+          <div>
+            <div class="text-[10px] text-outline uppercase tracking-wider mb-2 font-bold">LEARN</div>
+            <div class="space-y-1 pl-2">
+              <a href="learning.html#start-here" class="block py-1 text-on-surface-variant hover:text-primary">Start Here</a>
+              <a href="learning.html#curriculum" class="block py-1 text-on-surface-variant hover:text-primary">Curriculum (40 Rooms)</a>
+              <a href="learning.html#progress" class="block py-1 text-on-surface-variant hover:text-primary">My Progress</a>
+            </div>
+          </div>
+          <div>
+            <div class="text-[10px] text-outline uppercase tracking-wider mb-2 font-bold">PRACTICE</div>
+            <div class="space-y-1 pl-2">
+              <a href="labs.html" class="block py-1 text-on-surface-variant hover:text-primary">Practical Labs (13)</a>
+              <a href="terminal-lab.html" class="block py-1 text-on-surface-variant hover:text-primary">Terminal Practice</a>
+              <a href="payloads.html" class="block py-1 text-primary font-bold">Interactive Payloads</a>
+            </div>
+          </div>
+          <div>
+            <div class="text-[10px] text-outline uppercase tracking-wider mb-2 font-bold">REFERENCE</div>
+            <div class="space-y-1 pl-2">
+              <a href="theory.html" class="block py-1 text-on-surface-variant hover:text-primary">Theory &amp; Concepts</a>
+              <a href="handbook/index.html" class="block py-1 text-on-surface-variant hover:text-primary">Command Handbook</a>
+              <a href="tools.html" class="block py-1 text-on-surface-variant hover:text-primary">Security Tools &amp; Nmap</a>
+              <a href="methodology.html" class="block py-1 text-on-surface-variant hover:text-primary">Pentest Methodology</a>
+              <a href="glossary.html" class="block py-1 text-on-surface-variant hover:text-primary">Cybersecurity Glossary</a>
+              <a href="roadmap.html" class="block py-1 text-on-surface-variant hover:text-primary">Career Roadmap</a>
+            </div>
+          </div>
+          <div>
+            <div class="text-[10px] text-outline uppercase tracking-wider mb-2 font-bold">PORTFOLIO</div>
+            <div class="space-y-1 pl-2">
+              <a href="index.html" class="block py-1 text-secondary font-bold">Mihraj Portfolio &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-6 border-t border-border-hairline text-center text-[10px] text-outline font-mono">
+        Endlessus Cybersecurity Academy &copy; 2026
+      </div>
+    </div>
+  </div>
 
   <!-- ========================================================================= -->
   <!-- Hero Section & Dynamic Configuration Bar                                  -->
@@ -1374,5 +1574,6 @@ socat file:`tty`,raw,echo=0 TCP-L:[PORT]
 
   <!-- Site-wide Interactive Cyber Dock, Reading Progress Bar & Palette -->
   <script src="portfolio-interactive.js"></script>
+  <script src="academy-nav.js"></script>
 </body>
 </html>

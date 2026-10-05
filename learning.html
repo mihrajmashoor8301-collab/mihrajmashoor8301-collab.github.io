@@ -28,6 +28,7 @@
   </script>
 
   <!-- Academy Stylesheet -->
+  <link rel="stylesheet" href="academy.css">
   <link rel="stylesheet" href="learning.css">
 </head>
 <body class="theme-normal">
@@ -100,7 +101,7 @@
               <span class="material-symbols-outlined" style="color: var(--lh-primary);">science</span>
               <div>
                 <strong>Practical Security Labs</strong>
-                <span>12 dedicated interactive workspaces</span>
+                <span>13 dedicated interactive workspaces</span>
               </div>
             </a>
             <a href="terminal-lab.html" class="lh-dropdown-item">
@@ -147,6 +148,20 @@
               <div>
                 <strong>Security Tools & Builder</strong>
                 <span>Tools directory & interactive Nmap builder</span>
+              </div>
+            </a>
+            <a href="methodology.html" class="lh-dropdown-item">
+              <span class="material-symbols-outlined" style="color: var(--lh-danger);">security</span>
+              <div>
+                <strong>Pentest Methodology</strong>
+                <span>12-stage framework & attack matrix</span>
+              </div>
+            </a>
+            <a href="glossary.html" class="lh-dropdown-item">
+              <span class="material-symbols-outlined" style="color: #6366f1;">auto_stories</span>
+              <div>
+                <strong>Cybersecurity Glossary</strong>
+                <span>60+ searchable terms & concepts</span>
               </div>
             </a>
             <a href="roadmap.html" class="lh-dropdown-item">
@@ -210,7 +225,7 @@
           </span>
           <a href="labs.html" class="lh-crumb-lab-link">
             <span class="material-symbols-outlined" style="font-size: 13px;">terminal</span>
-            <span>Practical Labs (12) &rarr;</span>
+            <span>Practical Labs (13) &rarr;</span>
           </a>
         </div>
       </div>
@@ -226,7 +241,7 @@
       </div>
       <div class="lh-mobile-drawer-section">
         <span class="lh-mobile-section-label">PRACTICE</span>
-        <a href="labs.html" class="lh-mobile-item">Practical Security Labs (12)</a>
+        <a href="labs.html" class="lh-mobile-item">Practical Security Labs (13)</a>
         <a href="terminal-lab.html" class="lh-mobile-item">Terminal Practice Sandbox</a>
         <a href="payloads.html" class="lh-mobile-item">Interactive Payloads</a>
       </div>
@@ -235,6 +250,8 @@
         <a href="theory.html" class="lh-mobile-item">Theory & Concepts System</a>
         <a href="handbook/index.html" class="lh-mobile-item">Command Handbook</a>
         <a href="tools.html" class="lh-mobile-item">Security Tools & Builder</a>
+        <a href="methodology.html" class="lh-mobile-item">Pentest Methodology</a>
+        <a href="glossary.html" class="lh-mobile-item">Cybersecurity Glossary</a>
         <a href="roadmap.html" class="lh-mobile-item">Cybersecurity Roadmap</a>
       </div>
       <div class="lh-mobile-drawer-section">
@@ -326,6 +343,9 @@
   <section class="lh-controls" id="path-navigator">
     <div class="lh-container">
       
+      <!-- Dynamic Continue Learning Banner -->
+      <div id="continue-learning-slot"></div>
+
       <!-- Stage Progression Navigator Header -->
       <div class="lh-pathway-header">
         <div class="lh-pathway-title">
@@ -401,7 +421,7 @@
           </div>
           <h2 class="lh-practice-title">Ready to apply what you learned?</h2>
           <p class="lh-practice-desc">
-            Complement foundational theory with 12 dedicated interactive practical labs. Practice real-world SQL injection, cross-site scripting (XSS), IDOR parameter tampering, Linux SUID root escalation, SMB enumeration, and JWT token exploitation with dedicated in-browser target workstations.
+            Complement foundational theory with 13 dedicated interactive practical labs. Practice real-world SQL injection, cross-site scripting (XSS), IDOR parameter tampering, Linux SUID root escalation, SMB enumeration, and JWT token exploitation with dedicated in-browser target workstations.
           </p>
           <div class="lh-practice-categories">
             <span class="lh-practice-chip">🌐 Web Application Security</span>
@@ -413,7 +433,7 @@
         <div class="lh-practice-cta">
           <a href="labs.html" class="lh-btn-primary-practice">
             <span class="material-symbols-outlined">terminal</span>
-            <span>Explore Practical Labs (12) →</span>
+            <span>Explore Practical Labs (13) →</span>
           </a>
           <a href="terminal-lab.html" class="lh-btn-secondary-practice">
             <span class="material-symbols-outlined">computer</span>
@@ -432,6 +452,13 @@
       
       <!-- Player Header -->
       <div class="lh-player-header">
+        <div class="lh-player-nav-controls">
+          <button class="lh-room-nav-btn" id="modal-prev-room-btn" title="Previous Room">
+            <span class="material-symbols-outlined" style="font-size: 16px;">chevron_left</span>
+            <span class="lh-room-nav-text">Prev</span>
+          </button>
+        </div>
+
         <div class="lh-player-title-wrap">
           <span class="lh-room-difficulty" id="modal-room-badge">🟢 Beginner</span>
           <h2 id="modal-room-title">Room Title</h2>
@@ -456,9 +483,15 @@
           </select>
         </div>
 
-        <button class="lh-player-close" id="modal-close-btn" title="Close Room (Esc)">
-          <span class="material-symbols-outlined">close</span>
-        </button>
+        <div class="lh-player-nav-controls">
+          <button class="lh-room-nav-btn" id="modal-next-room-btn" title="Next Room">
+            <span class="lh-room-nav-text">Next</span>
+            <span class="material-symbols-outlined" style="font-size: 16px;">chevron_right</span>
+          </button>
+          <button class="lh-player-close" id="modal-close-btn" title="Close Room (Esc)">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
       </div>
 
       <!-- Player Body -->
@@ -520,6 +553,7 @@
 
   <!-- Curriculum Database & Engine -->
   <script src="learning-data.js"></script>
+  <script src="academy-nav.js"></script>
   <script src="learning.js"></script>
 </body>
 </html>

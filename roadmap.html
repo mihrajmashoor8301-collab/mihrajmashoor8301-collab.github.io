@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html class="scroll-smooth dark" lang="en">
+<html class="scroll-smooth" lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Interactive Cybersecurity Roadmap &amp; Progress Tracker | Mihraj Mashhoor K</title>
-  <meta content="Track your cybersecurity learning journey across 11 core disciplines with real-time browser localStorage progress tracking: Networking, Linux, Web, Pentesting, PrivEsc, AD, Cloud, and SOC Defense." name="description"/>
-  <link rel="icon" type="image/png" href="logo2.png"/>
+  <title>Cybersecurity Career Roadmap &amp; Guided Learning Path · Endlessus Academy</title>
+  <meta content="A guided, vertical learning path across 11 stages and 40 core rooms from Computer Fundamentals to Junior Penetration Tester. Synced directly with your room completions." name="description"/>
+  <link rel="icon" type="image/png" href="handbook/assets/favicon.png"/>
   <link rel="canonical" href="https://endlessus.in/roadmap.html"/>
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Interactive Cybersecurity Roadmap | Mihraj Mashhoor K"/>
-  <meta property="og:description" content="11-category interactive cybersecurity roadmap with localStorage progress tracking across Not Started, Learning, Practicing, and Completed."/>
+  <meta property="og:title" content="Cybersecurity Career Roadmap · Endlessus Academy"/>
+  <meta property="og:description" content="11-stage guided cybersecurity learning path from Computer Fundamentals to Junior Penetration Tester with real-time room progress tracking."/>
   <meta property="og:image" content="https://endlessus.in/cover.png"/>
   <meta property="og:url" content="https://endlessus.in/roadmap.html"/>
   <meta property="og:type" content="website"/>
@@ -19,28 +19,44 @@
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+  <!-- Immediate Theme Initializer -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('endlessus_learning_theme') || 'normal';
+      if (savedTheme === 'hacker') {
+        document.documentElement.classList.add('dark', 'theme-hacker');
+        document.documentElement.classList.remove('theme-normal');
+      } else {
+        document.documentElement.classList.remove('dark', 'theme-hacker');
+        document.documentElement.classList.add('theme-normal');
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="academy.css"/>
   <script src="tailwind.cdn.js"></script>
-<script>if(typeof tailwind==="undefined"){document.write('<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"><\/script>')}</script>
+  <script>if(typeof tailwind==="undefined"){document.write('<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"><\/script>')}</script>
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
           colors: {
-            'canvas-base': '#090D12',
-            'surface-subtle': '#0E131B',
-            'surface-raised': '#151D28',
-            'surface-container': '#122131',
-            'border-hairline': '#1F2937',
-            'border-medium': '#2D3748',
-            'primary': '#4EDEA3',
-            'primary-container': '#10b981',
-            'secondary': '#4CD7F6',
-            'on-surface': '#F3F4F6',
-            'on-surface-variant': '#8692A6',
-            'outline': '#64748B',
-            'warning': '#F59E0B',
-            'danger-critical': '#F43F5E',
+            'canvas-base': 'var(--color-canvas-base)',
+            'surface-subtle': 'var(--color-surface-subtle)',
+            'surface-raised': 'var(--color-surface-raised)',
+            'surface-container': 'var(--color-surface-container)',
+            'border-hairline': 'var(--color-border-hairline)',
+            'border-medium': 'var(--color-border-medium)',
+            'primary': 'var(--color-primary)',
+            'primary-container': 'var(--color-primary-container)',
+            'secondary': 'var(--color-secondary)',
+            'on-surface': 'var(--color-on-surface)',
+            'on-surface-variant': 'var(--color-on-surface-variant)',
+            'outline': 'var(--color-outline)',
+            'warning': 'var(--color-warning)',
+            'danger-critical': 'var(--color-danger-critical)',
           },
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
@@ -51,664 +67,398 @@
     }
   </script>
   <style>
-    body { background-color: #090D12; color: #F3F4F6; font-family: 'Inter', sans-serif; }
-    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; vertical-align: middle; line-height: 1; }
-    .telemetry-grid {
-      background-size: 32px 32px;
-      background-image:
-        linear-gradient(to right, rgba(31, 41, 55, 0.25) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(31, 41, 55, 0.25) 1px, transparent 1px);
+    body {
+      background-color: var(--color-canvas-base);
+      color: var(--color-on-surface);
+      font-family: 'Inter', sans-serif;
+      transition: background-color 0.2s ease, color 0.2s ease;
     }
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #090D12; }
-    ::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #4EDEA3; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; vertical-align: middle; line-height: 1; }
+    
+    /* Guided Path Timeline Spine */
+    .roadmap-spine-container {
+      position: relative;
+    }
+    .roadmap-spine-container::before {
+      content: '';
+      position: absolute;
+      top: 1.5rem;
+      bottom: 2rem;
+      left: 1.5rem;
+      width: 2px;
+      background: var(--color-border-hairline);
+      z-index: 0;
+    }
+    @media (min-width: 640px) {
+      .roadmap-spine-container::before {
+        left: 2rem;
+      }
+    }
+    .stage-node-icon {
+      position: relative;
+      z-index: 10;
+    }
   </style>
 </head>
-<body class="bg-canvas-base text-on-surface antialiased telemetry-grid min-h-screen flex flex-col font-sans selection:bg-primary selection:text-canvas-base">
+<body class="bg-canvas-base text-on-surface antialiased telemetry-grid min-h-screen flex flex-col font-sans selection:bg-primary selection:text-white">
 
-  <!-- Header -->
+  <!-- =========================================================================
+       ACADEMY UNIFIED HEADER
+       ========================================================================= -->
   <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      
+      <!-- Brand -->
       <div class="flex items-center gap-3">
-        <a href="roadmap.html" class="flex items-center gap-2 group">
-          <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
-          <span class="font-mono text-sm font-bold tracking-wider text-on-surface group-hover:text-primary transition-colors">ENDLESSUS</span>
-          <span class="text-outline text-xs font-mono">/</span>
-          <span class="font-mono text-xs text-primary font-bold">ROADMAP</span>
+        <a href="learning.html" class="flex items-center gap-2.5 group">
+          <span class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/40 text-primary flex items-center justify-center font-mono font-bold text-sm group-hover:scale-105 transition-transform">E</span>
+          <div class="flex flex-col">
+            <span class="font-bold text-sm tracking-tight text-on-surface group-hover:text-primary transition-colors">Endlessus Academy</span>
+            <span class="font-mono text-[10px] text-outline tracking-wider uppercase">Career Roadmap</span>
+          </div>
         </a>
-        <span class="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded border border-primary/30 bg-canvas-base font-mono text-[10px] text-primary">
-          <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-          <span>5-STAGE PROGRESSION · 11 DOMAINS</span>
-        </span>
       </div>
 
-      <nav class="hidden xl:flex items-center space-x-3.5 font-mono text-xs tracking-wider">
-        <a href="theory.html" class="text-secondary hover:text-primary transition-colors font-bold flex items-center gap-1">
-          <span class="material-symbols-outlined text-sm">psychology</span>
-          <span>Theory</span>
+      <!-- Unified Hierarchy Navigation: Learn · Practice · Reference · Portfolio -->
+      <nav class="hidden lg:flex items-center space-x-1 text-xs">
+        
+        <!-- Learn Popover -->
+        <div class="relative group">
+          <button type="button" class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-raised transition-colors font-medium cursor-pointer" aria-haspopup="true">
+            <span class="material-symbols-outlined text-sm">school</span>
+            <span>Learn</span>
+            <span class="material-symbols-outlined text-xs">arrow_drop_down</span>
+          </button>
+          <div class="absolute left-0 mt-1 w-52 py-2 rounded-xl bg-surface-subtle border border-border-hairline shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all z-50">
+            <a href="learning.html#start-here" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-primary">play_arrow</span>
+              <div>
+                <div class="font-bold text-on-surface">Start Here</div>
+                <div class="text-[10px] text-outline">Zero prerequisites guide</div>
+              </div>
+            </a>
+            <a href="learning.html#curriculum" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-secondary">menu_book</span>
+              <div>
+                <div class="font-bold text-on-surface">Full Curriculum</div>
+                <div class="text-[10px] text-outline">40 guided core rooms</div>
+              </div>
+            </a>
+            <a href="learning.html#progress" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-warning">verified</span>
+              <div>
+                <div class="font-bold text-on-surface">My Progress</div>
+                <div class="text-[10px] text-outline">Track completion &amp; badges</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Practice Popover -->
+        <div class="relative group">
+          <button type="button" class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-raised transition-colors font-medium cursor-pointer" aria-haspopup="true">
+            <span class="material-symbols-outlined text-sm">terminal</span>
+            <span>Practice</span>
+            <span class="material-symbols-outlined text-xs">arrow_drop_down</span>
+          </button>
+          <div class="absolute left-0 mt-1 w-56 py-2 rounded-xl bg-surface-subtle border border-border-hairline shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all z-50">
+            <a href="labs.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-primary">science</span>
+              <div>
+                <div class="font-bold text-on-surface">Practical Labs</div>
+                <div class="text-[10px] text-outline">13 hands-on security labs</div>
+              </div>
+            </a>
+            <a href="terminal-lab.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-secondary">terminal</span>
+              <div>
+                <div class="font-bold text-on-surface">Terminal Sandbox</div>
+                <div class="text-[10px] text-outline">Interactive web shell playground</div>
+              </div>
+            </a>
+            <a href="payloads.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-warning">data_object</span>
+              <div>
+                <div class="font-bold text-on-surface">Payload Generator</div>
+                <div class="text-[10px] text-outline">XSS, SQLi, and RevShells</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Reference Popover -->
+        <div class="relative group">
+          <button type="button" class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-raised transition-colors font-medium cursor-pointer" aria-haspopup="true">
+            <span class="material-symbols-outlined text-sm">library_books</span>
+            <span>Reference</span>
+            <span class="material-symbols-outlined text-xs">arrow_drop_down</span>
+          </button>
+          <div class="absolute left-0 mt-1 w-64 py-2 rounded-xl bg-surface-subtle border border-border-hairline shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all z-50">
+            <a href="theory.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-primary">menu_book</span>
+              <div>
+                <div class="font-bold text-on-surface">Theory &amp; Concepts</div>
+                <div class="text-[10px] text-outline">Foundational cybersecurity theory</div>
+              </div>
+            </a>
+            <a href="handbook/index.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-secondary">terminal</span>
+              <div>
+                <div class="font-bold text-on-surface">Command Handbook</div>
+                <div class="text-[10px] text-outline">POSIX, Linux, and penetration testing manual</div>
+              </div>
+            </a>
+            <a href="tools.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-warning">build</span>
+              <div>
+                <div class="font-bold text-on-surface">Security Tools</div>
+                <div class="text-[10px] text-outline">Tools encyclopedia &amp; Nmap builder</div>
+              </div>
+            </a>
+            <a href="methodology.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-danger-critical">security</span>
+              <div>
+                <div class="font-bold text-on-surface">Pentest Methodology</div>
+                <div class="text-[10px] text-outline">12-stage framework &amp; attack matrix</div>
+              </div>
+            </a>
+            <a href="glossary.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-secondary">auto_stories</span>
+              <div>
+                <div class="font-bold text-on-surface">Cybersecurity Glossary</div>
+                <div class="text-[10px] text-outline">60+ searchable terms &amp; concepts</div>
+              </div>
+            </a>
+            <a href="roadmap.html" class="flex items-center gap-2 px-3 py-2 text-xs text-primary font-bold bg-primary/10">
+              <span class="material-symbols-outlined text-sm text-primary">alt_route</span>
+              <div>
+                <div class="font-bold text-primary">Career Roadmap</div>
+                <div class="text-[10px] text-outline">11-stage guided learning path</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Portfolio Link -->
+        <a href="index.html" class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-raised transition-colors font-medium">
+          <span class="material-symbols-outlined text-sm">person</span>
+          <span>Portfolio</span>
         </a>
-        <a href="learning.html" class="text-on-surface-variant hover:text-primary transition-colors">Learn</a>
-        <a href="labs.html" class="text-on-surface-variant hover:text-primary transition-colors">Labs (12)</a>
-        <a href="handbook/index.html" class="text-on-surface-variant hover:text-primary transition-colors">Handbook</a>
-        <a href="roadmap.html" class="text-primary font-bold border-b border-primary pb-0.5">Roadmap</a>
-        <a href="tools.html" class="text-on-surface-variant hover:text-primary transition-colors">Tools</a>
-        <a href="terminal-lab.html" class="text-secondary hover:text-primary transition-colors font-bold">Terminal</a>
-        <a href="payloads.html" class="text-danger-critical hover:text-primary transition-colors font-bold">Payloads</a>
       </nav>
 
-      <div class="flex items-center gap-2">
-        <button data-trigger-cmd class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:text-primary hover:border-primary transition-colors cursor-pointer" title="Search Everything (Cmd+K)">
+      <!-- Header Controls: Search, Theme Toggle, Mobile Toggle -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        
+        <!-- Search Trigger -->
+        <button data-trigger-cmd class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border-hairline bg-surface-raised text-xs text-on-surface hover:border-primary transition-colors cursor-pointer" title="Search Everything (Cmd+K)">
           <span class="material-symbols-outlined text-sm text-primary">search</span>
           <span class="hidden sm:inline text-[11px] text-outline">⌘K</span>
         </button>
-        <button data-trigger-term class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded border border-primary/40 bg-canvas-base font-mono text-xs text-primary hover:bg-primary/10 transition-colors cursor-pointer" title="Terminal (~)">
-          <span class="material-symbols-outlined text-sm text-primary">terminal</span>
-          <span class="hidden sm:inline text-[11px] font-bold">CLI</span>
+
+        <!-- Theme Toggle: Normal View vs Hacker View -->
+        <div class="flex items-center border border-border-hairline rounded-lg p-0.5 bg-surface-raised text-xs font-mono">
+          <button type="button" id="theme-toggle-normal" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold bg-primary text-white" title="Switch to Normal View (Light mode)">
+            <span class="material-symbols-outlined text-xs">light_mode</span>
+            <span class="hidden sm:inline">Normal</span>
+          </button>
+          <button type="button" id="theme-toggle-hacker" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold text-outline hover:text-on-surface" title="Switch to Hacker View (Dark HUD)">
+            <span class="material-symbols-outlined text-xs">terminal</span>
+            <span class="hidden sm:inline">Hacker</span>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button type="button" id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" aria-label="Toggle Mobile Menu">
+          <span class="material-symbols-outlined text-base">menu</span>
         </button>
-        <a href="index.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-raised border border-primary/40 text-primary hover:bg-primary hover:text-canvas-base font-mono text-xs font-bold transition-all shadow-[0_0_12px_rgba(78,222,163,0.15)]" title="Return to Mihraj's Personal Cybersecurity Portfolio">
-          <span class="material-symbols-outlined text-sm">person</span>
-          <span>Mihraj Portfolio &rarr;</span>
-        </a>
+      </div>
+    </div>
+
+    <!-- Contextual Breadcrumb Sub-Header -->
+    <div class="border-t border-border-hairline bg-surface-raised/70 px-4 sm:px-6 py-2 text-xs">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <div class="flex items-center gap-1.5 text-on-surface-variant font-mono text-[11px]">
+          <a href="learning.html" class="hover:text-primary transition-colors flex items-center gap-1">
+            <span class="material-symbols-outlined text-xs">school</span>
+            <span>Academy</span>
+          </a>
+          <span class="text-outline">/</span>
+          <a href="learning.html#curriculum" class="hover:text-primary transition-colors">Curriculum</a>
+          <span class="text-outline">/</span>
+          <span class="text-primary font-bold">Guided Learning Path</span>
+        </div>
+        <div class="hidden sm:flex items-center gap-3 text-[11px] font-mono">
+          <span class="text-outline">11 Stages · 40 Core Rooms · 13 Labs</span>
+          <span class="text-outline">·</span>
+          <a href="learning.html#curriculum" class="text-primary hover:underline">Learning Hub &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer for Navigation -->
+    <div id="mobile-drawer" class="academy-mobile-drawer">
+      <div>
+        <div class="academy-mobile-group-title">LEARN</div>
+        <a href="learning.html#start-here" class="academy-mobile-link">Start Here (Zero Prerequisites)</a>
+        <a href="learning.html#curriculum" class="academy-mobile-link">Full Curriculum (40 Rooms)</a>
+        <a href="learning.html#progress" class="academy-mobile-link">My Progress &amp; Milestones</a>
+      </div>
+      <div>
+        <div class="academy-mobile-group-title">PRACTICE</div>
+        <a href="labs.html" class="academy-mobile-link">Practical Labs (13)</a>
+        <a href="terminal-lab.html" class="academy-mobile-link">Terminal Practice Sandbox</a>
+        <a href="payloads.html" class="academy-mobile-link">Interactive Payloads</a>
+      </div>
+      <div>
+        <div class="academy-mobile-group-title">REFERENCE</div>
+        <a href="theory.html" class="academy-mobile-link">Theory &amp; Concepts</a>
+        <a href="handbook/index.html" class="academy-mobile-link">Command Handbook</a>
+        <a href="tools.html" class="academy-mobile-link">Security Tools</a>
+        <a href="methodology.html" class="academy-mobile-link">Pentest Methodology</a>
+        <a href="glossary.html" class="academy-mobile-link">Cybersecurity Glossary</a>
+        <a href="roadmap.html" class="academy-mobile-link active">Career Roadmap</a>
+      </div>
+      <div>
+        <div class="academy-mobile-group-title">PORTFOLIO</div>
+        <a href="index.html" class="academy-mobile-link">Mihraj Mashhoor K Portfolio</a>
       </div>
     </div>
   </header>
 
-  <!-- Main Container -->
-  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 py-10 w-full space-y-10">
+  <!-- =========================================================================
+       MAIN CONTENT: VERTICAL GUIDED LEARNING PATHWAY
+       ========================================================================= -->
+  <main class="flex-1 max-w-5xl mx-auto px-4 sm:px-6 py-10 w-full space-y-10">
 
     <!-- Header / Banner -->
     <div class="space-y-4">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-surface-subtle font-mono text-xs text-primary">
-        <span class="material-symbols-outlined text-sm">timeline</span>
-        <span>SELF-PACED SKILL PROGRESSION &amp; AUDIT PATHWAY</span>
+        <span class="material-symbols-outlined text-sm">alt_route</span>
+        <span>VERTICAL GUIDED LEARNING PATHWAY · 11 STAGES · 40 ROOMS · 13 LABS</span>
       </div>
       <h1 class="text-3xl sm:text-5xl font-black text-on-surface tracking-tight font-mono">
-        Cybersecurity <span class="text-primary">Roadmap</span>
+        Cybersecurity <span class="text-primary">Learning Path</span>
       </h1>
       <p class="text-sm sm:text-base text-on-surface-variant max-w-3xl leading-relaxed">
-        An interactive syllabus structured across 11 core cybersecurity disciplines. Mark your state across each competency (<strong class="text-outline">Not Started</strong>, <strong class="text-secondary">Learning</strong>, <strong class="text-warning">Practicing</strong>, <strong class="text-primary">Completed</strong>). Your progress is automatically stored locally in your browser without requiring an account.
+        A progressive, zero-prerequisites syllabus from <strong class="text-on-surface">Computer &amp; Linux Fundamentals</strong> to <strong class="text-primary">Junior Penetration Tester</strong>. Every node represents an authoritative curriculum stage. Your progress is synced directly with your room completions across Endlessus Academy.
       </p>
+    </div>
 
-      <!-- Overall Progress Telemetry Bar -->
-      <div class="p-6 rounded-2xl border border-primary/30 bg-surface-subtle shadow-xl space-y-4">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-mono text-xs">
-          <div class="flex items-center gap-3">
-            <span class="text-outline uppercase font-bold">OVERALL ROADMAP COMPLETION:</span>
-            <span id="overall-percentage" class="text-primary font-bold text-base">0%</span>
-          </div>
-          <div class="flex items-center gap-4 text-[11px]">
-            <span class="flex items-center gap-1 text-primary"><span class="w-2 h-2 rounded-full bg-primary"></span> <span id="count-completed">0</span> Completed</span>
-            <span class="flex items-center gap-1 text-warning"><span class="w-2 h-2 rounded-full bg-warning"></span> <span id="count-practicing">0</span> Practicing</span>
-            <span class="flex items-center gap-1 text-secondary"><span class="w-2 h-2 rounded-full bg-secondary"></span> <span id="count-learning">0</span> Learning</span>
-            <span class="flex items-center gap-1 text-outline"><span class="w-2 h-2 rounded-full bg-border-hairline"></span> <span id="count-notstarted">0</span> Unstarted</span>
-          </div>
+    <!-- =========================================================================
+         CONTINUE LEARNING HERO CARD (DYNAMIC)
+         ========================================================================= -->
+    <div id="continue-learning-card" class="p-6 rounded-2xl border border-primary/40 bg-surface-subtle shadow-xl space-y-4 transition-all">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2 font-mono text-xs text-primary uppercase font-bold tracking-wider">
+          <span class="material-symbols-outlined text-base animate-pulse">play_circle</span>
+          <span>CURRENT OBJECTIVE</span>
         </div>
-
-        <div class="w-full h-3 rounded-full bg-canvas-base border border-border-hairline overflow-hidden flex">
-          <div id="bar-completed" class="bg-primary h-full transition-all duration-300" style="width: 0%"></div>
-          <div id="bar-practicing" class="bg-warning h-full transition-all duration-300" style="width: 0%"></div>
-          <div id="bar-learning" class="bg-secondary h-full transition-all duration-300" style="width: 0%"></div>
-        </div>
-
-        <div class="flex flex-wrap items-center justify-between gap-3 pt-2 text-[11px] font-mono text-outline">
-          <span>Synced locally with browser localStorage.</span>
-          <div class="flex gap-2">
-            <button id="roadmap-reset-btn" class="px-2.5 py-1 rounded bg-canvas-base border border-danger-critical/30 text-danger-critical hover:bg-danger-critical/10 transition-colors">Reset Progress</button>
-            <button id="roadmap-export-btn" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:text-on-surface transition-colors">Export JSON</button>
-          </div>
-        </div>
+        <span id="continue-stage-badge" class="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-primary/10 text-primary border border-primary/30">
+          Stage 00
+        </span>
       </div>
 
-      <!-- Gamification HUD Status Bar on Roadmap -->
-      <div class="p-4 sm:p-5 rounded-2xl bg-surface-subtle border border-primary/40 shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-canvas-base border border-primary/50 flex items-center justify-center text-primary shadow-[0_0_12px_rgba(78,222,163,0.25)] shrink-0">
-            <span class="material-symbols-outlined text-xl">school</span>
-          </div>
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="font-mono text-xs text-primary font-bold tracking-wider uppercase cyberops-rank-title">Novice Operator</span>
-              <span class="px-2 py-0.5 rounded-full bg-primary/10 border border-primary/30 text-primary font-mono text-[10px] font-bold cyberops-level-val">LVL 1</span>
-            </div>
-            <div class="font-mono text-[11px] text-outline mt-0.5">Complete competencies to earn CyberOps XP and promote your operator tier</div>
-          </div>
-        </div>
-
-        <div class="flex-1 max-w-sm space-y-1 font-mono">
-          <div class="flex justify-between items-center text-xs">
-            <span class="text-outline text-[11px]">XP Progress:</span>
-            <span class="text-primary font-bold cyberops-xp-val">0 XP</span>
-          </div>
-          <div class="w-full h-2 bg-canvas-base rounded-full overflow-hidden border border-border-hairline">
-            <div class="h-full bg-gradient-to-r from-primary to-secondary transition-all duration-500 cyberops-progress-bar" style="width: 0%;"></div>
-          </div>
-        </div>
-
-        <div class="flex items-center gap-3 font-mono text-xs">
-          <div class="px-3.5 py-1.5 rounded-xl bg-canvas-base border border-border-hairline text-center">
-            <span class="text-warning font-bold text-sm cyberops-badges-count">0 / 9</span>
-            <span class="text-[9px] text-outline block uppercase">Badges</span>
-          </div>
-          <button data-trigger-term class="px-3.5 py-2 rounded-xl bg-primary/10 hover:bg-primary border border-primary/40 text-primary hover:text-canvas-base font-bold text-xs transition-all flex items-center gap-1 cursor-pointer">
-            <span class="material-symbols-outlined text-sm">terminal</span>
-            <span>CLI</span>
-          </button>
-        </div>
+      <div class="space-y-1.5">
+        <h2 id="continue-room-title" class="text-xl sm:text-2xl font-bold text-on-surface tracking-tight">
+          Loading your next room...
+        </h2>
+        <p id="continue-room-desc" class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+          Retrieving your learning progress from browser storage...
+        </p>
       </div>
 
-      <!-- Visual Progression Flowchart Navigation -->
-      <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-2">
-        <div class="flex items-center justify-between font-mono text-xs text-outline">
-          <span class="text-primary font-bold flex items-center gap-1">
-            <span class="material-symbols-outlined text-sm">route</span>
-            <span>LEARNING PROGRESSION FLOW (STEP 1 &rarr; STEP 11)</span>
+      <div class="flex flex-wrap items-center justify-between gap-4 pt-2 border-t border-border-hairline">
+        <div class="flex items-center gap-4 text-xs font-mono text-outline">
+          <span id="continue-room-time" class="flex items-center gap-1">
+            <span class="material-symbols-outlined text-xs">schedule</span>
+            <span>15 min</span>
           </span>
-          <span class="text-[10px] hidden sm:inline">CLICK TRACK TO JUMP</span>
+          <span id="continue-room-difficulty" class="flex items-center gap-1">
+            <span class="material-symbols-outlined text-xs">signal_cellular_alt</span>
+            <span>Beginner</span>
+          </span>
         </div>
-        <div class="flex flex-wrap items-center gap-1.5 font-mono text-[11px]">
-          <a href="#domain-1" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-primary text-on-surface-variant hover:text-primary transition-all">01. Net</a>
-          <span class="text-outline">&rarr;</span>
-          <a href="#domain-2" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-primary text-on-surface-variant hover:text-primary transition-all">02. Linux</a>
-          <span class="text-outline">&rarr;</span>
-          <a href="#domain-3" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-primary text-on-surface-variant hover:text-primary transition-all">03. Code</a>
-          <span class="text-outline">&rarr;</span>
-          <a href="#domain-4" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-secondary text-on-surface-variant hover:text-secondary transition-all">04. Web</a>
-          <span class="text-outline">&rarr;</span>
-          <a href="#domain-5" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-secondary text-on-surface-variant hover:text-secondary transition-all">05. Recon</a>
-          <span class="text-outline">&rarr;</span>
-          <a href="#domain-6" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-secondary text-on-surface-variant hover:text-secondary transition-all">06. Enum</a>
-          <span class="text-outline">&rarr;</span>
-          <a href="#domain-7" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-danger-critical text-on-surface-variant hover:text-danger-critical transition-all">07. Pentest</a>
-          <span class="text-outline">&rarr;</span>
-          <a href="#domain-8" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-danger-critical text-on-surface-variant hover:text-danger-critical transition-all">08. PrivEsc</a>
-          <span class="text-outline">&rarr;</span>
-          <a href="#domain-9" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-warning text-on-surface-variant hover:text-warning transition-all">09. AD</a>
-          <span class="text-outline">&rarr;</span>
-          <a href="#domain-10" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-primary text-on-surface-variant hover:text-primary transition-all">10. Cloud</a>
-          <span class="text-outline">&rarr;</span>
-          <a href="#domain-11" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:border-primary text-on-surface-variant hover:text-primary transition-all">11. Defense</a>
+        <div class="flex items-center gap-3">
+          <a id="continue-room-link" href="learning.html#start-here" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white font-semibold text-xs hover:opacity-90 shadow-md hover:shadow-primary/20 transition-all">
+            <span>Continue Learning</span>
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </a>
         </div>
       </div>
     </div>
 
-    <!-- 11 Domain Roadmap Sections -->
-    <div class="space-y-8" id="roadmap-domains">
-
-      <!-- DOMAIN 1: NETWORKING -->
-      <section class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Networking" id="domain-1">
-        <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
-          <div class="flex items-center gap-3">
-            <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">01</span>
-            <h2 class="font-mono text-base font-bold text-on-surface">Networking Fundamentals</h2>
-          </div>
-          <span class="cat-stat font-mono text-xs text-primary font-bold">0 / 4 Complete</span>
-        </header>
-
-        <div class="space-y-3 font-mono text-xs">
-          <!-- Item 1 -->
-          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="net-osi">
-            <div class="space-y-1">
-              <div class="font-bold text-on-surface">OSI 7-Layer Model &amp; TCP/IP Stack</div>
-              <p class="text-[11px] text-on-surface-variant font-sans">Data encapsulation, Layer 2 MAC/ARP, Layer 3 IPv4/IPv6, Layer 4 TCP/UDP state tracking.</p>
-            </div>
-            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
-              <option value="not_started">Not Started</option>
-              <option value="learning">Learning</option>
-              <option value="practicing">Practicing</option>
-              <option value="completed">Completed</option>
-            </select>
-          </div>
-
-          <!-- Item 2 -->
-          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="net-handshake">
-            <div class="space-y-1">
-              <div class="font-bold text-on-surface">TCP 3-Way Handshake &amp; Flags</div>
-              <p class="text-[11px] text-on-surface-variant font-sans">SYN, SYN-ACK, ACK exchanges, sequence/ack numbering, and port state responses.</p>
-            </div>
-            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
-              <option value="not_started">Not Started</option>
-              <option value="learning">Learning</option>
-              <option value="practicing">Practicing</option>
-              <option value="completed">Completed</option>
-            </select>
-          </div>
-
-          <!-- Item 3 -->
-          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="net-cidr">
-            <div class="space-y-1">
-              <div class="font-bold text-on-surface">IPv4 Subnetting &amp; CIDR Math</div>
-              <p class="text-[11px] text-on-surface-variant font-sans">Calculating network IDs, broadcast addresses, subnet masks, and usable host ranges.</p>
-            </div>
-            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
-              <option value="not_started">Not Started</option>
-              <option value="learning">Learning</option>
-              <option value="practicing">Practicing</option>
-              <option value="completed">Completed</option>
-            </select>
-          </div>
-
-          <!-- Item 4 -->
-          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="net-wireshark">
-            <div class="space-y-1">
-              <div class="font-bold text-on-surface">Packet Analysis with Wireshark &amp; tcpdump</div>
-              <p class="text-[11px] text-on-surface-variant font-sans">Capturing network streams, applying display filters, and reassembling TCP payloads.</p>
-            </div>
-            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
-              <option value="not_started">Not Started</option>
-              <option value="learning">Learning</option>
-              <option value="practicing">Practicing</option>
-              <option value="completed">Completed</option>
-            </select>
-          </div>
+    <!-- =========================================================================
+         GLOBAL PROGRESS TELEMETRY BAR
+         ========================================================================= -->
+    <div class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle shadow-sm space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-mono text-xs">
+        <div class="flex items-center gap-3">
+          <span class="text-outline uppercase font-bold">CURRICULUM COMPLETION:</span>
+          <span id="overall-percentage" class="text-primary font-bold text-base">0%</span>
         </div>
-      </section>
-
-      <!-- DOMAIN 2: LINUX -->
-      <section class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Linux" id="domain-2">
-        <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
-          <div class="flex items-center gap-3">
-            <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">02</span>
-            <h2 class="font-mono text-base font-bold text-on-surface">Linux Administration &amp; Hardening</h2>
-          </div>
-          <span class="cat-stat font-mono text-xs text-primary font-bold">0 / 4 Complete</span>
-        </header>
-
-        <div class="space-y-3 font-mono text-xs">
-          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="lin-cli">
-            <div class="space-y-1">
-              <div class="font-bold text-on-surface">Bash Shell Fluency &amp; Text Processing</div>
-              <p class="text-[11px] text-on-surface-variant font-sans">grep, awk, sed, cut, find, file descriptors, piping, and stdout/stderr redirection.</p>
-            </div>
-            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
-              <option value="not_started">Not Started</option>
-              <option value="learning">Learning</option>
-              <option value="practicing">Practicing</option>
-              <option value="completed">Completed</option>
-            </select>
-          </div>
-
-          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="lin-perm">
-            <div class="space-y-1">
-              <div class="font-bold text-on-surface">POSIX File Permissions &amp; SUID/SGID Bits</div>
-              <p class="text-[11px] text-on-surface-variant font-sans">Octal masks (755, 600, 4755), sticky bit on /tmp, and special permission risks.</p>
-            </div>
-            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
-              <option value="not_started">Not Started</option>
-              <option value="learning">Learning</option>
-              <option value="practicing">Practicing</option>
-              <option value="completed">Completed</option>
-            </select>
-          </div>
-
-          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="lin-sys">
-            <div class="space-y-1">
-              <div class="font-bold text-on-surface">Systemd, Processes &amp; Network Ports</div>
-              <p class="text-[11px] text-on-surface-variant font-sans">systemctl, journalctl, ps aux, ss -tulnp, cron jobs, and background service daemons.</p>
-            </div>
-            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
-              <option value="not_started">Not Started</option>
-              <option value="learning">Learning</option>
-              <option value="practicing">Practicing</option>
-              <option value="completed">Completed</option>
-            </select>
-          </div>
-
-          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="lin-audit">
-            <div class="space-y-1">
-              <div class="font-bold text-on-surface">Auditd, Syslog &amp; Auth Logs</div>
-              <p class="text-[11px] text-on-surface-variant font-sans">Inspecting /var/log/auth.log, auditctl rules for shadow files, and login forensics.</p>
-            </div>
-            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
-              <option value="not_started">Not Started</option>
-              <option value="learning">Learning</option>
-              <option value="practicing">Practicing</option>
-              <option value="completed">Completed</option>
-            </select>
-          </div>
+        <div class="flex items-center gap-4 text-[11px]">
+          <span class="flex items-center gap-1 text-primary">
+            <span class="w-2 h-2 rounded-full bg-primary"></span>
+            <span id="count-rooms-completed">0</span> / 40 Rooms
+          </span>
+          <span class="flex items-center gap-1 text-secondary">
+            <span class="w-2 h-2 rounded-full bg-secondary"></span>
+            <span id="count-stages-completed">0</span> / 11 Stages
+          </span>
         </div>
-      </section>
+      </div>
 
-      <!-- DOMAIN 3: PROGRAMMING & SCRIPTING -->
-      <section class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Programming" id="domain-3">
-        <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
-          <div class="flex items-center gap-3">
-            <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">03</span>
-            <h2 class="font-mono text-base font-bold text-on-surface">Programming &amp; Scripting</h2>
-          </div>
-          <span class="cat-stat font-mono text-xs text-primary font-bold">0 / 3 Complete</span>
-        </header>
+      <div class="w-full h-3 rounded-full bg-canvas-base border border-border-hairline overflow-hidden flex">
+        <div id="bar-progress" class="bg-primary h-full transition-all duration-500" style="width: 0%"></div>
+      </div>
 
-        <div class="space-y-3 font-mono text-xs">
-          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="prog-py">
-            <div class="space-y-1">
-              <div class="font-bold text-on-surface">Python for Security Automation</div>
-              <p class="text-[11px] text-on-surface-variant font-sans">Using requests, socket, scapy, and json modules to build custom port checkers and API testers.</p>
-            </div>
-            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
-              <option value="not_started">Not Started</option>
-              <option value="learning">Learning</option>
-              <option value="practicing">Practicing</option>
-              <option value="completed">Completed</option>
-            </select>
-          </div>
-
-          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="prog-bash">
-            <div class="space-y-1">
-              <div class="font-bold text-on-surface">Bash Shell Scripting &amp; Loops</div>
-              <p class="text-[11px] text-on-surface-variant font-sans">Automating multi-tool pipelines, while read loops, parsing wordlists, and parallel jobs.</p>
-            </div>
-            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
-              <option value="not_started">Not Started</option>
-              <option value="learning">Learning</option>
-              <option value="practicing">Practicing</option>
-              <option value="completed">Completed</option>
-            </select>
-          </div>
-
-          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="prog-regex">
-            <div class="space-y-1">
-              <div class="font-bold text-on-surface">Regular Expressions (RegEx)</div>
-              <p class="text-[11px] text-on-surface-variant font-sans">Constructing capture groups, quantifiers, lookaheads for log extraction and pattern audits.</p>
-            </div>
-            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
-              <option value="not_started">Not Started</option>
-              <option value="learning">Learning</option>
-              <option value="practicing">Practicing</option>
-              <option value="completed">Completed</option>
-            </select>
-          </div>
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-2 text-[11px] font-mono text-outline">
+        <div class="flex items-center gap-2">
+          <button id="btn-expand-all" class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline hover:text-on-surface transition-colors cursor-pointer">Expand All Stages</button>
+          <button id="btn-collapse-all" class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline hover:text-on-surface transition-colors cursor-pointer">Collapse All</button>
         </div>
-      </section>
-
-      <!-- DOMAIN 4: WEB SECURITY -->
-      <section class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Web" id="domain-4">
-        <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
-          <div class="flex items-center gap-3">
-            <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">04</span>
-            <h2 class="font-mono text-base font-bold text-on-surface">Web Application Security &amp; OWASP Top 10</h2>
-          </div>
-          <span class="cat-stat font-mono text-xs text-primary font-bold">0 / 4 Complete</span>
-        </header>
-
-        <div class="space-y-3 font-mono text-xs">
-          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="web-inj">
-            <div class="space-y-1">
-              <div class="font-bold text-on-surface">SQL Injection &amp; Command Injection</div>
-              <p class="text-[11px] text-on-surface-variant font-sans">UNION-based, Blind Boolean, and Error-based SQLi; shell metacharacter bypasses.</p>
-            </div>
-            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
-              <option value="not_started">Not Started</option>
-              <option value="learning">Learning</option>
-              <option value="practicing">Practicing</option>
-              <option value="completed">Completed</option>
-            </select>
-          </div>
-
-          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="web-client">
-            <div class="space-y-1">
-              <div class="font-bold text-on-surface">Cross-Site Scripting (XSS) &amp; CSRF</div>
-              <p class="text-[11px] text-on-surface-variant font-sans">Reflected, Stored, DOM XSS; CSP mitigation; anti-CSRF token validation.</p>
-            </div>
-            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
-              <option value="not_started">Not Started</option>
-              <option value="learning">Learning</option>
-              <option value="practicing">Practicing</option>
-              <option value="completed">Completed</option>
-            </select>
-          </div>
-
-          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="web-idor">
-            <div class="space-y-1">
-              <div class="font-bold text-on-surface">Insecure Direct Object References (IDOR) &amp; SSRF</div>
-              <p class="text-[11px] text-on-surface-variant font-sans">Broken object-level access controls on REST APIs; metadata querying via SSRF.</p>
-            </div>
-            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
-              <option value="not_started">Not Started</option>
-              <option value="learning">Learning</option>
-              <option value="practicing">Practicing</option>
-              <option value="completed">Completed</option>
-            </select>
-          </div>
-
-          <div class="roadmap-item p-3.5 rounded-xl bg-canvas-base border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3" data-id="web-burp">
-            <div class="space-y-1">
-              <div class="font-bold text-on-surface">Interception Proxying with Burp Suite</div>
-              <p class="text-[11px] text-on-surface-variant font-sans">Repeater analysis, parameter tampering, Match &amp; Replace rules, and request decoding.</p>
-            </div>
-            <select class="status-select p-2 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface font-mono text-xs focus:outline-none">
-              <option value="not_started">Not Started</option>
-              <option value="learning">Learning</option>
-              <option value="practicing">Practicing</option>
-              <option value="completed">Completed</option>
-            </select>
-          </div>
+        <div class="flex gap-2">
+          <button id="roadmap-reset-btn" class="px-2.5 py-1 rounded bg-canvas-base border border-danger-critical/30 text-danger-critical hover:bg-danger-critical/10 transition-colors cursor-pointer">Reset Progress</button>
+          <button id="roadmap-export-btn" class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline hover:text-on-surface transition-colors cursor-pointer">Export Progress</button>
         </div>
-      </section>
-
-      <!-- DOMAINS 5-11 (CONCISE GRID) -->
-      <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-
-        <!-- DOMAIN 5: RECON & OSINT -->
-        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Recon" id="domain-5">
-          <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
-            <div class="flex items-center gap-2">
-              <span class="p-1.5 rounded bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">05</span>
-              <h3 class="font-mono text-sm font-bold text-on-surface">Reconnaissance &amp; OSINT</h3>
-            </div>
-            <span class="cat-stat font-mono text-xs text-primary font-bold">0 / 2 Complete</span>
-          </header>
-          <div class="space-y-2 font-mono text-xs">
-            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="rec-dns">
-              <span>Passive DNS &amp; Certificate Transparency (crt.sh, subfinder)</span>
-              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
-                <option value="not_started">Not Started</option>
-                <option value="learning">Learning</option>
-                <option value="practicing">Practicing</option>
-                <option value="completed">Completed</option>
-              </select>
-            </div>
-            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="rec-dorks">
-              <span>Google Dorking &amp; GitHub Secret Leaks (GitLeaks/TruffleHog)</span>
-              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
-                <option value="not_started">Not Started</option>
-                <option value="learning">Learning</option>
-                <option value="practicing">Practicing</option>
-                <option value="completed">Completed</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <!-- DOMAIN 6: ENUMERATION -->
-        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Enumeration" id="domain-6">
-          <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
-            <div class="flex items-center gap-2">
-              <span class="p-1.5 rounded bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">06</span>
-              <h3 class="font-mono text-sm font-bold text-on-surface">Enumeration &amp; Probing</h3>
-            </div>
-            <span class="cat-stat font-mono text-xs text-primary font-bold">0 / 2 Complete</span>
-          </header>
-          <div class="space-y-2 font-mono text-xs">
-            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="enum-nmap">
-              <span>Nmap Port Scanning, NSE Lua Scripts &amp; Banner Grabbing</span>
-              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
-                <option value="not_started">Not Started</option>
-                <option value="learning">Learning</option>
-                <option value="practicing">Practicing</option>
-                <option value="completed">Completed</option>
-              </select>
-            </div>
-            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="enum-fuzz">
-              <span>Directory &amp; Parameter Fuzzing with ffuf / Gobuster</span>
-              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
-                <option value="not_started">Not Started</option>
-                <option value="learning">Learning</option>
-                <option value="practicing">Practicing</option>
-                <option value="completed">Completed</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <!-- DOMAIN 7: PENTESTING CORE -->
-        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Pentesting" id="domain-7">
-          <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
-            <div class="flex items-center gap-2">
-              <span class="p-1.5 rounded bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">07</span>
-              <h3 class="font-mono text-sm font-bold text-on-surface">Penetration Testing Core</h3>
-            </div>
-            <span class="cat-stat font-mono text-xs text-primary font-bold">0 / 2 Complete</span>
-          </header>
-          <div class="space-y-2 font-mono text-xs">
-            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="pen-msf">
-              <span>Metasploit Framework, Meterpreter &amp; Payload Staging</span>
-              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
-                <option value="not_started">Not Started</option>
-                <option value="learning">Learning</option>
-                <option value="practicing">Practicing</option>
-                <option value="completed">Completed</option>
-              </select>
-            </div>
-            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="pen-cve">
-              <span>Offline CVE Research &amp; SearchSploit Verification</span>
-              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
-                <option value="not_started">Not Started</option>
-                <option value="learning">Learning</option>
-                <option value="practicing">Practicing</option>
-                <option value="completed">Completed</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <!-- DOMAIN 8: PRIVILEGE ESCALATION -->
-        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Privilege Escalation" id="domain-8">
-          <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
-            <div class="flex items-center gap-2">
-              <span class="p-1.5 rounded bg-canvas-base border border-danger-critical/30 text-danger-critical font-mono font-bold text-xs">08</span>
-              <h3 class="font-mono text-sm font-bold text-on-surface">Privilege Escalation</h3>
-            </div>
-            <span class="cat-stat font-mono text-xs text-primary font-bold">0 / 2 Complete</span>
-          </header>
-          <div class="space-y-2 font-mono text-xs">
-            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="priv-linux">
-              <span>Linux GTFOBins, SUID &amp; Sudoers Misconfigurations</span>
-              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
-                <option value="not_started">Not Started</option>
-                <option value="learning">Learning</option>
-                <option value="practicing">Practicing</option>
-                <option value="completed">Completed</option>
-              </select>
-            </div>
-            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="priv-win">
-              <span>Windows PrivEsc Concepts (Token Impersonation &amp; Unquoted Services)</span>
-              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
-                <option value="not_started">Not Started</option>
-                <option value="learning">Learning</option>
-                <option value="practicing">Practicing</option>
-                <option value="completed">Completed</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <!-- DOMAIN 9: ACTIVE DIRECTORY -->
-        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Active Directory" id="domain-9">
-          <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
-            <div class="flex items-center gap-2">
-              <span class="p-1.5 rounded bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">09</span>
-              <h3 class="font-mono text-sm font-bold text-on-surface">Active Directory Security</h3>
-            </div>
-            <span class="cat-stat font-mono text-xs text-primary font-bold">0 / 2 Complete</span>
-          </header>
-          <div class="space-y-2 font-mono text-xs">
-            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="ad-kerb">
-              <span>Kerberos Protocol, AS-REP Roasting &amp; Kerberoasting</span>
-              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
-                <option value="not_started">Not Started</option>
-                <option value="learning">Learning</option>
-                <option value="practicing">Practicing</option>
-                <option value="completed">Completed</option>
-              </select>
-            </div>
-            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="ad-blood">
-              <span>BloodHound Attack Graphing &amp; Group Policy Audits</span>
-              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
-                <option value="not_started">Not Started</option>
-                <option value="learning">Learning</option>
-                <option value="practicing">Practicing</option>
-                <option value="completed">Completed</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <!-- DOMAIN 10: CLOUD SECURITY -->
-        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4" data-cat="Cloud" id="domain-10">
-          <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
-            <div class="flex items-center gap-2">
-              <span class="p-1.5 rounded bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">10</span>
-              <h3 class="font-mono text-sm font-bold text-on-surface">Cloud &amp; Container Security</h3>
-            </div>
-            <span class="cat-stat font-mono text-xs text-primary font-bold">0 / 2 Complete</span>
-          </header>
-          <div class="space-y-2 font-mono text-xs">
-            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="cld-iam">
-              <span>AWS/Azure Least-Privilege IAM &amp; IMDSv2 Hardening</span>
-              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
-                <option value="not_started">Not Started</option>
-                <option value="learning">Learning</option>
-                <option value="practicing">Practicing</option>
-                <option value="completed">Completed</option>
-              </select>
-            </div>
-            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="cld-docker">
-              <span>Docker Sockets, Rootless Containers &amp; Trivy Scanning</span>
-              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
-                <option value="not_started">Not Started</option>
-                <option value="learning">Learning</option>
-                <option value="practicing">Practicing</option>
-                <option value="completed">Completed</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <!-- DOMAIN 11: DEFENSIVE SECURITY -->
-        <div class="roadmap-category p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 lg:col-span-2" data-cat="Defensive Security" id="domain-11">
-          <header class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
-            <div class="flex items-center gap-2">
-              <span class="p-1.5 rounded bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-xs">11</span>
-              <h3 class="font-mono text-sm font-bold text-on-surface">Defensive Security &amp; SOC Operations</h3>
-            </div>
-            <span class="cat-stat font-mono text-xs text-primary font-bold">0 / 2 Complete</span>
-          </header>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs">
-            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="def-siem">
-              <span>SIEM Architecture (Splunk/Elastic) &amp; Log Correlation</span>
-              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
-                <option value="not_started">Not Started</option>
-                <option value="learning">Learning</option>
-                <option value="practicing">Practicing</option>
-                <option value="completed">Completed</option>
-              </select>
-            </div>
-            <div class="roadmap-item p-3 rounded-lg bg-canvas-base border border-border-hairline flex items-center justify-between gap-2" data-id="def-mitre">
-              <span>MITRE ATT&amp;CK Tactic Mapping &amp; Incident Triage</span>
-              <select class="status-select p-1.5 rounded bg-surface-subtle border border-border-hairline text-xs font-mono">
-                <option value="not_started">Not Started</option>
-                <option value="learning">Learning</option>
-                <option value="practicing">Practicing</option>
-                <option value="completed">Completed</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-      </section>
-
+      </div>
     </div>
+
+    <!-- =========================================================================
+         VERTICAL ROADMAP SPINE (STAGES 00 TO 10)
+         ========================================================================= -->
+    <div class="space-y-6">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl sm:text-2xl font-bold font-mono text-on-surface">Learning Path Stages</h2>
+        <span class="text-xs font-mono text-outline">Click any stage to view rooms</span>
+      </div>
+
+      <div id="roadmap-stages-container" class="roadmap-spine-container space-y-8">
+        <!-- Dynamically injected by JavaScript -->
+      </div>
+    </div>
+
+    <!-- =========================================================================
+         CAPSTONE FINALE BANNER
+         ========================================================================= -->
+    <div class="p-8 rounded-3xl border border-primary/40 bg-surface-subtle shadow-xl text-center space-y-4">
+      <div class="w-16 h-16 rounded-2xl bg-primary/10 border border-primary/40 text-primary flex items-center justify-center mx-auto text-2xl font-bold font-mono">
+        🎓
+      </div>
+      <div class="space-y-2 max-w-xl mx-auto">
+        <h3 class="text-2xl font-bold font-mono text-on-surface">Junior Penetration Tester Readiness</h3>
+        <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+          Mastering all 11 stages and 40 core rooms prepares you for real-world offensive security engagements, technical pentest interviews, and practical certifications (EJPT, OSCP, PNPT).
+        </p>
+      </div>
+      <div class="pt-2">
+        <a href="learning.html#curriculum" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-surface-raised border border-border-hairline hover:border-primary text-xs font-mono font-bold text-on-surface transition-colors">
+          <span class="material-symbols-outlined text-sm text-primary">school</span>
+          <span>Explore All 40 Rooms in Curriculum</span>
+        </a>
+      </div>
+    </div>
+
   </main>
 
   <!-- Global Footer -->
@@ -729,133 +479,397 @@
     </div>
   </footer>
 
-  <script src="portfolio-interactive.js"></script>
-  <script>
-    // LocalStorage-powered Roadmap Tracker Engine
-    document.addEventListener('DOMContentLoaded', () => {
-      const STORAGE_KEY = 'endlessus_cyber_roadmap_v1';
-      const items = document.querySelectorAll('.roadmap-item');
-      const totalCount = items.length;
+  <!-- Include Core Curriculum Database and Navigation -->
+  <script src="learning-data.js"></script>
+  <script src="academy-nav.js"></script>
 
-      function loadProgress() {
+  <!-- =========================================================================
+       DYNAMIC ROADMAP ENGINE
+       ========================================================================= -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const ROOMS_KEY = 'endlessus_completed_rooms';
+      const LABS_KEY = 'endlessus_completed_labs';
+
+      function getCompletedRooms() {
         try {
-          const raw = localStorage.getItem(STORAGE_KEY);
-          return raw ? JSON.parse(raw) : {};
+          return new Set(JSON.parse(localStorage.getItem(ROOMS_KEY) || '[]'));
         } catch (e) {
-          return {};
+          return new Set();
         }
       }
 
-      function saveProgress(data) {
-        try {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-        } catch (e) {}
+      function saveCompletedRooms(set) {
+        localStorage.setItem(ROOMS_KEY, JSON.stringify(Array.from(set)));
       }
 
-      function updateUI() {
-        const data = loadProgress();
-        let completed = 0;
-        let practicing = 0;
-        let learning = 0;
-        let notstarted = 0;
+      // Track stage expansion states (remember user toggles)
+      const stageExpandedState = {};
 
-        items.forEach(item => {
-          const id = item.getAttribute('data-id');
-          const select = item.querySelector('.status-select');
-          const status = data[id] || 'not_started';
-          if (select) {
-            select.value = status;
-            applySelectStyles(select, status);
+      function renderRoadmap() {
+        if (typeof ENDLESSUS_STAGES === 'undefined' || typeof ENDLESSUS_ROOMS === 'undefined') {
+          console.error('[Roadmap] learning-data.js not loaded!');
+          return;
+        }
+
+        const completedRooms = getCompletedRooms();
+        const totalRooms = ENDLESSUS_ROOMS.length;
+        const completedRoomsCount = completedRooms.size;
+        const progressPct = totalRooms > 0 ? Math.round((completedRoomsCount / totalRooms) * 100) : 0;
+
+        // Update overall telemetry bar
+        const overallPctEl = document.getElementById('overall-percentage');
+        const countRoomsEl = document.getElementById('count-rooms-completed');
+        const barProgressEl = document.getElementById('bar-progress');
+        if (overallPctEl) overallPctEl.textContent = progressPct + '%';
+        if (countRoomsEl) countRoomsEl.textContent = completedRoomsCount;
+        if (barProgressEl) barProgressEl.style.width = progressPct + '%';
+
+        // Group rooms by stage
+        const stageRoomsMap = {};
+        ENDLESSUS_STAGES.forEach(st => {
+          stageRoomsMap[st.id] = ENDLESSUS_ROOMS.filter(r => r.stage === st.id);
+        });
+
+        // Determine stage statuses
+        // Rules:
+        // - Stage is COMPLETED if all its rooms are completed.
+        // - First stage with incomplete rooms (where all previous stages are completed) is CURRENT.
+        // - If previous stage is completed but current stage is incomplete: AVAILABLE.
+        // - If previous stage is NOT completed: LOCKED.
+        let firstIncompleteFound = false;
+        let completedStagesCount = 0;
+        let nextObjectiveRoom = null;
+
+        const stageStatuses = {};
+        ENDLESSUS_STAGES.forEach((st, idx) => {
+          const rooms = stageRoomsMap[st.id] || [];
+          const doneCount = rooms.filter(r => completedRooms.has(r.id)).length;
+          const isAllDone = rooms.length > 0 && doneCount === rooms.length;
+
+          if (isAllDone) {
+            stageStatuses[st.id] = 'COMPLETED';
+            completedStagesCount++;
+          } else if (!firstIncompleteFound) {
+            stageStatuses[st.id] = 'CURRENT';
+            firstIncompleteFound = true;
+            // Find the next incomplete room in this stage
+            nextObjectiveRoom = rooms.find(r => !completedRooms.has(r.id)) || rooms[0];
+          } else {
+            // Check if previous stage was completed
+            const prevStage = ENDLESSUS_STAGES[idx - 1];
+            const prevStatus = prevStage ? stageStatuses[prevStage.id] : 'COMPLETED';
+            if (prevStatus === 'COMPLETED') {
+              stageStatuses[st.id] = 'AVAILABLE';
+            } else {
+              stageStatuses[st.id] = 'LOCKED';
+            }
+          }
+        });
+
+        // Update stages completed count
+        const countStagesEl = document.getElementById('count-stages-completed');
+        if (countStagesEl) countStagesEl.textContent = completedStagesCount;
+
+        // Update Continue Learning Hero Card
+        updateContinueCard(nextObjectiveRoom, progressPct === 100);
+
+        // Render Stage Nodes along the spine
+        renderStageNodes(completedRooms, stageRoomsMap, stageStatuses);
+      }
+
+      function updateContinueCard(nextRoom, allCompleted) {
+        const card = document.getElementById('continue-learning-card');
+        const stageBadge = document.getElementById('continue-stage-badge');
+        const titleEl = document.getElementById('continue-room-title');
+        const descEl = document.getElementById('continue-room-desc');
+        const timeEl = document.getElementById('continue-room-time');
+        const diffEl = document.getElementById('continue-room-difficulty');
+        const linkEl = document.getElementById('continue-room-link');
+
+        if (!card) return;
+
+        if (allCompleted) {
+          stageBadge.textContent = 'Curriculum Completed';
+          stageBadge.className = 'px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-primary/20 text-primary border border-primary';
+          titleEl.textContent = '🎉 All 40 Rooms Completed!';
+          descEl.textContent = 'Outstanding work. You have mastered every foundational concept, web flaw, Linux privesc technique, and capstone challenge.';
+          timeEl.innerHTML = '<span class="material-symbols-outlined text-xs">verified</span><span>100% Mastered</span>';
+          diffEl.innerHTML = '<span class="material-symbols-outlined text-xs">emoji_events</span><span>Junior Pentester</span>';
+          linkEl.href = 'learning.html#curriculum';
+          linkEl.innerHTML = '<span>Review Curriculum</span><span class="material-symbols-outlined text-sm">arrow_forward</span>';
+          return;
+        }
+
+        if (nextRoom) {
+          const stageObj = ENDLESSUS_STAGES.find(s => s.id === nextRoom.stage);
+          stageBadge.textContent = `Stage ${stageObj ? stageObj.number : nextRoom.stage} · ${stageObj ? stageObj.title : ''}`;
+          titleEl.textContent = `${nextRoom.title}`;
+          descEl.textContent = nextRoom.whyAreYouHere ? nextRoom.whyAreYouHere.slice(0, 190) + '...' : (nextRoom.objectives ? nextRoom.objectives[0] : 'Continue your hands-on journey.');
+          timeEl.innerHTML = `<span class="material-symbols-outlined text-xs">schedule</span><span>${nextRoom.estimatedTime || '20 min'}</span>`;
+          diffEl.innerHTML = `<span class="material-symbols-outlined text-xs">signal_cellular_alt</span><span>${nextRoom.difficulty || 'Beginner'}</span>`;
+          linkEl.href = `learning.html#${nextRoom.id}`;
+          linkEl.innerHTML = '<span>Continue Room</span><span class="material-symbols-outlined text-sm">arrow_forward</span>';
+        }
+      }
+
+      function renderStageNodes(completedRooms, stageRoomsMap, stageStatuses) {
+        const container = document.getElementById('roadmap-stages-container');
+        if (!container) return;
+
+        container.innerHTML = '';
+
+        ENDLESSUS_STAGES.forEach((stage, idx) => {
+          const rooms = stageRoomsMap[stage.id] || [];
+          const doneRooms = rooms.filter(r => completedRooms.has(r.id));
+          const status = stageStatuses[stage.id] || 'LOCKED';
+          const isDone = status === 'COMPLETED';
+          const isCurrent = status === 'CURRENT';
+          const isAvailable = status === 'AVAILABLE';
+          const isLocked = status === 'LOCKED';
+
+          // Default expansion: expand CURRENT by default, or keep user toggled state
+          const isExpanded = stageExpandedState[stage.id] !== undefined ? stageExpandedState[stage.id] : isCurrent;
+
+          // Status Badge styling
+          let badgeHtml = '';
+          let nodeIconBorder = 'border-border-hairline bg-surface-raised text-outline';
+          let cardBorder = 'border-border-hairline';
+
+          if (isDone) {
+            badgeHtml = '<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-primary/10 text-primary border border-primary/30">✓ Completed</span>';
+            nodeIconBorder = 'border-primary bg-primary text-white';
+            cardBorder = 'border-primary/40';
+          } else if (isCurrent) {
+            badgeHtml = '<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-primary/20 text-primary border border-primary animate-pulse">→ Current Stage</span>';
+            nodeIconBorder = 'border-primary bg-surface-subtle text-primary ring-4 ring-primary/20';
+            cardBorder = 'border-primary ring-1 ring-primary/30';
+          } else if (isAvailable) {
+            badgeHtml = '<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-secondary/10 text-secondary border border-secondary/30">○ Available</span>';
+            nodeIconBorder = 'border-secondary bg-surface-subtle text-secondary';
+          } else {
+            badgeHtml = '<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-mono text-outline bg-surface-raised border border-border-hairline">🔒 Locked</span>';
           }
 
-          if (status === 'completed') completed++;
-          else if (status === 'practicing') practicing++;
-          else if (status === 'learning') learning++;
-          else notstarted++;
-        });
+          // Build stage card HTML
+          const stageEl = document.createElement('div');
+          stageEl.className = 'relative flex items-start gap-4 sm:gap-6 group';
+          stageEl.id = `stage-node-${stage.id}`;
 
-        // Update Overall Stats
-        const pct = Math.round((completed / totalCount) * 100);
-        document.getElementById('overall-percentage').textContent = pct + '%';
-        document.getElementById('count-completed').textContent = completed;
-        document.getElementById('count-practicing').textContent = practicing;
-        document.getElementById('count-learning').textContent = learning;
-        document.getElementById('count-notstarted').textContent = notstarted;
+          // Node Icon on the vertical spine
+          const nodeIcon = document.createElement('div');
+          nodeIcon.className = `stage-node-icon shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl border-2 flex items-center justify-center font-mono font-bold text-xs sm:text-sm shadow-md transition-all ${nodeIconBorder}`;
+          nodeIcon.textContent = stage.number;
 
-        document.getElementById('bar-completed').style.width = ((completed / totalCount) * 100) + '%';
-        document.getElementById('bar-practicing').style.width = ((practicing / totalCount) * 100) + '%';
-        document.getElementById('bar-learning').style.width = ((learning / totalCount) * 100) + '%';
+          // Main Card
+          const cardEl = document.createElement('div');
+          cardEl.className = `flex-1 rounded-2xl bg-surface-subtle border ${cardBorder} shadow-sm overflow-hidden transition-all`;
 
-        // Update category stats
-        document.querySelectorAll('.roadmap-category').forEach(catEl => {
-          const catItems = catEl.querySelectorAll('.roadmap-item');
-          let catComp = 0;
-          catItems.forEach(ci => {
-            const cid = ci.getAttribute('data-id');
-            if (data[cid] === 'completed') catComp++;
-          });
-          const statBadge = catEl.querySelector('.cat-stat');
-          if (statBadge) statBadge.textContent = `${catComp} / ${catItems.length} Complete`;
-        });
-      }
+          // Stage Header Bar
+          const headerEl = document.createElement('div');
+          headerEl.className = 'p-5 sm:p-6 cursor-pointer hover:bg-surface-raised/40 transition-colors';
+          headerEl.setAttribute('role', 'button');
+          headerEl.setAttribute('tabindex', '0');
+          headerEl.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
 
-      function applySelectStyles(select, status) {
-        select.classList.remove('text-primary', 'text-warning', 'text-secondary', 'text-outline', 'border-primary', 'border-warning', 'border-secondary');
-        if (status === 'completed') {
-          select.classList.add('text-primary', 'border-primary');
-        } else if (status === 'practicing') {
-          select.classList.add('text-warning', 'border-warning');
-        } else if (status === 'learning') {
-          select.classList.add('text-secondary', 'border-secondary');
-        } else {
-          select.classList.add('text-outline');
-        }
-      }
+          headerEl.innerHTML = `
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="space-y-1">
+                <div class="flex items-center gap-2">
+                  <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-outline">STAGE ${stage.number}</span>
+                  ${badgeHtml}
+                </div>
+                <h3 class="text-lg sm:text-xl font-bold font-mono text-on-surface tracking-tight group-hover:text-primary transition-colors">
+                  ${stage.title}
+                </h3>
+                <div class="text-xs text-outline font-medium">
+                  ${stage.tagline}
+                </div>
+              </div>
 
-      // Event Listeners for selects
-      items.forEach(item => {
-        const select = item.querySelector('.status-select');
-        const id = item.getAttribute('data-id');
-        if (select) {
-          select.addEventListener('change', () => {
-            const data = loadProgress();
-            const prev = data[id];
-            data[id] = select.value;
-            saveProgress(data);
-            updateUI();
+              <div class="flex items-center sm:flex-col sm:items-end justify-between gap-2 shrink-0">
+                <div class="text-xs font-mono text-on-surface-variant">
+                  <strong class="text-on-surface">${doneRooms.length}</strong> / ${rooms.length} Rooms
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-[11px] font-mono text-outline hidden sm:inline">${stage.estimatedTime}</span>
+                  <span class="material-symbols-outlined text-outline transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}">
+                    expand_more
+                  </span>
+                </div>
+              </div>
+            </div>
 
-            if (select.value === 'completed' && prev !== 'completed') {
-              if (window.CyberOps) {
-                const label = item.querySelector('span')?.textContent || id;
-                window.CyberOps.completeTrack(id, label, 25);
+            <!-- Mini Progress Bar inside Header -->
+            <div class="mt-4 w-full h-1.5 rounded-full bg-canvas-base border border-border-hairline overflow-hidden">
+              <div class="h-full bg-primary transition-all duration-300" style="width: ${rooms.length ? (doneRooms.length / rooms.length * 100) : 0}%"></div>
+            </div>
+          `;
+
+          // Stage Accordion Body: Rooms List
+          const bodyEl = document.createElement('div');
+          bodyEl.className = `border-t border-border-hairline bg-surface-raised/30 p-5 sm:p-6 space-y-4 ${isExpanded ? 'block' : 'hidden'}`;
+
+          // Stage Description
+          const descHtml = `<p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">${stage.description}</p>`;
+
+          // Rooms Grid
+          let roomsHtml = '<div class="space-y-2.5 pt-2">';
+          rooms.forEach((room, roomIdx) => {
+            const isRoomDone = completedRooms.has(room.id);
+            const statusIcon = isRoomDone
+              ? '<span class="material-symbols-outlined text-primary text-sm">check_circle</span>'
+              : '<span class="material-symbols-outlined text-outline text-sm">radio_button_unchecked</span>';
+
+            // Related Lab detection
+            let labBadge = '';
+            if (typeof ENDLESSUS_PRACTICAL_LABS !== 'undefined') {
+              const matchedLab = ENDLESSUS_PRACTICAL_LABS.find(l => l.foundationalRoomId === room.id);
+              if (matchedLab) {
+                labBadge = `
+                  <a href="labs.html?lab=${matchedLab.id}" class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-primary/10 text-primary border border-primary/30 hover:bg-primary/20 transition-colors" title="Launch Hands-on Lab">
+                    <span class="material-symbols-outlined text-[11px]">science</span>
+                    <span>Lab: ${matchedLab.title.replace('Practical ', '')}</span>
+                  </a>
+                `;
               }
             }
+
+            roomsHtml += `
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded-xl border border-border-hairline bg-surface-subtle hover:border-primary/40 transition-colors gap-3">
+                <div class="flex items-start sm:items-center gap-3">
+                  <button type="button" class="btn-toggle-room shrink-0 mt-0.5 sm:mt-0 p-1 rounded hover:bg-surface-raised transition-colors cursor-pointer" data-room-id="${room.id}" title="${isRoomDone ? 'Mark as Incomplete' : 'Mark as Complete'}">
+                    ${statusIcon}
+                  </button>
+                  <div class="space-y-0.5">
+                    <div class="flex flex-wrap items-center gap-2">
+                      <span class="font-bold text-xs sm:text-sm text-on-surface ${isRoomDone ? 'line-through text-outline' : ''}">${room.title}</span>
+                      ${labBadge}
+                    </div>
+                    <div class="flex items-center gap-3 text-[11px] font-mono text-outline">
+                      <span>${room.estimatedTime || '20 min'}</span>
+                      <span>·</span>
+                      <span>${room.difficulty || 'Beginner'}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-2 self-end sm:self-center">
+                  <a href="learning.html#${room.id}" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium border border-border-hairline bg-surface-raised hover:border-primary hover:text-primary transition-colors">
+                    <span>Open Room</span>
+                    <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                  </a>
+                </div>
+              </div>
+            `;
           });
+          roomsHtml += '</div>';
+
+          bodyEl.innerHTML = descHtml + roomsHtml;
+
+          // Toggle click listener
+          headerEl.addEventListener('click', () => {
+            const nowExpanded = bodyEl.classList.contains('hidden');
+            if (nowExpanded) {
+              bodyEl.classList.remove('hidden');
+              stageExpandedState[stage.id] = true;
+              headerEl.querySelector('.material-symbols-outlined.transition-transform').classList.add('rotate-180');
+            } else {
+              bodyEl.classList.add('hidden');
+              stageExpandedState[stage.id] = false;
+              headerEl.querySelector('.material-symbols-outlined.transition-transform').classList.remove('rotate-180');
+            }
+          });
+
+          cardEl.appendChild(headerEl);
+          cardEl.appendChild(bodyEl);
+
+          stageEl.appendChild(nodeIcon);
+          stageEl.appendChild(cardEl);
+          container.appendChild(stageEl);
+        });
+
+        // Attach room check toggle handlers
+        document.querySelectorAll('.btn-toggle-room').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const rId = btn.getAttribute('data-room-id');
+            const roomsSet = getCompletedRooms();
+            if (roomsSet.has(rId)) {
+              roomsSet.delete(rId);
+            } else {
+              roomsSet.add(rId);
+            }
+            saveCompletedRooms(roomsSet);
+            renderRoadmap();
+          });
+        });
+      }
+
+      // Expand All Stages
+      const expandAllBtn = document.getElementById('btn-expand-all');
+      if (expandAllBtn) {
+        expandAllBtn.addEventListener('click', () => {
+          if (typeof ENDLESSUS_STAGES !== 'undefined') {
+            ENDLESSUS_STAGES.forEach(st => { stageExpandedState[st.id] = true; });
+            renderRoadmap();
+          }
+        });
+      }
+
+      // Collapse All Stages
+      const collapseAllBtn = document.getElementById('btn-collapse-all');
+      if (collapseAllBtn) {
+        collapseAllBtn.addEventListener('click', () => {
+          if (typeof ENDLESSUS_STAGES !== 'undefined') {
+            ENDLESSUS_STAGES.forEach(st => { stageExpandedState[st.id] = false; });
+            renderRoadmap();
+          }
+        });
+      }
+
+      // Reset Progress
+      const resetBtn = document.getElementById('roadmap-reset-btn');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          if (confirm('Are you sure you want to reset your curriculum progress to 0%?')) {
+            localStorage.removeItem(ROOMS_KEY);
+            renderRoadmap();
+            if (window.showToast) window.showToast('Curriculum progress reset.', 'info');
+          }
+        });
+      }
+
+      // Export Progress
+      const exportBtn = document.getElementById('roadmap-export-btn');
+      if (exportBtn) {
+        exportBtn.addEventListener('click', () => {
+          const completed = Array.from(getCompletedRooms());
+          const payload = {
+            exportDate: new Date().toISOString(),
+            completedRooms: completed,
+            totalRooms: (typeof ENDLESSUS_ROOMS !== 'undefined') ? ENDLESSUS_ROOMS.length : 40,
+            completionPercentage: Math.round((completed.length / 40) * 100)
+          };
+          const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'endlessus_curriculum_progress.json';
+          a.click();
+          URL.revokeObjectURL(url);
+        });
+      }
+
+      // Initial Render
+      renderRoadmap();
+
+      // Listen for cross-tab storage changes
+      window.addEventListener('storage', (e) => {
+        if (e.key === ROOMS_KEY) {
+          renderRoadmap();
         }
       });
-
-      // Reset
-      document.getElementById('roadmap-reset-btn').addEventListener('click', () => {
-        if (confirm('Reset your roadmap progress back to 0%?')) {
-          localStorage.removeItem(STORAGE_KEY);
-          updateUI();
-          if (window.showToast) window.showToast('Roadmap progress reset.', 'info');
-        }
-      });
-
-      // Export
-      document.getElementById('roadmap-export-btn').addEventListener('click', () => {
-        const data = loadProgress();
-        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'cybersecurity_roadmap_progress.json';
-        a.click();
-        URL.revokeObjectURL(url);
-      });
-
-      updateUI();
     });
   </script>
 </body>
