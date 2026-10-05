@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html class="scroll-smooth dark" lang="en">
+<html class="scroll-smooth" lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Cybersecurity Practical Labs Hub | Mihraj Mashhoor K</title>
+  <title>Practical Security Labs · Endlessus Academy</title>
   <meta content="12 self-contained, safe interactive cybersecurity labs covering HTTP Security Headers, Linux Permissions, SUID PrivEsc, Auth Bypass, IDOR, SQLi, XSS, CSRF, Network Enumeration, Log Analysis, JWT Security, and Cryptography with dedicated workstations and interactive terminals." name="description"/>
-  <link rel="icon" type="image/png" href="logo2.png"/>
+  <link rel="icon" type="image/png" href="handbook/assets/favicon.png"/>
   <link rel="canonical" href="https://endlessus.in/labs.html"/>
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Cybersecurity Practical Labs Hub | Mihraj Mashhoor K"/>
+  <meta property="og:title" content="Practical Security Labs · Endlessus Academy"/>
   <meta property="og:description" content="12 self-contained safe interactive cybersecurity labs with dedicated workstations, real CLI commands, scenarios, tasks, progressive hints, answers, explanations, and defense."/>
   <meta property="og:image" content="https://endlessus.in/cover.png"/>
   <meta property="og:url" content="https://endlessus.in/labs.html"/>
@@ -19,6 +19,21 @@
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+  <!-- Immediate Theme Initializer: Normal View (Light mode) by Default -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('endlessus_learning_theme') || 'normal';
+      if (savedTheme === 'hacker') {
+        document.documentElement.classList.add('dark', 'theme-hacker');
+        document.documentElement.classList.remove('theme-normal');
+      } else {
+        document.documentElement.classList.remove('dark', 'theme-hacker');
+        document.documentElement.classList.add('theme-normal');
+      }
+    })();
+  </script>
+
   <script src="tailwind.cdn.js"></script>
   <script>if(typeof tailwind==="undefined"){document.write('<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"><\/script>')}</script>
   <script>
@@ -27,20 +42,20 @@
       theme: {
         extend: {
           colors: {
-            'canvas-base': '#090D12',
-            'surface-subtle': '#0E131B',
-            'surface-raised': '#151D28',
-            'surface-container': '#122131',
-            'border-hairline': '#1F2937',
-            'border-medium': '#2D3748',
-            'primary': '#4EDEA3',
-            'primary-container': '#10b981',
-            'secondary': '#4CD7F6',
-            'on-surface': '#F3F4F6',
-            'on-surface-variant': '#8692A6',
-            'outline': '#64748B',
-            'warning': '#F59E0B',
-            'danger-critical': '#F43F5E',
+            'canvas-base': 'var(--color-canvas-base)',
+            'surface-subtle': 'var(--color-surface-subtle)',
+            'surface-raised': 'var(--color-surface-raised)',
+            'surface-container': 'var(--color-surface-container)',
+            'border-hairline': 'var(--color-border-hairline)',
+            'border-medium': 'var(--color-border-medium)',
+            'primary': 'var(--color-primary)',
+            'primary-container': 'var(--color-primary-container)',
+            'secondary': 'var(--color-secondary)',
+            'on-surface': 'var(--color-on-surface)',
+            'on-surface-variant': 'var(--color-on-surface-variant)',
+            'outline': 'var(--color-outline)',
+            'warning': 'var(--color-warning)',
+            'danger-critical': 'var(--color-danger-critical)',
           },
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
@@ -51,67 +66,290 @@
     }
   </script>
   <style>
-    body { background-color: #090D12; color: #F3F4F6; font-family: 'Inter', sans-serif; }
-    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; vertical-align: middle; line-height: 1; }
-    .telemetry-grid {
+    /* =========================================================================
+       NORMAL VIEW (LIGHT MODE) - DEFAULT THEME
+       ========================================================================= */
+    :root,
+    .theme-normal {
+      --color-canvas-base: #f8fafc;
+      --color-surface-subtle: #ffffff;
+      --color-surface-raised: #f1f5f9;
+      --color-surface-container: #ffffff;
+      --color-border-hairline: #e2e8f0;
+      --color-border-medium: #cbd5e1;
+      --color-primary: #0d9488;
+      --color-primary-container: #0f766e;
+      --color-secondary: #2563eb;
+      --color-on-surface: #0f172a;
+      --color-on-surface-variant: #475569;
+      --color-outline: #64748B;
+      --color-warning: #d97706;
+      --color-danger-critical: #dc2626;
+    }
+
+    /* =========================================================================
+       HACKER VIEW (DARK TERMINAL HUD)
+       ========================================================================= */
+    .theme-hacker,
+    html.dark {
+      --color-canvas-base: #090D12;
+      --color-surface-subtle: #0E131B;
+      --color-surface-raised: #151D28;
+      --color-surface-container: #122131;
+      --color-border-hairline: #1F2937;
+      --color-border-medium: #2D3748;
+      --color-primary: #4EDEA3;
+      --color-primary-container: #10b981;
+      --color-secondary: #4CD7F6;
+      --color-on-surface: #F3F4F6;
+      --color-on-surface-variant: #8692A6;
+      --color-outline: #64748B;
+      --color-warning: #F59E0B;
+      --color-danger-critical: #F43F5E;
+    }
+
+    body {
+      background-color: var(--color-canvas-base);
+      color: var(--color-on-surface);
+      font-family: 'Inter', sans-serif;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+
+    .theme-normal .telemetry-grid {
+      background-image: none !important;
+    }
+
+    .theme-hacker .telemetry-grid {
       background-size: 32px 32px;
       background-image:
         linear-gradient(to right, rgba(31, 41, 55, 0.25) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(31, 41, 55, 0.25) 1px, transparent 1px);
     }
+
     ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #090D12; }
-    ::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #4EDEA3; }
+    .theme-normal ::-webkit-scrollbar-track { background: #f1f5f9; }
+    .theme-normal ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+    .theme-normal ::-webkit-scrollbar-thumb:hover { background: #0d9488; }
+    .theme-hacker ::-webkit-scrollbar-track { background: #090D12; }
+    .theme-hacker ::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 3px; }
+    .theme-hacker ::-webkit-scrollbar-thumb:hover { background: #4EDEA3; }
+
+    /* Authentic Dark Terminal Window - Preserved in Both Normal and Hacker Views */
+    .theme-normal #ws-term-output,
+    .theme-normal #ws-terminal-panel .bg-canvas-base,
+    .theme-normal #ws-term-input-container {
+      background-color: #05070A !important;
+      color: #4EDEA3 !important;
+      border-color: #1F2937 !important;
+    }
+    .theme-normal #ws-term-prompt {
+      color: #4EDEA3 !important;
+    }
+    .theme-normal #ws-term-input {
+      color: #F3F4F6 !important;
+      background-color: transparent !important;
+    }
+
+    /* Light Mode Card Shadows and Borders */
+    .theme-normal .lab-room-card {
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+      border-color: #e2e8f0 !important;
+      background-color: #ffffff !important;
+    }
+    .theme-normal .lab-room-card:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+      border-color: var(--color-primary) !important;
+    }
+    .theme-normal #start-here-box,
+    .theme-normal #lab-workspace > div {
+      border-color: #e2e8f0;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+    }
   </style>
 </head>
-<body class="bg-canvas-base text-on-surface antialiased telemetry-grid min-h-screen flex flex-col font-sans selection:bg-primary selection:text-canvas-base">
+<body class="bg-canvas-base text-on-surface antialiased telemetry-grid min-h-screen flex flex-col font-sans selection:bg-primary selection:text-white">
 
-  <!-- Header -->
+  <!-- =========================================================================
+       ACADEMY UNIFIED HEADER
+       ========================================================================= -->
   <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      
+      <!-- Brand -->
       <div class="flex items-center gap-3">
-        <a href="labs.html" class="flex items-center gap-2 group">
-          <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
-          <span class="font-mono text-sm font-bold tracking-wider text-on-surface group-hover:text-primary transition-colors">ENDLESSUS</span>
-          <span class="text-outline text-xs font-mono">/</span>
-          <span class="font-mono text-xs text-primary font-bold">LABS HUB</span>
+        <a href="learning.html" class="flex items-center gap-2.5 group">
+          <span class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/40 text-primary flex items-center justify-center font-mono font-bold text-sm group-hover:scale-105 transition-transform">E</span>
+          <div class="flex flex-col">
+            <span class="font-bold text-sm tracking-tight text-on-surface group-hover:text-primary transition-colors">Endlessus Academy</span>
+            <span class="font-mono text-[10px] text-outline tracking-wider uppercase">Practical Labs</span>
+          </div>
         </a>
-        <span class="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded border border-primary/30 bg-canvas-base font-mono text-[10px] text-primary">
-          <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-          <span>12 DEDICATED WORKSPACES</span>
-        </span>
       </div>
 
-      <nav class="hidden xl:flex items-center space-x-3.5 font-mono text-xs tracking-wider">
-        <a href="theory.html" class="text-secondary hover:text-primary transition-colors font-bold flex items-center gap-1">
-          <span class="material-symbols-outlined text-sm">psychology</span>
-          <span>Theory</span>
+      <!-- Unified Hierarchy Navigation: Learn · Practice · Reference · Portfolio -->
+      <nav class="hidden lg:flex items-center space-x-1 text-xs">
+        
+        <!-- Learn Popover -->
+        <div class="relative group">
+          <button type="button" class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-raised transition-colors font-medium cursor-pointer" aria-haspopup="true">
+            <span class="material-symbols-outlined text-sm">school</span>
+            <span>Learn</span>
+            <span class="material-symbols-outlined text-xs">arrow_drop_down</span>
+          </button>
+          <div class="absolute left-0 mt-1 w-52 py-2 rounded-xl bg-surface-subtle border border-border-hairline shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all z-50">
+            <a href="learning.html#start-here" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-primary">play_arrow</span>
+              <div>
+                <div class="font-bold text-on-surface">Start Here</div>
+                <div class="text-[10px] text-outline">Zero prerequisites guide</div>
+              </div>
+            </a>
+            <a href="learning.html#curriculum" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-secondary">menu_book</span>
+              <div>
+                <div class="font-bold text-on-surface">Full Curriculum</div>
+                <div class="text-[10px] text-outline">40 guided core rooms</div>
+              </div>
+            </a>
+            <a href="learning.html#progress" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-warning">verified</span>
+              <div>
+                <div class="font-bold text-on-surface">My Progress</div>
+                <div class="text-[10px] text-outline">Track completion & badges</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Practice Popover (Active) -->
+        <div class="relative group">
+          <button type="button" class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-primary font-bold bg-primary/10 border border-primary/30 transition-colors cursor-pointer" aria-current="page" aria-haspopup="true">
+            <span class="material-symbols-outlined text-sm">terminal</span>
+            <span>Practice</span>
+            <span class="material-symbols-outlined text-xs">arrow_drop_down</span>
+          </button>
+          <div class="absolute left-0 mt-1 w-56 py-2 rounded-xl bg-surface-subtle border border-border-hairline shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all z-50">
+            <a href="labs.html" class="flex items-center gap-2 px-3 py-2 text-xs text-primary font-bold bg-primary/10">
+              <span class="material-symbols-outlined text-sm text-primary">science</span>
+              <div>
+                <div class="font-bold text-primary">Practical Labs</div>
+                <div class="text-[10px] text-outline">12 guided workspaces</div>
+              </div>
+            </a>
+            <a href="terminal-lab.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-secondary">computer</span>
+              <div>
+                <div class="font-bold text-on-surface">Terminal Practice</div>
+                <div class="text-[10px] text-outline">Interactive Linux command sandbox</div>
+              </div>
+            </a>
+            <a href="payloads.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-danger-critical">code</span>
+              <div>
+                <div class="font-bold text-on-surface">Interactive Payloads</div>
+                <div class="text-[10px] text-outline">Live web exploit tester</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Reference Popover -->
+        <div class="relative group">
+          <button type="button" class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-raised transition-colors font-medium cursor-pointer" aria-haspopup="true">
+            <span class="material-symbols-outlined text-sm">library_books</span>
+            <span>Reference</span>
+            <span class="material-symbols-outlined text-xs">arrow_drop_down</span>
+          </button>
+          <div class="absolute left-0 mt-1 w-56 py-2 rounded-xl bg-surface-subtle border border-border-hairline shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all z-50">
+            <a href="theory.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-secondary">psychology</span>
+              <div>
+                <div class="font-bold text-on-surface">Theory & Concepts</div>
+                <div class="text-[10px] text-outline">Theoretical cybersecurity foundations</div>
+              </div>
+            </a>
+            <a href="handbook/index.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-primary">menu_book</span>
+              <div>
+                <div class="font-bold text-on-surface">Command Handbook</div>
+                <div class="text-[10px] text-outline">15 modular security guides</div>
+              </div>
+            </a>
+            <a href="tools.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-warning">build</span>
+              <div>
+                <div class="font-bold text-on-surface">Security Tools</div>
+                <div class="text-[10px] text-outline">Tools encyclopedia & Nmap builder</div>
+              </div>
+            </a>
+            <a href="roadmap.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
+              <span class="material-symbols-outlined text-sm text-accent">alt_route</span>
+              <div>
+                <div class="font-bold text-on-surface">Career Roadmap</div>
+                <div class="text-[10px] text-outline">11-discipline milestone map</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Portfolio Link -->
+        <a href="index.html" class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-raised transition-colors font-medium">
+          <span class="material-symbols-outlined text-sm">person</span>
+          <span>Portfolio</span>
         </a>
-        <a href="learning.html" class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 font-bold">
-          <span class="material-symbols-outlined text-sm">school</span>
-          <span>Learning Hub</span>
-        </a>
-        <a href="labs.html" class="text-primary font-bold border-b border-primary pb-0.5">Labs (12)</a>
-        <a href="handbook/index.html" class="text-on-surface-variant hover:text-primary transition-colors">Handbook</a>
-        <a href="roadmap.html" class="text-on-surface-variant hover:text-primary transition-colors">Roadmap</a>
-        <a href="tools.html" class="text-on-surface-variant hover:text-primary transition-colors">Tools</a>
-        <a href="terminal-lab.html" class="text-secondary hover:text-primary transition-colors font-bold">Terminal</a>
-        <a href="payloads.html" class="text-danger-critical hover:text-primary transition-colors font-bold">Payloads</a>
       </nav>
 
-      <div class="flex items-center gap-2">
-        <button data-trigger-cmd class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:text-primary hover:border-primary transition-colors cursor-pointer" title="Search Everything (Cmd+K)">
+      <!-- Header Controls: Search, Theme Toggle, Portfolio CTA -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        
+        <!-- Search Trigger -->
+        <button data-trigger-cmd class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border-hairline bg-surface-raised text-xs text-on-surface hover:border-primary transition-colors cursor-pointer" title="Search Everything (Cmd+K)">
           <span class="material-symbols-outlined text-sm text-primary">search</span>
           <span class="hidden sm:inline text-[11px] text-outline">⌘K</span>
         </button>
-        <button data-trigger-term class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded border border-primary/40 bg-canvas-base font-mono text-xs text-primary hover:bg-primary/10 transition-colors cursor-pointer" title="Terminal (~)">
-          <span class="material-symbols-outlined text-sm text-primary">terminal</span>
-          <span class="hidden sm:inline text-[11px] font-bold">CLI</span>
+
+        <!-- Theme Toggle: Normal View vs Hacker View -->
+        <div class="flex items-center border border-border-hairline rounded-lg p-0.5 bg-surface-raised text-xs font-mono">
+          <button type="button" id="theme-toggle-normal" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold bg-primary text-white" title="Switch to Normal View (Light mode)">
+            <span class="material-symbols-outlined text-xs">light_mode</span>
+            <span class="hidden sm:inline">Normal</span>
+          </button>
+          <button type="button" id="theme-toggle-hacker" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold text-outline hover:text-on-surface" title="Switch to Hacker View (Dark HUD)">
+            <span class="material-symbols-outlined text-xs">terminal</span>
+            <span class="hidden sm:inline">Hacker</span>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button type="button" id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" aria-label="Toggle Mobile Menu">
+          <span class="material-symbols-outlined text-base">menu</span>
         </button>
-        <a href="index.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-raised border border-primary/40 text-primary hover:bg-primary hover:text-canvas-base font-mono text-xs font-bold transition-all shadow-[0_0_12px_rgba(78,222,163,0.15)]" title="Return to Mihraj's Personal Cybersecurity Portfolio">
-          <span class="material-symbols-outlined text-sm">person</span>
-          <span>Mihraj Portfolio &rarr;</span>
+      </div>
+    </div>
+
+    <!-- Contextual Breadcrumb Sub-Header -->
+    <div class="border-t border-border-hairline bg-surface-raised/70 px-4 sm:px-6 py-2 text-xs">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <div class="flex items-center gap-1.5 text-on-surface-variant font-mono text-[11px]">
+          <a href="learning.html" class="hover:text-primary transition-colors flex items-center gap-1">
+            <span class="material-symbols-outlined text-xs">school</span>
+            <span>Academy</span>
+          </a>
+          <span class="text-outline">/</span>
+          <span>Practice</span>
+          <span class="text-outline">/</span>
+          <span class="text-primary font-bold" id="breadcrumb-current-lab">Practical Security Labs</span>
+        </div>
+        <a href="learning.html#curriculum" class="inline-flex items-center gap-1 text-primary hover:underline font-medium text-xs">
+          <span class="material-symbols-outlined text-xs">arrow_back</span>
+          <span>Back to Curriculum</span>
         </a>
       </div>
     </div>
@@ -6183,16 +6421,89 @@
 
       updateRoomSolvedHUD();
 
-      // Init LabEngine
-      if (window.LabEngine && window.LabEngine.init) {
-        window.LabEngine.init().then(hasBackend => {
-          if (hasBackend) {
-            console.log('[LabEngine] Connected to local lab backend server.');
+      // Theme Manager (Normal View vs Hacker View)
+      function initTheme() {
+        const savedTheme = localStorage.getItem('endlessus_learning_theme') || 'normal';
+        setTheme(savedTheme, false);
+
+        const toggleNormal = document.getElementById('theme-toggle-normal');
+        const toggleHacker = document.getElementById('theme-toggle-hacker');
+        if (toggleNormal) toggleNormal.addEventListener('click', () => setTheme('normal', true));
+        if (toggleHacker) toggleHacker.addEventListener('click', () => setTheme('hacker', true));
+      }
+
+      function setTheme(newTheme, persist) {
+        if (persist) {
+          localStorage.setItem('endlessus_learning_theme', newTheme);
+        }
+        if (newTheme === 'hacker') {
+          document.documentElement.classList.add('dark', 'theme-hacker');
+          document.documentElement.classList.remove('theme-normal');
+          document.body.classList.add('theme-hacker');
+          document.body.classList.remove('theme-normal');
+        } else {
+          document.documentElement.classList.remove('dark', 'theme-hacker');
+          document.documentElement.classList.add('theme-normal');
+          document.body.classList.remove('theme-hacker');
+          document.body.classList.add('theme-normal');
+        }
+
+        const toggleNormal = document.getElementById('theme-toggle-normal');
+        const toggleHacker = document.getElementById('theme-toggle-hacker');
+        if (toggleNormal && toggleHacker) {
+          if (newTheme === 'normal') {
+            toggleNormal.className = 'px-2 py-1 rounded text-xs flex items-center gap-1 font-bold bg-primary text-white';
+            toggleHacker.className = 'px-2 py-1 rounded text-xs flex items-center gap-1 font-bold text-outline hover:text-on-surface';
           } else {
-            console.log('[LabEngine] Running in high-fidelity virtual client sandbox.');
+            toggleHacker.className = 'px-2 py-1 rounded text-xs flex items-center gap-1 font-bold bg-primary text-canvas-base';
+            toggleNormal.className = 'px-2 py-1 rounded text-xs flex items-center gap-1 font-bold text-outline hover:text-on-surface';
+          }
+        }
+      }
+
+      initTheme();
+
+      // Mobile Menu Toggle
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', () => {
+          const nav = document.querySelector('header nav');
+          if (nav) {
+            nav.classList.toggle('hidden');
+            nav.classList.toggle('flex');
+            nav.classList.toggle('flex-col');
+            nav.classList.toggle('absolute');
+            nav.classList.toggle('top-16');
+            nav.classList.toggle('left-0');
+            nav.classList.toggle('w-full');
+            nav.classList.toggle('p-4');
+            nav.classList.toggle('bg-surface-subtle');
+            nav.classList.toggle('border-b');
+            nav.classList.toggle('border-border-hairline');
+            nav.classList.toggle('shadow-xl');
           }
         });
       }
+
+      // Breadcrumb Dynamic Updates
+      const origOpenLabWorkspace = openLabWorkspace;
+      openLabWorkspace = function(labId) {
+        origOpenLabWorkspace(labId);
+        const room = LAB_CATALOG[labId];
+        const bc = document.getElementById('breadcrumb-current-lab');
+        if (bc && room) {
+          bc.textContent = `Room ${room.num}: ${room.title}`;
+        }
+      };
+
+      const origCloseLabWorkspace = closeLabWorkspace;
+      closeLabWorkspace = function() {
+        origCloseLabWorkspace();
+        const bc = document.getElementById('breadcrumb-current-lab');
+        if (bc) {
+          bc.textContent = 'Practical Security Labs';
+        }
+      };
     });
   </script>
 </body>

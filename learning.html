@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="handbook/assets/favicon.png">
   <title>Endlessus Cybersecurity Academy · From Absolute Zero to Junior Pentester</title>
-  <meta name="description" content="A comprehensive, progressive cybersecurity curriculum designed for absolute beginners to reach practical penetration testing. Master computers, networking, web security, and exploit methodology.">
+  <meta name="description" content="A comprehensive, progressive cybersecurity curriculum designed for absolute beginners to reach practical penetration testing. Master computer fundamentals, networking, web security, and ethical hacking.">
   
   <!-- Typography & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,16 +13,32 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
   
+  <!-- Immediate Theme Initializer: Normal View (Light mode) by Default -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('endlessus_learning_theme') || 'normal';
+      if (savedTheme === 'hacker') {
+        document.documentElement.classList.add('dark', 'theme-hacker');
+        document.documentElement.classList.remove('theme-normal');
+      } else {
+        document.documentElement.classList.remove('dark', 'theme-hacker');
+        document.documentElement.classList.add('theme-normal');
+      }
+    })();
+  </script>
+
   <!-- Academy Stylesheet -->
   <link rel="stylesheet" href="learning.css">
 </head>
 <body class="theme-normal">
 
   <!-- =========================================================================
-       1. ACADEMY HEADER & THEME TOGGLE
+       1. ACADEMY UNIFIED HEADER & HIERARCHICAL NAVIGATION
        ========================================================================= -->
   <header class="lh-header">
     <div class="lh-container lh-header-inner">
+      
+      <!-- Brand -->
       <a href="learning.html" class="lh-brand">
         <span class="lh-brand-mark">E</span>
         <div class="lh-brand-text">
@@ -37,44 +53,201 @@
         <span>LAB_NET: ONLINE</span>
       </div>
 
-      <!-- Center Nav Links -->
-      <nav class="lh-nav">
-        <a href="#curriculum" class="lh-nav-link active">
-          <span class="material-symbols-outlined" style="font-size: 16px;">school</span>
-          <span>Curriculum</span>
-        </a>
-        <a href="labs.html" class="lh-nav-link">
-          <span class="material-symbols-outlined" style="font-size: 16px;">terminal</span>
-          <span>Practical Labs (12)</span>
-        </a>
-        <a href="handbook/index.html" class="lh-nav-link">
-          <span class="material-symbols-outlined" style="font-size: 16px;">menu_book</span>
-          <span>Command Handbook</span>
-        </a>
+      <!-- Core Hierarchy: Learn · Practice · Reference · Portfolio -->
+      <nav class="lh-nav" aria-label="Main Navigation">
+        
+        <!-- Learn Dropdown -->
+        <div class="lh-nav-dropdown">
+          <button type="button" class="lh-nav-link active" aria-haspopup="true" aria-expanded="false" id="nav-learn-btn">
+            <span class="material-symbols-outlined" style="font-size: 16px;">school</span>
+            <span>Learn</span>
+            <span class="material-symbols-outlined" style="font-size: 14px;">arrow_drop_down</span>
+          </button>
+          <div class="lh-dropdown-menu" id="dropdown-learn">
+            <a href="#start-here" class="lh-dropdown-item">
+              <span class="material-symbols-outlined" style="color: var(--lh-primary);">play_arrow</span>
+              <div>
+                <strong>Start Here</strong>
+                <span>Zero prerequisites onboarding</span>
+              </div>
+            </a>
+            <a href="#curriculum" class="lh-dropdown-item">
+              <span class="material-symbols-outlined" style="color: var(--lh-secondary);">menu_book</span>
+              <div>
+                <strong>Full Curriculum</strong>
+                <span>40 guided core rooms across 11 stages</span>
+              </div>
+            </a>
+            <a href="#progress" class="lh-dropdown-item">
+              <span class="material-symbols-outlined" style="color: var(--lh-warning);">verified</span>
+              <div>
+                <strong>My Progress</strong>
+                <span>Track completed rooms & milestones</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Practice Dropdown -->
+        <div class="lh-nav-dropdown">
+          <button type="button" class="lh-nav-link" aria-haspopup="true" aria-expanded="false" id="nav-practice-btn">
+            <span class="material-symbols-outlined" style="font-size: 16px;">terminal</span>
+            <span>Practice</span>
+            <span class="material-symbols-outlined" style="font-size: 14px;">arrow_drop_down</span>
+          </button>
+          <div class="lh-dropdown-menu" id="dropdown-practice">
+            <a href="labs.html" class="lh-dropdown-item">
+              <span class="material-symbols-outlined" style="color: var(--lh-primary);">science</span>
+              <div>
+                <strong>Practical Security Labs</strong>
+                <span>12 dedicated interactive workspaces</span>
+              </div>
+            </a>
+            <a href="terminal-lab.html" class="lh-dropdown-item">
+              <span class="material-symbols-outlined" style="color: var(--lh-secondary);">computer</span>
+              <div>
+                <strong>Terminal Practice</strong>
+                <span>Live Linux command line sandbox</span>
+              </div>
+            </a>
+            <a href="payloads.html" class="lh-dropdown-item">
+              <span class="material-symbols-outlined" style="color: var(--lh-danger);">code</span>
+              <div>
+                <strong>Interactive Payloads</strong>
+                <span>Live web exploit validation</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Reference Dropdown -->
+        <div class="lh-nav-dropdown">
+          <button type="button" class="lh-nav-link" aria-haspopup="true" aria-expanded="false" id="nav-ref-btn">
+            <span class="material-symbols-outlined" style="font-size: 16px;">library_books</span>
+            <span>Reference</span>
+            <span class="material-symbols-outlined" style="font-size: 14px;">arrow_drop_down</span>
+          </button>
+          <div class="lh-dropdown-menu" id="dropdown-reference">
+            <a href="theory.html" class="lh-dropdown-item">
+              <span class="material-symbols-outlined" style="color: var(--lh-secondary);">psychology</span>
+              <div>
+                <strong>Theory & Concepts</strong>
+                <span>Conceptual cybersecurity foundations</span>
+              </div>
+            </a>
+            <a href="handbook/index.html" class="lh-dropdown-item">
+              <span class="material-symbols-outlined" style="color: var(--lh-primary);">menu_book</span>
+              <div>
+                <strong>Command Handbook</strong>
+                <span>15 modular security command guides</span>
+              </div>
+            </a>
+            <a href="tools.html" class="lh-dropdown-item">
+              <span class="material-symbols-outlined" style="color: var(--lh-warning);">build</span>
+              <div>
+                <strong>Security Tools & Builder</strong>
+                <span>Tools directory & interactive Nmap builder</span>
+              </div>
+            </a>
+            <a href="roadmap.html" class="lh-dropdown-item">
+              <span class="material-symbols-outlined" style="color: var(--lh-accent);">alt_route</span>
+              <div>
+                <strong>Career Roadmap</strong>
+                <span>11-discipline cybersecurity pathway</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Portfolio Link -->
         <a href="index.html" class="lh-nav-link">
           <span class="material-symbols-outlined" style="font-size: 16px;">person</span>
           <span>Portfolio</span>
         </a>
       </nav>
 
-      <!-- Theme Switcher: Normal View vs Hacker View -->
-      <div class="lh-theme-toggle">
-        <button class="lh-toggle-btn normal-btn active" id="toggle-normal" title="Switch to Normal View (Clean light academy)">
-          <span class="material-symbols-outlined" style="font-size: 14px;">light_mode</span>
-          <span>Normal View</span>
+      <!-- Right Header Controls -->
+      <div class="lh-header-actions">
+        <!-- Universal Search Trigger -->
+        <button class="lh-search-trigger-btn" id="open-search-btn" title="Search Everything (Cmd+K or /)">
+          <span class="material-symbols-outlined" style="font-size: 16px;">search</span>
+          <span class="lh-search-btn-text">Search...</span>
+          <kbd class="lh-search-kbd">⌘K</kbd>
         </button>
-        <button class="lh-toggle-btn hacker-btn" id="toggle-hacker" title="Switch to Hacker View (Dark technical terminal HUD)">
-          <span class="material-symbols-outlined" style="font-size: 14px;">bolt</span>
-          <span>Hacker View</span>
+
+        <!-- Theme Switcher: Normal View (Light) vs Hacker View (Dark HUD) -->
+        <div class="lh-theme-toggle">
+          <button class="lh-toggle-btn normal-btn active" id="toggle-normal" title="Switch to Normal View (Clean light academy)">
+            <span class="material-symbols-outlined" style="font-size: 14px;">light_mode</span>
+            <span>Normal</span>
+          </button>
+          <button class="lh-toggle-btn hacker-btn" id="toggle-hacker" title="Switch to Hacker View (Dark technical terminal HUD)">
+            <span class="material-symbols-outlined" style="font-size: 14px;">bolt</span>
+            <span>Hacker</span>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="lh-mobile-menu-btn" id="mobile-drawer-toggle" aria-label="Toggle navigation menu">
+          <span class="material-symbols-outlined">menu</span>
         </button>
+      </div>
+    </div>
+
+    <!-- Contextual Breadcrumbs Sub-Bar -->
+    <div class="lh-breadcrumb-bar">
+      <div class="lh-container lh-breadcrumb-inner">
+        <div class="lh-breadcrumbs">
+          <span class="material-symbols-outlined" style="font-size: 14px; color: var(--lh-text-subtle);">school</span>
+          <a href="learning.html">Academy</a>
+          <span class="lh-breadcrumb-sep">/</span>
+          <span class="lh-breadcrumb-current" id="lh-active-breadcrumb">Learn / Curriculum</span>
+        </div>
+        <div class="lh-breadcrumb-right">
+          <span class="lh-progress-mini-badge" id="mini-progress-badge">
+            <span class="material-symbols-outlined" style="font-size: 13px; color: var(--lh-primary);">verified</span>
+            <span id="mini-progress-text">0/40 Rooms (0%)</span>
+          </span>
+          <a href="labs.html" class="lh-crumb-lab-link">
+            <span class="material-symbols-outlined" style="font-size: 13px;">terminal</span>
+            <span>Practical Labs (12) &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="lh-mobile-drawer" id="mobile-drawer">
+      <div class="lh-mobile-drawer-section">
+        <span class="lh-mobile-section-label">LEARN</span>
+        <a href="#start-here" class="lh-mobile-item">Start Here (Zero Prerequisites)</a>
+        <a href="#curriculum" class="lh-mobile-item">Full Curriculum (40 Rooms)</a>
+        <a href="#progress" class="lh-mobile-item">My Progress & Milestones</a>
+      </div>
+      <div class="lh-mobile-drawer-section">
+        <span class="lh-mobile-section-label">PRACTICE</span>
+        <a href="labs.html" class="lh-mobile-item">Practical Security Labs (12)</a>
+        <a href="terminal-lab.html" class="lh-mobile-item">Terminal Practice Sandbox</a>
+        <a href="payloads.html" class="lh-mobile-item">Interactive Payloads</a>
+      </div>
+      <div class="lh-mobile-drawer-section">
+        <span class="lh-mobile-section-label">REFERENCE</span>
+        <a href="theory.html" class="lh-mobile-item">Theory & Concepts System</a>
+        <a href="handbook/index.html" class="lh-mobile-item">Command Handbook</a>
+        <a href="tools.html" class="lh-mobile-item">Security Tools & Builder</a>
+        <a href="roadmap.html" class="lh-mobile-item">Cybersecurity Roadmap</a>
+      </div>
+      <div class="lh-mobile-drawer-section">
+        <span class="lh-mobile-section-label">PORTFOLIO</span>
+        <a href="index.html" class="lh-mobile-item">Mihraj Mashhoor K Portfolio</a>
       </div>
     </div>
   </header>
 
   <!-- =========================================================================
-       2. HERO & ONBOARDING LEVEL ASSESSMENT
+       2. HERO & "START HERE" ONBOARDING EXPERIENCE
        ========================================================================= -->
-  <section class="lh-hero">
+  <section class="lh-hero" id="start-here">
     <div class="lh-container">
       <div class="lh-hero-header">
         <div class="lh-hero-pill">
@@ -85,15 +258,27 @@
           From <span>Zero Knowledge</span> to Junior Penetration Tester.
         </h1>
         <p class="lh-hero-subtitle">
-          No gatekeeping, no confusing jargon without explanations, and no artificial locks. Learn computer foundations, networking, web architecture, and ethical hacking step by step.
+          You do not need networking knowledge. You do not need Linux knowledge. You do not need cybersecurity experience. Every concept is taught from first principles with real examples, live commands, and hands-on practice.
         </p>
+
+        <!-- Direct Call to Action -->
+        <div class="lh-hero-actions">
+          <button class="lh-btn-hero-primary" id="hero-start-room-btn">
+            <span class="material-symbols-outlined">play_circle</span>
+            <span>Start Stage 0: Welcome to Cybersecurity</span>
+          </button>
+          <a href="#path-navigator" class="lh-btn-hero-secondary">
+            <span>Explore Learning Pathway</span>
+            <span class="material-symbols-outlined" style="font-size: 15px;">arrow_downward</span>
+          </a>
+        </div>
       </div>
 
       <!-- Self-Assessment Level Picker -->
       <div class="lh-assessment-box">
         <div class="lh-assessment-prompt">
           <span class="material-symbols-outlined" style="color: var(--lh-primary);">quiz</span>
-          <span>How much cybersecurity do you know?</span>
+          <span>How much cybersecurity do you know? (Select your level)</span>
         </div>
 
         <div class="lh-level-options">
@@ -123,12 +308,12 @@
         <div class="lh-recommendation-card" id="recommendation-card">
           <div class="lh-rec-left">
             <span class="lh-rec-label">Recommended Starting Point</span>
-            <h3 class="lh-rec-title" id="rec-stage-title">Cybersecurity Foundations</h3>
+            <h3 class="lh-rec-title" id="rec-stage-title">Stage 0: Start Here</h3>
             <p class="lh-rec-sub" id="rec-stage-desc">Designed specifically for absolute beginners. Zero previous knowledge required.</p>
           </div>
           <button class="lh-rec-btn" id="rec-start-btn">
             <span>Start Stage 0</span>
-            <span class="material-symbols-outlined" style="font-size: 16px;">arrow_downward</span>
+            <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
           </button>
         </div>
       </div>
@@ -136,56 +321,66 @@
   </section>
 
   <!-- =========================================================================
-       3. CONTROLS, SEARCH & FILTER TOOLBAR
+       3. STAGE PATHWAY TRACKER & CONTROLS TOOLBAR
        ========================================================================= -->
-  <section class="lh-controls">
-    <div class="lh-container lh-controls-inner">
-      <!-- Search Input -->
-      <div class="lh-search-box">
-        <span class="material-symbols-outlined lh-search-icon">search</span>
-        <input type="text" class="lh-search-input" id="search-input" placeholder="Search rooms, topics, tools, or vocabulary..." autocomplete="off">
-      </div>
-
-      <!-- Difficulty Filters -->
-      <div class="lh-filter-pills" id="difficulty-filters">
-        <button class="lh-filter-pill active" data-diff="all">All Difficulties</button>
-        <button class="lh-filter-pill" data-diff="beginner">🟢 Beginner</button>
-        <button class="lh-filter-pill" data-diff="foundation">🔵 Foundation</button>
-        <button class="lh-filter-pill" data-diff="intermediate">🟣 Intermediate</button>
-        <button class="lh-filter-pill" data-diff="advanced">🔴 Advanced</button>
-      </div>
-
-      <!-- Progress Stats Summary -->
-      <div class="lh-stats-summary">
-        <div class="lh-progress-bar-wrap">
-          <div class="lh-progress-bar-fill" id="progress-bar-fill" style="width: 0%;"></div>
+  <section class="lh-controls" id="path-navigator">
+    <div class="lh-container">
+      
+      <!-- Stage Progression Navigator Header -->
+      <div class="lh-pathway-header">
+        <div class="lh-pathway-title">
+          <span class="material-symbols-outlined" style="color: var(--lh-primary); font-size: 18px;">alt_route</span>
+          <span>Learning Pathway (Stages 0–10)</span>
         </div>
-        <span id="progress-text">0/40 Completed (0%)</span>
-        <button id="reset-progress-btn" style="color: var(--lh-text-subtle); font-size: 0.75rem; text-decoration: underline;" title="Clear progress history">Reset</button>
+        
+        <!-- Mobile Stage Stepper (< 768px) -->
+        <div class="lh-mobile-stage-stepper">
+          <button class="lh-stepper-btn" id="prev-stage-btn" aria-label="Previous Stage">
+            <span class="material-symbols-outlined">chevron_left</span>
+          </button>
+          <span class="lh-stepper-label" id="mobile-stage-label">All Stages</span>
+          <button class="lh-stepper-btn" id="next-stage-btn" aria-label="Next Stage">
+            <span class="material-symbols-outlined">chevron_right</span>
+          </button>
+        </div>
       </div>
-    </div>
 
-    <!-- Stage Filter Pills -->
-    <div class="lh-container" style="margin-top: 0.75rem;">
-      <div class="lh-filter-pills" id="stage-filters">
-        <button class="lh-filter-pill active" data-stage="all">All Stages (0–10)</button>
-        <button class="lh-filter-pill" data-stage="0">Stage 0: Start Here</button>
-        <button class="lh-filter-pill" data-stage="1">Stage 1: Computers</button>
-        <button class="lh-filter-pill" data-stage="2">Stage 2: Networking</button>
-        <button class="lh-filter-pill" data-stage="3">Stage 3: Web</button>
-        <button class="lh-filter-pill" data-stage="4">Stage 4: Cyber Sec</button>
-        <button class="lh-filter-pill" data-stage="5">Stage 5: Tools</button>
-        <button class="lh-filter-pill" data-stage="6">Stage 6: Web Sec</button>
-        <button class="lh-filter-pill" data-stage="7">Stage 7: Linux Sec</button>
-        <button class="lh-filter-pill" data-stage="8">Stage 8: Network Sec</button>
-        <button class="lh-filter-pill" data-stage="9">Stage 9: Modern Sec</button>
-        <button class="lh-filter-pill" data-stage="10">Stage 10: Junior Pentester</button>
+      <!-- Stage Navigation Stepper Track (Desktop / Tablet) -->
+      <div class="lh-stage-track" id="stage-track-nodes">
+        <!-- Rendered dynamically by learning.js -->
+      </div>
+
+      <!-- Filter Controls & Unified Progress Bar -->
+      <div class="lh-controls-inner" id="progress">
+        <!-- Search Input -->
+        <div class="lh-search-box">
+          <span class="material-symbols-outlined lh-search-icon">search</span>
+          <input type="text" class="lh-search-input" id="search-input" placeholder="Search rooms, vocabulary, tools, or concepts..." autocomplete="off">
+        </div>
+
+        <!-- Difficulty Filters -->
+        <div class="lh-filter-pills" id="difficulty-filters">
+          <button class="lh-filter-pill active" data-diff="all">All Difficulties</button>
+          <button class="lh-filter-pill" data-diff="beginner">🟢 Beginner</button>
+          <button class="lh-filter-pill" data-diff="foundation">🔵 Foundation</button>
+          <button class="lh-filter-pill" data-diff="intermediate">🟣 Intermediate</button>
+          <button class="lh-filter-pill" data-diff="advanced">🔴 Advanced</button>
+        </div>
+
+        <!-- Progress Stats Summary -->
+        <div class="lh-stats-summary">
+          <div class="lh-progress-bar-wrap">
+            <div class="lh-progress-bar-fill" id="progress-bar-fill" style="width: 0%;"></div>
+          </div>
+          <span id="progress-text">0/40 Completed (0%)</span>
+          <button id="reset-progress-btn" style="color: var(--lh-text-subtle); font-size: 0.75rem; text-decoration: underline;" title="Clear progress history">Reset</button>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- =========================================================================
-       4. CURRICULUM VIEW (STAGES 0 TO 10)
+       4. CURRICULUM VIEW (STAGES 0 TO 10 & 40 CORE ROOMS)
        ========================================================================= -->
   <main class="lh-curriculum" id="curriculum">
     <div class="lh-container" id="curriculum-stages">
@@ -194,36 +389,73 @@
   </main>
 
   <!-- =========================================================================
-       5. PRACTICAL SECURITY LABS SPOTLIGHT (12 PRACTICAL ROOMS)
+       5. COMPACT "PRACTICE WHILE YOU LEARN" SPOTLIGHT
        ========================================================================= -->
-  <section class="lh-labs-spotlight" id="practical-labs">
+  <section class="lh-practice-spotlight" id="practice">
     <div class="lh-container">
-      <div class="lh-labs-header">
-        <span class="lh-hero-pill">PRACTICAL SECURITY ROOMS / EXTRA PRACTICE</span>
-        <h2 class="lh-labs-title">12 Interactive Hands-On Labs</h2>
-        <p style="font-size: 0.95rem; color: var(--lh-text-muted);">
-          Complement your foundational theory with dedicated interactive sandboxes. Practice SQL injection, XSS, IDOR parameter tampering, Linux SUID root escalation, SMB enumeration, and modern JWT exploits.
-        </p>
-      </div>
-
-      <div class="lh-labs-grid" id="practical-labs-grid">
-        <!-- Dynamically rendered by learning.js -->
+      <div class="lh-practice-card">
+        <div class="lh-practice-content">
+          <div class="lh-practice-pill">
+            <span class="material-symbols-outlined" style="font-size: 14px;">science</span>
+            <span>HANDS-ON PRACTICE LAYER</span>
+          </div>
+          <h2 class="lh-practice-title">Ready to apply what you learned?</h2>
+          <p class="lh-practice-desc">
+            Complement foundational theory with 12 dedicated interactive practical labs. Practice real-world SQL injection, cross-site scripting (XSS), IDOR parameter tampering, Linux SUID root escalation, SMB enumeration, and JWT token exploitation with dedicated in-browser target workstations.
+          </p>
+          <div class="lh-practice-categories">
+            <span class="lh-practice-chip">🌐 Web Application Security</span>
+            <span class="lh-practice-chip">🐧 Linux Privilege Escalation</span>
+            <span class="lh-practice-chip">🔍 Network Recon & Nmap</span>
+            <span class="lh-practice-chip">🔐 Modern Cryptography</span>
+          </div>
+        </div>
+        <div class="lh-practice-cta">
+          <a href="labs.html" class="lh-btn-primary-practice">
+            <span class="material-symbols-outlined">terminal</span>
+            <span>Explore Practical Labs (12) →</span>
+          </a>
+          <a href="terminal-lab.html" class="lh-btn-secondary-practice">
+            <span class="material-symbols-outlined">computer</span>
+            <span>Terminal Practice</span>
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- =========================================================================
-       6. INTERACTIVE ROOM PLAYER MODAL (12-PART TEMPLATE)
+       6. INTERACTIVE ROOM PLAYER MODAL (12-PART STRICT TEMPLATE)
        ========================================================================= -->
-  <div class="lh-modal-backdrop" id="room-modal">
+  <div class="lh-modal-backdrop" id="room-modal" role="dialog" aria-modal="true" aria-labelledby="modal-room-title">
     <div class="lh-room-player">
+      
       <!-- Player Header -->
       <div class="lh-player-header">
         <div class="lh-player-title-wrap">
           <span class="lh-room-difficulty" id="modal-room-badge">🟢 Beginner</span>
-          <h2 style="font-size: 1.15rem; font-weight: 700; color: var(--lh-text);" id="modal-room-title">Room Title</h2>
-          <span style="font-size: 0.8rem; color: var(--lh-text-muted); font-family: var(--lh-font-mono);" id="modal-room-time">⏱ 20 min</span>
+          <h2 id="modal-room-title">Room Title</h2>
+          <span id="modal-room-time">⏱ 20 min</span>
         </div>
+
+        <!-- Mobile Section Jump Dropdown (< 900px) -->
+        <div class="lh-player-mobile-nav">
+          <select id="modal-mobile-section-select" class="lh-mobile-select" aria-label="Jump to room section">
+            <option value="sec-why">1. Why are you here?</option>
+            <option value="sec-learn">2. What you'll learn</option>
+            <option value="sec-vocab">3. New vocabulary</option>
+            <option value="sec-lessons">4. Core Concepts</option>
+            <option value="sec-see">5. Real Examples</option>
+            <option value="sec-try">6. Interactive Exercise</option>
+            <option value="sec-questions">7. Knowledge Questions</option>
+            <option value="sec-task">8. Practical Task</option>
+            <option value="sec-hints">9. Progressive Hints</option>
+            <option value="sec-explain">10. Result Explanation</option>
+            <option value="sec-security">11. Security Connection</option>
+            <option value="sec-complete">12. Room Completion</option>
+          </select>
+        </div>
+
         <button class="lh-player-close" id="modal-close-btn" title="Close Room (Esc)">
           <span class="material-symbols-outlined">close</span>
         </button>
@@ -231,8 +463,8 @@
 
       <!-- Player Body -->
       <div class="lh-player-body">
-        <!-- Left Sidebar Navigation -->
-        <nav class="lh-player-sidebar" id="modal-toc-nav">
+        <!-- Left Sidebar Navigation (Desktop) -->
+        <nav class="lh-player-sidebar" id="modal-toc-nav" aria-label="Room Table of Contents">
           <!-- Dynamically populated TOC -->
         </nav>
 
@@ -245,7 +477,30 @@
   </div>
 
   <!-- =========================================================================
-       7. FOOTER
+       7. UNIVERSAL SEARCH MODAL (CMD+K / SEARCH ACROSS CONTENT)
+       ========================================================================= -->
+  <div class="lh-search-modal-backdrop" id="universal-search-modal" role="dialog" aria-modal="true" aria-label="Universal Search">
+    <div class="lh-search-modal">
+      <div class="lh-search-modal-header">
+        <span class="material-symbols-outlined" style="color: var(--lh-primary); font-size: 20px;">search</span>
+        <input type="text" class="lh-universal-search-input" id="universal-search-input" placeholder="Search rooms, stages, concepts, tools, vocabulary..." autocomplete="off">
+        <button class="lh-search-modal-close" id="search-modal-close" title="Close Search (Esc)">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="lh-search-results-container" id="universal-search-results">
+        <!-- Dynamically rendered search results with type tags -->
+      </div>
+      <div class="lh-search-modal-footer">
+        <span><kbd>↑</kbd> <kbd>↓</kbd> to navigate</span>
+        <span><kbd>Enter</kbd> to select</span>
+        <span><kbd>Esc</kbd> to close</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       8. FOOTER
        ========================================================================= -->
   <footer class="lh-footer">
     <div class="lh-container lh-footer-inner">
@@ -253,10 +508,11 @@
         <div style="font-weight: 700; color: var(--lh-text); margin-bottom: 0.25rem;">Endlessus Cybersecurity Academy</div>
         <div>Engineered by <a href="index.html" style="text-decoration: underline; color: var(--lh-primary);">Mihraj Mashhoor K</a> · Authorized educational platform.</div>
       </div>
-      <div style="display: flex; gap: 1.5rem;">
+      <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
         <a href="index.html">Portfolio</a>
         <a href="labs.html">Practical Labs</a>
         <a href="handbook/index.html">Command Handbook</a>
+        <a href="theory.html">Theory System</a>
         <a href="https://github.com/mihrajmashoor8301-collab" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>

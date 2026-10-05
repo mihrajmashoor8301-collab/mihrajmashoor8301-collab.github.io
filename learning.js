@@ -4,11 +4,12 @@
  * Features:
  * 1. Dual-Theme Manager: Normal View (light, educational) vs Hacker View (dark, terminal HUD)
  * 2. Onboarding Self-Assessment Level Picker & Dynamic Stage Recommender
- * 3. Search & Multi-Criteria Curriculum Filtering
- * 4. LocalStorage-Persisted Progress Tracking (Completion & Answers)
- * 5. Interactive 12-Section Room Player Modal with Live Terminal Simulators,
- *    Instant Validation Quizzes, and Sequential 5-Stage Hint Unlocking.
- * 6. Deep Linking to Practical Security Labs (labs.html)
+ * 3. Stage Pathway Tracker & Interactive Stepper (Desktop & Mobile)
+ * 4. Universal Search across Rooms, Stages, Vocabulary, Tools, and Practical Labs
+ * 5. LocalStorage-Persisted Progress Tracking (Completed Rooms & Practiced Labs)
+ * 6. Interactive 12-Section Room Player Modal with Live Terminal Simulator,
+ *    Instant Validation Quizzes, Sequential 5-Stage Hints, and Mobile Section Stepper.
+ * 7. Contextual Deep Linking to Practical Security Labs (labs.html)
  */
 
 (function () {
@@ -18,6 +19,7 @@
   const STATE = {
     theme: localStorage.getItem('endlessus_learning_theme') || 'normal',
     completedRooms: JSON.parse(localStorage.getItem('endlessus_completed_rooms') || '[]'),
+    completedLabs: JSON.parse(localStorage.getItem('endlessus_completed_labs') || '[]'),
     activeFilterStage: 'all',
     activeFilterDiff: 'all',
     searchQuery: '',
@@ -33,8 +35,10 @@
     initTheme();
     initAssessment();
     initFilters();
+    initStagePathway();
+    initUniversalSearch();
+    initMobileNav();
     renderCurriculum();
-    renderPracticalLabs();
     updateProgressUI();
     initUrlHashRouting();
   });
@@ -45,12 +49,12 @@
       themeToggleNormal: document.getElementById('toggle-normal'),
       themeToggleHacker: document.getElementById('toggle-hacker'),
       curriculumContainer: document.getElementById('curriculum-stages'),
-      practicalLabsContainer: document.getElementById('practical-labs-grid'),
       searchInput: document.getElementById('search-input'),
-      stageFilters: document.getElementById('stage-filters'),
       difficultyFilters: document.getElementById('difficulty-filters'),
       progressText: document.getElementById('progress-text'),
       progressBar: document.getElementById('progress-bar-fill'),
+      miniProgressText: document.getElementById('mini-progress-text'),
+      activeBreadcrumb: document.getElementById('lh-active-breadcrumb'),
       modalBackdrop: document.getElementById('room-modal'),
       modalCloseBtn: document.getElementById('modal-close-btn'),
       modalTitle: document.getElementById('modal-room-title'),
@@ -58,9 +62,22 @@
       modalTime: document.getElementById('modal-room-time'),
       modalContent: document.getElementById('modal-content-area'),
       modalToc: document.getElementById('modal-toc-nav'),
+      modalMobileSelect: document.getElementById('modal-mobile-section-select'),
       recTitle: document.getElementById('rec-stage-title'),
       recDesc: document.getElementById('rec-stage-desc'),
-      recBtn: document.getElementById('rec-start-btn')
+      recBtn: document.getElementById('rec-start-btn'),
+      heroStartRoomBtn: document.getElementById('hero-start-room-btn'),
+      stageTrackNodes: document.getElementById('stage-track-nodes'),
+      prevStageBtn: document.getElementById('prev-stage-btn'),
+      nextStageBtn: document.getElementById('next-stage-btn'),
+      mobileStageLabel: document.getElementById('mobile-stage-label'),
+      mobileDrawerToggle: document.getElementById('mobile-drawer-toggle'),
+      mobileDrawer: document.getElementById('mobile-drawer'),
+      openSearchBtn: document.getElementById('open-search-btn'),
+      searchModal: document.getElementById('universal-search-modal'),
+      searchModalClose: document.getElementById('search-modal-close'),
+      universalSearchInput: document.getElementById('universal-search-input'),
+      universalSearchResults: document.getElementById('universal-search-results')
     };
 
     // Global Modal Close Events
@@ -73,14 +90,26 @@
       });
     }
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && elements.modalBackdrop.classList.contains('open')) {
-        closeModal();
+      if (e.key === 'Escape') {
+        if (elements.modalBackdrop && elements.modalBackdrop.classList.contains('open')) {
+          closeModal();
+        }
+        if (elements.searchModal && elements.searchModal.classList.contains('open')) {
+          closeSearchModal();
+        }
       }
     });
+
+    // Hero Start Room Direct CTA
+    if (elements.heroStartRoomBtn) {
+      elements.heroStartRoomBtn.addEventListener('click', () => {
+        openRoom('room-01');
+      });
+    }
   }
 
   // =========================================================================
-  // 1. THEME ENGINE: NORMAL VIEW VS HACKER VIEW
+  // 1. THEME ENGINE: NORMAL VIEW (LIGHT) VS HACKER VIEW (DARK TERMINAL HUD)
   // =========================================================================
   function initTheme() {
     setTheme(STATE.theme, false);
@@ -102,6 +131,14 @@
     elements.body.classList.remove('theme-normal', 'theme-hacker');
     elements.body.classList.add(`theme-${newTheme}`);
 
+    if (newTheme === 'hacker') {
+      document.documentElement.classList.add('dark', 'theme-hacker');
+      document.documentElement.classList.remove('theme-normal');
+    } else {
+      document.documentElement.classList.remove('dark', 'theme-hacker');
+      document.documentElement.classList.add('theme-normal');
+    }
+
     if (elements.themeToggleNormal && elements.themeToggleHacker) {
       elements.themeToggleNormal.classList.toggle('active', newTheme === 'normal');
       elements.themeToggleHacker.classList.toggle('active', newTheme === 'hacker');
@@ -114,29 +151,29 @@
   const ASSESSMENT_MAP = {
     newbie: {
       stageId: 0,
-      badge: "🟢 Stage 0 — Start Here",
-      title: "Cybersecurity Foundations",
-      desc: "Designed specifically for absolute beginners. Zero previous knowledge required.",
+      badge: "Stage 0: Start Here",
+      title: "Stage 0: Start Here (Foundations)",
+      desc: "Designed specifically for absolute beginners. Zero previous networking or Linux knowledge required.",
       targetAnchor: "stage-0"
     },
     computers: {
       stageId: 2,
-      badge: "🔵 Stage 2 — Networking Fundamentals",
-      title: "How Computers Communicate",
-      desc: "Skip hardware basics and jump straight into networks, IP addresses, ports, and packets.",
+      badge: "Stage 2: Networking",
+      title: "Stage 2: Networking Fundamentals",
+      desc: "Skip hardware basics and jump straight into networks, IP addresses, ports, and TCP packets.",
       targetAnchor: "stage-2"
     },
     networking: {
       stageId: 3,
-      badge: "🔵 Stage 3 — How the Web Works",
-      title: "Web Architecture & Security Principles",
-      desc: "Master HTTP requests, session cookies, and the mental model of the CIA triad.",
+      badge: "Stage 3: Web Fundamentals",
+      title: "Stage 3: Web Architecture & HTTP",
+      desc: "Master HTTP requests, session cookies, browser security headers, and the CIA triad.",
       targetAnchor: "stage-3"
     },
     cybersec: {
       stageId: 6,
-      badge: "🟣 Stage 6 — Web Security",
-      title: "Hands-on Exploitation & Pentesting",
+      badge: "Stage 6: Web Security",
+      title: "Stage 6: Web Security & Pentesting",
       desc: "Dive directly into SQL injection, XSS, IDOR, privilege escalation, and capstone labs.",
       targetAnchor: "stage-6"
     }
@@ -155,8 +192,9 @@
         if (elements.recTitle) elements.recTitle.textContent = rec.title;
         if (elements.recDesc) elements.recDesc.textContent = rec.desc;
         if (elements.recBtn) {
-          elements.recBtn.textContent = `Start ${rec.badge.split('—')[0].trim()}`;
+          elements.recBtn.innerHTML = `<span>Start ${rec.badge}</span><span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>`;
           elements.recBtn.onclick = () => {
+            setStageFilter(String(rec.stageId));
             const targetEl = document.getElementById(rec.targetAnchor);
             if (targetEl) {
               targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -166,9 +204,9 @@
       });
     });
 
-    // Default button trigger
     if (elements.recBtn) {
       elements.recBtn.onclick = () => {
+        setStageFilter('0');
         const targetEl = document.getElementById('stage-0');
         if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
       };
@@ -176,24 +214,95 @@
   }
 
   // =========================================================================
-  // 3. SEARCH & FILTERS
+  // 3. STAGE PATHWAY TRACKER & FILTERS
   // =========================================================================
+  function initStagePathway() {
+    if (!elements.stageTrackNodes || typeof ENDLESSUS_STAGES === 'undefined') return;
+
+    renderStageNodes();
+
+    // Mobile Stepper Buttons
+    if (elements.prevStageBtn && elements.nextStageBtn) {
+      elements.prevStageBtn.addEventListener('click', () => {
+        cycleStageFilter(-1);
+      });
+      elements.nextStageBtn.addEventListener('click', () => {
+        cycleStageFilter(1);
+      });
+    }
+  }
+
+  function renderStageNodes() {
+    if (!elements.stageTrackNodes || typeof ENDLESSUS_STAGES === 'undefined') return;
+
+    let html = `
+      <button type="button" class="lh-stage-node ${STATE.activeFilterStage === 'all' ? 'active' : ''}" data-stage-id="all">
+        <span class="material-symbols-outlined" style="font-size: 14px;">apps</span>
+        <span>All Stages</span>
+      </button>
+    `;
+
+    ENDLESSUS_STAGES.forEach(stage => {
+      const stageRooms = ENDLESSUS_ROOMS.filter(r => r.stage === stage.id);
+      const completedInStage = stageRooms.filter(r => STATE.completedRooms.includes(r.id)).length;
+      const isComplete = stageRooms.length > 0 && completedInStage === stageRooms.length;
+      const isActive = STATE.activeFilterStage === String(stage.id);
+
+      html += `
+        <button type="button" class="lh-stage-node ${isActive ? 'active' : ''} ${isComplete ? 'completed' : ''}" data-stage-id="${stage.id}" title="${escapeHtml(stage.title)}">
+          <span class="lh-stage-node-num">S${stage.number}</span>
+          <span>${stage.title.split(':')[1] ? stage.title.split(':')[1].trim() : stage.title}</span>
+          ${isComplete ? '<span class="material-symbols-outlined" style="font-size: 13px;">check_circle</span>' : `<span style="font-size: 10px; opacity: 0.7;">(${completedInStage}/${stageRooms.length})</span>`}
+        </button>
+      `;
+    });
+
+    elements.stageTrackNodes.innerHTML = html;
+
+    elements.stageTrackNodes.querySelectorAll('.lh-stage-node').forEach(node => {
+      node.addEventListener('click', () => {
+        const stageId = node.getAttribute('data-stage-id');
+        setStageFilter(stageId);
+      });
+    });
+  }
+
+  function setStageFilter(stageId) {
+    STATE.activeFilterStage = stageId;
+    renderStageNodes();
+    renderCurriculum();
+
+    // Update Mobile Label
+    if (elements.mobileStageLabel) {
+      if (stageId === 'all') {
+        elements.mobileStageLabel.textContent = 'All Stages (0–10)';
+      } else {
+        const stageObj = ENDLESSUS_STAGES.find(s => String(s.id) === stageId);
+        elements.mobileStageLabel.textContent = stageObj ? `Stage ${stageObj.number}: ${stageObj.title.split(':')[1]?.trim() || stageObj.title}` : `Stage ${stageId}`;
+      }
+    }
+
+    // Update Breadcrumb
+    updateBreadcrumb();
+  }
+
+  function cycleStageFilter(delta) {
+    const stageIds = ['all', ...ENDLESSUS_STAGES.map(s => String(s.id))];
+    let currentIndex = stageIds.indexOf(STATE.activeFilterStage);
+    if (currentIndex === -1) currentIndex = 0;
+
+    let newIndex = currentIndex + delta;
+    if (newIndex < 0) newIndex = stageIds.length - 1;
+    if (newIndex >= stageIds.length) newIndex = 0;
+
+    setStageFilter(stageIds[newIndex]);
+  }
+
   function initFilters() {
     if (elements.searchInput) {
       elements.searchInput.addEventListener('input', (e) => {
         STATE.searchQuery = e.target.value.toLowerCase().trim();
         renderCurriculum();
-      });
-    }
-
-    if (elements.stageFilters) {
-      elements.stageFilters.querySelectorAll('.lh-filter-pill').forEach(pill => {
-        pill.addEventListener('click', () => {
-          elements.stageFilters.querySelectorAll('.lh-filter-pill').forEach(p => p.classList.remove('active'));
-          pill.classList.add('active');
-          STATE.activeFilterStage = pill.getAttribute('data-stage');
-          renderCurriculum();
-        });
       });
     }
 
@@ -212,10 +321,11 @@
     const resetBtn = document.getElementById('reset-progress-btn');
     if (resetBtn) {
       resetBtn.addEventListener('click', () => {
-        if (confirm("Are you sure you want to reset your curriculum room progress? Your saved completions will be cleared.")) {
+        if (confirm("Reset curriculum room completion history? Your stored progress will be reset to zero.")) {
           STATE.completedRooms = [];
           localStorage.removeItem('endlessus_completed_rooms');
           renderCurriculum();
+          renderStageNodes();
           updateProgressUI();
         }
       });
@@ -252,13 +362,12 @@
 
       // Filter by difficulty
       if (STATE.activeFilterDiff !== 'all') {
-        stageRooms = stageRooms.filter(r => r.difficulty.toLowerCase() === STATE.activeFilterDiff.toLowerCase());
+        stageRooms = stageRooms.filter(r => r.difficulty.toLowerCase().includes(STATE.activeFilterDiff.toLowerCase()));
       }
 
       if (stageRooms.length === 0) return;
       visibleRoomsCount += stageRooms.length;
 
-      // Count completed in stage
       const stageCompleted = stageRooms.filter(r => STATE.completedRooms.includes(r.id)).length;
 
       html += `
@@ -288,9 +397,12 @@
     if (visibleRoomsCount === 0) {
       html = `
         <div style="text-align:center; padding: 4rem 1rem; color: var(--lh-text-muted);">
-          <span class="material-symbols-outlined" style="font-size: 3rem; margin-bottom: 0.5rem;">search_off</span>
-          <h3>No rooms match your search criteria</h3>
+          <span class="material-symbols-outlined" style="font-size: 3rem; margin-bottom: 0.5rem; color: var(--lh-text-subtle);">search_off</span>
+          <h3 style="color: var(--lh-text);">No rooms match your filter criteria</h3>
           <p style="font-size: 0.85rem; margin-top: 0.5rem;">Try clearing your search query or selecting "All Stages".</p>
+          <button type="button" class="lh-toggle-btn normal-btn" style="margin-top: 1rem; display:inline-flex;" onclick="window.resetCurriculumFilters()">
+            <span>Reset Filters</span>
+          </button>
         </div>
       `;
     }
@@ -306,22 +418,35 @@
     });
   }
 
+  window.resetCurriculumFilters = function () {
+    STATE.searchQuery = '';
+    STATE.activeFilterDiff = 'all';
+    STATE.activeFilterStage = 'all';
+    if (elements.searchInput) elements.searchInput.value = '';
+    if (elements.difficultyFilters) {
+      elements.difficultyFilters.querySelectorAll('.lh-filter-pill').forEach(p => p.classList.remove('active'));
+      elements.difficultyFilters.querySelector('[data-diff="all"]')?.classList.add('active');
+    }
+    renderStageNodes();
+    renderCurriculum();
+  };
+
   function renderRoomCard(room) {
     const isCompleted = STATE.completedRooms.includes(room.id);
-    const diffClass = `lh-diff-${room.difficulty.toLowerCase()}`;
+    const diffClass = `lh-diff-${room.difficulty.toLowerCase().replace(/\s+/g, '-')}`;
 
     return `
-      <div class="lh-room-card ${isCompleted ? 'completed' : ''}" data-room-id="${room.id}">
+      <div class="lh-room-card ${isCompleted ? 'completed' : ''}" data-room-id="${room.id}" tabindex="0" role="button" aria-label="Open Room ${room.id.toUpperCase()}: ${escapeHtml(room.title)}">
         <div>
           <div class="lh-room-top">
             <span class="lh-room-id">${room.id.toUpperCase()}</span>
             <span class="lh-room-difficulty ${diffClass}">${room.difficultyBadge}</span>
           </div>
 
-          ${room.prerequisites && room.prerequisites !== "None (Zero prior knowledge required)" ? `
-            <div class="lh-prereq-badge">
-              <span class="material-symbols-outlined" style="font-size: 13px;">info</span>
-              <span>Prereq: ${escapeHtml(room.prerequisites)}</span>
+          ${isCompleted ? `
+            <div style="display:inline-flex; align-items:center; gap:0.3rem; font-size:0.72rem; color:var(--lh-success); font-weight:700; margin-bottom:0.4rem;">
+              <span class="material-symbols-outlined" style="font-size:14px;">check_circle</span>
+              <span>COMPLETED</span>
             </div>
           ` : ''}
 
@@ -335,7 +460,7 @@
             <span>${room.estimatedTime}</span>
           </div>
           <button class="lh-room-btn">
-            <span>${isCompleted ? 'Review Room' : 'Start Room'}</span>
+            <span>${isCompleted ? 'Review' : 'Start'}</span>
             <span class="material-symbols-outlined" style="font-size: 14px;">arrow_forward</span>
           </button>
         </div>
@@ -344,46 +469,30 @@
   }
 
   // =========================================================================
-  // 5. PRACTICAL LABS SPOTLIGHT RENDERING
-  // =========================================================================
-  function renderPracticalLabs() {
-    if (!elements.practicalLabsContainer || typeof ENDLESSUS_PRACTICAL_LABS === 'undefined') return;
-
-    elements.practicalLabsContainer.innerHTML = ENDLESSUS_PRACTICAL_LABS.map(lab => {
-      return `
-        <div class="lh-lab-card">
-          <div>
-            <span class="lh-lab-badge">${lab.category} • ${lab.difficultyBadge}</span>
-            <h4 class="lh-lab-name">${escapeHtml(lab.title)}</h4>
-            <p class="lh-lab-desc">${escapeHtml(lab.description)}</p>
-          </div>
-          <a href="labs.html?lab=${lab.id}" class="lh-lab-btn" target="_blank">
-            <span class="material-symbols-outlined" style="font-size: 15px;">terminal</span>
-            <span>Launch Practical Lab</span>
-          </a>
-        </div>
-      `;
-    }).join('');
-  }
-
-  // =========================================================================
-  // 6. PROGRESS BAR & STATS
+  // 5. PROGRESS BAR & UNIFIED STATS
   // =========================================================================
   function updateProgressUI() {
-    const total = ENDLESSUS_ROOMS.length;
-    const completed = STATE.completedRooms.length;
-    const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
+    const totalRooms = ENDLESSUS_ROOMS.length;
+    const completedRoomsCount = STATE.completedRooms.length;
+    const percentage = totalRooms > 0 ? Math.round((completedRoomsCount / totalRooms) * 100) : 0;
+
+    // Check labs progress
+    const totalLabs = typeof ENDLESSUS_PRACTICAL_LABS !== 'undefined' ? ENDLESSUS_PRACTICAL_LABS.length : 12;
+    const completedLabsCount = STATE.completedLabs.length;
 
     if (elements.progressText) {
-      elements.progressText.textContent = `${completed}/${total} Rooms Completed (${percentage}%)`;
+      elements.progressText.textContent = `Learning: ${completedRoomsCount}/${totalRooms} Rooms (${percentage}%) · Practice: ${completedLabsCount}/${totalLabs} Labs`;
     }
     if (elements.progressBar) {
       elements.progressBar.style.width = `${percentage}%`;
     }
+    if (elements.miniProgressText) {
+      elements.miniProgressText.textContent = `Learn: ${completedRoomsCount}/${totalRooms} · Labs: ${completedLabsCount}/${totalLabs}`;
+    }
   }
 
   // =========================================================================
-  // 7. ROOM MODAL PLAYER (12-PART TEMPLATE)
+  // 6. ROOM MODAL PLAYER (12-PART STRICT TEMPLATE)
   // =========================================================================
   function openRoom(roomId) {
     const room = ENDLESSUS_ROOM_MAP[roomId];
@@ -391,13 +500,13 @@
 
     STATE.currentRoom = room;
     if (!STATE.unlockedHints[roomId]) {
-      STATE.unlockedHints[roomId] = 0; // Show Hint 1 initially
+      STATE.unlockedHints[roomId] = 0; // Hint 1 visible
     }
 
-    if (elements.modalTitle) elements.modalTitle.textContent = room.title;
+    if (elements.modalTitle) elements.modalTitle.textContent = `${room.id.toUpperCase()}: ${room.title}`;
     if (elements.modalBadge) {
       elements.modalBadge.textContent = room.difficultyBadge;
-      elements.modalBadge.className = `lh-room-difficulty lh-diff-${room.difficulty.toLowerCase()}`;
+      elements.modalBadge.className = `lh-room-difficulty lh-diff-${room.difficulty.toLowerCase().replace(/\s+/g, '-')}`;
     }
     if (elements.modalTime) elements.modalTime.textContent = `⏱ ${room.estimatedTime}`;
 
@@ -406,6 +515,9 @@
 
     elements.modalBackdrop.classList.add('open');
     document.body.style.overflow = 'hidden';
+
+    // Update Contextual Breadcrumb
+    updateBreadcrumb(room);
 
     // Update URL hash
     window.location.hash = room.id;
@@ -416,6 +528,21 @@
     document.body.style.overflow = '';
     STATE.currentRoom = null;
     history.replaceState(null, null, ' ');
+    updateBreadcrumb();
+  }
+
+  function updateBreadcrumb(activeRoom = null) {
+    if (!elements.activeBreadcrumb) return;
+
+    if (activeRoom) {
+      elements.activeBreadcrumb.innerHTML = `Learn / <a href="#stage-${activeRoom.stage}" style="color:inherit; text-decoration:underline;">Stage ${activeRoom.stage}</a> / <span style="color:var(--lh-primary); font-weight:700;">${activeRoom.id.toUpperCase()}: ${escapeHtml(activeRoom.title)}</span>`;
+    } else if (STATE.activeFilterStage !== 'all') {
+      const stageObj = ENDLESSUS_STAGES.find(s => String(s.id) === STATE.activeFilterStage);
+      const stageName = stageObj ? `Stage ${stageObj.number}: ${stageObj.title.split(':')[1]?.trim() || stageObj.title}` : `Stage ${STATE.activeFilterStage}`;
+      elements.activeBreadcrumb.textContent = `Learn / ${stageName}`;
+    } else {
+      elements.activeBreadcrumb.textContent = `Learn / Full Curriculum`;
+    }
   }
 
   function renderRoomTOC(room) {
@@ -425,7 +552,7 @@
       { id: "sec-why", label: "1. Why are you here?" },
       { id: "sec-learn", label: "2. What you'll learn" },
       { id: "sec-vocab", label: "3. New vocabulary" },
-      { id: "sec-lessons", label: "4. Lessons" },
+      { id: "sec-lessons", label: "4. Core Concepts" },
       { id: "sec-see", label: "5. Real Examples" },
       { id: "sec-try", label: "6. Interactive Exercise" },
       { id: "sec-questions", label: "7. Knowledge Questions" },
@@ -455,6 +582,17 @@
         }
       });
     });
+
+    // Mobile Section Select
+    if (elements.modalMobileSelect) {
+      elements.modalMobileSelect.onchange = (e) => {
+        const targetId = e.target.value;
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      };
+    }
   }
 
   function renderRoomContent(room) {
@@ -562,14 +700,14 @@
         </div>
       </section>
 
-      <!-- 7. Questions (Flags do not dominate!) -->
+      <!-- 7. Knowledge Questions (Flags do not dominate!) -->
       <section class="lh-section-block" id="sec-questions">
         <h3 class="lh-section-heading">
           <span class="lh-section-badge">07</span>
           <span>Knowledge Questions</span>
         </h3>
         <p style="font-size: 0.85rem; color: var(--lh-text-muted); margin-bottom: 1rem;">
-          Test your understanding. Flags are not required; answer each conceptual and scenario question:
+          Verify your conceptual understanding. Select the best answer for each question:
         </p>
         <div class="lh-quiz-container">
           ${room.questions.map((q, idx) => `
@@ -578,7 +716,7 @@
               <div class="lh-quiz-options">
                 ${q.options.map((opt, oIdx) => `
                   <button class="lh-quiz-option" data-option-index="${oIdx}">
-                    <span style="font-family: var(--lh-font-mono); font-size: 0.75rem; width: 20px; height: 20px; display:inline-flex; align-items:center; justify-content:center; border: 1px solid var(--lh-surface-border); border-radius: 4px;">${String.fromCharCode(65 + oIdx)}</span>
+                    <span style="font-family: var(--lh-font-mono); font-size: 0.75rem; width: 22px; height: 22px; display:inline-flex; align-items:center; justify-content:center; border: 1px solid var(--lh-surface-border); border-radius: 4px;">${String.fromCharCode(65 + oIdx)}</span>
                     <span>${escapeHtml(opt)}</span>
                   </button>
                 `).join('')}
@@ -597,8 +735,8 @@
         </h3>
         ${room.tasks.map(t => `
           <div style="padding: 1.25rem; background: var(--lh-bg); border: 1px solid var(--lh-surface-border); border-radius: var(--lh-radius-md); margin-bottom: 1rem;">
-            <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem;">${escapeHtml(t.title)}</h4>
-            <p style="font-size: 0.85rem; color: var(--lh-text);">${escapeHtml(t.instruction)}</p>
+            <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--lh-text);">${escapeHtml(t.title)}</h4>
+            <p style="font-size: 0.88rem; color: var(--lh-text); line-height: 1.6;">${escapeHtml(t.instruction)}</p>
           </div>
         `).join('')}
       </section>
@@ -610,7 +748,7 @@
           <span>Progressive Hint System</span>
         </h3>
         <p style="font-size: 0.82rem; color: var(--lh-text-muted); margin-bottom: 1rem;">
-          Never get stuck. Unlock progressive hints one by one without spoiling the answer:
+          Never get stuck. Reveal sequential hints without spoiling the full answer:
         </p>
         <div class="lh-hints-accordion" id="hints-container">
           ${renderHints(room)}
@@ -628,13 +766,13 @@
             <span class="material-symbols-outlined">psychology</span>
             <span>Why This Happened</span>
           </div>
-          <p style="font-size: 0.88rem; line-height: 1.6; color: var(--lh-text);">
+          <p style="font-size: 0.88rem; line-height: 1.65; color: var(--lh-text);">
             ${escapeHtml(room.explainResult)}
           </p>
         </div>
       </section>
 
-      <!-- 11. Security Connection -->
+      <!-- 11. Security Connection & Bridge to Practical Labs -->
       <section class="lh-section-block" id="sec-security">
         <h3 class="lh-section-heading">
           <span class="lh-section-badge">11</span>
@@ -645,17 +783,18 @@
             <span class="material-symbols-outlined">security</span>
             <span>Why This Matters in Cybersecurity</span>
           </div>
-          <p style="font-size: 0.88rem; line-height: 1.6; color: var(--lh-text);">
+          <p style="font-size: 0.88rem; line-height: 1.65; color: var(--lh-text);">
             ${escapeHtml(room.securityConnection)}
           </p>
         </div>
 
         ${room.practicalRoomLink ? `
-          <div style="margin-top: 1.5rem; padding: 1.25rem; background: var(--lh-surface-hover); border: 2px dashed var(--lh-secondary); border-radius: var(--lh-radius-md); text-align: center;">
-            <div style="font-weight: 700; font-size: 1rem; margin-bottom: 0.4rem; color: var(--lh-text);">${escapeHtml(room.practicalRoomLink.label)}</div>
-            <a href="${room.practicalRoomLink.url}" target="_blank" class="lh-lab-btn" style="display:inline-flex; font-size: 0.85rem; padding: 0.6rem 1.4rem;">
-              <span class="material-symbols-outlined" style="font-size: 16px;">bolt</span>
-              <span>${escapeHtml(room.practicalRoomLink.buttonText)}</span>
+          <div style="margin-top: 1.75rem; padding: 1.5rem; background: var(--lh-surface-hover); border: 2px dashed var(--lh-secondary); border-radius: var(--lh-radius-md); text-align: center;">
+            <div style="font-weight: 700; font-size: 1.05rem; margin-bottom: 0.4rem; color: var(--lh-text);">${escapeHtml(room.practicalRoomLink.label)}</div>
+            <p style="font-size: 0.82rem; color: var(--lh-text-muted); margin-bottom: 1rem;">Put this skill to the test inside a dedicated practical target workstation with real tools.</p>
+            <a href="${room.practicalRoomLink.url}" target="_blank" class="lh-btn-primary-practice" style="display:inline-flex; font-size: 0.88rem; padding: 0.75rem 1.6rem;">
+              <span class="material-symbols-outlined" style="font-size: 18px;">terminal</span>
+              <span>${escapeHtml(room.practicalRoomLink.buttonText)} &rarr;</span>
             </a>
           </div>
         ` : ''}
@@ -673,7 +812,7 @@
           </div>
           <h3 class="lh-completion-title">${isCompleted ? '✓ Room Completed' : 'Complete Room'}</h3>
           <p style="font-size: 0.88rem; color: var(--lh-text-muted);">
-            Verify your progress to log completion and continue along the curriculum roadmap.
+            Log your completion to unlock the next room along your learning pathway.
           </p>
 
           <div class="lh-completion-lists">
@@ -745,7 +884,6 @@
 
       output.style.display = 'block';
 
-      // Check if command roughly matches expected
       const expected = room.tryInteractive.expectedCommand.trim().toLowerCase();
       const entered = val.toLowerCase();
 
@@ -870,19 +1008,188 @@
   }
 
   // =========================================================================
-  // ROOM COMPLETION & PERSISTENCE
+  // 7. ROOM COMPLETION & PERSISTENCE
   // =========================================================================
   function markRoomComplete(roomId) {
     if (!STATE.completedRooms.includes(roomId)) {
       STATE.completedRooms.push(roomId);
       localStorage.setItem('endlessus_completed_rooms', JSON.stringify(STATE.completedRooms));
       renderCurriculum();
+      renderStageNodes();
       updateProgressUI();
     }
   }
 
   // =========================================================================
-  // UTILITIES & ROUTING
+  // 8. UNIVERSAL SEARCH (CMD+K / SEARCH MODAL)
+  // =========================================================================
+  function initUniversalSearch() {
+    if (elements.openSearchBtn) {
+      elements.openSearchBtn.addEventListener('click', openSearchModal);
+    }
+    if (elements.searchModalClose) {
+      elements.searchModalClose.addEventListener('click', closeSearchModal);
+    }
+    if (elements.searchModal) {
+      elements.searchModal.addEventListener('click', (e) => {
+        if (e.target === elements.searchModal) closeSearchModal();
+      });
+    }
+
+    // Keyboard shortcut Cmd+K or Ctrl+K or /
+    window.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        openSearchModal();
+      }
+    });
+
+    if (elements.universalSearchInput) {
+      elements.universalSearchInput.addEventListener('input', (e) => {
+        performUniversalSearch(e.target.value.trim().toLowerCase());
+      });
+    }
+  }
+
+  function openSearchModal() {
+    if (!elements.searchModal) return;
+    elements.searchModal.classList.add('open');
+    if (elements.universalSearchInput) {
+      elements.universalSearchInput.value = '';
+      elements.universalSearchInput.focus();
+    }
+    performUniversalSearch('');
+  }
+
+  function closeSearchModal() {
+    if (!elements.searchModal) return;
+    elements.searchModal.classList.remove('open');
+  }
+
+  function performUniversalSearch(query) {
+    if (!elements.universalSearchResults) return;
+
+    if (!query) {
+      // Show default recommendations / popular rooms
+      const suggestions = ENDLESSUS_ROOMS.slice(0, 5);
+      elements.universalSearchResults.innerHTML = `
+        <div style="padding: 0.5rem 0.85rem; font-size: 0.72rem; color: var(--lh-text-subtle); text-transform: uppercase; font-family: var(--lh-font-mono);">Recommended Starting Rooms</div>
+        ${suggestions.map(r => `
+          <div class="lh-search-result-item" onclick="window.launchFromSearch('${r.id}')">
+            <div>
+              <div class="lh-search-result-title">
+                <span class="material-symbols-outlined" style="font-size: 15px; color: var(--lh-primary);">school</span>
+                <span>${r.id.toUpperCase()}: ${escapeHtml(r.title)}</span>
+              </div>
+              <div class="lh-search-result-subtitle">${escapeHtml(r.whyAreYouHere.substring(0, 75))}...</div>
+            </div>
+            <span class="lh-search-type-badge">Stage ${r.stage}</span>
+          </div>
+        `).join('')}
+      `;
+      return;
+    }
+
+    let results = [];
+
+    // Search Rooms
+    ENDLESSUS_ROOMS.forEach(r => {
+      if (r.title.toLowerCase().includes(query) || r.whyAreYouHere.toLowerCase().includes(query)) {
+        results.push({
+          type: `Room · Stage ${r.stage}`,
+          badgeClass: '',
+          title: `${r.id.toUpperCase()}: ${r.title}`,
+          sub: r.whyAreYouHere.substring(0, 80) + '...',
+          action: () => { closeSearchModal(); openRoom(r.id); }
+        });
+      }
+    });
+
+    // Search Vocabulary
+    ENDLESSUS_ROOMS.forEach(r => {
+      r.vocabulary.forEach(v => {
+        if (v.term.toLowerCase().includes(query) || v.definition.toLowerCase().includes(query)) {
+          if (!results.some(res => res.title === v.term)) {
+            results.push({
+              type: `Concept · ${r.id.toUpperCase()}`,
+              badgeClass: 'badge-vocab',
+              title: v.term,
+              sub: v.definition,
+              action: () => { closeSearchModal(); openRoom(r.id); }
+            });
+          }
+        }
+      });
+    });
+
+    // Search Practical Labs
+    if (typeof ENDLESSUS_PRACTICAL_LABS !== 'undefined') {
+      ENDLESSUS_PRACTICAL_LABS.forEach(l => {
+        if (l.title.toLowerCase().includes(query) || l.description.toLowerCase().includes(query) || l.category.toLowerCase().includes(query)) {
+          results.push({
+            type: 'Practical Lab',
+            badgeClass: 'badge-lab',
+            title: l.title,
+            sub: l.description.substring(0, 80) + '...',
+            action: () => { window.location.href = `labs.html?lab=${l.id}`; }
+          });
+        }
+      });
+    }
+
+    if (results.length === 0) {
+      elements.universalSearchResults.innerHTML = `
+        <div style="text-align:center; padding: 2.5rem 1rem; color: var(--lh-text-muted);">
+          <span class="material-symbols-outlined" style="font-size: 2rem; color: var(--lh-text-subtle);">search_off</span>
+          <p style="font-size: 0.85rem; margin-top: 0.5rem;">No matching rooms, tools, or concepts found for "<strong>${escapeHtml(query)}</strong>"</p>
+        </div>
+      `;
+      return;
+    }
+
+    elements.universalSearchResults.innerHTML = results.slice(0, 8).map((res, i) => `
+      <div class="lh-search-result-item" data-res-idx="${i}">
+        <div>
+          <div class="lh-search-result-title">
+            <span>${escapeHtml(res.title)}</span>
+          </div>
+          <div class="lh-search-result-subtitle">${escapeHtml(res.sub)}</div>
+        </div>
+        <span class="lh-search-type-badge ${res.badgeClass}">${res.type}</span>
+      </div>
+    `).join('');
+
+    elements.universalSearchResults.querySelectorAll('.lh-search-result-item').forEach((item, idx) => {
+      item.addEventListener('click', () => {
+        if (results[idx]) results[idx].action();
+      });
+    });
+  }
+
+  window.launchFromSearch = function(roomId) {
+    closeSearchModal();
+    openRoom(roomId);
+  };
+
+  // =========================================================================
+  // 9. MOBILE NAVIGATION DRAWER
+  // =========================================================================
+  function initMobileNav() {
+    if (!elements.mobileDrawerToggle || !elements.mobileDrawer) return;
+
+    elements.mobileDrawerToggle.addEventListener('click', () => {
+      elements.mobileDrawer.classList.toggle('open');
+    });
+
+    elements.mobileDrawer.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        elements.mobileDrawer.classList.remove('open');
+      });
+    });
+  }
+
+  // =========================================================================
+  // 10. URL HASH ROUTING & UTILITIES
   // =========================================================================
   function initUrlHashRouting() {
     const hash = window.location.hash.replace('#', '').trim();
@@ -911,11 +1218,8 @@
   function formatMarkdown(text) {
     if (!text) return '';
     let escaped = escapeHtml(text);
-    // Bold
     escaped = escaped.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    // Inline Code
     escaped = escaped.replace(/`([^`]+)`/g, '<code style="font-family:var(--lh-font-mono); background:var(--lh-surface-subtle); padding:2px 5px; border-radius:4px; font-size:0.85em; border:1px solid var(--lh-surface-border);">$1</code>');
-    // Code blocks
     escaped = escaped.replace(/```([a-z]*)\n([\s\S]*?)```/g, '<div class="lh-code-box"><pre>$2</pre></div>');
     return escaped;
   }
