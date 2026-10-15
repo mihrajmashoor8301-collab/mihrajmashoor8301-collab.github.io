@@ -410,6 +410,24 @@
     `;
 
     let visibleRoomsCount = 0;
+    let globalRoomCounter = 0;
+
+    if (STATE.mapViewMode === 'map') {
+      html += `
+        <div class="lh-roadmap-wrapper" id="roadmap-wrapper">
+          <svg class="lh-roadmap-svg" id="roadmap-svg" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="lh-track-progress-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#10b981" />
+                <stop offset="100%" stop-color="#0284c7" />
+              </linearGradient>
+            </defs>
+            <path class="lh-svg-track-bg" id="svg-track-bg" d="" />
+            <path class="lh-svg-track-progress" id="svg-track-progress" d="" />
+          </svg>
+          <div class="lh-roadmap-stages-flow">
+      `;
+    }
 
     ENDLESSUS_STAGES.forEach(stage => {
       // Filter stage logic
@@ -442,53 +460,80 @@
       const stagePercent = stageRooms.length > 0 ? Math.round((stageCompleted / stageRooms.length) * 100) : 0;
 
       if (STATE.mapViewMode === 'map') {
-        // Connected Room Map Layout
+        // Connected Game-Like Zigzag Roadmap Layout
         html += `
-          <section class="lh-map-level-section" id="stage-${stage.id}">
-            <div class="lh-map-level-header">
-              <div>
-                <div class="lh-map-level-meta">
-                  <span class="lh-map-level-badge" style="background: ${stage.color || 'var(--lh-primary)'};">LEVEL ${stage.number || stage.id}</span>
-                  <span class="lh-map-level-duration">
+          <section class="lh-map-level-section lh-roadmap-level-section" id="stage-${stage.id}">
+            <div class="lh-roadmap-level-banner" style="--stage-color: ${stage.color || 'var(--lh-primary)'};">
+              <div class="lh-level-banner-top">
+                <div class="lh-level-badge-wrap">
+                  <span class="lh-level-number-badge">LEVEL ${stage.number !== undefined ? stage.number : stage.id}</span>
+                  <span class="lh-level-est-time">
                     <span class="material-symbols-outlined" style="font-size: 14px;">schedule</span>
                     <span>${stage.estimatedTime}</span>
                   </span>
                 </div>
-                <h2 class="lh-map-level-title">${stage.title}</h2>
-                <p class="lh-map-level-desc">${stage.description}</p>
+                <div class="lh-level-progress-pill ${stageCompleted === stageRooms.length ? 'completed' : ''}">
+                  <span class="material-symbols-outlined" style="font-size: 14px;">${stageCompleted === stageRooms.length ? 'verified' : 'trending_up'}</span>
+                  <span>${stageCompleted} / ${stageRooms.length} Completed (${stagePercent}%)</span>
+                </div>
               </div>
-              <div class="lh-map-level-progress-pill">
-                <span>${stageCompleted} / ${stageRooms.length} Completed (${stagePercent}%)</span>
-              </div>
+              <h2 class="lh-level-banner-title">${stage.title}</h2>
+              <p class="lh-level-banner-desc">${stage.description}</p>
             </div>
 
-            <!-- Connected Nodes Track -->
-            <div class="lh-connected-track" role="list">
+            <!-- Connected Zigzag Nodes Track -->
+            <div class="lh-roadmap-track" role="list">
               ${stageRooms.map((room, rIdx) => {
+                globalRoomCounter++;
                 const isCompleted = STATE.completedRooms.includes(room.id);
                 const nextUncompleted = ENDLESSUS_ROOMS.find(r => !STATE.completedRooms.includes(r.id));
                 const isCurrent = nextUncompleted && nextUncompleted.id === room.id;
-                let statusClass = isCompleted ? 'completed' : (isCurrent ? 'current' : 'available');
+                const isLocked = !isCompleted && !isCurrent && ENDLESSUS_ROOMS.findIndex(r => r.id === room.id) > ENDLESSUS_ROOMS.findIndex(r => r.id === (nextUncompleted ? nextUncompleted.id : ''));
+                let statusClass = isCompleted ? 'completed' : (isCurrent ? 'current' : (isLocked ? 'locked' : 'available'));
+                const roomNum = room.id.replace('room-', '');
+
+                const posPattern = ['pos-left', 'pos-center', 'pos-right', 'pos-center'];
+                const dirPattern = ['going-right', 'going-right', 'going-left', 'going-left'];
+                const patternIdx = (globalRoomCounter - 1) % 4;
+                const posClass = posPattern[patternIdx];
+                const dirClass = dirPattern[patternIdx];
 
                 return `
-                  <div class="lh-map-node-card ${statusClass}" data-room-id="${room.id}" tabindex="0" role="listitem" aria-label="Room ${room.id.toUpperCase()}: ${escapeHtml(room.title)} (${statusClass})">
-                    <div>
-                      <div class="lh-node-top">
-                        <span class="lh-node-id">${room.id.toUpperCase()}</span>
-                        <div class="lh-node-indicator ${statusClass}">
-                          ${isCompleted ? '<span class="material-symbols-outlined" style="font-size:14px;">check</span>' : (isCurrent ? '<span class="material-symbols-outlined" style="font-size:14px;">play_arrow</span>' : '')}
+                  <div class="lh-roadmap-row ${posClass} ${dirClass}" role="listitem">
+                    <div class="lh-roadmap-item">
+                      <!-- Circular Game Node Orb -->
+                      <button type="button" class="lh-roadmap-orb ${statusClass}" data-room-id="${room.id}" aria-label="Room ${roomNum}: ${escapeHtml(room.title)} (${statusClass})">
+                        <div class="lh-orb-ring"></div>
+                        <div class="lh-orb-core">
+                          ${isCompleted ? '<span class="material-symbols-outlined lh-orb-icon">check</span>' :
+                            (isCurrent ? '<span class="material-symbols-outlined lh-orb-icon">play_arrow</span>' :
+                            (isLocked ? '<span class="material-symbols-outlined lh-orb-icon" style="font-size:20px;">lock</span>' :
+                            `<span class="lh-orb-num">${roomNum}</span>`))}
+                        </div>
+                        <span class="lh-orb-status-tag ${statusClass}">
+                          ${isCompleted ? 'Done' : (isCurrent ? 'Current' : (isLocked ? 'Locked' : 'Open'))}
+                        </span>
+                      </button>
+
+                      <!-- Content Card Capsule -->
+                      <div class="lh-roadmap-card lh-map-node-card ${statusClass}" data-room-id="${room.id}" tabindex="0" role="button" aria-label="Open Room ${room.id.toUpperCase()}: ${escapeHtml(room.title)}">
+                        <div class="lh-card-top">
+                          <span class="lh-card-id-badge">${room.id.toUpperCase()}</span>
+                          <span class="lh-card-duration">
+                            <span class="material-symbols-outlined" style="font-size: 13px;">schedule</span>
+                            <span>${room.estimatedTime}</span>
+                          </span>
+                        </div>
+                        <h3 class="lh-card-title">${escapeHtml(room.title)}</h3>
+                        <p class="lh-card-desc">${escapeHtml(room.whyAreYouHere || '')}</p>
+                        <div class="lh-card-bottom">
+                          <span class="lh-card-diff-tag ${room.difficulty.toLowerCase()}">${room.difficulty}</span>
+                          <span class="lh-card-cta-btn">
+                            <span>${isCompleted ? 'Review' : (isCurrent ? 'Continue' : (isLocked ? 'Preview' : 'Start'))}</span>
+                            <span class="material-symbols-outlined" style="font-size: 14px;">arrow_forward</span>
+                          </span>
                         </div>
                       </div>
-                      <h3 class="lh-node-title">${escapeHtml(room.title)}</h3>
-                      <p class="lh-node-desc">${escapeHtml(room.whyAreYouHere || '')}</p>
-                    </div>
-
-                    <div class="lh-node-footer">
-                      <span>⏱ ${room.estimatedTime}</span>
-                      <span class="lh-node-cta">
-                        <span>${isCompleted ? 'Review' : (isCurrent ? 'Continue' : 'Start')}</span>
-                        <span class="material-symbols-outlined" style="font-size: 14px;">arrow_forward</span>
-                      </span>
                     </div>
                   </div>
                 `;
@@ -539,6 +584,13 @@
       }
     });
 
+    if (STATE.mapViewMode === 'map') {
+      html += `
+          </div>
+        </div>
+      `;
+    }
+
     if (visibleRoomsCount === 0) {
       html = `
         <div style="text-align:center; padding: 4rem 1rem; color: var(--lh-text-muted);">
@@ -572,20 +624,142 @@
 
     // Attach Room Card & Item Click Events
     elements.curriculumContainer.querySelectorAll('[data-room-id]').forEach(card => {
-      card.addEventListener('click', () => {
+      card.addEventListener('click', (e) => {
+        e.stopPropagation();
         const roomId = card.getAttribute('data-room-id');
         openRoom(roomId);
       });
       card.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
+          e.stopPropagation();
           const roomId = card.getAttribute('data-room-id');
           openRoom(roomId);
         }
       });
     });
+
+    // Update SVG Connectors for Map View
+    if (STATE.mapViewMode === 'map') {
+      requestAnimationFrame(() => {
+        updateRoadmapConnectors();
+        setupRoadmapResizeObserver();
+      });
+      setTimeout(updateRoadmapConnectors, 80);
+    }
   }
   window.renderCurriculum = renderCurriculum;
+
+  // =========================================================================
+  // 4B. DYNAMIC SVG ROADMAP CONNECTORS
+  // =========================================================================
+  let roadmapResizeObserver = null;
+
+  function updateRoadmapConnectors() {
+    if (STATE.mapViewMode !== 'map') return;
+    const wrapper = document.getElementById('roadmap-wrapper');
+    const svg = document.getElementById('roadmap-svg');
+    const bgPath = document.getElementById('svg-track-bg');
+    const progPath = document.getElementById('svg-track-progress');
+    if (!wrapper || !svg || !bgPath || !progPath) return;
+
+    const orbs = Array.from(wrapper.querySelectorAll('.lh-roadmap-orb'));
+    if (orbs.length < 2) {
+      bgPath.setAttribute('d', '');
+      progPath.setAttribute('d', '');
+      return;
+    }
+
+    const wrapRect = wrapper.getBoundingClientRect();
+    const width = Math.max(Math.round(wrapRect.width || wrapper.offsetWidth || 800), 320);
+    const height = Math.max(Math.round(wrapRect.height || wrapper.offsetHeight || 1200), 320);
+
+    svg.setAttribute('width', width);
+    svg.setAttribute('height', height);
+    svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+
+    const points = orbs.map(orb => {
+      const rect = orb.getBoundingClientRect();
+      let cx = 0;
+      let cy = 0;
+      if (rect.width > 0 && rect.height > 0 && wrapRect.width > 0) {
+        cx = Math.round(rect.left + rect.width / 2 - wrapRect.left);
+        cy = Math.round(rect.top + rect.height / 2 - wrapRect.top);
+      } else {
+        // Fallback offset calculation
+        let el = orb;
+        let top = 0;
+        let left = 0;
+        while (el && el !== wrapper) {
+          top += el.offsetTop || 0;
+          left += el.offsetLeft || 0;
+          el = el.offsetParent;
+        }
+        cx = Math.round(left + (orb.offsetWidth || 64) / 2);
+        cy = Math.round(top + (orb.offsetHeight || 64) / 2);
+      }
+      return {
+        x: cx,
+        y: cy,
+        isCompleted: orb.classList.contains('completed'),
+        isCurrent: orb.classList.contains('current')
+      };
+    });
+
+    // Build Background S-Curve Path connecting all consecutive nodes
+    let bgD = `M ${points[0].x} ${points[0].y}`;
+    for (let i = 0; i < points.length - 1; i++) {
+      const p0 = points[i];
+      const p1 = points[i + 1];
+      const dy = p1.y - p0.y;
+      const cp1y = Math.round(p0.y + dy * 0.5);
+      const cp2y = Math.round(p1.y - dy * 0.5);
+      bgD += ` C ${p0.x} ${cp1y}, ${p1.x} ${cp2y}, ${p1.x} ${p1.y}`;
+    }
+    bgPath.setAttribute('d', bgD);
+
+    // Build Completed Progress Path up to current or last completed node
+    let targetIndex = -1;
+    for (let i = 0; i < points.length; i++) {
+      if (points[i].isCompleted) {
+        targetIndex = i;
+      } else if (points[i].isCurrent) {
+        targetIndex = i;
+        break;
+      }
+    }
+
+    if (targetIndex > 0) {
+      let progD = `M ${points[0].x} ${points[0].y}`;
+      for (let i = 0; i < targetIndex; i++) {
+        const p0 = points[i];
+        const p1 = points[i + 1];
+        const dy = p1.y - p0.y;
+        const cp1y = Math.round(p0.y + dy * 0.5);
+        const cp2y = Math.round(p1.y - dy * 0.5);
+        progD += ` C ${p0.x} ${cp1y}, ${p1.x} ${cp2y}, ${p1.x} ${p1.y}`;
+      }
+      progPath.setAttribute('d', progD);
+    } else {
+      progPath.setAttribute('d', '');
+    }
+  }
+  window.updateRoadmapConnectors = updateRoadmapConnectors;
+
+  function setupRoadmapResizeObserver() {
+    if (typeof ResizeObserver !== 'undefined') {
+      if (roadmapResizeObserver) roadmapResizeObserver.disconnect();
+      const wrapper = document.getElementById('roadmap-wrapper');
+      if (wrapper) {
+        roadmapResizeObserver = new ResizeObserver(() => {
+          updateRoadmapConnectors();
+        });
+        roadmapResizeObserver.observe(wrapper);
+      }
+    }
+    window.removeEventListener('resize', updateRoadmapConnectors);
+    window.addEventListener('resize', updateRoadmapConnectors);
+  }
 
   window.resetCurriculumFilters = function () {
     STATE.searchQuery = '';

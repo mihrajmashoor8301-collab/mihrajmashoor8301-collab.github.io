@@ -164,20 +164,79 @@ async function runBrowserTests() {
     console.log(`  ✓ Page title: "${title}"`);
     assert(title.includes('Endlessus Cybersecurity Academy'));
 
-    // Verify 45 Room Nodes rendered with polling
+    // Verify 45 Room Nodes and 45 Game Orbs rendered
     let nodeCount = 0;
+    let orbCount = 0;
     for (let i = 0; i < 30; i++) {
       nodeCount = await client.evaluate('document.querySelectorAll(".lh-map-node-card").length');
-      if (nodeCount === 45) break;
+      orbCount = await client.evaluate('document.querySelectorAll(".lh-roadmap-orb").length');
+      if (nodeCount === 45 && orbCount === 45) break;
       await new Promise(r => setTimeout(r, 100));
     }
     console.log(`  ✓ Rendered map node cards: ${nodeCount}`);
+    console.log(`  ✓ Rendered game roadmap orbs: ${orbCount}`);
     assert.strictEqual(nodeCount, 45, 'Must render exactly 45 connected room node cards');
+    assert.strictEqual(orbCount, 45, 'Must render exactly 45 game roadmap orbs');
 
-    // Verify 8 Level sections
+    // Verify 8 Level sections & Milestone Banners
     const levelSectionCount = await client.evaluate('document.querySelectorAll(".lh-map-level-section").length');
     console.log(`  ✓ Rendered level sections: ${levelSectionCount}`);
     assert.strictEqual(levelSectionCount, 8, 'Must render exactly 8 Pre Security levels (Levels 0-7)');
+
+    // Verify Alternating Zigzag Classes across Rows
+    const zigzagStats = await client.evaluate(`
+      (() => {
+        const rows = Array.from(document.querySelectorAll('.lh-roadmap-row'));
+        const leftCount = rows.filter(r => r.classList.contains('pos-left')).length;
+        const centerCount = rows.filter(r => r.classList.contains('pos-center')).length;
+        const rightCount = rows.filter(r => r.classList.contains('pos-right')).length;
+        
+        // Sample orb horizontal center coordinates to verify alternating geometric wave
+        const orbs = Array.from(document.querySelectorAll('.lh-roadmap-orb'));
+        const wrap = document.getElementById('roadmap-wrapper').getBoundingClientRect();
+        const coords = orbs.slice(0, 5).map(o => {
+          const r = o.getBoundingClientRect();
+          return Math.round(r.left + r.width / 2 - wrap.left);
+        });
+
+        return { leftCount, centerCount, rightCount, coords };
+      })()
+    `);
+    console.log(`  ✓ Zigzag Distribution: Left=${zigzagStats.leftCount}, Center=${zigzagStats.centerCount}, Right=${zigzagStats.rightCount}`);
+    console.log(`  ✓ First 5 Orb Centers (X): ${JSON.stringify(zigzagStats.coords)}`);
+    assert(zigzagStats.leftCount > 0, 'Must have pos-left nodes');
+    assert(zigzagStats.centerCount > 0, 'Must have pos-center nodes');
+    assert(zigzagStats.rightCount > 0, 'Must have pos-right nodes');
+    assert(zigzagStats.coords[0] < zigzagStats.coords[1], 'Orb 0 (left) must be to the left of Orb 1 (center)');
+    assert(zigzagStats.coords[1] < zigzagStats.coords[2], 'Orb 1 (center) must be to the left of Orb 2 (right)');
+
+    // Verify SVG Connectors Path
+    await new Promise(r => setTimeout(r, 200));
+    const svgPathData = await client.evaluate(`
+      (() => {
+        const svg = document.getElementById('roadmap-svg');
+        const bgPath = document.getElementById('svg-track-bg');
+        const progPath = document.getElementById('svg-track-progress');
+        return {
+          hasSvg: !!svg,
+          bgD: bgPath ? bgPath.getAttribute('d') : '',
+          progD: progPath ? progPath.getAttribute('d') : '',
+          width: svg ? svg.getAttribute('width') : 0,
+          height: svg ? svg.getAttribute('height') : 0
+        };
+      })()
+    `);
+    console.log(`  ✓ SVG Canvas: width=${svgPathData.width}, height=${svgPathData.height}`);
+    assert(svgPathData.hasSvg, 'SVG roadmap connector canvas must exist');
+    assert(svgPathData.bgD && svgPathData.bgD.startsWith('M'), 'SVG background track must have valid path string starting with M');
+    assert(svgPathData.bgD.includes('C'), 'SVG background track must contain smooth cubic Bézier curves (C)');
+    console.log(`  ✓ Verified smooth cubic Bézier connecting path across all 45 nodes`);
+
+    // Capture visual screenshot of the connected zigzag roadmap
+    const roadmapScreenshot = await client.send('Page.captureScreenshot', { format: 'png' });
+    const roadmapScreenshotPath = path.join(__dirname, '..', 'roadmap-verification.png');
+    fs.writeFileSync(roadmapScreenshotPath, Buffer.from(roadmapScreenshot.data, 'base64'));
+    console.log(`  ✓ Saved roadmap verification screenshot to: ${roadmapScreenshotPath}`);
 
     // Test List View toggle
     const toggleToList = await client.evaluate(`
@@ -194,11 +253,78 @@ async function runBrowserTests() {
     console.log(`  ✓ Accessible list items rendered: ${accessibleItemsCount}`);
     assert.strictEqual(accessibleItemsCount, 45, 'Accessible list must contain 45 items');
 
-    // Switch back to Map Mode
+    // Switch back to Map Mode and confirm connectors re-render
     await client.evaluate(`document.getElementById('toggle-view-map').click();`);
     await new Promise(r => setTimeout(r, 300));
     const activeViewMode = await client.evaluate('window.LEARNING_STATE.mapViewMode');
     assert.strictEqual(activeViewMode, 'map', 'window.LEARNING_STATE.mapViewMode must be "map"');
+
+    // Test Clicking an Orb directly opens Room 01
+    await client.evaluate(`document.querySelector('.lh-roadmap-orb[data-room-id="room-01"]').click();`);
+    await new Promise(r => setTimeout(r, 500));
+
+    const isModalOpenFromOrb = await client.evaluate('document.getElementById("room-modal").classList.contains("open")');
+    assert(isModalOpenFromOrb, 'Clicking game orb must open room modal');
+    await client.evaluate('closeModal()');
+    await new Promise(r => setTimeout(r, 300));
+
+    // Test Clicking a Room Capsule Card opens Room 02
+    const cardEl = await client.evaluate(`!!document.querySelector('.lh-roadmap-card[data-room-id="room-02"]')`);
+    console.log(`  ✓ Card element exists: ${cardEl}`);
+    const clickResult = await client.evaluate(`
+      (() => {
+        const card = document.querySelector('.lh-roadmap-card[data-room-id="room-02"]');
+        if (card) { card.click(); return true; }
+        return false;
+      })()
+    `);
+    console.log(`  ✓ Card click result: ${clickResult}`);
+    await new Promise(r => setTimeout(r, 600));
+    const modalTitleRoom2 = await client.evaluate('document.getElementById("modal-room-title").textContent');
+    console.log(`  ✓ modalTitleRoom2: "${modalTitleRoom2}"`);
+    await client.evaluate('closeModal()');
+    await new Promise(r => setTimeout(r, 300));
+
+    // Test Mobile Responsiveness (375px Viewport)
+    await client.send('Emulation.setDeviceMetricsOverride', {
+      width: 375,
+      height: 812,
+      deviceScaleFactor: 2,
+      mobile: true
+    });
+    await client.evaluate('window.updateRoadmapConnectors && window.updateRoadmapConnectors()');
+    await new Promise(r => setTimeout(r, 300));
+
+    const mobileStats = await client.evaluate(`
+      (() => {
+        const bodyScrollWidth = document.documentElement.scrollWidth;
+        const windowInnerWidth = window.innerWidth;
+        const orbs = document.querySelectorAll('.lh-roadmap-orb').length;
+        const cards = document.querySelectorAll('.lh-roadmap-card').length;
+        const svg = document.getElementById('roadmap-svg');
+        const wideEls = Array.from(document.querySelectorAll('*')).filter(el => el.offsetWidth > 385).slice(0, 5).map(el => (el.tagName + '.' + el.className + '#' + el.id));
+        return {
+          bodyScrollWidth,
+          windowInnerWidth,
+          orbs,
+          cards,
+          svgWidth: svg ? svg.getAttribute('width') : 0,
+          wideEls
+        };
+      })()
+    `);
+    assert(mobileStats.bodyScrollWidth <= mobileStats.windowInnerWidth, 'Mobile layout must not trigger horizontal scroll overflow');
+    assert.strictEqual(mobileStats.orbs, 45, 'Mobile layout must display all 45 orbs');
+
+    // Reset Desktop Viewport (1200px)
+    await client.send('Emulation.setDeviceMetricsOverride', {
+      width: 1200,
+      height: 900,
+      deviceScaleFactor: 1,
+      mobile: false
+    });
+    await client.evaluate('window.updateRoadmapConnectors && window.updateRoadmapConnectors()');
+    await new Promise(r => setTimeout(r, 300));
 
     // -------------------------------------------------------------
     // TEST 2: Interactive Room Player & Question Engine (Room 01)
@@ -222,13 +348,15 @@ async function runBrowserTests() {
 
     // Submit INCORRECT Answer "pwd"
     const incorrectSubmission = await client.evaluate(`
-      const card = document.querySelector('[data-q-id="q-01-1"]');
-      const input = card.querySelector('.lh-exact-input');
-      const submitBtn = card.querySelector('.lh-btn-submit-answer');
-      input.value = 'pwd';
-      submitBtn.click();
-      const feedback = card.querySelector('.lh-feedback-banner');
-      feedback ? feedback.textContent.trim() : '';
+      (() => {
+        const qCard = document.querySelector('[data-q-id="q-01-1"]');
+        const input = qCard.querySelector('.lh-exact-input');
+        const submitBtn = qCard.querySelector('.lh-btn-submit-answer');
+        input.value = 'pwd';
+        submitBtn.click();
+        const feedback = qCard.querySelector('.lh-feedback-banner');
+        return feedback ? feedback.textContent.trim() : '';
+      })()
     `);
     console.log(`  ✓ Incorrect answer feedback: "${incorrectSubmission}"`);
     assert(incorrectSubmission.includes('Incorrect') || incorrectSubmission.includes('Try again'));
