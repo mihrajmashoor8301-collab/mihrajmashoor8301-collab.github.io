@@ -161,7 +161,7 @@
           continue;
         }
 
-        if (token === '&&' || token === ';') {
+        if (token === '&&' || token === '||' || token === ';') {
           currentCmd.chainType = token;
           commands.push(currentCmd);
           currentCmd = {
@@ -494,11 +494,24 @@ server_tokens off;
         {
           id: 'identify-hsts',
           title: 'Identify Missing Transport Security (HSTS)',
-          validate: (cmd, ast) => {
-            const lower = cmd.toLowerCase();
-            const checksHsts = lower.includes('strict') || lower.includes('hsts') || lower.includes('transport-security');
-            const queriesServer = (ast.executable === 'curl' || cmd.includes('curl')) && (lower.includes('staging.acmefin.local') || lower.includes('localhost'));
-            return checksHsts && queriesServer;
+          allowNonZeroExit: true,
+          validate: (cmd, ast, out, session, parsed, lastExitCode) => {
+            if (!parsed || !parsed.commands || parsed.commands.length < 2) return false;
+            if (lastExitCode !== 0 && lastExitCode !== 1) return false;
+
+            const curlCmd = parsed.commands.find(c => c.executable.toLowerCase() === 'curl');
+            const grepCmd = parsed.commands.find(c => c.executable.toLowerCase() === 'grep');
+            if (!curlCmd || !grepCmd) return false;
+
+            if (curlCmd.exitCode !== 0) return false;
+
+            const target = (curlCmd.positionals.concat(Object.values(curlCmd.options))).join(' ').toLowerCase();
+            const queriesServer = target.includes('staging.acmefin.local') || target.includes('localhost') || target.includes('127.0.0.1');
+            const requestsHeaders = curlCmd.flags.has('I') || curlCmd.flags.has('head') || curlCmd.flags.has('i') || curlCmd.flags.has('include');
+            if (!queriesServer || !requestsHeaders) return false;
+
+            const grepTarget = (grepCmd.positionals.concat(Object.values(grepCmd.options), grepCmd.args)).join(' ').toLowerCase();
+            return grepTarget.includes('strict') || grepTarget.includes('hsts') || grepTarget.includes('transport-security');
           },
           syntaxHint: "Filter response headers for transport security: 'curl -I https://staging.acmefin.local | grep -i strict'",
           successNote: "Verified absence of Strict-Transport-Security header: connection is vulnerable to SSL stripping."
@@ -506,11 +519,24 @@ server_tokens off;
         {
           id: 'detect-framing',
           title: 'Detect Missing Framing Controls (Clickjacking)',
-          validate: (cmd, ast) => {
-            const lower = cmd.toLowerCase();
-            const checksFrame = lower.includes('frame') || lower.includes('clickjack') || lower.includes('x-frame');
-            const queriesServer = (ast.executable === 'curl' || cmd.includes('curl')) && (lower.includes('staging.acmefin.local') || lower.includes('localhost'));
-            return checksFrame && queriesServer;
+          allowNonZeroExit: true,
+          validate: (cmd, ast, out, session, parsed, lastExitCode) => {
+            if (!parsed || !parsed.commands || parsed.commands.length < 2) return false;
+            if (lastExitCode !== 0 && lastExitCode !== 1) return false;
+
+            const curlCmd = parsed.commands.find(c => c.executable.toLowerCase() === 'curl');
+            const grepCmd = parsed.commands.find(c => c.executable.toLowerCase() === 'grep');
+            if (!curlCmd || !grepCmd) return false;
+
+            if (curlCmd.exitCode !== 0) return false;
+
+            const target = (curlCmd.positionals.concat(Object.values(curlCmd.options))).join(' ').toLowerCase();
+            const queriesServer = target.includes('staging.acmefin.local') || target.includes('localhost') || target.includes('127.0.0.1');
+            const requestsHeaders = curlCmd.flags.has('I') || curlCmd.flags.has('head') || curlCmd.flags.has('i') || curlCmd.flags.has('include');
+            if (!queriesServer || !requestsHeaders) return false;
+
+            const grepTarget = (grepCmd.positionals.concat(Object.values(grepCmd.options), grepCmd.args)).join(' ').toLowerCase();
+            return grepTarget.includes('frame') || grepTarget.includes('clickjack') || grepTarget.includes('x-frame');
           },
           syntaxHint: "Check for clickjacking controls: 'curl -I https://staging.acmefin.local | grep -i frame'",
           successNote: "Absence of X-Frame-Options or frame-ancestors confirmed: site can be framed by malicious origins."
@@ -518,11 +544,24 @@ server_tokens off;
         {
           id: 'audit-cookies',
           title: 'Audit Sensitive Session Cookie Flags',
-          validate: (cmd, ast) => {
-            const lower = cmd.toLowerCase();
-            const checksCookie = lower.includes('cookie') || lower.includes('httponly') || lower.includes('samesite');
-            const queriesServer = (ast.executable === 'curl' || cmd.includes('curl')) && (lower.includes('staging.acmefin.local') || lower.includes('localhost'));
-            return checksCookie && queriesServer;
+          validate: (cmd, ast, out, session, parsed, lastExitCode) => {
+            if (!parsed || !parsed.commands) return false;
+            if (lastExitCode !== 0) return false;
+
+            const curlCmd = parsed.commands.find(c => c.executable.toLowerCase() === 'curl');
+            if (!curlCmd || curlCmd.exitCode !== 0) return false;
+
+            const target = (curlCmd.positionals.concat(Object.values(curlCmd.options))).join(' ').toLowerCase();
+            const queriesServer = target.includes('staging.acmefin.local') || target.includes('localhost') || target.includes('127.0.0.1');
+            const requestsHeaders = curlCmd.flags.has('I') || curlCmd.flags.has('head') || curlCmd.flags.has('i') || curlCmd.flags.has('include');
+            if (!queriesServer || !requestsHeaders) return false;
+
+            const grepCmd = parsed.commands.find(c => c.executable.toLowerCase() === 'grep');
+            if (grepCmd) {
+              const grepTarget = (grepCmd.positionals.concat(Object.values(grepCmd.options), grepCmd.args)).join(' ').toLowerCase();
+              return grepTarget.includes('cookie') || grepTarget.includes('httponly') || grepTarget.includes('samesite');
+            }
+            return false;
           },
           syntaxHint: "Audit cookies: 'curl -I https://staging.acmefin.local | grep -i set-cookie'",
           successNote: "Session cookie lacks HttpOnly, Secure, and SameSite attributes."
@@ -1739,6 +1778,7 @@ Phase 6: Executive reporting & final flag retrieval`
             isElevatedRoot: Boolean(parsed.isElevatedRoot),
             completedTasks: new Set(parsed.completedTasks || []),
             commandHistory: parsed.commandHistory || [],
+            flagVerified: Boolean(parsed.flagVerified),
             fs
           };
         }
@@ -1760,6 +1800,7 @@ Phase 6: Executive reporting & final flag retrieval`
         isElevatedRoot: false,
         completedTasks: new Set(),
         commandHistory: [],
+        flagVerified: false,
         fs
       };
     }
@@ -1775,6 +1816,7 @@ Phase 6: Executive reporting & final flag retrieval`
           isElevatedRoot: session.isElevatedRoot,
           completedTasks: Array.from(session.completedTasks),
           commandHistory: session.commandHistory.slice(-50),
+          flagVerified: Boolean(session.flagVerified),
           fsTree: session.fs.tree
         };
         LabStorage.setItem(this.getStorageKey(session.labId), JSON.stringify(payload));
@@ -2904,10 +2946,31 @@ ${spec.tasks.map((t, idx) => `  [Task ${idx + 1}] ${t.title}`).join('\n')}`
       let finalStdout = '';
       let finalStderr = '';
       let currentStdin = '';
+      let skip = false;
+      let skipReason = null;
 
       for (let i = 0; i < parsed.commands.length; i++) {
         const cmdAst = parsed.commands[i];
         cmdAst.raw = cleanRaw;
+
+        if (skip) {
+          if (cmdAst.pipeToNext) {
+            continue;
+          }
+          const op = cmdAst.chainType;
+          if (op === ';') {
+            skip = false;
+            skipReason = null;
+          } else if (op === '||' && skipReason === 'need_success') {
+            skip = false;
+            skipReason = null;
+          } else if (op === '&&' && skipReason === 'need_failure') {
+            skip = false;
+            skipReason = null;
+          }
+          continue;
+        }
+
         const exec = cmdAst.executable.toLowerCase();
 
         // Check if executable is permitted in this lab
@@ -2918,7 +2981,9 @@ ${spec.tasks.map((t, idx) => `  [Task ${idx + 1}] ${t.title}`).join('\n')}`
             feedback: {
               type: 'tool_restricted',
               message: `Tool '${exec}' is not installed or not in scope for this lab. Allowed tools: ${spec.allowedTools.join(', ')}.`
-            }
+            },
+            newlyCompleted: [],
+            allCompleted: Array.from(session.completedTasks)
           };
         }
 
@@ -2930,6 +2995,7 @@ ${spec.tasks.map((t, idx) => `  [Task ${idx + 1}] ${t.title}`).join('\n')}`
           stepResult = { exitCode: 0, stdout: `Command '${exec}' executed.` };
         }
 
+        cmdAst.exitCode = stepResult.exitCode || 0;
         lastExitCode = stepResult.exitCode || 0;
 
         // Handle Redirection > or >> into VFS
@@ -2953,9 +3019,13 @@ ${spec.tasks.map((t, idx) => `  [Task ${idx + 1}] ${t.title}`).join('\n')}`
             finalStderr += (finalStderr ? '\n' : '') + stepResult.stderr;
           }
 
-          // Handle command chaining && (abort on failure)
+          // Handle command chaining && (abort on failure) and || (skip on success)
           if (cmdAst.chainType === '&&' && lastExitCode !== 0) {
-            break;
+            skip = true;
+            skipReason = 'need_success';
+          } else if (cmdAst.chainType === '||' && lastExitCode === 0) {
+            skip = true;
+            skipReason = 'need_failure';
           }
         }
       }
@@ -3007,17 +3077,23 @@ ${spec.tasks.map((t, idx) => `  [Task ${idx + 1}] ${t.title}`).join('\n')}`
       const session = this.getSession(labId);
       const spec = LAB_SPECIFICATIONS[labId];
 
-      const match = validFlags.some(f => clean === f.toLowerCase() || clean.includes(f.toLowerCase()));
+      const match = validFlags.some(f => {
+        const flagToken = f.toLowerCase();
+        return flagToken.startsWith('flag{') && clean === flagToken;
+      });
 
       if (match) {
+        const alreadySolved = Boolean(session.flagVerified);
+        session.flagVerified = true;
         if (spec && spec.tasks) {
           spec.tasks.forEach((_, i) => session.completedTasks.add(i));
-          LabSessionManager.saveSession(session);
         }
+        LabSessionManager.saveSession(session);
         return {
           success: true,
-          message: 'Flag verified! Challenge solved.',
-          xp: 75
+          message: alreadySolved ? 'Flag already verified.' : 'Flag verified! Challenge solved.',
+          xp: alreadySolved ? 0 : 75,
+          alreadySolved
         };
       }
 

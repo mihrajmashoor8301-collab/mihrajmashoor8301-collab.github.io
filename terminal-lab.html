@@ -991,36 +991,36 @@ www-data`,
         ` : '';
 
         html += `
-          <div class="p-3.5 rounded-xl bg-surface-subtle border border-border-hairline hover:border-primary/40 transition-all space-y-2.5 group" ${card.stage ? `data-stage-card="${card.stage}"` : ''}>
+          <div class="p-3.5 rounded-xl bg-surface-subtle border border-border-hairline hover:border-primary/40 transition-all space-y-2.5 group" ${card.stage ? `data-stage-card="${escapeHtml(card.stage)}"` : ''}>
             <div class="flex items-center justify-between gap-2 flex-wrap">
               <div class="flex items-center gap-2">
                 ${stageBadge}
                 <span class="text-xs font-bold text-on-surface group-hover:text-primary transition-colors">
-                  ${card.title}
+                  ${escapeHtml(card.title)}
                 </span>
               </div>
               <button class="run-cmd-btn px-2.5 py-1 rounded bg-primary/10 border border-primary/40 hover:bg-primary hover:text-canvas-base text-primary font-mono text-[10px] font-bold transition-all shrink-0 flex items-center gap-1 cursor-pointer"
-                      data-cmd="${card.command}"
+                      data-cmd="${escapeHtml(card.command)}"
                       data-analysis="${escapeHtml(card.analysis || '')}"
-                      data-stage="${card.stage || ''}">
+                      data-stage="${escapeHtml(card.stage || '')}">
                 <span>Run</span>
                 <span class="material-symbols-outlined text-xs">play_arrow</span>
               </button>
             </div>
             
             <div class="p-2 rounded bg-canvas-base border border-border-hairline font-mono text-[11px] text-primary flex items-center justify-between gap-2 select-all">
-              <span class="truncate">${card.command}</span>
-              <button class="copy-small-btn text-outline hover:text-on-surface transition-colors" title="Copy Command" data-copy="${card.command}">
+              <span class="truncate">${escapeHtml(card.command)}</span>
+              <button class="copy-small-btn text-outline hover:text-on-surface transition-colors" title="Copy Command" data-copy="${escapeHtml(card.command)}">
                 <span class="material-symbols-outlined text-xs">content_copy</span>
               </button>
             </div>
 
             <div class="text-[11px] text-outline leading-relaxed">
-              ${card.desc}
+              ${escapeHtml(card.desc)}
             </div>
 
             <div class="flex flex-wrap gap-1 font-mono text-[9px]">
-              ${card.flags.map(f => `<span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface-variant">${f}</span>`).join('')}
+              ${(card.flags || []).map(f => `<span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface-variant">${escapeHtml(f)}</span>`).join('')}
             </div>
 
             <!-- Expected Terminal Output Preview Accordion -->
@@ -1235,8 +1235,8 @@ ${escapeHtml(card.expectedOutput)}
     });
 
     function escapeHtml(str) {
-      if (!str) return '';
-      return str.replace(/[&<>"']/g, m => ({
+      if (str === null || str === undefined) return '';
+      return String(str).replace(/[&<>"']/g, m => ({
         '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
       })[m]);
     }
