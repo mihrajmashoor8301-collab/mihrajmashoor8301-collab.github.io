@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title id="page-title">Room Overview · Endlessus Academy</title>
+  <meta id="page-desc" content="Room objectives, syllabus breakdown, and practical learning outline." name="description"/>
+  <link rel="icon" type="image/png" href="handbook/assets/favicon.png"/>
+
+  <!-- Security Headers (Client-side meta) -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff"/>
+  <meta name="referrer" content="strict-origin-when-cross-origin"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+  <!-- Immediate Theme Initializer -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('endlessus_learning_theme') || 'normal';
+      if (savedTheme === 'hacker') {
+        document.documentElement.classList.add('dark', 'theme-hacker');
+        document.documentElement.classList.remove('theme-normal');
+      } else {
+        document.documentElement.classList.remove('dark', 'theme-hacker');
+        document.documentElement.classList.add('theme-normal');
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="academy.css"/>
+  <script src="tailwind.cdn.js"></script>
+  <script>if(typeof tailwind==="undefined"){document.write('<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"><\/script>')}</script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'canvas-base': 'var(--color-canvas-base)',
+            'surface-subtle': 'var(--color-surface-subtle)',
+            'surface-raised': 'var(--color-surface-raised)',
+            'surface-container': 'var(--color-surface-container)',
+            'border-hairline': 'var(--color-border-hairline)',
+            'border-medium': 'var(--color-border-medium)',
+            'primary': 'var(--color-primary)',
+            'primary-container': 'var(--color-primary-container)',
+            'secondary': 'var(--color-secondary)',
+            'on-surface': 'var(--color-on-surface)',
+            'on-surface-variant': 'var(--color-on-surface-variant)',
+            'outline': 'var(--color-outline)',
+            'warning': 'var(--color-warning)',
+            'danger-critical': 'var(--color-danger-critical)',
+          },
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-canvas-base text-on-surface min-h-screen flex flex-col font-sans transition-colors duration-150">
+
+  <!-- =========================================================================
+       1. ACADEMY UNIFIED HEADER
+       ========================================================================= -->
+  <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Section Label -->
+      <div class="flex items-center gap-3">
+        <a href="learning.html" class="flex items-center gap-2.5 text-on-surface hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded py-1">
+          <span class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center font-mono font-black text-primary text-base">E</span>
+          <div class="flex flex-col">
+            <span class="font-bold text-sm tracking-tight leading-none text-on-surface">Endlessus Academy</span>
+            <span class="text-[10px] font-mono text-outline tracking-wider uppercase mt-0.5">Room Outline</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Center Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-1 text-xs font-mono" aria-label="Main Navigation">
+        <a href="learning.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Dashboard</a>
+        <a href="modules.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Modules</a>
+        <a href="roadmap.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Roadmap</a>
+        <a href="labs.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Labs</a>
+        <a href="security-tools.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Tools</a>
+        <a href="index.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Portfolio</a>
+      </nav>
+
+      <!-- Right Action Bar -->
+      <div class="flex items-center gap-2">
+        <button type="button" class="academy-search-btn inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border-hairline bg-surface-raised hover:border-primary text-xs font-mono text-outline hover:text-on-surface transition-colors" title="Search Academy (Cmd+K)">
+          <span class="material-symbols-outlined text-sm text-primary">search</span>
+          <span class="hidden sm:inline">Search</span>
+        </button>
+
+        <div class="flex items-center p-0.5 rounded-lg border border-border-hairline bg-surface-raised font-mono text-xs">
+          <button type="button" id="theme-toggle-normal" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold" aria-pressed="true" title="Switch to Normal View (Light)">
+            <span class="material-symbols-outlined text-xs">light_mode</span>
+          </button>
+          <button type="button" id="theme-toggle-hacker" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold" aria-pressed="false" title="Switch to Hacker View (Dark HUD)">
+            <span class="material-symbols-outlined text-xs">terminal</span>
+          </button>
+        </div>
+
+        <button type="button" id="mobile-menu-btn" class="md:hidden p-1.5 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" aria-label="Open Mobile Menu">
+          <span class="material-symbols-outlined text-base">menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden md:hidden">
+    <div class="w-72 max-w-[80vw] h-full bg-surface-subtle border-r border-border-hairline p-5 flex flex-col justify-between overflow-y-auto font-mono text-xs">
+      <div class="space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b border-border-hairline">
+          <span class="font-bold text-sm text-primary">Academy</span>
+          <button type="button" id="mobile-drawer-close" class="p-1 rounded text-outline hover:text-on-surface"><span class="material-symbols-outlined text-base">close</span></button>
+        </div>
+        <a href="learning.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Dashboard</a>
+        <a href="modules.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">All Modules</a>
+        <a href="roadmap.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Roadmap</a>
+        <a href="labs.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Practical Labs</a>
+        <a href="security-tools.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Security Tools</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. MAIN CONTENT
+       ========================================================================= -->
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-8 sm:py-10">
+    
+    <!-- Not Found State -->
+    <div id="room-not-found" class="hidden text-center py-20 px-4 rounded-2xl border border-dashed border-border-hairline bg-surface-subtle max-w-xl mx-auto my-12">
+      <span class="material-symbols-outlined text-5xl text-warning mb-3">meeting_room</span>
+      <h1 class="text-2xl font-bold font-mono text-on-surface">Room Not Found</h1>
+      <p class="text-sm text-on-surface-variant mt-2">
+        The requested room identifier is invalid or does not exist in the curriculum database.
+      </p>
+      <div class="pt-6">
+        <a href="modules.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white text-xs font-mono font-bold hover:opacity-95 shadow transition-all">
+          <span class="material-symbols-outlined text-sm">arrow_back</span>
+          <span>Back to Module Directory</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Active Room Container -->
+    <div id="room-container" class="space-y-8">
+      
+      <!-- Breadcrumb -->
+      <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs font-mono text-outline">
+        <a href="learning.html" class="hover:text-primary transition-colors">Learning</a>
+        <span class="material-symbols-outlined text-xs">chevron_right</span>
+        <a href="modules.html" class="hover:text-primary transition-colors">Modules</a>
+        <span class="material-symbols-outlined text-xs">chevron_right</span>
+        <a id="breadcrumb-module-link" href="#" class="hover:text-primary transition-colors">Level</a>
+        <span class="material-symbols-outlined text-xs">chevron_right</span>
+        <span id="breadcrumb-room-title" class="text-on-surface font-semibold">Loading...</span>
+      </nav>
+
+      <!-- Room Header Hero -->
+      <div class="p-6 sm:p-8 rounded-2xl border border-border-hairline bg-surface-subtle space-y-6">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div class="space-y-3 max-w-3xl">
+            <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+              <span id="room-id-badge" class="px-2.5 py-0.5 rounded-md bg-surface-raised border border-border-hairline font-bold text-on-surface">
+                ROOM-01
+              </span>
+              <span id="room-difficulty-badge" class="px-2.5 py-0.5 rounded-full font-bold border text-primary border-primary/20 bg-primary/5">
+                Beginner
+              </span>
+              <span class="flex items-center gap-1 text-outline">
+                <span class="material-symbols-outlined text-sm">schedule</span>
+                <span id="room-est-time">15 min</span>
+              </span>
+              <span class="flex items-center gap-1 text-outline">
+                <span class="material-symbols-outlined text-sm">assignment</span>
+                <span id="room-tasks-count">3 Lessons</span>
+              </span>
+              <span class="flex items-center gap-1 text-outline">
+                <span class="material-symbols-outlined text-sm">quiz</span>
+                <span id="room-questions-count">2 Questions</span>
+              </span>
+            </div>
+
+            <h1 id="room-title" class="text-3xl sm:text-4xl font-black font-mono tracking-tight text-on-surface">
+              Room Title
+            </h1>
+            <p id="room-why" class="text-sm sm:text-base text-on-surface-variant leading-relaxed">
+              Why are you here description.
+            </p>
+          </div>
+
+          <!-- Room Action & Status Box -->
+          <div class="flex flex-col sm:flex-row lg:flex-col items-stretch gap-4 p-5 rounded-xl border border-border-hairline bg-surface-raised min-w-[280px]">
+            <div class="space-y-1.5 flex-1">
+              <div class="flex justify-between text-xs font-mono">
+                <span class="text-outline">Room Status</span>
+                <span id="room-status-badge" class="font-bold text-primary">Not Started</span>
+              </div>
+              <div class="w-full h-2 rounded-full bg-surface-subtle overflow-hidden">
+                <div id="room-progress-bar" class="h-full bg-primary transition-all duration-300 rounded-full" style="width: 0%"></div>
+              </div>
+              <div id="room-progress-subtext" class="text-[11px] font-mono text-outline">0 of 2 questions solved</div>
+            </div>
+
+            <a id="room-primary-action" href="#" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-primary text-white text-xs font-mono font-bold hover:opacity-95 shadow transition-all">
+              <span id="room-action-text">Launch Lesson Reader</span>
+              <span class="material-symbols-outlined text-sm">play_arrow</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Objectives & Prerequisites -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Learning Objectives -->
+        <div class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4">
+          <div class="flex items-center gap-2 font-mono text-xs font-bold text-primary">
+            <span class="material-symbols-outlined text-base">flag</span>
+            <span>LEARNING OBJECTIVES</span>
+          </div>
+          <h2 class="text-lg font-bold font-mono text-on-surface">What You Will Learn</h2>
+          <ul id="room-objectives-list" class="space-y-2.5 text-xs text-on-surface-variant font-sans">
+            <!-- Objectives populated dynamically -->
+          </ul>
+        </div>
+
+        <!-- Prerequisites & Vocabulary Preview -->
+        <div class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4">
+          <div class="flex items-center gap-2 font-mono text-xs font-bold text-secondary">
+            <span class="material-symbols-outlined text-base">translate</span>
+            <span>CORE TERMINOLOGY</span>
+          </div>
+          <h2 class="text-lg font-bold font-mono text-on-surface">Key Concepts Introduced</h2>
+          <div id="room-vocab-list" class="flex flex-wrap gap-2 text-xs font-mono">
+            <!-- Vocabulary pills populated dynamically -->
+          </div>
+          <div class="pt-2 text-xs text-on-surface-variant font-sans">
+            <strong>Prerequisites:</strong> <span id="room-prereq-text">None</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- =========================================================================
+           3. LESSON OUTLINE
+           ========================================================================= -->
+      <div class="space-y-4 pt-4">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-black font-mono text-on-surface flex items-center gap-2">
+            <span>Lesson Outline</span>
+            <span class="text-xs px-2.5 py-0.5 rounded-full bg-surface-raised border border-border-hairline text-outline">
+              Step-by-step
+            </span>
+          </h2>
+          <span class="text-xs font-mono text-outline">Study in order</span>
+        </div>
+
+        <div id="lessons-outline-container" class="space-y-3">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- =========================================================================
+           4. RELATED PRACTICAL LAB OR TERMINAL INTEGRATION
+           ========================================================================= -->
+      <div id="related-practice-box" class="hidden p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4">
+        <div class="flex items-center gap-2 font-mono text-xs font-bold text-warning">
+          <span class="material-symbols-outlined text-base">science</span>
+          <span>HANDS-ON PRACTICE TARGET</span>
+        </div>
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <h3 id="practice-lab-title" class="text-base font-bold font-mono text-on-surface">Practical Security Lab</h3>
+            <p id="practice-lab-desc" class="text-xs text-on-surface-variant">Practice what you learned in a live simulated terminal.</p>
+          </div>
+          <a id="practice-lab-link" href="#" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-surface-raised border border-border-hairline hover:border-primary text-xs font-mono font-bold text-primary transition-colors shrink-0">
+            <span>Launch Practice Lab</span>
+            <span class="material-symbols-outlined text-sm">open_in_new</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- =========================================================================
+           5. PREVIOUS / NEXT ROOM NAVIGATION
+           ========================================================================= -->
+      <div class="pt-8 border-t border-border-hairline flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 font-mono text-xs">
+        <a id="prev-room-link" href="#" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-border-hairline bg-surface-subtle hover:border-primary text-on-surface transition-colors">
+          <span class="material-symbols-outlined text-sm">arrow_back</span>
+          <div>
+            <div class="text-[10px] text-outline">Previous Room</div>
+            <div id="prev-room-title" class="font-bold">None</div>
+          </div>
+        </a>
+
+        <a id="module-syllabus-link" href="#" class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-surface-raised border border-border-hairline text-on-surface hover:text-primary transition-colors">
+          <span class="material-symbols-outlined text-sm">view_list</span>
+          <span>Back to Module</span>
+        </a>
+
+        <a id="next-room-link" href="#" class="inline-flex items-center justify-end gap-2 px-4 py-2.5 rounded-xl border border-border-hairline bg-surface-subtle hover:border-primary text-on-surface transition-colors text-right">
+          <div>
+            <div class="text-[10px] text-outline">Next Room</div>
+            <div id="next-room-title" class="font-bold">None</div>
+          </div>
+          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- =========================================================================
+       6. FOOTER
+       ========================================================================= -->
+  <footer class="border-t border-border-hairline bg-surface-subtle py-8 text-xs font-mono text-outline mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <span class="font-bold text-on-surface">Endlessus Cybersecurity Academy</span> · Engineered by Mihraj Mashhoor K
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="learning.html" class="hover:text-primary transition-colors">Dashboard</a>
+        <a href="modules.html" class="hover:text-primary transition-colors">Modules</a>
+        <a href="roadmap.html" class="hover:text-primary transition-colors">Roadmap</a>
+        <a href="labs.html" class="hover:text-primary transition-colors">Labs</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="learning-data.js"></script>
+  <script src="academy-state.js"></script>
+  <script src="academy-nav.js"></script>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const params = new URLSearchParams(window.location.search);
+      const rawId = params.get('id');
+
+      const notFoundEl = document.getElementById('room-not-found');
+      const containerEl = document.getElementById('room-container');
+
+      if (!rawId || typeof PRE_SECURITY_ROOM_MAP === 'undefined') {
+        showNotFound();
+        return;
+      }
+
+      // Normalize raw ID: e.g. "room-1" -> "room-01", "1" -> "room-01"
+      let normalizedId = rawId.toLowerCase();
+      if (!normalizedId.startsWith('room-')) {
+        normalizedId = 'room-' + String(parseInt(rawId, 10)).padStart(2, '0');
+      } else {
+        const numPart = normalizedId.replace('room-', '');
+        normalizedId = 'room-' + String(parseInt(numPart, 10)).padStart(2, '0');
+      }
+
+      const room = PRE_SECURITY_ROOM_MAP[normalizedId];
+      if (!room) {
+        showNotFound();
+        return;
+      }
+
+      function showNotFound() {
+        if (notFoundEl) notFoundEl.classList.remove('hidden');
+        if (containerEl) containerEl.classList.add('hidden');
+        document.title = 'Room Not Found · Endlessus Academy';
+      }
+
+      // Populate details
+      document.title = `${room.id.toUpperCase()}: ${room.title} · Endlessus Academy`;
+      const descEl = document.getElementById('page-desc');
+      if (descEl) descEl.setAttribute('content', room.whyAreYouHere || room.title);
+
+      // Level / Module link
+      const lvlId = typeof room.level === 'number' ? room.level : room.stage;
+      const levelObj = (typeof PRE_SECURITY_LEVELS !== 'undefined') ? PRE_SECURITY_LEVELS.find(l => l.id === lvlId) : null;
+      
+      const bModuleLink = document.getElementById('breadcrumb-module-link');
+      bModuleLink.textContent = levelObj ? `Level ${levelObj.number || '0' + levelObj.id}: ${levelObj.title}` : `Level ${lvlId}`;
+      bModuleLink.href = `module.html?id=level-${lvlId}`;
+
+      document.getElementById('breadcrumb-room-title').textContent = `${room.id.toUpperCase()}: ${room.title}`;
+      document.getElementById('module-syllabus-link').href = `module.html?id=level-${lvlId}`;
+
+      document.getElementById('room-id-badge').textContent = room.id.toUpperCase();
+      document.getElementById('room-title').textContent = room.title;
+      document.getElementById('room-why').textContent = room.whyAreYouHere || room.title;
+      document.getElementById('room-est-time').textContent = room.estimatedTime || '20 min';
+
+      const lessonsCount = Array.isArray(room.lessons) ? room.lessons.length : 1;
+      const questionsCount = Array.isArray(room.questions) ? room.questions.length : 0;
+      document.getElementById('room-tasks-count').textContent = `${lessonsCount} Lesson Section${lessonsCount === 1 ? '' : 's'}`;
+      document.getElementById('room-questions-count').textContent = `${questionsCount} Question${questionsCount === 1 ? '' : 's'}`;
+
+      const diffBadge = document.getElementById('room-difficulty-badge');
+      diffBadge.textContent = room.difficulty || 'Beginner';
+
+      // Learning Objectives
+      const objList = document.getElementById('room-objectives-list');
+      if (Array.isArray(room.objectives) && room.objectives.length > 0) {
+        objList.innerHTML = room.objectives.map(obj => `
+          <li class="flex items-start gap-2.5">
+            <span class="material-symbols-outlined text-sm text-primary mt-0.5 shrink-0">check</span>
+            <span>${escapeHtml(obj)}</span>
+          </li>
+        `).join('');
+      } else {
+        objList.innerHTML = `
+          <li class="flex items-start gap-2">
+            <span class="material-symbols-outlined text-sm text-primary mt-0.5 shrink-0">check</span>
+            <span>Understand core theory and practical tools covered in ${escapeHtml(room.title)}.</span>
+          </li>
+        `;
+      }
+
+      // Vocabulary Pills
+      const vocabList = document.getElementById('room-vocab-list');
+      if (Array.isArray(room.vocabulary) && room.vocabulary.length > 0) {
+        vocabList.innerHTML = room.vocabulary.map(v => `
+          <span class="px-2.5 py-1 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" title="${escapeHtml(v.definition)}">
+            ${escapeHtml(v.term)}
+          </span>
+        `).join('');
+      } else {
+        vocabList.innerHTML = `<span class="text-xs text-outline">Standard cybersecurity terminology</span>`;
+      }
+      document.getElementById('room-prereq-text').textContent = room.prerequisites || 'None';
+
+      // Lessons Outline
+      const outlineContainer = document.getElementById('lessons-outline-container');
+      const lessons = Array.isArray(room.lessons) ? room.lessons : [{ title: '1. Core Lesson', content: '' }];
+
+      outlineContainer.innerHTML = lessons.map((les, idx) => `
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-4 rounded-xl border border-border-hairline bg-surface-subtle hover:border-primary/40 transition-colors">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-surface-raised border border-border-hairline flex items-center justify-center font-mono font-bold text-xs text-outline">
+              ${idx + 1}
+            </span>
+            <div>
+              <h3 class="font-mono font-bold text-sm text-on-surface">
+                ${escapeHtml(les.title)}
+              </h3>
+              <p class="text-xs text-on-surface-variant line-clamp-1 mt-0.5">
+                ${escapeHtml(les.content ? les.content.substring(0, 95) + '...' : 'Interactive educational content')}
+              </p>
+            </div>
+          </div>
+          <a href="lesson.html?room=${room.id}&task=${idx}" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold bg-surface-raised border border-border-hairline hover:border-primary hover:text-primary transition-colors shrink-0">
+            <span>Read Section</span>
+            <span class="material-symbols-outlined text-xs">arrow_forward</span>
+          </a>
+        </div>
+      `).join('');
+
+      // Practical Lab Bridge
+      const labBox = document.getElementById('related-practice-box');
+      const labMap = (typeof PRE_SECURITY_LAB_MAP !== 'undefined') ? PRE_SECURITY_LAB_MAP : {};
+      const associatedLab = labMap[room.id];
+      if (associatedLab) {
+        labBox.classList.remove('hidden');
+        document.getElementById('practice-lab-title').textContent = associatedLab.title;
+        document.getElementById('practice-lab-desc').textContent = associatedLab.desc;
+        document.getElementById('practice-lab-link').href = `labs.html?lab=${associatedLab.id}`;
+      }
+
+      // Progress & Status Rendering
+      function renderProgress() {
+        const isDone = AcademyState.isRoomCompleted(room.id);
+        const qMap = AcademyState.getQuestionProgress();
+        const totalQ = Array.isArray(room.questions) ? room.questions.length : 0;
+        let solvedQ = 0;
+        for (let i = 0; i < totalQ; i++) {
+          if (qMap[`${room.id}_q${i}`]) solvedQ++;
+        }
+        const pct = totalQ > 0 ? Math.round((solvedQ / totalQ) * 100) : (isDone ? 100 : 0);
+
+        const statusBadge = document.getElementById('room-status-badge');
+        const progressBar = document.getElementById('room-progress-bar');
+        const subtext = document.getElementById('room-progress-subtext');
+        const actionBtn = document.getElementById('room-primary-action');
+        const actionText = document.getElementById('room-action-text');
+
+        progressBar.style.width = `${pct}%`;
+        subtext.textContent = `${solvedQ} of ${totalQ} questions solved (${pct}%)`;
+
+        if (isDone || pct === 100) {
+          statusBadge.textContent = 'Completed';
+          statusBadge.className = 'font-bold text-primary flex items-center gap-1';
+          actionText.textContent = 'Review Lesson';
+          actionBtn.href = `lesson.html?room=${room.id}&task=0`;
+        } else if (solvedQ > 0) {
+          statusBadge.textContent = `In Progress (${pct}%)`;
+          statusBadge.className = 'font-bold text-secondary flex items-center gap-1';
+          actionText.textContent = 'Resume Lesson';
+          actionBtn.href = `lesson.html?room=${room.id}&task=0`;
+        } else {
+          statusBadge.textContent = 'Not Started';
+          statusBadge.className = 'font-bold text-outline';
+          actionText.textContent = 'Start Lesson';
+          actionBtn.href = `lesson.html?room=${room.id}&task=0`;
+        }
+      }
+
+      renderProgress();
+      window.addEventListener('endlessus-progress-updated', renderProgress);
+
+      // Prev / Next Room Navigation
+      const allRooms = (typeof ENDLESSUS_ROOMS !== 'undefined') ? ENDLESSUS_ROOMS : [];
+      const currentIdx = allRooms.findIndex(r => r.id === room.id);
+
+      const prevRoom = currentIdx > 0 ? allRooms[currentIdx - 1] : null;
+      const nextRoom = currentIdx >= 0 && currentIdx < allRooms.length - 1 ? allRooms[currentIdx + 1] : null;
+
+      const prevLink = document.getElementById('prev-room-link');
+      const prevTitle = document.getElementById('prev-room-title');
+      if (prevRoom) {
+        prevLink.href = `room.html?id=${prevRoom.id}`;
+        prevTitle.textContent = `${prevRoom.id.toUpperCase()}: ${prevRoom.title}`;
+      } else {
+        prevLink.classList.add('opacity-40', 'pointer-events-none');
+        prevTitle.textContent = 'First Room';
+      }
+
+      const nextLink = document.getElementById('next-room-link');
+      const nextTitle = document.getElementById('next-room-title');
+      if (nextRoom) {
+        nextLink.href = `room.html?id=${nextRoom.id}`;
+        nextTitle.textContent = `${nextRoom.id.toUpperCase()}: ${nextRoom.title}`;
+      } else {
+        nextLink.classList.add('opacity-40', 'pointer-events-none');
+        nextTitle.textContent = 'Curriculum Complete';
+      }
+
+      function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      // Mobile drawer
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileClose = document.getElementById('mobile-drawer-close');
+      const drawer = document.getElementById('mobile-drawer');
+      if (mobileBtn && drawer) mobileBtn.addEventListener('click', () => drawer.classList.remove('hidden'));
+      if (mobileClose && drawer) mobileClose.addEventListener('click', () => drawer.classList.add('hidden'));
+
+    })();
+  </script>
+</body>
+</html>

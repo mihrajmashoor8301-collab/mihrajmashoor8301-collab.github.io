@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Learning Modules &amp; Curriculum Directory · Endlessus Academy</title>
+  <meta content="Explore the complete 8-level cybersecurity curriculum across 45 guided rooms. From Computer &amp; Linux Fundamentals to Network Architecture, Web Security, and Practical Labs." name="description"/>
+  <link rel="icon" type="image/png" href="handbook/assets/favicon.png"/>
+  <link rel="canonical" href="https://endlessus.in/modules.html"/>
+
+  <!-- Security Headers (Client-side meta) -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff"/>
+  <meta name="referrer" content="strict-origin-when-cross-origin"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Learning Modules · Endlessus Academy"/>
+  <meta property="og:description" content="Explore 8 progressive cybersecurity levels across 45 guided rooms with real-time completion tracking."/>
+  <meta property="og:image" content="https://endlessus.in/cover.png"/>
+  <meta property="og:url" content="https://endlessus.in/modules.html"/>
+  <meta property="og:type" content="website"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+  <!-- Immediate Theme Initializer -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('endlessus_learning_theme') || 'normal';
+      if (savedTheme === 'hacker') {
+        document.documentElement.classList.add('dark', 'theme-hacker');
+        document.documentElement.classList.remove('theme-normal');
+      } else {
+        document.documentElement.classList.remove('dark', 'theme-hacker');
+        document.documentElement.classList.add('theme-normal');
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="academy.css"/>
+  <script src="tailwind.cdn.js"></script>
+  <script>if(typeof tailwind==="undefined"){document.write('<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"><\/script>')}</script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'canvas-base': 'var(--color-canvas-base)',
+            'surface-subtle': 'var(--color-surface-subtle)',
+            'surface-raised': 'var(--color-surface-raised)',
+            'surface-container': 'var(--color-surface-container)',
+            'border-hairline': 'var(--color-border-hairline)',
+            'border-medium': 'var(--color-border-medium)',
+            'primary': 'var(--color-primary)',
+            'primary-container': 'var(--color-primary-container)',
+            'secondary': 'var(--color-secondary)',
+            'on-surface': 'var(--color-on-surface)',
+            'on-surface-variant': 'var(--color-on-surface-variant)',
+            'outline': 'var(--color-outline)',
+            'warning': 'var(--color-warning)',
+            'danger-critical': 'var(--color-danger-critical)',
+          },
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-canvas-base text-on-surface min-h-screen flex flex-col font-sans transition-colors duration-150">
+
+  <!-- =========================================================================
+       1. ACADEMY UNIFIED HEADER
+       ========================================================================= -->
+  <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Section Label -->
+      <div class="flex items-center gap-3">
+        <a href="learning.html" class="flex items-center gap-2.5 text-on-surface hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded py-1">
+          <span class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center font-mono font-black text-primary text-base">E</span>
+          <div class="flex flex-col">
+            <span class="font-bold text-sm tracking-tight leading-none text-on-surface">Endlessus Academy</span>
+            <span class="text-[10px] font-mono text-outline tracking-wider uppercase mt-0.5">Learning Modules</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Center Desktop Navigation: Learn · Practice · Reference · Portfolio -->
+      <nav class="hidden md:flex items-center gap-1 text-xs font-mono" aria-label="Main Navigation">
+        
+        <!-- Learn Menu -->
+        <div class="relative group">
+          <button type="button" class="px-3 py-1.5 rounded-md text-on-surface font-semibold hover:text-primary hover:bg-surface-raised flex items-center gap-1 transition-colors">
+            <span class="material-symbols-outlined text-sm text-primary">school</span>
+            <span>Learn</span>
+            <span class="material-symbols-outlined text-xs text-outline">expand_more</span>
+          </button>
+          <div class="absolute left-0 top-full pt-1 hidden group-hover:block z-50">
+            <div class="w-64 p-2 rounded-xl border border-border-hairline bg-surface-subtle shadow-xl space-y-1">
+              <a href="learning.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs hover:bg-surface-raised hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-sm text-primary">dashboard</span>
+                <div>
+                  <div class="font-bold">Dashboard</div>
+                  <div class="text-[10px] text-outline">What to learn next</div>
+                </div>
+              </a>
+              <a href="modules.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs bg-surface-raised text-primary font-bold">
+                <span class="material-symbols-outlined text-sm text-primary">view_module</span>
+                <div>
+                  <div class="font-bold">All Modules</div>
+                  <div class="text-[10px] text-outline">Browse 8 Pre-Security levels</div>
+                </div>
+              </a>
+              <a href="roadmap.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs hover:bg-surface-raised hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-sm text-secondary">alt_route</span>
+                <div>
+                  <div class="font-bold">Visual Roadmap</div>
+                  <div class="text-[10px] text-outline">Interactive 45-room pathway</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Practice Menu -->
+        <div class="relative group">
+          <button type="button" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised flex items-center gap-1 transition-colors">
+            <span class="material-symbols-outlined text-sm text-outline">terminal</span>
+            <span>Practice</span>
+            <span class="material-symbols-outlined text-xs text-outline">expand_more</span>
+          </button>
+          <div class="absolute left-0 top-full pt-1 hidden group-hover:block z-50">
+            <div class="w-64 p-2 rounded-xl border border-border-hairline bg-surface-subtle shadow-xl space-y-1">
+              <a href="labs.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs hover:bg-surface-raised hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-sm text-primary">science</span>
+                <div>
+                  <div class="font-bold">Practical Labs</div>
+                  <div class="text-[10px] text-outline">13 live simulation targets</div>
+                </div>
+              </a>
+              <a href="terminal-lab.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs hover:bg-surface-raised hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-sm text-secondary">terminal</span>
+                <div>
+                  <div class="font-bold">Terminal Sandbox</div>
+                  <div class="text-[10px] text-outline">Interactive Linux shell &amp; drills</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reference Menu -->
+        <div class="relative group">
+          <button type="button" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised flex items-center gap-1 transition-colors">
+            <span class="material-symbols-outlined text-sm text-outline">menu_book</span>
+            <span>Reference</span>
+            <span class="material-symbols-outlined text-xs text-outline">expand_more</span>
+          </button>
+          <div class="absolute left-0 top-full pt-1 hidden group-hover:block z-50">
+            <div class="w-64 p-2 rounded-xl border border-border-hairline bg-surface-subtle shadow-xl space-y-1">
+              <a href="security-tools.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs hover:bg-surface-raised hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-sm text-primary">build</span>
+                <div>
+                  <div class="font-bold">Security Tools</div>
+                  <div class="text-[10px] text-outline">Calculators &amp; encoders</div>
+                </div>
+              </a>
+              <a href="theory.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs hover:bg-surface-raised hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-sm text-secondary">psychology</span>
+                <div>
+                  <div class="font-bold">Security Theory</div>
+                  <div class="text-[10px] text-outline">Deep conceptual guides</div>
+                </div>
+              </a>
+              <a href="handbook/index.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs hover:bg-surface-raised hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-sm text-warning">menu_book</span>
+                <div>
+                  <div class="font-bold">Command Handbook</div>
+                  <div class="text-[10px] text-outline">Pentest syntax cheat sheets</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <a href="index.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Portfolio</a>
+      </nav>
+
+      <!-- Right Action Bar: Search · Theme Toggle · Mobile Menu -->
+      <div class="flex items-center gap-2">
+        
+        <!-- Search Trigger -->
+        <button type="button" class="academy-search-btn inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border-hairline bg-surface-raised hover:border-primary text-xs font-mono text-outline hover:text-on-surface transition-colors" title="Search Academy (Cmd+K)">
+          <span class="material-symbols-outlined text-sm text-primary">search</span>
+          <span class="hidden sm:inline">Search</span>
+          <kbd class="hidden sm:inline px-1 py-0.2 rounded bg-surface-subtle border border-border-hairline text-[10px]">⌘K</kbd>
+        </button>
+
+        <!-- Theme Toggle Buttons -->
+        <div class="flex items-center p-0.5 rounded-lg border border-border-hairline bg-surface-raised font-mono text-xs">
+          <button type="button" id="theme-toggle-normal" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold" aria-pressed="true" title="Switch to Normal View (Light)">
+            <span class="material-symbols-outlined text-xs">light_mode</span>
+            <span class="hidden sm:inline">Normal</span>
+          </button>
+          <button type="button" id="theme-toggle-hacker" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold" aria-pressed="false" title="Switch to Hacker View (Dark HUD)">
+            <span class="material-symbols-outlined text-xs">terminal</span>
+            <span class="hidden sm:inline">Hacker</span>
+          </button>
+        </div>
+
+        <!-- Mobile Drawer Toggle -->
+        <button type="button" id="mobile-menu-btn" class="md:hidden p-1.5 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" aria-label="Open Mobile Menu">
+          <span class="material-symbols-outlined text-base">menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Drawer -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden md:hidden">
+    <div class="w-72 max-w-[80vw] h-full bg-surface-subtle border-r border-border-hairline p-5 flex flex-col justify-between overflow-y-auto">
+      <div class="space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b border-border-hairline">
+          <span class="font-mono font-bold text-sm text-primary">Academy Navigation</span>
+          <button type="button" id="mobile-drawer-close" class="p-1 rounded text-outline hover:text-on-surface" aria-label="Close Mobile Menu">
+            <span class="material-symbols-outlined text-base">close</span>
+          </button>
+        </div>
+        <div class="space-y-1 font-mono text-xs">
+          <div class="text-[10px] text-outline uppercase tracking-wider py-1 font-bold">Learn</div>
+          <a href="learning.html" class="flex items-center gap-2 px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Dashboard</a>
+          <a href="modules.html" class="flex items-center gap-2 px-2.5 py-2 rounded-lg bg-surface-raised text-primary font-bold">All Modules (8 Levels)</a>
+          <a href="roadmap.html" class="flex items-center gap-2 px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Career Roadmap</a>
+          
+          <div class="text-[10px] text-outline uppercase tracking-wider py-1 font-bold pt-3">Practice</div>
+          <a href="labs.html" class="flex items-center gap-2 px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Practical Labs (13)</a>
+          <a href="terminal-lab.html" class="flex items-center gap-2 px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Terminal Sandbox</a>
+          
+          <div class="text-[10px] text-outline uppercase tracking-wider py-1 font-bold pt-3">Reference</div>
+          <a href="security-tools.html" class="flex items-center gap-2 px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Security Tools</a>
+          <a href="theory.html" class="flex items-center gap-2 px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Theory System</a>
+          <a href="handbook/index.html" class="flex items-center gap-2 px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Command Handbook</a>
+          <a href="index.html" class="flex items-center gap-2 px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised pt-3">Portfolio Homepage</a>
+        </div>
+      </div>
+      <div class="text-[11px] font-mono text-outline pt-4 border-t border-border-hairline">
+        Endlessus Academy · Free &amp; Open
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. PAGE HEADER & FILTER BAR
+       ========================================================================= -->
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-8 sm:py-10 space-y-8">
+    
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs font-mono text-outline">
+      <a href="learning.html" class="hover:text-primary transition-colors">Learning</a>
+      <span class="material-symbols-outlined text-xs">chevron_right</span>
+      <span class="text-on-surface font-semibold">Modules</span>
+    </nav>
+
+    <!-- Header Block -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-border-hairline">
+      <div class="space-y-2 max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-primary/10 text-primary border border-primary/20">
+          <span class="material-symbols-outlined text-sm">view_module</span>
+          <span>CURRICULUM DIRECTORY</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-on-surface font-mono">
+          Explore Learning Modules
+        </h1>
+        <p class="text-sm sm:text-base text-on-surface-variant leading-relaxed">
+          Select a module to view its full syllabus, prerequisites, and guided rooms. Master foundational computer science, Linux administration, network architecture, and defensive security.
+        </p>
+      </div>
+
+      <!-- High-level progress badge -->
+      <div class="flex items-center gap-4 p-3 rounded-xl border border-border-hairline bg-surface-subtle font-mono text-xs">
+        <div>
+          <div class="text-[10px] text-outline uppercase tracking-wider">Overall Progress</div>
+          <div class="text-sm font-bold text-primary flex items-center gap-1.5 mt-0.5">
+            <span id="modules-completed-count">0</span> / <span id="modules-total-rooms">45</span> Rooms
+            <span class="text-xs text-outline font-normal" id="modules-pct-badge">(0%)</span>
+          </div>
+        </div>
+        <div class="w-12 h-12 rounded-full border-2 border-primary/20 flex items-center justify-center font-bold text-xs text-primary" id="modules-radial-pct">
+          0%
+        </div>
+      </div>
+    </div>
+
+    <!-- Search & Filters Toolbar -->
+    <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-surface-subtle p-3 rounded-xl border border-border-hairline">
+      
+      <!-- Search Input -->
+      <div class="relative flex-1">
+        <span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-base">search</span>
+        <input type="text" id="module-search-input" placeholder="Search modules by topic (e.g. Linux, Networking, Web, Ports)..." class="w-full pl-9 pr-4 py-2 rounded-lg border border-border-hairline bg-surface-raised text-xs font-mono text-on-surface placeholder-outline focus:border-primary focus:outline-none transition-colors" autocomplete="off"/>
+      </div>
+
+      <!-- Difficulty Filters -->
+      <div class="flex items-center gap-1 overflow-x-auto pb-1 sm:pb-0 font-mono text-xs" role="tablist" aria-label="Difficulty Filter">
+        <button type="button" class="module-filter-btn px-3 py-1.5 rounded-lg border border-primary bg-primary text-white font-bold transition-colors cursor-pointer" data-filter="all">All (8)</button>
+        <button type="button" class="module-filter-btn px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-raised text-on-surface-variant hover:text-on-surface hover:border-primary transition-colors cursor-pointer" data-filter="Beginner">Beginner</button>
+        <button type="button" class="module-filter-btn px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-raised text-on-surface-variant hover:text-on-surface hover:border-primary transition-colors cursor-pointer" data-filter="Foundation">Foundation</button>
+        <button type="button" class="module-filter-btn px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-raised text-on-surface-variant hover:text-on-surface hover:border-primary transition-colors cursor-pointer" data-filter="Practical">Practical</button>
+      </div>
+    </div>
+
+    <!-- =========================================================================
+         3. MODULE CARDS GRID
+         ========================================================================= -->
+    <div id="modules-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <!-- Populated dynamically from PRE_SECURITY_LEVELS -->
+    </div>
+
+    <!-- Empty Results Fallback -->
+    <div id="modules-empty" class="hidden text-center py-16 px-4 rounded-xl border border-dashed border-border-hairline bg-surface-subtle">
+      <span class="material-symbols-outlined text-4xl text-outline mb-2">search_off</span>
+      <h3 class="text-base font-mono font-bold text-on-surface">No matching modules found</h3>
+      <p class="text-xs text-on-surface-variant mt-1 max-w-sm mx-auto">Try clearing your search query or switching the difficulty filter.</p>
+      <button type="button" id="clear-filters-btn" class="mt-4 px-4 py-2 rounded-lg bg-surface-raised border border-border-hairline text-xs font-mono font-bold text-primary hover:border-primary transition-colors cursor-pointer">
+        Reset Filters
+      </button>
+    </div>
+  </main>
+
+  <!-- =========================================================================
+       4. FOOTER
+       ========================================================================= -->
+  <footer class="border-t border-border-hairline bg-surface-subtle py-8 text-xs font-mono text-outline mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <span class="font-bold text-on-surface">Endlessus Cybersecurity Academy</span> · Engineered by Mihraj Mashhoor K
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="learning.html" class="hover:text-primary transition-colors">Dashboard</a>
+        <a href="roadmap.html" class="hover:text-primary transition-colors">Roadmap</a>
+        <a href="labs.html" class="hover:text-primary transition-colors">Labs</a>
+        <a href="security-tools.html" class="hover:text-primary transition-colors">Tools</a>
+        <a href="handbook/index.html" class="hover:text-primary transition-colors">Handbook</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="learning-data.js"></script>
+  <script src="academy-state.js"></script>
+  <script src="academy-nav.js"></script>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const gridEl = document.getElementById('modules-grid');
+      const emptyEl = document.getElementById('modules-empty');
+      const searchInput = document.getElementById('module-search-input');
+      const filterBtns = document.querySelectorAll('.module-filter-btn');
+      const clearBtn = document.getElementById('clear-filters-btn');
+
+      let currentFilter = 'all';
+      let currentQuery = '';
+
+      function renderModules() {
+        if (!gridEl || typeof PRE_SECURITY_LEVELS === 'undefined') return;
+
+        const levels = PRE_SECURITY_LEVELS;
+        const completedRooms = new Set(AcademyState.getCompletedRooms());
+        const totalRoomsInAcademy = (typeof ENDLESSUS_ROOMS !== 'undefined' && ENDLESSUS_ROOMS.length) ? ENDLESSUS_ROOMS.length : 45;
+
+        // Overall progress calculations
+        const totalCompleted = completedRooms.size;
+        const totalPct = Math.round((totalCompleted / totalRoomsInAcademy) * 100);
+
+        const countEl = document.getElementById('modules-completed-count');
+        const totalEl = document.getElementById('modules-total-rooms');
+        const pctEl = document.getElementById('modules-pct-badge');
+        const radialEl = document.getElementById('modules-radial-pct');
+
+        if (countEl) countEl.textContent = totalCompleted;
+        if (totalEl) totalEl.textContent = totalRoomsInAcademy;
+        if (pctEl) pctEl.textContent = `(${totalPct}%)`;
+        if (radialEl) radialEl.textContent = `${totalPct}%`;
+
+        // Filter levels
+        const filtered = levels.filter(lvl => {
+          const matchesDiff = currentFilter === 'all' || lvl.difficulty === currentFilter;
+          const q = currentQuery.toLowerCase();
+          const matchesQuery = !q ||
+            lvl.title.toLowerCase().includes(q) ||
+            lvl.tagline.toLowerCase().includes(q) ||
+            lvl.description.toLowerCase().includes(q) ||
+            `level ${lvl.id}`.includes(q);
+          return matchesDiff && matchesQuery;
+        });
+
+        if (filtered.length === 0) {
+          gridEl.innerHTML = '';
+          emptyEl.classList.remove('hidden');
+          return;
+        }
+
+        emptyEl.classList.add('hidden');
+
+        gridEl.innerHTML = filtered.map(lvl => {
+          // Calculate level progress
+          const lvlProgress = AcademyState.getLevelProgress(lvl.id);
+          const isComplete = lvlProgress.total > 0 && lvlProgress.completed === lvlProgress.total;
+          const isStarted = lvlProgress.completed > 0;
+
+          // Status badge
+          let statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-surface-raised border border-border-hairline text-outline">Not Started</span>`;
+          if (isComplete) {
+            statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-primary/10 border border-primary/30 text-primary flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">verified</span>Completed</span>`;
+          } else if (isStarted) {
+            statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-secondary/10 border border-secondary/30 text-secondary flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">play_circle</span>In Progress</span>`;
+          }
+
+          // Difficulty pill color
+          let diffColor = 'text-primary border-primary/20 bg-primary/5';
+          if (lvl.difficulty === 'Foundation') diffColor = 'text-secondary border-secondary/20 bg-secondary/5';
+          if (lvl.difficulty === 'Practical') diffColor = 'text-warning border-warning/20 bg-warning/5';
+
+          return `
+            <article class="flex flex-col justify-between p-5 rounded-2xl border border-border-hairline bg-surface-subtle hover:border-primary/50 hover:shadow-lg transition-all duration-200">
+              <div class="space-y-3">
+                
+                <!-- Card Header: Number, Difficulty, Status -->
+                <div class="flex items-center justify-between gap-2">
+                  <div class="flex items-center gap-2 font-mono">
+                    <span class="px-2.5 py-0.5 rounded-md bg-surface-raised border border-border-hairline font-bold text-xs text-on-surface">
+                      Level ${lvl.number || '0' + lvl.id}
+                    </span>
+                    <span class="px-2 py-0.5 rounded-full text-[10px] font-bold border ${diffColor}">
+                      ${lvl.difficulty}
+                    </span>
+                  </div>
+                  <div>${statusBadge}</div>
+                </div>
+
+                <!-- Title & Tagline -->
+                <div>
+                  <h2 class="text-xl font-bold font-mono text-on-surface tracking-tight">
+                    <a href="module.html?id=level-${lvl.id}" class="hover:text-primary transition-colors">
+                      ${escapeHtml(lvl.title)}
+                    </a>
+                  </h2>
+                  <p class="text-xs font-mono text-primary font-medium mt-0.5">
+                    ${escapeHtml(lvl.tagline)}
+                  </p>
+                </div>
+
+                <!-- One-sentence description -->
+                <p class="text-xs text-on-surface-variant leading-relaxed line-clamp-2">
+                  ${escapeHtml(lvl.description)}
+                </p>
+
+                <!-- Metadata Row: Time, Rooms -->
+                <div class="flex items-center gap-4 text-xs font-mono text-outline pt-1">
+                  <span class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm">schedule</span>
+                    ${escapeHtml(lvl.estimatedTime)}
+                  </span>
+                  <span class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm">meeting_room</span>
+                    ${lvlProgress.total} Rooms
+                  </span>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="space-y-1 pt-2">
+                  <div class="flex justify-between text-[11px] font-mono">
+                    <span class="text-outline">Completion</span>
+                    <span class="font-bold text-on-surface">${lvlProgress.completed}/${lvlProgress.total} Rooms (${lvlProgress.percentage}%)</span>
+                  </div>
+                  <div class="w-full h-1.5 rounded-full bg-surface-raised overflow-hidden">
+                    <div class="h-full bg-primary transition-all duration-300 rounded-full" style="width: ${lvlProgress.percentage}%"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card Action Button -->
+              <div class="pt-5 border-t border-border-hairline/60 mt-4 flex items-center justify-between">
+                <span class="text-[11px] font-mono text-outline">
+                  ${isComplete ? 'Review Syllabus' : (isStarted ? 'Resume Learning' : 'Start Level')}
+                </span>
+                <a href="module.html?id=level-${lvl.id}" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-mono font-bold ${isComplete ? 'bg-surface-raised border border-border-hairline hover:border-primary text-on-surface' : 'bg-primary text-white hover:opacity-95'} transition-all shadow-sm">
+                  <span>Explore Module</span>
+                  <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+              </div>
+            </article>
+          `;
+        }).join('');
+      }
+
+      function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      // Event bindings
+      if (searchInput) {
+        searchInput.addEventListener('input', function(e) {
+          currentQuery = e.target.value.trim();
+          renderModules();
+        });
+      }
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          filterBtns.forEach(b => {
+            b.className = 'module-filter-btn px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-raised text-on-surface-variant hover:text-on-surface hover:border-primary transition-colors cursor-pointer';
+          });
+          btn.className = 'module-filter-btn px-3 py-1.5 rounded-lg border border-primary bg-primary text-white font-bold transition-colors cursor-pointer';
+          currentFilter = btn.dataset.filter || 'all';
+          renderModules();
+        });
+      });
+
+      if (clearBtn) {
+        clearBtn.addEventListener('click', function() {
+          currentQuery = '';
+          currentFilter = 'all';
+          if (searchInput) searchInput.value = '';
+          filterBtns.forEach(b => {
+            b.className = (b.dataset.filter === 'all')
+              ? 'module-filter-btn px-3 py-1.5 rounded-lg border border-primary bg-primary text-white font-bold transition-colors cursor-pointer'
+              : 'module-filter-btn px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-raised text-on-surface-variant hover:text-on-surface hover:border-primary transition-colors cursor-pointer';
+          });
+          renderModules();
+        });
+      }
+
+      // Initial render & sync with state events
+      renderModules();
+      window.addEventListener('endlessus-progress-updated', renderModules);
+
+      // Mobile Drawer bindings
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileClose = document.getElementById('mobile-drawer-close');
+      const drawer = document.getElementById('mobile-drawer');
+      if (mobileBtn && drawer) {
+        mobileBtn.addEventListener('click', () => drawer.classList.remove('hidden'));
+      }
+      if (mobileClose && drawer) {
+        mobileClose.addEventListener('click', () => drawer.classList.add('hidden'));
+      }
+      if (drawer) {
+        drawer.addEventListener('click', (e) => {
+          if (e.target === drawer) drawer.classList.add('hidden');
+        });
+      }
+
+    })();
+  </script>
+</body>
+</html>

@@ -103,94 +103,70 @@
   // 2. MASTER ACADEMY SEARCH INDEX
   // =========================================================================
   const ACADEMY_SEARCH_INDEX = [
-    // --- STAGES ---
+    // --- AUTHORITATIVE 8 PRE-SECURITY CURRICULUM LEVELS ---
     {
-      title: "Stage 00: Absolute Zero",
-      desc: "Zero experience required. Discover what cybersecurity is, ethical hacking, and your first terminal command.",
-      url: "learning.html#stage-0",
-      type: "Stage",
+      title: "Level 00: Start Here (Foundations)",
+      desc: "Zero experience required. Discover what ethical cybersecurity is, legal boundaries, and your first command.",
+      url: "module.html?id=level-0",
+      type: "Module",
       badgeClass: "badge-room",
-      keywords: ["start", "beginner", "foundations", "zero", "welcome", "terminal", "intro"]
+      keywords: ["start", "beginner", "foundations", "zero", "welcome", "terminal", "intro", "level 0"]
     },
     {
-      title: "Stage 01: Computer Architecture & Hardware",
-      desc: "CPUs, RAM, storage, motherboard, binary logic, and how computers process instructions.",
-      url: "learning.html#stage-1",
-      type: "Stage",
+      title: "Level 01: Computer Fundamentals",
+      desc: "Hardware architecture, binary logic, CPU instruction cycles, memory hierarchy, and storage.",
+      url: "module.html?id=level-1",
+      type: "Module",
       badgeClass: "badge-room",
-      keywords: ["hardware", "cpu", "ram", "storage", "binary", "bus", "registers", "bits"]
+      keywords: ["hardware", "cpu", "ram", "storage", "binary", "bus", "registers", "bits", "computer", "level 1"]
     },
     {
-      title: "Stage 02: Operating Systems (Linux & Windows)",
-      desc: "Kernel vs user space, file systems, permissions, processes, CLI, Bash, and Windows PowerShell.",
-      url: "learning.html#stage-2",
-      type: "Stage",
+      title: "Level 02: Linux Fundamentals",
+      desc: "Linux filesystem hierarchy, UNIX permissions, user/group management, processes, shell CLI, and scripting.",
+      url: "module.html?id=level-2",
+      type: "Module",
       badgeClass: "badge-room",
-      keywords: ["linux", "windows", "kernel", "cli", "bash", "powershell", "processes", "permissions", "filesystem"]
+      keywords: ["linux", "bash", "cli", "permissions", "chmod", "filesystem", "processes", "grep", "terminal", "level 2"]
     },
     {
-      title: "Stage 03: Networking Foundations",
-      desc: "Packets, IP addressing, subnets, ports, TCP/IP, UDP, DNS, DHCP, and Wireshark inspection.",
-      url: "learning.html#stage-3",
-      type: "Stage",
+      title: "Level 03: Windows Fundamentals",
+      desc: "Windows OS architecture, NTFS permissions, Windows Registry, Event Viewer, Active Directory basics, and PowerShell.",
+      url: "module.html?id=level-3",
+      type: "Module",
       badgeClass: "badge-room",
-      keywords: ["networking", "packets", "ip", "subnet", "cidr", "ports", "tcp", "udp", "dns", "dhcp", "wireshark"]
+      keywords: ["windows", "powershell", "registry", "ntfs", "services", "event viewer", "cmd", "sysinternals", "level 3"]
     },
     {
-      title: "Stage 04: The Internet, Web Architecture & HTTP",
-      desc: "Clients, web servers, HTTP/HTTPS methods, headers, status codes, cookies, sessions, and APIs.",
-      url: "learning.html#stage-4",
-      type: "Stage",
+      title: "Level 04: Networking Fundamentals",
+      desc: "OSI & TCP/IP models, IPv4/IPv6 addressing, subnet masks, CIDR notation, routing, NAT, switches, and ports.",
+      url: "module.html?id=level-4",
+      type: "Module",
       badgeClass: "badge-room",
-      keywords: ["web", "http", "https", "headers", "status codes", "cookies", "sessions", "rest", "api", "json"]
+      keywords: ["networking", "packets", "ip", "subnet", "cidr", "ports", "tcp", "udp", "dns", "dhcp", "wireshark", "level 4"]
     },
     {
-      title: "Stage 05: Cybersecurity Fundamentals & Threat Models",
-      desc: "The CIA triad, threat actors, vulnerabilities, CVEs, CVSS scoring, defense-in-depth, and attack surfaces.",
-      url: "learning.html#stage-5",
-      type: "Stage",
+      title: "Level 05: Internet & Web Fundamentals",
+      desc: "Web servers, HTTP/HTTPS methods, response codes, headers, cookies, sessions, REST APIs, and DNS resolution.",
+      url: "module.html?id=level-5",
+      type: "Module",
       badgeClass: "badge-room",
-      keywords: ["security", "cia triad", "threats", "cve", "cvss", "defense", "vulnerability", "risk", "attack surface"]
+      keywords: ["web", "http", "https", "headers", "status codes", "cookies", "sessions", "rest", "api", "json", "dns", "level 5"]
     },
     {
-      title: "Stage 06: Offensive Security Tools & Scanners",
-      desc: "Nmap port scanning, banner grabbing, service detection, Gobuster directory fuzzing, and Nikto.",
-      url: "learning.html#stage-6",
-      type: "Stage",
+      title: "Level 06: Cybersecurity Fundamentals",
+      desc: "The CIA triad, threat models, CVEs, CVSS scoring, defense-in-depth, symmetric/asymmetric cryptography, and hashes.",
+      url: "module.html?id=level-6",
+      type: "Module",
       badgeClass: "badge-room",
-      keywords: ["nmap", "tools", "scanners", "gobuster", "nikto", "fuzzing", "enumeration", "ports", "services"]
+      keywords: ["security", "cia triad", "threats", "cve", "cvss", "defense", "vulnerability", "risk", "crypto", "hashing", "level 6"]
     },
     {
-      title: "Stage 07: Web Application Penetration Testing",
-      desc: "OWASP Top 10, SQL Injection, Reflected/Stored XSS, CSRF, IDOR, SSRF, and authentication bypass.",
-      url: "learning.html#stage-7",
-      type: "Stage",
+      title: "Level 07: First Practical Security Labs",
+      desc: "Offensive tooling introduction, Nmap reconnaissance, security headers hardening, web flaws, and terminal drills.",
+      url: "module.html?id=level-7",
+      type: "Module",
       badgeClass: "badge-room",
-      keywords: ["web security", "owasp", "sqli", "xss", "csrf", "idor", "ssrf", "injection", "burp suite"]
-    },
-    {
-      title: "Stage 08: Network & System Exploitation",
-      desc: "SMB enumeration, Metasploit Framework, reverse vs bind shells, Netcat listeners, and password cracking.",
-      url: "learning.html#stage-8",
-      type: "Stage",
-      badgeClass: "badge-room",
-      keywords: ["exploitation", "smb", "metasploit", "shells", "netcat", "hydra", "john", "hashcat", "passwords"]
-    },
-    {
-      title: "Stage 09: Privilege Escalation & Persistence",
-      desc: "Linux SUID binaries, sudo misconfigurations, capabilities, scheduled cron jobs, and LinPEAS enumeration.",
-      url: "learning.html#stage-9",
-      type: "Stage",
-      badgeClass: "badge-room",
-      keywords: ["privesc", "privilege escalation", "suid", "sudo", "cron", "capabilities", "linpeas", "gtfobins"]
-    },
-    {
-      title: "Stage 10: Practical Pentesting Capstone",
-      desc: "End-to-end authorized penetration testing methodology, reporting, remediation, and enterprise assessment.",
-      url: "learning.html#stage-10",
-      type: "Stage",
-      badgeClass: "badge-room",
-      keywords: ["capstone", "pentest", "assessment", "ptes", "reporting", "remediation", "enterprise", "junior pentester"]
+      keywords: ["labs", "nmap", "practical", "scanning", "headers", "penetration testing", "terminal", "hands-on", "level 7"]
     },
 
     // --- 13 PRACTICAL LABS ---
@@ -373,14 +349,15 @@
     if (typeof ENDLESSUS_ROOMS !== 'undefined' && Array.isArray(ENDLESSUS_ROOMS)) {
       ENDLESSUS_ROOMS.forEach(r => {
         const vocabKeywords = r.vocabulary ? r.vocabulary.map(v => v.term.toLowerCase()) : [];
-        const isAlreadyIndexed = ACADEMY_SEARCH_INDEX.some(item => item.url === `learning.html#${r.id}`);
+        const isAlreadyIndexed = ACADEMY_SEARCH_INDEX.some(item => item.url === `room.html?id=${r.id}`);
         if (!isAlreadyIndexed) {
+          const lvl = typeof r.level === 'number' ? r.level : r.stage;
           ACADEMY_SEARCH_INDEX.push({
             title: `${r.id.toUpperCase()}: ${r.title}`,
             desc: r.whyAreYouHere ? (r.whyAreYouHere.substring(0, 95) + '...') : r.tagline,
-            url: `learning.html#${r.id}`,
+            url: `room.html?id=${r.id}`,
             roomId: r.id,
-            type: `Room · Stage ${r.stage}`,
+            type: `Room · Level ${lvl}`,
             badgeClass: 'badge-room',
             keywords: [r.id, r.title.toLowerCase(), ...vocabKeywords]
           });

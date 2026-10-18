@@ -1473,6 +1473,7 @@
                 <span class="material-symbols-outlined text-sm">send</span>
               </button>
             </div>
+            <div id="inquiry-status" class="hidden mt-3 p-3 rounded bg-surface-raised border border-border-hairline text-xs font-mono"></div>
           </form>
         </div>
 
@@ -1538,7 +1539,7 @@
       });
     });
 
-    // Direct Inquiry Mailto Dispatcher
+    // Direct Inquiry Mailto Dispatcher with Webmail/Clipboard Fallback
     const contactForm = document.getElementById('inquiry-form');
     if (contactForm) {
       contactForm.addEventListener('submit', (e) => {
@@ -1548,8 +1549,36 @@
         const subject = document.getElementById('form-subject')?.value || 'Cybersecurity Role / Collaboration Inquiry';
         const message = document.getElementById('form-message')?.value || '';
 
+        const targetEmail = 'cybermihraj32@gmail.com';
         const body = `Sender: ${sender}\nContact Email: ${email}\n\nMessage Payload:\n${message}`;
-        window.location.href = `mailto:cybehmihraj32@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        const mailtoUrl = `mailto:${targetEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+        const statusEl = document.getElementById('inquiry-status');
+        if (statusEl) {
+          statusEl.classList.remove('hidden');
+          statusEl.innerHTML = `
+            <div class="flex items-center justify-between gap-2 text-primary font-bold mb-1">
+              <span>✓ Opening Email Client...</span>
+              <button type="button" id="copy-inquiry-btn" class="px-2 py-0.5 rounded bg-primary/10 border border-primary/30 text-primary hover:bg-primary/20 text-[10px] font-mono cursor-pointer">Copy to Clipboard</button>
+            </div>
+            <div class="text-[11px] text-on-surface-variant">
+              Sending to <strong>${targetEmail}</strong>. If your email application does not launch, click "Copy to Clipboard" to paste into your webmail.
+            </div>
+          `;
+          const copyBtn = document.getElementById('copy-inquiry-btn');
+          if (copyBtn) {
+            copyBtn.addEventListener('click', () => {
+              const fullText = `To: ${targetEmail}\nSubject: ${subject}\n\n${body}`;
+              navigator.clipboard.writeText(fullText).then(() => {
+                copyBtn.textContent = 'Copied!';
+                setTimeout(() => { copyBtn.textContent = 'Copy to Clipboard'; }, 2000);
+              }).catch(() => {
+                copyBtn.textContent = 'Failed to copy';
+              });
+            });
+          }
+        }
+        window.location.href = mailtoUrl;
       });
     }
   </script>

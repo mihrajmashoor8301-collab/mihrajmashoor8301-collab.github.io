@@ -45,7 +45,37 @@
   </url>
   <url>
     <loc>https://endlessus.in/learning.html</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://endlessus.in/modules.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://endlessus.in/module.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://endlessus.in/room.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://endlessus.in/lesson.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://endlessus.in/security-tools.html</loc>
+    <lastmod>2026-10-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>

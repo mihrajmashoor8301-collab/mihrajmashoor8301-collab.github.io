@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title id="page-title">Lesson Reader · Endlessus Academy</title>
+  <meta id="page-desc" content="Focused cybersecurity lesson reading and hands-on knowledge checks." name="description"/>
+  <link rel="icon" type="image/png" href="handbook/assets/favicon.png"/>
+
+  <!-- Security Headers (Client-side meta) -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff"/>
+  <meta name="referrer" content="strict-origin-when-cross-origin"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+  <!-- Immediate Theme Initializer -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('endlessus_learning_theme') || 'normal';
+      if (savedTheme === 'hacker') {
+        document.documentElement.classList.add('dark', 'theme-hacker');
+        document.documentElement.classList.remove('theme-normal');
+      } else {
+        document.documentElement.classList.remove('dark', 'theme-hacker');
+        document.documentElement.classList.add('theme-normal');
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="academy.css"/>
+  <script src="tailwind.cdn.js"></script>
+  <script>if(typeof tailwind==="undefined"){document.write('<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"><\/script>')}</script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'canvas-base': 'var(--color-canvas-base)',
+            'surface-subtle': 'var(--color-surface-subtle)',
+            'surface-raised': 'var(--color-surface-raised)',
+            'surface-container': 'var(--color-surface-container)',
+            'border-hairline': 'var(--color-border-hairline)',
+            'border-medium': 'var(--color-border-medium)',
+            'primary': 'var(--color-primary)',
+            'primary-container': 'var(--color-primary-container)',
+            'secondary': 'var(--color-secondary)',
+            'on-surface': 'var(--color-on-surface)',
+            'on-surface-variant': 'var(--color-on-surface-variant)',
+            'outline': 'var(--color-outline)',
+            'warning': 'var(--color-warning)',
+            'danger-critical': 'var(--color-danger-critical)',
+          },
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-canvas-base text-on-surface min-h-screen flex flex-col font-sans transition-colors duration-150">
+
+  <!-- =========================================================================
+       1. ACADEMY UNIFIED HEADER
+       ========================================================================= -->
+  <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Section Label -->
+      <div class="flex items-center gap-3">
+        <a href="learning.html" class="flex items-center gap-2.5 text-on-surface hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded py-1">
+          <span class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center font-mono font-black text-primary text-base">E</span>
+          <div class="flex flex-col">
+            <span class="font-bold text-sm tracking-tight leading-none text-on-surface">Endlessus Academy</span>
+            <span class="text-[10px] font-mono text-outline tracking-wider uppercase mt-0.5">Lesson Reader</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Quick Room Navigation Center Pill -->
+      <div class="hidden md:flex items-center gap-2 px-3 py-1 rounded-full border border-border-hairline bg-surface-raised font-mono text-xs text-outline">
+        <span id="header-room-id" class="text-on-surface font-bold">ROOM-01</span>
+        <span>·</span>
+        <span id="header-task-label">Section 1</span>
+        <span>·</span>
+        <span id="header-progress-pct" class="text-primary font-bold">0%</span>
+      </div>
+
+      <!-- Right Action Bar -->
+      <div class="flex items-center gap-2">
+        <a id="header-room-link" href="#" class="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-raised hover:border-primary text-xs font-mono text-on-surface transition-colors">
+          <span class="material-symbols-outlined text-xs">meeting_room</span>
+          <span>Room Overview</span>
+        </a>
+
+        <div class="flex items-center p-0.5 rounded-lg border border-border-hairline bg-surface-raised font-mono text-xs">
+          <button type="button" id="theme-toggle-normal" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold" aria-pressed="true" title="Switch to Normal View (Light)">
+            <span class="material-symbols-outlined text-xs">light_mode</span>
+          </button>
+          <button type="button" id="theme-toggle-hacker" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold" aria-pressed="false" title="Switch to Hacker View (Dark HUD)">
+            <span class="material-symbols-outlined text-xs">terminal</span>
+          </button>
+        </div>
+
+        <button type="button" id="mobile-menu-btn" class="md:hidden p-1.5 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" aria-label="Open Mobile Menu">
+          <span class="material-symbols-outlined text-base">menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden md:hidden">
+    <div class="w-72 max-w-[80vw] h-full bg-surface-subtle border-r border-border-hairline p-5 flex flex-col justify-between overflow-y-auto font-mono text-xs">
+      <div class="space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b border-border-hairline">
+          <span class="font-bold text-sm text-primary">Academy</span>
+          <button type="button" id="mobile-drawer-close" class="p-1 rounded text-outline hover:text-on-surface"><span class="material-symbols-outlined text-base">close</span></button>
+        </div>
+        <a href="learning.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Dashboard</a>
+        <a href="modules.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">All Modules</a>
+        <a href="roadmap.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Career Roadmap</a>
+        <a href="labs.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Practical Labs</a>
+        <a href="security-tools.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Security Tools</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. MAIN LESSON WORKSPACE
+       ========================================================================= -->
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8">
+    
+    <!-- Not Found State -->
+    <div id="lesson-not-found" class="hidden text-center py-20 px-4 rounded-2xl border border-dashed border-border-hairline bg-surface-subtle max-w-xl mx-auto my-12">
+      <span class="material-symbols-outlined text-5xl text-warning mb-3">menu_book</span>
+      <h1 class="text-2xl font-bold font-mono text-on-surface">Lesson Not Found</h1>
+      <p class="text-sm text-on-surface-variant mt-2">
+        The requested room or lesson section is invalid.
+      </p>
+      <div class="pt-6">
+        <a href="modules.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white text-xs font-mono font-bold hover:opacity-95 shadow transition-all">
+          <span class="material-symbols-outlined text-sm">arrow_back</span>
+          <span>Return to Modules</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Active Lesson Container -->
+    <div id="lesson-container" class="space-y-6">
+      
+      <!-- Breadcrumb Navigation -->
+      <nav aria-label="Breadcrumb" class="flex flex-wrap items-center gap-2 text-xs font-mono text-outline">
+        <a href="learning.html" class="hover:text-primary transition-colors">Learning</a>
+        <span class="material-symbols-outlined text-xs">chevron_right</span>
+        <a href="modules.html" class="hover:text-primary transition-colors">Modules</a>
+        <span class="material-symbols-outlined text-xs">chevron_right</span>
+        <a id="breadcrumb-module-link" href="#" class="hover:text-primary transition-colors">Level</a>
+        <span class="material-symbols-outlined text-xs">chevron_right</span>
+        <a id="breadcrumb-room-link" href="#" class="hover:text-primary transition-colors">Room</a>
+        <span class="material-symbols-outlined text-xs">chevron_right</span>
+        <span id="breadcrumb-task-title" class="text-on-surface font-semibold">Section 1</span>
+      </nav>
+
+      <!-- Layout: Two Columns (TOC Sidebar on Desktop + Focused Reading Column) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Sticky Section Navigator (Desktop Sidebar) -->
+        <aside class="hidden lg:block lg:col-span-3 sticky top-20 space-y-4">
+          <div class="p-4 rounded-xl border border-border-hairline bg-surface-subtle space-y-3 font-mono text-xs">
+            <div class="flex items-center justify-between pb-2 border-b border-border-hairline">
+              <span class="font-bold text-on-surface" id="sidebar-room-id">ROOM-01</span>
+              <span id="sidebar-progress-badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-primary/10 text-primary">0%</span>
+            </div>
+
+            <div class="text-[10px] text-outline uppercase tracking-wider font-bold">Lesson Sections</div>
+            <nav id="sidebar-toc-links" class="space-y-1" aria-label="Lesson Sections">
+              <!-- Populated dynamically -->
+            </nav>
+
+            <div class="pt-3 border-t border-border-hairline/60">
+              <a id="sidebar-room-return" href="#" class="flex items-center gap-1.5 text-outline hover:text-primary transition-colors text-[11px]">
+                <span class="material-symbols-outlined text-xs">arrow_back</span>
+                <span>Room Outline</span>
+              </a>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main Reading & Interactive Column -->
+        <div class="lg:col-span-9 space-y-8 max-w-3xl">
+          
+          <!-- Lesson Header Banner -->
+          <div class="space-y-2 pb-4 border-b border-border-hairline">
+            <div class="flex items-center gap-2 font-mono text-xs">
+              <span id="lesson-task-badge" class="px-2 py-0.5 rounded-md bg-surface-raised border border-border-hairline font-bold text-primary">
+                Section 1 of 3
+              </span>
+              <span id="lesson-est-time" class="text-outline flex items-center gap-1">
+                <span class="material-symbols-outlined text-xs">schedule</span>
+                <span>15 min read</span>
+              </span>
+            </div>
+            <h1 id="lesson-section-title" class="text-2xl sm:text-3xl font-black font-mono tracking-tight text-on-surface">
+              Lesson Section Title
+            </h1>
+          </div>
+
+          <!-- Section 1: Educational Theory & Explanations -->
+          <article id="lesson-body-content" class="prose max-w-none text-on-surface text-sm sm:text-base leading-relaxed space-y-4">
+            <!-- Theory markdown/text rendered here -->
+          </article>
+
+          <!-- Section 2: Visual Diagram (if present) -->
+          <div id="lesson-diagram-container" class="hidden space-y-2">
+            <div class="flex items-center gap-2 text-xs font-mono font-bold text-primary">
+              <span class="material-symbols-outlined text-sm">schema</span>
+              <span>ARCHITECTURE DIAGRAM</span>
+            </div>
+            <div id="lesson-diagram-svg" class="p-4 rounded-xl border border-border-hairline bg-surface-subtle overflow-x-auto flex justify-center">
+              <!-- SVG inserted here -->
+            </div>
+          </div>
+
+          <!-- Section 3: Worked Examples & Commands (if present) -->
+          <div id="lesson-examples-container" class="hidden space-y-3">
+            <div class="flex items-center gap-2 text-xs font-mono font-bold text-secondary">
+              <span class="material-symbols-outlined text-sm">code</span>
+              <span>WORKED EXAMPLE &amp; COMMAND SYNTAX</span>
+            </div>
+            <div id="lesson-examples-list" class="space-y-3">
+              <!-- Rendered code blocks and explanations -->
+            </div>
+          </div>
+
+          <!-- Section 4: Interactive Command Try (if present) -->
+          <div id="lesson-interactive-container" class="hidden p-5 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4">
+            <div class="flex items-center gap-2 text-xs font-mono font-bold text-primary">
+              <span class="material-symbols-outlined text-sm">terminal</span>
+              <span>INTERACTIVE PRACTICE CHECK</span>
+            </div>
+            <p id="lesson-interactive-prompt" class="text-xs font-mono text-on-surface">
+              Execute command:
+            </p>
+            <div class="space-y-2">
+              <div class="flex items-center gap-2 p-2 rounded-lg bg-[#090D12] border border-[#1F2937] font-mono text-xs">
+                <span class="text-[#4EDEA3] font-bold">$</span>
+                <input type="text" id="interactive-cmd-input" class="flex-1 bg-transparent text-[#F3F4F6] outline-none font-mono text-xs placeholder-slate-600" placeholder="Type expected command here..." autocomplete="off"/>
+                <button type="button" id="interactive-cmd-run" class="px-3 py-1 rounded bg-primary text-black font-bold text-[11px] hover:opacity-90">Run</button>
+              </div>
+              <div id="interactive-cmd-output" class="hidden p-3 rounded-lg bg-[#05070A] border border-[#1F2937] font-mono text-xs text-[#F3F4F6] whitespace-pre-wrap"></div>
+            </div>
+          </div>
+
+          <!-- Section 5: Knowledge Checks (TryHackMe Question Engine) -->
+          <div id="lesson-questions-container" class="space-y-6 pt-4 border-t border-border-hairline">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2 text-xs font-mono font-bold text-primary">
+                <span class="material-symbols-outlined text-sm">quiz</span>
+                <span>KNOWLEDGE CHECK &amp; QUESTIONS</span>
+              </div>
+              <span id="questions-solved-badge" class="text-[11px] font-mono text-outline">0 Solved</span>
+            </div>
+
+            <div id="questions-list" class="space-y-5">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+
+          <!-- Section 6: Associated Practical Lab Bridge (if present) -->
+          <div id="lesson-lab-bridge" class="hidden p-5 rounded-2xl border border-secondary/30 bg-secondary/5 space-y-3">
+            <div class="flex items-center gap-2 text-xs font-mono font-bold text-secondary">
+              <span class="material-symbols-outlined text-sm">science</span>
+              <span>CORRESPONDING PRACTICAL LAB</span>
+            </div>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <h4 id="lab-bridge-title" class="text-sm font-bold font-mono text-on-surface">Lab Title</h4>
+                <p id="lab-bridge-desc" class="text-xs text-on-surface-variant">Practical scenario description.</p>
+              </div>
+              <a id="lab-bridge-link" href="#" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-secondary text-white text-xs font-mono font-bold hover:opacity-95 shadow transition-all shrink-0">
+                <span>Open Practical Lab</span>
+                <span class="material-symbols-outlined text-xs">open_in_new</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- =========================================================================
+               7. STEPPER NAVIGATION BAR (PREVIOUS / NEXT / COMPLETE)
+               ========================================================================= -->
+          <div class="pt-8 border-t border-border-hairline flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 font-mono text-xs">
+            <button type="button" id="lesson-prev-btn" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-border-hairline bg-surface-subtle hover:border-primary text-on-surface transition-colors cursor-pointer">
+              <span class="material-symbols-outlined text-sm">arrow_back</span>
+              <span id="lesson-prev-text">Previous Section</span>
+            </button>
+
+            <button type="button" id="mark-room-complete-btn" class="hidden sm:inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-surface-raised border border-border-hairline text-on-surface hover:text-primary transition-colors cursor-pointer">
+              <span class="material-symbols-outlined text-sm text-primary">verified</span>
+              <span id="mark-complete-text">Mark Room Complete</span>
+            </button>
+
+            <button type="button" id="lesson-next-btn" class="inline-flex items-center justify-end gap-1.5 px-4 py-2.5 rounded-xl bg-primary text-white font-bold hover:opacity-95 shadow transition-all cursor-pointer">
+              <span id="lesson-next-text">Next Section</span>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- =========================================================================
+       8. FOOTER
+       ========================================================================= -->
+  <footer class="border-t border-border-hairline bg-surface-subtle py-8 text-xs font-mono text-outline mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <span class="font-bold text-on-surface">Endlessus Cybersecurity Academy</span> · Engineered by Mihraj Mashhoor K
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="learning.html" class="hover:text-primary transition-colors">Dashboard</a>
+        <a href="modules.html" class="hover:text-primary transition-colors">Modules</a>
+        <a href="roadmap.html" class="hover:text-primary transition-colors">Roadmap</a>
+        <a href="labs.html" class="hover:text-primary transition-colors">Labs</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="learning-data.js"></script>
+  <script src="academy-state.js"></script>
+  <script src="academy-nav.js"></script>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const params = new URLSearchParams(window.location.search);
+      const rawRoom = params.get('room') || params.get('id');
+      const rawTask = params.get('task');
+
+      const notFoundEl = document.getElementById('lesson-not-found');
+      const containerEl = document.getElementById('lesson-container');
+
+      if (!rawRoom || typeof PRE_SECURITY_ROOM_MAP === 'undefined') {
+        showNotFound();
+        return;
+      }
+
+      // Normalize room ID: "room-1" -> "room-01"
+      let roomId = rawRoom.toLowerCase();
+      if (!roomId.startsWith('room-')) {
+        roomId = 'room-' + String(parseInt(rawRoom, 10)).padStart(2, '0');
+      } else {
+        const numPart = roomId.replace('room-', '');
+        roomId = 'room-' + String(parseInt(numPart, 10)).padStart(2, '0');
+      }
+
+      const room = PRE_SECURITY_ROOM_MAP[roomId];
+      if (!room) {
+        showNotFound();
+        return;
+      }
+
+      function showNotFound() {
+        if (notFoundEl) notFoundEl.classList.remove('hidden');
+        if (containerEl) containerEl.classList.add('hidden');
+        document.title = 'Lesson Not Found · Endlessus Academy';
+      }
+
+      // Record room activity
+      AcademyState.setLastActiveRoom(room.id);
+      AcademyState.updateStreak();
+
+      const lessons = Array.isArray(room.lessons) && room.lessons.length > 0
+        ? room.lessons
+        : [{ title: room.title, content: room.whyAreYouHere || 'Comprehensive cybersecurity lesson content.' }];
+
+      // Task index validation
+      let taskIdx = parseInt(rawTask, 10);
+      if (isNaN(taskIdx) || taskIdx < 0 || taskIdx >= lessons.length) {
+        taskIdx = 0;
+      }
+
+      // Breadcrumbs & Header
+      const lvlId = typeof room.level === 'number' ? room.level : room.stage;
+      const levelObj = (typeof PRE_SECURITY_LEVELS !== 'undefined') ? PRE_SECURITY_LEVELS.find(l => l.id === lvlId) : null;
+
+      const bModule = document.getElementById('breadcrumb-module-link');
+      bModule.textContent = levelObj ? `Level ${levelObj.number || '0' + levelObj.id}` : `Level ${lvlId}`;
+      bModule.href = `module.html?id=level-${lvlId}`;
+
+      const bRoom = document.getElementById('breadcrumb-room-link');
+      bRoom.textContent = room.id.toUpperCase();
+      bRoom.href = `room.html?id=${room.id}`;
+
+      document.getElementById('header-room-id').textContent = room.id.toUpperCase();
+      document.getElementById('header-room-link').href = `room.html?id=${room.id}`;
+      document.getElementById('sidebar-room-id').textContent = `${room.id.toUpperCase()}: ${room.title}`;
+      document.getElementById('sidebar-room-return').href = `room.html?id=${room.id}`;
+
+      // Populate Sidebar Table of Contents
+      const tocContainer = document.getElementById('sidebar-toc-links');
+      tocContainer.innerHTML = lessons.map((l, idx) => `
+        <a href="lesson.html?room=${room.id}&task=${idx}" class="block px-2.5 py-1.5 rounded-lg transition-colors truncate ${idx === taskIdx ? 'bg-primary/10 text-primary font-bold border border-primary/20' : 'text-on-surface-variant hover:bg-surface-raised'}">
+          ${idx + 1}. ${escapeHtml(l.title.replace(/^[0-9]+\.\s*/, ''))}
+        </a>
+      `).join('');
+
+      // Populate Active Section
+      const currentLesson = lessons[taskIdx];
+      document.title = `${currentLesson.title} · ${room.id.toUpperCase()} · Endlessus Academy`;
+      document.getElementById('breadcrumb-task-title').textContent = currentLesson.title;
+      document.getElementById('header-task-label').textContent = `Section ${taskIdx + 1} of ${lessons.length}`;
+      document.getElementById('lesson-task-badge').textContent = `Section ${taskIdx + 1} of ${lessons.length}`;
+      document.getElementById('lesson-section-title').textContent = currentLesson.title;
+
+      // Render content
+      const bodyEl = document.getElementById('lesson-body-content');
+      bodyEl.innerHTML = formatMarkdownContent(currentLesson.content);
+
+      // Render diagram if on first task or if room has diagram
+      const diagramBox = document.getElementById('lesson-diagram-container');
+      const diagramSvg = document.getElementById('lesson-diagram-svg');
+      if (room.diagramSvg && taskIdx === 0) {
+        diagramBox.classList.remove('hidden');
+        diagramSvg.innerHTML = room.diagramSvg;
+      } else {
+        diagramBox.classList.add('hidden');
+      }
+
+      // Render worked examples if available
+      const examplesBox = document.getElementById('lesson-examples-container');
+      const examplesList = document.getElementById('lesson-examples-list');
+      if (Array.isArray(room.seeExamples) && room.seeExamples.length > 0 && taskIdx === 0) {
+        examplesBox.classList.remove('hidden');
+        examplesList.innerHTML = room.seeExamples.map(ex => `
+          <div class="p-4 rounded-xl border border-border-hairline bg-surface-subtle space-y-2">
+            <h4 class="font-mono font-bold text-xs text-on-surface">${escapeHtml(ex.title)}</h4>
+            <pre class="p-3 rounded-lg bg-[#090D12] border border-[#1F2937] text-[#F3F4F6] font-mono text-xs overflow-x-auto"><code>${escapeHtml(ex.codeOrDiagram)}</code></pre>
+            <p class="text-xs text-on-surface-variant">${escapeHtml(ex.explanation)}</p>
+          </div>
+        `).join('');
+      } else {
+        examplesBox.classList.add('hidden');
+      }
+
+      // Render interactive command check if available
+      const interactiveBox = document.getElementById('lesson-interactive-container');
+      if (room.tryInteractive && taskIdx === 0) {
+        interactiveBox.classList.remove('hidden');
+        document.getElementById('lesson-interactive-prompt').textContent = room.tryInteractive.prompt || 'Execute command in terminal sandbox:';
+        
+        const cmdInput = document.getElementById('interactive-cmd-input');
+        const cmdRun = document.getElementById('interactive-cmd-run');
+        const cmdOutput = document.getElementById('interactive-cmd-output');
+
+        cmdRun.onclick = function() {
+          const val = cmdInput.value.trim();
+          cmdOutput.classList.remove('hidden');
+          if (val === room.tryInteractive.expectedCommand || !room.tryInteractive.expectedCommand) {
+            cmdOutput.textContent = room.tryInteractive.simulatedOutput || '[+] Command executed successfully.';
+            cmdOutput.className = 'p-3 rounded-lg bg-[#05070A] border border-primary/50 text-[#4EDEA3] font-mono text-xs whitespace-pre-wrap';
+          } else {
+            cmdOutput.textContent = `[-] Command '${val}' not recognized. Try typing: ${room.tryInteractive.expectedCommand}`;
+            cmdOutput.className = 'p-3 rounded-lg bg-[#05070A] border border-danger-critical/50 text-[#EF4444] font-mono text-xs whitespace-pre-wrap';
+          }
+        };
+
+        cmdInput.onkeydown = function(e) {
+          if (e.key === 'Enter') cmdRun.click();
+        };
+      }
+
+      // Render Questions (TryHackMe Question Engine)
+      const qContainer = document.getElementById('questions-list');
+      const questions = Array.isArray(room.questions) ? room.questions : [];
+
+      function renderQuestions() {
+        if (questions.length === 0) {
+          document.getElementById('lesson-questions-container').classList.add('hidden');
+          return;
+        }
+
+        const qProgress = AcademyState.getQuestionProgress();
+        let solvedCount = 0;
+
+        qContainer.innerHTML = questions.map((q, qIdx) => {
+          const qKey = `${room.id}_q${qIdx}`;
+          const isSolved = Boolean(qProgress[qKey]);
+          if (isSolved) solvedCount++;
+
+          const isExact = q.type === 'exact';
+
+          return `
+            <div class="p-5 rounded-2xl border ${isSolved ? 'border-primary/40 bg-primary/5' : 'border-border-hairline bg-surface-subtle'} space-y-4 transition-all" id="q-card-${qIdx}">
+              
+              <!-- Question Header: Number & Status -->
+              <div class="flex items-center justify-between gap-2 font-mono text-xs">
+                <div class="flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-md bg-surface-raised border border-border-hairline flex items-center justify-center font-bold text-on-surface">
+                    ${qIdx + 1}
+                  </span>
+                  <span class="text-outline uppercase tracking-wider text-[11px]">${isExact ? 'Exact Answer' : 'Multiple Choice'}</span>
+                </div>
+                <div id="q-status-${qIdx}">
+                  ${isSolved 
+                    ? '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-primary text-black flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">verified</span>Solved (+25 XP)</span>' 
+                    : '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-surface-raised border border-border-hairline text-outline">Unanswered</span>'}
+                </div>
+              </div>
+
+              <!-- Question Text -->
+              <p class="font-mono text-sm font-bold text-on-surface leading-snug">
+                ${escapeHtml(q.question)}
+              </p>
+
+              <!-- Exact Answer Character Slots / Input -->
+              ${isExact ? `
+                <div class="space-y-3">
+                  ${q.visualSlots ? `
+                    <div class="flex flex-wrap gap-1 font-mono text-xs text-primary font-bold tracking-widest bg-surface-raised px-3 py-1.5 rounded-lg border border-border-hairline w-fit">
+                      <span>Pattern:</span> <span class="text-on-surface font-mono">${escapeHtml(q.visualSlots)}</span>
+                    </div>
+                  ` : ''}
+
+                  <div class="flex items-center gap-2 max-w-md">
+                    <input type="text" id="q-input-${qIdx}" class="flex-1 px-3 py-2 rounded-lg border border-border-hairline bg-surface-raised text-xs font-mono text-on-surface placeholder-outline focus:border-primary focus:outline-none" placeholder="Type your answer..." value="${isSolved ? (q.acceptedAnswers ? q.acceptedAnswers[0] : '') : ''}" ${isSolved ? 'disabled' : ''} autocomplete="off"/>
+                    <button type="button" class="q-submit-btn px-4 py-2 rounded-lg bg-primary text-black font-mono font-bold text-xs hover:opacity-95 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" data-qidx="${qIdx}" ${isSolved ? 'disabled' : ''}>
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              ` : `
+                <!-- Multiple Choice Radio Group -->
+                <div class="space-y-2 font-mono text-xs" role="radiogroup" aria-label="Question ${qIdx + 1} Options">
+                  ${(q.options || []).map((opt, optIdx) => `
+                    <label class="flex items-start gap-2.5 p-3 rounded-xl border border-border-hairline bg-surface-raised hover:border-primary/50 cursor-pointer transition-colors">
+                      <input type="radio" name="q-option-${qIdx}" value="${optIdx}" class="mt-0.5 accent-primary" ${isSolved && optIdx === q.correctIndex ? 'checked' : ''} ${isSolved ? 'disabled' : ''}/>
+                      <span class="text-on-surface">${escapeHtml(opt)}</span>
+                    </label>
+                  `).join('')}
+                  ${!isSolved ? `
+                    <div class="pt-2">
+                      <button type="button" class="q-submit-btn px-4 py-2 rounded-lg bg-primary text-black font-mono font-bold text-xs hover:opacity-95 cursor-pointer" data-qidx="${qIdx}">
+                        Submit Answer
+                      </button>
+                    </div>
+                  ` : ''}
+                </div>
+              `}
+
+              <!-- Feedback & Explanation Box -->
+              <div id="q-feedback-${qIdx}" class="${isSolved ? 'block' : 'hidden'} p-3 rounded-xl ${isSolved ? 'bg-primary/10 border border-primary/30 text-on-surface' : ''} text-xs font-mono">
+                ${isSolved ? `
+                  <div class="flex items-center gap-1.5 text-primary font-bold mb-1">
+                    <span class="material-symbols-outlined text-sm">check_circle</span>
+                    <span>Correct!</span>
+                  </div>
+                  <p class="text-on-surface-variant font-sans">${escapeHtml(q.explanation || 'Great job!')}</p>
+                ` : ''}
+              </div>
+
+              <!-- Progressive Hint Accordion -->
+              ${q.hint ? `
+                <details class="text-xs font-mono text-outline group">
+                  <summary class="cursor-pointer hover:text-primary flex items-center gap-1">
+                    <span class="material-symbols-outlined text-xs">help_outline</span>
+                    <span>Need a hint?</span>
+                  </summary>
+                  <div class="p-3 mt-2 rounded-lg bg-surface-raised border border-border-hairline text-on-surface-variant font-sans">
+                    ${escapeHtml(q.hint)}
+                  </div>
+                </details>
+              ` : ''}
+
+            </div>
+          `;
+        }).join('');
+
+        document.getElementById('questions-solved-badge').textContent = `${solvedCount} of ${questions.length} Solved`;
+        
+        // Update header & sidebar percentage
+        const totalPct = questions.length > 0 ? Math.round((solvedCount / questions.length) * 100) : 100;
+        document.getElementById('header-progress-pct').textContent = `${totalPct}%`;
+        document.getElementById('sidebar-progress-badge').textContent = `${totalPct}%`;
+
+        // Wire question submit handlers
+        document.querySelectorAll('.q-submit-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const idx = parseInt(this.dataset.qidx, 10);
+            handleQuestionSubmit(idx);
+          });
+        });
+
+        // Wire enter key for exact answer inputs
+        questions.forEach((q, idx) => {
+          const input = document.getElementById(`q-input-${idx}`);
+          if (input) {
+            input.onkeydown = function(e) {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                handleQuestionSubmit(idx);
+              }
+            };
+          }
+        });
+      }
+
+      function handleQuestionSubmit(idx) {
+        const q = questions[idx];
+        if (!q) return;
+
+        let isCorrect = false;
+        let userInput = '';
+
+        if (q.type === 'exact') {
+          const inputEl = document.getElementById(`q-input-${idx}`);
+          userInput = inputEl ? inputEl.value : '';
+          isCorrect = AcademyState.validateAnswer(q, userInput);
+        } else {
+          const selected = document.querySelector(`input[name="q-option-${idx}"]:checked`);
+          if (selected) {
+            const chosenIdx = parseInt(selected.value, 10);
+            isCorrect = chosenIdx === q.correctIndex;
+          }
+        }
+
+        const feedbackEl = document.getElementById(`q-feedback-${idx}`);
+        feedbackEl.classList.remove('hidden');
+
+        if (isCorrect) {
+          const res = AcademyState.solveQuestion(room.id, idx, q);
+          feedbackEl.className = 'p-3 rounded-xl bg-primary/10 border border-primary/30 text-on-surface text-xs font-mono block';
+          feedbackEl.innerHTML = `
+            <div class="flex items-center gap-1.5 text-primary font-bold mb-1">
+              <span class="material-symbols-outlined text-sm">check_circle</span>
+              <span>Correct! ${res.xp > 0 ? '(+25 XP Awarded)' : ''}</span>
+            </div>
+            <p class="text-on-surface-variant font-sans">${escapeHtml(q.explanation || 'Well done! Answer verified.')}</p>
+          `;
+          renderQuestions();
+        } else {
+          feedbackEl.className = 'p-3 rounded-xl bg-danger-critical/10 border border-danger-critical/30 text-on-surface text-xs font-mono block';
+          feedbackEl.innerHTML = `
+            <div class="flex items-center gap-1.5 text-danger-critical font-bold mb-1">
+              <span class="material-symbols-outlined text-sm">close</span>
+              <span>Incorrect Answer</span>
+            </div>
+            <p class="text-on-surface-variant font-sans">Review the explanation above or use the hint for guidance.</p>
+          `;
+        }
+      }
+
+      renderQuestions();
+      window.addEventListener('endlessus-progress-updated', renderQuestions);
+
+      // Associated Practical Lab Bridge
+      const labMap = (typeof PRE_SECURITY_LAB_MAP !== 'undefined') ? PRE_SECURITY_LAB_MAP : {};
+      const associatedLab = labMap[room.id];
+      if (associatedLab && taskIdx === lessons.length - 1) {
+        const bridgeEl = document.getElementById('lesson-lab-bridge');
+        bridgeEl.classList.remove('hidden');
+        document.getElementById('lab-bridge-title').textContent = associatedLab.title;
+        document.getElementById('lab-bridge-desc').textContent = associatedLab.desc;
+        document.getElementById('lab-bridge-link').href = `labs.html?lab=${associatedLab.id}`;
+      }
+
+      // Stepper Bar: Prev / Next / Complete
+      const prevBtn = document.getElementById('lesson-prev-btn');
+      const nextBtn = document.getElementById('lesson-next-btn');
+      const markCompleteBtn = document.getElementById('mark-room-complete-btn');
+
+      if (taskIdx > 0) {
+        prevBtn.onclick = function() {
+          window.location.href = `lesson.html?room=${room.id}&task=${taskIdx - 1}`;
+        };
+      } else {
+        prevBtn.onclick = function() {
+          window.location.href = `room.html?id=${room.id}`;
+        };
+        document.getElementById('lesson-prev-text').textContent = 'Room Overview';
+      }
+
+      if (taskIdx < lessons.length - 1) {
+        nextBtn.onclick = function() {
+          window.location.href = `lesson.html?room=${room.id}&task=${taskIdx + 1}`;
+        };
+      } else {
+        // Last lesson in this room
+        const allRooms = (typeof ENDLESSUS_ROOMS !== 'undefined') ? ENDLESSUS_ROOMS : [];
+        const currentRoomIdx = allRooms.findIndex(r => r.id === room.id);
+        const nextRoomObj = currentRoomIdx >= 0 && currentRoomIdx < allRooms.length - 1 ? allRooms[currentRoomIdx + 1] : null;
+
+        document.getElementById('lesson-next-text').textContent = nextRoomObj ? `Next: ${nextRoomObj.id.toUpperCase()}` : 'Curriculum Complete';
+        nextBtn.onclick = function() {
+          AcademyState.markRoomCompleted(room.id);
+          if (nextRoomObj) {
+            window.location.href = `room.html?id=${nextRoomObj.id}`;
+          } else {
+            window.location.href = `learning.html`;
+          }
+        };
+      }
+
+      // Explicit "Mark Room Complete" button
+      if (markCompleteBtn) {
+        const isDone = AcademyState.isRoomCompleted(room.id);
+        const completeText = document.getElementById('mark-complete-text');
+        if (isDone) {
+          completeText.textContent = 'Room Completed ✓';
+          markCompleteBtn.classList.add('text-primary');
+        }
+        markCompleteBtn.onclick = function() {
+          AcademyState.markRoomCompleted(room.id);
+          completeText.textContent = 'Room Completed ✓';
+          markCompleteBtn.classList.add('text-primary');
+          renderQuestions();
+        };
+      }
+
+      // Simple markdown formatter
+      function formatMarkdownContent(text) {
+        if (!text) return '';
+        let html = escapeHtml(text);
+        
+        // Bold
+        html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        // Bullets
+        html = html.replace(/•\s*(.*?)(?=\n|$)/g, '<li class="ml-4 list-disc">$1</li>');
+        // Inline code
+        html = html.replace(/`([^`]+)`/g, '<code class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-primary">$1</code>');
+        // Paragraphs
+        html = html.split('\n\n').map(p => `<p>${p}</p>`).join('');
+        return html;
+      }
+
+      function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      // Mobile drawer
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileClose = document.getElementById('mobile-drawer-close');
+      const drawer = document.getElementById('mobile-drawer');
+      if (mobileBtn && drawer) mobileBtn.addEventListener('click', () => drawer.classList.remove('hidden'));
+      if (mobileClose && drawer) mobileClose.addEventListener('click', () => drawer.classList.add('hidden'));
+
+    })();
+  </script>
+</body>
+</html>

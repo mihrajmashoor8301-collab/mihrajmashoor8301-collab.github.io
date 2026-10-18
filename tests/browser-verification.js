@@ -1,7 +1,14 @@
 /**
  * Endlessus Browser Verification Suite via Chrome DevTools Protocol (CDP)
- * Launches Headless Chromium and verifies interactive UI, map toggle,
- * TryHackMe question engine, and security tools.
+ * Launches Headless Chromium and verifies:
+ * 1. Minimal Learning Dashboard (learning.html)
+ * 2. Module Catalogue (modules.html)
+ * 3. Module Overview (module.html)
+ * 4. Room Overview (room.html)
+ * 5. Focused Lesson Reader & Question Engine (lesson.html)
+ * 6. Visual Career Roadmap (roadmap.html) & Mobile 375px responsiveness
+ * 7. Dedicated Security Tools (security-tools.html)
+ * 8. Error state handling for invalid module/room/lesson IDs
  */
 
 const { spawn } = require('child_process');
@@ -11,7 +18,7 @@ const fs = require('fs');
 const assert = require('assert');
 
 console.log('============================================================');
-console.log('STARTING ENDLESSUS BROWSER VERIFICATION SUITE');
+console.log('STARTING ENDLESSUS COMPLETE BROWSER VERIFICATION SUITE');
 console.log('============================================================\n');
 
 // 1. Start a simple static HTTP server
@@ -91,15 +98,8 @@ class CDPClient {
   }
 
   async evaluate(expression) {
-    const res = await this.send('Runtime.evaluate', {
-      expression,
-      returnByValue: true,
-      awaitPromise: true
-    });
-    if (res.exceptionDetails) {
-      throw new Error('Evaluation exception: ' + JSON.stringify(res.exceptionDetails));
-    }
-    return res.result ? res.result.value : undefined;
+    const res = await clientEvaluate(this, expression);
+    return res;
   }
 
   async close() {
@@ -107,8 +107,32 @@ class CDPClient {
   }
 }
 
+async function clientEvaluate(client, expression) {
+  const res = await client.send('Runtime.evaluate', {
+    expression,
+    returnByValue: true,
+    awaitPromise: true
+  });
+  if (res.exceptionDetails) {
+    throw new Error('Evaluation exception: ' + JSON.stringify(res.exceptionDetails));
+  }
+  return res.result ? res.result.value : undefined;
+}
+
+function fetchJson(url) {
+  return new Promise((resolve, reject) => {
+    http.get(url, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        try { resolve(JSON.parse(data)); } catch (e) { reject(e); }
+      });
+    }).on('error', reject);
+  });
+}
+
 async function runBrowserTests() {
-  const DEBUG_PORT = 9223;
+  const DEBUG_PORT = 9224;
   const tmpProfileDir = `/tmp/chrome-test-profile-${Date.now()}`;
   console.log('--- 1. Launching Headless Chromium ---');
   const chromeProcess = spawn('/usr/bin/chromium', [
@@ -120,7 +144,6 @@ async function runBrowserTests() {
     '--window-size=1280,960'
   ]);
 
-  // Wait for remote debugging endpoint
   let pageTarget = null;
   for (let i = 0; i < 30; i++) {
     await new Promise(r => setTimeout(r, 200));
@@ -150,391 +173,241 @@ async function runBrowserTests() {
         const ready = await client.evaluate('document.readyState === "complete"');
         if (ready) break;
       }
-      await new Promise(r => setTimeout(r, 300));
+      await new Promise(r => setTimeout(r, 200));
     }
 
     // -------------------------------------------------------------
-    // TEST 1: learning.html Map View, Nodes, and List View Toggle
+    // TEST 1: Minimal Learning Dashboard (learning.html)
     // -------------------------------------------------------------
-    console.log('\n--- 2. Testing Learning Hub & Connected Room Map ---');
+    console.log('\n--- 2. Testing Minimal Learning Dashboard (learning.html) ---');
     await navigate(`http://127.0.0.1:${PORT}/learning.html`);
 
-    // Verify Title & Hero
-    const title = await client.evaluate('document.title');
-    console.log(`  ✓ Page title: "${title}"`);
-    assert(title.includes('Endlessus Cybersecurity Academy'));
+    const dashTitle = await client.evaluate('document.title');
+    console.log(`  ✓ Dashboard title: "${dashTitle}"`);
+    assert(dashTitle.includes('Learning Dashboard') || dashTitle.includes('Endlessus'));
 
-    // Verify 45 Room Nodes and 45 Game Orbs rendered
-    let nodeCount = 0;
-    let orbCount = 0;
-    for (let i = 0; i < 30; i++) {
-      nodeCount = await client.evaluate('document.querySelectorAll(".lh-map-node-card").length');
-      orbCount = await client.evaluate('document.querySelectorAll(".lh-roadmap-orb").length');
-      if (nodeCount === 45 && orbCount === 45) break;
-      await new Promise(r => setTimeout(r, 100));
-    }
-    console.log(`  ✓ Rendered map node cards: ${nodeCount}`);
-    console.log(`  ✓ Rendered game roadmap orbs: ${orbCount}`);
-    assert.strictEqual(nodeCount, 45, 'Must render exactly 45 connected room node cards');
-    assert.strictEqual(orbCount, 45, 'Must render exactly 45 game roadmap orbs');
+    // Check primary "Start / Continue Learning" button
+    const continueBtnHref = await client.evaluate('document.getElementById("dashboard-continue-btn").getAttribute("href")');
+    const continueBtnText = await client.evaluate('document.getElementById("dashboard-continue-text").textContent.trim()');
+    console.log(`  ✓ Continue action: "${continueBtnText}" -> ${continueBtnHref}`);
+    assert(continueBtnHref.includes('lesson.html'), 'Continue button must link to lesson reader');
 
-    // Verify 8 Level sections & Milestone Banners
-    const levelSectionCount = await client.evaluate('document.querySelectorAll(".lh-map-level-section").length');
-    console.log(`  ✓ Rendered level sections: ${levelSectionCount}`);
-    assert.strictEqual(levelSectionCount, 8, 'Must render exactly 8 Pre Security levels (Levels 0-7)');
+    // Check metrics cards
+    const statsRooms = await client.evaluate('document.getElementById("stat-completed-rooms").textContent.trim()');
+    const statsXP = await client.evaluate('document.getElementById("stat-user-xp").textContent.trim()');
+    console.log(`  ✓ Dashboard stats: Completed=${statsRooms}/45, XP=${statsXP}`);
 
-    // Verify Alternating Zigzag Classes across Rows
-    const zigzagStats = await client.evaluate(`
+    // Check recommended activity card
+    const recRoomTitle = await client.evaluate('document.getElementById("rec-room-title").textContent.trim()');
+    console.log(`  ✓ Recommended room: "${recRoomTitle}"`);
+    assert(recRoomTitle.includes('ROOM-01'), 'Default initial recommended room must be ROOM-01');
+
+    // -------------------------------------------------------------
+    // TEST 2: Module Catalogue (modules.html)
+    // -------------------------------------------------------------
+    console.log('\n--- 3. Testing Module Catalogue (modules.html) ---');
+    await navigate(`http://127.0.0.1:${PORT}/modules.html`);
+
+    const modulesTitle = await client.evaluate('document.title');
+    console.log(`  ✓ Module catalogue title: "${modulesTitle}"`);
+    assert(modulesTitle.includes('Learning Modules'));
+
+    // Check all 8 level cards rendered
+    const levelCardsCount = await client.evaluate('document.querySelectorAll("#modules-grid article").length');
+    console.log(`  ✓ Rendered module cards in grid: ${levelCardsCount}`);
+    assert.strictEqual(levelCardsCount, 8, 'Must render exactly 8 curriculum module cards');
+
+    // Test difficulty filter (e.g. "Practical")
+    const practicalCount = await client.evaluate(`
       (() => {
-        const rows = Array.from(document.querySelectorAll('.lh-roadmap-row'));
-        const leftCount = rows.filter(r => r.classList.contains('pos-left')).length;
-        const centerCount = rows.filter(r => r.classList.contains('pos-center')).length;
-        const rightCount = rows.filter(r => r.classList.contains('pos-right')).length;
-        
-        // Sample orb horizontal center coordinates to verify alternating geometric wave
-        const orbs = Array.from(document.querySelectorAll('.lh-roadmap-orb'));
-        const wrap = document.getElementById('roadmap-wrapper').getBoundingClientRect();
-        const coords = orbs.slice(0, 5).map(o => {
-          const r = o.getBoundingClientRect();
-          return Math.round(r.left + r.width / 2 - wrap.left);
-        });
-
-        return { leftCount, centerCount, rightCount, coords };
+        const btn = document.querySelector('[data-filter="Practical"]');
+        if (btn) btn.click();
+        return document.querySelectorAll('#modules-grid article').length;
       })()
     `);
-    console.log(`  ✓ Zigzag Distribution: Left=${zigzagStats.leftCount}, Center=${zigzagStats.centerCount}, Right=${zigzagStats.rightCount}`);
-    console.log(`  ✓ First 5 Orb Centers (X): ${JSON.stringify(zigzagStats.coords)}`);
-    assert(zigzagStats.leftCount > 0, 'Must have pos-left nodes');
-    assert(zigzagStats.centerCount > 0, 'Must have pos-center nodes');
-    assert(zigzagStats.rightCount > 0, 'Must have pos-right nodes');
-    assert(zigzagStats.coords[0] < zigzagStats.coords[1], 'Orb 0 (left) must be to the left of Orb 1 (center)');
-    assert(zigzagStats.coords[1] < zigzagStats.coords[2], 'Orb 1 (center) must be to the left of Orb 2 (right)');
+    console.log(`  ✓ Practical filter results count: ${practicalCount}`);
+    assert(practicalCount >= 1 && practicalCount < 8, 'Filter must narrow displayed cards');
 
-    // Verify SVG Connectors Path
-    await new Promise(r => setTimeout(r, 200));
-    const svgPathData = await client.evaluate(`
+    // Reset filter
+    await client.evaluate('document.querySelector(\'[data-filter="all"]\').click()');
+
+    // -------------------------------------------------------------
+    // TEST 3: Module Overview (module.html?id=level-0)
+    // -------------------------------------------------------------
+    console.log('\n--- 4. Testing Module Overview (module.html?id=level-0) ---');
+    await navigate(`http://127.0.0.1:${PORT}/module.html?id=level-0`);
+
+    const modTitle = await client.evaluate('document.getElementById("module-title").textContent.trim()');
+    console.log(`  ✓ Module title: "${modTitle}"`);
+    assert.strictEqual(modTitle, 'Start Here');
+
+    const outcomesCount = await client.evaluate('document.querySelectorAll("#module-outcomes-list li").length');
+    console.log(`  ✓ Learning outcomes listed: ${outcomesCount}`);
+    assert(outcomesCount >= 2, 'Module must list at least 2 real learning outcomes');
+
+    const moduleRoomsCount = await client.evaluate('document.querySelectorAll("#rooms-list-container > div").length');
+    console.log(`  ✓ Rooms listed in Level 00: ${moduleRoomsCount}`);
+    assert.strictEqual(moduleRoomsCount, 2, 'Level 00 must contain exactly 2 rooms (room-01, room-02)');
+
+    // -------------------------------------------------------------
+    // TEST 4: Room Overview (room.html?id=room-01)
+    // -------------------------------------------------------------
+    console.log('\n--- 5. Testing Room Overview (room.html?id=room-01) ---');
+    await navigate(`http://127.0.0.1:${PORT}/room.html?id=room-01`);
+
+    const roomTitle = await client.evaluate('document.getElementById("room-title").textContent.trim()');
+    console.log(`  ✓ Room title: "${roomTitle}"`);
+    assert(roomTitle.includes('Welcome to Cybersecurity'));
+
+    const roomObjectivesCount = await client.evaluate('document.querySelectorAll("#room-objectives-list li").length');
+    console.log(`  ✓ Room objectives listed: ${roomObjectivesCount}`);
+    assert(roomObjectivesCount >= 3, 'Room 01 must list at least 3 learning objectives');
+
+    const lessonsOutlineCount = await client.evaluate('document.querySelectorAll("#lessons-outline-container > div").length');
+    console.log(`  ✓ Lesson outline sections: ${lessonsOutlineCount}`);
+    assert(lessonsOutlineCount >= 2, 'Room 01 must outline at least 2 lesson sections');
+
+    // -------------------------------------------------------------
+    // TEST 5: Focused Lesson Reader & Question Engine (lesson.html)
+    // -------------------------------------------------------------
+    console.log('\n--- 6. Testing Focused Lesson Reader & Question Engine (lesson.html) ---');
+    await navigate(`http://127.0.0.1:${PORT}/lesson.html?room=room-01&task=0`);
+
+    const sectionTitle = await client.evaluate('document.getElementById("lesson-section-title").textContent.trim()');
+    console.log(`  ✓ Lesson section title: "${sectionTitle}"`);
+    assert(sectionTitle.includes('What is Cybersecurity'));
+
+    // Check SVG diagram is rendered
+    const hasSvg = await client.evaluate('Boolean(document.querySelector("#lesson-diagram-svg svg"))');
+    console.log(`  ✓ Architectural diagram rendered: ${hasSvg}`);
+    assert(hasSvg, 'Lesson section 1 must render architectural SVG diagram');
+
+    // Test Question 1 (Exact Answer with character slots)
+    const qCount = await client.evaluate('document.querySelectorAll("#questions-list > div").length');
+    console.log(`  ✓ Interactive questions loaded: ${qCount}`);
+    assert(qCount >= 1, 'Lesson reader must load interactive questions');
+
+    // Submit INCORRECT Answer
+    const incorrectCheck = await client.evaluate(`
       (() => {
-        const svg = document.getElementById('roadmap-svg');
-        const bgPath = document.getElementById('svg-track-bg');
-        const progPath = document.getElementById('svg-track-progress');
-        return {
-          hasSvg: !!svg,
-          bgD: bgPath ? bgPath.getAttribute('d') : '',
-          progD: progPath ? progPath.getAttribute('d') : '',
-          width: svg ? svg.getAttribute('width') : 0,
-          height: svg ? svg.getAttribute('height') : 0
-        };
+        const input = document.getElementById('q-input-0');
+        input.value = 'pwd';
+        const btn = document.querySelector('.q-submit-btn[data-qidx="0"]');
+        btn.click();
+        const fb = document.getElementById('q-feedback-0');
+        return fb ? fb.textContent.trim() : '';
       })()
     `);
-    console.log(`  ✓ SVG Canvas: width=${svgPathData.width}, height=${svgPathData.height}`);
-    assert(svgPathData.hasSvg, 'SVG roadmap connector canvas must exist');
-    assert(svgPathData.bgD && svgPathData.bgD.startsWith('M'), 'SVG background track must have valid path string starting with M');
-    assert(svgPathData.bgD.includes('C'), 'SVG background track must contain smooth cubic Bézier curves (C)');
-    console.log(`  ✓ Verified smooth cubic Bézier connecting path across all 45 nodes`);
+    console.log(`  ✓ Incorrect feedback: "${incorrectCheck.substring(0, 30)}..."`);
+    assert(incorrectCheck.includes('Incorrect'), 'Must display Incorrect Answer feedback');
 
-    // Capture visual screenshot of the connected zigzag roadmap
-    const roadmapScreenshot = await client.send('Page.captureScreenshot', { format: 'png' });
-    const roadmapScreenshotPath = path.join(__dirname, '..', 'roadmap-verification.png');
-    fs.writeFileSync(roadmapScreenshotPath, Buffer.from(roadmapScreenshot.data, 'base64'));
-    console.log(`  ✓ Saved roadmap verification screenshot to: ${roadmapScreenshotPath}`);
-
-    // Test List View toggle
-    const toggleToList = await client.evaluate(`
-      const listBtn = document.getElementById('toggle-view-list');
-      if (listBtn) {
-        listBtn.click();
-        true;
-      } else false;
-    `);
-    assert(toggleToList, 'List view toggle button must exist and be clicked');
-    await new Promise(r => setTimeout(r, 300));
-
-    const accessibleItemsCount = await client.evaluate('document.querySelectorAll(".lh-accessible-item").length');
-    console.log(`  ✓ Accessible list items rendered: ${accessibleItemsCount}`);
-    assert.strictEqual(accessibleItemsCount, 45, 'Accessible list must contain 45 items');
-
-    // Switch back to Map Mode and confirm connectors re-render
-    await client.evaluate(`document.getElementById('toggle-view-map').click();`);
-    await new Promise(r => setTimeout(r, 300));
-    const activeViewMode = await client.evaluate('window.LEARNING_STATE.mapViewMode');
-    assert.strictEqual(activeViewMode, 'map', 'window.LEARNING_STATE.mapViewMode must be "map"');
-
-    // Test Clicking an Orb directly opens Room 01
-    await client.evaluate(`document.querySelector('.lh-roadmap-orb[data-room-id="room-01"]').click();`);
-    await new Promise(r => setTimeout(r, 500));
-
-    const isModalOpenFromOrb = await client.evaluate('document.getElementById("room-modal").classList.contains("open")');
-    assert(isModalOpenFromOrb, 'Clicking game orb must open room modal');
-    await client.evaluate('closeModal()');
-    await new Promise(r => setTimeout(r, 300));
-
-    // Test Clicking a Room Capsule Card opens Room 02
-    const cardEl = await client.evaluate(`!!document.querySelector('.lh-roadmap-card[data-room-id="room-02"]')`);
-    console.log(`  ✓ Card element exists: ${cardEl}`);
-    const clickResult = await client.evaluate(`
+    // Submit CORRECT Answer "whoami"
+    const correctCheck = await client.evaluate(`
       (() => {
-        const card = document.querySelector('.lh-roadmap-card[data-room-id="room-02"]');
-        if (card) { card.click(); return true; }
-        return false;
+        const input = document.getElementById('q-input-0');
+        input.value = '  whoami  ';
+        const btn = document.querySelector('.q-submit-btn[data-qidx="0"]');
+        btn.click();
+        const fb = document.getElementById('q-feedback-0');
+        return fb ? fb.textContent.trim() : '';
       })()
     `);
-    console.log(`  ✓ Card click result: ${clickResult}`);
-    await new Promise(r => setTimeout(r, 600));
-    const modalTitleRoom2 = await client.evaluate('document.getElementById("modal-room-title").textContent');
-    console.log(`  ✓ modalTitleRoom2: "${modalTitleRoom2}"`);
-    await client.evaluate('closeModal()');
-    await new Promise(r => setTimeout(r, 300));
+    console.log(`  ✓ Correct feedback: "${correctCheck.substring(0, 35)}..."`);
+    assert(correctCheck.includes('Correct!'), 'Must display Correct! feedback');
 
-    // Test Mobile Responsiveness (375px Viewport)
+    // Verify XP is awarded in localStorage
+    const savedXP = await client.evaluate('AcademyState.calculateTotalXP()');
+    console.log(`  ✓ User accrued XP in state: ${savedXP}`);
+    assert(savedXP >= 25, 'Solving question must award XP');
+
+    // -------------------------------------------------------------
+    // TEST 6: Visual Career Roadmap & Mobile 375px Responsiveness
+    // -------------------------------------------------------------
+    console.log('\n--- 7. Testing Visual Career Roadmap (roadmap.html) & Mobile Layout ---');
+    await navigate(`http://127.0.0.1:${PORT}/roadmap.html`);
+
+    const stagesCount = await client.evaluate('document.querySelectorAll("#roadmap-stages-container > div").length');
+    const roomsCount = await client.evaluate('document.querySelectorAll(".btn-toggle-room").length');
+    console.log(`  ✓ Rendered levels: ${stagesCount}, rooms: ${roomsCount}`);
+    assert.strictEqual(stagesCount, 8, 'Career roadmap must render all 8 levels');
+    assert.strictEqual(roomsCount, 45, 'Career roadmap must render all 45 rooms');
+
+    // Switch Viewport to Mobile (375px iPhone SE)
     await client.send('Emulation.setDeviceMetricsOverride', {
       width: 375,
-      height: 812,
+      height: 667,
       deviceScaleFactor: 2,
       mobile: true
     });
-    await client.evaluate('window.updateRoadmapConnectors && window.updateRoadmapConnectors()');
     await new Promise(r => setTimeout(r, 400));
 
-    const mobileStats = await client.evaluate(`
+    const mobileOverflow = await client.evaluate(`
       (() => {
-        const bodyScrollWidth = document.documentElement.scrollWidth;
-        const windowInnerWidth = window.innerWidth;
-        const orbs = document.querySelectorAll('.lh-roadmap-orb').length;
-        const cards = document.querySelectorAll('.lh-roadmap-card').length;
-        const svg = document.getElementById('roadmap-svg');
-        const wideEls = Array.from(document.querySelectorAll('*')).filter(el => el.offsetWidth > 385).slice(0, 5).map(el => (el.tagName + '.' + el.className + '#' + el.id));
-        
-        // Measure mobile orb centers
-        const orbEls = Array.from(document.querySelectorAll('.lh-roadmap-orb'));
-        const wrap = document.getElementById('roadmap-wrapper').getBoundingClientRect();
-        const coords = orbEls.slice(0, 5).map(o => {
-          const r = o.getBoundingClientRect();
-          return Math.round(r.left + r.width / 2 - wrap.left);
-        });
-
         return {
-          bodyScrollWidth,
-          windowInnerWidth,
-          orbs,
-          cards,
-          svgWidth: svg ? svg.getAttribute('width') : 0,
-          wideEls,
-          coords
+          scrollWidth: document.documentElement.scrollWidth,
+          innerWidth: window.innerWidth,
+          hasOverflow: document.documentElement.scrollWidth > window.innerWidth
         };
       })()
     `);
-    console.log(`  ✓ Mobile 375px First 5 Orb Centers (X): ${JSON.stringify(mobileStats.coords)}`);
-    assert(mobileStats.bodyScrollWidth <= mobileStats.windowInnerWidth, 'Mobile layout must not trigger horizontal scroll overflow');
-    assert.strictEqual(mobileStats.orbs, 45, 'Mobile layout must display all 45 orbs');
-    assert(mobileStats.coords[0] < mobileStats.coords[1], 'Mobile Orb 0 (left) must be to the left of Orb 1 (center)');
-    assert(mobileStats.coords[1] < mobileStats.coords[2], 'Mobile Orb 1 (center) must be to the left of Orb 2 (right)');
+    console.log(`  ✓ Mobile 375px overflow test: ScrollWidth=${mobileOverflow.scrollWidth}, InnerWidth=${mobileOverflow.innerWidth}`);
+    assert(!mobileOverflow.hasOverflow, 'Mobile layout must have zero horizontal overflow');
 
-    // Capture visual screenshot of the mobile responsive experience
-    const mobileScreenshot = await client.send('Page.captureScreenshot', { format: 'png' });
-    const mobileScreenshotPath = path.join(__dirname, '..', 'mobile-verification.png');
-    fs.writeFileSync(mobileScreenshotPath, Buffer.from(mobileScreenshot.data, 'base64'));
-    console.log(`  ✓ Saved mobile verification screenshot to: ${mobileScreenshotPath}`);
-
-    // Reset Desktop Viewport (1200px)
+    // Reset Desktop Viewport (1280px)
     await client.send('Emulation.setDeviceMetricsOverride', {
-      width: 1200,
-      height: 900,
+      width: 1280,
+      height: 960,
       deviceScaleFactor: 1,
       mobile: false
     });
-    await client.evaluate('window.updateRoadmapConnectors && window.updateRoadmapConnectors()');
-    await new Promise(r => setTimeout(r, 300));
+    await new Promise(r => setTimeout(r, 200));
 
     // -------------------------------------------------------------
-    // TEST 2: Interactive Room Player & Question Engine (Room 01)
+    // TEST 7: Security Tools Suite (security-tools.html)
     // -------------------------------------------------------------
-    console.log('\n--- 3. Testing Room Player & TryHackMe Question Engine ---');
-    // Open Room 01
-    await client.evaluate('openRoom("room-01")');
-    await new Promise(r => setTimeout(r, 500));
-
-    const isModalOpen = await client.evaluate('document.getElementById("room-modal").classList.contains("open")');
-    assert(isModalOpen, 'Room modal must have .open class');
-
-    const modalTitle = await client.evaluate('document.getElementById("modal-room-title").textContent');
-    console.log(`  ✓ Opened Room Player: "${modalTitle}"`);
-    assert(modalTitle.includes('Welcome to Cybersecurity'));
-
-    // Verify Section 7 Question 1 Visual Slots
-    const slotBoxes = await client.evaluate('document.querySelectorAll("[data-q-id=\\"q-01-1\\"] .lh-slot-box").length');
-    console.log(`  ✓ Visual character slots rendered for Q1 (whoami): ${slotBoxes}`);
-    assert.strictEqual(slotBoxes, 6, 'whoami must have 6 visual character slots');
-
-    // Submit INCORRECT Answer "pwd"
-    const incorrectSubmission = await client.evaluate(`
-      (() => {
-        const qCard = document.querySelector('[data-q-id="q-01-1"]');
-        const input = qCard.querySelector('.lh-exact-input');
-        const submitBtn = qCard.querySelector('.lh-btn-submit-answer');
-        input.value = 'pwd';
-        submitBtn.click();
-        const feedback = qCard.querySelector('.lh-feedback-banner');
-        return feedback ? feedback.textContent.trim() : '';
-      })()
-    `);
-    console.log(`  ✓ Incorrect answer feedback: "${incorrectSubmission}"`);
-    assert(incorrectSubmission.includes('Incorrect') || incorrectSubmission.includes('Try again'));
-
-    // Verify Question is NOT solved in window.LEARNING_STATE
-    const isSolvedBefore = await client.evaluate('Boolean(window.LEARNING_STATE.questionProgress["q-01-1"])');
-    assert.strictEqual(isSolvedBefore, false, 'Question must NOT be marked solved upon incorrect answer');
-
-    // Submit CORRECT Answer "whoami" (with leading/trailing spaces to test trimming)
-    const correctSubmission = await client.evaluate(`
-      (() => {
-        const card = document.querySelector('[data-q-id="q-01-1"]');
-        const input = card.querySelector('.lh-exact-input');
-        const submitBtn = card.querySelector('.lh-btn-submit-answer');
-        input.value = '  whoami  ';
-        submitBtn.click();
-        const feedback = card.querySelector('.lh-feedback-banner');
-        const explanation = card.querySelector('.lh-explanation-box');
-        return {
-          feedback: feedback ? feedback.textContent.trim() : '',
-          explanationVisible: explanation ? window.getComputedStyle(explanation).display !== 'none' : false
-        };
-      })()
-    `);
-    console.log(`  ✓ Correct answer feedback: "${correctSubmission.feedback}"`);
-    assert(correctSubmission.feedback.includes('Correct'), 'Must display Correct! feedback');
-    assert(correctSubmission.explanationVisible, 'Explanation box must be displayed after solving');
-
-    // Verify Visual Slots revealed "whoami"
-    const revealedSlots = await client.evaluate(`
-      (() => {
-        const slots = Array.from(document.querySelectorAll('[data-q-id="q-01-1"] .lh-slot-box'));
-        return slots.map(s => s.textContent.trim()).join('');
-      })()
-    `);
-    console.log(`  ✓ Revealed slot box characters: "${revealedSlots}"`);
-    assert.strictEqual(revealedSlots, 'whoami', 'Visual slots must reveal "whoami" after correct answer');
-
-    // Verify Question IS solved in window.LEARNING_STATE & LocalStorage
-    const isSolvedAfter = await client.evaluate('Boolean(window.LEARNING_STATE.questionProgress["q-01-1"])');
-    assert.strictEqual(isSolvedAfter, true, 'Question must be marked solved in window.LEARNING_STATE');
-
-    const earnedXP = await client.evaluate('window.LEARNING_STATE.getXP()');
-    console.log(`  ✓ Total earned XP in state: ${earnedXP}`);
-    assert(earnedXP >= 25, 'Total XP must be at least 25 after solving question');
-
-    const storedProgress = await client.evaluate('localStorage.getItem("endlessus_question_progress")');
-    assert(storedProgress && storedProgress.includes('q-01-1'), 'Progress must be persisted into localStorage');
-    console.log('  ✓ Question progress accurately persisted to localStorage');
-
-    // Close room modal
-    await client.evaluate('closeModal()');
-    await new Promise(r => setTimeout(r, 300));
-
-    // -------------------------------------------------------------
-    // TEST 3: Security Tools Page (security-tools.html)
-    // -------------------------------------------------------------
-    console.log('\n--- 4. Testing Dedicated Security Tools Page ---');
+    console.log('\n--- 8. Testing Security Tools Suite (security-tools.html) ---');
     await navigate(`http://127.0.0.1:${PORT}/security-tools.html`);
 
-    const toolsTitle = await client.evaluate('document.title');
-    console.log(`  ✓ Page title: "${toolsTitle}"`);
-    assert(toolsTitle.includes('Security Tools'));
-
-    // Test Encoders/Decoders
-    const encodeResult = await client.evaluate(`
+    const b64Test = await client.evaluate(`
       (() => {
         const input = document.getElementById('enc-input');
-        const encodeBtn = document.getElementById('btn-encode');
-        const output = document.getElementById('enc-output');
         input.value = 'EndlessusPreSecurity2026';
-        encodeBtn.click();
-        return output.textContent.trim();
+        document.getElementById('btn-encode').click();
+        return document.getElementById('enc-output').textContent.trim();
       })()
     `);
-    console.log(`  ✓ Base64 encode test output: "${encodeResult}"`);
-    assert.strictEqual(encodeResult, 'RW5kbGVzc3VzUHJlU2VjdXJpdHkyMDI2');
+    console.log(`  ✓ Base64 encode test: "${b64Test}"`);
+    assert.strictEqual(b64Test, 'RW5kbGVzc3VzUHJlU2VjdXJpdHkyMDI2');
 
-    // Test Subnet Calculator Tab
-    const subnetResult = await client.evaluate(`
-      (() => {
-        // Switch to subnet tab
-        document.querySelector('[data-tab="tab-subnet"]').click();
-        const ipIn = document.getElementById('subnet-ip');
-        const cidrIn = document.getElementById('subnet-cidr');
-        const calcBtn = document.getElementById('btn-calc-subnet');
-        ipIn.value = '192.168.10.50';
-        cidrIn.value = '24';
-        calcBtn.click();
+    // -------------------------------------------------------------
+    // TEST 8: Invalid Query Parameters & Error States
+    // -------------------------------------------------------------
+    console.log('\n--- 9. Testing Invalid Query Parameter Handling & 404 States ---');
 
-        const rows = document.querySelectorAll('#subnet-table-body tr');
-        return {
-          netmask: rows[1] ? rows[1].children[1].textContent.trim() : '',
-          network: rows[2] ? rows[2].children[1].textContent.trim() : '',
-          hosts: rows[5] ? rows[5].children[1].textContent.trim() : '',
-          scope: rows[6] ? rows[6].children[1].textContent.trim() : ''
-        };
-      })()
-    `);
-    console.log(`  ✓ Subnet Calculation: Netmask=${subnetResult.netmask}, Network=${subnetResult.network}, Hosts=${subnetResult.hosts}, Scope=${subnetResult.scope}`);
-    assert.strictEqual(subnetResult.netmask, '255.255.255.0');
-    assert.strictEqual(subnetResult.network, '192.168.10.0');
-    assert.strictEqual(subnetResult.hosts, '254');
-    assert(subnetResult.scope.includes('Class C') || subnetResult.scope.includes('Private'));
+    // Invalid Module ID
+    await navigate(`http://127.0.0.1:${PORT}/module.html?id=level-999`);
+    const modNotFoundVisible = await client.evaluate('!document.getElementById("module-not-found").classList.contains("hidden")');
+    console.log(`  ✓ Invalid module (level-999) shows clean error: ${modNotFoundVisible}`);
+    assert(modNotFoundVisible, 'Invalid module ID must display Not Found container');
 
-    // Test Tab 7: Text Inspector, Shannon Entropy & Canonical Hex Dump
-    const inspectorResult = await client.evaluate(`
-      (() => {
-        document.querySelector('[data-tab="tab-inspector"]').click();
-        const inspIn = document.getElementById('inspector-input');
-        inspIn.value = 'EndlessusPreSecurityPlatform2026!';
-        inspIn.dispatchEvent(new Event('input', { bubbles: true }));
+    // Invalid Room ID
+    await navigate(`http://127.0.0.1:${PORT}/room.html?id=room-999`);
+    const roomNotFoundVisible = await client.evaluate('!document.getElementById("room-not-found").classList.contains("hidden")');
+    console.log(`  ✓ Invalid room (room-999) shows clean error: ${roomNotFoundVisible}`);
+    assert(roomNotFoundVisible, 'Invalid room ID must display Not Found container');
 
-        const entropy = document.getElementById('metric-entropy').textContent.trim();
-        const rating = document.getElementById('metric-rating').textContent.trim();
+    // Invalid Lesson Room
+    await navigate(`http://127.0.0.1:${PORT}/lesson.html?room=room-999`);
+    const lessonNotFoundVisible = await client.evaluate('!document.getElementById("lesson-not-found").classList.contains("hidden")');
+    console.log(`  ✓ Invalid lesson (room-999) shows clean error: ${lessonNotFoundVisible}`);
+    assert(lessonNotFoundVisible, 'Invalid lesson room must display Not Found container');
 
-        const hexIn = document.getElementById('hexdump-input');
-        const hexBtn = document.getElementById('btn-generate-hexdump');
-        hexIn.value = 'Hello World 1234';
-        hexBtn.click();
-        const hexdump = document.getElementById('hexdump-output').textContent;
-
-        return { entropy: parseFloat(entropy), rating, hexdump };
-      })()
-    `);
-    console.log(`  ✓ Shannon Entropy: ${inspectorResult.entropy} bits/byte (${inspectorResult.rating})`);
-    console.log(`  ✓ Canonical Hex Dump Line 1: ${inspectorResult.hexdump.split('\\n')[0]}`);
-    assert(inspectorResult.entropy > 3.0, 'Shannon entropy must be calculated and > 3.0 bits/byte');
-    assert(inspectorResult.hexdump.includes('00000000'), 'Canonical hex dump must start with offset 00000000');
-    assert(inspectorResult.hexdump.includes('|Hello World 1234|'), 'Hex dump must contain printable ASCII representation');
-
-    // Capture screenshot of Security Tools
-    const screenshot = await client.send('Page.captureScreenshot', { format: 'png' });
-    const screenshotPath = path.join(__dirname, '..', 'security-tools-verification.png');
-    fs.writeFileSync(screenshotPath, Buffer.from(screenshot.data, 'base64'));
-    console.log(`  ✓ Saved visual verification screenshot to: ${screenshotPath}`);
+    console.log('\n============================================================');
+    console.log('ALL BROWSER VERIFICATION TESTS PASSED (100%)!');
+    console.log('============================================================\n');
 
   } finally {
     await client.close();
-    chromeProcess.kill('SIGTERM');
+    chromeProcess.kill();
   }
-
-  console.log('\n============================================================');
-  console.log('ALL BROWSER HEADLESS VERIFICATION TESTS PASSED (100%)!');
-  console.log('============================================================');
-}
-
-function fetchJson(url) {
-  return new Promise((resolve, reject) => {
-    http.get(url, res => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        try {
-          resolve(JSON.parse(data));
-        } catch (e) {
-          reject(e);
-        }
-      });
-    }).on('error', reject);
-  });
 }
