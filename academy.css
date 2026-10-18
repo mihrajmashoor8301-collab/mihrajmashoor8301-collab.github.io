@@ -174,6 +174,47 @@ body.theme-hacker .telemetry-grid {
   border-color: #1F2937 !important;
 }
 
+/* Normal View (Light mode) Interactive Terminal Input Styles */
+html.theme-normal #ws-term-input-container,
+body.theme-normal #ws-term-input-container,
+.theme-normal #ws-term-input-container {
+  background-color: #05070A !important;
+  border-top-color: #1F2937 !important;
+}
+
+html.theme-normal #ws-term-prompt,
+body.theme-normal #ws-term-prompt,
+.theme-normal #ws-term-prompt {
+  color: #4EDEA3 !important;
+}
+
+html.theme-normal #ws-term-input,
+body.theme-normal #ws-term-input,
+.theme-normal #ws-term-input {
+  color: #F3F4F6 !important;
+  background-color: #05070A !important;
+  caret-color: #4EDEA3 !important;
+}
+
+html.theme-normal #ws-term-input::placeholder,
+body.theme-normal #ws-term-input::placeholder,
+.theme-normal #ws-term-input::placeholder {
+  color: #6B7280 !important;
+  opacity: 1 !important;
+}
+
+html.theme-normal #ws-term-input:focus,
+html.theme-normal #ws-term-input:focus-visible,
+body.theme-normal #ws-term-input:focus,
+body.theme-normal #ws-term-input:focus-visible,
+.theme-normal #ws-term-input:focus,
+.theme-normal #ws-term-input:focus-visible {
+  outline: 1px solid rgba(78, 222, 163, 0.6) !important;
+  outline-offset: 2px !important;
+  box-shadow: none !important;
+  border-radius: 4px;
+}
+
 body {
   font-family: var(--academy-font-sans);
   min-height: 100vh;
