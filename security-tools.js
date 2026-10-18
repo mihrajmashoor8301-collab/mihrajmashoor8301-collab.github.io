@@ -199,6 +199,91 @@
     }
   }
 
+  // Shannon Entropy Calculation (0.0 to 8.0 bits per byte)
+  function calculateEntropy(str) {
+    if (typeof str !== 'string') str = String(str || '');
+    if (!str) return { entropy: 0, bitsPerByte: 0, totalBits: 0, uniqueBytes: 0, rating: 'Empty', description: 'No data to evaluate' };
+    const bytes = new TextEncoder().encode(str);
+    const len = bytes.length;
+    if (len === 0) return { entropy: 0, bitsPerByte: 0, totalBits: 0, uniqueBytes: 0, rating: 'Empty', description: 'No data to evaluate' };
+
+    const frequencies = {};
+    for (let i = 0; i < len; i++) {
+      const b = bytes[i];
+      frequencies[b] = (frequencies[b] || 0) + 1;
+    }
+
+    let entropy = 0;
+    for (const b in frequencies) {
+      const p = frequencies[b] / len;
+      entropy -= p * Math.log2(p);
+    }
+    const roundedEntropy = Math.round(entropy * 1000) / 1000;
+    const totalBits = Math.round(entropy * len);
+
+    let rating = 'Medium';
+    let description = 'Typical natural language text or source code.';
+    if (roundedEntropy === 0) {
+      rating = 'Zero';
+      description = 'All characters are identical; no randomness.';
+    } else if (roundedEntropy < 2.5) {
+      rating = 'Low';
+      description = 'Highly repetitive, predictable structured data.';
+    } else if (roundedEntropy > 7.2) {
+      rating = 'High';
+      description = 'Very high randomness; characteristic of encrypted or compressed data.';
+    } else if (roundedEntropy > 5.5) {
+      rating = 'Moderately High';
+      description = 'Base64, hex encoded binaries, or randomized tokens.';
+    }
+
+    return {
+      entropy: roundedEntropy,
+      bitsPerByte: roundedEntropy,
+      totalBits,
+      uniqueBytes: Object.keys(frequencies).length,
+      rating,
+      description
+    };
+  }
+
+  // Canonical Hex Dump Generation (16 bytes per row)
+  function generateHexDump(str, maxBytes) {
+    if (typeof str !== 'string') str = String(str || '');
+    if (!str) return '';
+    const limit = typeof maxBytes === 'number' ? maxBytes : 4096;
+    const bytes = new TextEncoder().encode(str);
+    const len = Math.min(bytes.length, limit);
+    const lines = [];
+
+    for (let offset = 0; offset < len; offset += 16) {
+      const offsetHex = offset.toString(16).padStart(8, '0');
+      const hexParts = [];
+      let ascii = '';
+
+      for (let i = 0; i < 16; i++) {
+        const byteIndex = offset + i;
+        if (byteIndex < len) {
+          const b = bytes[byteIndex];
+          hexParts.push(b.toString(16).padStart(2, '0'));
+          ascii += (b >= 32 && b <= 126) ? String.fromCharCode(b) : '.';
+        } else {
+          hexParts.push('  ');
+        }
+      }
+
+      const block1 = hexParts.slice(0, 8).join(' ');
+      const block2 = hexParts.slice(8, 16).join(' ');
+      lines.push(`${offsetHex}  ${block1}  ${block2}  |${ascii}|`);
+    }
+
+    if (bytes.length > limit) {
+      lines.push(`... [Truncated: showing first ${limit} of ${bytes.length} bytes]`);
+    }
+
+    return lines.join('\n');
+  }
+
   // UTF-8 Text Inspector
   function inspectText(str) {
     if (typeof str !== 'string') str = String(str || '');
@@ -206,6 +291,7 @@
     const chars = Array.from(str);
     const lines = str ? str.split(/\r\n|\r|\n/).length : 0;
     const words = str.trim() ? str.trim().split(/\s+/).length : 0;
+    const ent = calculateEntropy(str);
     return {
       characterCount: chars.length,
       byteLength: bytes.length,
@@ -215,7 +301,10 @@
       bytes: bytes.length,
       words: words,
       lines: lines,
-      isAsciiOnly: /^[\x00-\x7F]*$/.test(str)
+      isAsciiOnly: /^[\x00-\x7F]*$/.test(str),
+      entropy: ent.entropy,
+      entropyRating: ent.rating,
+      entropyDescription: ent.description
     };
   }
 
@@ -679,6 +768,8 @@
     formatJSON,
     validateJSON,
     inspectText,
+    calculateEntropy,
+    generateHexDump,
     calculateSubnet,
     identifyHashCandidates,
     COMMON_PORTS,

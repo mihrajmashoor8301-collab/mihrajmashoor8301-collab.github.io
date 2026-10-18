@@ -15,20 +15,69 @@
 (function () {
   'use strict';
 
+  // Safe Storage Parsing Helper with Fallback
+  function safeGetJson(key, defaultVal) {
+    try {
+      const val = localStorage.getItem(key);
+      if (val === null || val === undefined || val === '') return defaultVal;
+      const parsed = JSON.parse(val);
+      return parsed !== null && parsed !== undefined ? parsed : defaultVal;
+    } catch (e) {
+      console.warn(`[SafeStorage] Failed to parse ${key}, falling back to default:`, e);
+      return defaultVal;
+    }
+  }
+
+  function safeSetJson(key, val) {
+    try {
+      localStorage.setItem(key, JSON.stringify(val));
+    } catch (e) {
+      console.warn(`[SafeStorage] Failed to persist ${key}:`, e);
+    }
+  }
+
+  // Load and validate persisted state
+  const rawCompletedRooms = safeGetJson('endlessus_completed_rooms', []);
+  const rawCompletedLabs = safeGetJson('endlessus_completed_labs', []);
+  const rawQuestionProgress = safeGetJson('endlessus_question_progress', {});
+  const rawRoomProgress = safeGetJson('endlessus_room_progress', {});
+
   // State Management
   const STATE = {
-    theme: localStorage.getItem('endlessus_learning_theme') || 'normal',
-    completedRooms: JSON.parse(localStorage.getItem('endlessus_completed_rooms') || '[]'),
-    completedLabs: JSON.parse(localStorage.getItem('endlessus_completed_labs') || '[]'),
-    questionProgress: JSON.parse(localStorage.getItem('endlessus_question_progress') || '{}'),
-    roomProgress: JSON.parse(localStorage.getItem('endlessus_room_progress') || '{}'),
-    mapViewMode: localStorage.getItem('endlessus_map_view_mode') || 'map',
+    theme: (function () {
+      try {
+        return localStorage.getItem('endlessus_learning_theme') || 'normal';
+      } catch (e) {
+        return 'normal';
+      }
+    })(),
+    completedRooms: Array.isArray(rawCompletedRooms) ? rawCompletedRooms.filter(id => typeof id === 'string') : [],
+    completedLabs: Array.isArray(rawCompletedLabs) ? rawCompletedLabs.filter(id => typeof id === 'string') : [],
+    questionProgress: (rawQuestionProgress && typeof rawQuestionProgress === 'object' && !Array.isArray(rawQuestionProgress)) ? rawQuestionProgress : {},
+    roomProgress: (rawRoomProgress && typeof rawRoomProgress === 'object' && !Array.isArray(rawRoomProgress)) ? rawRoomProgress : {},
+    mapViewMode: (function () {
+      try {
+        const m = localStorage.getItem('endlessus_map_view_mode');
+        return m === 'list' ? 'list' : 'map';
+      } catch (e) {
+        return 'map';
+      }
+    })(),
     activeFilterStage: 'all',
     activeFilterDiff: 'all',
     searchQuery: '',
     currentRoom: null,
     unlockedHints: {} // roomId -> highest unlocked hint index
   };
+
+  // Idempotent XP Calculation: 50 XP per room, 25 XP per question, 75 XP per lab
+  function calculateTotalXP() {
+    const roomXP = STATE.completedRooms.length * 50;
+    const questionXP = Object.keys(STATE.questionProgress).filter(k => STATE.questionProgress[k] === true).length * 25;
+    const labXP = STATE.completedLabs.length * 75;
+    return roomXP + questionXP + labXP;
+  }
+  STATE.getXP = calculateTotalXP;
 
   // Expose global reference for debugging and test automation
   window.LEARNING_STATE = STATE;
@@ -45,11 +94,7 @@
       });
     }
     if (changed) {
-      try {
-        localStorage.setItem('endlessus_room_progress', JSON.stringify(STATE.roomProgress));
-      } catch (e) {
-        console.warn('[Progress Migration] LocalStorage write failed:', e);
-      }
+      safeSetJson('endlessus_room_progress', STATE.roomProgress);
     }
   }
 
@@ -115,7 +160,25 @@
       elements.modalBackdrop.addEventListener('click', (e) => {
         if (e.target === elements.modalBackdrop) closeModal();
       });
+
+      // Modal Focus Trap for Keyboard Accessibility
+      elements.modalBackdrop.addEventListener('keydown', (e) => {
+        if (e.key !== 'Tab') return;
+        const focusable = Array.from(elements.modalBackdrop.querySelectorAll('button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')).filter(el => el.offsetParent !== null);
+        if (!focusable || focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      });
     }
+
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         if (elements.modalBackdrop && elements.modalBackdrop.classList.contains('open')) {
@@ -367,9 +430,14 @@
     const resetBtn = document.getElementById('reset-progress-btn');
     if (resetBtn) {
       resetBtn.addEventListener('click', () => {
-        if (confirm("Reset curriculum room completion history? Your stored progress will be reset to zero.")) {
+        if (confirm("Reset curriculum room completion and question history? Your stored progress and earned XP will be reset to zero.")) {
           STATE.completedRooms = [];
-          localStorage.removeItem('endlessus_completed_rooms');
+          STATE.roomProgress = {};
+          STATE.questionProgress = {};
+          STATE.unlockedHints = {};
+          safeSetJson('endlessus_completed_rooms', []);
+          safeSetJson('endlessus_room_progress', {});
+          safeSetJson('endlessus_question_progress', {});
           renderCurriculum();
           renderStageNodes();
           updateProgressUI();
@@ -746,19 +814,33 @@
   }
   window.updateRoadmapConnectors = updateRoadmapConnectors;
 
+  let connectorRafId = null;
+  function debouncedUpdateConnectors() {
+    if (connectorRafId) cancelAnimationFrame(connectorRafId);
+    connectorRafId = requestAnimationFrame(() => {
+      updateRoadmapConnectors();
+    });
+  }
+
   function setupRoadmapResizeObserver() {
     if (typeof ResizeObserver !== 'undefined') {
       if (roadmapResizeObserver) roadmapResizeObserver.disconnect();
       const wrapper = document.getElementById('roadmap-wrapper');
       if (wrapper) {
         roadmapResizeObserver = new ResizeObserver(() => {
-          updateRoadmapConnectors();
+          debouncedUpdateConnectors();
         });
         roadmapResizeObserver.observe(wrapper);
       }
     }
-    window.removeEventListener('resize', updateRoadmapConnectors);
-    window.addEventListener('resize', updateRoadmapConnectors);
+    window.removeEventListener('resize', debouncedUpdateConnectors);
+    window.addEventListener('resize', debouncedUpdateConnectors);
+
+    if (typeof document !== 'undefined' && document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => {
+        debouncedUpdateConnectors();
+      });
+    }
   }
 
   window.resetCurriculumFilters = function () {
@@ -824,14 +906,16 @@
     const completedLabsCount = STATE.completedLabs.length;
     const labPercentage = totalLabs > 0 ? Math.round((completedLabsCount / totalLabs) * 100) : 0;
 
+    const totalXP = calculateTotalXP();
+
     if (elements.progressText) {
-      elements.progressText.textContent = `Learning: ${completedRoomsCount}/${totalRooms} Rooms (${percentage}%) · Practice: ${completedLabsCount}/${totalLabs} Labs (${labPercentage}%)`;
+      elements.progressText.textContent = `Learning: ${completedRoomsCount}/${totalRooms} Rooms (${percentage}%) · ${totalXP.toLocaleString()} XP · Practice: ${completedLabsCount}/${totalLabs} Labs (${labPercentage}%)`;
     }
     if (elements.progressBar) {
       elements.progressBar.style.width = `${percentage}%`;
     }
     if (elements.miniProgressText) {
-      elements.miniProgressText.textContent = `Learn: ${completedRoomsCount}/${totalRooms} · Labs: ${completedLabsCount}/${totalLabs}`;
+      elements.miniProgressText.textContent = `Learn: ${completedRoomsCount}/${totalRooms} (${percentage}%) · ${totalXP.toLocaleString()} XP`;
     }
 
     // Render dynamic Continue Learning Experience
@@ -852,13 +936,13 @@
               <span class="material-symbols-outlined" style="font-size: 14px;">emoji_events</span>
               <span>Curriculum Completed</span>
             </div>
-            <h2 class="lh-continue-title">You've Mastered All 40 Rooms!</h2>
+            <h2 class="lh-continue-title">You've Mastered All ${totalRooms} Rooms!</h2>
             <p class="lh-continue-desc">You have completed all foundational, networking, web security, and system exploitation rooms. Put your skills to the ultimate test in the hands-on capstone lab.</p>
             <div class="lh-continue-meters">
               <div class="lh-meter-row">
                 <span class="lh-meter-label">Learning Track</span>
                 <div class="lh-meter-bar-wrap"><div class="lh-meter-bar-fill" style="width: 100%; background: var(--lh-primary);"></div></div>
-                <span class="lh-meter-count">40/40 (100%)</span>
+                <span class="lh-meter-count">${totalRooms}/${totalRooms} (100%)</span>
               </div>
               <div class="lh-meter-row">
                 <span class="lh-meter-label">Practice Track</span>
@@ -915,9 +999,13 @@
   // =========================================================================
   // 6. ROOM MODAL PLAYER (5-PHASE STRICT STRUCTURE)
   // =========================================================================
+  let lastFocusedElement = null;
+
   function openRoom(roomId) {
     const room = ENDLESSUS_ROOM_MAP[roomId];
     if (!room) return;
+
+    lastFocusedElement = document.activeElement;
 
     STATE.currentRoom = room;
     if (!STATE.unlockedHints[roomId]) {
@@ -954,6 +1042,11 @@
     elements.modalBackdrop.classList.add('open');
     document.body.style.overflow = 'hidden';
 
+    // Focus close button for accessible keyboard navigation
+    setTimeout(() => {
+      if (elements.modalCloseBtn) elements.modalCloseBtn.focus();
+    }, 40);
+
     // Update Contextual Breadcrumb
     updateBreadcrumb(room);
 
@@ -968,6 +1061,9 @@
     STATE.currentRoom = null;
     history.replaceState(null, null, ' ');
     updateBreadcrumb();
+    if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+      lastFocusedElement.focus();
+    }
   }
   window.closeModal = closeModal;
 
@@ -975,13 +1071,14 @@
     if (!elements.activeBreadcrumb) return;
 
     if (activeRoom) {
-      elements.activeBreadcrumb.innerHTML = `Learn / <a href="#stage-${activeRoom.stage}" style="color:inherit; text-decoration:underline;">Stage ${activeRoom.stage}</a> / <span style="color:var(--lh-primary); font-weight:700;">${activeRoom.id.toUpperCase()}: ${escapeHtml(activeRoom.title)}</span>`;
+      const lvl = activeRoom.level !== undefined ? activeRoom.level : activeRoom.stage;
+      elements.activeBreadcrumb.innerHTML = `Learn / <a href="#stage-${lvl}" style="color:inherit; text-decoration:underline;">Level ${lvl}</a> / <span style="color:var(--lh-primary); font-weight:700;">${activeRoom.id.toUpperCase()}: ${escapeHtml(activeRoom.title)}</span>`;
     } else if (STATE.activeFilterStage !== 'all') {
       const stageObj = ENDLESSUS_STAGES.find(s => String(s.id) === STATE.activeFilterStage);
-      const stageName = stageObj ? `Stage ${stageObj.number}: ${stageObj.title.split(':')[1]?.trim() || stageObj.title}` : `Stage ${STATE.activeFilterStage}`;
+      const stageName = stageObj ? `Level ${stageObj.number || stageObj.id}: ${stageObj.title.split(':')[1]?.trim() || stageObj.title}` : `Level ${STATE.activeFilterStage}`;
       elements.activeBreadcrumb.textContent = `Learn / ${stageName}`;
     } else {
-      elements.activeBreadcrumb.textContent = `Learn / Full Curriculum`;
+      elements.activeBreadcrumb.textContent = `Learn / Pre Security Pathway (Levels 0–7)`;
     }
   }
 
@@ -1579,7 +1676,7 @@
           if (isMatch) {
             // Correct answer
             STATE.questionProgress[qId] = true;
-            localStorage.setItem('endlessus_question_progress', JSON.stringify(STATE.questionProgress));
+            safeSetJson('endlessus_question_progress', STATE.questionProgress);
             card.classList.add('solved');
             inputEl.disabled = true;
             submitBtn.disabled = true;
@@ -1592,6 +1689,21 @@
               statusBadge.className = 'lh-question-status-badge solved';
               statusBadge.innerHTML = '<span class="material-symbols-outlined" style="font-size: 16px; color: var(--lh-success);">check_circle</span> <span style="color: var(--lh-success);">Solved</span>';
             }
+            // Update visual slot characters immediately
+            const slotBoxes = card.querySelectorAll('.lh-slot-box');
+            const primaryAns = questionObj.acceptedAnswers && questionObj.acceptedAnswers[0] ? questionObj.acceptedAnswers[0] : '';
+            if (slotBoxes.length > 0 && primaryAns) {
+              slotBoxes.forEach((box, sIdx) => {
+                if (primaryAns[sIdx]) box.textContent = primaryAns[sIdx];
+              });
+            }
+            // Check if all questions in this room are now completed
+            const allQuestions = room.questions || [];
+            const allSolved = allQuestions.length > 0 && allQuestions.every(q => STATE.questionProgress[q.id] === true);
+            if (allSolved) {
+              markRoomComplete(room.id);
+            }
+            updateProgressUI();
           } else {
             // Helpful feedback without leaking answer
             feedbackEl.className = 'lh-feedback-banner error';
@@ -1624,7 +1736,7 @@
 
             if (isCorrect) {
               STATE.questionProgress[qId] = true;
-              localStorage.setItem('endlessus_question_progress', JSON.stringify(STATE.questionProgress));
+              safeSetJson('endlessus_question_progress', STATE.questionProgress);
               card.classList.add('solved');
               optBtn.classList.add('correct');
               if (explanationEl) explanationEl.style.display = 'block';
@@ -1632,6 +1744,12 @@
                 statusBadge.className = 'lh-question-status-badge solved';
                 statusBadge.innerHTML = '<span class="material-symbols-outlined" style="font-size: 16px; color: var(--lh-success);">check_circle</span> <span style="color: var(--lh-success);">Solved</span>';
               }
+              const allQuestions = room.questions || [];
+              const allSolved = allQuestions.length > 0 && allQuestions.every(q => STATE.questionProgress[q.id] === true);
+              if (allSolved) {
+                markRoomComplete(room.id);
+              }
+              updateProgressUI();
             } else {
               optBtn.classList.add('incorrect');
               if (options[questionObj.correctIndex]) {
@@ -1715,11 +1833,18 @@
   // 7. ROOM COMPLETION & PERSISTENCE
   // =========================================================================
   function markRoomComplete(roomId) {
+    let changed = false;
     if (!STATE.completedRooms.includes(roomId)) {
       STATE.completedRooms.push(roomId);
+      changed = true;
+    }
+    if (!STATE.roomProgress[roomId] || !STATE.roomProgress[roomId].completed) {
       STATE.roomProgress[roomId] = { completed: true, completedAt: Date.now() };
-      localStorage.setItem('endlessus_completed_rooms', JSON.stringify(STATE.completedRooms));
-      localStorage.setItem('endlessus_room_progress', JSON.stringify(STATE.roomProgress));
+      changed = true;
+    }
+    if (changed) {
+      safeSetJson('endlessus_completed_rooms', STATE.completedRooms);
+      safeSetJson('endlessus_room_progress', STATE.roomProgress);
       renderCurriculum();
       renderStageNodes();
       updateProgressUI();

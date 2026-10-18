@@ -3267,23 +3267,42 @@ html.dark .lh-continue-action-btn {
 
 @media (max-width: 600px) {
   .lh-roadmap-track {
-    gap: 2rem;
+    gap: 2.5rem;
   }
   .lh-roadmap-row.pos-left {
-    padding-left: 0;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
     justify-content: flex-start;
   }
   .lh-roadmap-row.pos-right {
-    padding-right: 0;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
     justify-content: flex-end;
   }
   .lh-roadmap-row.pos-center {
     justify-content: center;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
   .lh-roadmap-item {
-    gap: 0.85rem;
+    gap: 0.75rem;
     max-width: 100%;
+  }
+  .lh-roadmap-row.pos-left .lh-roadmap-item,
+  .lh-roadmap-row.pos-right .lh-roadmap-item {
+    width: auto;
+    max-width: calc(100% - 0.5rem);
+  }
+  .lh-roadmap-row.pos-center .lh-roadmap-item {
+    flex-direction: column !important;
+    align-items: center;
     width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+  .lh-roadmap-row.pos-center .lh-roadmap-card {
+    width: 100%;
+    max-width: 320px;
   }
   .lh-roadmap-orb {
     width: 52px;
@@ -3303,6 +3322,40 @@ html.dark .lh-continue-action-btn {
   }
   .lh-card-desc {
     display: none; /* Keep cards compact on very small screens */
+  }
+}
+
+@media (max-width: 400px) {
+  .lh-roadmap-card {
+    padding: 0.7rem 0.75rem;
+  }
+  .lh-card-title {
+    font-size: 0.88rem;
+  }
+  .lh-roadmap-row.pos-left .lh-roadmap-item {
+    gap: 0.5rem;
+  }
+  .lh-roadmap-row.pos-right .lh-roadmap-item {
+    gap: 0.5rem;
+  }
+}
+
+/* Prefers Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .lh-roadmap-orb.current::before {
+    animation: none !important;
+    border-style: solid;
+    opacity: 0.8;
+  }
+  .lh-roadmap-orb:hover,
+  .lh-roadmap-card:hover {
+    transform: none !important;
   }
 }
 

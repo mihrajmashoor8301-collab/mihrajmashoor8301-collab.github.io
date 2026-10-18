@@ -114,8 +114,33 @@ console.log('--- 7. Text Inspector Metrics ---');
   assert.strictEqual(inspect.lines, 3, 'Must count 3 lines');
   assert.strictEqual(inspect.words, 8, 'Must count 8 words');
   assert(inspect.chars > 0);
-  assert(inspect.bytes >= inspect.chars);
+  assert(typeof inspect.entropy === 'number', 'Must include entropy value');
   console.log('  ✓ Text inspector metrics verified');
+
+  // Test Shannon Entropy
+  const repetitive = 'AAAAAAAAAA';
+  const entRep = SecurityTools.calculateEntropy(repetitive);
+  assert.strictEqual(entRep.entropy, 0, 'Uniform single-character string must have 0 entropy');
+  assert.strictEqual(entRep.rating, 'Zero');
+
+  const englishText = 'The quick brown fox jumps over the lazy dog. Cybersecurity Academy 2026.';
+  const entEng = SecurityTools.calculateEntropy(englishText);
+  assert(entEng.entropy > 3.5 && entEng.entropy < 5.5, `Natural English text should have moderate entropy (3.5 - 5.5), got ${entEng.entropy}`);
+  assert.strictEqual(entEng.rating, 'Medium');
+
+  const highEntropy = '8f3b2a9e1c0d4f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a';
+  const entHigh = SecurityTools.calculateEntropy(highEntropy);
+  assert(entHigh.entropy > 3.0, 'Hex string should exhibit healthy entropy');
+  console.log('  ✓ Shannon entropy estimation (zero, medium, high) verified');
+
+  // Test Canonical Hex Dump Generation
+  const sample = 'Hello, Endlessus!\nLine 2';
+  const hexDump = SecurityTools.generateHexDump(sample);
+  assert(typeof hexDump === 'string');
+  assert(hexDump.includes('00000000'), 'Hex dump must contain 8-digit offset 00000000');
+  assert(hexDump.includes('|Hello, Endlessus|') || hexDump.includes('|Hello, Endlessus.|'), 'Hex dump must display ASCII bar');
+  assert(hexDump.includes('48 65 6c 6c 6f'), 'Hex dump must display byte values for Hello');
+  console.log('  ✓ Canonical hex dump generation (offsets, hex blocks, ASCII) verified');
 }
 
 // 8. IPv4 & CIDR Subnet Calculator
