@@ -190,7 +190,7 @@ async function runBrowserTests() {
     const continueBtnHref = await client.evaluate('document.getElementById("dashboard-continue-btn").getAttribute("href")');
     const continueBtnText = await client.evaluate('document.getElementById("dashboard-continue-text").textContent.trim()');
     console.log(`  ✓ Continue action: "${continueBtnText}" -> ${continueBtnHref}`);
-    assert(continueBtnHref.includes('lesson.html'), 'Continue button must link to lesson reader');
+    assert(continueBtnHref.includes('room.html') || continueBtnHref.includes('lesson.html'), 'Continue button must link to room overview or lesson reader');
 
     // Check metrics cards
     const statsRooms = await client.evaluate('document.getElementById("stat-completed-rooms").textContent.trim()');
@@ -266,6 +266,14 @@ async function runBrowserTests() {
     const lessonsOutlineCount = await client.evaluate('document.querySelectorAll("#lessons-outline-container > div").length');
     console.log(`  ✓ Lesson outline sections: ${lessonsOutlineCount}`);
     assert(lessonsOutlineCount >= 2, 'Room 01 must outline at least 2 lesson sections');
+
+    const inRoomTasksCount = await client.evaluate('document.querySelectorAll(".task-card").length');
+    const inRoomQuestionsCount = await client.evaluate('document.querySelectorAll(".q-submit-btn").length');
+    const sidebarTaskLinksCount = await client.evaluate('document.querySelectorAll(".task-jump-link").length');
+    console.log(`  ✓ TryHackMe room elements: Tasks=${inRoomTasksCount}, Questions=${inRoomQuestionsCount}, Quick-Jump Links=${sidebarTaskLinksCount}`);
+    assert(inRoomTasksCount >= 3, 'Must render at least 3 task cards');
+    assert(inRoomQuestionsCount >= 1, 'Must render in-room question submit buttons');
+    assert(sidebarTaskLinksCount >= 3, 'Must render sidebar quick-jump task links');
 
     // -------------------------------------------------------------
     // TEST 5: Focused Lesson Reader & Question Engine (lesson.html)

@@ -63,7 +63,7 @@
     };
   </script>
 </head>
-<body class="bg-canvas-base text-on-surface min-h-screen flex flex-col font-sans transition-colors duration-150">
+<body class="bg-canvas-base text-on-surface min-h-screen flex flex-col font-sans transition-colors duration-150 antialiased">
 
   <!-- =========================================================================
        1. ACADEMY UNIFIED HEADER
@@ -77,26 +77,37 @@
           <span class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center font-mono font-black text-primary text-base">E</span>
           <div class="flex flex-col">
             <span class="font-bold text-sm tracking-tight leading-none text-on-surface">Endlessus Academy</span>
-            <span class="text-[10px] font-mono text-outline tracking-wider uppercase mt-0.5">Room Outline</span>
+            <span class="text-[10px] font-mono text-outline tracking-wider uppercase mt-0.5">Room</span>
           </div>
         </a>
       </div>
 
       <!-- Center Desktop Navigation -->
       <nav class="hidden md:flex items-center gap-1 text-xs font-mono" aria-label="Main Navigation">
-        <a href="learning.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Dashboard</a>
-        <a href="modules.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Modules</a>
+        <a href="learning.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Learn</a>
+        <a href="modules.html" class="px-3 py-1.5 rounded-md text-primary font-bold bg-surface-raised transition-colors">Modules</a>
         <a href="roadmap.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Roadmap</a>
         <a href="labs.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Labs</a>
         <a href="security-tools.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Tools</a>
-        <a href="index.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Portfolio</a>
       </nav>
 
       <!-- Right Action Bar -->
       <div class="flex items-center gap-2">
+        <!-- Live Streak & XP Badges -->
+        <div class="hidden sm:flex items-center gap-2 font-mono text-xs">
+          <span class="px-2.5 py-1 rounded-lg bg-surface-raised border border-border-hairline text-outline flex items-center gap-1" title="Daily Learning Streak">
+            <span>🔥</span>
+            <span class="font-bold text-on-surface" data-academy-streak>1d</span>
+          </span>
+          <span class="px-2.5 py-1 rounded-lg bg-surface-raised border border-border-hairline text-outline flex items-center gap-1" title="Earned Knowledge Points">
+            <span class="text-primary font-bold">⚡</span>
+            <span class="font-bold text-on-surface" data-academy-xp>0 XP</span>
+          </span>
+        </div>
+
         <button type="button" class="academy-search-btn inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border-hairline bg-surface-raised hover:border-primary text-xs font-mono text-outline hover:text-on-surface transition-colors" title="Search Academy (Cmd+K)">
           <span class="material-symbols-outlined text-sm text-primary">search</span>
-          <span class="hidden sm:inline">Search</span>
+          <span class="hidden lg:inline">Search</span>
         </button>
 
         <div class="flex items-center p-0.5 rounded-lg border border-border-hairline bg-surface-raised font-mono text-xs">
@@ -123,11 +134,14 @@
           <span class="font-bold text-sm text-primary">Academy</span>
           <button type="button" id="mobile-drawer-close" class="p-1 rounded text-outline hover:text-on-surface"><span class="material-symbols-outlined text-base">close</span></button>
         </div>
-        <a href="learning.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Dashboard</a>
-        <a href="modules.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">All Modules</a>
-        <a href="roadmap.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Roadmap</a>
-        <a href="labs.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Practical Labs</a>
+        <a href="learning.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Learn (Dashboard)</a>
+        <a href="modules.html" class="block px-2.5 py-2 rounded-lg bg-surface-raised text-primary font-bold">Path Outline (Pre Security)</a>
+        <a href="roadmap.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Career Roadmap</a>
+        <a href="labs.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Practical Labs (13)</a>
         <a href="security-tools.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Security Tools</a>
+      </div>
+      <div class="text-[11px] text-outline pt-4 border-t border-border-hairline">
+        Free &amp; Open Cybersecurity Training
       </div>
     </div>
   </div>
@@ -135,7 +149,7 @@
   <!-- =========================================================================
        2. MAIN CONTENT
        ========================================================================= -->
-  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-8 sm:py-10">
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8">
     
     <!-- Not Found State -->
     <div id="room-not-found" class="hidden text-center py-20 px-4 rounded-2xl border border-dashed border-border-hairline bg-surface-subtle max-w-xl mx-auto my-12">
@@ -153,23 +167,25 @@
     </div>
 
     <!-- Active Room Container -->
-    <div id="room-container" class="space-y-8">
+    <div id="room-container" class="space-y-6">
       
-      <!-- Breadcrumb -->
-      <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs font-mono text-outline">
-        <a href="learning.html" class="hover:text-primary transition-colors">Learning</a>
+      <!-- Breadcrumb Navigation -->
+      <nav aria-label="Breadcrumb" class="flex flex-wrap items-center gap-2 text-xs font-mono text-outline">
+        <a href="learning.html" class="hover:text-primary transition-colors">Learn</a>
         <span class="material-symbols-outlined text-xs">chevron_right</span>
-        <a href="modules.html" class="hover:text-primary transition-colors">Modules</a>
+        <a href="modules.html" class="hover:text-primary transition-colors">Pre Security</a>
         <span class="material-symbols-outlined text-xs">chevron_right</span>
         <a id="breadcrumb-module-link" href="#" class="hover:text-primary transition-colors">Level</a>
         <span class="material-symbols-outlined text-xs">chevron_right</span>
-        <span id="breadcrumb-room-title" class="text-on-surface font-semibold">Loading...</span>
+        <span id="breadcrumb-room-title" class="text-on-surface font-semibold truncate max-w-xs sm:max-w-md">Loading...</span>
       </nav>
 
-      <!-- Room Header Hero -->
-      <div class="p-6 sm:p-8 rounded-2xl border border-border-hairline bg-surface-subtle space-y-6">
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+      <!-- TryHackMe Room Hero Banner -->
+      <div class="p-6 sm:p-8 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5">
+        <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
+          
           <div class="space-y-3 max-w-3xl">
+            <!-- Room Tags -->
             <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
               <span id="room-id-badge" class="px-2.5 py-0.5 rounded-md bg-surface-raised border border-border-hairline font-bold text-on-surface">
                 ROOM-01
@@ -183,7 +199,7 @@
               </span>
               <span class="flex items-center gap-1 text-outline">
                 <span class="material-symbols-outlined text-sm">assignment</span>
-                <span id="room-tasks-count">3 Lessons</span>
+                <span id="room-tasks-count">3 Tasks</span>
               </span>
               <span class="flex items-center gap-1 text-outline">
                 <span class="material-symbols-outlined text-sm">quiz</span>
@@ -191,7 +207,8 @@
               </span>
             </div>
 
-            <h1 id="room-title" class="text-3xl sm:text-4xl font-black font-mono tracking-tight text-on-surface">
+            <!-- Title & Introduction -->
+            <h1 id="room-title" class="text-2xl sm:text-3xl lg:text-4xl font-black font-mono tracking-tight text-on-surface">
               Room Title
             </h1>
             <p id="room-why" class="text-sm sm:text-base text-on-surface-variant leading-relaxed">
@@ -200,127 +217,171 @@
           </div>
 
           <!-- Room Action & Status Box -->
-          <div class="flex flex-col sm:flex-row lg:flex-col items-stretch gap-4 p-5 rounded-xl border border-border-hairline bg-surface-raised min-w-[280px]">
+          <div class="flex flex-col sm:flex-row lg:flex-col items-stretch gap-3 p-5 rounded-xl border border-border-hairline bg-surface-raised min-w-[280px]">
             <div class="space-y-1.5 flex-1">
               <div class="flex justify-between text-xs font-mono">
-                <span class="text-outline">Room Status</span>
-                <span id="room-status-badge" class="font-bold text-primary">Not Started</span>
+                <span class="text-outline">Room Progress</span>
+                <span id="room-status-badge" class="font-bold text-outline">Not Started</span>
               </div>
-              <div class="w-full h-2 rounded-full bg-surface-subtle overflow-hidden">
+              <div class="w-full h-2.5 rounded-full bg-surface-subtle overflow-hidden">
                 <div id="room-progress-bar" class="h-full bg-primary transition-all duration-300 rounded-full" style="width: 0%"></div>
               </div>
-              <div id="room-progress-subtext" class="text-[11px] font-mono text-outline">0 of 2 questions solved</div>
+              <div id="room-progress-subtext" class="text-[11px] font-mono text-outline">0 of 3 tasks completed (0%)</div>
             </div>
 
-            <a id="room-primary-action" href="#" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-primary text-white text-xs font-mono font-bold hover:opacity-95 shadow transition-all">
-              <span id="room-action-text">Launch Lesson Reader</span>
-              <span class="material-symbols-outlined text-sm">play_arrow</span>
+            <div class="flex items-center gap-2 pt-1">
+              <a id="room-primary-action" href="#task-card-0" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-white text-xs font-mono font-bold hover:opacity-95 shadow transition-all">
+                <span id="room-action-text">Start Room</span>
+                <span class="material-symbols-outlined text-sm">arrow_downward</span>
+              </a>
+              <button type="button" id="btn-toggle-all-tasks" class="px-3 py-2.5 rounded-xl border border-border-hairline bg-surface-subtle hover:border-primary text-outline hover:text-on-surface text-xs font-mono transition-colors" title="Toggle all tasks open/closed">
+                <span class="material-symbols-outlined text-sm">unfold_more</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Two-Column TryHackMe Room Workspace -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- =====================================================================
+             MAIN TASK & CONTENT COLUMN (8 of 12 columns)
+             ===================================================================== -->
+        <div class="lg:col-span-8 space-y-6">
+
+          <!-- Learning Objectives & Terminology Card -->
+          <div class="p-5 sm:p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4">
+            <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
+              <div class="flex items-center gap-2 font-mono text-xs font-bold text-primary">
+                <span class="material-symbols-outlined text-base">flag</span>
+                <span>LEARNING OBJECTIVES</span>
+              </div>
+              <div class="text-xs font-mono text-outline">
+                <strong>Prerequisites:</strong> <span id="room-prereq-text">None</span>
+              </div>
+            </div>
+
+            <ul id="room-objectives-list" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-on-surface-variant font-sans">
+              <!-- Objectives populated dynamically -->
+            </ul>
+
+            <div class="pt-2 border-t border-border-hairline/60 space-y-2">
+              <div class="text-[11px] font-mono text-outline uppercase tracking-wider font-bold">Key Terminology:</div>
+              <div id="room-vocab-list" class="flex flex-wrap gap-1.5 text-xs font-mono">
+                <!-- Vocabulary pills populated dynamically -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Tasks Heading Toolbar -->
+          <div class="flex items-center justify-between pt-2">
+            <h2 class="text-xl font-bold font-mono text-on-surface flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-xl">view_stream</span>
+              <span>Room Tasks</span>
+            </h2>
+            <div class="flex items-center gap-2 text-xs font-mono">
+              <button type="button" id="btn-expand-all" class="text-outline hover:text-primary transition-colors cursor-pointer">Expand All</button>
+              <span class="text-outline/40">·</span>
+              <button type="button" id="btn-collapse-all" class="text-outline hover:text-primary transition-colors cursor-pointer">Collapse All</button>
+            </div>
+          </div>
+
+          <!-- TryHackMe Task Stream (Accordion Stack) -->
+          <div id="lessons-outline-container" class="space-y-4">
+            <!-- Populated dynamically with full TryHackMe Task Cards -->
+          </div>
+
+          <!-- Bottom Navigation Bar (Prev / Next Room) -->
+          <div class="pt-8 border-t border-border-hairline flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 font-mono text-xs">
+            <a id="prev-room-link" href="#" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-border-hairline bg-surface-subtle hover:border-primary text-on-surface transition-colors">
+              <span class="material-symbols-outlined text-sm">arrow_back</span>
+              <div>
+                <div class="text-[10px] text-outline">Previous Room</div>
+                <div id="prev-room-title" class="font-bold">None</div>
+              </div>
+            </a>
+
+            <a id="module-syllabus-link" href="#" class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-surface-raised border border-border-hairline text-on-surface hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-sm">view_list</span>
+              <span>Back to Module Outline</span>
+            </a>
+
+            <a id="next-room-link" href="#" class="inline-flex items-center justify-end gap-2 px-4 py-2.5 rounded-xl border border-border-hairline bg-surface-subtle hover:border-primary text-on-surface transition-colors text-right">
+              <div>
+                <div class="text-[10px] text-outline">Next Room</div>
+                <div id="next-room-title" class="font-bold">None</div>
+              </div>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
             </a>
           </div>
-        </div>
-      </div>
 
-      <!-- Objectives & Prerequisites -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        <!-- Learning Objectives -->
-        <div class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4">
-          <div class="flex items-center gap-2 font-mono text-xs font-bold text-primary">
-            <span class="material-symbols-outlined text-base">flag</span>
-            <span>LEARNING OBJECTIVES</span>
-          </div>
-          <h2 class="text-lg font-bold font-mono text-on-surface">What You Will Learn</h2>
-          <ul id="room-objectives-list" class="space-y-2.5 text-xs text-on-surface-variant font-sans">
-            <!-- Objectives populated dynamically -->
-          </ul>
         </div>
 
-        <!-- Prerequisites & Vocabulary Preview -->
-        <div class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4">
-          <div class="flex items-center gap-2 font-mono text-xs font-bold text-secondary">
-            <span class="material-symbols-outlined text-base">translate</span>
-            <span>CORE TERMINOLOGY</span>
-          </div>
-          <h2 class="text-lg font-bold font-mono text-on-surface">Key Concepts Introduced</h2>
-          <div id="room-vocab-list" class="flex flex-wrap gap-2 text-xs font-mono">
-            <!-- Vocabulary pills populated dynamically -->
-          </div>
-          <div class="pt-2 text-xs text-on-surface-variant font-sans">
-            <strong>Prerequisites:</strong> <span id="room-prereq-text">None</span>
-          </div>
-        </div>
-      </div>
+        <!-- =====================================================================
+             SECONDARY STICKY SIDEBAR (4 of 12 columns)
+             ===================================================================== -->
+        <aside class="space-y-5 lg:sticky lg:top-20 lg:col-span-4">
+          
+          <!-- Sticky Task Quick-Jump List -->
+          <div class="p-5 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 font-mono text-xs">
+            <div class="flex items-center justify-between border-b border-border-hairline pb-3">
+              <span class="font-bold text-on-surface uppercase tracking-wider text-[11px]">Tasks in this Room</span>
+              <span id="sidebar-progress-badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-primary/10 text-primary">0%</span>
+            </div>
 
-      <!-- =========================================================================
-           3. LESSON OUTLINE
-           ========================================================================= -->
-      <div class="space-y-4 pt-4">
-        <div class="flex items-center justify-between">
-          <h2 class="text-2xl font-black font-mono text-on-surface flex items-center gap-2">
-            <span>Lesson Outline</span>
-            <span class="text-xs px-2.5 py-0.5 rounded-full bg-surface-raised border border-border-hairline text-outline">
-              Step-by-step
-            </span>
-          </h2>
-          <span class="text-xs font-mono text-outline">Study in order</span>
-        </div>
+            <!-- Quick-Jump Task Links -->
+            <nav id="sidebar-task-nav" class="space-y-1.5" aria-label="Task Quick Jump">
+              <!-- Populated dynamically -->
+            </nav>
 
-        <div id="lessons-outline-container" class="space-y-3">
-          <!-- Populated dynamically -->
-        </div>
-      </div>
-
-      <!-- =========================================================================
-           4. RELATED PRACTICAL LAB OR TERMINAL INTEGRATION
-           ========================================================================= -->
-      <div id="related-practice-box" class="hidden p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4">
-        <div class="flex items-center gap-2 font-mono text-xs font-bold text-warning">
-          <span class="material-symbols-outlined text-base">science</span>
-          <span>HANDS-ON PRACTICE TARGET</span>
-        </div>
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div class="space-y-1">
-            <h3 id="practice-lab-title" class="text-base font-bold font-mono text-on-surface">Practical Security Lab</h3>
-            <p id="practice-lab-desc" class="text-xs text-on-surface-variant">Practice what you learned in a live simulated terminal.</p>
+            <div class="pt-3 border-t border-border-hairline/60 flex items-center justify-between text-[11px] text-outline">
+              <span id="sidebar-solved-count">0 of 0 questions solved</span>
+              <span id="sidebar-room-xp" class="text-primary font-bold">+0 XP</span>
+            </div>
           </div>
-          <a id="practice-lab-link" href="#" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-surface-raised border border-border-hairline hover:border-primary text-xs font-mono font-bold text-primary transition-colors shrink-0">
-            <span>Launch Practice Lab</span>
-            <span class="material-symbols-outlined text-sm">open_in_new</span>
-          </a>
-        </div>
-      </div>
 
-      <!-- =========================================================================
-           5. PREVIOUS / NEXT ROOM NAVIGATION
-           ========================================================================= -->
-      <div class="pt-8 border-t border-border-hairline flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 font-mono text-xs">
-        <a id="prev-room-link" href="#" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-border-hairline bg-surface-subtle hover:border-primary text-on-surface transition-colors">
-          <span class="material-symbols-outlined text-sm">arrow_back</span>
-          <div>
-            <div class="text-[10px] text-outline">Previous Room</div>
-            <div id="prev-room-title" class="font-bold">None</div>
+          <!-- Associated Practical Lab Target (if mapped) -->
+          <div id="related-practice-box" class="hidden p-5 rounded-2xl border border-secondary/30 bg-secondary/5 space-y-3 font-mono text-xs">
+            <div class="flex items-center gap-2 font-bold text-secondary text-[11px] uppercase tracking-wider">
+              <span class="material-symbols-outlined text-base">science</span>
+              <span>PRACTICAL LAB TARGET</span>
+            </div>
+            <div>
+              <h3 id="practice-lab-title" class="font-bold text-sm text-on-surface">Practical Lab</h3>
+              <p id="practice-lab-desc" class="text-xs text-on-surface-variant font-sans mt-1">Practice what you learned in a live simulated terminal.</p>
+            </div>
+            <a id="practice-lab-link" href="#" class="inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl bg-secondary text-white font-bold hover:opacity-95 shadow transition-all">
+              <span>Launch Lab Scenario</span>
+              <span class="material-symbols-outlined text-sm">open_in_new</span>
+            </a>
           </div>
-        </a>
 
-        <a id="module-syllabus-link" href="#" class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-surface-raised border border-border-hairline text-on-surface hover:text-primary transition-colors">
-          <span class="material-symbols-outlined text-sm">view_list</span>
-          <span>Back to Module</span>
-        </a>
-
-        <a id="next-room-link" href="#" class="inline-flex items-center justify-end gap-2 px-4 py-2.5 rounded-xl border border-border-hairline bg-surface-subtle hover:border-primary text-on-surface transition-colors text-right">
-          <div>
-            <div class="text-[10px] text-outline">Next Room</div>
-            <div id="next-room-title" class="font-bold">None</div>
+          <!-- Focused Reader Mode Switch -->
+          <div class="p-4 rounded-xl border border-border-hairline bg-surface-subtle font-mono text-xs text-on-surface-variant space-y-2">
+            <div class="flex items-center gap-1.5 font-bold text-on-surface text-[11px]">
+              <span class="material-symbols-outlined text-sm text-primary">auto_stories</span>
+              <span>Distraction-Free Mode</span>
+            </div>
+            <p class="text-[11px] font-sans">
+              Prefer reading one task per page? You can open this room in the focused section reader.
+            </p>
+            <a id="focused-reader-link" href="lesson.html" class="inline-flex items-center gap-1 text-primary hover:underline text-[11px] font-bold">
+              <span>Open in Lesson Reader</span>
+              <span class="material-symbols-outlined text-xs">arrow_forward</span>
+            </a>
           </div>
-          <span class="material-symbols-outlined text-sm">arrow_forward</span>
-        </a>
+
+        </aside>
+
       </div>
 
     </div>
   </main>
 
   <!-- =========================================================================
-       6. FOOTER
+       3. FOOTER
        ========================================================================= -->
   <footer class="border-t border-border-hairline bg-surface-subtle py-8 text-xs font-mono text-outline mt-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -328,10 +389,11 @@
         <span class="font-bold text-on-surface">Endlessus Cybersecurity Academy</span> · Engineered by Mihraj Mashhoor K
       </div>
       <div class="flex items-center gap-4">
-        <a href="learning.html" class="hover:text-primary transition-colors">Dashboard</a>
+        <a href="learning.html" class="hover:text-primary transition-colors">Learn</a>
         <a href="modules.html" class="hover:text-primary transition-colors">Modules</a>
         <a href="roadmap.html" class="hover:text-primary transition-colors">Roadmap</a>
         <a href="labs.html" class="hover:text-primary transition-colors">Labs</a>
+        <a href="security-tools.html" class="hover:text-primary transition-colors">Tools</a>
       </div>
     </div>
   </footer>
@@ -346,7 +408,7 @@
       'use strict';
 
       const params = new URLSearchParams(window.location.search);
-      const rawId = params.get('id');
+      const rawId = params.get('id') || params.get('room');
 
       const notFoundEl = document.getElementById('room-not-found');
       const containerEl = document.getElementById('room-container');
@@ -377,12 +439,16 @@
         document.title = 'Room Not Found · Endlessus Academy';
       }
 
-      // Populate details
+      // Record room activity
+      AcademyState.setLastActiveRoom(room.id);
+      AcademyState.updateStreak();
+
+      // Title & Meta
       document.title = `${room.id.toUpperCase()}: ${room.title} · Endlessus Academy`;
       const descEl = document.getElementById('page-desc');
       if (descEl) descEl.setAttribute('content', room.whyAreYouHere || room.title);
 
-      // Level / Module link
+      // Level / Module Breadcrumb link
       const lvlId = typeof room.level === 'number' ? room.level : room.stage;
       const levelObj = (typeof PRE_SECURITY_LEVELS !== 'undefined') ? PRE_SECURITY_LEVELS.find(l => l.id === lvlId) : null;
       
@@ -392,16 +458,21 @@
 
       document.getElementById('breadcrumb-room-title').textContent = `${room.id.toUpperCase()}: ${room.title}`;
       document.getElementById('module-syllabus-link').href = `module.html?id=level-${lvlId}`;
+      document.getElementById('focused-reader-link').href = `lesson.html?room=${room.id}&task=0`;
 
+      // Header Hero Badges
       document.getElementById('room-id-badge').textContent = room.id.toUpperCase();
       document.getElementById('room-title').textContent = room.title;
       document.getElementById('room-why').textContent = room.whyAreYouHere || room.title;
       document.getElementById('room-est-time').textContent = room.estimatedTime || '20 min';
 
-      const lessonsCount = Array.isArray(room.lessons) ? room.lessons.length : 1;
-      const questionsCount = Array.isArray(room.questions) ? room.questions.length : 0;
-      document.getElementById('room-tasks-count').textContent = `${lessonsCount} Lesson Section${lessonsCount === 1 ? '' : 's'}`;
-      document.getElementById('room-questions-count').textContent = `${questionsCount} Question${questionsCount === 1 ? '' : 's'}`;
+      const lessons = Array.isArray(room.lessons) && room.lessons.length > 0
+        ? room.lessons
+        : [{ title: '1. ' + room.title, content: room.whyAreYouHere || 'Comprehensive cybersecurity lesson content.' }];
+      const questions = Array.isArray(room.questions) ? room.questions : [];
+
+      document.getElementById('room-tasks-count').textContent = `${lessons.length} Task${lessons.length === 1 ? '' : 's'}`;
+      document.getElementById('room-questions-count').textContent = `${questions.length} Question${questions.length === 1 ? '' : 's'}`;
 
       const diffBadge = document.getElementById('room-difficulty-badge');
       diffBadge.textContent = room.difficulty || 'Beginner';
@@ -410,7 +481,7 @@
       const objList = document.getElementById('room-objectives-list');
       if (Array.isArray(room.objectives) && room.objectives.length > 0) {
         objList.innerHTML = room.objectives.map(obj => `
-          <li class="flex items-start gap-2.5">
+          <li class="flex items-start gap-2">
             <span class="material-symbols-outlined text-sm text-primary mt-0.5 shrink-0">check</span>
             <span>${escapeHtml(obj)}</span>
           </li>
@@ -428,7 +499,7 @@
       const vocabList = document.getElementById('room-vocab-list');
       if (Array.isArray(room.vocabulary) && room.vocabulary.length > 0) {
         vocabList.innerHTML = room.vocabulary.map(v => `
-          <span class="px-2.5 py-1 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" title="${escapeHtml(v.definition)}">
+          <span class="px-2 py-0.5 rounded-md border border-border-hairline bg-surface-raised text-on-surface text-[11px]" title="${escapeHtml(v.definition)}">
             ${escapeHtml(v.term)}
           </span>
         `).join('');
@@ -436,32 +507,6 @@
         vocabList.innerHTML = `<span class="text-xs text-outline">Standard cybersecurity terminology</span>`;
       }
       document.getElementById('room-prereq-text').textContent = room.prerequisites || 'None';
-
-      // Lessons Outline
-      const outlineContainer = document.getElementById('lessons-outline-container');
-      const lessons = Array.isArray(room.lessons) ? room.lessons : [{ title: '1. Core Lesson', content: '' }];
-
-      outlineContainer.innerHTML = lessons.map((les, idx) => `
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-4 rounded-xl border border-border-hairline bg-surface-subtle hover:border-primary/40 transition-colors">
-          <div class="flex items-center gap-3">
-            <span class="w-7 h-7 rounded-lg bg-surface-raised border border-border-hairline flex items-center justify-center font-mono font-bold text-xs text-outline">
-              ${idx + 1}
-            </span>
-            <div>
-              <h3 class="font-mono font-bold text-sm text-on-surface">
-                ${escapeHtml(les.title)}
-              </h3>
-              <p class="text-xs text-on-surface-variant line-clamp-1 mt-0.5">
-                ${escapeHtml(les.content ? les.content.substring(0, 95) + '...' : 'Interactive educational content')}
-              </p>
-            </div>
-          </div>
-          <a href="lesson.html?room=${room.id}&task=${idx}" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold bg-surface-raised border border-border-hairline hover:border-primary hover:text-primary transition-colors shrink-0">
-            <span>Read Section</span>
-            <span class="material-symbols-outlined text-xs">arrow_forward</span>
-          </a>
-        </div>
-      `).join('');
 
       // Practical Lab Bridge
       const labBox = document.getElementById('related-practice-box');
@@ -474,46 +519,545 @@
         document.getElementById('practice-lab-link').href = `labs.html?lab=${associatedLab.id}`;
       }
 
+      // Map questions to lessons deterministically
+      function mapQuestionsToLessons(lesList, qList) {
+        const mapping = lesList.map(() => []);
+        if (!qList || qList.length === 0) return mapping;
+
+        if (qList.length <= lesList.length) {
+          qList.forEach((q, idx) => {
+            mapping[idx].push({ question: q, originalIdx: idx });
+          });
+        } else {
+          const perLesson = Math.floor(qList.length / lesList.length);
+          let cur = 0;
+          for (let l = 0; l < lesList.length; l++) {
+            const count = (l === lesList.length - 1) ? (qList.length - cur) : perLesson;
+            for (let i = 0; i < count; i++) {
+              if (cur < qList.length) {
+                mapping[l].push({ question: qList[cur], originalIdx: cur });
+                cur++;
+              }
+            }
+          }
+        }
+        return mapping;
+      }
+
+      const taskQuestionMapping = mapQuestionsToLessons(lessons, questions);
+
+      // Render TryHackMe Task Stream (Accordion Stack)
+      const tasksContainer = document.getElementById('lessons-outline-container');
+      const sidebarNav = document.getElementById('sidebar-task-nav');
+
+      function isTaskDone(taskIdx) {
+        const assigned = taskQuestionMapping[taskIdx] || [];
+        const qIndices = assigned.map(item => item.originalIdx);
+        return AcademyState.isTaskCompleted(room.id, taskIdx, qIndices);
+      }
+
+      function renderTasks() {
+        const qProgress = AcademyState.getQuestionProgress();
+        const taskMap = AcademyState.getTaskProgressMap();
+        const isWholeRoomDone = AcademyState.isRoomCompleted(room.id);
+
+        let completedTasksCount = 0;
+
+        tasksContainer.innerHTML = lessons.map((les, taskIdx) => {
+          const assigned = taskQuestionMapping[taskIdx] || [];
+          const taskDone = isTaskDone(taskIdx);
+          if (taskDone) completedTasksCount++;
+
+          const cleanTitle = les.title.replace(/^[0-9]+\.\s*/, '');
+          const isOpenByDefault = taskIdx === 0 || !taskDone;
+
+          return `
+            <div id="task-card-${taskIdx}" class="task-card rounded-2xl border ${taskDone ? 'border-primary/40 bg-surface-subtle' : 'border-border-hairline bg-surface-subtle'} overflow-hidden shadow-sm transition-all duration-200">
+              
+              <!-- Task Header Accordion Toggle -->
+              <button type="button" class="task-accordion-toggle w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left hover:bg-surface-raised/40 transition-colors cursor-pointer select-none" data-task-idx="${taskIdx}">
+                <div class="flex items-center gap-3.5 min-w-0 flex-1">
+                  <!-- Task Status Circle Icon -->
+                  <div class="task-status-indicator shrink-0 w-7 h-7 rounded-full flex items-center justify-center font-mono font-bold text-xs ${taskDone ? 'bg-primary text-black' : 'bg-surface-raised border border-border-hairline text-outline'}">
+                    ${taskDone 
+                      ? '<span class="material-symbols-outlined text-base">check</span>' 
+                      : `<span>${taskIdx + 1}</span>`}
+                  </div>
+
+                  <div class="min-w-0 flex-1">
+                    <div class="flex items-center gap-2">
+                      <span class="text-[11px] font-mono text-outline font-bold uppercase tracking-wider">Task ${taskIdx + 1}</span>
+                      ${assigned.length > 0 
+                        ? `<span class="px-2 py-0.2 rounded text-[10px] font-mono bg-surface-raised border border-border-hairline text-outline">${assigned.length} Question${assigned.length === 1 ? '' : 's'}</span>`
+                        : `<span class="px-2 py-0.2 rounded text-[10px] font-mono bg-surface-raised border border-border-hairline text-outline">Info</span>`}
+                      ${taskDone 
+                        ? '<span class="text-[11px] font-mono font-bold text-primary flex items-center gap-0.5"><span class="material-symbols-outlined text-[13px]">verified</span>Completed</span>' 
+                        : ''}
+                    </div>
+                    <h3 class="font-mono font-bold text-sm sm:text-base text-on-surface truncate mt-0.5">
+                      ${escapeHtml(cleanTitle)}
+                    </h3>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-2 shrink-0">
+                  <a href="lesson.html?room=${room.id}&task=${taskIdx}" class="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-border-hairline bg-surface-raised hover:border-primary text-[11px] font-mono text-outline hover:text-on-surface transition-colors" title="Open this task in focused reader mode" onclick="event.stopPropagation()">
+                    <span class="material-symbols-outlined text-xs">auto_stories</span>
+                    <span>Reader</span>
+                  </a>
+                  <span class="task-chevron material-symbols-outlined text-outline transition-transform duration-200 ${isOpenByDefault ? 'rotate-180' : ''}">
+                    expand_more
+                  </span>
+                </div>
+              </button>
+
+              <!-- Task Collapsible Body -->
+              <div id="task-body-${taskIdx}" class="task-body ${isOpenByDefault ? 'block' : 'hidden'} border-t border-border-hairline/60 p-5 sm:p-6 space-y-6 bg-surface-subtle">
+                
+                <!-- Lesson Text Content -->
+                <article class="prose max-w-none text-on-surface text-sm leading-relaxed space-y-3 font-sans">
+                  ${formatMarkdownContent(les.content)}
+                </article>
+
+                <!-- Architecture Diagram (if present on task 0) -->
+                ${(room.diagramSvg && taskIdx === 0) ? `
+                  <div class="space-y-2 pt-2">
+                    <div class="flex items-center gap-2 text-xs font-mono font-bold text-primary">
+                      <span class="material-symbols-outlined text-sm">schema</span>
+                      <span>SYSTEM ARCHITECTURE</span>
+                    </div>
+                    <div class="p-4 rounded-xl border border-border-hairline bg-surface-subtle overflow-x-auto flex justify-center">
+                      ${room.diagramSvg}
+                    </div>
+                  </div>
+                ` : ''}
+
+                <!-- Worked Examples & Commands (if present on task 0) -->
+                ${(Array.isArray(room.seeExamples) && room.seeExamples.length > 0 && taskIdx === 0) ? `
+                  <div class="space-y-3 pt-2">
+                    <div class="flex items-center gap-2 text-xs font-mono font-bold text-secondary">
+                      <span class="material-symbols-outlined text-sm">code</span>
+                      <span>COMMAND SYNTAX &amp; EXAMPLES</span>
+                    </div>
+                    <div class="space-y-3">
+                      ${room.seeExamples.map(ex => `
+                        <div class="p-4 rounded-xl border border-border-hairline bg-surface-subtle space-y-2">
+                          <h4 class="font-mono font-bold text-xs text-on-surface">${escapeHtml(ex.title)}</h4>
+                          <pre class="p-3 rounded-lg bg-[#090D12] border border-[#1F2937] text-[#F3F4F6] font-mono text-xs overflow-x-auto"><code>${escapeHtml(ex.codeOrDiagram)}</code></pre>
+                          <p class="text-xs text-on-surface-variant font-sans">${escapeHtml(ex.explanation)}</p>
+                        </div>
+                      `).join('')}
+                    </div>
+                  </div>
+                ` : ''}
+
+                <!-- Interactive Terminal Check (if present on task 0) -->
+                ${(room.tryInteractive && taskIdx === 0) ? `
+                  <div class="p-4 rounded-xl border border-border-hairline bg-surface-raised/50 space-y-3 font-mono text-xs">
+                    <div class="flex items-center gap-2 font-bold text-primary">
+                      <span class="material-symbols-outlined text-sm">terminal</span>
+                      <span>INTERACTIVE SANDBOX CHECK</span>
+                    </div>
+                    <p class="text-on-surface">${escapeHtml(room.tryInteractive.prompt || 'Execute command in sandbox:')}</p>
+                    <div class="space-y-2">
+                      <div class="flex items-center gap-2 p-2 rounded-lg bg-[#090D12] border border-[#1F2937]">
+                        <span class="text-[#4EDEA3] font-bold">$</span>
+                        <input type="text" id="interactive-cmd-input" class="flex-1 bg-transparent text-[#F3F4F6] outline-none font-mono text-xs placeholder-slate-600" placeholder="Type expected command here..." autocomplete="off"/>
+                        <button type="button" id="interactive-cmd-run" class="px-3 py-1 rounded bg-primary text-black font-bold text-[11px] hover:opacity-90 cursor-pointer">Run</button>
+                      </div>
+                      <div id="interactive-cmd-output" class="hidden p-3 rounded-lg bg-[#05070A] border border-[#1F2937] text-[#F3F4F6] whitespace-pre-wrap"></div>
+                    </div>
+                  </div>
+                ` : ''}
+
+                <!-- Questions Section -->
+                <div class="pt-4 border-t border-border-hairline/80 space-y-4">
+                  <div class="flex items-center justify-between">
+                    <h4 class="font-mono font-bold text-xs text-on-surface flex items-center gap-2 uppercase tracking-wider">
+                      <span class="material-symbols-outlined text-sm text-primary">quiz</span>
+                      <span>Answer the questions below</span>
+                    </h4>
+                  </div>
+
+                  ${assigned.length > 0 ? `
+                    <div class="space-y-4">
+                      ${assigned.map(item => {
+                        const q = item.question;
+                        const origIdx = item.originalIdx;
+                        const qKey = `${room.id}_q${origIdx}`;
+                        const isSolved = Boolean(qProgress[qKey]);
+                        const isExact = q.type === 'exact';
+
+                        return `
+                          <div class="p-4 sm:p-5 rounded-xl border ${isSolved ? 'border-primary/40 bg-primary/5' : 'border-border-hairline bg-surface-raised/40'} space-y-3 transition-all" id="q-card-${origIdx}">
+                            
+                            <!-- Question Header -->
+                            <div class="flex items-center justify-between gap-2 font-mono text-xs">
+                              <span class="text-outline uppercase tracking-wider text-[11px] font-bold">
+                                Question ${origIdx + 1} · ${isExact ? 'Exact Answer' : 'Multiple Choice'}
+                              </span>
+                              <div id="q-status-${origIdx}">
+                                ${isSolved 
+                                  ? '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-primary text-black flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">verified</span>Solved (+25 XP)</span>' 
+                                  : '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-surface-subtle border border-border-hairline text-outline">Unanswered</span>'}
+                              </div>
+                            </div>
+
+                            <!-- Question Text -->
+                            <p class="font-mono text-xs sm:text-sm font-bold text-on-surface leading-snug">
+                              ${escapeHtml(q.question)}
+                            </p>
+
+                            <!-- Answer Controls -->
+                            ${isExact ? `
+                              <div class="space-y-2">
+                                ${q.visualSlots ? `
+                                  <div class="flex items-center gap-2 font-mono text-xs text-primary font-bold tracking-widest bg-surface-subtle px-3 py-1 rounded-lg border border-border-hairline w-fit">
+                                    <span>Pattern:</span> <span class="text-on-surface font-mono">${escapeHtml(q.visualSlots)}</span>
+                                  </div>
+                                ` : ''}
+
+                                <div class="flex items-center gap-2 max-w-md">
+                                  <input type="text" id="q-input-${origIdx}" class="flex-1 px-3 py-2 rounded-lg border border-border-hairline bg-surface-subtle text-xs font-mono text-on-surface placeholder-outline focus:border-primary focus:outline-none" placeholder="Type your answer..." value="${isSolved ? (q.acceptedAnswers ? q.acceptedAnswers[0] : '') : ''}" ${isSolved ? 'disabled' : ''} autocomplete="off"/>
+                                  <button type="button" class="q-submit-btn px-4 py-2 rounded-lg bg-primary text-black font-mono font-bold text-xs hover:opacity-95 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" data-qidx="${origIdx}" ${isSolved ? 'disabled' : ''}>
+                                    Submit
+                                  </button>
+                                </div>
+                              </div>
+                            ` : `
+                              <div class="space-y-2 font-mono text-xs" role="radiogroup" aria-label="Question ${origIdx + 1} Options">
+                                ${(q.options || []).map((opt, optIdx) => `
+                                  <label class="flex items-start gap-2.5 p-2.5 rounded-lg border border-border-hairline bg-surface-subtle hover:border-primary/50 cursor-pointer transition-colors">
+                                    <input type="radio" name="q-option-${origIdx}" value="${optIdx}" class="mt-0.5 accent-primary" ${isSolved && optIdx === q.correctIndex ? 'checked' : ''} ${isSolved ? 'disabled' : ''}/>
+                                    <span class="text-on-surface">${escapeHtml(opt)}</span>
+                                  </label>
+                                `).join('')}
+                                ${!isSolved ? `
+                                  <div class="pt-1">
+                                    <button type="button" class="q-submit-btn px-4 py-2 rounded-lg bg-primary text-black font-mono font-bold text-xs hover:opacity-95 cursor-pointer" data-qidx="${origIdx}">
+                                      Submit Answer
+                                    </button>
+                                  </div>
+                                ` : ''}
+                              </div>
+                            `}
+
+                            <!-- Feedback Alert -->
+                            <div id="q-feedback-${origIdx}" class="${isSolved ? 'block' : 'hidden'} p-3 rounded-lg ${isSolved ? 'bg-primary/10 border border-primary/30 text-on-surface' : ''} text-xs font-mono">
+                              ${isSolved ? `
+                                <div class="flex items-center gap-1.5 text-primary font-bold mb-0.5">
+                                  <span class="material-symbols-outlined text-sm">check_circle</span>
+                                  <span>Correct!</span>
+                                </div>
+                                <p class="text-on-surface-variant font-sans">${escapeHtml(q.explanation || 'Great job!')}</p>
+                              ` : ''}
+                            </div>
+
+                            <!-- Progressive Hint -->
+                            ${q.hint ? `
+                              <details class="text-xs font-mono text-outline group">
+                                <summary class="cursor-pointer hover:text-primary flex items-center gap-1 select-none">
+                                  <span class="material-symbols-outlined text-xs">help_outline</span>
+                                  <span>Need a hint?</span>
+                                </summary>
+                                <div class="p-3 mt-1.5 rounded-lg bg-surface-subtle border border-border-hairline text-on-surface-variant font-sans">
+                                  ${escapeHtml(q.hint)}
+                                </div>
+                              </details>
+                            ` : ''}
+
+                          </div>
+                        `;
+                      }).join('')}
+                    </div>
+                  ` : `
+                    <!-- No questions: TryHackMe "Complete Task" Button -->
+                    <div class="p-4 rounded-xl border border-border-hairline bg-surface-raised/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
+                      <div class="text-on-surface-variant">
+                        No answer needed. Click complete when you have finished reading this section.
+                      </div>
+                      <button type="button" class="complete-task-btn px-4 py-2 rounded-lg font-bold transition-all cursor-pointer shrink-0 ${taskDone ? 'bg-primary/10 text-primary border border-primary/30' : 'bg-primary text-black hover:opacity-95 shadow'}" data-task-idx="${taskIdx}">
+                        ${taskDone ? '✓ Completed' : 'Complete Task'}
+                      </button>
+                    </div>
+                  `}
+
+                </div>
+
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        // Populate Sticky Sidebar Table of Contents
+        sidebarNav.innerHTML = lessons.map((les, taskIdx) => {
+          const taskDone = isTaskDone(taskIdx);
+          const cleanTitle = les.title.replace(/^[0-9]+\.\s*/, '');
+
+          return `
+            <a href="#task-card-${taskIdx}" class="task-jump-link flex items-center justify-between gap-2 px-3 py-2 rounded-lg border transition-colors ${taskDone ? 'border-primary/20 bg-primary/5 text-on-surface font-semibold' : 'border-transparent text-on-surface-variant hover:bg-surface-raised'}" data-task-idx="${taskIdx}">
+              <div class="flex items-center gap-2 truncate">
+                <span class="w-4 h-4 rounded-full flex items-center justify-center text-[10px] shrink-0 ${taskDone ? 'text-primary' : 'text-outline'}">
+                  ${taskDone ? '✓' : (taskIdx + 1)}
+                </span>
+                <span class="truncate">${escapeHtml(cleanTitle)}</span>
+              </div>
+              ${taskDone ? '<span class="text-primary text-xs shrink-0">✓</span>' : ''}
+            </a>
+          `;
+        }).join('');
+
+        // Wire Accordion Toggles
+        document.querySelectorAll('.task-accordion-toggle').forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            const idx = this.dataset.taskIdx;
+            const body = document.getElementById(`task-body-${idx}`);
+            const chevron = this.querySelector('.task-chevron');
+            if (body) {
+              const isHidden = body.classList.contains('hidden');
+              body.classList.toggle('hidden');
+              if (chevron) {
+                chevron.classList.toggle('rotate-180', isHidden);
+              }
+            }
+          });
+        });
+
+        // Wire Sidebar Task Jump Links
+        document.querySelectorAll('.task-jump-link').forEach(link => {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const idx = this.dataset.taskIdx;
+            const card = document.getElementById(`task-card-${idx}`);
+            const body = document.getElementById(`task-body-${idx}`);
+            const chevron = card ? card.querySelector('.task-chevron') : null;
+            if (card) {
+              if (body && body.classList.contains('hidden')) {
+                body.classList.remove('hidden');
+                if (chevron) chevron.classList.add('rotate-180');
+              }
+              card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          });
+        });
+
+        // Wire "Complete Task" buttons for tasks without questions
+        document.querySelectorAll('.complete-task-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const idx = parseInt(this.dataset.taskIdx, 10);
+            AcademyState.completeTask(room.id, idx);
+            // If all tasks are completed, mark whole room done
+            checkAndCompleteWholeRoom();
+            renderTasks();
+            renderOverallProgress();
+          });
+        });
+
+        // Wire Question Submit Buttons
+        document.querySelectorAll('.q-submit-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const qIdx = parseInt(this.dataset.qidx, 10);
+            handleQuestionSubmit(qIdx);
+          });
+        });
+
+        // Wire Enter key for text inputs
+        questions.forEach((q, idx) => {
+          const input = document.getElementById(`q-input-${idx}`);
+          if (input) {
+            input.onkeydown = function(e) {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                handleQuestionSubmit(idx);
+              }
+            };
+          }
+        });
+
+        // Wire Interactive Sandbox Check if present
+        if (room.tryInteractive) {
+          const cmdInput = document.getElementById('interactive-cmd-input');
+          const cmdRun = document.getElementById('interactive-cmd-run');
+          const cmdOutput = document.getElementById('interactive-cmd-output');
+
+          if (cmdRun && cmdInput && cmdOutput) {
+            cmdRun.onclick = function() {
+              const val = cmdInput.value.trim();
+              cmdOutput.classList.remove('hidden');
+              if (val === room.tryInteractive.expectedCommand || !room.tryInteractive.expectedCommand) {
+                cmdOutput.textContent = room.tryInteractive.simulatedOutput || '[+] Command executed successfully.';
+                cmdOutput.className = 'p-3 rounded-lg bg-[#05070A] border border-primary/50 text-[#4EDEA3] font-mono text-xs whitespace-pre-wrap';
+              } else {
+                cmdOutput.textContent = `[-] Command '${val}' not recognized. Try typing: ${room.tryInteractive.expectedCommand}`;
+                cmdOutput.className = 'p-3 rounded-lg bg-[#05070A] border border-danger-critical/50 text-[#EF4444] font-mono text-xs whitespace-pre-wrap';
+              }
+            };
+
+            cmdInput.onkeydown = function(e) {
+              if (e.key === 'Enter') cmdRun.click();
+            };
+          }
+        }
+      }
+
+      function handleQuestionSubmit(idx) {
+        const q = questions[idx];
+        if (!q) return;
+
+        let isCorrect = false;
+        let userInput = '';
+
+        if (q.type === 'exact') {
+          const inputEl = document.getElementById(`q-input-${idx}`);
+          userInput = inputEl ? inputEl.value : '';
+          isCorrect = AcademyState.validateAnswer(q, userInput);
+        } else {
+          const selected = document.querySelector(`input[name="q-option-${idx}"]:checked`);
+          if (selected) {
+            const chosenIdx = parseInt(selected.value, 10);
+            isCorrect = chosenIdx === q.correctIndex;
+          }
+        }
+
+        const feedbackEl = document.getElementById(`q-feedback-${idx}`);
+        if (feedbackEl) feedbackEl.classList.remove('hidden');
+
+        if (isCorrect) {
+          const res = AcademyState.solveQuestion(room.id, idx, q);
+          if (feedbackEl) {
+            feedbackEl.className = 'p-3 rounded-lg bg-primary/10 border border-primary/30 text-on-surface text-xs font-mono block';
+            feedbackEl.innerHTML = `
+              <div class="flex items-center gap-1.5 text-primary font-bold mb-0.5">
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+                <span>Correct! ${res.xp > 0 ? '(+25 XP Awarded)' : ''}</span>
+              </div>
+              <p class="text-on-surface-variant font-sans">${escapeHtml(q.explanation || 'Well done! Answer verified.')}</p>
+            `;
+          }
+          checkAndCompleteWholeRoom();
+          renderTasks();
+          renderOverallProgress();
+        } else {
+          if (feedbackEl) {
+            feedbackEl.className = 'p-3 rounded-lg bg-danger-critical/10 border border-danger-critical/30 text-on-surface text-xs font-mono block';
+            feedbackEl.innerHTML = `
+              <div class="flex items-center gap-1.5 text-danger-critical font-bold mb-0.5">
+                <span class="material-symbols-outlined text-sm">close</span>
+                <span>Incorrect Answer</span>
+              </div>
+              <p class="text-on-surface-variant font-sans">Review the explanation above or check the hint for guidance.</p>
+            `;
+          }
+        }
+      }
+
+      function checkAndCompleteWholeRoom() {
+        // If all questions are solved AND all tasks are complete
+        const allTasksDone = lessons.every((_, idx) => isTaskDone(idx));
+        if (allTasksDone && !AcademyState.isRoomCompleted(room.id)) {
+          AcademyState.markRoomCompleted(room.id);
+        }
+      }
+
       // Progress & Status Rendering
-      function renderProgress() {
+      function renderOverallProgress() {
         const isDone = AcademyState.isRoomCompleted(room.id);
         const qMap = AcademyState.getQuestionProgress();
-        const totalQ = Array.isArray(room.questions) ? room.questions.length : 0;
+        const totalQ = questions.length;
         let solvedQ = 0;
         for (let i = 0; i < totalQ; i++) {
           if (qMap[`${room.id}_q${i}`]) solvedQ++;
         }
-        const pct = totalQ > 0 ? Math.round((solvedQ / totalQ) * 100) : (isDone ? 100 : 0);
+
+        let completedTasks = 0;
+        lessons.forEach((_, idx) => {
+          if (isTaskDone(idx)) completedTasks++;
+        });
+
+        const pct = lessons.length > 0 
+          ? Math.round((completedTasks / lessons.length) * 100) 
+          : (isDone ? 100 : 0);
 
         const statusBadge = document.getElementById('room-status-badge');
         const progressBar = document.getElementById('room-progress-bar');
         const subtext = document.getElementById('room-progress-subtext');
         const actionBtn = document.getElementById('room-primary-action');
         const actionText = document.getElementById('room-action-text');
+        const sidebarBadge = document.getElementById('sidebar-progress-badge');
+        const sidebarSolved = document.getElementById('sidebar-solved-count');
+        const sidebarXp = document.getElementById('sidebar-room-xp');
 
-        progressBar.style.width = `${pct}%`;
-        subtext.textContent = `${solvedQ} of ${totalQ} questions solved (${pct}%)`;
+        if (progressBar) progressBar.style.width = `${pct}%`;
+        if (subtext) subtext.textContent = `${completedTasks} of ${lessons.length} tasks completed (${pct}%)`;
+        if (sidebarBadge) sidebarBadge.textContent = `${pct}%`;
+        if (sidebarSolved) sidebarSolved.textContent = `${solvedQ} of ${totalQ} questions solved`;
+        if (sidebarXp) sidebarXp.textContent = `+${solvedQ * 25 + (isDone ? 50 : 0)} XP`;
 
         if (isDone || pct === 100) {
-          statusBadge.textContent = 'Completed';
-          statusBadge.className = 'font-bold text-primary flex items-center gap-1';
-          actionText.textContent = 'Review Lesson';
-          actionBtn.href = `lesson.html?room=${room.id}&task=0`;
-        } else if (solvedQ > 0) {
-          statusBadge.textContent = `In Progress (${pct}%)`;
-          statusBadge.className = 'font-bold text-secondary flex items-center gap-1';
-          actionText.textContent = 'Resume Lesson';
-          actionBtn.href = `lesson.html?room=${room.id}&task=0`;
+          if (statusBadge) {
+            statusBadge.textContent = 'Completed ✓';
+            statusBadge.className = 'font-bold text-primary flex items-center gap-1';
+          }
+          if (actionText) actionText.textContent = 'Review Tasks';
+          if (actionBtn) actionBtn.href = '#task-card-0';
+        } else if (completedTasks > 0 || solvedQ > 0) {
+          if (statusBadge) {
+            statusBadge.textContent = `In Progress (${pct}%)`;
+            statusBadge.className = 'font-bold text-secondary flex items-center gap-1';
+          }
+          if (actionText) actionText.textContent = 'Resume Room';
+          // Find first incomplete task
+          const firstIncomplete = lessons.findIndex((_, idx) => !isTaskDone(idx));
+          if (actionBtn) actionBtn.href = `#task-card-${firstIncomplete >= 0 ? firstIncomplete : 0}`;
         } else {
-          statusBadge.textContent = 'Not Started';
-          statusBadge.className = 'font-bold text-outline';
-          actionText.textContent = 'Start Lesson';
-          actionBtn.href = `lesson.html?room=${room.id}&task=0`;
+          if (statusBadge) {
+            statusBadge.textContent = 'Not Started';
+            statusBadge.className = 'font-bold text-outline';
+          }
+          if (actionText) actionText.textContent = 'Start Room';
+          if (actionBtn) actionBtn.href = '#task-card-0';
         }
       }
 
-      renderProgress();
-      window.addEventListener('endlessus-progress-updated', renderProgress);
+      // Expand / Collapse all tasks handlers
+      const btnExpandAll = document.getElementById('btn-expand-all');
+      const btnCollapseAll = document.getElementById('btn-collapse-all');
+      const btnToggleAll = document.getElementById('btn-toggle-all-tasks');
+
+      if (btnExpandAll) {
+        btnExpandAll.addEventListener('click', () => {
+          document.querySelectorAll('.task-body').forEach(b => b.classList.remove('hidden'));
+          document.querySelectorAll('.task-chevron').forEach(c => c.classList.add('rotate-180'));
+        });
+      }
+
+      if (btnCollapseAll) {
+        btnCollapseAll.addEventListener('click', () => {
+          document.querySelectorAll('.task-body').forEach(b => b.classList.add('hidden'));
+          document.querySelectorAll('.task-chevron').forEach(c => c.classList.remove('rotate-180'));
+        });
+      }
+
+      if (btnToggleAll) {
+        btnToggleAll.addEventListener('click', () => {
+          const firstBody = document.querySelector('.task-body');
+          const shouldExpand = firstBody ? firstBody.classList.contains('hidden') : true;
+          document.querySelectorAll('.task-body').forEach(b => {
+            if (shouldExpand) b.classList.remove('hidden');
+            else b.classList.add('hidden');
+          });
+          document.querySelectorAll('.task-chevron').forEach(c => {
+            if (shouldExpand) c.classList.add('rotate-180');
+            else c.classList.remove('rotate-180');
+          });
+        });
+      }
+
+      renderTasks();
+      renderOverallProgress();
+      window.addEventListener('endlessus-progress-updated', () => {
+        renderOverallProgress();
+      });
 
       // Prev / Next Room Navigation
       const allRooms = (typeof ENDLESSUS_ROOMS !== 'undefined') ? ENDLESSUS_ROOMS : [];
@@ -540,6 +1084,17 @@
       } else {
         nextLink.classList.add('opacity-40', 'pointer-events-none');
         nextTitle.textContent = 'Curriculum Complete';
+      }
+
+      // Markdown formatter
+      function formatMarkdownContent(text) {
+        if (!text) return '';
+        let html = escapeHtml(text);
+        html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        html = html.replace(/•\s*(.*?)(?=\n|$)/g, '<li class="ml-4 list-disc">$1</li>');
+        html = html.replace(/`([^`]+)`/g, '<code class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-primary">$1</code>');
+        html = html.split('\n\n').map(p => `<p>${p}</p>`).join('');
+        return html;
       }
 
       function escapeHtml(str) {

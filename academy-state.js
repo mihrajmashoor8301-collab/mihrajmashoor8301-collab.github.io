@@ -33,7 +33,8 @@
     STREAK: 'endlessus_streak_days',
     LAST_ACTIVE: 'endlessus_last_active',
     LAST_ROOM: 'endlessus_last_room',
-    THEME: 'endlessus_learning_theme'
+    THEME: 'endlessus_learning_theme',
+    TASKS: 'endlessus_task_progress'
   };
 
   function safeGet(key, defaultVal) {
@@ -293,6 +294,37 @@
     }
   }
 
+  function getTaskProgressMap() {
+    const raw = safeGet(KEYS.TASKS, {});
+    return (raw && typeof raw === 'object' && !Array.isArray(raw)) ? raw : {};
+  }
+
+  function isTaskCompleted(roomId, taskIdx, associatedQuestionIndices) {
+    if (!roomId || taskIdx === undefined) return false;
+    if (isRoomCompleted(roomId)) return true;
+
+    // If task has questions, check if all associated questions are solved
+    if (Array.isArray(associatedQuestionIndices) && associatedQuestionIndices.length > 0) {
+      const qMap = getQuestionProgress();
+      return associatedQuestionIndices.every(qIdx => Boolean(qMap[`${roomId}_q${qIdx}`]));
+    }
+
+    // Otherwise check explicit task completion flag
+    const taskMap = getTaskProgressMap();
+    return Boolean(taskMap[`${roomId}_t${taskIdx}`]);
+  }
+
+  function completeTask(roomId, taskIdx) {
+    if (!roomId || taskIdx === undefined) return;
+    const taskMap = getTaskProgressMap();
+    taskMap[`${roomId}_t${taskIdx}`] = true;
+    safeSet(KEYS.TASKS, taskMap);
+
+    updateStreak();
+    setLastActiveRoom(roomId);
+    dispatchStateChange({ type: 'task-completed', roomId, taskIdx });
+  }
+
   // Cross-tab sync
   if (typeof window !== 'undefined') {
     window.addEventListener('storage', (e) => {
@@ -312,8 +344,11 @@
     getCompletedLabs,
     getQuestionProgress,
     getRoomProgressMap,
+    getTaskProgressMap,
     isRoomCompleted,
     isQuestionSolved,
+    isTaskCompleted,
+    completeTask,
     markRoomCompleted,
     markRoomIncomplete,
     solveQuestion,

@@ -91,8 +91,18 @@
         <span id="header-progress-pct" class="text-primary font-bold">0%</span>
       </div>
 
-      <!-- Right Action Bar -->
-      <div class="flex items-center gap-2">
+        <!-- Live Streak & XP Badges -->
+        <div class="hidden sm:flex items-center gap-2 font-mono text-xs">
+          <span class="px-2.5 py-1 rounded-lg bg-surface-raised border border-border-hairline text-outline flex items-center gap-1" title="Daily Learning Streak">
+            <span>🔥</span>
+            <span class="font-bold text-on-surface" data-academy-streak>1d</span>
+          </span>
+          <span class="px-2.5 py-1 rounded-lg bg-surface-raised border border-border-hairline text-outline flex items-center gap-1" title="Earned Knowledge Points">
+            <span class="text-primary font-bold">⚡</span>
+            <span class="font-bold text-on-surface" data-academy-xp>0 XP</span>
+          </span>
+        </div>
+
         <a id="header-room-link" href="#" class="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-raised hover:border-primary text-xs font-mono text-on-surface transition-colors">
           <span class="material-symbols-outlined text-xs">meeting_room</span>
           <span>Room Overview</span>

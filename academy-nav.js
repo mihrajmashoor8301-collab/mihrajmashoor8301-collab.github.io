@@ -683,16 +683,27 @@
   }
 
   // =========================================================================
-  // 5. INITIALIZE ON DOM READY
-  // =========================================================================
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      initAcademyGlobalListeners();
-      syncThemeButtons(getStoredTheme());
-    });
-  } else {
+  function initAll() {
     initAcademyGlobalListeners();
     syncThemeButtons(getStoredTheme());
+    syncHeaderStats();
+    window.addEventListener('endlessus-progress-updated', syncHeaderStats);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+  } else {
+    initAll();
+  }
+
+  function syncHeaderStats() {
+    if (typeof window === 'undefined' || typeof window.AcademyState === 'undefined') return;
+    const streakEls = document.querySelectorAll('#header-streak-pill, .header-streak-pill');
+    const xpEls = document.querySelectorAll('#header-xp-pill, .header-xp-pill');
+    const streak = window.AcademyState.getStreak ? window.AcademyState.getStreak() : 1;
+    const xp = window.AcademyState.calculateTotalXP ? window.AcademyState.calculateTotalXP() : 0;
+    streakEls.forEach(el => { el.textContent = `${streak}d`; });
+    xpEls.forEach(el => { el.textContent = `${xp.toLocaleString()} XP`; });
   }
 
   // Expose global API
