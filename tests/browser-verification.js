@@ -293,7 +293,7 @@ async function runBrowserTests() {
       mobile: true
     });
     await client.evaluate('window.updateRoadmapConnectors && window.updateRoadmapConnectors()');
-    await new Promise(r => setTimeout(r, 300));
+    await new Promise(r => setTimeout(r, 400));
 
     const mobileStats = await client.evaluate(`
       (() => {
@@ -303,18 +303,37 @@ async function runBrowserTests() {
         const cards = document.querySelectorAll('.lh-roadmap-card').length;
         const svg = document.getElementById('roadmap-svg');
         const wideEls = Array.from(document.querySelectorAll('*')).filter(el => el.offsetWidth > 385).slice(0, 5).map(el => (el.tagName + '.' + el.className + '#' + el.id));
+        
+        // Measure mobile orb centers
+        const orbEls = Array.from(document.querySelectorAll('.lh-roadmap-orb'));
+        const wrap = document.getElementById('roadmap-wrapper').getBoundingClientRect();
+        const coords = orbEls.slice(0, 5).map(o => {
+          const r = o.getBoundingClientRect();
+          return Math.round(r.left + r.width / 2 - wrap.left);
+        });
+
         return {
           bodyScrollWidth,
           windowInnerWidth,
           orbs,
           cards,
           svgWidth: svg ? svg.getAttribute('width') : 0,
-          wideEls
+          wideEls,
+          coords
         };
       })()
     `);
+    console.log(`  ✓ Mobile 375px First 5 Orb Centers (X): ${JSON.stringify(mobileStats.coords)}`);
     assert(mobileStats.bodyScrollWidth <= mobileStats.windowInnerWidth, 'Mobile layout must not trigger horizontal scroll overflow');
     assert.strictEqual(mobileStats.orbs, 45, 'Mobile layout must display all 45 orbs');
+    assert(mobileStats.coords[0] < mobileStats.coords[1], 'Mobile Orb 0 (left) must be to the left of Orb 1 (center)');
+    assert(mobileStats.coords[1] < mobileStats.coords[2], 'Mobile Orb 1 (center) must be to the left of Orb 2 (right)');
+
+    // Capture visual screenshot of the mobile responsive experience
+    const mobileScreenshot = await client.send('Page.captureScreenshot', { format: 'png' });
+    const mobileScreenshotPath = path.join(__dirname, '..', 'mobile-verification.png');
+    fs.writeFileSync(mobileScreenshotPath, Buffer.from(mobileScreenshot.data, 'base64'));
+    console.log(`  ✓ Saved mobile verification screenshot to: ${mobileScreenshotPath}`);
 
     // Reset Desktop Viewport (1200px)
     await client.send('Emulation.setDeviceMetricsOverride', {
@@ -385,9 +404,23 @@ async function runBrowserTests() {
     assert(correctSubmission.feedback.includes('Correct'), 'Must display Correct! feedback');
     assert(correctSubmission.explanationVisible, 'Explanation box must be displayed after solving');
 
+    // Verify Visual Slots revealed "whoami"
+    const revealedSlots = await client.evaluate(`
+      (() => {
+        const slots = Array.from(document.querySelectorAll('[data-q-id="q-01-1"] .lh-slot-box'));
+        return slots.map(s => s.textContent.trim()).join('');
+      })()
+    `);
+    console.log(`  ✓ Revealed slot box characters: "${revealedSlots}"`);
+    assert.strictEqual(revealedSlots, 'whoami', 'Visual slots must reveal "whoami" after correct answer');
+
     // Verify Question IS solved in window.LEARNING_STATE & LocalStorage
     const isSolvedAfter = await client.evaluate('Boolean(window.LEARNING_STATE.questionProgress["q-01-1"])');
     assert.strictEqual(isSolvedAfter, true, 'Question must be marked solved in window.LEARNING_STATE');
+
+    const earnedXP = await client.evaluate('window.LEARNING_STATE.getXP()');
+    console.log(`  ✓ Total earned XP in state: ${earnedXP}`);
+    assert(earnedXP >= 25, 'Total XP must be at least 25 after solving question');
 
     const storedProgress = await client.evaluate('localStorage.getItem("endlessus_question_progress")');
     assert(storedProgress && storedProgress.includes('q-01-1'), 'Progress must be persisted into localStorage');
@@ -447,6 +480,32 @@ async function runBrowserTests() {
     assert.strictEqual(subnetResult.network, '192.168.10.0');
     assert.strictEqual(subnetResult.hosts, '254');
     assert(subnetResult.scope.includes('Class C') || subnetResult.scope.includes('Private'));
+
+    // Test Tab 7: Text Inspector, Shannon Entropy & Canonical Hex Dump
+    const inspectorResult = await client.evaluate(`
+      (() => {
+        document.querySelector('[data-tab="tab-inspector"]').click();
+        const inspIn = document.getElementById('inspector-input');
+        inspIn.value = 'EndlessusPreSecurityPlatform2026!';
+        inspIn.dispatchEvent(new Event('input', { bubbles: true }));
+
+        const entropy = document.getElementById('metric-entropy').textContent.trim();
+        const rating = document.getElementById('metric-rating').textContent.trim();
+
+        const hexIn = document.getElementById('hexdump-input');
+        const hexBtn = document.getElementById('btn-generate-hexdump');
+        hexIn.value = 'Hello World 1234';
+        hexBtn.click();
+        const hexdump = document.getElementById('hexdump-output').textContent;
+
+        return { entropy: parseFloat(entropy), rating, hexdump };
+      })()
+    `);
+    console.log(`  ✓ Shannon Entropy: ${inspectorResult.entropy} bits/byte (${inspectorResult.rating})`);
+    console.log(`  ✓ Canonical Hex Dump Line 1: ${inspectorResult.hexdump.split('\\n')[0]}`);
+    assert(inspectorResult.entropy > 3.0, 'Shannon entropy must be calculated and > 3.0 bits/byte');
+    assert(inspectorResult.hexdump.includes('00000000'), 'Canonical hex dump must start with offset 00000000');
+    assert(inspectorResult.hexdump.includes('|Hello World 1234|'), 'Hex dump must contain printable ASCII representation');
 
     // Capture screenshot of Security Tools
     const screenshot = await client.send('Page.captureScreenshot', { format: 'png' });

@@ -681,10 +681,72 @@
          PANEL 7: TEXT INSPECTOR & DIFF
          ======================================================================= -->
     <section class="st-panel" id="tab-inspector">
+      <!-- 1. Text Inspector & Shannon Entropy -->
+      <div class="st-tool-card">
+        <h2 class="st-tool-title">
+          <span class="material-symbols-outlined" style="color: var(--lh-primary);">analytics</span>
+          <span>Text Metrics &amp; Shannon Entropy Estimator</span>
+        </h2>
+        <p class="st-tool-desc">
+          Inspect text length, encoding boundaries, and calculate Shannon entropy (0 to 8.0 bits/byte) to evaluate information density, encryption, compression, or token randomness.
+        </p>
+
+        <label class="st-input-label" for="inspector-input">Input Text / Payload / Token</label>
+        <textarea class="st-textarea" id="inspector-input" placeholder="Type or paste text to inspect metrics and entropy..."></textarea>
+
+        <div class="st-grid-4" id="inspector-metrics" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin: 1.25rem 0;">
+          <div style="background: var(--lh-bg-deep); padding: 0.85rem 1rem; border-radius: 8px; border: 1px solid var(--lh-surface-border);">
+            <div style="font-size: 0.75rem; color: var(--lh-text-muted); text-transform: uppercase; font-weight: 700;">Characters</div>
+            <div id="metric-chars" style="font-size: 1.35rem; font-weight: 800; color: var(--lh-text); font-family: var(--lh-font-mono);">0</div>
+          </div>
+          <div style="background: var(--lh-bg-deep); padding: 0.85rem 1rem; border-radius: 8px; border: 1px solid var(--lh-surface-border);">
+            <div style="font-size: 0.75rem; color: var(--lh-text-muted); text-transform: uppercase; font-weight: 700;">Bytes (UTF-8)</div>
+            <div id="metric-bytes" style="font-size: 1.35rem; font-weight: 800; color: var(--lh-text); font-family: var(--lh-font-mono);">0</div>
+          </div>
+          <div style="background: var(--lh-bg-deep); padding: 0.85rem 1rem; border-radius: 8px; border: 1px solid var(--lh-surface-border);">
+            <div style="font-size: 0.75rem; color: var(--lh-text-muted); text-transform: uppercase; font-weight: 700;">Entropy</div>
+            <div id="metric-entropy" style="font-size: 1.35rem; font-weight: 800; color: var(--lh-primary); font-family: var(--lh-font-mono);">0.000</div>
+          </div>
+          <div style="background: var(--lh-bg-deep); padding: 0.85rem 1rem; border-radius: 8px; border: 1px solid var(--lh-surface-border);">
+            <div style="font-size: 0.75rem; color: var(--lh-text-muted); text-transform: uppercase; font-weight: 700;">Entropy Rating</div>
+            <div id="metric-rating" style="font-size: 1rem; font-weight: 700; color: var(--lh-text); margin-top: 0.25rem;">Empty</div>
+          </div>
+        </div>
+
+        <div id="entropy-explanation" style="padding: 0.75rem 1rem; background: var(--lh-bg-deep); border-left: 3px solid var(--lh-primary); border-radius: 0 6px 6px 0; font-size: 0.84rem; color: var(--lh-text-muted);">
+          Shannon entropy measures the average information density per byte. Typical English text scores 3.5–5.0; random cryptographic keys and encrypted payloads score > 7.2 bits/byte.
+        </div>
+      </div>
+
+      <!-- 2. Canonical Hex Dump Generator -->
+      <div class="st-tool-card">
+        <h2 class="st-tool-title">
+          <span class="material-symbols-outlined" style="color: var(--lh-secondary);">data_object</span>
+          <span>Canonical Hex Dump Generator</span>
+        </h2>
+        <p class="st-tool-desc">
+          Generate classic 16-byte canonical hex dumps with 8-digit hexadecimal offset addresses, two 8-byte space-separated hex columns, and printable ASCII translation.
+        </p>
+
+        <label class="st-input-label" for="hexdump-input">Source Text for Hex Dump</label>
+        <textarea class="st-textarea" id="hexdump-input" placeholder="Enter text to generate canonical hex dump..."></textarea>
+
+        <div class="st-btn-group" style="margin-top: 0.75rem; margin-bottom: 1rem;">
+          <button class="st-btn st-btn-primary" id="btn-generate-hexdump">Generate Hex Dump</button>
+          <button class="st-btn" id="btn-copy-hexdump">Copy Hex Dump</button>
+          <button class="st-btn" id="btn-clear-hexdump">Clear</button>
+        </div>
+
+        <div id="hexdump-feedback" style="display: none; padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 0.85rem; margin-bottom: 0.75rem;"></div>
+
+        <pre class="st-output-box" id="hexdump-output" style="white-space: pre; overflow-x: auto; font-family: var(--lh-font-mono); font-size: 0.82rem; line-height: 1.5; min-height: 120px;"></pre>
+      </div>
+
+      <!-- 3. Text Comparison & Diff -->
       <div class="st-tool-card">
         <h2 class="st-tool-title">
           <span class="material-symbols-outlined" style="color: var(--lh-primary);">difference</span>
-          <span>Text Inspector & Comparison</span>
+          <span>Text Inspector &amp; Comparison</span>
         </h2>
         <p class="st-tool-desc">
           Compare two text blocks to inspect byte differences, whitespace discrepancies, and character counts.
@@ -917,6 +979,23 @@
       });
     });
 
+    function showToast(msg, isSuccess = true) {
+      let toast = document.getElementById('st-global-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'st-global-toast';
+        toast.style.cssText = 'position: fixed; bottom: 24px; right: 24px; padding: 0.75rem 1.25rem; border-radius: 8px; font-size: 0.88rem; font-weight: 600; z-index: 9999; box-shadow: 0 4px 14px rgba(0,0,0,0.18); transition: opacity 0.25s ease; pointer-events: none; opacity: 0;';
+        document.body.appendChild(toast);
+      }
+      toast.textContent = msg;
+      toast.style.background = isSuccess ? '#065f46' : '#991b1b';
+      toast.style.color = '#ffffff';
+      toast.style.opacity = '1';
+      setTimeout(() => {
+        toast.style.opacity = '0';
+      }, 2200);
+    }
+
     function renderPayloads() {
       const query = (payloadSearch.value || '').toLowerCase().trim();
       const filtered = SecurityTools.EDUCATIONAL_PAYLOADS.filter(p => {
@@ -938,18 +1017,18 @@
         <div class="st-payload-card">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
             <div>
-              <span class="st-badge st-badge-primary">${p.categoryName}</span>
-              <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--lh-text); margin: 0.35rem 0 0.15rem 0;">${p.name}</h3>
+              <span class="st-badge st-badge-primary">${escapeHtml(p.categoryName)}</span>
+              <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--lh-text); margin: 0.35rem 0 0.15rem 0;">${escapeHtml(p.name)}</h3>
             </div>
             <a href="${p.roomLink}" class="st-btn" style="padding: 0.25rem 0.6rem; font-size: 0.75rem;">
               <span>Study in Lesson →</span>
             </a>
           </div>
 
-          <p style="font-size: 0.85rem; color: var(--lh-text-muted); margin-bottom: 0.75rem;">${p.description}</p>
+          <p style="font-size: 0.85rem; color: var(--lh-text-muted); margin-bottom: 0.75rem;">${escapeHtml(p.description)}</p>
 
           <div style="font-size: 0.8rem; margin-bottom: 0.4rem; color: var(--lh-text-subtle);">
-            <strong>Context:</strong> <code>${p.context}</code>
+            <strong>Context:</strong> <code>${escapeHtml(p.context)}</code>
           </div>
 
           <!-- Payload Code Display -->
@@ -960,7 +1039,7 @@
 
           <!-- Defensive Guidance -->
           <div style="padding: 0.6rem 0.8rem; background: rgba(22, 163, 74, 0.05); border-left: 3px solid var(--lh-success); font-size: 0.8rem; color: #14532d; border-radius: 0 4px 4px 0;">
-            <strong>Secure Mitigation:</strong> ${p.mitigation}
+            <strong>Secure Mitigation:</strong> ${escapeHtml(p.mitigation)}
           </div>
         </div>
       `).join('');
@@ -976,7 +1055,9 @@
       const el = document.getElementById('code-' + pId);
       if (el) {
         navigator.clipboard.writeText(el.textContent).then(() => {
-          alert('Payload copied to clipboard!');
+          showToast('✓ Payload copied to clipboard!', true);
+        }).catch(() => {
+          showToast('Copy failed: clipboard permission denied', false);
         });
       }
     };
@@ -1012,7 +1093,7 @@
     window.copyHash = function(elId) {
       const el = document.getElementById(elId);
       if (el) {
-        navigator.clipboard.writeText(el.textContent).then(() => alert('Hash copied!'));
+        navigator.clipboard.writeText(el.textContent).then(() => showToast('✓ Hash copied to clipboard!', true));
       }
     };
 
@@ -1032,8 +1113,8 @@
 
       let candidatesHtml = res.candidates.map(c => `
         <li style="margin-bottom: 0.4rem;">
-          <strong style="color: var(--lh-primary);">${c.name}</strong> (${c.bitLength}-bit) — 
-          <span style="color: var(--lh-text-muted);">${c.commonUsage}</span>
+          <strong style="color: var(--lh-primary);">${escapeHtml(c.name)}</strong> (${c.bitLength}-bit) — 
+          <span style="color: var(--lh-text-muted);">${escapeHtml(c.commonUsage)}</span>
         </li>
       `).join('');
 
@@ -1046,9 +1127,64 @@
             <div style="font-size: 0.85rem; font-weight: 700; margin-bottom: 0.4rem;">Candidate Algorithm Matches:</div>
             <ul style="font-size: 0.85rem; margin-left: 1.25rem; line-height: 1.5;">${candidatesHtml}</ul>
           ` : '<div style="color: var(--lh-text-muted); font-size: 0.85rem;">No exact standard hash lengths matched.</div>'}
-          <div style="margin-top: 0.6rem; font-size: 0.75rem; color: var(--lh-text-subtle);">${res.caveat}</div>
+          <div style="margin-top: 0.6rem; font-size: 0.75rem; color: var(--lh-text-subtle);">${escapeHtml(res.caveat)}</div>
         </div>
       `;
+    });
+
+    // =========================================================================
+    // Text Metrics & Shannon Entropy Logic
+    // =========================================================================
+    const inspectorInput = document.getElementById('inspector-input');
+    const metricChars = document.getElementById('metric-chars');
+    const metricBytes = document.getElementById('metric-bytes');
+    const metricEntropy = document.getElementById('metric-entropy');
+    const metricRating = document.getElementById('metric-rating');
+    const entropyExplanation = document.getElementById('entropy-explanation');
+
+    function updateInspectorMetrics() {
+      if (!inspectorInput) return;
+      const text = inspectorInput.value;
+      const info = SecurityTools.inspectText(text);
+      if (metricChars) metricChars.textContent = info.characterCount.toLocaleString();
+      if (metricBytes) metricBytes.textContent = info.byteLength.toLocaleString();
+      if (metricEntropy) metricEntropy.textContent = info.entropy.toFixed(3);
+      if (metricRating) metricRating.textContent = info.entropyRating;
+      if (entropyExplanation) {
+        entropyExplanation.textContent = info.entropyDescription + ` (Shannon Entropy: ${info.entropy.toFixed(3)} bits/byte)`;
+      }
+    }
+
+    if (inspectorInput) {
+      inspectorInput.addEventListener('input', updateInspectorMetrics);
+      updateInspectorMetrics();
+    }
+
+    // =========================================================================
+    // Canonical Hex Dump Logic
+    // =========================================================================
+    const hexdumpInput = document.getElementById('hexdump-input');
+    const hexdumpOutput = document.getElementById('hexdump-output');
+    const hexdumpFeedback = document.getElementById('hexdump-feedback');
+
+    function runHexDump() {
+      if (!hexdumpInput || !hexdumpOutput) return;
+      const text = hexdumpInput.value;
+      const dump = SecurityTools.generateHexDump(text);
+      hexdumpOutput.textContent = dump || '00000000                          |                |';
+    }
+
+    document.getElementById('btn-generate-hexdump')?.addEventListener('click', runHexDump);
+    document.getElementById('btn-copy-hexdump')?.addEventListener('click', () => {
+      if (!hexdumpOutput || !hexdumpOutput.textContent) return;
+      navigator.clipboard.writeText(hexdumpOutput.textContent).then(() => {
+        showToast('✓ Hex dump copied to clipboard!', true);
+      });
+    });
+    document.getElementById('btn-clear-hexdump')?.addEventListener('click', () => {
+      if (hexdumpInput) hexdumpInput.value = '';
+      if (hexdumpOutput) hexdumpOutput.textContent = '';
+      if (hexdumpFeedback) hexdumpFeedback.style.display = 'none';
     });
 
     // =========================================================================

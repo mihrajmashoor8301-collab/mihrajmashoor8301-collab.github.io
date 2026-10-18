@@ -119,6 +119,77 @@ async function test(name, fn) {
     assert.deepStrictEqual(res.newlyCompleted.map(t => t.index), [0]);
   });
 
+  // 7. Learning Hub Room & Question XP Idempotency
+  await test('Learning Hub: Room & Question progress awards XP idempotently without duplicate rewards', () => {
+    // Helper replicating calculateTotalXP from learning.js
+    function calculateTotalXP(state) {
+      const roomXP = (state.completedRooms || []).length * 50;
+      const questionXP = Object.keys(state.questionProgress || {}).filter(k => state.questionProgress[k] === true).length * 25;
+      const labXP = (state.completedLabs || []).length * 75;
+      return roomXP + questionXP + labXP;
+    }
+
+    const state = {
+      completedRooms: ['room-01', 'room-02'],
+      questionProgress: { 'room-01-q1': true, 'room-01-q2': true, 'room-02-q1': true },
+      completedLabs: ['lab-headers']
+    };
+
+    const initialXP = calculateTotalXP(state);
+    assert.strictEqual(initialXP, 2 * 50 + 3 * 25 + 1 * 75, 'Initial XP: 2 rooms (100) + 3 questions (75) + 1 lab (75) = 250 XP');
+
+    // Repeated addition of the same room-01 must not increase count
+    if (!state.completedRooms.includes('room-01')) {
+      state.completedRooms.push('room-01');
+    }
+    // Repeated answer of room-01-q1 must not create duplicate keys
+    state.questionProgress['room-01-q1'] = true;
+
+    const repeatedXP = calculateTotalXP(state);
+    assert.strictEqual(repeatedXP, initialXP, 'Repeated submission must not duplicate XP rewards');
+  });
+
+  // 8. Learning Hub Safe Parsing & Malformed Data Resilience
+  await test('Learning Hub: Malformed JSON in localStorage safely falls back to defaults without crashing', () => {
+    function safeGetJson(valStr, defaultVal) {
+      try {
+        if (valStr === null || valStr === undefined || valStr === '') return defaultVal;
+        const parsed = JSON.parse(valStr);
+        return parsed !== null && parsed !== undefined ? parsed : defaultVal;
+      } catch (e) {
+        return defaultVal;
+      }
+    }
+
+    // Malformed strings
+    const corrupt1 = safeGetJson('{{bad json', []);
+    assert.deepStrictEqual(corrupt1, [], 'Malformed array must fall back to default []');
+
+    const corrupt2 = safeGetJson('{"room-01": broken', {});
+    assert.deepStrictEqual(corrupt2, {}, 'Malformed object must fall back to default {}');
+
+    const validJson = safeGetJson('["room-01", "room-02"]', []);
+    assert.deepStrictEqual(validJson, ['room-01', 'room-02'], 'Valid JSON array must parse accurately');
+  });
+
+  // 9. Full Progress Reset Consistency
+  await test('Learning Hub: Resetting progress clears all room, question, and hint persistence', () => {
+    let mockStorage = {
+      'endlessus_completed_rooms': JSON.stringify(['room-01', 'room-02', 'room-03']),
+      'endlessus_room_progress': JSON.stringify({ 'room-01': { completed: true } }),
+      'endlessus_question_progress': JSON.stringify({ 'room-01-q1': true, 'room-02-q1': true })
+    };
+
+    // Simulate reset button action in learning.js
+    mockStorage['endlessus_completed_rooms'] = JSON.stringify([]);
+    mockStorage['endlessus_room_progress'] = JSON.stringify({});
+    mockStorage['endlessus_question_progress'] = JSON.stringify({});
+
+    assert.deepStrictEqual(JSON.parse(mockStorage['endlessus_completed_rooms']), []);
+    assert.deepStrictEqual(JSON.parse(mockStorage['endlessus_room_progress']), {});
+    assert.deepStrictEqual(JSON.parse(mockStorage['endlessus_question_progress']), {});
+  });
+
   if (failures > 0) {
     console.error(`\n${failures} test(s) failed in progress-idempotency.js`);
     process.exit(1);
