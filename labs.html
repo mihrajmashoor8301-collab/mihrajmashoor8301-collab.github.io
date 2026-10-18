@@ -144,7 +144,6 @@
 
     /* Authentic Dark Terminal Window - Preserved in Both Normal and Hacker Views */
     .theme-normal #ws-term-output,
-    .theme-normal #ws-terminal-panel .bg-canvas-base,
     .theme-normal #ws-term-input-container {
       background-color: #05070A !important;
       color: #4EDEA3 !important;
@@ -155,7 +154,27 @@
     }
     .theme-normal #ws-term-input {
       color: #F3F4F6 !important;
-      background-color: transparent !important;
+      background-color: #05070A !important;
+      caret-color: #4EDEA3 !important;
+    }
+    .theme-normal #ws-term-input::placeholder {
+      color: #6B7280 !important;
+      opacity: 1 !important;
+    }
+    .theme-normal #ws-term-input:focus,
+    .theme-normal #ws-term-input:focus-visible {
+      outline: 1px solid rgba(78, 222, 163, 0.6) !important;
+      outline-offset: 2px !important;
+      box-shadow: none !important;
+      border-radius: 4px;
+    }
+    .theme-normal #ws-term-enter-btn {
+      border-color: rgba(78, 222, 163, 0.4) !important;
+      color: #4EDEA3 !important;
+    }
+    .theme-normal #ws-term-enter-btn:hover {
+      background-color: #4EDEA3 !important;
+      color: #05070A !important;
     }
 
     /* Light Mode Card Shadows and Borders */
@@ -864,7 +883,7 @@
             </div>
 
             <!-- Terminal Input Prompt -->
-            <div class="p-3 bg-canvas-base border-t border-border-hairline flex items-center gap-2 shrink-0">
+            <div id="ws-term-input-container" class="p-3 bg-canvas-base border-t border-border-hairline flex items-center gap-2 shrink-0">
               <span id="ws-term-prompt" class="text-primary font-bold text-xs shrink-0">analyst@sec-workstation:~$ </span>
               <input type="text" id="ws-term-input" class="flex-1 bg-transparent border-none text-on-surface font-mono text-xs focus:outline-none" placeholder="Type command here (e.g. curl -I ...)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
               <button type="button" id="ws-term-enter-btn" class="px-2.5 py-1 rounded bg-primary/10 hover:bg-primary border border-primary/40 text-primary hover:text-canvas-base font-bold text-[10px] transition-all cursor-pointer shrink-0">
