@@ -285,14 +285,6 @@
       badgeClass: "badge-lab",
       keywords: ["terminal", "sandbox", "cli", "linux", "interactive shell", "hands-on"]
     },
-    {
-      title: "Interactive Payloads Tester",
-      desc: "In-browser web exploit laboratory for SQLi, XSS, Command Injection, SSRF, LFI, and SSTI test probes.",
-      url: "payloads.html",
-      type: "Practice Hub",
-      badgeClass: "badge-lab",
-      keywords: ["payloads", "exploits", "sqli", "xss", "lfi", "ssrf", "injection", "tester"]
-    },
 
     // --- REFERENCE & THEORY ---
     {
@@ -310,14 +302,6 @@
       type: "Handbook",
       badgeClass: "badge-tool",
       keywords: ["handbook", "commands", "cheatsheet", "linux commands", "nmap commands", "privesc guide", "metasploit"]
-    },
-    {
-      title: "Cybersecurity Tools Encyclopedia & Nmap Builder",
-      desc: "13 client-side analysis tools (JWT, CIDR, Base64, Hash ID) + 20 industry tools encyclopedia + interactive Nmap generator.",
-      url: "tools.html",
-      type: "Tools",
-      badgeClass: "badge-tool",
-      keywords: ["tools", "nmap builder", "jwt inspector", "cidr calculator", "hash identifier", "burp suite", "wireshark"]
     },
     {
       title: "Penetration Testing Methodology Framework",
