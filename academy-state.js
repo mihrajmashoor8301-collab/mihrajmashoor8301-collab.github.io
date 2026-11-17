@@ -34,7 +34,8 @@
     LAST_ACTIVE: 'calion_last_active',
     LAST_ROOM: 'calion_last_room',
     THEME: 'calion_learning_theme',
-    TASKS: 'calion_task_progress'
+    TASKS: 'calion_task_progress',
+    LAB_FLAGS: 'calion_lab_flags'
   };
 
   const LEGACY_KEYS = {
@@ -47,7 +48,8 @@
     LAST_ACTIVE: 'endlessus_last_active',
     LAST_ROOM: 'endlessus_last_room',
     THEME: 'endlessus_learning_theme',
-    TASKS: 'endlessus_task_progress'
+    TASKS: 'endlessus_task_progress',
+    LAB_FLAGS: 'endlessus_lab_flags'
   };
 
   function safeGet(key, defaultVal) {
@@ -196,7 +198,7 @@
     return getCompletedLabs().includes(labId);
   }
 
-  function markLabCompleted(labId) {
+  function markLabCompleted(labId, submittedFlag) {
     if (!labId) return false;
     const labs = getCompletedLabs();
     let newlyCompleted = false;
@@ -207,15 +209,27 @@
       newlyCompleted = true;
     }
 
+    if (submittedFlag && typeof submittedFlag === 'string') {
+      const flagsMap = safeGet(KEYS.LAB_FLAGS, safeGet(LEGACY_KEYS.LAB_FLAGS, {}));
+      flagsMap[labId] = submittedFlag.trim().toLowerCase();
+      safeSet(KEYS.LAB_FLAGS, flagsMap);
+    }
+
     updateStreak();
     calculateTotalXP();
     dispatchStateChange({ type: 'lab-completed', labId, newlyCompleted });
 
     if (typeof window !== 'undefined' && window.AcademySync && typeof window.AcademySync.pushLabProgress === 'function') {
-      window.AcademySync.pushLabProgress(labId, [], true);
+      window.AcademySync.pushLabProgress(labId, [], true, submittedFlag);
     }
 
     return newlyCompleted;
+  }
+
+  function getLabFlag(labId) {
+    if (!labId) return null;
+    const flagsMap = safeGet(KEYS.LAB_FLAGS, safeGet(LEGACY_KEYS.LAB_FLAGS, {}));
+    return (flagsMap && flagsMap[labId]) || null;
   }
 
   function markRoomIncomplete(roomId) {
@@ -401,6 +415,7 @@
     getTaskProgressMap,
     isRoomCompleted,
     isLabCompleted,
+    getLabFlag,
     isQuestionSolved,
     isTaskCompleted,
     completeTask,

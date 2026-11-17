@@ -124,58 +124,107 @@ assert(resActTamper.error.includes('permission denied for table user_activity'),
 console.log('  ✓ Verified: Client direct INSERT on user_activity rejected: Permission Denied');
 
 // -----------------------------------------------------------------------------
-// 5. Anti-Forgery Check Constraints: Room & Lab Progress
+// 5. Anti-Forgery Check Constraints & Server Triggers (Room & Lab Progress)
 // -----------------------------------------------------------------------------
-console.log('\n--- 5. Testing Anti-Forgery Check Constraints ---');
+console.log('\n--- 5. Testing Anti-Forgery Check Constraints & Server Triggers ---');
 
-// Scenario 5A: Room completion without 100% progress
+// Scenario 5A: Room completion without sufficient questions solved (Trigger Enforcement)
 const fakeRoomSql = `
 INSERT INTO public.room_progress (user_id, room_id, status, progress_pct)
 VALUES ('${USER_A_ID}', 'room-01', 'completed', 45);
 `;
 const resFakeRoom = runSql(fakeRoomSql, 'authenticated', USER_A_ID);
-assert(!resFakeRoom.success, 'PostgreSQL must reject completed status when progress_pct != 100');
-assert(resFakeRoom.error.includes('chk_room_progress_status_pct'),
-  `Expected chk_room_progress_status_pct check constraint violation, got: ${resFakeRoom.error}`);
-console.log('  ✓ Verified: Room completed status with 45% progress rejected by constraint chk_room_progress_status_pct');
+assert(!resFakeRoom.success, 'PostgreSQL must reject completed status when questions are incomplete');
+assert(resFakeRoom.error.includes('protect_room_completion') || resFakeRoom.error.includes('Room completion rejected'),
+  `Expected protect_room_completion trigger rejection, got: ${resFakeRoom.error}`);
+console.log('  ✓ Verified: Room completion without required questions rejected by protect_room_completion() trigger');
 
-// Scenario 5B: Lab completion without flag verification
+// Scenario 5B: Tampering progress_pct = 100 without solving questions (Trigger Clamping)
+const clampRoomSql = `
+INSERT INTO public.room_progress (user_id, room_id, status, progress_pct)
+VALUES ('${USER_A_ID}', 'room-02', 'in_progress', 100);
+SELECT progress_pct FROM public.room_progress WHERE user_id = '${USER_A_ID}' AND room_id = 'room-02';
+`;
+const resClampRoom = runSql(clampRoomSql, 'authenticated', USER_A_ID);
+assert(resClampRoom.success, `Clamping insert should succeed: ${resClampRoom.error}`);
+assert.strictEqual(resClampRoom.output.trim(), '99', 'Trigger must clamp progress_pct from 100 to 99 when questions are incomplete');
+console.log('  ✓ Verified: Client attempt to submit 100% progress without questions clamped to 99%');
+
+// Scenario 5C: Direct client lab completion without RPC (Trigger Enforcement)
 const fakeLabSql = `
 INSERT INTO public.lab_progress (user_id, lab_id, status, flag_verified)
-VALUES ('${USER_A_ID}', 'lab-headers', 'completed', false);
+VALUES ('${USER_A_ID}', 'lab-headers', 'completed', true);
 `;
 const resFakeLab = runSql(fakeLabSql, 'authenticated', USER_A_ID);
-assert(!resFakeLab.success, 'PostgreSQL must reject completed lab status when flag_verified = false');
-assert(resFakeLab.error.includes('chk_lab_progress_status'),
-  `Expected chk_lab_progress_status check constraint violation, got: ${resFakeLab.error}`);
-console.log('  ✓ Verified: Lab completed status with flag_verified = false rejected by constraint chk_lab_progress_status');
+assert(!resFakeLab.success, 'PostgreSQL must reject direct client lab completion/flag verification');
+assert(resFakeLab.error.includes('protect_lab_verification') || resFakeLab.error.includes('Direct client verification of lab completion is forbidden'),
+  `Expected protect_lab_verification trigger rejection, got: ${resFakeLab.error}`);
+console.log('  ✓ Verified: Direct client flag_verified/completed insert blocked by protect_lab_verification() trigger');
+
+// Scenario 5D: Client attempts direct access to lab_secrets table
+const readSecretsSql = `SELECT count(*) FROM public.lab_secrets;`;
+const resReadSecrets = runSql(readSecretsSql, 'authenticated', USER_A_ID);
+assert(!resReadSecrets.success, 'PostgreSQL must reject direct access to lab_secrets from authenticated role');
+assert(resReadSecrets.error.includes('permission denied for table lab_secrets'),
+  `Expected permission denied for lab_secrets, got: ${resReadSecrets.error}`);
+console.log('  ✓ Verified: Client direct SELECT on lab_secrets rejected: Permission Denied');
 
 // -----------------------------------------------------------------------------
-// 6. Legitimate Room Completion & Automated Trigger Execution
+// 6. Legitimate Room & Lab Completion via Server-Side Logic
 // -----------------------------------------------------------------------------
-console.log('\n--- 6. Testing Legitimate Room Completion & Server Trigger Execution ---');
+console.log('\n--- 6. Testing Legitimate Room Completion & Lab Verification ---');
 
-// Legitimate completion: status = 'completed', progress_pct = 100
+// 6A. Legitimate Room completion: status = 'completed', progress_pct = 100, 3 questions solved
 const legitRoomSql = `
-INSERT INTO public.room_progress (user_id, room_id, status, progress_pct, completed_at)
-VALUES ('${USER_A_ID}', 'room-01', 'completed', 100, now());
+INSERT INTO public.room_progress (user_id, room_id, status, progress_pct, questions_solved, completed_at)
+VALUES ('${USER_A_ID}', 'room-01', 'completed', 100, '["room-01_q0", "room-01_q1", "room-01_q2"]'::jsonb, now());
 `;
 const resLegitRoom = runSql(legitRoomSql, 'authenticated', USER_A_ID);
 assert(resLegitRoom.success, `Legitimate room completion must succeed, got error: ${resLegitRoom.error}`);
 
-// Verify that server triggers executed:
-// 1. User A completed their 1st room -> trigger evaluates milestone 'first-step' (50 XP room + 50 XP achievement bonus = 100 XP)
+// Verify triggers executed on room completion:
 const profileCheckSql = `SELECT total_xp FROM public.profiles WHERE id = '${USER_A_ID}';`;
 const profileCheckRes = runSql(profileCheckSql);
 const currentXp = parseInt(profileCheckRes.output, 10);
-assert(currentXp >= 50, `total_xp must have been incremented by server triggers, got: ${currentXp}`);
-console.log(`  ✓ Verified: Server trigger awarded XP automatically (total_xp = ${currentXp})`);
+assert(currentXp >= 100, `total_xp must include room (50) + first-steps achievement (50), got: ${currentXp}`);
+console.log(`  ✓ Verified: Legitimate room completion awarded 50 XP + 50 XP milestone = ${currentXp} XP`);
 
-// 2. Verify achievement 'first-steps' was inserted by system trigger
+// Verify achievement 'first-steps' was inserted by system trigger
 const achCheckSql = `SELECT count(*) FROM public.user_achievements WHERE user_id = '${USER_A_ID}' AND achievement_id = 'first-steps';`;
 const achCheckRes = runSql(achCheckSql);
 assert.strictEqual(achCheckRes.output, '1', 'Server trigger must have unlocked achievement first-steps');
 console.log('  ✓ Verified: Achievement "first-steps" unlocked legitimately via SECURITY DEFINER trigger');
+
+// 6B. Server-Side Lab Flag Verification RPC: Fake Flag Token
+const fakeRpcSql = `SELECT public.verify_lab_flag('lab-headers', 'flag{wrong_fabricated_flag}');`;
+const resFakeRpc = runSql(fakeRpcSql, 'authenticated', USER_A_ID);
+assert(resFakeRpc.success, `RPC call should execute: ${resFakeRpc.error}`);
+assert(resFakeRpc.output.includes('"success": false') || resFakeRpc.output.includes('"success":false'),
+  `RPC must reject incorrect flag, got: ${resFakeRpc.output}`);
+console.log('  ✓ Verified: Server RPC verify_lab_flag() rejected invalid flag token');
+
+// 6C. Server-Side Lab Flag Verification RPC: Authentic Flag Token
+// Lab headers canonical flag is 'flag{strict_transport_security_csp}' -> hash: 4e38664709c98beae232d223d5e24f86ccd18ea99a94dbd5ae5bffeafa46e4fc
+const legitRpcSql = `SELECT public.verify_lab_flag('lab-headers', 'flag{strict_transport_security_csp}');`;
+const resLegitRpc = runSql(legitRpcSql, 'authenticated', USER_A_ID);
+assert(resLegitRpc.success, `Legitimate RPC call should execute: ${resLegitRpc.error}`);
+assert(resLegitRpc.output.includes('"success": true') || resLegitRpc.output.includes('"success":true'),
+  `RPC must accept authentic flag token, got: ${resLegitRpc.output}`);
+console.log('  ✓ Verified: Server RPC verify_lab_flag() validated flag and marked lab completed');
+
+// Verify lab completion and XP recalculation:
+// Room (50) + first-steps (50) + Lab (75) + lab-practitioner achievement (100) = 275 XP
+const xpAfterLabSql = `SELECT total_xp FROM public.profiles WHERE id = '${USER_A_ID}';`;
+const xpAfterLabRes = runSql(xpAfterLabSql);
+const totalXpAfterLab = parseInt(xpAfterLabRes.output, 10);
+assert.strictEqual(totalXpAfterLab, 275, `Expected 275 total XP after room + lab + achievements, got: ${totalXpAfterLab}`);
+console.log(`  ✓ Verified: Server triggers automatically recalculated total_xp to ${totalXpAfterLab} (50+50+75+100)`);
+
+// Verify lab-practitioner achievement was unlocked by server trigger
+const labAchSql = `SELECT count(*) FROM public.user_achievements WHERE user_id = '${USER_A_ID}' AND achievement_id = 'lab-practitioner';`;
+const labAchRes = runSql(labAchSql);
+assert.strictEqual(labAchRes.output, '1', 'Server trigger must have unlocked achievement lab-practitioner');
+console.log('  ✓ Verified: Achievement "lab-practitioner" unlocked legitimately via server trigger');
 
 // 3. Verify user_activity log was recorded by server trigger
 const actCheckSql = `SELECT count(*) FROM public.user_activity WHERE user_id = '${USER_A_ID}' AND activity_type = 'room_completed';`;

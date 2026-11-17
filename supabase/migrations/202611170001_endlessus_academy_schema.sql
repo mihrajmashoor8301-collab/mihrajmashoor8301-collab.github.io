@@ -48,6 +48,7 @@ create table if not exists public.rooms (
   title text not null check (char_length(title) between 2 and 150),
   description text default '',
   xp_reward integer not null default 50 check (xp_reward >= 0),
+  total_questions integer not null default 2 check (total_questions >= 1),
   display_order integer not null default 0,
   is_active boolean not null default true,
   created_at timestamptz not null default now()
@@ -340,7 +341,6 @@ grant select on public.user_activity to authenticated, anon;
 create or replace function public.protect_profile_immutable_fields()
 returns trigger
 language plpgsql
-security definer
 set search_path = public, pg_temp
 as $$
 begin

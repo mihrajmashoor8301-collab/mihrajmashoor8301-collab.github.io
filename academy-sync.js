@@ -146,7 +146,7 @@
   }
 
   // Push practical lab progress to Supabase
-  async function pushLabProgress(labId, completedTasks, flagVerified) {
+  async function pushLabProgress(labId, completedTasks, flagVerified, submittedFlag) {
     if (!AcademyAuth || !AcademyAuth.isAuthenticated()) return;
     const user = AcademyAuth.getUser();
     const sb = AcademyAuth.getClient();
@@ -154,13 +154,27 @@
 
     try {
       const isDone = Boolean(flagVerified);
+      if (flagVerified && submittedFlag) {
+        // Use server-side RPC to verify flag and record completion securely
+        try {
+          const { data: rpcRes, error } = await sb.rpc('verify_lab_flag', { p_lab_id: labId, p_submitted_flag: submittedFlag });
+          if (error || !rpcRes || !rpcRes.success) {
+            console.warn('[AcademySync] Lab flag verification failed via RPC:', error ? error.message : (rpcRes ? rpcRes.message : 'No response'));
+          }
+        } catch (e) {
+          console.warn('[AcademySync] RPC error during lab flag verification:', e);
+        }
+        // No direct upsert needed; the RPC handles insertion/updating of lab_progress
+        return;
+      }
+
+      // In-progress task updates only (client cannot directly set flag_verified = true or status = 'completed')
       const payload = {
         user_id: user.id,
         lab_id: labId,
-        status: isDone ? 'completed' : 'in_progress',
+        status: 'in_progress',
         completed_tasks: Array.from(completedTasks || []),
-        flag_verified: isDone,
-        completed_at: isDone ? new Date().toISOString() : null,
+        flag_verified: false,
         last_accessed_at: new Date().toISOString()
       };
 
@@ -275,21 +289,25 @@
         await sb.from('room_progress').upsert(ipUpserts, { onConflict: 'user_id,room_id' });
       }
 
-      // 2. Batch upsert labs (NEVER downgrade existing verified labs)
+      // 2. Batch verify labs (NEVER downgrade existing verified labs, and always verify cryptographically on server)
       if (completedLabs.length > 0) {
-        const labUpserts = completedLabs.map(labId => {
+        for (const labId of completedLabs) {
           const existing = serverLabMap[labId];
-          return {
-            user_id: userId,
-            lab_id: labId,
-            status: 'completed',
-            flag_verified: true,
-            completed_at: (existing && existing.completed_at) || new Date().toISOString(),
-            last_accessed_at: new Date().toISOString()
-          };
-        });
-
-        await sb.from('lab_progress').upsert(labUpserts, { onConflict: 'user_id,lab_id' });
+          // If already verified on the server, skip re-verification
+          if (existing && existing.status === 'completed' && existing.flag_verified) {
+            continue;
+          }
+          const storedFlag = (typeof AcademyState !== 'undefined' && typeof AcademyState.getLabFlag === 'function')
+            ? AcademyState.getLabFlag(labId)
+            : null;
+          if (storedFlag) {
+            try {
+              await sb.rpc('verify_lab_flag', { p_lab_id: labId, p_submitted_flag: storedFlag });
+            } catch (rpcErr) {
+              console.warn('[CALION AcademySync] Lab migration verify warning for', labId, rpcErr.message);
+            }
+          }
+        }
       }
 
       // Mark migration complete for this user

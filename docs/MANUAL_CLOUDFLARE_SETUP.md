@@ -6,26 +6,29 @@ This guide explains how Cloudflare DNS, caching, and security headers are config
 
 ## 1. Cloudflare DNS & Pages / GitHub Pages Routing
 
-Endlessus Academy is hosted statically and proxied through Cloudflare.
+CALION Academy is hosted statically on Cloudflare Pages (or GitHub Pages proxied via Cloudflare) at:
+- `https://learning.endlessus.in`
 
 1. In the **Cloudflare Dashboard**, navigate to **DNS → Records** for `endlessus.in`.
-2. Ensure the standard CNAME/A records for GitHub Pages or Cloudflare Pages are orange-cloud proxied (`Proxied`).
-3. SSL/TLS encryption mode must be set to **Full (strict)** under **SSL/TLS → Overview**.
+2. Ensure the CNAME record for `learning.endlessus.in` is set to `Proxied` (orange cloud).
+3. Ensure SSL/TLS encryption mode is set to **Full (strict)** under **SSL/TLS → Overview**.
 
 ---
 
-## 2. HTTP Security Headers (Cloudflare Transform Rules)
+## 2. HTTP Security Headers (Automatic via `_headers` or Transform Rules)
 
-To ensure high-grade cybersecurity compliance for the Academy, add HTTP response headers via Cloudflare:
+A native Cloudflare Pages `_headers` file is committed at the repository root containing:
+- `Content-Security-Policy`
+- `X-Frame-Options: SAMEORIGIN`
+- `X-Content-Type-Options: nosniff`
+- `Referrer-Policy: strict-origin-when-cross-origin`
+- `Permissions-Policy: camera=(), microphone=(), geolocation=()`
+- `Strict-Transport-Security: max-age=31536000; includeSubDomains; preload`
 
-1. In Cloudflare, navigate to **Rules → Transform Rules → Modify Response Header**.
-2. Create a rule named `Academy Security Headers`:
-   - Match criteria: `(http.host eq "endlessus.in")`
-   - Set static response headers:
-     * `X-Content-Type-Options`: `nosniff`
-     * `X-Frame-Options`: `SAMEORIGIN`
-     * `Referrer-Policy`: `strict-origin-when-cross-origin`
-     * `Permissions-Policy`: `camera=(), microphone=(), geolocation=()`
+If deploying outside Cloudflare Pages (e.g. standard Cloudflare CDN proxy in front of custom origin):
+1. Navigate to **Rules → Transform Rules → Modify Response Header**.
+2. Match criteria: `(http.host eq "learning.endlessus.in" or http.host eq "endlessus.in")`
+3. Apply the security headers listed above.
 
 ---
 
