@@ -388,9 +388,44 @@ async function runBrowserTests() {
     assert.strictEqual(b64Test, 'RW5kbGVzc3VzUHJlU2VjdXJpdHkyMDI2');
 
     // -------------------------------------------------------------
-    // TEST 8: Invalid Query Parameters & Error States
+    // TEST 9: Cadet Authentication (auth.html)
     // -------------------------------------------------------------
-    console.log('\n--- 9. Testing Invalid Query Parameter Handling & 404 States ---');
+    console.log('\n--- 9. Testing Cadet Authentication Page (auth.html) ---');
+    await navigate(`http://127.0.0.1:${PORT}/auth.html`);
+    const authTitle = await client.evaluate('document.getElementById("auth-title").textContent.trim()');
+    console.log(`  ✓ Auth page title: "${authTitle}"`);
+    assert.strictEqual(authTitle, 'Cadet Authentication');
+
+    // Switch to Register tab
+    await client.evaluate('document.getElementById("tab-register").click()');
+    const registerVisible = await client.evaluate('!document.getElementById("form-register").classList.contains("hidden")');
+    console.log(`  ✓ Register form revealed upon tab click: ${registerVisible}`);
+    assert(registerVisible, 'Register form must be visible');
+
+    // -------------------------------------------------------------
+    // TEST 10: TryHackMe Profile & Learning Progress (profile.html)
+    // -------------------------------------------------------------
+    console.log('\n--- 10. Testing TryHackMe Profile & Progress (profile.html) ---');
+    await navigate(`http://127.0.0.1:${PORT}/profile.html`);
+    const profileCadetName = await client.evaluate('document.getElementById("cadet-name").textContent.trim()');
+    const statRoomsText = await client.evaluate('document.getElementById("stat-rooms").textContent.trim()');
+    const pathPresecBarWidth = await client.evaluate('document.getElementById("path-presec-bar").style.width');
+    const heatmapCellsCount = await client.evaluate('document.getElementById("activity-heatmap").children.length');
+    const achievementsCount = await client.evaluate('document.getElementById("achievements-grid").children.length');
+
+    console.log(`  ✓ Profile cadet identity: "${profileCadetName}"`);
+    console.log(`  ✓ Learning rooms stat counter: "${statRoomsText}"`);
+    console.log(`  ✓ Pre Security pathway bar initialized: ${pathPresecBarWidth}`);
+    console.log(`  ✓ Activity calendar heatmap cells rendered: ${heatmapCellsCount}`);
+    console.log(`  ✓ Milestone achievements rendered in grid: ${achievementsCount}`);
+
+    assert(heatmapCellsCount > 300, '52-week activity calendar must render all day cells');
+    assert.strictEqual(achievementsCount, 9, 'Must render all 9 milestone achievements');
+
+    // -------------------------------------------------------------
+    // TEST 11: Invalid Query Parameters & Error States
+    // -------------------------------------------------------------
+    console.log('\n--- 11. Testing Invalid Query Parameter Handling & 404 States ---');
 
     // Invalid Module ID
     await navigate(`http://127.0.0.1:${PORT}/module.html?id=level-999`);

@@ -74,6 +74,18 @@
     <priority>0.90</priority>
   </url>
   <url>
+    <loc>https://endlessus.in/profile.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://endlessus.in/auth.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
     <loc>https://endlessus.in/security-tools.html</loc>
     <lastmod>2026-10-18</lastmod>
     <changefreq>weekly</changefreq>

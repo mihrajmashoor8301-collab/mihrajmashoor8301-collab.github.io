@@ -3089,6 +3089,9 @@ ${spec.tasks.map((t, idx) => `  [Task ${idx + 1}] ${t.title}`).join('\n')}`
           spec.tasks.forEach((_, i) => session.completedTasks.add(i));
         }
         LabSessionManager.saveSession(session);
+        if (typeof window !== 'undefined' && window.AcademyState && typeof window.AcademyState.markLabCompleted === 'function') {
+          window.AcademyState.markLabCompleted(labId);
+        }
         return {
           success: true,
           message: alreadySolved ? 'Flag already verified.' : 'Flag verified! Challenge solved.',

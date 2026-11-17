@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title id="page-title">Cadet Profile · Endlessus Cybersecurity Academy</title>
+  <meta content="Cadet cybersecurity learning pathway progress, room completions, practical lab achievements, and activity history." name="description"/>
+  <link rel="icon" type="image/png" href="handbook/assets/favicon.png"/>
+  <link rel="canonical" href="https://endlessus.in/profile.html"/>
+
+  <!-- Security Headers (Client-side meta) -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff"/>
+  <meta name="referrer" content="strict-origin-when-cross-origin"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+  <!-- Immediate Theme Initializer -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('endlessus_learning_theme') || 'normal';
+      if (savedTheme === 'hacker') {
+        document.documentElement.classList.add('dark', 'theme-hacker');
+        document.documentElement.classList.remove('theme-normal');
+      } else {
+        document.documentElement.classList.remove('dark', 'theme-hacker');
+        document.documentElement.classList.add('theme-normal');
+      }
+    })();
+  </script>
+
+  <script src="tailwind.cdn.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            canvas: 'var(--color-canvas)',
+            'surface-subtle': 'var(--color-surface-subtle)',
+            'surface-raised': 'var(--color-surface-raised)',
+            'surface-overlay': 'var(--color-surface-overlay)',
+            'border-hairline': 'var(--color-border-hairline)',
+            'on-surface': 'var(--color-on-surface)',
+            'on-surface-variant': 'var(--color-on-surface-variant)',
+            outline: 'var(--color-outline)',
+            primary: 'var(--color-primary)',
+            'primary-hover': 'var(--color-primary-hover)',
+            secondary: 'var(--color-secondary)',
+            success: 'var(--color-success)',
+            warning: 'var(--color-warning)',
+            danger: 'var(--color-danger)'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="academy.css"/>
+
+  <!-- Scripts -->
+  <script src="vendor/supabase.min.js"></script>
+  <script src="learning-data.js"></script>
+  <script src="academy-state.js"></script>
+  <script src="academy-config.js"></script>
+  <script src="academy-auth.js"></script>
+  <script src="academy-sync.js"></script>
+  <script src="academy-nav.js"></script>
+</head>
+
+<body class="bg-canvas text-on-surface font-sans min-h-screen flex flex-col antialiased selection:bg-primary/20 selection:text-primary">
+
+  <!-- =========================================================================
+       1. GLOBAL STICKY HEADER
+       ========================================================================= -->
+  <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+      
+      <!-- Brand -->
+      <div class="flex items-center gap-3">
+        <a href="learning.html" class="flex items-center gap-2.5 text-on-surface hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded py-1">
+          <span class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center font-mono font-black text-primary text-base">E</span>
+          <div class="flex flex-col">
+            <span class="font-bold text-sm tracking-tight leading-none text-on-surface">Endlessus Academy</span>
+            <span class="text-[10px] font-mono text-outline tracking-wider uppercase mt-0.5">Cybersecurity Training</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Center Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-1 text-xs font-mono" aria-label="Main Navigation">
+        <a href="learning.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Learning Paths</a>
+        <a href="modules.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Modules</a>
+        <a href="labs.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Practical Labs</a>
+        <a href="roadmap.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Roadmap</a>
+        <a href="security-tools.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Tools</a>
+      </nav>
+
+      <!-- Right Action Bar -->
+      <div class="flex items-center gap-2 font-mono text-xs">
+        <!-- Streak Pill -->
+        <div class="hidden sm:flex items-center gap-1 px-2.5 py-1 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" title="Current Daily Streak">
+          <span class="text-amber-500">🔥</span>
+          <span id="header-streak-pill" class="font-bold">1d</span>
+        </div>
+
+        <!-- XP Pill -->
+        <div class="hidden sm:flex items-center gap-1 px-2.5 py-1 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" title="Total Accumulated XP">
+          <span class="text-primary font-bold">⚡</span>
+          <span id="header-xp-pill" class="font-bold">0 XP</span>
+        </div>
+
+        <!-- Auth Slot -->
+        <div id="academy-auth-slot"></div>
+
+        <!-- Theme Toggle -->
+        <div class="flex items-center p-0.5 rounded-lg border border-border-hairline bg-surface-raised font-mono text-xs">
+          <button type="button" id="theme-toggle-normal" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold" aria-pressed="true" title="Normal View (Light)">
+            <span class="material-symbols-outlined text-xs">light_mode</span>
+          </button>
+          <button type="button" id="theme-toggle-hacker" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold" aria-pressed="false" title="Hacker View (Dark HUD)">
+            <span class="material-symbols-outlined text-xs">terminal</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       2. PROFILE MAIN WORKSPACE
+       ========================================================================= -->
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-8 space-y-8">
+
+    <!-- Loading Placeholder -->
+    <div id="profile-loading" class="text-center py-20 space-y-3 font-mono text-xs text-outline">
+      <div class="w-8 h-8 mx-auto border-2 border-primary/30 border-t-primary rounded-full animate-spin"></div>
+      <p>Synchronizing cadet telemetry &amp; learning credentials...</p>
+    </div>
+
+    <!-- Private Profile Warning (when viewing another user whose profile is private) -->
+    <div id="profile-private-state" class="hidden p-12 text-center bg-surface-subtle border border-border-hairline rounded-2xl space-y-4">
+      <span class="material-symbols-outlined text-5xl text-outline">lock</span>
+      <h2 class="text-xl font-bold text-on-surface">Confidential Cadet Profile</h2>
+      <p class="text-xs text-on-surface-variant max-w-md mx-auto">
+        This learner has configured their security learning records to private mode. Only the cadet can access these telemetry logs.
+      </p>
+      <a href="learning.html" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-primary text-white font-mono text-xs font-bold hover:bg-primary-hover">
+        Explore Learning Paths
+      </a>
+    </div>
+
+    <!-- Main Profile Content (hidden while loading) -->
+    <div id="profile-content" class="hidden space-y-8">
+      
+      <!-- ================= TRYHACKME-INSPIRED PROFILE HEADER ================= -->
+      <section class="bg-surface-subtle border border-border-hairline rounded-2xl p-6 sm:p-8 relative overflow-hidden shadow-lg">
+        <!-- Background Ambient Grid -->
+        <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 relative z-10">
+          
+          <div class="flex items-center gap-5">
+            <!-- Cadet Avatar & Emblem -->
+            <div class="relative">
+              <div id="cadet-avatar" class="w-20 h-20 rounded-2xl bg-surface-raised border-2 border-primary/40 flex items-center justify-center font-mono font-black text-2xl text-primary shadow-inner">
+                C
+              </div>
+              <div id="cadet-badge" class="absolute -bottom-1.5 -right-1.5 w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center shadow" title="Verified Cadet">
+                <span class="material-symbols-outlined text-xs">verified</span>
+              </div>
+            </div>
+
+            <!-- Identity & Bio -->
+            <div class="space-y-1">
+              <div class="flex items-center gap-2.5 flex-wrap">
+                <h1 id="cadet-name" class="text-xl sm:text-2xl font-bold tracking-tight text-on-surface">Alex Rivers</h1>
+                <span id="cadet-username" class="text-xs font-mono px-2 py-0.5 rounded-md bg-surface-raised text-primary border border-primary/20">@cadet</span>
+                <span id="profile-visibility-badge" class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-surface-raised border border-border-hairline text-outline">Public Profile</span>
+              </div>
+
+              <p id="cadet-bio" class="text-xs text-on-surface-variant max-w-xl leading-relaxed">
+                Aspiring cybersecurity analyst &amp; penetration tester. Drilling fundamentals in Endlessus Academy.
+              </p>
+
+              <div class="flex items-center gap-4 text-[11px] font-mono text-outline pt-1">
+                <span class="flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs">calendar_today</span>
+                  <span id="cadet-enlist-date">Enlisted: Oct 2026</span>
+                </span>
+                <span class="flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs">military_tech</span>
+                  <span id="cadet-rank-title">Rank: Security Cadet</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Profile Actions (Edit Profile / Share) -->
+          <div class="flex items-center gap-2 font-mono text-xs shrink-0 self-end sm:self-center">
+            <button type="button" id="btn-share-profile" class="px-3 py-2 rounded-xl border border-border-hairline bg-surface-raised hover:bg-surface-overlay text-on-surface flex items-center gap-1.5 transition-colors" title="Copy shareable profile link">
+              <span class="material-symbols-outlined text-sm">share</span>
+              <span>Share</span>
+            </button>
+            <button type="button" id="btn-edit-profile" class="hidden px-3.5 py-2 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold flex items-center gap-1.5 transition-all shadow-md shadow-primary/20">
+              <span class="material-symbols-outlined text-sm">edit</span>
+              <span>Edit Profile</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= LEARNING STATISTICS METRICS ================= -->
+      <section class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 font-mono">
+        
+        <!-- Completed Rooms -->
+        <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-1">
+          <div class="text-[10px] uppercase text-outline tracking-wider flex items-center justify-between">
+            <span>Rooms Solved</span>
+            <span class="material-symbols-outlined text-sm text-primary">school</span>
+          </div>
+          <div class="text-xl sm:text-2xl font-bold text-on-surface" id="stat-rooms">0 / 45</div>
+          <div class="text-[10px] text-outline" id="stat-rooms-pct">0% Complete</div>
+        </div>
+
+        <!-- Practical Labs -->
+        <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-1">
+          <div class="text-[10px] uppercase text-outline tracking-wider flex items-center justify-between">
+            <span>Practical Labs</span>
+            <span class="material-symbols-outlined text-sm text-secondary">science</span>
+          </div>
+          <div class="text-xl sm:text-2xl font-bold text-on-surface" id="stat-labs">0 / 13</div>
+          <div class="text-[10px] text-outline" id="stat-labs-pct">0% Solved</div>
+        </div>
+
+        <!-- Total XP -->
+        <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-1">
+          <div class="text-[10px] uppercase text-outline tracking-wider flex items-center justify-between">
+            <span>Platform XP</span>
+            <span class="text-primary font-bold">⚡</span>
+          </div>
+          <div class="text-xl sm:text-2xl font-bold text-primary" id="stat-xp">0 XP</div>
+          <div class="text-[10px] text-outline">Verified Rewards</div>
+        </div>
+
+        <!-- Daily Streak -->
+        <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-1">
+          <div class="text-[10px] uppercase text-outline tracking-wider flex items-center justify-between">
+            <span>Streak</span>
+            <span class="text-amber-500">🔥</span>
+          </div>
+          <div class="text-xl sm:text-2xl font-bold text-amber-500" id="stat-streak">1 Day</div>
+          <div class="text-[10px] text-outline">Active Cadence</div>
+        </div>
+
+        <!-- Paths Completed -->
+        <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-1">
+          <div class="text-[10px] uppercase text-outline tracking-wider flex items-center justify-between">
+            <span>Completed Paths</span>
+            <span class="material-symbols-outlined text-sm text-success">verified</span>
+          </div>
+          <div class="text-xl sm:text-2xl font-bold text-on-surface" id="stat-paths">0 / 1</div>
+          <div class="text-[10px] text-outline">Pre Security</div>
+        </div>
+
+        <!-- Achievements -->
+        <div class="p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-1">
+          <div class="text-[10px] uppercase text-outline tracking-wider flex items-center justify-between">
+            <span>Achievements</span>
+            <span class="material-symbols-outlined text-sm text-warning">military_tech</span>
+          </div>
+          <div class="text-xl sm:text-2xl font-bold text-on-surface" id="stat-achievements">0 / 9</div>
+          <div class="text-[10px] text-outline">Badges Earned</div>
+        </div>
+
+      </section>
+
+      <!-- ================= LEARNING PATHWAYS STATUS ================= -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between">
+          <div class="space-y-0.5">
+            <h2 class="text-base sm:text-lg font-bold text-on-surface flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-xl">route</span>
+              <span>Learning Path Progress</span>
+            </h2>
+            <p class="text-xs text-outline font-mono">Sequential TryHackMe-style progression tracks</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          
+          <!-- Path 1: Pre Security (Authoritative 45 Rooms) -->
+          <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-4 flex flex-col justify-between relative overflow-hidden">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-primary/10 text-primary border border-primary/20 uppercase tracking-wider">
+                  Authoritative Track
+                </span>
+                <span class="text-xs font-mono font-bold text-primary" id="path-presec-pct">0%</span>
+              </div>
+              <h3 class="font-bold text-sm text-on-surface">Pre Security Pathway</h3>
+              <p class="text-xs text-on-surface-variant leading-relaxed">
+                Master hardware, Linux &amp; Windows administration, IP networking, HTTP &amp; web architecture, and core offensive terminology across 8 structured levels.
+              </p>
+            </div>
+
+            <div class="space-y-3 font-mono text-xs">
+              <!-- Progress Bar -->
+              <div class="w-full h-2 rounded-full bg-surface-raised overflow-hidden">
+                <div id="path-presec-bar" class="h-full bg-primary transition-all duration-500" style="width: 0%"></div>
+              </div>
+
+              <div class="flex items-center justify-between text-[11px] text-outline">
+                <span id="path-presec-rooms">0 / 45 rooms completed</span>
+                <span id="path-presec-rem">45 remaining</span>
+              </div>
+
+              <a href="learning.html" class="w-full py-2.5 rounded-xl bg-surface-raised hover:bg-surface-overlay text-on-surface hover:text-primary font-bold text-center block transition-colors border border-border-hairline">
+                Resume Pathway →
+              </a>
+            </div>
+          </div>
+
+          <!-- Path 2: Cyber Security 101 -->
+          <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-4 flex flex-col justify-between opacity-80">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-surface-raised text-outline border border-border-hairline uppercase tracking-wider">
+                  Next Step
+                </span>
+                <span class="text-xs font-mono text-outline">Foundational</span>
+              </div>
+              <h3 class="font-bold text-sm text-on-surface">Cyber Security 101</h3>
+              <p class="text-xs text-on-surface-variant leading-relaxed">
+                Foundations of offensive operations, defensive operations, SIEM telemetry, cryptography, and digital forensics triage.
+              </p>
+            </div>
+
+            <div class="space-y-3 font-mono text-xs">
+              <div class="w-full h-2 rounded-full bg-surface-raised overflow-hidden">
+                <div class="h-full bg-outline/30" style="width: 0%"></div>
+              </div>
+              <div class="flex items-center justify-between text-[11px] text-outline">
+                <span>Curriculum Outline Ready</span>
+                <span>Unlocks after Pre Security</span>
+              </div>
+              <a href="modules.html" class="w-full py-2.5 rounded-xl bg-surface-raised text-outline font-bold text-center block transition-colors border border-border-hairline hover:text-on-surface">
+                View Syllabus
+              </a>
+            </div>
+          </div>
+
+          <!-- Path 3: Jr Penetration Tester -->
+          <div class="p-5 rounded-2xl bg-surface-subtle border border-border-hairline space-y-4 flex flex-col justify-between opacity-80">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-surface-raised text-outline border border-border-hairline uppercase tracking-wider">
+                  Practical Exploitation
+                </span>
+                <span class="text-xs font-mono text-outline">Advanced</span>
+              </div>
+              <h3 class="font-bold text-sm text-on-surface">Jr Penetration Tester</h3>
+              <p class="text-xs text-on-surface-variant leading-relaxed">
+                Network penetration testing, vulnerability assessment, web application exploitation (OWASP Top 10), and Linux/Windows privilege escalation.
+              </p>
+            </div>
+
+            <div class="space-y-3 font-mono text-xs">
+              <div class="w-full h-2 rounded-full bg-surface-raised overflow-hidden">
+                <div class="h-full bg-outline/30" style="width: 0%"></div>
+              </div>
+              <div class="flex items-center justify-between text-[11px] text-outline">
+                <span>13 Target Labs Integrated</span>
+                <span>Hands-on Sandbox</span>
+              </div>
+              <a href="labs.html" class="w-full py-2.5 rounded-xl bg-surface-raised text-outline font-bold text-center block transition-colors border border-border-hairline hover:text-on-surface">
+                Launch Target Labs
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= GITHUB-STYLE ACTIVITY CALENDAR ================= -->
+      <section class="bg-surface-subtle border border-border-hairline rounded-2xl p-6 sm:p-7 space-y-4">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="space-y-0.5">
+            <h2 class="text-base sm:text-lg font-bold text-on-surface flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-xl">calendar_month</span>
+              <span>Learning Activity Calendar</span>
+            </h2>
+            <p class="text-xs text-outline font-mono">Meaningful milestones: room completions, lab flag captures, and assessments</p>
+          </div>
+          <div class="flex items-center gap-1.5 font-mono text-[10px] text-outline">
+            <span>Less</span>
+            <span class="w-2.5 h-2.5 rounded-xs bg-surface-raised"></span>
+            <span class="w-2.5 h-2.5 rounded-xs bg-primary/30"></span>
+            <span class="w-2.5 h-2.5 rounded-xs bg-primary/60"></span>
+            <span class="w-2.5 h-2.5 rounded-xs bg-primary"></span>
+            <span>More</span>
+          </div>
+        </div>
+
+        <!-- 52-Week Activity Heat Map Container -->
+        <div class="overflow-x-auto pb-2">
+          <div id="activity-heatmap" class="min-w-[680px] grid grid-flow-col grid-rows-7 gap-1">
+            <!-- Dynamically populated 7x52 cells -->
+          </div>
+        </div>
+
+        <!-- Recent Activity Feed -->
+        <div class="pt-4 border-t border-border-hairline space-y-2">
+          <h3 class="text-xs font-mono font-bold uppercase tracking-wider text-outline">Recent Telemetry Events</h3>
+          <div id="activity-feed" class="space-y-2 max-h-48 overflow-y-auto font-mono text-xs text-on-surface-variant">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= ACHIEVEMENTS & BADGES GRID ================= -->
+      <section class="space-y-4">
+        <div class="space-y-0.5">
+          <h2 class="text-base sm:text-lg font-bold text-on-surface flex items-center gap-2">
+            <span class="material-symbols-outlined text-warning text-xl">military_tech</span>
+            <span>Earned Achievements &amp; Badges</span>
+          </h2>
+          <p class="text-xs text-outline font-mono">Server-verified milestones awarded for curriculum progression</p>
+        </div>
+
+        <div id="achievements-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+          <!-- Dynamically populated achievement cards -->
+        </div>
+      </section>
+
+      <!-- ================= ROOM COMPLETION EXPLORER & FILTERS ================= -->
+      <section class="space-y-4">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div class="space-y-0.5">
+            <h2 class="text-base sm:text-lg font-bold text-on-surface flex items-center gap-2">
+              <span class="material-symbols-outlined text-secondary text-xl">view_list</span>
+              <span>Curriculum Room Status (Pre Security)</span>
+            </h2>
+            <p class="text-xs text-outline font-mono">Detailed status of all 45 sequential learning rooms</p>
+          </div>
+
+          <!-- Filters -->
+          <div class="flex items-center gap-1 p-1 rounded-xl bg-surface-subtle border border-border-hairline font-mono text-xs">
+            <button type="button" class="room-filter-btn px-2.5 py-1 rounded-lg font-bold bg-primary text-white" data-filter="all">All (45)</button>
+            <button type="button" class="room-filter-btn px-2.5 py-1 rounded-lg text-outline hover:text-on-surface" data-filter="completed">Completed</button>
+            <button type="button" class="room-filter-btn px-2.5 py-1 rounded-lg text-outline hover:text-on-surface" data-filter="in_progress">In Progress</button>
+            <button type="button" class="room-filter-btn px-2.5 py-1 rounded-lg text-outline hover:text-on-surface" data-filter="not_started">Not Started</button>
+          </div>
+        </div>
+
+        <div id="rooms-list-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+          <!-- Dynamically populated room cards -->
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ================= EDIT PROFILE MODAL ================= -->
+  <div id="modal-edit-profile" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-surface-subtle border border-border-hairline rounded-2xl p-6 shadow-2xl space-y-4 font-mono text-xs">
+      <div class="flex items-center justify-between pb-3 border-b border-border-hairline">
+        <h3 class="font-bold text-sm text-on-surface">Edit Cadet Profile</h3>
+        <button type="button" id="btn-close-edit-modal" class="text-outline hover:text-on-surface"><span class="material-symbols-outlined text-base">close</span></button>
+      </div>
+
+      <form id="form-edit-profile" class="space-y-3">
+        <div>
+          <label class="block text-outline uppercase text-[10px] mb-1">Display Name</label>
+          <input type="text" id="edit-display-name" maxlength="60" class="w-full px-3 py-2 rounded-lg bg-surface-raised border border-border-hairline text-on-surface outline-none focus:border-primary"/>
+        </div>
+
+        <div>
+          <label class="block text-outline uppercase text-[10px] mb-1">Cadet Bio</label>
+          <textarea id="edit-bio" rows="3" maxlength="500" class="w-full px-3 py-2 rounded-lg bg-surface-raised border border-border-hairline text-on-surface outline-none focus:border-primary"></textarea>
+        </div>
+
+        <div class="flex items-center justify-between p-3 rounded-lg bg-surface-raised border border-border-hairline">
+          <div>
+            <div class="font-bold text-on-surface">Public Profile</div>
+            <div class="text-[10px] text-outline">Allow other cadets to view your badges and room stats</div>
+          </div>
+          <input type="checkbox" id="edit-is-public" class="w-4 h-4 accent-primary cursor-pointer"/>
+        </div>
+
+        <button type="submit" id="btn-save-profile" class="w-full py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold transition-colors">
+          Save Profile Updates
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const profileLoading = document.getElementById('profile-loading');
+      const profileContent = document.getElementById('profile-content');
+      const profilePrivateState = document.getElementById('profile-private-state');
+      const cadetAvatar = document.getElementById('cadet-avatar');
+      const cadetName = document.getElementById('cadet-name');
+      const cadetUsername = document.getElementById('cadet-username');
+      const cadetBio = document.getElementById('cadet-bio');
+      const cadetEnlistDate = document.getElementById('cadet-enlist-date');
+      const cadetRankTitle = document.getElementById('cadet-rank-title');
+      const profileVisibilityBadge = document.getElementById('profile-visibility-badge');
+      const btnEditProfile = document.getElementById('btn-edit-profile');
+      const btnShareProfile = document.getElementById('btn-share-profile');
+      const modalEditProfile = document.getElementById('modal-edit-profile');
+      const btnCloseEditModal = document.getElementById('btn-close-edit-modal');
+      const formEditProfile = document.getElementById('form-edit-profile');
+      const editDisplayName = document.getElementById('edit-display-name');
+      const editBio = document.getElementById('edit-bio');
+      const editIsPublic = document.getElementById('edit-is-public');
+
+      // Metric elements
+      const statRooms = document.getElementById('stat-rooms');
+      const statRoomsPct = document.getElementById('stat-rooms-pct');
+      const statLabs = document.getElementById('stat-labs');
+      const statLabsPct = document.getElementById('stat-labs-pct');
+      const statXp = document.getElementById('stat-xp');
+      const statStreak = document.getElementById('stat-streak');
+      const statPaths = document.getElementById('stat-paths');
+      const statAchievements = document.getElementById('stat-achievements');
+      const pathPresecBar = document.getElementById('path-presec-bar');
+      const pathPresecPct = document.getElementById('path-presec-pct');
+      const pathPresecRooms = document.getElementById('path-presec-rooms');
+      const pathPresecRem = document.getElementById('path-presec-rem');
+      const achievementsGrid = document.getElementById('achievements-grid');
+      const roomsListGrid = document.getElementById('rooms-list-grid');
+      const activityHeatmap = document.getElementById('activity-heatmap');
+      const activityFeed = document.getElementById('activity-feed');
+
+      let currentProfileData = null;
+      let isOwner = false;
+      let activeRoomFilter = 'all';
+
+      async function loadProfile() {
+        profileLoading.classList.remove('hidden');
+        profileContent.classList.add('hidden');
+        profilePrivateState.classList.add('hidden');
+
+        await AcademyAuth.init();
+        const authedUser = AcademyAuth.getUser();
+
+        // Check if viewing a specific username/ID via query param
+        const urlParams = new URLSearchParams(window.location.search);
+        const targetIdentifier = urlParams.get('u') || urlParams.get('id');
+
+        let profileToRender = null;
+
+        if (targetIdentifier) {
+          // Public profile lookup
+          profileToRender = await AcademyAuth.getPublicProfile(targetIdentifier);
+          if (!profileToRender) {
+            profileLoading.classList.add('hidden');
+            profilePrivateState.classList.remove('hidden');
+            return;
+          }
+          if (profileToRender.is_public === false && (!authedUser || authedUser.id !== profileToRender.id)) {
+            profileLoading.classList.add('hidden');
+            profilePrivateState.classList.remove('hidden');
+            return;
+          }
+          isOwner = authedUser && authedUser.id === profileToRender.id;
+        } else {
+          // Viewing own profile
+          if (!authedUser) {
+            // Not logged in: offer guest preview of local progress
+            renderGuestProfile();
+            return;
+          }
+          isOwner = true;
+          profileToRender = AcademyAuth.getProfile() || {
+            id: authedUser.id,
+            username: authedUser.email.split('@')[0],
+            display_name: authedUser.email.split('@')[0],
+            bio: 'Endlessus Cybersecurity Academy Cadet',
+            is_public: true,
+            created_at: authedUser.created_at
+          };
+        }
+
+        currentProfileData = profileToRender;
+        await renderProfile(profileToRender);
+      }
+
+      function renderGuestProfile() {
+        profileLoading.classList.add('hidden');
+        profileContent.classList.remove('hidden');
+
+        const completedRooms = AcademyState.getCompletedRooms ? AcademyState.getCompletedRooms() : [];
+        const completedLabs = AcademyState.getCompletedLabs ? AcademyState.getCompletedLabs() : [];
+        const xp = AcademyState.calculateTotalXP ? AcademyState.calculateTotalXP() : 0;
+        const streak = AcademyState.getStreak ? AcademyState.getStreak() : 1;
+
+        cadetAvatar.textContent = 'G';
+        cadetName.textContent = 'Guest Cadet';
+        cadetUsername.textContent = '@guest_local';
+        cadetBio.textContent = 'Local guest training session. Sign in or register to sync your records to the cloud and share your profile!';
+        cadetEnlistDate.textContent = 'Mode: Offline Guest';
+        cadetRankTitle.textContent = 'Rank: Unregistered Cadet';
+        profileVisibilityBadge.textContent = 'Local Storage Only';
+
+        updateStatsUI({
+          totalRoomsCompleted: completedRooms.length,
+          totalAvailableRooms: 45,
+          totalLabsCompleted: completedLabs.length,
+          totalAvailableLabs: 13,
+          totalXP: xp,
+          streakDays: streak,
+          completedPaths: completedRooms.length >= 45 ? 1 : 0,
+          achievementsCount: completedRooms.length >= 1 ? 1 : 0
+        });
+
+        renderRoomsList(completedRooms, AcademyState.getRoomProgressMap ? AcademyState.getRoomProgressMap() : {});
+        if (typeof AcademySync !== 'undefined' && typeof AcademySync.fetchAchievementsWithStatus === 'function') {
+          AcademySync.fetchAchievementsWithStatus(null).then(achs => renderAchievementsList(achs));
+        }
+        renderCalendar({});
+      }
+
+      async function renderProfile(profile) {
+        profileLoading.classList.add('hidden');
+        profileContent.classList.remove('hidden');
+
+        cadetAvatar.textContent = (profile.display_name || profile.username || 'C').charAt(0).toUpperCase();
+        cadetName.textContent = profile.display_name || profile.username;
+        cadetUsername.textContent = `@${profile.username}`;
+        cadetBio.textContent = profile.bio || 'Endlessus Cybersecurity Academy Cadet.';
+        
+        const dateStr = profile.created_at ? new Date(profile.created_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : 'Nov 2026';
+        cadetEnlistDate.textContent = `Enlisted: ${dateStr}`;
+        profileVisibilityBadge.textContent = profile.is_public ? 'Public Profile' : 'Private Profile';
+
+        if (isOwner) {
+          btnEditProfile.classList.remove('hidden');
+        }
+
+        // Fetch user stats from database
+        const stats = await AcademySync.fetchUserStats(profile.id);
+        if (stats) {
+          updateStatsUI(stats);
+          
+          // Determine cadet rank based on XP
+          const xp = stats.totalXP || 0;
+          let rank = 'Recruit';
+          if (xp >= 500) rank = 'Junior Specialist';
+          if (xp >= 1500) rank = 'Senior Specialist';
+          if (xp >= 3000) rank = 'Security Operator';
+          if (xp >= 5000) rank = 'Master Operator';
+          cadetRankTitle.textContent = `Rank: ${rank}`;
+
+          // Render rooms list
+          const completedSet = new Set(
+            (stats.rawRoomRows || []).filter(r => r.status === 'completed').map(r => r.room_id)
+          );
+          const progMap = {};
+          (stats.rawRoomRows || []).forEach(r => { progMap[r.room_id] = r.progress_pct; });
+          renderRoomsList(Array.from(completedSet), progMap);
+        }
+
+        // Fetch achievements
+        const achs = await AcademySync.fetchAchievementsWithStatus(profile.id);
+        renderAchievementsList(achs);
+
+        // Fetch activity calendar
+        const activity = await AcademySync.fetchActivityHistory(profile.id);
+        renderCalendar(activity.activityMap);
+        renderActivityFeed(activity.timeline);
+      }
+
+      function updateStatsUI(stats) {
+        statRooms.textContent = `${stats.totalRoomsCompleted} / ${stats.totalAvailableRooms}`;
+        const roomPct = Math.round((stats.totalRoomsCompleted / stats.totalAvailableRooms) * 100);
+        statRoomsPct.textContent = `${roomPct}% Complete`;
+
+        statLabs.textContent = `${stats.totalLabsCompleted} / ${stats.totalAvailableLabs}`;
+        const labPct = Math.round((stats.totalLabsCompleted / stats.totalAvailableLabs) * 100);
+        statLabsPct.textContent = `${labPct}% Solved`;
+
+        statXp.textContent = `${(stats.totalXP || 0).toLocaleString()} XP`;
+        statStreak.textContent = `${stats.streakDays || 1} Day${(stats.streakDays || 1) === 1 ? '' : 's'}`;
+        statPaths.textContent = `${stats.completedPaths || 0} / 1`;
+        statAchievements.textContent = `${stats.achievementsCount || 0} / 9`;
+
+        pathPresecBar.style.width = `${roomPct}%`;
+        pathPresecPct.textContent = `${roomPct}%`;
+        pathPresecRooms.textContent = `${stats.totalRoomsCompleted} / 45 rooms completed`;
+        pathPresecRem.textContent = `${Math.max(0, 45 - stats.totalRoomsCompleted)} remaining`;
+      }
+
+      function renderRoomsList(completedList, progressMap) {
+        const completedSet = new Set(completedList);
+        const allRooms = (typeof PRE_SECURITY_ROOMS !== 'undefined') ? PRE_SECURITY_ROOMS : [];
+
+        roomsListGrid.innerHTML = '';
+        allRooms.forEach(room => {
+          const isDone = completedSet.has(room.id);
+          const pct = isDone ? 100 : (progressMap[room.id] || 0);
+          const status = isDone ? 'completed' : (pct > 0 ? 'in_progress' : 'not_started');
+
+          if (activeRoomFilter !== 'all' && activeRoomFilter !== status) return;
+
+          const card = document.createElement('div');
+          card.className = 'p-4 rounded-xl bg-surface-subtle border border-border-hairline space-y-3 flex flex-col justify-between';
+
+          let statusBadge = '<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-raised text-outline border border-border-hairline">Not Started</span>';
+          let actionLabel = 'Start Room →';
+          if (status === 'completed') {
+            statusBadge = '<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-success/10 text-success border border-success/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">check_circle</span>Completed</span>';
+            actionLabel = 'Review Room →';
+          } else if (status === 'in_progress') {
+            statusBadge = `<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/30 flex items-center gap-1"><span class="material-symbols-outlined text-xs">pending</span>${pct}% In Progress</span>`;
+            actionLabel = 'Resume Room →';
+          }
+
+          card.innerHTML = `
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-mono text-outline uppercase">${room.id}</span>
+                ${statusBadge}
+              </div>
+              <h4 class="font-bold text-xs text-on-surface line-clamp-1">${escapeHtml(room.title)}</h4>
+              <p class="text-[11px] text-on-surface-variant line-clamp-2 leading-relaxed">${escapeHtml(room.description || '')}</p>
+            </div>
+            <div class="pt-2 border-t border-border-hairline flex items-center justify-between font-mono text-[11px]">
+              <span class="text-outline">Level 0${room.level}</span>
+              <a href="room.html?id=${room.id}" class="font-bold text-primary hover:underline">${actionLabel}</a>
+            </div>
+          `;
+          roomsListGrid.appendChild(card);
+        });
+      }
+
+      function renderAchievementsList(achs) {
+        achievementsGrid.innerHTML = '';
+        achs.forEach(a => {
+          const card = document.createElement('div');
+          const isUnlocked = a.unlocked;
+
+          card.className = isUnlocked
+            ? 'p-4 rounded-xl bg-surface-subtle border border-primary/40 shadow-sm space-y-2 relative overflow-hidden'
+            : 'p-4 rounded-xl bg-surface-subtle/50 border border-border-hairline opacity-60 space-y-2';
+
+          const iconColor = isUnlocked ? 'text-warning' : 'text-outline';
+          const dateNotice = isUnlocked
+            ? `<span class="text-[10px] font-mono text-success flex items-center gap-1"><span class="material-symbols-outlined text-xs">lock_open</span>Unlocked ${new Date(a.unlocked_at).toLocaleDateString()}</span>`
+            : `<span class="text-[10px] font-mono text-outline flex items-center gap-1"><span class="material-symbols-outlined text-xs">lock</span>Locked</span>`;
+
+          card.innerHTML = `
+            <div class="flex items-start justify-between gap-3">
+              <div class="w-10 h-10 rounded-xl bg-surface-raised flex items-center justify-center shrink-0 ${iconColor}">
+                <span class="material-symbols-outlined text-xl">${escapeHtml(a.icon || 'military_tech')}</span>
+              </div>
+              <div class="text-right">
+                <span class="text-[10px] font-mono font-bold text-primary">+${a.xp_bonus} XP</span>
+              </div>
+            </div>
+            <div>
+              <h4 class="font-bold text-xs text-on-surface">${escapeHtml(a.title)}</h4>
+              <p class="text-[11px] text-on-surface-variant leading-relaxed mt-0.5">${escapeHtml(a.description)}</p>
+            </div>
+            <div class="pt-2 border-t border-border-hairline flex items-center justify-between">
+              ${dateNotice}
+            </div>
+          `;
+          achievementsGrid.appendChild(card);
+        });
+      }
+
+      function renderCalendar(activityMap) {
+        activityHeatmap.innerHTML = '';
+        const today = new Date();
+        const days = 364; // 52 weeks * 7 days
+
+        for (let i = days; i >= 0; i--) {
+          const d = new Date(today);
+          d.setDate(d.getDate() - i);
+          const dateKey = d.toISOString().split('T')[0];
+          const count = activityMap[dateKey] || 0;
+
+          const cell = document.createElement('div');
+          cell.className = 'w-3 h-3 rounded-xs transition-transform hover:scale-125 cursor-pointer relative group';
+
+          if (count === 0) {
+            cell.classList.add('bg-surface-raised');
+          } else if (count === 1) {
+            cell.classList.add('bg-primary/30');
+          } else if (count <= 3) {
+            cell.classList.add('bg-primary/70');
+          } else {
+            cell.classList.add('bg-primary');
+          }
+
+          cell.title = `${dateKey}: ${count} activity events`;
+          activityHeatmap.appendChild(cell);
+        }
+      }
+
+      function renderActivityFeed(timeline) {
+        activityFeed.innerHTML = '';
+        if (!timeline || timeline.length === 0) {
+          activityFeed.innerHTML = '<div class="text-outline py-2">No recent cloud events logged on this cadet profile yet.</div>';
+          return;
+        }
+
+        timeline.slice(0, 10).forEach(ev => {
+          const row = document.createElement('div');
+          row.className = 'flex items-center justify-between py-1.5 border-b border-border-hairline/50';
+          const typeLabel = ev.activity_type ? ev.activity_type.replace('_', ' ') : 'telemetry';
+          const dateStr = ev.created_at ? new Date(ev.created_at).toLocaleDateString() : '';
+
+          row.innerHTML = `
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              <span class="uppercase text-[10px] text-outline font-bold">${escapeHtml(typeLabel)}</span>
+              <span class="text-on-surface">${escapeHtml(ev.entity_id || '')}</span>
+            </div>
+            <div class="flex items-center gap-2 text-[10px] text-outline">
+              <span class="text-primary font-bold">+${ev.xp_earned} XP</span>
+              <span>${dateStr}</span>
+            </div>
+          `;
+          activityFeed.appendChild(row);
+        });
+      }
+
+      function escapeHtml(str) {
+        if (!str) return '';
+        return String(str).replace(/[&<>"']/g, m => ({
+          '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+        })[m]);
+      }
+
+      // Filter handling
+      document.querySelectorAll('.room-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.room-filter-btn').forEach(b => {
+            b.className = 'room-filter-btn px-2.5 py-1 rounded-lg text-outline hover:text-on-surface';
+          });
+          btn.className = 'room-filter-btn px-2.5 py-1 rounded-lg font-bold bg-primary text-white';
+          activeRoomFilter = btn.dataset.filter;
+          if (currentProfileData) {
+            AcademySync.fetchUserStats(currentProfileData.id).then(stats => {
+              if (stats) {
+                const completedSet = new Set((stats.rawRoomRows || []).filter(r => r.status === 'completed').map(r => r.room_id));
+                const progMap = {};
+                (stats.rawRoomRows || []).forEach(r => { progMap[r.room_id] = r.progress_pct; });
+                renderRoomsList(Array.from(completedSet), progMap);
+              }
+            });
+          }
+        });
+      });
+
+      // Share Profile
+      btnShareProfile.addEventListener('click', () => {
+        if (!currentProfileData) return;
+        const url = `${window.location.origin}/profile.html?u=${encodeURIComponent(currentProfileData.username)}`;
+        navigator.clipboard.writeText(url).then(() => {
+          alert('Public profile link copied to clipboard: ' + url);
+        }).catch(() => {
+          prompt('Copy profile link:', url);
+        });
+      });
+
+      // Edit Profile Modal
+      btnEditProfile.addEventListener('click', () => {
+        if (!currentProfileData) return;
+        editDisplayName.value = currentProfileData.display_name || '';
+        editBio.value = currentProfileData.bio || '';
+        editIsPublic.checked = Boolean(currentProfileData.is_public !== false);
+        modalEditProfile.classList.remove('hidden');
+      });
+
+      btnCloseEditModal.addEventListener('click', () => modalEditProfile.classList.add('hidden'));
+
+      formEditProfile.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('btn-save-profile');
+        btn.disabled = true;
+        btn.textContent = 'Saving...';
+
+        const res = await AcademyAuth.updateProfile({
+          displayName: editDisplayName.value,
+          bio: editBio.value,
+          isPublic: editIsPublic.checked
+        });
+
+        btn.disabled = false;
+        btn.textContent = 'Save Profile Updates';
+
+        if (res.success) {
+          modalEditProfile.classList.add('hidden');
+          await loadProfile();
+        } else {
+          alert(res.error || 'Failed to update profile.');
+        }
+      });
+
+      // Initial execution
+      loadProfile();
+
+    })();
+  </script>
+</body>
+</html>

@@ -687,7 +687,16 @@
     initAcademyGlobalListeners();
     syncThemeButtons(getStoredTheme());
     syncHeaderStats();
+    syncHeaderAuth();
     window.addEventListener('endlessus-progress-updated', syncHeaderStats);
+    window.addEventListener('endlessus-auth-changed', () => {
+      syncHeaderAuth();
+      syncHeaderStats();
+    });
+
+    if (window.AcademyAuth && typeof window.AcademyAuth.init === 'function') {
+      window.AcademyAuth.init().then(() => syncHeaderAuth());
+    }
   }
 
   if (document.readyState === 'loading') {
@@ -704,6 +713,79 @@
     const xp = window.AcademyState.calculateTotalXP ? window.AcademyState.calculateTotalXP() : 0;
     streakEls.forEach(el => { el.textContent = `${streak}d`; });
     xpEls.forEach(el => { el.textContent = `${xp.toLocaleString()} XP`; });
+  }
+
+  function syncHeaderAuth() {
+    let authSlots = document.querySelectorAll('#academy-auth-slot, .academy-auth-slot');
+    
+    if (authSlots.length === 0) {
+      const themeToggle = document.querySelector('#theme-toggle-normal, .theme-toggle-normal');
+      if (themeToggle && themeToggle.parentElement) {
+        const parent = themeToggle.parentElement.parentElement;
+        if (parent) {
+          const slot = document.createElement('div');
+          slot.id = 'academy-auth-slot';
+          slot.className = 'academy-auth-slot';
+          parent.insertBefore(slot, themeToggle.parentElement);
+          authSlots = [slot];
+        }
+      }
+    }
+
+    const auth = window.AcademyAuth;
+    const isAuthed = auth && typeof auth.isAuthenticated === 'function' && auth.isAuthenticated();
+    const user = isAuthed ? auth.getUser() : null;
+    const profile = isAuthed ? auth.getProfile() : null;
+
+    authSlots.forEach(slot => {
+      if (isAuthed && (profile || user)) {
+        const displayName = (profile && (profile.display_name || profile.username)) || (user && user.email ? user.email.split('@')[0] : 'Cadet');
+        const initial = displayName.charAt(0).toUpperCase();
+
+        slot.innerHTML = `
+          <div class="relative group">
+            <button type="button" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-primary/30 bg-primary/10 hover:bg-primary/20 text-on-surface font-mono text-xs transition-all">
+              <span class="w-5 h-5 rounded-full bg-primary text-white font-bold flex items-center justify-center text-[10px]">${escapeHtml(initial)}</span>
+              <span class="font-bold text-primary max-w-[100px] truncate hidden sm:inline">${escapeHtml(displayName)}</span>
+              <span class="material-symbols-outlined text-xs text-outline">expand_more</span>
+            </button>
+            <div class="absolute right-0 top-full pt-1 hidden group-hover:block z-50">
+              <div class="w-48 p-2 rounded-xl border border-border-hairline bg-surface-subtle shadow-xl space-y-1 font-mono text-xs">
+                <a href="profile.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-surface-raised text-on-surface transition-colors font-bold">
+                  <span class="material-symbols-outlined text-sm text-primary">person</span>
+                  <span>My Profile</span>
+                </a>
+                <a href="learning.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-surface-raised text-on-surface transition-colors">
+                  <span class="material-symbols-outlined text-sm text-secondary">route</span>
+                  <span>Learning Paths</span>
+                </a>
+                <button type="button" class="header-logout-btn w-full text-left flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-danger/10 text-danger transition-colors">
+                  <span class="material-symbols-outlined text-sm">logout</span>
+                  <span>Sign Out</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+
+        slot.querySelectorAll('.header-logout-btn').forEach(btn => {
+          btn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            if (auth && typeof auth.signOut === 'function') {
+              await auth.signOut();
+              window.location.reload();
+            }
+          });
+        });
+      } else {
+        slot.innerHTML = `
+          <a href="auth.html" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-primary/30 bg-primary/10 hover:bg-primary/20 text-primary font-bold font-mono text-xs transition-all" title="Sign In or Enlist">
+            <span class="material-symbols-outlined text-xs">login</span>
+            <span class="hidden sm:inline">Sign In</span>
+          </a>
+        `;
+      }
+    });
   }
 
   // Expose global API

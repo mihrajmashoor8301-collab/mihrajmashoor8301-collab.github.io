@@ -53,7 +53,9 @@ const pages = [
   'roadmap.html',
   'labs.html',
   'terminal-lab.html',
-  'security-tools.html'
+  'security-tools.html',
+  'profile.html',
+  'auth.html'
 ];
 pages.forEach(p => {
   const pPath = path.join(__dirname, '..', p);

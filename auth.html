@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Cadet Authentication · Endlessus Cybersecurity Academy</title>
+  <meta content="Register, log in, and sync your cybersecurity learning progress across all devices." name="description"/>
+  <link rel="icon" type="image/png" href="handbook/assets/favicon.png"/>
+  <link rel="canonical" href="https://endlessus.in/auth.html"/>
+
+  <!-- Security Headers (Client-side meta) -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff"/>
+  <meta name="referrer" content="strict-origin-when-cross-origin"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+  <!-- Immediate Theme Initializer -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('endlessus_learning_theme') || 'normal';
+      if (savedTheme === 'hacker') {
+        document.documentElement.classList.add('dark', 'theme-hacker');
+        document.documentElement.classList.remove('theme-normal');
+      } else {
+        document.documentElement.classList.remove('dark', 'theme-hacker');
+        document.documentElement.classList.add('theme-normal');
+      }
+    })();
+  </script>
+
+  <script src="tailwind.cdn.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            canvas: 'var(--color-canvas)',
+            'surface-subtle': 'var(--color-surface-subtle)',
+            'surface-raised': 'var(--color-surface-raised)',
+            'surface-overlay': 'var(--color-surface-overlay)',
+            'border-hairline': 'var(--color-border-hairline)',
+            'on-surface': 'var(--color-on-surface)',
+            'on-surface-variant': 'var(--color-on-surface-variant)',
+            outline: 'var(--color-outline)',
+            primary: 'var(--color-primary)',
+            'primary-hover': 'var(--color-primary-hover)',
+            secondary: 'var(--color-secondary)',
+            success: 'var(--color-success)',
+            warning: 'var(--color-warning)',
+            danger: 'var(--color-danger)'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="academy.css"/>
+
+  <!-- Supabase & Academy State Modules -->
+  <script src="vendor/supabase.min.js"></script>
+  <script src="academy-state.js"></script>
+  <script src="academy-config.js"></script>
+  <script src="academy-auth.js"></script>
+  <script src="academy-sync.js"></script>
+</head>
+
+<body class="bg-canvas text-on-surface font-sans min-h-screen flex flex-col antialiased selection:bg-primary/20 selection:text-primary">
+
+  <!-- =========================================================================
+       1. GLOBAL ACADEMY STICKY HEADER
+       ========================================================================= -->
+  <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+      
+      <!-- Brand -->
+      <div class="flex items-center gap-3">
+        <a href="learning.html" class="flex items-center gap-2.5 text-on-surface hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded py-1">
+          <span class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center font-mono font-black text-primary text-base">E</span>
+          <div class="flex flex-col">
+            <span class="font-bold text-sm tracking-tight leading-none text-on-surface">Endlessus Academy</span>
+            <span class="text-[10px] font-mono text-outline tracking-wider uppercase mt-0.5">Cybersecurity Training</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Center Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-1 text-xs font-mono" aria-label="Main Navigation">
+        <a href="learning.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Learning Paths</a>
+        <a href="modules.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Modules</a>
+        <a href="labs.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Practical Labs</a>
+        <a href="roadmap.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Roadmap</a>
+        <a href="security-tools.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Tools</a>
+      </nav>
+
+      <!-- Right Action Bar -->
+      <div class="flex items-center gap-2 font-mono text-xs">
+        <!-- Theme Toggle -->
+        <div class="flex items-center p-0.5 rounded-lg border border-border-hairline bg-surface-raised font-mono text-xs">
+          <button type="button" id="theme-toggle-normal" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold" aria-pressed="true" title="Normal View (Light)">
+            <span class="material-symbols-outlined text-xs">light_mode</span>
+          </button>
+          <button type="button" id="theme-toggle-hacker" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold" aria-pressed="false" title="Hacker View (Dark HUD)">
+            <span class="material-symbols-outlined text-xs">terminal</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       2. AUTHENTICATION CONTAINER
+       ========================================================================= -->
+  <main class="flex-1 flex items-center justify-center p-4 sm:p-6 my-6">
+    <div class="w-full max-w-md bg-surface-subtle border border-border-hairline rounded-2xl shadow-2xl p-6 sm:p-8 space-y-6">
+      
+      <!-- Top Emblem & Header -->
+      <div class="text-center space-y-2">
+        <div class="w-12 h-12 mx-auto rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+          <span class="material-symbols-outlined text-2xl">shield_person</span>
+        </div>
+        <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-on-surface" id="auth-title">Cadet Authentication</h1>
+        <p class="text-xs text-outline font-mono" id="auth-subtitle">Sign in to track progress, earn achievements &amp; sync across devices</p>
+      </div>
+
+      <!-- Migration Notice Banner (if guest progress detected) -->
+      <div id="migration-alert" class="hidden p-3.5 rounded-xl border border-primary/30 bg-primary/10 text-xs text-on-surface space-y-1.5">
+        <div class="flex items-center gap-2 font-bold text-primary">
+          <span class="material-symbols-outlined text-sm">cloud_sync</span>
+          <span>Local Progress Detected</span>
+        </div>
+        <p class="text-on-surface-variant text-[11px] leading-relaxed">
+          You have <strong id="migration-room-count">0</strong> rooms and <strong id="migration-lab-count">0</strong> labs completed in guest mode. Signing in will automatically link this progress to your cloud profile!
+        </p>
+      </div>
+
+      <!-- Error / Success Alert Box -->
+      <div id="auth-alert" class="hidden p-3.5 rounded-xl text-xs flex items-start gap-2.5">
+        <span class="material-symbols-outlined text-base shrink-0 mt-0.5" id="alert-icon">info</span>
+        <div class="flex-1 font-medium" id="alert-message"></div>
+      </div>
+
+      <!-- Unconfigured Supabase Banner -->
+      <div id="unconfigured-alert" class="hidden p-3.5 rounded-xl border border-warning/30 bg-warning/10 text-xs space-y-2">
+        <div class="flex items-center gap-2 font-bold text-warning">
+          <span class="material-symbols-outlined text-sm">warning</span>
+          <span>Supabase Configuration Notice</span>
+        </div>
+        <p class="text-[11px] text-on-surface-variant leading-relaxed">
+          The Academy Supabase URL or Anon Key is not yet configured. You can supply your credentials below, or continue exploring the Academy in local guest mode.
+        </p>
+        <button type="button" id="btn-toggle-config" class="text-[11px] font-bold text-primary hover:underline flex items-center gap-1">
+          <span class="material-symbols-outlined text-xs">settings</span>
+          <span>Configure Supabase Keys</span>
+        </button>
+      </div>
+
+      <!-- Config Drawer (Collapsible) -->
+      <div id="config-drawer" class="hidden p-4 rounded-xl border border-border-hairline bg-surface-raised space-y-3 text-xs font-mono">
+        <div class="font-bold text-on-surface flex items-center justify-between">
+          <span>Supabase Connection Settings</span>
+          <button type="button" id="btn-close-config" class="text-outline hover:text-on-surface"><span class="material-symbols-outlined text-sm">close</span></button>
+        </div>
+        <div>
+          <label class="block text-[10px] text-outline uppercase mb-1">Supabase Project URL</label>
+          <input type="text" id="cfg-url" placeholder="https://xyzcompany.supabase.co" class="w-full px-3 py-2 rounded-lg bg-surface-subtle border border-border-hairline focus:border-primary text-xs text-on-surface outline-none"/>
+        </div>
+        <div>
+          <label class="block text-[10px] text-outline uppercase mb-1">Supabase Anon Key</label>
+          <input type="password" id="cfg-anon-key" placeholder="eyJhbGciOiJIUzI1NiIsIn..." class="w-full px-3 py-2 rounded-lg bg-surface-subtle border border-border-hairline focus:border-primary text-xs text-on-surface outline-none"/>
+        </div>
+        <button type="button" id="btn-save-config" class="w-full py-2 rounded-lg bg-primary hover:bg-primary-hover text-white font-bold text-xs transition-colors">
+          Save Credentials &amp; Reload
+        </button>
+      </div>
+
+      <!-- Auth Navigation Tabs -->
+      <div class="flex border-b border-border-hairline text-xs font-mono">
+        <button type="button" id="tab-login" class="flex-1 py-2.5 text-center font-bold border-b-2 border-primary text-primary transition-all">
+          Sign In
+        </button>
+        <button type="button" id="tab-register" class="flex-1 py-2.5 text-center text-outline hover:text-on-surface border-b-2 border-transparent transition-all">
+          Create Account
+        </button>
+        <button type="button" id="tab-forgot" class="hidden py-2.5 px-2 text-center text-outline hover:text-on-surface border-b-2 border-transparent transition-all">
+          Reset
+        </button>
+      </div>
+
+      <!-- ================= FORM: SIGN IN ================= -->
+      <form id="form-login" class="space-y-4">
+        <div>
+          <label for="login-email" class="block text-xs font-mono font-medium text-on-surface-variant mb-1.5">Email Address</label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-base">mail</span>
+            <input type="email" id="login-email" required placeholder="cadet@endlessus.in" class="w-full pl-9 pr-3 py-2.5 rounded-xl bg-surface-raised border border-border-hairline focus:border-primary text-xs text-on-surface outline-none transition-colors"/>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label for="login-password" class="block text-xs font-mono font-medium text-on-surface-variant">Password</label>
+            <button type="button" id="btn-forgot-link" class="text-[11px] font-mono text-primary hover:underline">Forgot password?</button>
+          </div>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-base">lock</span>
+            <input type="password" id="login-password" required placeholder="••••••••" class="w-full pl-9 pr-3 py-2.5 rounded-xl bg-surface-raised border border-border-hairline focus:border-primary text-xs text-on-surface outline-none transition-colors"/>
+          </div>
+        </div>
+
+        <button type="submit" id="btn-submit-login" class="w-full py-3 rounded-xl bg-primary hover:bg-primary-hover active:scale-[0.99] text-white font-bold font-mono text-xs flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary/20">
+          <span class="material-symbols-outlined text-base">login</span>
+          <span>Sign In to Academy</span>
+        </button>
+      </form>
+
+      <!-- ================= FORM: REGISTER ================= -->
+      <form id="form-register" class="space-y-4 hidden">
+        <div>
+          <label for="reg-username" class="block text-xs font-mono font-medium text-on-surface-variant mb-1.5">Cadet Handle / Username</label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-base">badge</span>
+            <input type="text" id="reg-username" required pattern="^[a-zA-Z0-9_-]{3,30}$" placeholder="cyber_cadet" class="w-full pl-9 pr-3 py-2.5 rounded-xl bg-surface-raised border border-border-hairline focus:border-primary text-xs text-on-surface outline-none transition-colors font-mono"/>
+          </div>
+          <span class="text-[10px] text-outline font-mono mt-1 block">3–30 characters: letters, numbers, hyphens, underscores</span>
+        </div>
+
+        <div>
+          <label for="reg-display-name" class="block text-xs font-mono font-medium text-on-surface-variant mb-1.5">Display Name</label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-base">person</span>
+            <input type="text" id="reg-display-name" placeholder="Alex Rivers" class="w-full pl-9 pr-3 py-2.5 rounded-xl bg-surface-raised border border-border-hairline focus:border-primary text-xs text-on-surface outline-none transition-colors"/>
+          </div>
+        </div>
+
+        <div>
+          <label for="reg-email" class="block text-xs font-mono font-medium text-on-surface-variant mb-1.5">Email Address</label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-base">mail</span>
+            <input type="email" id="reg-email" required placeholder="cadet@endlessus.in" class="w-full pl-9 pr-3 py-2.5 rounded-xl bg-surface-raised border border-border-hairline focus:border-primary text-xs text-on-surface outline-none transition-colors"/>
+          </div>
+        </div>
+
+        <div>
+          <label for="reg-password" class="block text-xs font-mono font-medium text-on-surface-variant mb-1.5">Password</label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-base">key</span>
+            <input type="password" id="reg-password" minlength="8" required placeholder="At least 8 characters" class="w-full pl-9 pr-3 py-2.5 rounded-xl bg-surface-raised border border-border-hairline focus:border-primary text-xs text-on-surface outline-none transition-colors"/>
+          </div>
+        </div>
+
+        <button type="submit" id="btn-submit-register" class="w-full py-3 rounded-xl bg-primary hover:bg-primary-hover active:scale-[0.99] text-white font-bold font-mono text-xs flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary/20">
+          <span class="material-symbols-outlined text-base">how_to_reg</span>
+          <span>Create Cadet Account</span>
+        </button>
+      </form>
+
+      <!-- ================= FORM: FORGOT PASSWORD ================= -->
+      <form id="form-forgot" class="space-y-4 hidden">
+        <p class="text-xs text-on-surface-variant leading-relaxed">
+          Enter your registered email address and we'll send you a secure link to reset your Academy credentials.
+        </p>
+
+        <div>
+          <label for="forgot-email" class="block text-xs font-mono font-medium text-on-surface-variant mb-1.5">Email Address</label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-base">mail</span>
+            <input type="email" id="forgot-email" required placeholder="cadet@endlessus.in" class="w-full pl-9 pr-3 py-2.5 rounded-xl bg-surface-raised border border-border-hairline focus:border-primary text-xs text-on-surface outline-none transition-colors"/>
+          </div>
+        </div>
+
+        <button type="submit" id="btn-submit-forgot" class="w-full py-3 rounded-xl bg-primary hover:bg-primary-hover active:scale-[0.99] text-white font-bold font-mono text-xs flex items-center justify-center gap-2 transition-all">
+          <span class="material-symbols-outlined text-base">send</span>
+          <span>Send Recovery Link</span>
+        </button>
+
+        <button type="button" id="btn-back-to-login" class="w-full py-2 text-xs font-mono text-outline hover:text-on-surface text-center">
+          ← Back to Sign In
+        </button>
+      </form>
+
+      <!-- Divider & OAuth Button -->
+      <div class="relative my-4">
+        <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-border-hairline"></div></div>
+        <div class="relative flex justify-center text-[10px] font-mono uppercase tracking-wider text-outline bg-surface-subtle px-2">or continue with</div>
+      </div>
+
+      <button type="button" id="btn-google-auth" class="w-full py-2.5 px-4 rounded-xl border border-border-hairline bg-surface-raised hover:bg-surface-overlay text-on-surface font-mono font-bold text-xs flex items-center justify-center gap-2.5 transition-all">
+        <svg class="w-4 h-4" viewBox="0 0 24 24">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+        </svg>
+        <span>Google Account</span>
+      </button>
+
+      <!-- Guest Continue Link -->
+      <div class="text-center pt-2">
+        <a href="learning.html" class="text-xs font-mono text-outline hover:text-primary transition-colors">
+          Continue as Guest Cadet →
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    (function() {
+      // Elements
+      const tabLogin = document.getElementById('tab-login');
+      const tabRegister = document.getElementById('tab-register');
+      const tabForgot = document.getElementById('tab-forgot');
+      const formLogin = document.getElementById('form-login');
+      const formRegister = document.getElementById('form-register');
+      const formForgot = document.getElementById('form-forgot');
+      const authTitle = document.getElementById('auth-title');
+      const authSubtitle = document.getElementById('auth-subtitle');
+      const authAlert = document.getElementById('auth-alert');
+      const alertMessage = document.getElementById('alert-message');
+      const alertIcon = document.getElementById('alert-icon');
+      const unconfiguredAlert = document.getElementById('unconfigured-alert');
+      const configDrawer = document.getElementById('config-drawer');
+      const btnToggleConfig = document.getElementById('btn-toggle-config');
+      const btnCloseConfig = document.getElementById('btn-close-config');
+      const btnSaveConfig = document.getElementById('btn-save-config');
+      const cfgUrl = document.getElementById('cfg-url');
+      const cfgAnonKey = document.getElementById('cfg-anon-key');
+      const migrationAlert = document.getElementById('migration-alert');
+      const migrationRoomCount = document.getElementById('migration-room-count');
+      const migrationLabCount = document.getElementById('migration-lab-count');
+      const btnForgotLink = document.getElementById('btn-forgot-link');
+      const btnBackToLogin = document.getElementById('btn-back-to-login');
+      const btnGoogleAuth = document.getElementById('btn-google-auth');
+
+      function showAlert(msg, type) {
+        authAlert.classList.remove('hidden', 'bg-danger/10', 'border-danger/30', 'text-danger', 'bg-success/10', 'border-success/30', 'text-success', 'bg-warning/10', 'border-warning/30', 'text-warning');
+        if (type === 'error') {
+          authAlert.classList.add('bg-danger/10', 'border', 'border-danger/30', 'text-danger');
+          alertIcon.textContent = 'error';
+        } else if (type === 'success') {
+          authAlert.classList.add('bg-success/10', 'border', 'border-success/30', 'text-success');
+          alertIcon.textContent = 'check_circle';
+        } else {
+          authAlert.classList.add('bg-warning/10', 'border', 'border-warning/30', 'text-warning');
+          alertIcon.textContent = 'info';
+        }
+        alertMessage.textContent = msg;
+      }
+
+      function switchTab(tab) {
+        authAlert.classList.add('hidden');
+        if (tab === 'login') {
+          tabLogin.className = 'flex-1 py-2.5 text-center font-bold border-b-2 border-primary text-primary transition-all';
+          tabRegister.className = 'flex-1 py-2.5 text-center text-outline hover:text-on-surface border-b-2 border-transparent transition-all';
+          formLogin.classList.remove('hidden');
+          formRegister.classList.add('hidden');
+          formForgot.classList.add('hidden');
+          authTitle.textContent = 'Cadet Authentication';
+          authSubtitle.textContent = 'Sign in to track progress, earn achievements & sync across devices';
+        } else if (tab === 'register') {
+          tabRegister.className = 'flex-1 py-2.5 text-center font-bold border-b-2 border-primary text-primary transition-all';
+          tabLogin.className = 'flex-1 py-2.5 text-center text-outline hover:text-on-surface border-b-2 border-transparent transition-all';
+          formRegister.classList.remove('hidden');
+          formLogin.classList.add('hidden');
+          formForgot.classList.add('hidden');
+          authTitle.textContent = 'Cadet Enlistment';
+          authSubtitle.textContent = 'Create your account to unlock certifications and badges';
+        } else if (tab === 'forgot') {
+          formForgot.classList.remove('hidden');
+          formLogin.classList.add('hidden');
+          formRegister.classList.add('hidden');
+          authTitle.textContent = 'Account Recovery';
+          authSubtitle.textContent = 'Reset your Academy password';
+        }
+      }
+
+      tabLogin.addEventListener('click', () => switchTab('login'));
+      tabRegister.addEventListener('click', () => switchTab('register'));
+      btnForgotLink.addEventListener('click', () => switchTab('forgot'));
+      btnBackToLogin.addEventListener('click', () => switchTab('login'));
+
+      // Check migration status
+      if (typeof AcademyState !== 'undefined') {
+        const rooms = AcademyState.getCompletedRooms ? AcademyState.getCompletedRooms() : [];
+        const labs = AcademyState.getCompletedLabs ? AcademyState.getCompletedLabs() : [];
+        if (rooms.length > 0 || labs.length > 0) {
+          migrationAlert.classList.remove('hidden');
+          migrationRoomCount.textContent = rooms.length;
+          migrationLabCount.textContent = labs.length;
+        }
+      }
+
+      // Check config status
+      if (typeof AcademyConfig !== 'undefined') {
+        const cfg = AcademyConfig.getStoredConfig();
+        cfgUrl.value = cfg.url || '';
+        cfgAnonKey.value = cfg.anonKey || '';
+
+        if (!AcademyConfig.isConfigured()) {
+          unconfiguredAlert.classList.remove('hidden');
+        }
+      }
+
+      btnToggleConfig.addEventListener('click', () => configDrawer.classList.toggle('hidden'));
+      btnCloseConfig.addEventListener('click', () => configDrawer.classList.add('hidden'));
+
+      btnSaveConfig.addEventListener('click', () => {
+        const url = cfgUrl.value.trim();
+        const anonKey = cfgAnonKey.value.trim();
+        if (!url || !anonKey) {
+          alert('Please enter both Supabase URL and Anon Key.');
+          return;
+        }
+        AcademyConfig.setConfig(url, anonKey);
+        window.location.reload();
+      });
+
+      // Handle Sign In submission
+      formLogin.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+        const btn = document.getElementById('btn-submit-login');
+        btn.disabled = true;
+        btn.innerHTML = '<span class="material-symbols-outlined text-base animate-spin">refresh</span><span>Signing in...</span>';
+
+        const res = await AcademyAuth.signIn({ email, password });
+        btn.disabled = false;
+        btn.innerHTML = '<span class="material-symbols-outlined text-base">login</span><span>Sign In to Academy</span>';
+
+        if (res.success) {
+          showAlert('Signed in successfully! Synchronizing cadet profile...', 'success');
+          // Auto migrate guest progress if present
+          if (res.user && typeof AcademySync !== 'undefined' && AcademySync.checkUnmigratedProgress(res.user.id)) {
+            await AcademySync.migrateLocalProgress(res.user.id);
+          }
+          setTimeout(() => {
+            window.location.href = 'profile.html';
+          }, 1000);
+        } else {
+          showAlert(res.error || 'Authentication failed. Check your email and password.', 'error');
+        }
+      });
+
+      // Handle Register submission
+      formRegister.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const username = document.getElementById('reg-username').value;
+        const displayName = document.getElementById('reg-display-name').value;
+        const email = document.getElementById('reg-email').value;
+        const password = document.getElementById('reg-password').value;
+        const btn = document.getElementById('btn-submit-register');
+
+        btn.disabled = true;
+        btn.innerHTML = '<span class="material-symbols-outlined text-base animate-spin">refresh</span><span>Creating account...</span>';
+
+        const res = await AcademyAuth.signUp({ email, password, username, displayName });
+        btn.disabled = false;
+        btn.innerHTML = '<span class="material-symbols-outlined text-base">how_to_reg</span><span>Create Cadet Account</span>';
+
+        if (res.success) {
+          if (res.needsEmailConfirmation) {
+            showAlert('Registration initiated! Please check your email to verify your address before signing in.', 'success');
+          } else {
+            showAlert('Account created! Syncing cadet profile...', 'success');
+            if (res.user && typeof AcademySync !== 'undefined' && AcademySync.checkUnmigratedProgress(res.user.id)) {
+              await AcademySync.migrateLocalProgress(res.user.id);
+            }
+            setTimeout(() => {
+              window.location.href = 'profile.html';
+            }, 1000);
+          }
+        } else {
+          showAlert(res.error || 'Registration failed.', 'error');
+        }
+      });
+
+      // Handle Forgot Password submission
+      formForgot.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('forgot-email').value;
+        const btn = document.getElementById('btn-submit-forgot');
+        btn.disabled = true;
+        btn.innerHTML = '<span class="material-symbols-outlined text-base animate-spin">refresh</span><span>Sending...</span>';
+
+        const res = await AcademyAuth.resetPassword(email);
+        btn.disabled = false;
+        btn.innerHTML = '<span class="material-symbols-outlined text-base">send</span><span>Send Recovery Link</span>';
+
+        if (res.success) {
+          showAlert('Recovery email sent. Check your inbox for instructions.', 'success');
+        } else {
+          showAlert(res.error || 'Password reset request failed.', 'error');
+        }
+      });
+
+      // Google OAuth
+      btnGoogleAuth.addEventListener('click', async () => {
+        const res = await AcademyAuth.signInWithGoogle();
+        if (!res.success) {
+          showAlert(res.error || 'Google sign-in failed to initialize.', 'error');
+        }
+      });
+
+      // Auto-switch to register or reset based on URL hash / query
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('mode') === 'register' || window.location.hash === '#register') {
+        switchTab('register');
+      } else if (urlParams.get('mode') === 'reset') {
+        switchTab('forgot');
+      }
+
+      // If user is already authenticated, redirect to profile
+      AcademyAuth.init().then(state => {
+        if (state.user) {
+          showAlert('You are already authenticated. Redirecting to your cadet profile...', 'success');
+          setTimeout(() => { window.location.href = 'profile.html'; }, 800);
+        }
+      });
+
+    })();
+  </script>
+</body>
+</html>

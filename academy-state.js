@@ -167,6 +167,33 @@
     return newlyCompleted;
   }
 
+  function isLabCompleted(labId) {
+    if (!labId) return false;
+    return getCompletedLabs().includes(labId);
+  }
+
+  function markLabCompleted(labId) {
+    if (!labId) return false;
+    const labs = getCompletedLabs();
+    let newlyCompleted = false;
+
+    if (!labs.includes(labId)) {
+      labs.push(labId);
+      safeSet(KEYS.LABS, labs);
+      newlyCompleted = true;
+    }
+
+    updateStreak();
+    calculateTotalXP();
+    dispatchStateChange({ type: 'lab-completed', labId, newlyCompleted });
+
+    if (typeof window !== 'undefined' && window.AcademySync && typeof window.AcademySync.pushLabProgress === 'function') {
+      window.AcademySync.pushLabProgress(labId, [], true);
+    }
+
+    return newlyCompleted;
+  }
+
   function markRoomIncomplete(roomId) {
     if (!roomId) return;
     let rooms = getCompletedRooms().filter(id => id !== roomId);
@@ -346,11 +373,13 @@
     getRoomProgressMap,
     getTaskProgressMap,
     isRoomCompleted,
+    isLabCompleted,
     isQuestionSolved,
     isTaskCompleted,
     completeTask,
     markRoomCompleted,
     markRoomIncomplete,
+    markLabCompleted,
     solveQuestion,
     updateStreak,
     getStreak,
