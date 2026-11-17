@@ -50,7 +50,8 @@
     // Sync all theme button states across DOM
     syncThemeButtons(normalized);
 
-    // Notify listeners
+    // Notify listeners (CALION primary + legacy Endlessus)
+    window.dispatchEvent(new CustomEvent('calion-theme-changed', { detail: { theme: normalized } }));
     window.dispatchEvent(new CustomEvent('endlessus-theme-changed', { detail: { theme: normalized } }));
   }
 
@@ -383,7 +384,7 @@
       modal.className = 'academy-search-backdrop';
       modal.setAttribute('role', 'dialog');
       modal.setAttribute('aria-modal', 'true');
-      modal.setAttribute('aria-label', 'Endlessus Academy Global Search');
+      modal.setAttribute('aria-label', 'CALION Academy Global Search');
       modal.innerHTML = `
         <div class="academy-search-dialog">
           <div class="academy-search-input-wrap">
@@ -403,7 +404,7 @@
               <span><kbd>Esc</kbd> close</span>
             </div>
             <div>
-              <span style="color: var(--color-primary); font-weight: 700;">Endlessus Academy</span> Search
+              <span style="color: var(--color-primary); font-weight: 700;">CALION Academy</span> Search
             </div>
           </div>
         </div>
@@ -688,7 +689,12 @@
     syncThemeButtons(getStoredTheme());
     syncHeaderStats();
     syncHeaderAuth();
+    window.addEventListener('calion-progress-updated', syncHeaderStats);
     window.addEventListener('endlessus-progress-updated', syncHeaderStats);
+    window.addEventListener('calion-auth-changed', () => {
+      syncHeaderAuth();
+      syncHeaderStats();
+    });
     window.addEventListener('endlessus-auth-changed', () => {
       syncHeaderAuth();
       syncHeaderStats();
@@ -739,7 +745,7 @@
 
     authSlots.forEach(slot => {
       if (isAuthed && (profile || user)) {
-        const displayName = (profile && (profile.display_name || profile.username)) || (user && user.email ? user.email.split('@')[0] : 'Cadet');
+        const displayName = (profile && (profile.display_name || profile.username)) || (user && user.email ? user.email.split('@')[0] : 'Learner');
         const initial = displayName.charAt(0).toUpperCase();
 
         slot.innerHTML = `
@@ -789,7 +795,7 @@
   }
 
   // Expose global API
-  window.EndlessusAcademy = {
+  window.CalionAcademy = window.EndlessusAcademy = {
     setTheme: applyTheme,
     getTheme: getStoredTheme,
     openSearch: openSearch,

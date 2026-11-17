@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title id="page-title">Lesson Reader · Endlessus Academy</title>
+  <title id="page-title">Lesson Reader · CALION Academy</title>
   <meta id="page-desc" content="Focused cybersecurity lesson reading and hands-on knowledge checks." name="description"/>
   <link rel="icon" type="image/png" href="handbook/assets/favicon.png"/>
 
@@ -74,9 +74,9 @@
       <!-- Brand & Section Label -->
       <div class="flex items-center gap-3">
         <a href="learning.html" class="flex items-center gap-2.5 text-on-surface hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded py-1">
-          <span class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center font-mono font-black text-primary text-base">E</span>
+          <span class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center font-mono font-black text-primary text-base">C</span>
           <div class="flex flex-col">
-            <span class="font-bold text-sm tracking-tight leading-none text-on-surface">Endlessus Academy</span>
+            <span class="font-bold text-sm tracking-tight leading-none text-on-surface">CALION Academy</span>
             <span class="text-[10px] font-mono text-outline tracking-wider uppercase mt-0.5">Lesson Reader</span>
           </div>
         </a>
@@ -385,7 +385,7 @@
       function showNotFound() {
         if (notFoundEl) notFoundEl.classList.remove('hidden');
         if (containerEl) containerEl.classList.add('hidden');
-        document.title = 'Lesson Not Found · Endlessus Academy';
+        document.title = 'Lesson Not Found · CALION Academy';
       }
 
       // Record room activity
@@ -429,7 +429,7 @@
 
       // Populate Active Section
       const currentLesson = lessons[taskIdx];
-      document.title = `${currentLesson.title} · ${room.id.toUpperCase()} · Endlessus Academy`;
+      document.title = `${currentLesson.title} · ${room.id.toUpperCase()} · CALION Academy`;
       document.getElementById('breadcrumb-task-title').textContent = currentLesson.title;
       document.getElementById('header-task-label').textContent = `Section ${taskIdx + 1} of ${lessons.length}`;
       document.getElementById('lesson-task-badge').textContent = `Section ${taskIdx + 1} of ${lessons.length}`;

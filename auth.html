@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Cadet Authentication · Endlessus Cybersecurity Academy</title>
+  <title>Account Access · CALION Academy</title>
   <meta content="Register, log in, and sync your cybersecurity learning progress across all devices." name="description"/>
   <link rel="icon" type="image/png" href="handbook/assets/favicon.png"/>
-  <link rel="canonical" href="https://endlessus.in/auth.html"/>
+  <link rel="canonical" href="https://calion.in/auth.html"/>
 
   <!-- Security Headers (Client-side meta) -->
   <meta http-equiv="X-Content-Type-Options" content="nosniff"/>
@@ -20,7 +20,7 @@
   <!-- Immediate Theme Initializer -->
   <script>
     (function() {
-      const savedTheme = localStorage.getItem('endlessus_learning_theme') || 'normal';
+      const savedTheme = localStorage.getItem('calion_learning_theme') || localStorage.getItem('endlessus_learning_theme') || 'normal';
       if (savedTheme === 'hacker') {
         document.documentElement.classList.add('dark', 'theme-hacker');
         document.documentElement.classList.remove('theme-normal');
@@ -82,10 +82,10 @@
       <!-- Brand -->
       <div class="flex items-center gap-3">
         <a href="learning.html" class="flex items-center gap-2.5 text-on-surface hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded py-1">
-          <span class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center font-mono font-black text-primary text-base">E</span>
+          <span class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center font-mono font-black text-primary text-base">C</span>
           <div class="flex flex-col">
-            <span class="font-bold text-sm tracking-tight leading-none text-on-surface">Endlessus Academy</span>
-            <span class="text-[10px] font-mono text-outline tracking-wider uppercase mt-0.5">Cybersecurity Training</span>
+            <span class="font-bold text-sm tracking-tight leading-none text-on-surface">CALION Academy</span>
+            <span class="text-[10px] font-mono text-outline tracking-wider uppercase mt-0.5">Cybersecurity Education</span>
           </div>
         </a>
       </div>
@@ -118,15 +118,15 @@
        2. AUTHENTICATION CONTAINER
        ========================================================================= -->
   <main class="flex-1 flex items-center justify-center p-4 sm:p-6 my-6">
-    <div class="w-full max-w-md bg-surface-subtle border border-border-hairline rounded-2xl shadow-2xl p-6 sm:p-8 space-y-6">
+    <div class="w-full max-w-md bg-surface-subtle border border-border-hairline rounded-2xl shadow-xl p-6 sm:p-8 space-y-6">
       
       <!-- Top Emblem & Header -->
       <div class="text-center space-y-2">
         <div class="w-12 h-12 mx-auto rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
-          <span class="material-symbols-outlined text-2xl">shield_person</span>
+          <span class="material-symbols-outlined text-2xl">account_circle</span>
         </div>
-        <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-on-surface" id="auth-title">Cadet Authentication</h1>
-        <p class="text-xs text-outline font-mono" id="auth-subtitle">Sign in to track progress, earn achievements &amp; sync across devices</p>
+        <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-on-surface" id="auth-title">Account Access</h1>
+        <p class="text-xs text-outline font-mono" id="auth-subtitle">Sign in to track learning progress, verify competencies &amp; sync across devices</p>
       </div>
 
       <!-- Migration Notice Banner (if guest progress detected) -->
@@ -136,7 +136,7 @@
           <span>Local Progress Detected</span>
         </div>
         <p class="text-on-surface-variant text-[11px] leading-relaxed">
-          You have <strong id="migration-room-count">0</strong> rooms and <strong id="migration-lab-count">0</strong> labs completed in guest mode. Signing in will automatically link this progress to your cloud profile!
+          You have <strong id="migration-room-count">0</strong> rooms and <strong id="migration-lab-count">0</strong> labs completed in guest mode. Signing in will securely associate your progress with your cloud learning profile.
         </p>
       </div>
 
@@ -150,10 +150,10 @@
       <div id="unconfigured-alert" class="hidden p-3.5 rounded-xl border border-warning/30 bg-warning/10 text-xs space-y-2">
         <div class="flex items-center gap-2 font-bold text-warning">
           <span class="material-symbols-outlined text-sm">warning</span>
-          <span>Supabase Configuration Notice</span>
+          <span>Backend Configuration Notice</span>
         </div>
         <p class="text-[11px] text-on-surface-variant leading-relaxed">
-          The Academy Supabase URL or Anon Key is not yet configured. You can supply your credentials below, or continue exploring the Academy in local guest mode.
+          The CALION Academy Supabase URL or Anon Key is not yet configured. You can supply your credentials below, or continue in local guest mode.
         </p>
         <button type="button" id="btn-toggle-config" class="text-[11px] font-bold text-primary hover:underline flex items-center gap-1">
           <span class="material-symbols-outlined text-xs">settings</span>
@@ -164,12 +164,12 @@
       <!-- Config Drawer (Collapsible) -->
       <div id="config-drawer" class="hidden p-4 rounded-xl border border-border-hairline bg-surface-raised space-y-3 text-xs font-mono">
         <div class="font-bold text-on-surface flex items-center justify-between">
-          <span>Supabase Connection Settings</span>
+          <span>CALION Supabase Connection Settings</span>
           <button type="button" id="btn-close-config" class="text-outline hover:text-on-surface"><span class="material-symbols-outlined text-sm">close</span></button>
         </div>
         <div>
           <label class="block text-[10px] text-outline uppercase mb-1">Supabase Project URL</label>
-          <input type="text" id="cfg-url" placeholder="https://xyzcompany.supabase.co" class="w-full px-3 py-2 rounded-lg bg-surface-subtle border border-border-hairline focus:border-primary text-xs text-on-surface outline-none"/>
+          <input type="text" id="cfg-url" placeholder="https://your-project.supabase.co" class="w-full px-3 py-2 rounded-lg bg-surface-subtle border border-border-hairline focus:border-primary text-xs text-on-surface outline-none"/>
         </div>
         <div>
           <label class="block text-[10px] text-outline uppercase mb-1">Supabase Anon Key</label>
@@ -199,7 +199,7 @@
           <label for="login-email" class="block text-xs font-mono font-medium text-on-surface-variant mb-1.5">Email Address</label>
           <div class="relative">
             <span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-base">mail</span>
-            <input type="email" id="login-email" required placeholder="cadet@endlessus.in" class="w-full pl-9 pr-3 py-2.5 rounded-xl bg-surface-raised border border-border-hairline focus:border-primary text-xs text-on-surface outline-none transition-colors"/>
+            <input type="email" id="login-email" required placeholder="learner@calion.academy" class="w-full pl-9 pr-3 py-2.5 rounded-xl bg-surface-raised border border-border-hairline focus:border-primary text-xs text-on-surface outline-none transition-colors"/>
           </div>
         </div>
 
@@ -214,19 +214,19 @@
           </div>
         </div>
 
-        <button type="submit" id="btn-submit-login" class="w-full py-3 rounded-xl bg-primary hover:bg-primary-hover active:scale-[0.99] text-white font-bold font-mono text-xs flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary/20">
+        <button type="submit" id="btn-submit-login" class="w-full py-3 rounded-xl bg-primary hover:bg-primary-hover active:scale-[0.99] text-white font-bold font-mono text-xs flex items-center justify-center gap-2 transition-all shadow-md shadow-primary/20">
           <span class="material-symbols-outlined text-base">login</span>
-          <span>Sign In to Academy</span>
+          <span>Sign In to CALION Academy</span>
         </button>
       </form>
 
       <!-- ================= FORM: REGISTER ================= -->
       <form id="form-register" class="space-y-4 hidden">
         <div>
-          <label for="reg-username" class="block text-xs font-mono font-medium text-on-surface-variant mb-1.5">Cadet Handle / Username</label>
+          <label for="reg-username" class="block text-xs font-mono font-medium text-on-surface-variant mb-1.5">Learner Username</label>
           <div class="relative">
             <span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-base">badge</span>
-            <input type="text" id="reg-username" required pattern="^[a-zA-Z0-9_-]{3,30}$" placeholder="cyber_cadet" class="w-full pl-9 pr-3 py-2.5 rounded-xl bg-surface-raised border border-border-hairline focus:border-primary text-xs text-on-surface outline-none transition-colors font-mono"/>
+            <input type="text" id="reg-username" required pattern="^[a-zA-Z0-9_-]{3,30}$" placeholder="cyber_student" class="w-full pl-9 pr-3 py-2.5 rounded-xl bg-surface-raised border border-border-hairline focus:border-primary text-xs text-on-surface outline-none transition-colors font-mono"/>
           </div>
           <span class="text-[10px] text-outline font-mono mt-1 block">3–30 characters: letters, numbers, hyphens, underscores</span>
         </div>
@@ -243,7 +243,7 @@
           <label for="reg-email" class="block text-xs font-mono font-medium text-on-surface-variant mb-1.5">Email Address</label>
           <div class="relative">
             <span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-base">mail</span>
-            <input type="email" id="reg-email" required placeholder="cadet@endlessus.in" class="w-full pl-9 pr-3 py-2.5 rounded-xl bg-surface-raised border border-border-hairline focus:border-primary text-xs text-on-surface outline-none transition-colors"/>
+            <input type="email" id="reg-email" required placeholder="learner@calion.academy" class="w-full pl-9 pr-3 py-2.5 rounded-xl bg-surface-raised border border-border-hairline focus:border-primary text-xs text-on-surface outline-none transition-colors"/>
           </div>
         </div>
 
@@ -255,23 +255,23 @@
           </div>
         </div>
 
-        <button type="submit" id="btn-submit-register" class="w-full py-3 rounded-xl bg-primary hover:bg-primary-hover active:scale-[0.99] text-white font-bold font-mono text-xs flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary/20">
+        <button type="submit" id="btn-submit-register" class="w-full py-3 rounded-xl bg-primary hover:bg-primary-hover active:scale-[0.99] text-white font-bold font-mono text-xs flex items-center justify-center gap-2 transition-all shadow-md shadow-primary/20">
           <span class="material-symbols-outlined text-base">how_to_reg</span>
-          <span>Create Cadet Account</span>
+          <span>Create CALION Account</span>
         </button>
       </form>
 
       <!-- ================= FORM: FORGOT PASSWORD ================= -->
       <form id="form-forgot" class="space-y-4 hidden">
         <p class="text-xs text-on-surface-variant leading-relaxed">
-          Enter your registered email address and we'll send you a secure link to reset your Academy credentials.
+          Enter your registered email address and we'll send you a secure link to reset your account password.
         </p>
 
         <div>
           <label for="forgot-email" class="block text-xs font-mono font-medium text-on-surface-variant mb-1.5">Email Address</label>
           <div class="relative">
             <span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-base">mail</span>
-            <input type="email" id="forgot-email" required placeholder="cadet@endlessus.in" class="w-full pl-9 pr-3 py-2.5 rounded-xl bg-surface-raised border border-border-hairline focus:border-primary text-xs text-on-surface outline-none transition-colors"/>
+            <input type="email" id="forgot-email" required placeholder="learner@calion.academy" class="w-full pl-9 pr-3 py-2.5 rounded-xl bg-surface-raised border border-border-hairline focus:border-primary text-xs text-on-surface outline-none transition-colors"/>
           </div>
         </div>
 
@@ -304,7 +304,7 @@
       <!-- Guest Continue Link -->
       <div class="text-center pt-2">
         <a href="learning.html" class="text-xs font-mono text-outline hover:text-primary transition-colors">
-          Continue as Guest Cadet →
+          Continue in Guest Mode →
         </a>
       </div>
 
@@ -362,22 +362,22 @@
           formLogin.classList.remove('hidden');
           formRegister.classList.add('hidden');
           formForgot.classList.add('hidden');
-          authTitle.textContent = 'Cadet Authentication';
-          authSubtitle.textContent = 'Sign in to track progress, earn achievements & sync across devices';
+          authTitle.textContent = 'Account Access';
+          authSubtitle.textContent = 'Sign in to track learning progress, verify competencies & sync across devices';
         } else if (tab === 'register') {
           tabRegister.className = 'flex-1 py-2.5 text-center font-bold border-b-2 border-primary text-primary transition-all';
           tabLogin.className = 'flex-1 py-2.5 text-center text-outline hover:text-on-surface border-b-2 border-transparent transition-all';
           formRegister.classList.remove('hidden');
           formLogin.classList.add('hidden');
           formForgot.classList.add('hidden');
-          authTitle.textContent = 'Cadet Enlistment';
-          authSubtitle.textContent = 'Create your account to unlock certifications and badges';
+          authTitle.textContent = 'Create CALION Account';
+          authSubtitle.textContent = 'Join CALION Academy to earn certifications and verify achievements';
         } else if (tab === 'forgot') {
           formForgot.classList.remove('hidden');
           formLogin.classList.add('hidden');
           formRegister.classList.add('hidden');
           authTitle.textContent = 'Account Recovery';
-          authSubtitle.textContent = 'Reset your Academy password';
+          authSubtitle.textContent = 'Reset your CALION Academy password';
         }
       }
 
@@ -418,8 +418,12 @@
           alert('Please enter both Supabase URL and Anon Key.');
           return;
         }
-        AcademyConfig.setConfig(url, anonKey);
-        window.location.reload();
+        try {
+          AcademyConfig.setConfig(url, anonKey);
+          window.location.reload();
+        } catch (err) {
+          alert(err.message || 'Configuration error.');
+        }
       });
 
       // Handle Sign In submission
@@ -433,17 +437,16 @@
 
         const res = await AcademyAuth.signIn({ email, password });
         btn.disabled = false;
-        btn.innerHTML = '<span class="material-symbols-outlined text-base">login</span><span>Sign In to Academy</span>';
+        btn.innerHTML = '<span class="material-symbols-outlined text-base">login</span><span>Sign In to CALION Academy</span>';
 
         if (res.success) {
-          showAlert('Signed in successfully! Synchronizing cadet profile...', 'success');
-          // Auto migrate guest progress if present
+          showAlert('Signed in successfully! Synchronizing learner profile...', 'success');
           if (res.user && typeof AcademySync !== 'undefined' && AcademySync.checkUnmigratedProgress(res.user.id)) {
             await AcademySync.migrateLocalProgress(res.user.id);
           }
           setTimeout(() => {
             window.location.href = 'profile.html';
-          }, 1000);
+          }, 800);
         } else {
           showAlert(res.error || 'Authentication failed. Check your email and password.', 'error');
         }
@@ -463,19 +466,19 @@
 
         const res = await AcademyAuth.signUp({ email, password, username, displayName });
         btn.disabled = false;
-        btn.innerHTML = '<span class="material-symbols-outlined text-base">how_to_reg</span><span>Create Cadet Account</span>';
+        btn.innerHTML = '<span class="material-symbols-outlined text-base">how_to_reg</span><span>Create CALION Account</span>';
 
         if (res.success) {
           if (res.needsEmailConfirmation) {
             showAlert('Registration initiated! Please check your email to verify your address before signing in.', 'success');
           } else {
-            showAlert('Account created! Syncing cadet profile...', 'success');
+            showAlert('Account created! Syncing learner profile...', 'success');
             if (res.user && typeof AcademySync !== 'undefined' && AcademySync.checkUnmigratedProgress(res.user.id)) {
               await AcademySync.migrateLocalProgress(res.user.id);
             }
             setTimeout(() => {
               window.location.href = 'profile.html';
-            }, 1000);
+            }, 800);
           }
         } else {
           showAlert(res.error || 'Registration failed.', 'error');
@@ -520,8 +523,8 @@
       // If user is already authenticated, redirect to profile
       AcademyAuth.init().then(state => {
         if (state.user) {
-          showAlert('You are already authenticated. Redirecting to your cadet profile...', 'success');
-          setTimeout(() => { window.location.href = 'profile.html'; }, 800);
+          showAlert('You are authenticated. Redirecting to your learner profile...', 'success');
+          setTimeout(() => { window.location.href = 'profile.html'; }, 600);
         }
       });
 

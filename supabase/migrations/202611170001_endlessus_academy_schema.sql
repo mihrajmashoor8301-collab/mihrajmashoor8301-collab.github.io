@@ -1,6 +1,6 @@
--- Endlessus Academy 2.0 - Complete Supabase Database Schema & Migration
--- Author: Endlessus Lead Full-Stack Architect
--- Target: Dedicated NEW Supabase project for Endlessus Cybersecurity Academy
+-- CALION Academy — Hardened Supabase Database Schema & Migration
+-- Author: CALION Lead Security Engineer & Full-Stack Architect
+-- Target: Dedicated NEW Supabase project for CALION Academy
 
 -- Enable pgcrypto for UUID generation
 create extension if not exists pgcrypto;
@@ -26,7 +26,7 @@ create index if not exists profiles_username_idx on public.profiles (lower(usern
 create index if not exists profiles_public_idx on public.profiles (is_public);
 
 -- ============================================================================
--- 2. LEARNING PATHS (Pre Security, Cyber Security 101, Jr Pentester)
+-- 2. LEARNING PATHS (Pre Security, Cyber Security 101, Jr Penetration Tester)
 -- ============================================================================
 create table if not exists public.learning_paths (
   id text primary key,
@@ -68,7 +68,13 @@ create table if not exists public.room_progress (
   started_at timestamptz not null default now(),
   completed_at timestamptz,
   last_accessed_at timestamptz not null default now(),
-  unique (user_id, room_id)
+  unique (user_id, room_id),
+  -- SECURITY ENFORCEMENT: Completed status strictly requires 100% progress
+  constraint chk_room_progress_status_pct check (
+    (status = 'completed' and progress_pct = 100) or
+    (status = 'in_progress' and progress_pct >= 0 and progress_pct <= 100) or
+    (status = 'not_started' and progress_pct = 0)
+  )
 );
 
 create index if not exists room_progress_user_status_idx on public.room_progress (user_id, status);
@@ -101,7 +107,12 @@ create table if not exists public.lab_progress (
   started_at timestamptz not null default now(),
   completed_at timestamptz,
   last_accessed_at timestamptz not null default now(),
-  unique (user_id, lab_id)
+  unique (user_id, lab_id),
+  -- SECURITY ENFORCEMENT: Lab completed status strictly requires verified flag
+  constraint chk_lab_progress_status check (
+    (status = 'completed' and flag_verified = true) or
+    (status != 'completed')
+  )
 );
 
 create index if not exists lab_progress_user_status_idx on public.lab_progress (user_id, status);
@@ -169,7 +180,7 @@ create index if not exists user_activity_calendar_idx on public.user_activity (u
 create index if not exists user_activity_timeline_idx on public.user_activity (user_id, created_at desc);
 
 -- ============================================================================
--- ROW LEVEL SECURITY (RLS) POLICIES
+-- ROW LEVEL SECURITY (RLS) POLICIES — HARDENED
 -- ============================================================================
 alter table public.profiles enable row level security;
 alter table public.learning_paths enable row level security;
@@ -189,10 +200,25 @@ create policy "Profiles visible to public if public or own" on public.profiles
   using (is_public = true or id = auth.uid());
 
 drop policy if exists "Users manage their own profile" on public.profiles;
-create policy "Users manage their own profile" on public.profiles
-  for all to authenticated
+drop policy if exists "Users update their own profile" on public.profiles;
+drop policy if exists "Users insert their own profile" on public.profiles;
+
+create policy "Users insert their own profile" on public.profiles
+  for insert to authenticated
+  with check (id = auth.uid());
+
+create policy "Users update their own profile" on public.profiles
+  for update to authenticated
   using (id = auth.uid())
   with check (id = auth.uid());
+
+-- Column Privilege Hardening: Browser users CANNOT update total_xp or streak_days directly
+revoke all on public.profiles from anon;
+revoke all on public.profiles from authenticated;
+
+grant select on public.profiles to anon, authenticated;
+grant insert (id, username, display_name, avatar_url, bio, is_public) on public.profiles to authenticated;
+grant update (username, display_name, avatar_url, bio, is_public) on public.profiles to authenticated;
 
 -- 2. Curriculum Metadata RLS (Public read-only)
 drop policy if exists "Learning paths readable by anyone" on public.learning_paths;
@@ -259,7 +285,7 @@ create policy "Users manage their own task progress" on public.task_progress
   using (user_id = auth.uid())
   with check (user_id = auth.uid());
 
--- 6. User Achievements RLS
+-- 6. User Achievements RLS (SECURITY HARDENED: READ-ONLY FOR BROWSER)
 drop policy if exists "User achievements visible if own or public profile" on public.user_achievements;
 create policy "User achievements visible if own or public profile" on public.user_achievements
   for select
@@ -271,13 +297,12 @@ create policy "User achievements visible if own or public profile" on public.use
     )
   );
 
+-- STRICT: Drop client insert/update policy. Only internal server triggers can award achievements!
 drop policy if exists "Users manage their own achievements" on public.user_achievements;
-create policy "Users manage their own achievements" on public.user_achievements
-  for all to authenticated
-  using (user_id = auth.uid())
-  with check (user_id = auth.uid());
+revoke insert, update, delete on public.user_achievements from authenticated, anon;
+grant select on public.user_achievements to authenticated, anon;
 
--- 7. User Activity RLS
+-- 7. User Activity RLS (SECURITY HARDENED: READ-ONLY FOR BROWSER)
 drop policy if exists "User activity visible if own or public profile" on public.user_activity;
 create policy "User activity visible if own or public profile" on public.user_activity
   for select
@@ -289,21 +314,46 @@ create policy "User activity visible if own or public profile" on public.user_ac
     )
   );
 
+-- STRICT: Drop client insert policy. Activity is exclusively written by verified system triggers!
 drop policy if exists "Users record their own activity" on public.user_activity;
-create policy "Users record their own activity" on public.user_activity
-  for insert to authenticated
-  with check (user_id = auth.uid());
+revoke insert, update, delete on public.user_activity from authenticated, anon;
+grant select on public.user_activity to authenticated, anon;
 
 -- ============================================================================
--- AUTOMATED TRIGGERS & BUSINESS LOGIC
+-- AUTOMATED TRIGGERS & BUSINESS LOGIC (WITH STRICT SEARCH_PATH)
 -- ============================================================================
+
+-- Defense-in-depth: Profile Immutable Fields Protection Trigger
+create or replace function public.protect_profile_immutable_fields()
+returns trigger
+language plpgsql
+security definer
+set search_path = public, pg_temp
+as $$
+begin
+  -- Prevent client-side manipulation of total_xp and streak_days
+  if current_user in ('authenticated', 'anon') then
+    new.total_xp := old.total_xp;
+    new.streak_days := old.streak_days;
+    new.created_at := old.created_at;
+    new.id := old.id;
+  end if;
+  new.updated_at := now();
+  return new;
+end;
+$$;
+
+drop trigger if exists trg_protect_profile_fields on public.profiles;
+create trigger trg_protect_profile_fields
+  before update on public.profiles
+  for each row execute function public.protect_profile_immutable_fields();
 
 -- Function: Handle New User Registration -> Automatically Create Profile
 create or replace function public.handle_new_user()
 returns trigger
 language plpgsql
 security definer
-set search_path = public
+set search_path = public, pg_temp
 as $$
 declare
   raw_user text;
@@ -314,12 +364,12 @@ begin
   raw_user := coalesce(
     new.raw_user_meta_data->>'username',
     split_part(new.email, '@', 1),
-    'cadet_' || substr(new.id::text, 1, 8)
+    'learner_' || substr(new.id::text, 1, 8)
   );
   -- Sanitize username to alphanumeric + underscore/dash
   clean_username := regexp_replace(raw_user, '[^a-zA-Z0-9_-]', '', 'g');
   if char_length(clean_username) < 3 then
-    clean_username := 'cadet_' || substr(new.id::text, 1, 8);
+    clean_username := 'learner_' || substr(new.id::text, 1, 8);
   end if;
   clean_username := substr(clean_username, 1, 30);
 
@@ -353,7 +403,7 @@ create or replace function public.evaluate_user_milestones(target_user_id uuid)
 returns void
 language plpgsql
 security definer
-set search_path = public
+set search_path = public, pg_temp
 as $$
 declare
   completed_room_count integer;
@@ -447,6 +497,7 @@ create or replace function public.on_room_progress_update()
 returns trigger
 language plpgsql
 security definer
+set search_path = public, pg_temp
 as $$
 begin
   if (new.status = 'completed' and (old.status is null or old.status != 'completed')) then
@@ -470,6 +521,7 @@ create or replace function public.on_lab_progress_update()
 returns trigger
 language plpgsql
 security definer
+set search_path = public, pg_temp
 as $$
 begin
   if ((new.status = 'completed' or new.flag_verified = true) and

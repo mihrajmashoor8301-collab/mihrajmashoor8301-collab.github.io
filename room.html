@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title id="page-title">Room Overview · Endlessus Academy</title>
+  <title id="page-title">Room Overview · CALION Academy</title>
   <meta id="page-desc" content="Room objectives, syllabus breakdown, and practical learning outline." name="description"/>
   <link rel="icon" type="image/png" href="handbook/assets/favicon.png"/>
 
@@ -74,9 +74,9 @@
       <!-- Brand & Section Label -->
       <div class="flex items-center gap-3">
         <a href="learning.html" class="flex items-center gap-2.5 text-on-surface hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded py-1">
-          <span class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center font-mono font-black text-primary text-base">E</span>
+          <span class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center font-mono font-black text-primary text-base">C</span>
           <div class="flex flex-col">
-            <span class="font-bold text-sm tracking-tight leading-none text-on-surface">Endlessus Academy</span>
+            <span class="font-bold text-sm tracking-tight leading-none text-on-surface">CALION Academy</span>
             <span class="text-[10px] font-mono text-outline tracking-wider uppercase mt-0.5">Room</span>
           </div>
         </a>
@@ -440,7 +440,7 @@
       function showNotFound() {
         if (notFoundEl) notFoundEl.classList.remove('hidden');
         if (containerEl) containerEl.classList.add('hidden');
-        document.title = 'Room Not Found · Endlessus Academy';
+        document.title = 'Room Not Found · CALION Academy';
       }
 
       // Record room activity
@@ -448,7 +448,7 @@
       AcademyState.updateStreak();
 
       // Title & Meta
-      document.title = `${room.id.toUpperCase()}: ${room.title} · Endlessus Academy`;
+      document.title = `${room.id.toUpperCase()}: ${room.title} · CALION Academy`;
       const descEl = document.getElementById('page-desc');
       if (descEl) descEl.setAttribute('content', room.whyAreYouHere || room.title);
 

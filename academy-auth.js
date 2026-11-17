@@ -111,8 +111,8 @@
         currentProfile = data;
       } else if (!error) {
         // Fallback create profile if trigger did not execute
-        const rawName = currentUser.email ? currentUser.email.split('@')[0] : 'cadet';
-        const cleanUsername = rawName.replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 30) || `cadet_${currentUser.id.slice(0, 6)}`;
+        const rawName = currentUser.email ? currentUser.email.split('@')[0] : 'learner';
+        const cleanUsername = rawName.replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 30) || `learner_${currentUser.id.slice(0, 6)}`;
         
         const fallbackProfile = {
           id: currentUser.id,
@@ -356,6 +356,7 @@
     });
 
     if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('calion-auth-changed', { detail }));
       window.dispatchEvent(new CustomEvent('endlessus-auth-changed', { detail }));
     }
   }

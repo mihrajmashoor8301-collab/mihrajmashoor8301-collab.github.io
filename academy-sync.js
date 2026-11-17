@@ -173,8 +173,9 @@
   // Check if unmigrated local progress exists
   function checkUnmigratedProgress(userId) {
     if (!userId) return false;
-    const migrationKey = `endlessus_migrated_${userId}`;
-    if (localStorage.getItem(migrationKey) === 'true') return false;
+    const migrationKey = `calion_migrated_${userId}`;
+    const legacyKey = `endlessus_migrated_${userId}`;
+    if (localStorage.getItem(migrationKey) === 'true' || localStorage.getItem(legacyKey) === 'true') return false;
 
     const completedRooms = AcademyState.getCompletedRooms();
     const completedLabs = AcademyState.getCompletedLabs();
@@ -184,16 +185,29 @@
     return completedRooms.length > 0 || completedLabs.length > 0 || hasQuestions;
   }
 
-  // Migrate local progress to cloud with consent
+  // Migrate local progress to cloud with consent (sanitized and validated)
   async function migrateLocalProgress(userId) {
     const sb = AcademyAuth.getClient();
     if (!sb || !userId) return { success: false, error: 'Not authenticated' };
 
+    const migrationKey = `calion_migrated_${userId}`;
+    const legacyKey = `endlessus_migrated_${userId}`;
+    if (localStorage.getItem(migrationKey) === 'true' || localStorage.getItem(legacyKey) === 'true') {
+      return { success: true, alreadyMigrated: true };
+    }
+
     try {
-      const completedRooms = AcademyState.getCompletedRooms();
-      const roomProg = AcademyState.getRoomProgressMap();
-      const questionMap = AcademyState.getQuestionProgress();
-      const completedLabs = AcademyState.getCompletedLabs();
+      const validRoomRegex = /^room-[0-9]{2,}$/;
+      const validLabRegex = /^lab-[a-z0-9_-]+$/;
+
+      const completedRooms = (AcademyState.getCompletedRooms() || []).filter(
+        id => typeof id === 'string' && validRoomRegex.test(id)
+      );
+      const roomProg = AcademyState.getRoomProgressMap() || {};
+      const questionMap = AcademyState.getQuestionProgress() || {};
+      const completedLabs = (AcademyState.getCompletedLabs() || []).filter(
+        id => typeof id === 'string' && validLabRegex.test(id)
+      );
 
       // 1. Batch upsert rooms
       if (completedRooms.length > 0) {
@@ -217,18 +231,19 @@
 
       // Also upsert in-progress rooms
       const inProgressRoomIds = Object.keys(roomProg).filter(
-        id => !completedRooms.includes(id) && roomProg[id] > 0
+        id => validRoomRegex.test(id) && !completedRooms.includes(id) && roomProg[id] > 0
       );
       if (inProgressRoomIds.length > 0) {
         const ipUpserts = inProgressRoomIds.map(roomId => {
           const questionsSolved = Object.keys(questionMap).filter(
             k => k.startsWith(`${roomId}_`) && questionMap[k] === true
           );
+          const safePct = Math.min(99, Math.max(1, parseInt(roomProg[roomId], 10) || 0));
           return {
             user_id: userId,
             room_id: roomId,
             status: 'in_progress',
-            progress_pct: roomProg[roomId],
+            progress_pct: safePct,
             questions_solved: questionsSolved,
             last_accessed_at: new Date().toISOString()
           };
@@ -251,7 +266,8 @@
       }
 
       // Mark migration complete for this user
-      localStorage.setItem(`endlessus_migrated_${userId}`, 'true');
+      localStorage.setItem(migrationKey, 'true');
+      localStorage.setItem(legacyKey, 'true');
 
       // Refresh server state down
       await pullServerProgress(userId);
@@ -262,7 +278,7 @@
         migratedLabs: completedLabs.length
       };
     } catch (e) {
-      console.warn('[AcademySync] Migration error:', e);
+      console.warn('[CALION AcademySync] Migration error:', e);
       return { success: false, error: e.message };
     }
   }

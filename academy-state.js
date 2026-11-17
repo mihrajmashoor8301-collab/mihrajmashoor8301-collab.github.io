@@ -25,6 +25,19 @@
   'use strict';
 
   const KEYS = {
+    ROOMS: 'calion_completed_rooms',
+    ROOM_PROG: 'calion_room_progress',
+    QUESTIONS: 'calion_question_progress',
+    LABS: 'calion_completed_labs',
+    XP: 'calion_user_xp',
+    STREAK: 'calion_streak_days',
+    LAST_ACTIVE: 'calion_last_active',
+    LAST_ROOM: 'calion_last_room',
+    THEME: 'calion_learning_theme',
+    TASKS: 'calion_task_progress'
+  };
+
+  const LEGACY_KEYS = {
     ROOMS: 'endlessus_completed_rooms',
     ROOM_PROG: 'endlessus_room_progress',
     QUESTIONS: 'endlessus_question_progress',
@@ -40,7 +53,13 @@
   function safeGet(key, defaultVal) {
     try {
       if (typeof localStorage === 'undefined') return defaultVal;
-      const raw = localStorage.getItem(key);
+      let raw = localStorage.getItem(key);
+      if (raw === null || raw === undefined || raw === '') {
+        const legacyKey = key.replace('calion_', 'endlessus_');
+        if (legacyKey !== key) {
+          raw = localStorage.getItem(legacyKey);
+        }
+      }
       if (raw === null || raw === undefined || raw === '') return defaultVal;
       const parsed = JSON.parse(raw);
       return parsed !== null && parsed !== undefined ? parsed : defaultVal;
@@ -52,9 +71,14 @@
   function safeSet(key, val) {
     try {
       if (typeof localStorage === 'undefined') return;
-      localStorage.setItem(key, JSON.stringify(val));
+      const json = JSON.stringify(val);
+      localStorage.setItem(key, json);
+      const legacyKey = key.replace('calion_', 'endlessus_');
+      if (legacyKey !== key) {
+        localStorage.setItem(legacyKey, json);
+      }
     } catch (e) {
-      console.warn(`[AcademyState] Failed to persist ${key}:`, e);
+      console.warn(`[CALION AcademyState] Failed to persist ${key}:`, e);
     }
   }
 
@@ -316,8 +340,11 @@
   }
 
   function dispatchStateChange(detail) {
-    if (typeof window !== 'undefined') {
-      window.dispatchEvent(new CustomEvent('endlessus-progress-updated', { detail }));
+    if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function' && typeof CustomEvent !== 'undefined') {
+      try {
+        window.dispatchEvent(new CustomEvent('calion-progress-updated', { detail }));
+        window.dispatchEvent(new CustomEvent('endlessus-progress-updated', { detail }));
+      } catch (_) {}
     }
   }
 
@@ -353,7 +380,7 @@
   }
 
   // Cross-tab sync
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') {
     window.addEventListener('storage', (e) => {
       if (Object.values(KEYS).includes(e.key)) {
         dispatchStateChange({ type: 'storage-sync', key: e.key });
