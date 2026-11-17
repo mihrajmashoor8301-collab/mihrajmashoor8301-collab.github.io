@@ -3,3 +3,5 @@ server/.sessions
 node_modules/
 .DS_Store
 *.log
+/dist/
+

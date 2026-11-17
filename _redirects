@@ -1,3 +1,11 @@
 # Cloudflare Pages Redirects & Rewrites for CALION Academy
+
+# Defense-in-depth: Block public HTTP access to internal development resources
+/supabase/*    /404.html    404
+/tests/*       /404.html    404
+/docs/*        /404.html    404
+/scripts/*     /404.html    404
+/server/*      /404.html    404
+
 # Transparently serve the Academy Dashboard at the subdomain root
-/    /learning.html    200
+/              /learning.html    200

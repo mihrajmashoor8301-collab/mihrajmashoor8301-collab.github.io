@@ -14,3 +14,13 @@
 
 /*.html
   Cache-Control: public, max-age=3600, must-revalidate
+
+/supabase/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/tests/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/docs/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+
