@@ -87,7 +87,7 @@ create index if not exists room_progress_completed_at_idx on public.room_progres
 create table if not exists public.labs (
   id text primary key check (id ~ '^lab-[a-z0-9_-]+$'),
   title text not null check (char_length(title) between 2 and 150),
-  difficulty text not null default 'Easy' check (difficulty in ('Easy', 'Medium', 'Hard', 'Capstone')),
+  difficulty text not null default 'Beginner' check (difficulty in ('Beginner', 'Intermediate', 'Advanced', 'Capstone', 'Easy', 'Medium', 'Hard')),
   estimated_time text default '25 mins',
   total_tasks integer not null default 5 check (total_tasks >= 1),
   xp_reward integer not null default 75 check (xp_reward >= 0),
@@ -237,6 +237,11 @@ drop policy if exists "Achievements readable by anyone" on public.achievements;
 create policy "Achievements readable by anyone" on public.achievements
   for select using (true);
 
+grant select on public.learning_paths to anon, authenticated;
+grant select on public.rooms to anon, authenticated;
+grant select on public.labs to anon, authenticated;
+grant select on public.achievements to anon, authenticated;
+
 -- 3. Room Progress RLS
 drop policy if exists "Room progress visible if own or public profile" on public.room_progress;
 create policy "Room progress visible if own or public profile" on public.room_progress
@@ -284,6 +289,14 @@ create policy "Users manage their own task progress" on public.task_progress
   for all to authenticated
   using (user_id = auth.uid())
   with check (user_id = auth.uid());
+
+grant select, insert, update, delete on public.room_progress to authenticated;
+grant select on public.room_progress to anon;
+
+grant select, insert, update, delete on public.lab_progress to authenticated;
+grant select on public.lab_progress to anon;
+
+grant select, insert, update, delete on public.task_progress to authenticated;
 
 -- 6. User Achievements RLS (SECURITY HARDENED: READ-ONLY FOR BROWSER)
 drop policy if exists "User achievements visible if own or public profile" on public.user_achievements;

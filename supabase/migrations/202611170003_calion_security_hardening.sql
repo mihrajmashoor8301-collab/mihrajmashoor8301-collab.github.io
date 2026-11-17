@@ -22,6 +22,9 @@ alter table public.lab_progress add constraint chk_lab_progress_status check (
   (status != 'completed')
 );
 
+alter table public.labs drop constraint if exists labs_difficulty_check;
+alter table public.labs add constraint labs_difficulty_check check (difficulty in ('Beginner', 'Intermediate', 'Advanced', 'Capstone', 'Easy', 'Medium', 'Hard'));
+
 -- 3. Revoke direct write permissions on user_achievements and user_activity
 drop policy if exists "Users manage their own achievements" on public.user_achievements;
 revoke insert, update, delete on public.user_achievements from authenticated, anon;
@@ -30,6 +33,19 @@ grant select on public.user_achievements to authenticated, anon;
 drop policy if exists "Users record their own activity" on public.user_activity;
 revoke insert, update, delete on public.user_activity from authenticated, anon;
 grant select on public.user_activity to authenticated, anon;
+
+grant select on public.learning_paths to anon, authenticated;
+grant select on public.rooms to anon, authenticated;
+grant select on public.labs to anon, authenticated;
+grant select on public.achievements to anon, authenticated;
+
+grant select, insert, update, delete on public.room_progress to authenticated;
+grant select on public.room_progress to anon;
+
+grant select, insert, update, delete on public.lab_progress to authenticated;
+grant select on public.lab_progress to anon;
+
+grant select, insert, update, delete on public.task_progress to authenticated;
 
 -- 4. Restrict Profile Column Updates (Revoke direct total_xp & streak_days manipulation)
 revoke all on public.profiles from anon;

@@ -209,19 +209,36 @@
         id => typeof id === 'string' && validLabRegex.test(id)
       );
 
+      // Fetch existing server records for this user to guarantee we never regress state
+      let serverRoomMap = {};
+      let serverLabMap = {};
+      try {
+        const { data: serverRooms } = await sb.from('room_progress').select('room_id, status, progress_pct, completed_at').eq('user_id', userId);
+        if (Array.isArray(serverRooms)) {
+          serverRooms.forEach(r => { serverRoomMap[r.room_id] = r; });
+        }
+        const { data: serverLabs } = await sb.from('lab_progress').select('lab_id, status, flag_verified, completed_at').eq('user_id', userId);
+        if (Array.isArray(serverLabs)) {
+          serverLabs.forEach(l => { serverLabMap[l.lab_id] = l; });
+        }
+      } catch (err) {
+        console.warn('[CALION AcademySync] Pre-migration check warning:', err.message);
+      }
+
       // 1. Batch upsert rooms
       if (completedRooms.length > 0) {
         const roomUpserts = completedRooms.map(roomId => {
           const questionsSolved = Object.keys(questionMap).filter(
             k => k.startsWith(`${roomId}_`) && questionMap[k] === true
           );
+          const existing = serverRoomMap[roomId];
           return {
             user_id: userId,
             room_id: roomId,
             status: 'completed',
             progress_pct: 100,
             questions_solved: questionsSolved,
-            completed_at: new Date().toISOString(),
+            completed_at: (existing && existing.completed_at) || new Date().toISOString(),
             last_accessed_at: new Date().toISOString()
           };
         });
@@ -229,10 +246,17 @@
         await sb.from('room_progress').upsert(roomUpserts, { onConflict: 'user_id,room_id' });
       }
 
-      // Also upsert in-progress rooms
-      const inProgressRoomIds = Object.keys(roomProg).filter(
-        id => validRoomRegex.test(id) && !completedRooms.includes(id) && roomProg[id] > 0
-      );
+      // Also upsert in-progress rooms (NEVER overwrite completed rooms or higher server progress)
+      const inProgressRoomIds = Object.keys(roomProg).filter(id => {
+        if (!validRoomRegex.test(id) || completedRooms.includes(id) || roomProg[id] <= 0) return false;
+        const existing = serverRoomMap[id];
+        // If server already marked completed or has higher percentage, do not regress
+        if (existing && (existing.status === 'completed' || existing.progress_pct >= roomProg[id])) {
+          return false;
+        }
+        return true;
+      });
+
       if (inProgressRoomIds.length > 0) {
         const ipUpserts = inProgressRoomIds.map(roomId => {
           const questionsSolved = Object.keys(questionMap).filter(
@@ -251,16 +275,19 @@
         await sb.from('room_progress').upsert(ipUpserts, { onConflict: 'user_id,room_id' });
       }
 
-      // 2. Batch upsert labs
+      // 2. Batch upsert labs (NEVER downgrade existing verified labs)
       if (completedLabs.length > 0) {
-        const labUpserts = completedLabs.map(labId => ({
-          user_id: userId,
-          lab_id: labId,
-          status: 'completed',
-          flag_verified: true,
-          completed_at: new Date().toISOString(),
-          last_accessed_at: new Date().toISOString()
-        }));
+        const labUpserts = completedLabs.map(labId => {
+          const existing = serverLabMap[labId];
+          return {
+            user_id: userId,
+            lab_id: labId,
+            status: 'completed',
+            flag_verified: true,
+            completed_at: (existing && existing.completed_at) || new Date().toISOString(),
+            last_accessed_at: new Date().toISOString()
+          };
+        });
 
         await sb.from('lab_progress').upsert(labUpserts, { onConflict: 'user_id,lab_id' });
       }

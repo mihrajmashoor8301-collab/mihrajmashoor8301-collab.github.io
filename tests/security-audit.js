@@ -90,7 +90,7 @@ assert(typeof AcademyConfig.validateHttpUrl === 'function', 'validateHttpUrl mus
 
 // Positive test cases
 assert.strictEqual(AcademyConfig.validateHttpUrl('https://example.supabase.co'), true);
-assert.strictEqual(AcademyConfig.validateHttpUrl('https://learning.calion.in/api'), true);
+assert.strictEqual(AcademyConfig.validateHttpUrl('https://learning.endlessus.in/api'), true);
 assert.strictEqual(AcademyConfig.validateHttpUrl('http://127.0.0.1:54321'), true);
 assert.strictEqual(AcademyConfig.validateHttpUrl('http://localhost:3000'), true);
 
