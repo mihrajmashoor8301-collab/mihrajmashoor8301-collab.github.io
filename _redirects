@@ -1,0 +1,3 @@
+# Cloudflare Pages Redirects & Rewrites for CALION Academy
+# Transparently serve the Academy Dashboard at the subdomain root
+/    /learning.html    200
