@@ -6,3 +6,11 @@ node_modules/
 /dist/
 
 .wrangler/
+
+# Runtime build configuration & environment secrets
+calion-runtime-config.js
+.env
+.env.local
+.env.*
+!.env.example
+

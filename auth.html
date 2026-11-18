@@ -66,6 +66,7 @@
   <!-- Supabase & Academy State Modules -->
   <script src="vendor/supabase.min.js"></script>
   <script src="academy-state.js"></script>
+  <script src="calion-runtime-config.js"></script>
   <script src="academy-config.js"></script>
   <script src="academy-auth.js"></script>
   <script src="academy-sync.js"></script>
@@ -146,38 +147,15 @@
         <div class="flex-1 font-medium" id="alert-message"></div>
       </div>
 
-      <!-- Unconfigured Supabase Banner -->
-      <div id="unconfigured-alert" class="hidden p-3.5 rounded-xl border border-warning/30 bg-warning/10 text-xs space-y-2">
+      <!-- Backend Status Notice (Rendered only when Supabase configuration is missing or offline) -->
+      <div id="unconfigured-alert" class="hidden p-3.5 rounded-xl border border-warning/30 bg-warning/10 text-xs space-y-1.5">
         <div class="flex items-center gap-2 font-bold text-warning">
-          <span class="material-symbols-outlined text-sm">warning</span>
-          <span>Backend Configuration Notice</span>
+          <span class="material-symbols-outlined text-sm">cloud_off</span>
+          <span>Account Services Temporarily Offline</span>
         </div>
         <p class="text-[11px] text-on-surface-variant leading-relaxed">
-          The CALION Academy Supabase URL or Anon Key is not yet configured. You can supply your credentials below, or continue in local guest mode.
+          Cloud authentication and synchronization services are currently unavailable or undergoing maintenance. You can continue exploring all Academy rooms, methodology, and labs in guest mode.
         </p>
-        <button type="button" id="btn-toggle-config" class="text-[11px] font-bold text-primary hover:underline flex items-center gap-1">
-          <span class="material-symbols-outlined text-xs">settings</span>
-          <span>Configure Supabase Keys</span>
-        </button>
-      </div>
-
-      <!-- Config Drawer (Collapsible) -->
-      <div id="config-drawer" class="hidden p-4 rounded-xl border border-border-hairline bg-surface-raised space-y-3 text-xs font-mono">
-        <div class="font-bold text-on-surface flex items-center justify-between">
-          <span>CALION Supabase Connection Settings</span>
-          <button type="button" id="btn-close-config" class="text-outline hover:text-on-surface"><span class="material-symbols-outlined text-sm">close</span></button>
-        </div>
-        <div>
-          <label class="block text-[10px] text-outline uppercase mb-1">Supabase Project URL</label>
-          <input type="text" id="cfg-url" placeholder="https://your-project.supabase.co" class="w-full px-3 py-2 rounded-lg bg-surface-subtle border border-border-hairline focus:border-primary text-xs text-on-surface outline-none"/>
-        </div>
-        <div>
-          <label class="block text-[10px] text-outline uppercase mb-1">Supabase Anon Key</label>
-          <input type="password" id="cfg-anon-key" placeholder="eyJhbGciOiJIUzI1NiIsIn..." class="w-full px-3 py-2 rounded-lg bg-surface-subtle border border-border-hairline focus:border-primary text-xs text-on-surface outline-none"/>
-        </div>
-        <button type="button" id="btn-save-config" class="w-full py-2 rounded-lg bg-primary hover:bg-primary-hover text-white font-bold text-xs transition-colors">
-          Save Credentials &amp; Reload
-        </button>
       </div>
 
       <!-- Auth Navigation Tabs -->
@@ -326,12 +304,6 @@
       const alertMessage = document.getElementById('alert-message');
       const alertIcon = document.getElementById('alert-icon');
       const unconfiguredAlert = document.getElementById('unconfigured-alert');
-      const configDrawer = document.getElementById('config-drawer');
-      const btnToggleConfig = document.getElementById('btn-toggle-config');
-      const btnCloseConfig = document.getElementById('btn-close-config');
-      const btnSaveConfig = document.getElementById('btn-save-config');
-      const cfgUrl = document.getElementById('cfg-url');
-      const cfgAnonKey = document.getElementById('cfg-anon-key');
       const migrationAlert = document.getElementById('migration-alert');
       const migrationRoomCount = document.getElementById('migration-room-count');
       const migrationLabCount = document.getElementById('migration-lab-count');
@@ -397,38 +369,42 @@
         }
       }
 
-      // Check config status
-      if (typeof AcademyConfig !== 'undefined') {
-        const cfg = AcademyConfig.getStoredConfig();
-        cfgUrl.value = cfg.url || '';
-        cfgAnonKey.value = cfg.anonKey || '';
-
-        if (!AcademyConfig.isConfigured()) {
-          unconfiguredAlert.classList.remove('hidden');
+      // Check backend configuration status
+      const isConfigured = typeof AcademyConfig !== 'undefined' && AcademyConfig.isConfigured();
+      if (!isConfigured) {
+        unconfiguredAlert.classList.remove('hidden');
+        const submitLogin = document.getElementById('btn-submit-login');
+        const submitRegister = document.getElementById('btn-submit-register');
+        const submitForgot = document.getElementById('btn-submit-forgot');
+        if (submitLogin) {
+          submitLogin.disabled = true;
+          submitLogin.classList.add('opacity-50', 'cursor-not-allowed');
+          submitLogin.title = 'Account services currently offline';
+        }
+        if (submitRegister) {
+          submitRegister.disabled = true;
+          submitRegister.classList.add('opacity-50', 'cursor-not-allowed');
+          submitRegister.title = 'Account services currently offline';
+        }
+        if (submitForgot) {
+          submitForgot.disabled = true;
+          submitForgot.classList.add('opacity-50', 'cursor-not-allowed');
+          submitForgot.title = 'Account services currently offline';
+        }
+        if (btnGoogleAuth) {
+          btnGoogleAuth.disabled = true;
+          btnGoogleAuth.classList.add('opacity-50', 'cursor-not-allowed');
+          btnGoogleAuth.title = 'Account services currently offline';
         }
       }
-
-      btnToggleConfig.addEventListener('click', () => configDrawer.classList.toggle('hidden'));
-      btnCloseConfig.addEventListener('click', () => configDrawer.classList.add('hidden'));
-
-      btnSaveConfig.addEventListener('click', () => {
-        const url = cfgUrl.value.trim();
-        const anonKey = cfgAnonKey.value.trim();
-        if (!url || !anonKey) {
-          alert('Please enter both Supabase URL and Anon Key.');
-          return;
-        }
-        try {
-          AcademyConfig.setConfig(url, anonKey);
-          window.location.reload();
-        } catch (err) {
-          alert(err.message || 'Configuration error.');
-        }
-      });
 
       // Handle Sign In submission
       formLogin.addEventListener('submit', async (e) => {
         e.preventDefault();
+        if (!isConfigured) {
+          showAlert('Account services are temporarily offline. Please continue exploring in guest mode.', 'warning');
+          return;
+        }
         const email = document.getElementById('login-email').value;
         const password = document.getElementById('login-password').value;
         const btn = document.getElementById('btn-submit-login');
@@ -455,6 +431,10 @@
       // Handle Register submission
       formRegister.addEventListener('submit', async (e) => {
         e.preventDefault();
+        if (!isConfigured) {
+          showAlert('Account services are temporarily offline. Please continue exploring in guest mode.', 'warning');
+          return;
+        }
         const username = document.getElementById('reg-username').value;
         const displayName = document.getElementById('reg-display-name').value;
         const email = document.getElementById('reg-email').value;
@@ -488,6 +468,10 @@
       // Handle Forgot Password submission
       formForgot.addEventListener('submit', async (e) => {
         e.preventDefault();
+        if (!isConfigured) {
+          showAlert('Account services are temporarily offline. Please continue exploring in guest mode.', 'warning');
+          return;
+        }
         const email = document.getElementById('forgot-email').value;
         const btn = document.getElementById('btn-submit-forgot');
         btn.disabled = true;
@@ -506,6 +490,10 @@
 
       // Google OAuth
       btnGoogleAuth.addEventListener('click', async () => {
+        if (!isConfigured) {
+          showAlert('Account services are temporarily offline. Please continue exploring in guest mode.', 'warning');
+          return;
+        }
         const res = await AcademyAuth.signInWithGoogle();
         if (!res.success) {
           showAlert(res.error || 'Google sign-in failed to initialize.', 'error');

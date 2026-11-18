@@ -24,11 +24,12 @@
     LEGACY_ANON_KEY: 'endlessus_supabase_anon_key'
   };
 
-  // Default configuration (can be injected via window globals or build environment)
-  const DEFAULT_CONFIG = {
-    url: (typeof window !== 'undefined' && (window.CALION_SUPABASE_URL || window.ENDLESSUS_SUPABASE_URL)) || '',
-    anonKey: (typeof window !== 'undefined' && (window.CALION_SUPABASE_ANON_KEY || window.ENDLESSUS_SUPABASE_ANON_KEY)) || ''
-  };
+  function getDefaultConfig() {
+    return {
+      url: (typeof window !== 'undefined' && (window.CALION_SUPABASE_URL || window.ENDLESSUS_SUPABASE_URL)) || '',
+      anonKey: (typeof window !== 'undefined' && (window.CALION_SUPABASE_ANON_KEY || window.ENDLESSUS_SUPABASE_ANON_KEY)) || ''
+    };
+  }
 
   function validateHttpUrl(str) {
     if (!str || typeof str !== 'string') return false;
@@ -44,16 +45,44 @@
 
   function getStoredConfig() {
     try {
-      if (typeof localStorage === 'undefined') return DEFAULT_CONFIG;
-      const url = localStorage.getItem(STORAGE_KEYS.URL) ||
-                  localStorage.getItem(STORAGE_KEYS.LEGACY_URL) ||
-                  DEFAULT_CONFIG.url;
-      const anonKey = localStorage.getItem(STORAGE_KEYS.ANON_KEY) ||
-                      localStorage.getItem(STORAGE_KEYS.LEGACY_ANON_KEY) ||
-                      DEFAULT_CONFIG.anonKey;
-      return { url: (url || '').trim(), anonKey: (anonKey || '').trim() };
+      // 1. Authoritative runtime config from window globals (injected by calion-runtime-config.js)
+      const runtimeConfig = getDefaultConfig();
+      const runtimeUrl = runtimeConfig.url;
+      const runtimeAnonKey = runtimeConfig.anonKey;
+
+      if (runtimeUrl && runtimeAnonKey && validateHttpUrl(runtimeUrl) && runtimeAnonKey.length > 20) {
+        return {
+          url: runtimeUrl.trim(),
+          anonKey: runtimeAnonKey.trim(),
+          source: 'runtime'
+        };
+      }
+
+      // 2. Local storage fallback (for local development or automated test suites)
+      if (typeof localStorage !== 'undefined') {
+        const storedUrl = localStorage.getItem(STORAGE_KEYS.URL) ||
+                          localStorage.getItem(STORAGE_KEYS.LEGACY_URL) ||
+                          '';
+        const storedAnonKey = localStorage.getItem(STORAGE_KEYS.ANON_KEY) ||
+                              localStorage.getItem(STORAGE_KEYS.LEGACY_ANON_KEY) ||
+                              '';
+        if (storedUrl && storedAnonKey) {
+          return {
+            url: storedUrl.trim(),
+            anonKey: storedAnonKey.trim(),
+            source: 'storage'
+          };
+        }
+      }
+
+      // 3. Fallback to default empty config
+      return {
+        url: (runtimeUrl || '').trim(),
+        anonKey: (runtimeAnonKey || '').trim(),
+        source: 'default'
+      };
     } catch (e) {
-      return DEFAULT_CONFIG;
+      return { url: '', anonKey: '', source: 'error' };
     }
   }
 
