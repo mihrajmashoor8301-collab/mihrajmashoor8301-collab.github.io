@@ -440,6 +440,7 @@
   </footer>
 
   <!-- Scripts -->
+  <script src="calion-curriculum-pre-security.js"></script>
   <script src="learning-data.js"></script>
   <script src="vendor/supabase.min.js"></script>
   <script src="calion-runtime-config.js"></script>
@@ -459,26 +460,36 @@
       const notFoundEl = document.getElementById('room-not-found');
       const containerEl = document.getElementById('room-container');
 
-      if (!rawId || typeof PRE_SECURITY_ROOM_MAP === 'undefined') {
+      if (!rawId || (typeof PRE_SECURITY_ROOM_MAP === 'undefined' && typeof CALION_PRE_SECURITY_ROOM_MAP === 'undefined')) {
         showNotFound();
         return;
       }
 
-      // Normalize raw ID: e.g. "room-1" -> "room-01", "1" -> "room-01"
+      // Normalize raw ID: e.g. "ps-room-01", "room-1" -> "room-01", "1" -> "room-01"
       let normalizedId = rawId.toLowerCase();
-      if (!normalizedId.startsWith('room-')) {
+      if (normalizedId.startsWith('ps-room-')) {
+        const numPart = normalizedId.replace('ps-room-', '');
+        normalizedId = 'ps-room-' + String(parseInt(numPart, 10)).padStart(2, '0');
+      } else if (!normalizedId.startsWith('room-')) {
         normalizedId = 'room-' + String(parseInt(rawId, 10)).padStart(2, '0');
       } else {
         const numPart = normalizedId.replace('room-', '');
         normalizedId = 'room-' + String(parseInt(numPart, 10)).padStart(2, '0');
       }
 
+      const psCurriculum = (typeof CALION_PRE_SECURITY_CURRICULUM !== 'undefined') ? CALION_PRE_SECURITY_CURRICULUM : null;
+      const psRooms = (typeof CALION_PRE_SECURITY_ROOMS !== 'undefined') ? CALION_PRE_SECURITY_ROOMS : (psCurriculum ? psCurriculum.rooms : []);
+      const psRoomMap = (typeof CALION_PRE_SECURITY_ROOM_MAP !== 'undefined') ? CALION_PRE_SECURITY_ROOM_MAP : (psCurriculum ? psCurriculum.roomMap : {});
+
       const allRooms = (typeof CALION_ROOMS !== 'undefined' && Array.isArray(CALION_ROOMS))
         ? CALION_ROOMS
         : ((typeof PRE_SECURITY_ROOMS !== 'undefined' && Array.isArray(PRE_SECURITY_ROOMS)) ? PRE_SECURITY_ROOMS : []);
 
       const roomMap = (typeof PRE_SECURITY_ROOM_MAP !== 'undefined') ? PRE_SECURITY_ROOM_MAP : {};
-      const room = allRooms.find(r => r.id === normalizedId) || roomMap[normalizedId];
+      let room = (psRoomMap && psRoomMap[normalizedId]) || psRooms.find(r => r.id === normalizedId || (r.legacyId && r.legacyId === normalizedId));
+      if (!room) {
+        room = allRooms.find(r => r.id === normalizedId) || roomMap[normalizedId];
+      }
 
       if (!room) {
         showNotFound();
@@ -661,13 +672,13 @@
           const isOpenByDefault = taskIdx === 0 || !taskDone;
 
           return `
-            <div id="task-card-${taskIdx}" class="task-card rounded-2xl border ${taskDone ? 'border-primary/40 bg-surface-subtle' : 'border-border-hairline bg-surface-subtle'} overflow-hidden shadow-sm transition-all duration-200">
+            <div id="task-card-${taskIdx}" class="task-card rounded-2xl border ${taskDone ? 'task-card-completed border-emerald-500 bg-emerald-500/10 dark:bg-emerald-950/30' : 'border-border-hairline bg-surface-subtle'} overflow-hidden shadow-sm transition-all duration-200">
               
               <!-- Task Header Accordion Toggle -->
-              <button type="button" class="task-accordion-toggle w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left hover:bg-surface-raised/40 transition-colors cursor-pointer select-none" data-task-idx="${taskIdx}">
+              <button type="button" class="task-accordion-toggle w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left ${taskDone ? 'bg-emerald-500/15 dark:bg-emerald-950/50' : 'hover:bg-surface-raised/40'} transition-colors cursor-pointer select-none" data-task-idx="${taskIdx}">
                 <div class="flex items-center gap-3.5 min-w-0 flex-1">
                   <!-- Task Status Circle Icon -->
-                  <div class="task-status-indicator shrink-0 w-7 h-7 rounded-full flex items-center justify-center font-mono font-bold text-xs ${taskDone ? 'bg-primary text-black' : 'bg-surface-raised border border-border-hairline text-outline'}">
+                  <div class="task-status-indicator shrink-0 w-7 h-7 rounded-full flex items-center justify-center font-mono font-bold text-xs ${taskDone ? 'bg-emerald-500 text-white' : 'bg-surface-raised border border-border-hairline text-outline'}">
                     ${taskDone 
                       ? '<span class="material-symbols-outlined text-base">check</span>' 
                       : `<span>${taskIdx + 1}</span>`}
@@ -680,7 +691,7 @@
                         ? `<span class="px-2 py-0.2 rounded text-[10px] font-mono bg-surface-raised border border-border-hairline text-outline">${assigned.length} Question${assigned.length === 1 ? '' : 's'}</span>`
                         : `<span class="px-2 py-0.2 rounded text-[10px] font-mono bg-surface-raised border border-border-hairline text-outline">Info</span>`}
                       ${taskDone 
-                        ? '<span class="text-[11px] font-mono font-bold text-primary flex items-center gap-0.5"><span class="material-symbols-outlined text-[13px]">verified</span>Completed</span>' 
+                        ? '<span class="task-completion-badge px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-emerald-600 text-white flex items-center gap-1 shadow-xs"><span class="material-symbols-outlined text-[13px]">verified</span>TASK COMPLETED</span>' 
                         : ''}
                     </div>
                     <h3 class="font-mono font-bold text-sm sm:text-base text-on-surface truncate mt-0.5">
@@ -701,7 +712,7 @@
               </button>
 
               <!-- Task Collapsible Body -->
-              <div id="task-body-${taskIdx}" class="task-body ${isOpenByDefault ? 'block' : 'hidden'} border-t border-border-hairline/60 p-5 sm:p-6 space-y-6 bg-surface-subtle">
+              <div id="task-body-${taskIdx}" class="task-body ${isOpenByDefault ? 'block' : 'hidden'} border-t border-border-hairline/60 p-5 sm:p-6 space-y-6 ${taskDone ? 'bg-emerald-500/5 dark:bg-emerald-950/20' : 'bg-surface-subtle'}">
                 
                 <!-- Lesson Text & Concept Content -->
                 ${les.concept ? `
@@ -1078,20 +1089,48 @@
         let isCorrect = false;
         let userInput = '';
 
+        const feedbackEl = document.getElementById(`q-feedback-${idx}`);
+        const qCardEl = document.getElementById(`q-card-${idx}`);
+
         if (q.type === 'exact') {
           const inputEl = document.getElementById(`q-input-${idx}`);
           userInput = inputEl ? inputEl.value : '';
+          if (!userInput || userInput.trim() === '') {
+            if (feedbackEl) {
+              feedbackEl.classList.remove('hidden');
+              feedbackEl.className = 'p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-700 dark:text-amber-300 text-xs font-mono block';
+              feedbackEl.innerHTML = `
+                <div class="flex items-center gap-1.5 font-bold mb-0.5">
+                  <span class="material-symbols-outlined text-sm">warning</span>
+                  <span>Input Required</span>
+                </div>
+                <p class="font-sans">Please enter an answer before submitting.</p>
+              `;
+            }
+            if (inputEl) inputEl.focus();
+            return;
+          }
           isCorrect = AcademyState.validateAnswer(q, userInput);
         } else {
           const selected = document.querySelector(`input[name="q-option-${idx}"]:checked`);
-          if (selected) {
-            const chosenIdx = parseInt(selected.value, 10);
-            isCorrect = chosenIdx === q.correctIndex;
+          if (!selected) {
+            if (feedbackEl) {
+              feedbackEl.classList.remove('hidden');
+              feedbackEl.className = 'p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-700 dark:text-amber-300 text-xs font-mono block';
+              feedbackEl.innerHTML = `
+                <div class="flex items-center gap-1.5 font-bold mb-0.5">
+                  <span class="material-symbols-outlined text-sm">warning</span>
+                  <span>Selection Required</span>
+                </div>
+                <p class="font-sans">Please select one of the options before submitting.</p>
+              `;
+            }
+            return;
           }
+          const chosenIdx = parseInt(selected.value, 10);
+          isCorrect = chosenIdx === q.correctIndex;
         }
 
-        const feedbackEl = document.getElementById(`q-feedback-${idx}`);
-        const qCardEl = document.getElementById(`q-card-${idx}`);
         if (feedbackEl) feedbackEl.classList.remove('hidden');
 
         if (isCorrect) {

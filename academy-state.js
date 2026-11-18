@@ -186,12 +186,13 @@
   }
 
   function getLastActivePosition(roomsList) {
-    const list = roomsList || (typeof window !== 'undefined' && (window.CALION_ROOMS || window.ENDLESSUS_ROOMS)) || [];
+    const list = roomsList || (typeof window !== 'undefined' && (window.CALION_PRE_SECURITY_ROOMS || window.CALION_ROOMS || window.ENDLESSUS_ROOMS)) || [];
     const completedRooms = getCompletedRooms();
     const isNew = completedRooms.length === 0;
 
+    const defaultFirstId = (list[0] && list[0].id) || 'room-01';
     let stored = safeGet(KEYS.LAST_POS, null);
-    let targetRoomId = (stored && stored.roomId) || getLastActiveRoom() || 'room-01';
+    let targetRoomId = (stored && stored.roomId) || getLastActiveRoom() || defaultFirstId;
     let taskIdx = (stored && typeof stored.taskIdx === 'number') ? stored.taskIdx : 0;
     let questionIdx = (stored && typeof stored.questionIdx === 'number') ? stored.questionIdx : 0;
 
@@ -205,7 +206,7 @@
       }
     }
 
-    const room = list.find(r => r.id === targetRoomId) || list[0] || {
+    const room = list.find(r => r.id === targetRoomId || (r.legacyId && r.legacyId === targetRoomId)) || list[0] || {
       id: 'room-01',
       title: 'Introduction to Computers',
       stageId: 'pre-security',
@@ -225,8 +226,9 @@
 
     // Task title
     let taskTitle = `Task ${taskIdx + 1}`;
-    if (room.tasks && room.tasks[taskIdx] && room.tasks[taskIdx].title) {
-      taskTitle = `Task ${taskIdx + 1}: ${room.tasks[taskIdx].title}`;
+    const rTasks = room.tasks || room.lessons;
+    if (rTasks && rTasks[taskIdx] && rTasks[taskIdx].title) {
+      taskTitle = `Task ${taskIdx + 1}: ${rTasks[taskIdx].title.replace(/^Task\s*\d+:\s*/i, '')}`;
     }
 
     const isAllComplete = completedRooms.length > 0 && list.length > 0 && completedRooms.length >= list.length;

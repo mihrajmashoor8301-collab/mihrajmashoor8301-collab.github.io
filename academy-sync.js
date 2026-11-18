@@ -212,10 +212,11 @@
 
     try {
       const validRoomRegex = /^room-[0-9]{2,}$/;
+      const validPsRoomRegex = /^ps-room-[0-9]{2,}$/;
       const validLabRegex = /^lab-[a-z0-9_-]+$/;
 
       const completedRooms = (AcademyState.getCompletedRooms() || []).filter(
-        id => typeof id === 'string' && validRoomRegex.test(id)
+        id => typeof id === 'string' && (validRoomRegex.test(id) || validPsRoomRegex.test(id))
       );
       const roomProg = AcademyState.getRoomProgressMap() || {};
       const questionMap = AcademyState.getQuestionProgress() || {};
@@ -262,7 +263,7 @@
 
       // Also upsert in-progress rooms (NEVER overwrite completed rooms or higher server progress)
       const inProgressRoomIds = Object.keys(roomProg).filter(id => {
-        if (!validRoomRegex.test(id) || completedRooms.includes(id) || roomProg[id] <= 0) return false;
+        if ((!validRoomRegex.test(id) && !validPsRoomRegex.test(id)) || completedRooms.includes(id) || roomProg[id] <= 0) return false;
         const existing = serverRoomMap[id];
         // If server already marked completed or has higher percentage, do not regress
         if (existing && (existing.status === 'completed' || existing.progress_pct >= roomProg[id])) {

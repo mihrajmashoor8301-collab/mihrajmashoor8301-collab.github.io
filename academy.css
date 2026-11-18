@@ -16,13 +16,13 @@ html.theme-soft-light,
 body.theme-soft-light,
 html.light,
 body.light {
-  /* Surface distribution: 70% soft canvas (#EEF2F6), 30% elevated white/tinted panels (#FFFFFF) */
-  --color-canvas-base: #EEF2F6;
-  --color-surface-subtle: #F8FAFC;
+  /* Surface distribution: 70% soft canvas (#EBF1F7), 30% elevated white/tinted panels (#FFFFFF) */
+  --color-canvas-base: #EBF1F7;
+  --color-surface-subtle: #F3F7FA;
   --color-surface-raised: #FFFFFF;
-  --color-surface-container: #E2E8F0;
-  --color-border-hairline: #CBD5E1;
-  --color-border-medium: #94A3B8;
+  --color-surface-container: #DFE8F2;
+  --color-border-hairline: #CBD8E6;
+  --color-border-medium: #94A8BF;
   --color-primary: #0284C7;
   --color-primary-container: #E0F2FE;
   --color-secondary: #4F46E5;
@@ -33,13 +33,13 @@ body.light {
   --color-danger-critical: #DC2626;
 
   /* Academy Semantic Variables */
-  --academy-bg: #EEF2F6;
-  --academy-bg-deep: #E2E8F0;
+  --academy-bg: #EBF1F7;
+  --academy-bg-deep: #DFE8F2;
   --academy-surface: #FFFFFF;
   --academy-surface-raised: #FFFFFF;
-  --academy-surface-subtle: #F8FAFC;
-  --academy-border: #CBD5E1;
-  --academy-border-strong: #94A3B8;
+  --academy-surface-subtle: #F3F7FA;
+  --academy-border: #CBD8E6;
+  --academy-border-strong: #94A8BF;
   
   --academy-text: #0F172A;
   --academy-text-secondary: #334155;
@@ -974,9 +974,135 @@ html.dark .academy-theme-btn.active {
   .animate-modal-in,
   .animate-check-bounce,
   .calion-feedback-correct,
-  .calion-feedback-incorrect {
+  .calion-feedback-incorrect,
+  .roadmap-pulse-ring {
     animation: none !important;
     transition: none !important;
   }
 }
+
+/* ==========================================================================
+   TASK COMPLETION FULL-CONTAINER GREEN STYLING (Requirement 6)
+   ========================================================================== */
+.task-card.task-card-completed {
+  border-color: #10B981 !important;
+  background-color: rgba(16, 185, 129, 0.08) !important;
+  box-shadow: 0 1px 4px rgba(16, 185, 129, 0.15) !important;
+}
+
+.task-card.task-card-completed .task-accordion-toggle {
+  background-color: rgba(16, 185, 129, 0.12) !important;
+}
+
+.task-card.task-card-completed .task-body {
+  background-color: rgba(16, 185, 129, 0.04) !important;
+  border-color: rgba(16, 185, 129, 0.25) !important;
+}
+
+.task-card.task-card-completed .task-status-indicator {
+  background-color: #10B981 !important;
+  color: #FFFFFF !important;
+  border-color: #059669 !important;
+}
+
+/* Classic White Theme Completion */
+html.theme-classic-white .task-card.task-card-completed {
+  border-color: #22C55E !important;
+  background-color: #F0FDF4 !important;
+}
+
+html.theme-classic-white .task-card.task-card-completed .task-accordion-toggle {
+  background-color: #DCFCE7 !important;
+}
+
+html.theme-classic-white .task-card.task-card-completed .task-body {
+  background-color: #F0FDF4 !important;
+  border-color: #BBF7D0 !important;
+}
+
+/* Dark Theme Completion */
+html.dark .task-card.task-card-completed,
+html.theme-dark .task-card.task-card-completed,
+html.theme-hacker .task-card.task-card-completed {
+  border-color: #10B981 !important;
+  background-color: rgba(6, 78, 59, 0.35) !important;
+}
+
+html.dark .task-card.task-card-completed .task-accordion-toggle,
+html.theme-dark .task-card.task-card-completed .task-accordion-toggle,
+html.theme-hacker .task-card.task-card-completed .task-accordion-toggle {
+  background-color: rgba(6, 78, 59, 0.5) !important;
+}
+
+html.dark .task-card.task-card-completed .task-body,
+html.theme-dark .task-card.task-card-completed .task-body,
+html.theme-hacker .task-card.task-card-completed .task-body {
+  background-color: rgba(6, 78, 59, 0.25) !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+/* ==========================================================================
+   WINDING GAME-STYLE PROGRESSION ROADMAP STYLES (Requirement 5)
+   ========================================================================== */
+.roadmap-serpentine-grid {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+.roadmap-node-row {
+  display: flex;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.roadmap-node-row.pos-left {
+  justify-content: flex-start;
+}
+
+.roadmap-node-row.pos-center {
+  justify-content: center;
+}
+
+.roadmap-node-row.pos-right {
+  justify-content: flex-end;
+}
+
+@media (max-width: 640px) {
+  .roadmap-node-row.pos-left,
+  .roadmap-node-row.pos-center,
+  .roadmap-node-row.pos-right {
+    justify-content: center;
+  }
+}
+
+.roadmap-node-card {
+  width: 100%;
+  max-width: 460px;
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.roadmap-node-card.node-completed {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.45);
+}
+
+html.dark .roadmap-node-card.node-completed {
+  background: rgba(6, 78, 59, 0.3);
+  border-color: rgba(16, 185, 129, 0.5);
+}
+
+.roadmap-node-card.node-current {
+  border-color: #0284C7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.25), 0 10px 25px -5px rgba(2, 132, 199, 0.2);
+}
+
+.roadmap-node-card.node-locked {
+  opacity: 0.6;
+  border-style: dashed;
+}
+
 
