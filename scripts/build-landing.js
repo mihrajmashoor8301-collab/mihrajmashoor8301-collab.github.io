@@ -10,7 +10,7 @@ const files = [
   ['cover.png', 'cover.png'],
   ['dp4.jpeg', 'dp4.jpeg'],
   ['tailwind.cdn.js', 'tailwind.cdn.js'],
-  ['handbook/assets/favicon.png', 'handbook/assets/favicon.png']
+  ['handbook/assets/favicon.svg', 'handbook/assets/favicon.svg']
 ];
 
 fs.rmSync(output, { recursive: true, force: true });
