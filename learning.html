@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="en">
+<html class="light" lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -19,21 +19,22 @@
   <meta property="og:url" content="https://learning.endlessus.in/learning.html"/>
   <meta property="og:type" content="website"/>
 
+  <!-- Typography & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 
   <!-- Immediate Theme Initializer -->
   <script>
     (function() {
-      const savedTheme = localStorage.getItem('endlessus_learning_theme') || 'normal';
-      if (savedTheme === 'hacker') {
+      const savedTheme = localStorage.getItem('calion_theme') || localStorage.getItem('endlessus_learning_theme') || 'light';
+      if (savedTheme === 'dark' || savedTheme === 'hacker') {
         document.documentElement.classList.add('dark', 'theme-hacker');
-        document.documentElement.classList.remove('theme-normal');
+        document.documentElement.classList.remove('theme-normal', 'light');
       } else {
+        document.documentElement.classList.add('light', 'theme-normal');
         document.documentElement.classList.remove('dark', 'theme-hacker');
-        document.documentElement.classList.add('theme-normal');
       }
     })();
   </script>
@@ -41,190 +42,115 @@
   <link rel="stylesheet" href="academy.css"/>
   <script src="tailwind.cdn.js"></script>
   <script>if(typeof tailwind==="undefined"){document.write('<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"><\/script>')}</script>
-  <script>
+  <script id="tailwind-config">
     tailwind.config = {
-      darkMode: 'class',
+      darkMode: "class",
       theme: {
         extend: {
           colors: {
-            'canvas-base': 'var(--color-canvas-base)',
-            'surface-subtle': 'var(--color-surface-subtle)',
-            'surface-raised': 'var(--color-surface-raised)',
-            'surface-container': 'var(--color-surface-container)',
-            'border-hairline': 'var(--color-border-hairline)',
-            'border-medium': 'var(--color-border-medium)',
-            'primary': 'var(--color-primary)',
-            'primary-container': 'var(--color-primary-container)',
-            'secondary': 'var(--color-secondary)',
-            'on-surface': 'var(--color-on-surface)',
-            'on-surface-variant': 'var(--color-on-surface-variant)',
-            'outline': 'var(--color-outline)',
-            'warning': 'var(--color-warning)',
-            'danger-critical': 'var(--color-danger-critical)',
+            "surface": "#f8faff",
+            "surface-dim": "#cbdbf5",
+            "surface-card": "#ffffff",
+            "primary": "#0284c7",
+            "primary-hover": "#0369a1",
+            "secondary": "#4f46e5",
+            "accent-cyan": "#00F0FF",
+            "dark-bg": "#090d16",
+            "dark-card": "#131d36",
+            "dark-border": "#1e293b",
           },
           fontFamily: {
-            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
+            sans: ["'Inter'", "sans-serif"],
+            headline: ["'Space Grotesk'", "sans-serif"],
+            grotesk: ["'Space Grotesk'", "sans-serif"],
+            mono: ["'JetBrains Mono'", "monospace"],
           }
         }
       }
     };
   </script>
 </head>
-<body class="bg-canvas-base text-on-surface min-h-screen flex flex-col font-sans transition-colors duration-150">
+<body class="bg-[#f8faff] dark:bg-[#090d16] text-slate-900 dark:text-slate-100 font-sans antialiased min-h-screen flex flex-col transition-colors duration-200">
 
-  <!-- =========================================================================
-       1. TRYHACKME-INSPIRED COMPACT TOP NAVIGATION
-       ========================================================================= -->
-  <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
-      
-      <!-- Brand & Section -->
+  <!-- ========================================================================= -->
+  <!-- Top Navigation Bar (Stitch Unified Design)                                -->
+  <!-- ========================================================================= -->
+  <header class="sticky top-0 z-40 bg-white/90 dark:bg-[#090d16]/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Logo & Brand with CALION mark -->
       <div class="flex items-center gap-3">
-        <a href="learning.html" class="flex items-center gap-2.5 text-on-surface hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded py-1">
-          <span class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center font-mono font-black text-primary text-base">C</span>
-          <div class="flex flex-col">
-            <span class="font-bold text-sm tracking-tight leading-none text-on-surface">CALION Academy</span>
-            <span class="text-[10px] font-mono text-outline tracking-wider uppercase mt-0.5">Cybersecurity Education</span>
-          </div>
+        <a aria-label="CALION Academy Home" class="flex items-center gap-2 group" href="learning.html">
+          <svg class="h-7 w-auto" fill="none" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="calion_grad_hdr" x1="0%" x2="100%" y1="0%" y2="100%">
+                <stop offset="0%" stop-color="#00F0FF"></stop>
+                <stop offset="50%" stop-color="#0284C7"></stop>
+                <stop offset="100%" stop-color="#6366F1"></stop>
+              </linearGradient>
+            </defs>
+            <g transform="translate(10, 10)">
+              <path d="M 55 10 L 25 10 L 10 25 L 10 55 L 25 70 L 55 70" stroke="url(#calion_grad_hdr)" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"></path>
+              <path class="stroke-slate-900 dark:stroke-white transition-colors" d="M 42 70 L 42 22 L 58 22 L 68 70" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"></path>
+              <path d="M 33 46 L 56 46" stroke="url(#calion_grad_hdr)" stroke-linecap="round" stroke-width="4.5"></path>
+              <circle cx="55" cy="10" fill="#00F0FF" r="3.5"></circle>
+              <circle cx="25" cy="70" fill="#6366F1" r="3"></circle>
+              <circle class="fill-slate-900 dark:fill-white transition-colors" cx="42" cy="22" r="2.5"></circle>
+            </g>
+            <text class="fill-slate-900 dark:fill-white font-headline font-bold transition-colors" font-size="34" letter-spacing="0.22em" x="100" y="58">CALION</text>
+            <rect fill="#00F0FF" height="6" rx="1.5" width="6" x="362" y="38"></rect>
+            <rect fill="#6366F1" height="6" rx="1.5" width="6" x="362" y="48"></rect>
+          </svg>
         </a>
+        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-semibold tracking-wider bg-slate-100 dark:bg-slate-800 text-sky-600 dark:text-cyan-400 border border-slate-200 dark:border-slate-700">
+          ACADEMY
+        </span>
       </div>
 
-      <!-- Center Desktop Navigation -->
-      <nav class="hidden md:flex items-center gap-1 text-xs font-mono" aria-label="Main Navigation">
-        
-        <!-- Learn Menu -->
-        <div class="relative group">
-          <button type="button" class="px-3 py-1.5 rounded-md text-primary font-bold bg-surface-raised flex items-center gap-1 transition-colors">
-            <span class="material-symbols-outlined text-sm text-primary">school</span>
-            <span>Learn</span>
-            <span class="material-symbols-outlined text-xs text-outline">expand_more</span>
-          </button>
-          <div class="absolute left-0 top-full pt-1 hidden group-hover:block z-50">
-            <div class="w-64 p-2 rounded-xl border border-border-hairline bg-surface-subtle shadow-xl space-y-1">
-              <a href="learning.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs bg-surface-raised text-primary font-bold">
-                <span class="material-symbols-outlined text-sm text-primary">explore</span>
-                <div>
-                  <div class="font-bold">Learning Paths</div>
-                  <div class="text-[10px] text-outline">Pre Security &amp; curriculum</div>
-                </div>
-              </a>
-              <a href="modules.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs hover:bg-surface-raised hover:text-primary transition-colors">
-                <span class="material-symbols-outlined text-sm text-outline">format_list_bulleted</span>
-                <div>
-                  <div class="font-bold">Path Outline</div>
-                  <div class="text-[10px] text-outline">All 8 modules &amp; 45 rooms</div>
-                </div>
-              </a>
-              <a href="roadmap.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs hover:bg-surface-raised hover:text-primary transition-colors">
-                <span class="material-symbols-outlined text-sm text-secondary">alt_route</span>
-                <div>
-                  <div class="font-bold">Career Roadmap</div>
-                  <div class="text-[10px] text-outline">Visual pathway map</div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
+      <!-- Navigation Links -->
+      <div class="flex items-center gap-4">
+        <nav class="hidden md:flex items-center gap-1 text-xs font-mono font-medium">
+          <a class="px-3 py-1.5 rounded-lg text-primary font-bold bg-sky-50 dark:bg-sky-950/40 border border-sky-100 dark:border-sky-900 transition-colors" href="learning.html">Pathways</a>
+          <a class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-primary transition-colors" href="modules.html">Outline</a>
+          <a class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-primary transition-colors" href="roadmap.html">Roadmap</a>
+          <a class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-primary transition-colors" href="labs.html">Labs</a>
+          <a class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-primary transition-colors" href="terminal-lab.html">Terminal</a>
+          <a class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-primary transition-colors" href="glossary.html">Glossary</a>
+          <a class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-primary transition-colors" href="profile.html">Profile</a>
+        </nav>
 
-        <!-- Practice Menu -->
-        <div class="relative group">
-          <button type="button" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised flex items-center gap-1 transition-colors">
-            <span class="material-symbols-outlined text-sm text-outline">terminal</span>
-            <span>Practice</span>
-            <span class="material-symbols-outlined text-xs text-outline">expand_more</span>
-          </button>
-          <div class="absolute left-0 top-full pt-1 hidden group-hover:block z-50">
-            <div class="w-64 p-2 rounded-xl border border-border-hairline bg-surface-subtle shadow-xl space-y-1">
-              <a href="labs.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs hover:bg-surface-raised hover:text-primary transition-colors">
-                <span class="material-symbols-outlined text-sm text-primary">science</span>
-                <div>
-                  <div class="font-bold">Practical Labs</div>
-                  <div class="text-[10px] text-outline">13 simulation targets</div>
-                </div>
-              </a>
-              <a href="terminal-lab.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs hover:bg-surface-raised hover:text-primary transition-colors">
-                <span class="material-symbols-outlined text-sm text-secondary">terminal</span>
-                <div>
-                  <div class="font-bold">Terminal Sandbox</div>
-                  <div class="text-[10px] text-outline">Virtual Linux filesystem drills</div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
+        <div class="h-4 w-px bg-slate-200 dark:bg-slate-800 hidden md:block"></div>
 
-        <!-- Reference Menu -->
-        <div class="relative group">
-          <button type="button" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised flex items-center gap-1 transition-colors">
-            <span class="material-symbols-outlined text-sm text-outline">menu_book</span>
-            <span>Reference</span>
-            <span class="material-symbols-outlined text-xs text-outline">expand_more</span>
-          </button>
-          <div class="absolute left-0 top-full pt-1 hidden group-hover:block z-50">
-            <div class="w-64 p-2 rounded-xl border border-border-hairline bg-surface-subtle shadow-xl space-y-1">
-              <a href="theory.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs hover:bg-surface-raised hover:text-primary transition-colors">
-                <span class="material-symbols-outlined text-sm text-secondary">psychology</span>
-                <div>
-                  <div class="font-bold">Security Theory</div>
-                  <div class="text-[10px] text-outline">Deep conceptual guides</div>
-                </div>
-              </a>
-              <a href="handbook/index.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs hover:bg-surface-raised hover:text-primary transition-colors">
-                <span class="material-symbols-outlined text-sm text-warning">menu_book</span>
-                <div>
-                  <div class="font-bold">Command Handbook</div>
-                  <div class="text-[10px] text-outline">Pentest syntax cheat sheets</div>
-                </div>
-              </a>
-              <a href="glossary.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs hover:bg-surface-raised hover:text-primary transition-colors">
-                <span class="material-symbols-outlined text-sm text-secondary">auto_stories</span>
-                <div>
-                  <div class="font-bold">Cybersecurity Glossary</div>
-                  <div class="text-[10px] text-outline">60+ searchable terms &amp; definitions</div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <a href="index.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Portfolio</a>
-      </nav>
-
-      <!-- Right Action Bar: Real Streak & XP + Search + Theme -->
-      <div class="flex items-center gap-2 font-mono text-xs">
-        
-        <!-- Streak Pill -->
-        <div class="hidden sm:flex items-center gap-1 px-2.5 py-1 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" title="Current Daily Streak">
-          <span class="text-amber-500">🔥</span>
-          <span id="header-streak-pill" class="font-bold">1d</span>
-        </div>
-
-        <!-- XP Pill -->
-        <div class="hidden sm:flex items-center gap-1 px-2.5 py-1 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" title="Total Accumulated XP">
-          <span class="text-primary font-bold">⚡</span>
-          <span id="header-xp-pill" class="font-bold">0 XP</span>
+        <!-- Live Streak & XP Badges -->
+        <div class="hidden sm:flex items-center gap-2 font-mono text-xs">
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 flex items-center gap-1" title="Daily Learning Streak">
+            <span>🔥</span>
+            <span class="font-bold text-slate-900 dark:text-white" data-academy-streak>1d</span>
+          </span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 flex items-center gap-1" title="Accumulated XP">
+            <span class="text-primary font-bold">⚡</span>
+            <span class="font-bold text-slate-900 dark:text-white" data-academy-xp>0 XP</span>
+          </span>
         </div>
 
         <!-- Search Trigger -->
-        <button type="button" class="academy-search-btn inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border-hairline bg-surface-raised hover:border-primary text-xs font-mono text-outline hover:text-on-surface transition-colors" title="Search Academy (Cmd+K)">
+        <button type="button" class="academy-search-btn inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800/80 hover:border-primary text-xs font-mono text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors" title="Search Academy (Cmd+K)">
           <span class="material-symbols-outlined text-sm text-primary">search</span>
-          <span class="hidden lg:inline">Search</span>
-          <kbd class="hidden lg:inline px-1 py-0.2 rounded bg-surface-subtle border border-border-hairline text-[10px]">⌘K</kbd>
+          <kbd class="hidden lg:inline px-1 py-0.2 rounded bg-slate-100 dark:bg-slate-700 text-[10px]">⌘K</kbd>
         </button>
 
         <!-- Theme Toggle -->
-        <div class="flex items-center p-0.5 rounded-lg border border-border-hairline bg-surface-raised font-mono text-xs">
-          <button type="button" id="theme-toggle-normal" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold" aria-pressed="true" title="Normal View (Light)">
-            <span class="material-symbols-outlined text-xs">light_mode</span>
-          </button>
-          <button type="button" id="theme-toggle-hacker" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold" aria-pressed="false" title="Hacker View (Dark HUD)">
-            <span class="material-symbols-outlined text-xs">terminal</span>
-          </button>
-        </div>
+        <button aria-label="Toggle theme mode" class="w-9 h-9 rounded-lg bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 transition-colors" id="theme-toggle" type="button">
+          <span class="material-symbols-outlined text-[19px] dark:hidden block">dark_mode</span>
+          <span class="material-symbols-outlined text-[19px] hidden dark:block">light_mode</span>
+        </button>
 
-        <!-- Mobile Drawer Toggle -->
-        <button type="button" id="mobile-menu-btn" class="md:hidden p-1.5 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" aria-label="Open Mobile Menu">
+        <!-- Cadet Avatar -->
+        <a href="profile.html" class="w-8 h-8 rounded-full bg-gradient-to-tr from-sky-500 to-indigo-600 text-white font-mono text-xs font-bold flex items-center justify-center shadow-sm" id="cadet-avatar-badge" title="View Profile">
+          CN
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button type="button" id="mobile-menu-btn" class="md:hidden p-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300" aria-label="Open Mobile Menu">
           <span class="material-symbols-outlined text-base">menu</span>
         </button>
       </div>
@@ -233,224 +159,225 @@
 
   <!-- Mobile Drawer -->
   <div id="mobile-drawer" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden md:hidden">
-    <div class="w-72 max-w-[80vw] h-full bg-surface-subtle border-r border-border-hairline p-5 flex flex-col justify-between overflow-y-auto font-mono text-xs">
+    <div class="w-72 max-w-[80vw] h-full bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 p-5 flex flex-col justify-between overflow-y-auto font-mono text-xs">
       <div class="space-y-4">
-        <div class="flex items-center justify-between pb-3 border-b border-border-hairline">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
           <span class="font-bold text-sm text-primary">CALION Academy</span>
-          <button type="button" id="mobile-drawer-close" class="p-1 rounded text-outline hover:text-on-surface"><span class="material-symbols-outlined text-base">close</span></button>
+          <button type="button" id="mobile-drawer-close" class="p-1 rounded text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+            <span class="material-symbols-outlined text-base">close</span>
+          </button>
         </div>
-        <a href="learning.html" class="block px-2.5 py-2 rounded-lg bg-surface-raised text-primary font-bold">Learning Paths</a>
-        <a href="modules.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Path Outline (Pre Security)</a>
-        <a href="roadmap.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Career Roadmap</a>
-        <a href="labs.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Practical Labs (13)</a>
-        <a href="terminal-lab.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Terminal Sandbox</a>
-        <a href="theory.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Theory Reference</a>
-        <a href="handbook/index.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Command Handbook</a>
-        <a href="glossary.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Cybersecurity Glossary</a>
+        <a href="learning.html" class="block px-2.5 py-2 rounded-lg bg-sky-50 dark:bg-sky-950/40 text-primary font-bold">Pathways &amp; Skill Tree</a>
+        <a href="modules.html" class="block px-2.5 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Curriculum Outline</a>
+        <a href="roadmap.html" class="block px-2.5 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Visual Career Roadmap</a>
+        <a href="labs.html" class="block px-2.5 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Practical Labs</a>
+        <a href="terminal-lab.html" class="block px-2.5 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Terminal Sandbox</a>
+        <a href="theory.html" class="block px-2.5 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Theory Codex</a>
+        <a href="glossary.html" class="block px-2.5 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Glossary</a>
+        <a href="profile.html" class="block px-2.5 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Cadet Profile</a>
+        <a href="https://tools.endlessus.in" class="block px-2.5 py-2 rounded-lg text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/30">CALION Tools ↗</a>
+        <a href="https://notes.endlessus.in" class="block px-2.5 py-2 rounded-lg text-cyan-600 dark:text-cyan-400 hover:bg-cyan-50 dark:hover:bg-cyan-950/30">CALION Library ↗</a>
       </div>
-      <div class="text-[11px] text-outline pt-4 border-t border-border-hairline">
-        Free &amp; Open Cybersecurity Training
+      <div class="text-[11px] text-slate-400 pt-4 border-t border-slate-200 dark:border-slate-800">
+        Free Sovereign Cybersecurity Training
       </div>
     </div>
   </div>
 
-  <!-- =========================================================================
-       2. LEARNING CATALOGUE WORKSPACE
-       ========================================================================= -->
-  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-8 sm:py-10 space-y-8">
-    
-    <!-- "Continue Learning" Compact Card (Shown when user has active/in-progress room) -->
-    <div id="continue-learning-banner" class="hidden p-4 sm:p-5 rounded-2xl border border-primary/30 bg-primary/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 flex-1 w-full">
+
+    <!-- ========================================================================= -->
+    <!-- STUDENT PROGRESS SUMMARY BAR (Stitch Spec)                                -->
+    <!-- ========================================================================= -->
+    <section class="bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl p-5 sm:p-6 shadow-sm">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <!-- Left: Status & Track -->
+        <div class="space-y-1.5 max-w-2xl">
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-mono font-medium bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 border border-sky-100 dark:border-sky-800" id="cadet-handle-tag">
+              Cadet: CIPHER_NULL
+            </span>
+            <span class="text-xs text-slate-400">•</span>
+            <span class="text-xs font-mono text-slate-500 dark:text-slate-400 font-medium" id="cadet-rank-tag">
+              Pre Security Pathway
+            </span>
+          </div>
+          <h1 class="text-xl sm:text-2xl font-headline font-bold text-slate-900 dark:text-white tracking-tight">
+            Foundations of Offensive &amp; Defensive Security
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+            Learn core architectural primitives, protocol vulnerability triage, and containment controls across 8 levels and 45 rooms.
+          </p>
+        </div>
+
+        <!-- Right: Progress Indicator & Direct Action -->
+        <div class="flex flex-col sm:flex-row sm:items-center gap-5 border-t md:border-t-0 md:border-l border-slate-100 dark:border-slate-800 pt-4 md:pt-0 md:pl-6 shrink-0">
+          <div class="space-y-1.5 min-w-[150px]">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-medium text-slate-600 dark:text-slate-300">Course Progress</span>
+              <span class="font-mono font-semibold text-primary" id="path-progress-label">0 of 45 Rooms (0%)</span>
+            </div>
+            <div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+              <div id="path-progress-bar" class="bg-gradient-to-r from-sky-500 to-indigo-600 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+            <div class="text-[11px] font-mono text-slate-400" id="current-stage-tag">Stage 0 of 8</div>
+          </div>
+          <a id="dashboard-continue-btn" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-sm font-semibold shadow-sm transition-all text-center" href="room.html?id=room-01">
+            <span class="material-symbols-outlined text-[18px]">play_arrow</span>
+            <span id="dashboard-continue-text">Start Path</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- "Continue Learning" Banner (Preserved for compatibility) -->
+    <div id="continue-learning-banner" class="hidden p-4 sm:p-5 rounded-xl border border-sky-200 dark:border-sky-900 bg-sky-50/50 dark:bg-sky-950/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
       <div class="space-y-1">
         <div class="flex items-center gap-2 text-xs font-mono font-bold text-primary">
           <span class="material-symbols-outlined text-sm">play_circle</span>
           <span>CONTINUE WHERE YOU LEFT OFF</span>
         </div>
-        <div class="text-sm sm:text-base font-bold font-mono text-on-surface" id="continue-room-title">
+        <div class="text-sm sm:text-base font-bold font-mono text-slate-900 dark:text-white" id="continue-room-title">
           ROOM-01: Welcome to Cybersecurity &amp; Ethical Hacking
         </div>
-        <div class="text-xs text-on-surface-variant font-mono" id="continue-room-level">
+        <div class="text-xs text-slate-500 dark:text-slate-400 font-mono" id="continue-room-level">
           Level 00: Start Here
         </div>
       </div>
-      <a id="continue-action-link" href="room.html?id=room-01" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white text-xs font-mono font-bold hover:opacity-95 shadow transition-all shrink-0">
+      <a id="continue-action-link" href="room.html?id=room-01" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-sky-600 text-white text-xs font-mono font-bold hover:bg-sky-700 shadow transition-all shrink-0">
         <span>Jump Back In</span>
         <span class="material-symbols-outlined text-sm">arrow_forward</span>
       </a>
     </div>
 
-    <!-- Catalogue Header Section -->
-    <div class="space-y-3 pb-6 border-b border-border-hairline">
-      <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-surface-raised border border-border-hairline text-outline">
-        <span class="material-symbols-outlined text-sm text-primary">explore</span>
-        <span>TRAINING CATALOGUE</span>
-      </div>
-      <h1 class="text-3xl sm:text-4xl font-black font-mono tracking-tight text-on-surface">
-        Cybersecurity Learning Paths
-      </h1>
-      <p class="text-sm sm:text-base text-on-surface-variant max-w-3xl leading-relaxed">
-        Structured, hands-on learning paths designed to take you from foundational computer science to practical security testing. Each path contains guided modules, interactive question checks, and sandboxed terminal exercises.
-      </p>
-    </div>
+    <!-- ========================================================================= -->
+    <!-- MAIN 2-COLUMN WORKSPACE: Connected Skill Tree + Active Node Overview       -->
+    <!-- ========================================================================= -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-    <!-- Search & Filter Controls -->
-    <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 font-mono text-xs">
-      <div class="relative flex-1 max-w-md">
-        <span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-base">search</span>
-        <input type="text" id="catalogue-search-input" placeholder="Search learning paths and topics..." class="w-full pl-9 pr-4 py-2 rounded-lg border border-border-hairline bg-surface-subtle text-xs font-mono text-on-surface placeholder-outline focus:border-primary focus:outline-none transition-colors" autocomplete="off"/>
-      </div>
-      <div class="flex items-center gap-1">
-        <button type="button" class="px-3 py-1.5 rounded-lg border border-primary bg-primary text-white font-bold cursor-pointer">All Paths (1)</button>
-        <button type="button" class="px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface hover:border-primary cursor-pointer">Beginner (1)</button>
-      </div>
-    </div>
-
-    <!-- =========================================================================
-         3. LEARNING PATH CARD: PRE SECURITY (TRYHACKME PATH STYLE)
-         ========================================================================= -->
-    <div class="grid grid-cols-1 gap-6">
-      
-      <article class="p-6 sm:p-8 rounded-2xl border border-border-hairline bg-surface-subtle hover:border-primary/50 hover:shadow-lg transition-all duration-200 space-y-6">
-        
-        <!-- Card Top Bar: Chips, Level, Scope -->
-        <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-border-hairline/60">
-          <div class="flex items-center gap-2 font-mono text-xs">
-            <span class="px-2.5 py-0.5 rounded-md bg-primary/10 text-primary border border-primary/20 font-bold uppercase tracking-wider text-[11px]">
-              Foundational Path
-            </span>
-            <span class="px-2.5 py-0.5 rounded-md bg-surface-raised border border-border-hairline font-bold text-on-surface text-[11px]">
-              Beginner
-            </span>
+      <!-- LEFT COLUMN (5 Cols): Connected Vertical Zigzag Skill Tree -->
+      <div class="lg:col-span-5 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm">
+        <div class="mb-6 pb-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-[18px]">route</span>
+              <h2 class="text-base font-headline font-bold text-slate-900 dark:text-white">Curriculum Skill Tree</h2>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="skill-tree-xp-summary">Tactical progression map • 0 / 2,250 XP</p>
           </div>
-
-          <div class="flex items-center gap-4 font-mono text-xs text-outline">
-            <span class="flex items-center gap-1">
-              <span class="material-symbols-outlined text-sm">schedule</span>
-              <span>~40 Hours</span>
-            </span>
-            <span class="flex items-center gap-1">
-              <span class="material-symbols-outlined text-sm">view_module</span>
-              <span>8 Modules</span>
-            </span>
-            <span class="flex items-center gap-1">
-              <span class="material-symbols-outlined text-sm">meeting_room</span>
-              <span>45 Rooms</span>
-            </span>
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-300 text-xs font-mono font-semibold" id="tier-badge">
+            <span class="material-symbols-outlined text-[14px] text-amber-500">military_tech</span>
+            <span id="tier-label">TIER 1</span>
           </div>
         </div>
 
-        <!-- Path Body: Title, Tagline, Description -->
-        <div class="space-y-3">
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <h2 class="text-2xl sm:text-3xl font-black font-mono tracking-tight text-on-surface">
-                <a href="modules.html" class="hover:text-primary transition-colors">
-                  Pre Security
-                </a>
-              </h2>
-              <p class="text-xs font-mono text-primary font-bold mt-0.5">
-                Essential Technical Foundations for Cybersecurity
-              </p>
-            </div>
-            
-            <span class="w-12 h-12 rounded-2xl bg-surface-raised border border-border-hairline flex items-center justify-center text-primary material-symbols-outlined text-2xl shrink-0">
-              shield
-            </span>
-          </div>
+        <!-- Zigzag Quest Path Container -->
+        <div class="relative py-4 px-2 select-none min-h-[720px]" id="skill-tree-container">
+          <!-- Dynamic SVG Connection Track Lines Layer -->
+          <svg class="absolute inset-0 w-full h-full pointer-events-none z-0" id="skill-tree-svg" preserveAspectRatio="none" viewBox="0 0 340 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="completedTrace" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#10b981"></stop>
+                <stop offset="50%" stop-color="#059669"></stop>
+                <stop offset="100%" stop-color="#0284c7"></stop>
+              </linearGradient>
+              <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="2" result="blur"></feGaussianBlur>
+                <feComposite in="SourceGraphic" in2="blur" operator="over"></feComposite>
+              </filter>
+            </defs>
+            <g id="svg-paths-group"></g>
+          </svg>
 
-          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed max-w-4xl">
-            Learn the pre-requisite technical knowledge to start your cybersecurity career. 
-            Before diving into penetration testing or defense, master how computers actually work, 
-            how operating systems process data, how networks route traffic across the globe, and how web applications communicate.
+          <!-- Dynamic Nodes List Container -->
+          <div class="relative z-10 space-y-7" id="skill-tree-nodes"></div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN (7 Cols): Active Learning Node Detail Card -->
+      <div class="lg:col-span-7 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl p-6 sm:p-7 shadow-sm space-y-6" id="active-node-section">
+        <!-- Header & Time -->
+        <div class="flex items-start justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-4">
+          <div>
+            <span class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-primary">
+              <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+              ACTIVE LEARNING NODE
+            </span>
+            <h2 class="text-xl sm:text-2xl font-headline font-bold text-slate-900 dark:text-white mt-1" id="active-node-title">
+              Level 00: Start Here
+            </h2>
+          </div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-mono shrink-0" id="active-node-time">
+            <span class="material-symbols-outlined text-[15px] text-slate-400">timer</span>
+            <span>35 min</span>
+          </div>
+        </div>
+
+        <!-- Badges & Room Scope -->
+        <div class="flex flex-wrap items-center gap-2 text-xs font-mono">
+          <span class="px-2.5 py-1 rounded bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 border border-sky-100 dark:border-sky-900 font-semibold" id="active-node-room-count">
+            2 Practice Rooms
+          </span>
+          <span class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700" id="active-node-diff">
+            Beginner Difficulty
+          </span>
+          <span class="px-2.5 py-1 rounded bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800" id="active-node-xp">
+            +100 XP Total
+          </span>
+        </div>
+
+        <!-- Mission Summary -->
+        <div class="space-y-2">
+          <h3 class="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold">Mission Summary</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed" id="active-node-summary">
+            Zero prior experience required. Discover what ethical cybersecurity is, understand the legal boundaries, and execute your first shell command.
           </p>
         </div>
 
-        <!-- Path Syllabus Modules Grid (8 Modules Overview) -->
-        <div class="space-y-2 pt-2">
-          <div class="text-xs font-mono text-outline uppercase tracking-wider font-bold">
-            Curriculum Modules Included:
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 font-mono text-xs">
-            
-            <a href="module.html?id=level-0" class="p-3 rounded-xl border border-border-hairline bg-surface-raised hover:border-primary/50 transition-colors">
-              <div class="text-[10px] text-outline font-bold">LEVEL 00 · 2 ROOMS</div>
-              <div class="font-bold text-on-surface truncate mt-0.5">Start Here</div>
-              <div class="text-[11px] text-on-surface-variant truncate">Welcome &amp; First Command</div>
-            </a>
-
-            <a href="module.html?id=level-1" class="p-3 rounded-xl border border-border-hairline bg-surface-raised hover:border-primary/50 transition-colors">
-              <div class="text-[10px] text-outline font-bold">LEVEL 01 · 4 ROOMS</div>
-              <div class="font-bold text-on-surface truncate mt-0.5">Computer Fundamentals</div>
-              <div class="text-[11px] text-on-surface-variant truncate">CPU, Memory &amp; Storage</div>
-            </a>
-
-            <a href="module.html?id=level-2" class="p-3 rounded-xl border border-border-hairline bg-surface-raised hover:border-primary/50 transition-colors">
-              <div class="text-[10px] text-outline font-bold">LEVEL 02 · 8 ROOMS</div>
-              <div class="font-bold text-on-surface truncate mt-0.5">Linux Fundamentals</div>
-              <div class="text-[11px] text-on-surface-variant truncate">CLI, Filesystems &amp; Permissions</div>
-            </a>
-
-            <a href="module.html?id=level-3" class="p-3 rounded-xl border border-border-hairline bg-surface-raised hover:border-primary/50 transition-colors">
-              <div class="text-[10px] text-outline font-bold">LEVEL 03 · 5 ROOMS</div>
-              <div class="font-bold text-on-surface truncate mt-0.5">Windows Fundamentals</div>
-              <div class="text-[11px] text-on-surface-variant truncate">Registry, NTFS &amp; PowerShell</div>
-            </a>
-
-            <a href="module.html?id=level-4" class="p-3 rounded-xl border border-border-hairline bg-surface-raised hover:border-primary/50 transition-colors">
-              <div class="text-[10px] text-outline font-bold">LEVEL 04 · 9 ROOMS</div>
-              <div class="font-bold text-on-surface truncate mt-0.5">Networking Fundamentals</div>
-              <div class="text-[11px] text-on-surface-variant truncate">OSI, IP, Subnets &amp; Ports</div>
-            </a>
-
-            <a href="module.html?id=level-5" class="p-3 rounded-xl border border-border-hairline bg-surface-raised hover:border-primary/50 transition-colors">
-              <div class="text-[10px] text-outline font-bold">LEVEL 05 · 5 ROOMS</div>
-              <div class="font-bold text-on-surface truncate mt-0.5">Web Fundamentals</div>
-              <div class="text-[11px] text-on-surface-variant truncate">HTTP/S, Headers &amp; Cookies</div>
-            </a>
-
-            <a href="module.html?id=level-6" class="p-3 rounded-xl border border-border-hairline bg-surface-raised hover:border-primary/50 transition-colors">
-              <div class="text-[10px] text-outline font-bold">LEVEL 06 · 6 ROOMS</div>
-              <div class="font-bold text-on-surface truncate mt-0.5">Cybersecurity Fundamentals</div>
-              <div class="text-[11px] text-on-surface-variant truncate">CIA Triad, Threats &amp; Crypto</div>
-            </a>
-
-            <a href="module.html?id=level-7" class="p-3 rounded-xl border border-border-hairline bg-surface-raised hover:border-primary/50 transition-colors">
-              <div class="text-[10px] text-outline font-bold">LEVEL 07 · 6 ROOMS</div>
-              <div class="font-bold text-on-surface truncate mt-0.5">Practical Security Labs</div>
-              <div class="text-[11px] text-on-surface-variant truncate">Hands-On Investigation Drills</div>
-            </a>
-
-          </div>
+        <!-- Key Objectives -->
+        <div class="space-y-3">
+          <h3 class="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold">Core Objectives</h3>
+          <ul class="space-y-2.5 text-xs text-slate-700 dark:text-slate-300 font-sans" id="active-node-objectives">
+            <li class="flex items-start gap-2.5">
+              <span class="material-symbols-outlined text-emerald-500 text-[18px] shrink-0">check_circle</span>
+              <span>Differentiate between Offensive Security (Red Team) and Defensive Security (Blue Team)</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="material-symbols-outlined text-emerald-500 text-[18px] shrink-0">check_circle</span>
+              <span>Learn Rules of Engagement (RoE) and authorization criteria</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="material-symbols-outlined text-emerald-500 text-[18px] shrink-0">check_circle</span>
+              <span>Execute your first shell command (<code class="font-mono bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">whoami</code>) in the live terminal sandbox</span>
+            </li>
+          </ul>
         </div>
 
-        <!-- Path Footer: Live Progress Bar & Action CTA -->
-        <div class="pt-4 border-t border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono text-xs">
-          
-          <div class="space-y-1.5 flex-1 max-w-md">
-            <div class="flex justify-between text-xs">
-              <span class="text-outline">Path Progress</span>
-              <span class="font-bold text-on-surface" id="path-progress-label">0 of 45 Rooms (0%)</span>
-            </div>
-            <div class="w-full h-2 rounded-full bg-surface-raised overflow-hidden">
-              <div id="path-progress-bar" class="h-full bg-primary transition-all duration-300 rounded-full" style="width: 0%"></div>
-            </div>
+        <!-- Selected In-Room Details -->
+        <div class="p-4 rounded-lg bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-800 space-y-2">
+          <div class="flex items-center justify-between text-xs font-mono">
+            <span class="text-slate-500 dark:text-slate-400 font-semibold">Primary Room Node</span>
+            <span class="text-sky-600 dark:text-sky-400 font-bold" id="active-room-code">ROOM-01</span>
           </div>
-
-          <div class="flex items-center gap-3 shrink-0">
-            <a href="modules.html" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-border-hairline bg-surface-raised hover:border-primary text-on-surface transition-colors font-bold">
-              <span>View Path Outline</span>
-              <span class="material-symbols-outlined text-xs">format_list_bulleted</span>
-            </a>
-
-            <a id="dashboard-continue-btn" href="room.html?id=room-01" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white font-bold hover:opacity-95 shadow transition-all">
-              <span id="dashboard-continue-text">Start Learning</span>
-              <span class="material-symbols-outlined text-sm">arrow_forward</span>
-            </a>
+          <div class="text-sm font-bold text-slate-900 dark:text-white" id="active-room-title">
+            Welcome to Cybersecurity &amp; Ethical Hacking
           </div>
-
+          <p class="text-xs text-slate-500 dark:text-slate-400" id="active-room-why">
+            Understand how ethical hackers think and execute your first command in the sandbox.
+          </p>
         </div>
 
-      </article>
+        <!-- Direct Actions -->
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-wrap items-center gap-3">
+          <a class="px-6 py-2.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-mono font-bold transition-all shadow-sm flex items-center gap-2" href="room.html?id=room-01" id="active-node-cta">
+            <span>Enter Virtual Lab</span>
+            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+          </a>
+          <a class="px-4 py-2.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 text-xs font-mono font-medium transition-colors" href="module.html?id=level-0" id="active-node-outline-btn">
+            View Level Outline
+          </a>
+        </div>
+      </div>
 
     </div>
 
@@ -461,88 +388,90 @@
       <span id="rec-room-title">ROOM-01: Welcome to Cybersecurity &amp; Ethical Hacking</span>
     </div>
 
-    <!-- =========================================================================
-         4. QUICK PRACTICE & REFERENCE SHORTCUTS
-         ========================================================================= -->
-    <div class="space-y-4 pt-4">
+    <!-- ========================================================================= -->
+    <!-- Curriculum Modules Grid (8 Modules)                                       -->
+    <!-- ========================================================================= -->
+    <section class="space-y-4 pt-6 border-t border-slate-200 dark:border-slate-800">
       <div class="flex items-center justify-between">
-        <h3 class="text-lg font-bold font-mono text-on-surface flex items-center gap-2">
-          <span class="material-symbols-outlined text-primary text-lg">apps</span>
-          <span>Practice &amp; Tool Resources</span>
-        </h3>
-        <span class="text-xs font-mono text-outline">Hands-on Drills</span>
+        <div>
+          <span class="text-xs font-mono uppercase tracking-wider text-sky-600 dark:text-sky-400 font-semibold">Syllabus Breakdown</span>
+          <h3 class="text-xl font-headline font-bold text-slate-900 dark:text-white mt-0.5">8 Learning Modules</h3>
+        </div>
+        <a class="text-xs font-mono text-primary hover:underline font-semibold flex items-center gap-1" href="modules.html">
+          <span>All 45 Rooms</span>
+          <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+        </a>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 font-mono text-xs">
-        
-        <a href="labs.html" class="p-4 rounded-xl border border-border-hairline bg-surface-subtle hover:border-primary/50 transition-all group flex flex-col justify-between space-y-3">
-          <div class="space-y-1">
-            <span class="material-symbols-outlined text-primary text-xl">science</span>
-            <div class="font-bold text-sm text-on-surface group-hover:text-primary transition-colors">Practical Labs</div>
-            <p class="text-xs text-on-surface-variant font-sans line-clamp-2">13 realistic simulation targets covering security headers, SQLi, and Linux privilege escalation.</p>
-          </div>
-          <span class="text-primary font-bold flex items-center gap-1">Open Labs &rarr;</span>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 font-mono text-xs" id="modules-overview-grid">
+        <a href="module.html?id=level-0" class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:border-primary/50 transition-colors">
+          <div class="text-[10px] text-slate-400 font-bold">LEVEL 00 · 2 ROOMS</div>
+          <div class="font-bold text-slate-900 dark:text-white truncate mt-0.5">Start Here</div>
+          <div class="text-[11px] text-slate-500 dark:text-slate-400 truncate">Welcome &amp; First Command</div>
         </a>
-
-        <a href="terminal-lab.html" class="p-4 rounded-xl border border-border-hairline bg-surface-subtle hover:border-secondary/50 transition-all group flex flex-col justify-between space-y-3">
-          <div class="space-y-1">
-            <span class="material-symbols-outlined text-secondary text-xl">terminal</span>
-            <div class="font-bold text-sm text-on-surface group-hover:text-secondary transition-colors">Terminal Sandbox</div>
-            <p class="text-xs text-on-surface-variant font-sans line-clamp-2">Interactive browser-based Linux shell with POSIX command parser.</p>
-          </div>
-          <span class="text-secondary font-bold flex items-center gap-1">Launch Shell &rarr;</span>
+        <a href="module.html?id=level-1" class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:border-primary/50 transition-colors">
+          <div class="text-[10px] text-slate-400 font-bold">LEVEL 01 · 4 ROOMS</div>
+          <div class="font-bold text-slate-900 dark:text-white truncate mt-0.5">Computer Fundamentals</div>
+          <div class="text-[11px] text-slate-500 dark:text-slate-400 truncate">CPU, Memory &amp; Storage</div>
         </a>
-
-        <a href="roadmap.html" class="p-4 rounded-xl border border-border-hairline bg-surface-subtle hover:border-primary/50 transition-all group flex flex-col justify-between space-y-3">
-          <div class="space-y-1">
-            <span class="material-symbols-outlined text-primary text-xl">alt_route</span>
-            <div class="font-bold text-sm text-on-surface group-hover:text-primary transition-colors">Career Roadmap</div>
-            <p class="text-xs text-on-surface-variant font-sans line-clamp-2">Complete visual 45-room learning pathway from zero to Junior Pentester.</p>
-          </div>
-          <span class="text-primary font-bold flex items-center gap-1">View Roadmap &rarr;</span>
+        <a href="module.html?id=level-2" class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:border-primary/50 transition-colors">
+          <div class="text-[10px] text-slate-400 font-bold">LEVEL 02 · 8 ROOMS</div>
+          <div class="font-bold text-slate-900 dark:text-white truncate mt-0.5">Linux Fundamentals</div>
+          <div class="text-[11px] text-slate-500 dark:text-slate-400 truncate">CLI, Filesystems &amp; Permissions</div>
         </a>
-
-        <a href="glossary.html" class="p-4 rounded-xl border border-border-hairline bg-surface-subtle hover:border-warning/50 transition-all group flex flex-col justify-between space-y-3">
-          <div class="space-y-1">
-            <span class="material-symbols-outlined text-warning text-xl">auto_stories</span>
-            <div class="font-bold text-sm text-on-surface group-hover:text-warning transition-colors">Cybersecurity Glossary</div>
-            <p class="text-xs text-on-surface-variant font-sans line-clamp-2">60+ searchable terms, definitions, and operational cybersecurity concepts.</p>
-          </div>
-          <span class="text-warning font-bold flex items-center gap-1">Browse Terms &rarr;</span>
+        <a href="module.html?id=level-3" class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:border-primary/50 transition-colors">
+          <div class="text-[10px] text-slate-400 font-bold">LEVEL 03 · 5 ROOMS</div>
+          <div class="font-bold text-slate-900 dark:text-white truncate mt-0.5">Windows Fundamentals</div>
+          <div class="text-[11px] text-slate-500 dark:text-slate-400 truncate">Registry, NTFS &amp; PowerShell</div>
         </a>
-
+        <a href="module.html?id=level-4" class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:border-primary/50 transition-colors">
+          <div class="text-[10px] text-slate-400 font-bold">LEVEL 04 · 9 ROOMS</div>
+          <div class="font-bold text-slate-900 dark:text-white truncate mt-0.5">Networking Fundamentals</div>
+          <div class="text-[11px] text-slate-500 dark:text-slate-400 truncate">OSI, IP, Subnets &amp; Ports</div>
+        </a>
+        <a href="module.html?id=level-5" class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:border-primary/50 transition-colors">
+          <div class="text-[10px] text-slate-400 font-bold">LEVEL 05 · 5 ROOMS</div>
+          <div class="font-bold text-slate-900 dark:text-white truncate mt-0.5">Web Fundamentals</div>
+          <div class="text-[11px] text-slate-500 dark:text-slate-400 truncate">HTTP/S, Headers &amp; Cookies</div>
+        </a>
+        <a href="module.html?id=level-6" class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:border-primary/50 transition-colors">
+          <div class="text-[10px] text-slate-400 font-bold">LEVEL 06 · 6 ROOMS</div>
+          <div class="font-bold text-slate-900 dark:text-white truncate mt-0.5">Cybersecurity Fundamentals</div>
+          <div class="text-[11px] text-slate-500 dark:text-slate-400 truncate">CIA Triad, Threats &amp; Crypto</div>
+        </a>
+        <a href="module.html?id=level-7" class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:border-primary/50 transition-colors">
+          <div class="text-[10px] text-slate-400 font-bold">LEVEL 07 · 6 ROOMS</div>
+          <div class="font-bold text-slate-900 dark:text-white truncate mt-0.5">Practical Security Labs</div>
+          <div class="text-[11px] text-slate-500 dark:text-slate-400 truncate">Hands-On Investigation Drills</div>
+        </a>
       </div>
-    </div>
+    </section>
 
-    <!-- Reset Progress -->
-    <div class="pt-6 border-t border-border-hairline flex items-center justify-between font-mono text-xs text-outline">
-      <span>Progress saved locally in browser storage</span>
-      <button type="button" id="reset-progress-btn" class="hover:text-danger-critical transition-colors cursor-pointer flex items-center gap-1">
-        <span class="material-symbols-outlined text-xs">restart_alt</span>
-        <span>Reset Progress</span>
+    <!-- Reset Progress Handler for Dev/Testing -->
+    <div class="pt-6 border-t border-slate-200 dark:border-slate-800 flex justify-end">
+      <button class="text-xs font-mono text-slate-400 hover:text-rose-500 transition-colors" id="reset-progress-btn" type="button">
+        Reset Local Progress
       </button>
     </div>
-
   </main>
 
-  <!-- =========================================================================
-       5. FOOTER
-       ========================================================================= -->
-  <footer class="border-t border-border-hairline bg-surface-subtle py-8 text-xs font-mono text-outline mt-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div>
-        <span class="font-bold text-on-surface">Endlessus Cybersecurity Academy</span> · Engineered by Mihraj Mashhoor K
+  <!-- Clean Footer -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#060911] py-8 text-xs font-mono text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span>CALION Academy · Path → Rooms → Tasks Progression Active</span>
       </div>
       <div class="flex items-center gap-4">
-        <a href="modules.html" class="hover:text-primary transition-colors">Path Outline</a>
-        <a href="roadmap.html" class="hover:text-primary transition-colors">Roadmap</a>
-        <a href="labs.html" class="hover:text-primary transition-colors">Labs</a>
+        <a href="https://tools.endlessus.in" class="hover:text-primary transition-colors">Tools</a>
+        <a href="https://notes.endlessus.in" class="hover:text-primary transition-colors">Library</a>
+        <a href="https://portfolio.endlessus.in" class="hover:text-primary transition-colors">Portfolio</a>
         <a href="handbook/index.html" class="hover:text-primary transition-colors">Handbook</a>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Scripts: Exact Load Order Required by Security Verification -->
   <script src="learning-data.js"></script>
   <script src="vendor/supabase.min.js"></script>
   <script src="calion-runtime-config.js"></script>
@@ -552,26 +481,57 @@
   <script src="academy-sync.js"></script>
   <script src="academy-nav.js"></script>
 
+  <!-- Interactive Zigzag Skill Tree and Progress Script -->
   <script>
     (function() {
       'use strict';
 
-      function syncCatalogue() {
-        if (typeof PRE_SECURITY_ROOMS === 'undefined') return;
+      // Theme toggle functionality
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+          const html = document.documentElement;
+          if (html.classList.contains('dark')) {
+            html.classList.remove('dark', 'theme-hacker');
+            html.classList.add('light', 'theme-normal');
+            localStorage.setItem('calion_theme', 'light');
+            localStorage.setItem('endlessus_learning_theme', 'normal');
+          } else {
+            html.classList.remove('light', 'theme-normal');
+            html.classList.add('dark', 'theme-hacker');
+            localStorage.setItem('calion_theme', 'dark');
+            localStorage.setItem('endlessus_learning_theme', 'hacker');
+          }
+        });
+      }
 
+      // Mobile Drawer functionality
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileClose = document.getElementById('mobile-drawer-close');
+      const drawer = document.getElementById('mobile-drawer');
+      if (mobileBtn && drawer) mobileBtn.addEventListener('click', () => drawer.classList.remove('hidden'));
+      if (mobileClose && drawer) mobileClose.addEventListener('click', () => drawer.classList.add('hidden'));
+
+      let selectedLevelId = 0;
+
+      function renderSkillTree() {
+        if (typeof PRE_SECURITY_LEVELS === 'undefined' || typeof PRE_SECURITY_ROOMS === 'undefined') return;
+
+        const levels = PRE_SECURITY_LEVELS;
         const rooms = PRE_SECURITY_ROOMS;
         const totalRooms = rooms.length || 45;
         const completedRooms = AcademyState.getCompletedRooms();
         const completedCount = completedRooms.length;
+        const totalXP = AcademyState.calculateTotalXP();
         const pct = Math.round((completedCount / totalRooms) * 100);
 
-        // Update Progress Bar
+        // Update Progress Bar & Labels
         const progressLabel = document.getElementById('path-progress-label');
         const progressBar = document.getElementById('path-progress-bar');
         if (progressLabel) progressLabel.textContent = `${completedCount} of ${totalRooms} Rooms (${pct}%)`;
         if (progressBar) progressBar.style.width = `${pct}%`;
 
-        // Determine next incomplete room
+        // Update Summary Bar text
         const nextRoom = AcademyState.getNextIncompleteRoom(rooms);
         const lastRoomId = AcademyState.getLastActiveRoom();
         const activeRoom = (lastRoomId && !completedRooms.includes(lastRoomId) && PRE_SECURITY_ROOM_MAP[lastRoomId])
@@ -580,38 +540,252 @@
 
         const continueBtn = document.getElementById('dashboard-continue-btn');
         const continueText = document.getElementById('dashboard-continue-text');
-
-        if (completedCount === 0) {
-          if (continueText) continueText.textContent = 'Start Path';
-          if (continueBtn) continueBtn.href = 'room.html?id=room-01';
-        } else if (completedCount >= totalRooms) {
-          if (continueText) continueText.textContent = 'Review Path (100% Done)';
-          if (continueBtn) continueBtn.href = 'modules.html';
-        } else {
-          if (continueText) continueText.textContent = `Continue: ${activeRoom.id.toUpperCase()}`;
-          if (continueBtn) continueBtn.href = `room.html?id=${activeRoom.id}`;
+        if (continueBtn && continueText) {
+          if (completedCount === 0) {
+            continueText.textContent = 'Start Path';
+            continueBtn.href = 'room.html?id=room-01';
+          } else if (completedCount >= totalRooms) {
+            continueText.textContent = 'Review Path (100% Done)';
+            continueBtn.href = 'modules.html';
+          } else if (activeRoom) {
+            continueText.textContent = `Continue: ${activeRoom.id.toUpperCase()}`;
+            continueBtn.href = `room.html?id=${activeRoom.id}`;
+          }
         }
 
-        // Continue Learning Banner
-        const banner = document.getElementById('continue-learning-banner');
-        if (completedCount > 0 && completedCount < totalRooms && activeRoom) {
-          banner.classList.remove('hidden');
-          document.getElementById('continue-room-title').textContent = `${activeRoom.id.toUpperCase()}: ${activeRoom.title}`;
-          const lvlId = typeof activeRoom.level === 'number' ? activeRoom.level : activeRoom.stage;
-          const lvlObj = PRE_SECURITY_LEVELS.find(l => l.id === lvlId);
-          document.getElementById('continue-room-level').textContent = lvlObj ? `Level ${lvlObj.number}: ${lvlObj.title}` : `Level ${lvlId}`;
-          document.getElementById('continue-action-link').href = `room.html?id=${activeRoom.id}`;
-        } else {
-          banner.classList.add('hidden');
+        // Cadet Handle & Tier Badges
+        const currentCadet = AcademyAuth.getCurrentCadet();
+        const cadetTag = document.getElementById('cadet-handle-tag');
+        const cadetAvatar = document.getElementById('cadet-avatar-badge');
+        if (cadetTag && currentCadet && currentCadet.handle) {
+          cadetTag.textContent = `Cadet: ${currentCadet.handle}`;
         }
+        if (cadetAvatar && currentCadet && currentCadet.handle) {
+          cadetAvatar.textContent = currentCadet.handle.slice(0, 2).toUpperCase();
+        }
+
+        // Active Stage Tag
+        const currentLvl = activeRoom ? (typeof activeRoom.level === 'number' ? activeRoom.level : activeRoom.stage) : 0;
+        const stageTag = document.getElementById('current-stage-tag');
+        if (stageTag) stageTag.textContent = `Stage ${currentLvl} of 8`;
+
+        const tierLabel = document.getElementById('tier-label');
+        if (tierLabel) tierLabel.textContent = `TIER ${Math.min(8, Math.floor(completedCount / 6) + 1)}`;
+
+        const xpSummary = document.getElementById('skill-tree-xp-summary');
+        if (xpSummary) xpSummary.textContent = `Tactical progression map • ${totalXP} / 2,250 XP`;
 
         // Update hidden test elements
         const statRooms = document.getElementById('stat-completed-rooms');
         const statXp = document.getElementById('stat-user-xp');
         const recTitle = document.getElementById('rec-room-title');
         if (statRooms) statRooms.textContent = completedCount;
-        if (statXp) statXp.textContent = AcademyState.calculateTotalXP();
+        if (statXp) statXp.textContent = totalXP;
         if (recTitle && activeRoom) recTitle.textContent = `${activeRoom.id.toUpperCase()}: ${activeRoom.title}`;
+
+        // Render Zigzag Nodes & SVG Connection Tracks
+        const nodesContainer = document.getElementById('skill-tree-nodes');
+        const svgGroup = document.getElementById('svg-paths-group');
+        if (!nodesContainer || !svgGroup) return;
+
+        nodesContainer.innerHTML = '';
+        svgGroup.innerHTML = '';
+
+        // Determine node statuses for each level 0 through 7
+        const nodeCoordinates = [
+          { x: 70, y: 35 },   // L0 Left
+          { x: 270, y: 115 }, // L1 Right
+          { x: 75, y: 195 },  // L2 Left
+          { x: 265, y: 275 }, // L3 Right
+          { x: 75, y: 355 },  // L4 Left
+          { x: 265, y: 435 }, // L5 Right
+          { x: 75, y: 515 },  // L6 Left
+          { x: 265, y: 595 }, // L7 Right
+          { x: 170, y: 685 }  // Capstone Boss Center
+        ];
+
+        levels.forEach((lvl, idx) => {
+          const lvlProgress = AcademyState.getLevelProgress(lvl.id, rooms);
+          const isCompleted = lvlProgress.percentage === 100;
+          const isCurrent = !isCompleted && (idx === 0 || AcademyState.getLevelProgress(levels[idx - 1].id, rooms).percentage === 100 || idx === currentLvl);
+          const isLocked = !isCompleted && !isCurrent;
+          const alignRight = idx % 2 === 1;
+
+          // Connect to next node in SVG
+          if (idx < levels.length - 1) {
+            const p1 = nodeCoordinates[idx];
+            const p2 = nodeCoordinates[idx + 1];
+            const midY = (p1.y + p2.y) / 2;
+            const pathD = `M ${p1.x} ${p1.y} C ${p1.x} ${midY}, ${p2.x} ${midY}, ${p2.x} ${p2.y}`;
+
+            const pathEl = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            pathEl.setAttribute('d', pathD);
+            pathEl.setAttribute('stroke-linecap', 'round');
+
+            if (isCompleted) {
+              pathEl.setAttribute('stroke', '#10b981');
+              pathEl.setAttribute('stroke-width', '3.5');
+            } else if (isCurrent) {
+              pathEl.setAttribute('stroke', 'url(#completedTrace)');
+              pathEl.setAttribute('stroke-width', '3.5');
+              pathEl.setAttribute('filter', 'url(#glow)');
+            } else {
+              pathEl.setAttribute('stroke', '#cbd5e1');
+              pathEl.setAttribute('class', 'dark:stroke-slate-700');
+              pathEl.setAttribute('stroke-width', '2.5');
+              pathEl.setAttribute('stroke-dasharray', '6 6');
+            }
+            svgGroup.appendChild(pathEl);
+          }
+
+          // Build Node HTML
+          const nodeWrapper = document.createElement('div');
+          nodeWrapper.className = `flex items-center ${alignRight ? 'justify-end' : 'justify-start'} cursor-pointer group`;
+          nodeWrapper.onclick = () => selectLevel(lvl.id);
+
+          const innerRow = document.createElement('div');
+          innerRow.className = `flex items-center ${alignRight ? 'flex-row-reverse text-right' : 'text-left'} gap-3.5 max-w-[280px]`;
+
+          // Icon / Badge
+          const iconBox = document.createElement('div');
+          iconBox.className = 'relative flex items-center justify-center shrink-0';
+
+          if (isCompleted) {
+            iconBox.innerHTML = `
+              <div class="w-13 h-13 rounded-2xl bg-emerald-500 text-white flex items-center justify-center shadow-md shadow-emerald-500/25 border-2 border-emerald-300 dark:border-emerald-400 group-hover:scale-105 transition-transform">
+                <span class="material-symbols-outlined text-[22px] font-bold">check</span>
+              </div>
+              <span class="absolute -bottom-2 px-1.5 py-0.2 rounded-full text-[9px] font-mono font-bold bg-emerald-600 text-white shadow-sm border border-emerald-400">+${lvl.roomCount * 50} XP</span>
+            `;
+          } else if (isCurrent) {
+            iconBox.innerHTML = `
+              <span class="absolute -inset-2 rounded-2xl bg-sky-500/20 animate-ping opacity-75"></span>
+              <div class="relative w-14 h-14 rounded-2xl bg-gradient-to-tr from-sky-500 to-indigo-600 p-0.5 shadow-lg shadow-sky-500/30 node-pulse-ring z-10">
+                <div class="w-full h-full rounded-[14px] bg-sky-600 text-white flex flex-col items-center justify-center">
+                  <span class="material-symbols-outlined text-[22px]">${lvl.icon || 'terminal'}</span>
+                </div>
+              </div>
+              <span class="absolute -bottom-2 px-1.5 py-0.2 rounded-full text-[9px] font-mono font-bold bg-sky-600 text-white shadow-md border border-sky-300 z-20">CURRENT</span>
+            `;
+          } else {
+            iconBox.innerHTML = `
+              <div class="w-13 h-13 rounded-2xl bg-slate-100 dark:bg-slate-800/80 border-2 border-dashed border-slate-300 dark:border-slate-700 text-slate-400 dark:text-slate-500 flex items-center justify-center">
+                <span class="material-symbols-outlined text-[20px]">lock</span>
+              </div>
+              <span class="absolute -bottom-2 px-1.5 py-0.2 rounded-full text-[9px] font-mono font-semibold bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300">LOCKED</span>
+            `;
+          }
+
+          // Content Box
+          const contentBox = document.createElement('div');
+          if (isCurrent) {
+            contentBox.className = 'bg-sky-50/90 dark:bg-sky-950/60 backdrop-blur-sm p-3 rounded-xl border-2 border-primary/40 dark:border-sky-500/50 shadow-md';
+            contentBox.innerHTML = `
+              <div class="flex items-center ${alignRight ? 'justify-end' : 'justify-start'} gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                <span class="text-[10px] font-mono font-bold uppercase text-primary dark:text-sky-300">Lv ${lvl.number} • IN PROGRESS</span>
+              </div>
+              <div class="text-xs font-bold text-slate-900 dark:text-white mt-0.5">${lvl.title}</div>
+              <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">${lvl.tagline || lvl.roomCount + ' rooms'}</div>
+            `;
+          } else if (isCompleted) {
+            contentBox.className = 'bg-white/95 dark:bg-slate-900/90 backdrop-blur-sm p-2.5 rounded-lg border border-slate-200/80 dark:border-slate-800 shadow-xs';
+            contentBox.innerHTML = `
+              <div class="flex items-center ${alignRight ? 'justify-end' : 'justify-start'} gap-1.5">
+                <span class="text-[10px] font-mono font-bold uppercase text-emerald-600 dark:text-emerald-400">Lv ${lvl.number} • Mastered</span>
+              </div>
+              <div class="text-xs font-bold text-slate-800 dark:text-slate-100">${lvl.title}</div>
+              <div class="text-[11px] text-slate-400 mt-0.5">${lvl.roomCount} Rooms Completed</div>
+            `;
+          } else {
+            contentBox.className = 'bg-slate-50/80 dark:bg-slate-900/40 p-2.5 rounded-lg border border-slate-200/60 dark:border-slate-800 text-slate-400';
+            contentBox.innerHTML = `
+              <div class="text-[10px] font-mono uppercase text-slate-400">Lv ${lvl.number} Prereq</div>
+              <div class="text-xs font-semibold text-slate-600 dark:text-slate-400">${lvl.title}</div>
+              <div class="text-[11px] text-slate-400 mt-0.5">Requires Level ${Math.max(0, idx - 1)}</div>
+            `;
+          }
+
+          innerRow.appendChild(iconBox);
+          innerRow.appendChild(contentBox);
+          nodeWrapper.appendChild(innerRow);
+          nodesContainer.appendChild(nodeWrapper);
+        });
+
+        // Add Capstone Exam Boss Node at Bottom
+        const capstoneNode = document.createElement('div');
+        capstoneNode.className = 'flex items-center justify-center pt-2 opacity-60 hover:opacity-100 transition-opacity cursor-pointer';
+        capstoneNode.innerHTML = `
+          <div class="flex flex-col items-center text-center max-w-[260px]">
+            <div class="relative flex items-center justify-center mb-2">
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-b from-slate-200 to-slate-300 dark:from-slate-800 dark:to-slate-900 border-2 border-amber-300/40 text-slate-500 dark:text-slate-400 flex items-center justify-center shadow-inner">
+                <span class="material-symbols-outlined text-[24px] text-amber-500">trophy</span>
+              </div>
+              <span class="absolute -bottom-2 px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-400/40">CAPSTONE</span>
+            </div>
+            <div class="text-xs font-bold text-slate-700 dark:text-slate-300 mt-1">Cyber Range Certification Exam</div>
+            <div class="text-[10px] text-slate-400 font-mono mt-0.5">Final Milestone · 1,000 XP &amp; Credential</div>
+          </div>
+        `;
+        nodesContainer.appendChild(capstoneNode);
+
+        // Update Right Column Node Detail
+        updateNodeDetail(selectedLevelId);
+      }
+
+      function selectLevel(lvlId) {
+        selectedLevelId = lvlId;
+        updateNodeDetail(lvlId);
+      }
+
+      function updateNodeDetail(lvlId) {
+        if (typeof PRE_SECURITY_LEVELS === 'undefined') return;
+        const lvl = PRE_SECURITY_LEVELS.find(l => l.id === lvlId) || PRE_SECURITY_LEVELS[0];
+        const lvlRooms = PRE_SECURITY_ROOMS.filter(r => (typeof r.level === 'number' ? r.level : r.stage) === lvl.id);
+        const primaryRoom = lvlRooms[0] || PRE_SECURITY_ROOMS[0];
+
+        const titleEl = document.getElementById('active-node-title');
+        const timeEl = document.getElementById('active-node-time');
+        const countEl = document.getElementById('active-node-room-count');
+        const diffEl = document.getElementById('active-node-diff');
+        const xpEl = document.getElementById('active-node-xp');
+        const summaryEl = document.getElementById('active-node-summary');
+        const objectivesEl = document.getElementById('active-node-objectives');
+        const roomCodeEl = document.getElementById('active-room-code');
+        const roomTitleEl = document.getElementById('active-room-title');
+        const roomWhyEl = document.getElementById('active-room-why');
+        const ctaBtn = document.getElementById('active-node-cta');
+        const outlineBtn = document.getElementById('active-node-outline-btn');
+
+        if (titleEl) titleEl.textContent = `Level ${lvl.number}: ${lvl.title}`;
+        if (timeEl) timeEl.innerHTML = `<span class="material-symbols-outlined text-[15px] text-slate-400">timer</span><span>${lvl.estimatedTime || '45 min'}</span>`;
+        if (countEl) countEl.textContent = `${lvl.roomCount} Practice Rooms`;
+        if (diffEl) diffEl.textContent = `${lvl.difficulty || 'Beginner'} Difficulty`;
+        if (xpEl) xpEl.textContent = `+${lvl.roomCount * 50} XP Total`;
+        if (summaryEl) summaryEl.textContent = lvl.description || lvl.tagline;
+
+        if (objectivesEl && primaryRoom && primaryRoom.objectives) {
+          objectivesEl.innerHTML = primaryRoom.objectives.slice(0, 3).map(obj => `
+            <li class="flex items-start gap-2.5">
+              <span class="material-symbols-outlined text-emerald-500 text-[18px] shrink-0">check_circle</span>
+              <span>${obj}</span>
+            </li>
+          `).join('');
+        }
+
+        if (roomCodeEl) roomCodeEl.textContent = primaryRoom.id.toUpperCase();
+        if (roomTitleEl) roomTitleEl.textContent = primaryRoom.title;
+        if (roomWhyEl) roomWhyEl.textContent = primaryRoom.whyAreYouHere ? primaryRoom.whyAreYouHere.slice(0, 140) + '...' : primaryRoom.tagline || '';
+
+        if (ctaBtn) {
+          ctaBtn.href = `room.html?id=${primaryRoom.id}`;
+          const isDone = AcademyState.isRoomCompleted(primaryRoom.id);
+          ctaBtn.innerHTML = `<span>${isDone ? 'Review Room' : 'Enter Virtual Lab'}</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span>`;
+        }
+
+        if (outlineBtn) {
+          outlineBtn.href = `module.html?id=level-${lvl.id}`;
+        }
       }
 
       // Reset progress handler
@@ -620,20 +794,14 @@
         resetBtn.addEventListener('click', function() {
           if (confirm('Are you sure you want to reset your local learning progress? This action cannot be undone.')) {
             AcademyState.resetAllProgress();
-            syncCatalogue();
+            renderSkillTree();
           }
         });
       }
 
-      syncCatalogue();
-      window.addEventListener('endlessus-progress-updated', syncCatalogue);
-
-      // Mobile drawer
-      const mobileBtn = document.getElementById('mobile-menu-btn');
-      const mobileClose = document.getElementById('mobile-drawer-close');
-      const drawer = document.getElementById('mobile-drawer');
-      if (mobileBtn && drawer) mobileBtn.addEventListener('click', () => drawer.classList.remove('hidden'));
-      if (mobileClose && drawer) mobileClose.addEventListener('click', () => drawer.classList.add('hidden'));
+      // Initial render & subscription to progress updates
+      renderSkillTree();
+      window.addEventListener('endlessus-progress-updated', renderSkillTree);
 
     })();
   </script>

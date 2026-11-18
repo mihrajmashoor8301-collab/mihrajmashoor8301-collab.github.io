@@ -100,20 +100,59 @@
 <body class="bg-canvas-base text-on-surface antialiased telemetry-grid min-h-screen flex flex-col font-sans selection:bg-primary selection:text-white">
 
   <!-- =========================================================================
-       ACADEMY UNIFIED HEADER
+       CALION LIBRARY HEADER (Stitch Design)
        ========================================================================= -->
   <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
       
       <!-- Brand -->
       <div class="flex items-center gap-3">
-        <a href="learning.html" class="flex items-center gap-2.5 group">
-          <span class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/40 text-primary flex items-center justify-center font-mono font-bold text-sm group-hover:scale-105 transition-transform">C</span>
-          <div class="flex flex-col">
-            <span class="font-bold text-sm tracking-tight text-on-surface group-hover:text-primary transition-colors">CALION Academy</span>
-            <span class="font-mono text-[10px] text-outline tracking-wider uppercase">Theory &amp; Concepts</span>
-          </div>
+        <a class="flex items-center gap-2.5 group" href="theory.html">
+          <svg class="h-8 w-auto" fill="none" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="header_calion_grad_lib" x1="0%" x2="100%" y1="0%" y2="100%">
+                <stop offset="0%" stop-color="#00F0FF"></stop>
+                <stop offset="50%" stop-color="#0284C7"></stop>
+                <stop offset="100%" stop-color="#6366F1"></stop>
+              </linearGradient>
+            </defs>
+            <g transform="translate(10, 10)">
+              <path d="M 55 10 L 25 10 L 10 25 L 10 55 L 25 70 L 55 70" stroke="url(#header_calion_grad_lib)" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"></path>
+              <path class="stroke-slate-900 dark:stroke-white transition-colors" d="M 42 70 L 42 22 L 58 22 L 68 70" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"></path>
+              <path d="M 33 46 L 56 46" stroke="url(#header_calion_grad_lib)" stroke-linecap="round" stroke-width="4.5"></path>
+              <circle cx="55" cy="10" fill="#00F0FF" r="3.5"></circle>
+              <circle cx="25" cy="70" fill="#6366F1" r="3"></circle>
+              <circle class="fill-slate-900 dark:fill-white transition-colors" cx="42" cy="22" r="2.5"></circle>
+            </g>
+            <text class="fill-slate-900 dark:fill-white font-headline text-[34px] font-bold transition-colors" letter-spacing="0.22em" x="100" y="58">CALION</text>
+            <text fill="#0284C7" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" letter-spacing="0.42em" x="102" y="74">DIGITAL ECOSYSTEM</text>
+            <rect fill="#00F0FF" height="6" rx="1.5" width="6" x="362" y="38"></rect>
+            <rect fill="#6366F1" height="6" rx="1.5" width="6" x="362" y="48"></rect>
+          </svg>
+          <span class="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">LIBRARY</span>
         </a>
+        <span class="hidden md:inline-block text-xs font-mono text-outline pl-3 border-l border-border-hairline">notes.endlessus.in</span>
+      </div>
+
+      <!-- Quick Nav & Search -->
+      <div class="flex items-center space-x-3">
+        <a class="text-xs font-mono font-medium text-on-surface-variant hover:text-primary transition-colors hidden sm:inline-block" href="#computer-fundamentals">Fundamentals</a>
+        <a class="text-xs font-mono font-medium text-on-surface-variant hover:text-primary transition-colors hidden sm:inline-block" href="#operating-systems">OS Internals</a>
+        <a class="text-xs font-mono font-medium text-on-surface-variant hover:text-primary transition-colors hidden sm:inline-block" href="#networking-models">Networking</a>
+        <a class="text-xs font-mono font-medium text-on-surface-variant hover:text-primary transition-colors hidden sm:inline-block" href="#cryptography-theory">Cryptography</a>
+
+        <div class="h-4 w-px bg-border-hairline hidden sm:block"></div>
+
+        <button type="button" class="academy-search-btn inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border-hairline bg-surface-raised hover:border-primary text-xs font-mono text-outline hover:text-on-surface transition-colors" title="Search Library (Cmd+K)">
+          <span class="material-symbols-outlined text-sm text-primary">search</span>
+          <span class="hidden md:inline">Search Codex</span>
+          <kbd class="hidden md:inline px-1 py-0.2 rounded bg-surface-subtle text-[10px]">⌘K</kbd>
+        </button>
+
+        <button aria-label="Toggle theme" class="p-2 rounded-lg border border-border-hairline hover:bg-surface-raised text-on-surface-variant transition-colors flex items-center justify-center" id="theme-toggle" type="button">
+          <span class="material-symbols-outlined text-[19px] dark:hidden block">dark_mode</span>
+          <span class="material-symbols-outlined text-[19px] hidden dark:block">light_mode</span>
+        </button>
       </div>
 
       <!-- Unified Hierarchy Navigation: Learn · Practice · Reference · Portfolio -->

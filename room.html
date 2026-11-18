@@ -14,19 +14,19 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 
   <!-- Immediate Theme Initializer -->
   <script>
     (function() {
-      const savedTheme = localStorage.getItem('endlessus_learning_theme') || 'normal';
-      if (savedTheme === 'hacker') {
+      const savedTheme = localStorage.getItem('calion_theme') || localStorage.getItem('endlessus_learning_theme') || 'light';
+      if (savedTheme === 'dark' || savedTheme === 'hacker') {
         document.documentElement.classList.add('dark', 'theme-hacker');
-        document.documentElement.classList.remove('theme-normal');
+        document.documentElement.classList.remove('theme-normal', 'light');
       } else {
+        document.documentElement.classList.add('light', 'theme-normal');
         document.documentElement.classList.remove('dark', 'theme-hacker');
-        document.documentElement.classList.add('theme-normal');
       }
     })();
   </script>
@@ -57,6 +57,8 @@
           },
           fontFamily: {
             sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            headline: ['Space Grotesk', 'sans-serif'],
+            grotesk: ['Space Grotesk', 'sans-serif'],
             mono: ['JetBrains Mono', 'monospace'],
           }
         }
@@ -67,20 +69,38 @@
 <body class="bg-canvas-base text-on-surface min-h-screen flex flex-col font-sans transition-colors duration-150 antialiased">
 
   <!-- =========================================================================
-       1. ACADEMY UNIFIED HEADER
+       1. ACADEMY UNIFIED HEADER (Stitch Design)
        ========================================================================= -->
   <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
       
       <!-- Brand & Section Label -->
       <div class="flex items-center gap-3">
-        <a href="learning.html" class="flex items-center gap-2.5 text-on-surface hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded py-1">
-          <span class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center font-mono font-black text-primary text-base">C</span>
-          <div class="flex flex-col">
-            <span class="font-bold text-sm tracking-tight leading-none text-on-surface">CALION Academy</span>
-            <span class="text-[10px] font-mono text-outline tracking-wider uppercase mt-0.5">Room</span>
-          </div>
+        <a aria-label="CALION Academy Home" class="flex items-center gap-2 group" href="learning.html">
+          <svg class="h-7 w-auto" fill="none" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="calion_grad_hdr_r" x1="0%" x2="100%" y1="0%" y2="100%">
+                <stop offset="0%" stop-color="#00F0FF"></stop>
+                <stop offset="50%" stop-color="#0284C7"></stop>
+                <stop offset="100%" stop-color="#6366F1"></stop>
+              </linearGradient>
+            </defs>
+            <g transform="translate(10, 10)">
+              <path d="M 55 10 L 25 10 L 10 25 L 10 55 L 25 70 L 55 70" stroke="url(#calion_grad_hdr_r)" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"></path>
+              <path class="stroke-slate-900 dark:stroke-white transition-colors" d="M 42 70 L 42 22 L 58 22 L 68 70" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"></path>
+              <path d="M 33 46 L 56 46" stroke="url(#calion_grad_hdr_r)" stroke-linecap="round" stroke-width="4.5"></path>
+              <circle cx="55" cy="10" fill="#00F0FF" r="3.5"></circle>
+              <circle cx="25" cy="70" fill="#6366F1" r="3"></circle>
+              <circle class="fill-slate-900 dark:fill-white transition-colors" cx="42" cy="22" r="2.5"></circle>
+            </g>
+            <text class="fill-slate-900 dark:fill-white font-headline font-bold transition-colors" font-size="34" letter-spacing="0.22em" x="100" y="58">CALION</text>
+            <rect fill="#00F0FF" height="6" rx="1.5" width="6" x="362" y="38"></rect>
+            <rect fill="#6366F1" height="6" rx="1.5" width="6" x="362" y="48"></rect>
+          </svg>
         </a>
+        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-semibold tracking-wider bg-surface-raised text-primary border border-border-hairline">
+          ROOM
+        </span>
       </div>
 
       <!-- Center Desktop Navigation -->
@@ -382,6 +402,57 @@
 
     </div>
   </main>
+
+  <!-- ========================================================================= -->
+  <!-- ROOM COMPLETION CELEBRATION MODAL (Section 8 Requirements)                -->
+  <!-- ========================================================================= -->
+  <div id="room-complete-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-xl w-full p-6 sm:p-8 shadow-2xl relative animate-modal-in space-y-6">
+      
+      <!-- Celebration Icon & Title -->
+      <div class="text-center space-y-2">
+        <div class="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-950/80 border-2 border-emerald-400 text-emerald-500 mx-auto flex items-center justify-center shadow-lg shadow-emerald-500/20 animate-check-bounce">
+          <span class="material-symbols-outlined text-[36px] font-bold">verified</span>
+        </div>
+        <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 text-xs font-mono font-bold mt-2">
+          <span>ROOM COMPLETED!</span>
+        </div>
+        <h2 class="text-2xl font-headline font-bold text-slate-900 dark:text-white tracking-tight" id="modal-room-title">
+          Room Completed
+        </h2>
+        <div class="flex items-center justify-center gap-4 text-xs font-mono text-slate-500 dark:text-slate-400">
+          <span id="modal-tasks-stat">All Tasks Done</span>
+          <span>•</span>
+          <span class="text-emerald-600 dark:text-emerald-400 font-bold" id="modal-xp-stat">+50 XP Earned</span>
+        </div>
+      </div>
+
+      <!-- "What Did You Learn?" Summary -->
+      <div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-5 border border-slate-200/80 dark:border-slate-800 space-y-3">
+        <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-sky-600 dark:text-sky-400 font-bold">
+          <span class="material-symbols-outlined text-[16px]">school</span>
+          <span>What Did You Learn?</span>
+        </div>
+        <ul class="space-y-2 text-xs text-slate-700 dark:text-slate-300 font-sans" id="modal-learned-list"></ul>
+        <div class="pt-2 border-t border-slate-200/60 dark:border-slate-700 flex flex-wrap gap-1.5" id="modal-skills-tags"></div>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex flex-col sm:flex-row items-center gap-3 pt-2">
+        <a href="#" class="w-full sm:flex-1 py-3 px-5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-mono font-bold text-center transition-colors shadow-sm flex items-center justify-center gap-2" id="modal-continue-next-btn">
+          <span>Continue to Next Room</span>
+          <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+        </a>
+        <button type="button" class="w-full sm:w-auto py-3 px-4 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-mono font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors" id="modal-review-btn">
+          Review What I Learned
+        </button>
+        <a href="learning.html" class="w-full sm:w-auto py-3 px-4 rounded-lg text-slate-500 hover:text-slate-900 dark:hover:text-white text-xs font-mono text-center transition-colors">
+          Learning Path
+        </a>
+      </div>
+
+    </div>
+  </div>
 
   <!-- =========================================================================
        3. FOOTER
@@ -965,7 +1036,57 @@
         const allTasksDone = lessons.every((_, idx) => isTaskDone(idx));
         if (allTasksDone && !AcademyState.isRoomCompleted(room.id)) {
           AcademyState.markRoomCompleted(room.id);
+          triggerRoomCompletionModal();
         }
+      }
+
+      function triggerRoomCompletionModal() {
+        const modal = document.getElementById('room-complete-modal');
+        if (!modal) return;
+
+        document.getElementById('modal-room-title').textContent = room.title;
+        document.getElementById('modal-tasks-stat').textContent = `${lessons.length} of ${lessons.length} Tasks Done`;
+
+        const earnedXP = 50 + (questions.length * 25);
+        document.getElementById('modal-xp-stat').textContent = `+${earnedXP} XP Earned`;
+
+        const learnedList = document.getElementById('modal-learned-list');
+        if (learnedList && room.objectives) {
+          learnedList.innerHTML = room.objectives.slice(0, 3).map(obj => `
+            <li class="flex items-start gap-2">
+              <span class="material-symbols-outlined text-emerald-500 text-[16px] shrink-0 mt-0.5">check</span>
+              <span>${escapeHtml(obj)}</span>
+            </li>
+          `).join('');
+        }
+
+        const skillsBox = document.getElementById('modal-skills-tags');
+        if (skillsBox) {
+          const vocabTags = (room.vocabulary || []).slice(0, 4).map(v => v.term);
+          skillsBox.innerHTML = vocabTags.map(tag => `
+            <span class="px-2 py-0.5 rounded bg-sky-50 dark:bg-sky-950/60 border border-sky-200 dark:border-sky-800 text-sky-700 dark:text-sky-300 font-mono text-[10px]">
+              ${escapeHtml(tag)}
+            </span>
+          `).join('');
+        }
+
+        const nextBtnModal = document.getElementById('modal-continue-next-btn');
+        if (nextBtnModal) {
+          if (nextRoom) {
+            nextBtnModal.href = `room.html?id=${nextRoom.id}`;
+            nextBtnModal.innerHTML = `<span>Continue to ${nextRoom.id.toUpperCase()}</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span>`;
+          } else {
+            nextBtnModal.href = 'learning.html';
+            nextBtnModal.innerHTML = `<span>Back to Learning Path</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span>`;
+          }
+        }
+
+        const reviewBtnModal = document.getElementById('modal-review-btn');
+        if (reviewBtnModal) {
+          reviewBtnModal.onclick = () => modal.classList.add('hidden');
+        }
+
+        modal.classList.remove('hidden');
       }
 
       // Progress & Status Rendering

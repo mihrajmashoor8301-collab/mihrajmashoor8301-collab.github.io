@@ -1,21 +1,26 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html class="light" lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Mihraj Mashhoor K | Offensive Security &amp; Penetration Testing Portfolio</title>
-  <meta content="Mihraj Mashhoor K — B.Tech Cybersecurity Student | TryHackMe Top 2% Globally (140+ Rooms Completed) | Google Cybersecurity Professional Certificate | Offensive Security &amp; Local AI Research." name="description"/>
+  <title>CALION — The Unified Cyber Ecosystem</title>
+  <meta content="Four sovereign, high-performance platforms engineered for cybersecurity research, practical learning, developer utilities, and personal craftsmanship." name="description"/>
+  <link rel="icon" type="image/png" href="handbook/assets/favicon.png"/>
+  <link rel="canonical" href="https://endlessus.in/"/>
+
   <!-- Open Graph -->
-  <meta content="Mihraj Mashhoor K | Cybersecurity Portfolio" property="og:title"/>
-  <meta content="Cybersecurity Student | TryHackMe Top 2% Globally (140+ Rooms Completed) | Google Cybersecurity Professional Certificate | Jr Penetration Tester." property="og:description"/>
-  <meta content="https://endlessus.in/cover.png" property="og:image"/>
-  <meta content="https://endlessus.in" property="og:url"/>
-  <meta content="website" property="og:type"/>
+  <meta property="og:title" content="CALION — The Unified Cyber Ecosystem"/>
+  <meta property="og:description" content="Four sovereign, high-performance platforms engineered for cybersecurity research, practical learning, developer utilities, and personal craftsmanship."/>
+  <meta property="og:image" content="https://endlessus.in/cover.png"/>
+  <meta property="og:url" content="https://endlessus.in"/>
+  <meta property="og:type" content="website"/>
+
   <!-- Twitter -->
-  <meta content="summary_large_image" name="twitter:card"/>
-  <meta content="Mihraj Mashhoor K | Cybersecurity Portfolio" name="twitter:title"/>
-  <meta content="Cybersecurity Student | TryHackMe Top 2% Globally (140+ Rooms Completed) | Google Cybersecurity Professional Certificate" name="twitter:description"/>
-  <meta content="https://endlessus.in/cover.png" name="twitter:image"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="CALION — The Unified Cyber Ecosystem"/>
+  <meta name="twitter:description" content="Four sovereign cybersecurity platforms: Academy, Tools, Library, and Personal Portfolio."/>
+  <meta name="twitter:image" content="https://endlessus.in/cover.png"/>
+
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
   {
@@ -25,32 +30,21 @@
         "@type": "Person",
         "@id": "https://endlessus.in/#person",
         "name": "Mihraj Mashhoor K",
-        "url": "https://endlessus.in",
+        "url": "https://portfolio.endlessus.in",
         "image": "https://endlessus.in/dp4.jpeg",
         "jobTitle": "Offensive Security Researcher & Cybersecurity Student",
         "description": "B.Tech Cybersecurity Student | TryHackMe Top 2% Globally | Google Cybersecurity Professional Certificate | Offensive Security & Local AI Research.",
         "sameAs": [
           "https://github.com/mihrajmashoor8301-collab",
-          "https://tryhackme.com/p/mihrajmashoor8301"
-        ],
-        "knowsAbout": [
-          "Penetration Testing",
-          "Offensive Security",
-          "Vulnerability Assessment",
-          "Network Security",
-          "Web Application Security",
-          "Local AI & Multi-Agent Systems",
-          "Python",
-          "Linux",
-          "Metasploit",
-          "Nmap"
+          "https://tryhackme.com/p/mihrajmashoor8301",
+          "https://www.linkedin.com/in/mihraj-mashhoor-k/"
         ]
       },
       {
         "@type": "WebSite",
         "@id": "https://endlessus.in/#website",
         "url": "https://endlessus.in",
-        "name": "Mihraj Mashhoor K · Cybersecurity Engineering Portfolio",
+        "name": "CALION Unified Digital Ecosystem",
         "author": {
           "@id": "https://endlessus.in/#person"
         }
@@ -58,1532 +52,488 @@
     ]
   }
   </script>
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-  <!-- Material Symbols -->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-  <!-- Tailwind CSS CDN -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+  <!-- Immediate Theme Initializer -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('calion_theme') || localStorage.getItem('endlessus_learning_theme') || 'light';
+      if (savedTheme === 'dark' || savedTheme === 'hacker') {
+        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
+      } else {
+        document.documentElement.classList.add('light');
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+
   <script src="tailwind.cdn.js"></script>
   <script>if(typeof tailwind==="undefined"){document.write('<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"><\/script>')}</script>
-  <!-- Tailwind Theme Configuration Injection -->
   <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
       theme: {
         extend: {
           colors: {
-            "canvas-base": "#090D12",
-            "surface-subtle": "#0E131B",
-            "surface-raised": "#151D28",
-            "surface-container": "#122131",
-            "surface-bright": "#2c3a4c",
-            "border-hairline": "#1F2937",
-            "border-highlight": "#374151",
-            "on-surface": "#d4e4fa",
-            "on-surface-variant": "#bbcabf",
-            "outline": "#86948a",
-            "primary": "#4edea3",
-            "primary-container": "#10b981",
-            "secondary": "#4cd7f6",
-            "danger-critical": "#F43F5E",
-            "warning-elevated": "#F59E0B"
+            "surface": "#f8faff",
+            "surface-dim": "#cbdbf5",
+            "surface-bright": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f1f5f9",
+            "surface-container": "#e2e8f0",
+            "surface-container-high": "#cbd5e1",
+            "surface-container-highest": "#94a3b8",
+            "primary": "#0284c7",
+            "primary-container": "#0369a1",
+            "on-primary": "#ffffff",
+            "secondary": "#4f46e5",
+            "secondary-container": "#4338ca",
+            "on-secondary": "#ffffff",
+            "on-surface": "#0f172a",
+            "on-surface-variant": "#475569",
+            "outline": "#64748b",
+            "outline-variant": "#e2e8f0"
           },
           fontFamily: {
-            sans: ["Inter", "sans-serif"],
+            headline: ["Space Grotesk", "sans-serif"],
+            body: ["Inter", "sans-serif"],
             mono: ["JetBrains Mono", "monospace"]
           }
         }
       }
-    }
+    };
   </script>
   <style>
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-      display: inline-block;
-      vertical-align: middle;
-      line-height: 1;
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        scroll-behavior: smooth;
+      }
     }
-    .telemetry-grid {
-      background-size: 32px 32px;
-      background-image:
-        linear-gradient(to right, rgba(31, 41, 55, 0.25) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(31, 41, 55, 0.25) 1px, transparent 1px);
-    }
-    @keyframes pulse-fast {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-    .cursor-blink { animation: pulse-fast 1s infinite; }
   </style>
 </head>
-<body class="bg-canvas-base text-on-surface antialiased selection:bg-primary selection:text-canvas-base telemetry-grid min-h-screen relative font-sans">
+<body class="bg-[#f8faff] dark:bg-[#090d16] font-body text-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200 antialiased selection:bg-sky-500 selection:text-white">
 
   <!-- ========================================================================= -->
-  <!-- 1. TopNavBar: Clean Personal Portfolio Header with Platform Switcher      -->
+  <!-- Navigation Bar (Stitch Unified Design)                                    -->
   <!-- ========================================================================= -->
-  <header class="fixed top-0 left-0 right-0 w-full z-50 bg-surface-subtle/90 backdrop-blur-md border-b border-border-hairline">
-    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
-      
-      <!-- Brand & Status -->
-      <a class="font-mono text-sm font-bold text-on-surface tracking-tight flex items-center gap-2" href="#hero">
-        <span class="text-primary flex items-center">
-          <span class="material-symbols-outlined text-primary text-xl">terminal</span>
-        </span>
-        <span>Mihraj Mashhoor K</span>
-        <span class="hidden xl:inline-flex items-center gap-1.5 px-2 py-0.5 rounded border border-primary/30 bg-canvas-base font-mono text-[10px] text-primary">
-          <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-          SYS_SEC: READY
-        </span>
-      </a>
-
-      <!-- Portfolio Navigation Links -->
-      <nav class="hidden xl:flex items-center space-x-4 font-mono text-xs tracking-wider">
-        <a class="hover:text-primary text-on-surface-variant transition-colors" href="#about">About</a>
-        <a class="hover:text-primary text-primary font-bold border-b border-primary pb-0.5" href="#projects">Projects</a>
-        <a class="hover:text-primary text-on-surface-variant transition-colors" href="#skills">Skills</a>
-        <a class="hover:text-primary text-on-surface-variant transition-colors" href="#certifications">Certifications</a>
-        <a class="hover:text-primary text-on-surface-variant transition-colors" href="resume.html">Resume</a>
-        <a class="hover:text-primary text-on-surface-variant transition-colors" href="#contact">Contact</a>
-        
-        <span class="text-border-hairline text-sm select-none">|</span>
-
-        <!-- Distinct Endlessus Learning Platform Gateway Link -->
-        <a href="learning.html" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-primary/40 bg-primary/10 text-primary hover:bg-primary hover:text-canvas-base transition-all font-mono text-xs font-semibold shadow-[0_0_12px_rgba(78,222,163,0.15)]" title="Explore Endlessus: 12 disciplines, practical labs, and security tools">
-          <span>⚡ Endlessus Platform →</span>
+  <header class="sticky top-0 z-50 w-full bg-white/80 dark:bg-[#090d16]/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-8">
+        <a aria-label="CALION Home" class="flex items-center gap-3 group" href="#">
+          <div class="h-8 flex items-center">
+            <svg class="h-7 w-auto" fill="none" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="calion_grad_nav" x1="0%" x2="100%" y1="0%" y2="100%">
+                  <stop offset="0%" stop-color="#00F0FF"></stop>
+                  <stop offset="50%" stop-color="#0284C7"></stop>
+                  <stop offset="100%" stop-color="#6366F1"></stop>
+                </linearGradient>
+              </defs>
+              <g transform="translate(10, 10)">
+                <path d="M 55 10 L 25 10 L 10 25 L 10 55 L 25 70 L 55 70" stroke="url(#calion_grad_nav)" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"></path>
+                <path class="stroke-slate-900 dark:stroke-white transition-colors" d="M 42 70 L 42 22 L 58 22 L 68 70" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"></path>
+                <path d="M 33 46 L 56 46" stroke="url(#calion_grad_nav)" stroke-linecap="round" stroke-width="4.5"></path>
+                <circle cx="55" cy="10" fill="#00F0FF" r="3.5"></circle>
+                <circle cx="25" cy="70" fill="#6366F1" r="3"></circle>
+                <circle class="fill-slate-900 dark:fill-white transition-colors" cx="42" cy="22" r="2.5"></circle>
+              </g>
+              <text class="fill-slate-900 dark:fill-white font-headline font-bold transition-colors" font-size="34" letter-spacing="0.22em" x="100" y="58">CALION</text>
+              <text fill="#0284C7" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" letter-spacing="0.42em" x="102" y="74">DIGITAL ECOSYSTEM</text>
+              <rect fill="#00F0FF" height="6" rx="1.5" width="6" x="362" y="38"></rect>
+              <rect fill="#6366F1" height="6" rx="1.5" width="6" x="362" y="48"></rect>
+            </svg>
+          </div>
         </a>
-      </nav>
-
-      <!-- Action Buttons -->
-      <div class="flex items-center space-x-2 sm:space-x-3">
-        <button data-trigger-cmd class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded border border-border-hairline bg-surface-raised font-mono text-xs text-on-surface hover:text-primary hover:border-primary transition-colors cursor-pointer" title="Search Portfolio (Cmd+K or /)">
-          <span class="material-symbols-outlined text-sm text-primary">search</span>
-          <span class="hidden lg:inline text-[11px] text-outline">⌘K</span>
+        <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+          <a class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors" href="#platforms">Platforms</a>
+          <a class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors" href="#developer">Developer</a>
+          <a class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors" href="#principles">Principles</a>
+          <a class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors" href="https://learning.endlessus.in" target="_blank">Academy</a>
+          <a class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors" href="https://tools.endlessus.in" target="_blank">Tools</a>
+          <a class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors" href="https://notes.endlessus.in" target="_blank">Library</a>
+        </nav>
+      </div>
+      <div class="flex items-center gap-3">
+        <!-- Light / Dark Mode Toggle -->
+        <button aria-label="Toggle theme" class="p-2 rounded-lg text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors border border-slate-200 dark:border-slate-800" id="theme-toggle" type="button">
+          <span class="material-symbols-outlined text-[20px] dark:hidden block">dark_mode</span>
+          <span class="material-symbols-outlined text-[20px] hidden dark:block">light_mode</span>
         </button>
-        <button data-trigger-term class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded border border-primary/40 bg-canvas-base font-mono text-xs text-primary hover:bg-primary/10 transition-colors cursor-pointer" title="Open Interactive Terminal (`)">
-          <span class="material-symbols-outlined text-sm text-primary">terminal</span>
-          <span class="hidden sm:inline text-[11px] font-bold">Terminal</span>
-        </button>
-        <a class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-border-hairline bg-surface-subtle font-mono text-xs text-on-surface hover:border-secondary hover:text-secondary transition-colors" href="#contact">
-          <span class="material-symbols-outlined text-sm">alternate_email</span>
-          <span>Contact</span>
-        </a>
-        <a class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded bg-primary-container text-canvas-base font-mono text-xs font-bold hover:bg-primary transition-all shadow-[0_0_12px_rgba(16,185,129,0.25)]" href="CV_2026_UPDATED.pdf" target="_blank">
-          <span class="material-symbols-outlined text-sm">description</span>
-          <span>Resume</span>
-        </a>
-        <a class="p-1.5 rounded border border-border-hairline text-on-surface-variant hover:text-primary hover:border-primary transition-colors flex items-center justify-center" href="https://github.com/mihrajmashoor8301-collab" rel="noopener noreferrer" target="_blank" title="GitHub Profile">
-          <span class="material-symbols-outlined text-lg">code</span>
-        </a>
-        <button aria-label="Toggle Mobile Navigation" class="xl:hidden p-1.5 rounded border border-border-hairline text-on-surface-variant hover:text-primary hover:border-primary transition-colors flex items-center justify-center" id="mobile-menu-btn">
-          <span class="material-symbols-outlined text-xl" id="menu-icon">menu</span>
-        </button>
-      </div>
-
-    </div>
-
-    <!-- Mobile Navigation Drawer -->
-    <div class="hidden xl:hidden bg-surface-subtle/95 backdrop-blur-xl border-b border-border-hairline px-6 py-4 space-y-3 font-mono text-xs tracking-wider shadow-2xl max-h-[85vh] overflow-y-auto" id="mobile-menu">
-      <div class="flex items-center gap-2 pb-2 border-b border-border-hairline/60">
-        <button data-trigger-cmd class="flex-1 inline-flex items-center justify-center gap-1.5 py-2 rounded bg-surface-raised border border-border-hairline text-on-surface hover:text-primary text-xs">
-          <span class="material-symbols-outlined text-sm text-primary">search</span>
-          <span>Search (⌘K)</span>
-        </button>
-        <button data-trigger-term class="flex-1 inline-flex items-center justify-center gap-1.5 py-2 rounded bg-canvas-base border border-primary/40 text-primary font-bold text-xs">
-          <span class="material-symbols-outlined text-sm">terminal</span>
-          <span>Terminal (`)</span>
-        </button>
-      </div>
-
-      <!-- Mobile Portfolio Group -->
-      <div class="font-mono text-[10px] text-primary uppercase tracking-wider font-bold flex items-center gap-1">
-        <span class="material-symbols-outlined text-xs">person</span>
-        <span>Portfolio &amp; Credentials</span>
-      </div>
-      <div class="grid grid-cols-2 gap-2 text-xs">
-        <a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="#about">&bull; About Me</a>
-        <a class="block py-1.5 text-primary font-bold" href="#projects">&bull; Projects (7)</a>
-        <a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="#skills">&bull; Skills Matrix</a>
-        <a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="#certifications">&bull; Certifications</a>
-        <a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="resume.html">&bull; Full Resume</a>
-        <a class="block py-1.5 text-on-surface-variant hover:text-primary transition-colors" href="#contact">&bull; Contact Me</a>
-      </div>
-
-      <hr class="border-border-hairline/60"/>
-
-      <!-- Mobile Learning Platform Group -->
-      <div class="font-mono text-[10px] text-secondary uppercase tracking-wider font-bold flex items-center gap-1">
-        <span class="material-symbols-outlined text-xs">school</span>
-        <span>Endlessus Cybersecurity Learning Platform</span>
-      </div>
-      <div class="grid grid-cols-2 gap-2 text-xs">
-        <a class="block py-1 text-secondary font-bold hover:text-primary" href="theory.html">&bull; Theory &amp; Concepts</a>
-        <a class="block py-1 text-on-surface-variant hover:text-primary" href="learning.html">&bull; Learning Hub</a>
-        <a class="block py-1 text-on-surface-variant hover:text-primary" href="labs.html">&bull; 12 Practical Labs</a>
-        <a class="block py-1 text-on-surface-variant hover:text-primary" href="handbook/index.html">&bull; Command Handbook</a>
-        <a class="block py-1 text-on-surface-variant hover:text-primary" href="roadmap.html">&bull; Roadmap Tracker</a>
-        <a class="block py-1 text-on-surface-variant hover:text-primary" href="tools.html">&bull; Tools &amp; Nmap</a>
-        <a class="block py-1 text-on-surface-variant hover:text-primary" href="terminal-lab.html">&bull; Terminal Sandbox</a>
-      </div>
-
-      <div class="pt-3 border-t border-border-hairline flex flex-wrap gap-2">
-        <a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-border-hairline bg-surface-subtle font-mono text-xs text-on-surface hover:text-secondary" href="#contact">
-          <span class="material-symbols-outlined text-sm">alternate_email</span>
-          <span>Contact</span>
-        </a>
-        <a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-primary-container text-canvas-base font-mono text-xs font-bold" href="CV_2026_UPDATED.pdf" target="_blank">
-          <span class="material-symbols-outlined text-sm">description</span>
-          <span>Resume PDF</span>
+        <a class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg text-white bg-sky-600 hover:bg-sky-700 transition-colors shadow-sm" href="https://learning.endlessus.in">
+          Launch App
         </a>
       </div>
     </div>
   </header>
 
-  <!-- ========================================================================= -->
-  <!-- Main Content Container                                                    -->
-  <!-- ========================================================================= -->
-  <main class="pt-24 space-y-20">
-
-    <!-- ======================================================================= -->
-    <!-- 2. Hero Section: Answering Who, What, Built & Where to Go                 -->
-    <!-- ======================================================================= -->
-    <section class="max-w-7xl mx-auto px-6 pt-6 pb-10" id="hero">
-      <span id="home" class="sr-only"></span>
-
-      <!-- Availability Badge -->
-      <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full border border-primary/30 bg-surface-subtle text-primary font-mono text-[11px] tracking-wider">
-        <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
-        <span>AVAILABLE FOR OFFENSIVE SECURITY &amp; AUTOMATION INTERNSHIPS</span>
+  <main class="flex-1 w-full">
+    <!-- ========================================================================= -->
+    <!-- Hero Section                                                              -->
+    <!-- ========================================================================= -->
+    <section class="max-w-5xl mx-auto px-6 pt-20 pb-16 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 mb-6">
+        <span class="w-2 h-2 rounded-full bg-sky-500 animate-pulse"></span>
+        CALION OS v4.2 • Unified Network
       </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        
-        <!-- Left: Core Bio & Dual Navigation Paths -->
-        <div class="lg:col-span-7 space-y-6">
-          <div class="space-y-3">
-            <div class="flex items-center gap-2 font-mono text-xs text-secondary tracking-widest uppercase">
-              <span class="material-symbols-outlined text-base">security</span>
-              <span>Cybersecurity Student · Offensive Security &amp; Tool Developer</span>
-            </div>
-            <h1 class="text-4xl lg:text-5xl font-extrabold text-on-surface tracking-tight leading-tight">
-              Mihraj Mashhoor K
-            </h1>
-            <p class="text-base text-on-surface-variant max-w-2xl leading-relaxed">
-              Cybersecurity student (B.Tech Computer Science &amp; Cyber Security, MES College of Engineering) specializing in offensive security methodology, practical penetration testing, Active Directory attack concepts, Linux systems, network defense, security automation, and local AI agent workflows.
-            </p>
-          </div>
-
-          <!-- Verified Standing Highlights -->
-          <div class="inline-flex flex-wrap items-center gap-3 p-3.5 rounded-xl border border-primary/30 bg-surface-subtle/80 backdrop-blur-md">
-            <div class="flex items-center gap-2 px-2.5 py-1 rounded bg-canvas-base border border-primary/40">
-              <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-              <span class="font-mono text-xs font-bold text-primary tracking-wide">TRYHACKME TOP 2% GLOBALLY</span>
-            </div>
-            <div class="h-4 w-[1px] bg-border-hairline hidden sm:block"></div>
-            <span class="font-mono text-xs text-on-surface-variant">140+ Challenge Rooms &bull; Google Cybersecurity Certified</span>
-          </div>
-
-          <!-- Primary CTAs: View Portfolio & Start Learning -->
-          <div class="flex flex-wrap gap-3 sm:gap-4 pt-2">
-            <!-- Primary CTA 1: View Portfolio Projects -->
-            <a class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary-container text-canvas-base font-mono text-sm font-bold hover:bg-primary transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)]" href="#projects">
-              <span>View Portfolio Projects</span>
-              <span class="material-symbols-outlined text-base">arrow_downward</span>
-            </a>
-
-            <!-- Primary CTA 2: Start Learning on Endlessus Platform -->
-            <a class="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-secondary/40 bg-secondary/10 font-mono text-sm text-secondary hover:bg-secondary hover:text-canvas-base transition-all font-bold shadow-[0_0_15px_rgba(76,215,246,0.15)]" href="learning.html">
-              <span class="material-symbols-outlined text-base">school</span>
-              <span>Start Learning on Endlessus</span>
-            </a>
-
-            <!-- Quick Links -->
-            <a class="inline-flex items-center gap-2 px-4 py-3 rounded-xl border border-border-hairline bg-surface-subtle font-mono text-xs text-on-surface-variant hover:text-on-surface hover:border-primary/40 transition-colors" href="CV_2026_UPDATED.pdf" target="_blank">
-              <span class="material-symbols-outlined text-sm">description</span>
-              <span>Resume PDF</span>
-            </a>
-            <a class="inline-flex items-center gap-2 px-4 py-3 rounded-xl border border-border-hairline bg-surface-subtle font-mono text-xs text-on-surface-variant hover:text-primary transition-colors" href="#contact">
-              <span class="material-symbols-outlined text-sm">alternate_email</span>
-              <span>Contact</span>
-            </a>
-          </div>
-
-          <!-- Quick Tools Bar -->
-          <div class="pt-4 border-t border-border-hairline/60">
-            <div class="font-mono text-[10px] text-outline mb-2 flex items-center justify-between">
-              <span>DAILY OPERATIONAL TOOLKIT &amp; ENVIRONMENT</span>
-              <span class="text-primary font-mono text-[9px] hidden sm:inline">AUTHORIZED LABS ONLY</span>
-            </div>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface-variant">Kali Linux (Daily)</span>
-              <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface-variant">Nmap</span>
-              <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface-variant">Burp Suite</span>
-              <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface-variant">Wireshark</span>
-              <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface-variant">Metasploit</span>
-              <span class="px-2.5 py-1 rounded bg-surface-raised border border-border-hairline font-mono text-xs text-on-surface-variant">Python / Bash</span>
-              <span class="px-2.5 py-1 rounded bg-surface-raised border border-secondary/40 font-mono text-xs text-secondary">Ollama / Local AI</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right: Terminal Telemetry Window -->
-        <div class="lg:col-span-5">
-          <div class="rounded-xl border border-border-hairline bg-surface-subtle/95 shadow-2xl backdrop-blur-xl overflow-hidden group cursor-pointer hover:border-primary/50 transition-all hover:shadow-[0_0_35px_rgba(78,222,163,0.15)]" data-trigger-term title="Click to launch interactive Cyber Terminal">
-            <div class="px-4 py-2.5 bg-surface-raised border-b border-border-hairline flex items-center justify-between">
-              <div class="flex items-center space-x-2">
-                <span class="w-3 h-3 rounded-full bg-danger-critical/70"></span>
-                <span class="w-3 h-3 rounded-full bg-warning-elevated/70"></span>
-                <span class="w-3 h-3 rounded-full bg-primary/70"></span>
-              </div>
-              <div class="font-mono text-xs text-on-surface-variant">sec_env@mashhoor: ~/telemetry</div>
-              <span class="px-2 py-0.5 rounded border border-primary/40 bg-primary/10 text-primary font-mono text-[10px] font-bold group-hover:bg-primary group-hover:text-canvas-base transition-all flex items-center gap-1">
-                <span class="material-symbols-outlined text-xs">terminal</span>
-                <span>LAUNCH CLI ↗</span>
-              </span>
-            </div>
-            <div class="p-5 font-mono text-xs space-y-3 bg-canvas-base/80">
-              <div class="text-on-surface-variant">
-                <span class="text-primary font-bold">mashhoor@sec-station</span>:<span class="text-secondary">~</span>$ whoami --verbose
-              </div>
-              <div class="text-on-surface space-y-1 pl-2 border-l border-border-hairline">
-                <p class="text-on-surface">ID: Mihraj Mashhoor K</p>
-                <p class="text-on-surface-variant">Role: Cybersecurity Student &amp; Security Researcher</p>
-                <p class="text-on-surface-variant">Degree: B.Tech Computer Science &amp; Cybersecurity (CGPA 7.9)</p>
-                <p class="text-secondary font-semibold">Specialization: Offensive Security, Linux &amp; Local AI</p>
-              </div>
-              <div class="text-on-surface-variant pt-2">
-                <span class="text-primary font-bold">mashhoor@sec-station</span>:<span class="text-secondary">~</span>$ curl -s api/credentials
-              </div>
-              <div class="bg-surface-subtle p-3 rounded border border-border-hairline text-on-surface-variant space-y-1">
-                <div class="flex justify-between items-center text-xs">
-                  <span class="text-outline">TRYHACKME_RANK:</span>
-                  <span class="text-primary font-bold">TOP 2% GLOBALLY (140+ ROOMS)</span>
-                </div>
-                <div class="flex justify-between items-center text-xs">
-                  <span class="text-outline">INDUSTRY_CERT:</span>
-                  <span class="text-on-surface font-medium">Google Cybersecurity Pro</span>
-                </div>
-                <div class="flex justify-between items-center text-xs">
-                  <span class="text-outline">THM_TRACKS:</span>
-                  <span class="text-secondary">Pre-Security · CyberSec 101 · Jr PenTester</span>
-                </div>
-                <div class="flex justify-between items-center text-xs">
-                  <span class="text-outline">LOCAL_ENV:</span>
-                  <span class="text-on-surface">Kali Linux + Ollama (RTX 4070 12GB)</span>
-                </div>
-              </div>
-              <div class="text-on-surface-variant pt-2 flex items-center">
-                <span class="text-primary font-bold">mashhoor@sec-station</span>:<span class="text-secondary">~</span>$ 
-                <span class="text-primary">run recon_pipeline.py --scoped</span>
-                <span class="w-2 h-4 bg-primary ml-1 cursor-blink"></span>
-              </div>
-            </div>
-            <div class="px-4 py-2 bg-surface-raised/60 border-t border-border-hairline flex items-center justify-between font-mono text-[10px] text-outline">
-              <span class="flex items-center gap-1.5 text-primary group-hover:underline">
-                <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-                <span>STATUS: OPERATIONAL // CLICK TO LAUNCH CLI</span>
-              </span>
-              <span class="text-secondary font-semibold">HOTKEY: [ ~ ]</span>
-            </div>
-          </div>
-        </div>
-
+      <h1 class="text-4xl sm:text-6xl font-headline font-bold text-slate-900 dark:text-white tracking-tight leading-tight sm:leading-none max-w-4xl mx-auto">
+        The Unified Cyber <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-indigo-600 dark:from-sky-400 dark:to-indigo-400">Ecosystem</span>
+      </h1>
+      <p class="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
+        Four sovereign, high-performance platforms engineered for cybersecurity research, practical learning, developer utilities, and personal craftsmanship.
+      </p>
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <a class="px-6 py-3 rounded-lg text-white bg-sky-600 hover:bg-sky-700 font-medium text-sm transition-all shadow-sm hover:shadow flex items-center gap-2" href="#platforms">
+          <span>Explore Platforms</span>
+          <span class="material-symbols-outlined text-[18px]">south</span>
+        </a>
+        <a class="px-6 py-3 rounded-lg bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium text-sm border border-slate-200 dark:border-slate-800 transition-all flex items-center gap-2" href="https://learning.endlessus.in" target="_blank">
+          <span>Start Learning</span>
+          <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+        </a>
       </div>
     </section>
 
-    <!-- ======================================================================= -->
-    <!-- 3. About Section: Academic Depth & Security Philosophy                   -->
-    <!-- ======================================================================= -->
-    <section class="max-w-7xl mx-auto px-6 py-12 border-t border-border-hairline" id="about">
-      <div class="flex items-center gap-2 mb-2 font-mono text-xs text-primary">
-        <span class="material-symbols-outlined text-sm">fingerprint</span>
-        <span>CORE PROFILE // 01</span>
-      </div>
-      <h2 class="text-2xl lg:text-3xl font-bold text-on-surface mb-8">
-        Cybersecurity Student &amp; Security Researcher
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-        <div class="md:col-span-7 bg-surface-subtle rounded-xl p-6 border border-border-hairline space-y-4">
-          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 pb-2 border-b border-border-hairline/80">
-            <img alt="Mihraj Mashhoor K" class="w-20 h-20 rounded-lg object-cover border border-primary/40 shadow-md shrink-0" src="dp4.jpeg"/>
-            <div>
-              <div class="flex items-center gap-2 font-mono text-sm text-secondary">
-                <span class="material-symbols-outlined text-lg">school</span>
-                <span>B.Tech Cyber Security (2024–2028)</span>
-              </div>
-              <div class="font-mono text-xs text-on-surface-variant mt-0.5">MES College of Engineering, KTU &bull; CGPA: 7.9</div>
-            </div>
-          </div>
-          <p class="text-sm text-on-surface-variant leading-relaxed">
-            I approach information security from the dual perspective of fundamental computer systems engineering and structured adversarial methodology. Rather than relying on superficial scanning, my focus centers on the low-level behavior of software, operating systems, and network communication protocols.
-          </p>
-          <p class="text-sm text-on-surface-variant leading-relaxed">
-            As a dedicated cybersecurity student and aspiring penetration tester, my competency is built through completing over 140 TryHackMe challenge rooms, structured educational tracks, practical engineering projects, and a local Kali Linux/AI environment. All practical research is strictly conducted in authorized educational labs and personal test beds.
-          </p>
-          <div class="pt-4 grid grid-cols-2 gap-4 border-t border-border-hairline">
-            <div>
-              <div class="font-mono text-[10px] text-outline">PRIMARY SPECIALIZATION</div>
-              <div class="font-mono text-xs text-on-surface font-semibold mt-1">Offensive Security &amp; Network Defense</div>
-            </div>
-            <div>
-              <div class="font-mono text-[10px] text-outline">LEARNING FOCUS</div>
-              <div class="font-mono text-xs text-secondary font-semibold mt-1">Vulnerability Analysis &amp; Pen-Testing Concepts</div>
-            </div>
-          </div>
-        </div>
-        <div class="md:col-span-5 flex flex-col justify-between bg-surface-raised rounded-xl p-6 border border-border-hairline relative overflow-hidden">
-          <div class="space-y-4">
-            <div class="flex items-center gap-2 font-mono text-sm text-primary">
-              <span class="material-symbols-outlined text-lg">code</span>
-              <span>ENGINEERING PHILOSOPHY</span>
-            </div>
-            <blockquote class="text-base font-semibold text-on-surface italic border-l-2 border-primary pl-4 my-2">
-              "Building practical offensive workflows, documenting knowledge rigorously, and mastering security concepts through deliberate repetition and challenge targets in authorized educational environments."
-            </blockquote>
-            <p class="text-xs text-on-surface-variant">
-              Every educational room solved and vulnerability tested provides an architectural lesson. Competency is developed through disciplined lab practice, systematic enumeration, reproducible documentation, and hands-on tooling.
-            </p>
-          </div>
-          <div class="mt-6 pt-4 border-t border-border-hairline/80 flex items-center justify-between font-mono text-[10px] text-outline">
-            <span>CYBERSECURITY STUDENT PRACTITIONER</span>
-            <span class="text-primary font-mono">// CONTINUOUS_IMPROVEMENT</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================================================================= -->
-    <!-- 4. Achievements & Standing                                                -->
-    <!-- ======================================================================= -->
-    <section class="max-w-7xl mx-auto px-6 py-12 border-t border-border-hairline" id="achievements">
-      <div class="flex items-center gap-2 mb-2 font-mono text-xs text-primary">
-        <span class="material-symbols-outlined text-sm">verified</span>
-        <span>VERIFIED METRICS // 02</span>
-      </div>
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+    <!-- ========================================================================= -->
+    <!-- Core Platforms Grid (4 Sovereign Destinations)                            -->
+    <!-- ========================================================================= -->
+    <section class="max-w-6xl mx-auto px-6 py-14" id="platforms">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-4 border-b border-slate-200 dark:border-slate-800">
         <div>
-          <h2 class="text-2xl lg:text-3xl font-bold text-on-surface">
-            Demonstrated Credibility &amp; Verified Milestones
-          </h2>
-          <p class="text-sm text-on-surface-variant">Documented competencies backed by TryHackMe platform standing, industry certifications, and structured learning tracks.</p>
+          <span class="text-xs font-mono uppercase tracking-wider text-sky-600 dark:text-sky-400 font-semibold">Subsystems</span>
+          <h2 class="text-2xl sm:text-3xl font-headline font-bold text-slate-900 dark:text-white mt-1">Integrated Platforms</h2>
         </div>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Card 1: TryHackMe Achievement Block -->
-        <div class="bg-surface-subtle p-6 rounded-xl border border-primary/40 relative group hover:border-primary transition-all cursor-pointer" onclick="window.location.href='certificates.html'">
-          <div class="flex items-center justify-between mb-4">
-            <span class="px-2 py-1 rounded bg-canvas-base border border-primary/40 font-mono text-[10px] text-primary font-bold flex items-center gap-1.5">
-              <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-              VERIFIED RANK
-            </span>
-            <span class="material-symbols-outlined text-primary text-2xl group-hover:scale-110 transition-transform">military_tech</span>
-          </div>
-          <div class="text-4xl font-extrabold text-primary mb-1">
-            Top 2%
-          </div>
-          <div class="font-mono text-xs text-on-surface font-semibold mb-2">Global TryHackMe Platform Standing</div>
-          <p class="text-xs text-on-surface-variant leading-relaxed">
-            140+ hands-on challenge rooms solved across Linux privilege escalation, network exploitation, Active Directory, web security, and network protocol dissection.
-          </p>
-          <div class="mt-4 pt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[10px] text-outline">
-            <span>PLATFORM: TRYHACKME</span>
-            <span class="text-primary font-bold group-hover:underline flex items-center gap-1">VIEW PROFILE ↗</span>
-          </div>
-        </div>
-
-        <!-- Card 2: Industry Certifications -->
-        <div class="bg-surface-subtle p-6 rounded-xl border border-border-hairline relative group hover:border-primary transition-all cursor-pointer" onclick="window.location.href='certificates.html'">
-          <div class="flex items-center justify-between mb-4">
-            <span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-secondary font-bold flex items-center gap-1.5">
-              <span class="material-symbols-outlined text-sm text-secondary">verified_user</span>
-              INDUSTRY CERT
-            </span>
-            <span class="material-symbols-outlined text-secondary text-2xl group-hover:scale-110 transition-transform">school</span>
-          </div>
-          <div class="text-2xl font-bold text-on-surface mb-1">
-            Google Cybersecurity
-          </div>
-          <div class="font-mono text-xs text-secondary font-semibold mb-2">Professional Certificate</div>
-          <p class="text-xs text-on-surface-variant leading-relaxed">
-            Comprehensive foundation covering Linux CLI, network security, packet filtering, SIEM log analysis, intrusion detection, incident response, and Python automation.
-          </p>
-          <div class="mt-4 pt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[10px] text-outline">
-            <span>ISSUED BY GOOGLE</span>
-            <span class="text-secondary font-bold group-hover:underline flex items-center gap-1">VERIFY CERT ↗</span>
-          </div>
-        </div>
-
-        <!-- Card 3: Structured Learning Paths -->
-        <div class="bg-surface-subtle p-6 rounded-xl border border-border-hairline relative group hover:border-primary transition-all">
-          <div class="flex items-center justify-between mb-4">
-            <span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-warning-elevated font-bold flex items-center gap-1.5">
-              <span class="material-symbols-outlined text-sm text-warning-elevated">route</span>
-              LEARNING PATHS
-            </span>
-            <span class="material-symbols-outlined text-warning-elevated text-2xl group-hover:scale-110 transition-transform">checklist</span>
-          </div>
-          <div class="space-y-2 pt-1 font-mono text-xs text-on-surface-variant">
-            <div class="flex items-center justify-between p-1.5 rounded bg-canvas-base/60 border border-border-hairline">
-              <span class="text-on-surface font-medium flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                TryHackMe Pre Security
-              </span>
-              <span class="font-mono text-[10px] text-primary">COMPLETED</span>
-            </div>
-            <div class="flex items-center justify-between p-1.5 rounded bg-canvas-base/60 border border-border-hairline">
-              <span class="text-on-surface font-medium flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                TryHackMe Cyber Security 101
-              </span>
-              <span class="font-mono text-[10px] text-primary">COMPLETED</span>
-            </div>
-            <div class="flex items-center justify-between p-1.5 rounded bg-canvas-base/60 border border-border-hairline">
-              <span class="text-on-surface font-medium flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-secondary text-sm">pending</span>
-                TryHackMe Jr PenTester
-              </span>
-              <span class="font-mono text-[10px] text-secondary">ACTIVE</span>
-            </div>
-          </div>
-          <div class="mt-4 pt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[10px] text-outline">
-            <span>PLATFORM: TRYHACKME</span>
-            <a href="certificates.html" class="text-on-surface hover:text-primary font-mono font-bold hover:underline flex items-center gap-1"><span>VIEW TRACKS ↗</span></a>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ======================================================================= -->
-    <!-- 5. Featured Projects Section: Highlighting 7 Production Systems           -->
-    <!-- ======================================================================= -->
-    <section class="max-w-7xl mx-auto px-6 py-12 border-t border-border-hairline" id="projects">
-      <div class="flex items-center gap-2 mb-2 font-mono text-xs text-primary">
-        <span class="material-symbols-outlined text-sm">folder_open</span>
-        <span>SYSTEM BUILDS &amp; ARCHITECTURES // 03</span>
-      </div>
-      <div class="mb-8">
-        <h2 class="text-2xl lg:text-3xl font-bold text-on-surface">
-          Featured Engineering &amp; AI Security Projects
-        </h2>
-        <p class="text-sm text-on-surface-variant max-w-3xl">
-          Active engineering systems at the intersection of offensive security, local AI inference, agentic orchestration, and security automation. Real architectures currently in development with complete case studies.
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2 md:mt-0 max-w-md">
+          Modular, sovereign nodes with direct access domains. Zero tracking, low latency, and isolated sandboxes.
         </p>
-      </div>
-
-      <div class="space-y-6">
-
-        <!-- Flagship Project: SentinelAI -->
-        <div class="bg-surface-subtle rounded-xl p-6 md:p-8 border border-primary/40 relative overflow-hidden group hover:border-primary transition-all cursor-pointer" onclick="if (!event.target.closest('a')) window.location.href='projects/sentinelai.html'">
-          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-            <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
-              <span class="px-2.5 py-1 rounded bg-canvas-base border border-primary/40 text-primary font-bold">AI SECURITY</span>
-              <span class="px-2.5 py-1 rounded bg-canvas-base border border-border-hairline text-on-surface font-semibold">SECURITY ENGINEERING</span>
-              <span class="px-2.5 py-1 rounded bg-canvas-base border border-primary/30 text-primary font-mono text-[11px]">// FLAGSHIP ARCHITECTURE</span>
-            </div>
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/40 bg-canvas-base font-mono text-xs text-primary font-bold">
-              <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-              <span>PHASE 16 COMPLETE // PHASE 17 IN DEV</span>
-            </div>
-          </div>
-          <div class="mb-4">
-            <div class="flex items-baseline gap-3 flex-wrap">
-              <h3 class="text-2xl md:text-3xl font-extrabold text-on-surface group-hover:text-primary transition-colors tracking-tight">
-                <a href="projects/sentinelai.html" class="hover:underline">SentinelAI</a>
-              </h3>
-              <span class="font-mono text-sm text-secondary font-semibold">
-                AI-Powered Vulnerability Intelligence &amp; Security Knowledge Platform
-              </span>
-            </div>
-            <p class="text-sm text-on-surface-variant leading-relaxed mt-2.5 max-w-4xl">
-              An actively developed security engineering platform rather than a simple chatbot, SentinelAI unifies vulnerability intelligence, graph-based security knowledge, CVE exposure tracking, asset-software relationships, evidence management, and threat intelligence. Incorporates RAG architectures, CLI/API interfaces, and authorization/approval primitives for secure multi-step orchestration.
-            </p>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 my-5">
-            <div class="p-3.5 rounded-lg bg-canvas-base/80 border border-border-hairline space-y-1.5">
-              <div class="flex items-center gap-2 text-primary font-mono text-xs font-bold">
-                <span class="material-symbols-outlined text-sm">hub</span>
-                <span>KNOWLEDGE GRAPH</span>
-              </div>
-              <p class="text-xs text-on-surface-variant">
-                Security Knowledge Graph &amp; MITRE ATT&amp;CK Mapping across tactic vectors.
-              </p>
-            </div>
-            <div class="p-3.5 rounded-lg bg-canvas-base/80 border border-border-hairline space-y-1.5">
-              <div class="flex items-center gap-2 text-secondary font-mono text-xs font-bold">
-                <span class="material-symbols-outlined text-sm">security_update_warning</span>
-                <span>CVE INTELLIGENCE</span>
-              </div>
-              <p class="text-xs text-on-surface-variant">
-                Vulnerability &amp; CVE intelligence engine with contextual exposure analysis.
-              </p>
-            </div>
-            <div class="p-3.5 rounded-lg bg-canvas-base/80 border border-border-hairline space-y-1.5">
-              <div class="flex items-center gap-2 text-primary font-mono text-xs font-bold">
-                <span class="material-symbols-outlined text-sm">assignment_turned_in</span>
-                <span>EVIDENCE &amp; REMEDIATION</span>
-              </div>
-              <p class="text-xs text-on-surface-variant">
-                Structured evidence management linked with actionable defensive remediations.
-              </p>
-            </div>
-            <div class="p-3.5 rounded-lg bg-canvas-base/80 border border-border-hairline space-y-1.5">
-              <div class="flex items-center gap-2 text-secondary font-mono text-xs font-bold">
-                <span class="material-symbols-outlined text-sm">terminal</span>
-                <span>DISPATCH &amp; AUDIT</span>
-              </div>
-              <p class="text-xs text-on-surface-variant">
-                RAG pipeline, CLI/API dispatch, and audit-logged orchestration primitives.
-              </p>
-            </div>
-          </div>
-          <div class="pt-4 border-t border-border-hairline/80 flex flex-wrap items-center justify-between gap-4">
-            <div class="flex flex-wrap gap-1.5">
-              <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-primary">Python</span>
-              <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">Knowledge Graphs</span>
-              <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-secondary">MITRE ATT&amp;CK</span>
-              <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">RAG</span>
-              <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">CVE Intelligence</span>
-              <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-secondary">FastAPI / CLI</span>
-              <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-primary">Secure Orchestration</span>
-              <span class="px-2.5 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">Audit Logging</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <div class="font-mono text-xs text-primary flex items-center gap-1.5 font-medium">
-                <span class="material-symbols-outlined text-sm">verified</span>
-                <span>Active System — Phase 16 Implemented</span>
-              </div>
-              <a href="projects/sentinelai.html" class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-primary/10 border border-primary/40 text-primary hover:bg-primary hover:text-canvas-base font-mono text-xs font-semibold transition-all">
-                <span>Case Study</span>
-                <span class="material-symbols-outlined text-xs">arrow_forward</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Secondary Projects Grid: 6 Real Systems -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-          <!-- 2. Autonomous Pentesting Agent -->
-          <div class="bg-surface-subtle rounded-xl p-6 border border-border-hairline flex flex-col justify-between group hover:border-secondary transition-all cursor-pointer" onclick="if (!event.target.closest('a')) window.location.href='projects/autonomous-pentesting-agent.html'">
-            <div class="space-y-3">
-              <div class="flex flex-wrap items-center justify-between gap-2">
-                <div class="flex items-center gap-1.5 font-mono text-xs">
-                  <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-secondary font-bold">OFFENSIVE SECURITY</span>
-                  <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">AI AGENTS</span>
-                </div>
-                <div class="font-mono text-xs text-secondary flex items-center gap-1.5">
-                  <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                  <span>ACTIVE DEV // OWNED TARGETS</span>
-                </div>
-              </div>
-              <div>
-                <h3 class="text-xl font-bold text-on-surface group-hover:text-secondary transition-colors">
-                  <a href="projects/autonomous-pentesting-agent.html" class="hover:underline">Autonomous Pentesting Agent</a>
-                </h3>
-                <div class="font-mono text-xs text-secondary mt-0.5 font-semibold">
-                  AI-Assisted Authorized Security Testing Platform
-                </div>
-              </div>
-              <p class="text-xs text-on-surface-variant leading-relaxed">
-                An AI-assisted penetration-testing framework engineered specifically for authorized, scoped assessments on owned targets. Orchestrates specialized local agents across reconnaissance, enumeration, web application analysis, vulnerability verification, evidence collection, and automated report synthesis without external telemetry.
-              </p>
-            </div>
-            <div class="pt-4 border-t border-border-hairline mt-4 flex flex-wrap items-center justify-between gap-2">
-              <div class="flex flex-wrap gap-1.5">
-                <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-primary">Kali Linux</span>
-                <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-secondary">Ollama</span>
-                <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">Qwen3-Coder 30B</span>
-                <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-secondary">Nmap / Burp APIs</span>
-              </div>
-              <a href="projects/autonomous-pentesting-agent.html" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-secondary/10 border border-secondary/40 text-secondary hover:bg-secondary hover:text-canvas-base font-mono text-[11px] font-semibold transition-all shrink-0">
-                <span>Case Study</span>
-                <span class="material-symbols-outlined text-xs">arrow_forward</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- 3. CyberAI -->
-          <div class="bg-surface-subtle rounded-xl p-6 border border-border-hairline flex flex-col justify-between group hover:border-primary transition-all cursor-pointer" onclick="if (!event.target.closest('a')) window.location.href='projects/cyberai.html'">
-            <div class="space-y-3">
-              <div class="flex flex-wrap items-center justify-between gap-2">
-                <div class="flex items-center gap-1.5 font-mono text-xs">
-                  <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-primary font-bold">LOCAL AI</span>
-                  <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">SECURITY AUTOMATION</span>
-                </div>
-                <div class="font-mono text-xs text-primary flex items-center gap-1.5">
-                  <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-                  <span>ACTIVE DEV // IN PROGRESS</span>
-                </div>
-              </div>
-              <div>
-                <h3 class="text-xl font-bold text-on-surface group-hover:text-primary transition-colors">
-                  <a href="projects/cyberai.html" class="hover:underline">CyberAI</a>
-                </h3>
-                <div class="font-mono text-xs text-primary mt-0.5 font-semibold">
-                  Local AI Cybersecurity Agent Platform
-                </div>
-              </div>
-              <p class="text-xs text-on-surface-variant leading-relaxed">
-                An ongoing local-inference cybersecurity environment focused on private, on-device intelligence. Integrates Ollama, Qwen3-Coder 30B, and OpenCode with Kali Linux security tooling to orchestrate multi-agent development workflows, automated vulnerability analysis tasks, and reproducible security experimentation.
-              </p>
-            </div>
-            <div class="pt-4 border-t border-border-hairline mt-4 flex flex-wrap items-center justify-between gap-2">
-              <div class="flex flex-wrap gap-1.5">
-                <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-secondary">Ollama</span>
-                <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">Qwen3-Coder 30B</span>
-                <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-primary">Kali Linux</span>
-                <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-secondary">Agent Orchestration</span>
-              </div>
-              <a href="projects/cyberai.html" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-primary/10 border border-primary/40 text-primary hover:bg-primary hover:text-canvas-base font-mono text-[11px] font-semibold transition-all shrink-0">
-                <span>Case Study</span>
-                <span class="material-symbols-outlined text-xs">arrow_forward</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- 4. OpenCode Persistent Memory -->
-          <div class="bg-surface-subtle rounded-xl p-6 border border-border-hairline flex flex-col justify-between group hover:border-primary transition-all cursor-pointer" onclick="if (!event.target.closest('a')) window.location.href='projects/opencode-persistent-memory.html'">
-            <div class="space-y-3">
-              <div class="flex flex-wrap items-center justify-between gap-2">
-                <div class="flex items-center gap-1.5 font-mono text-xs">
-                  <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-primary font-bold">AI INFRASTRUCTURE</span>
-                  <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">DEVELOPER TOOLING</span>
-                </div>
-                <div class="font-mono text-xs text-primary flex items-center gap-1.5">
-                  <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-                  <span>7/7 TESTS PASSED</span>
-                </div>
-              </div>
-              <div>
-                <h3 class="text-xl font-bold text-on-surface group-hover:text-primary transition-colors">
-                  <a href="projects/opencode-persistent-memory.html" class="hover:underline">OpenCode Persistent Memory</a>
-                </h3>
-                <div class="font-mono text-xs text-primary mt-0.5 font-semibold">
-                  SQLite-Authoritative Local Persistent Memory &amp; Retrieval System
-                </div>
-              </div>
-              <p class="text-xs text-on-surface-variant leading-relaxed">
-                A portable persistent-memory system for OpenCode with automatic memory extraction, SQLite-authoritative storage, and resilient semantic/keyword retrieval. Features background task extraction, project scoping, and zero cloud dependency.
-              </p>
-            </div>
-            <div class="pt-4 border-t border-border-hairline mt-4 flex flex-wrap items-center justify-between gap-2">
-              <div class="flex flex-wrap gap-1.5">
-                <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-primary">TypeScript</span>
-                <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-secondary">Python</span>
-                <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">SQLite</span>
-                <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">Chroma</span>
-              </div>
-              <a href="projects/opencode-persistent-memory.html" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-primary/10 border border-primary/40 text-primary hover:bg-primary hover:text-canvas-base font-mono text-[11px] font-semibold transition-all shrink-0">
-                <span>Case Study</span>
-                <span class="material-symbols-outlined text-xs">arrow_forward</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- 5. Ethical Hacker Command Handbook (Case Study) -->
-          <div class="bg-surface-subtle rounded-xl p-6 border border-border-hairline flex flex-col justify-between group hover:border-primary transition-all cursor-pointer" onclick="if (!event.target.closest('a')) window.location.href='projects/cybersecurity-handbook.html'">
-            <div class="space-y-3">
-              <div class="flex flex-wrap items-center justify-between gap-2">
-                <div class="flex items-center gap-1.5 font-mono text-xs">
-                  <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-primary font-bold">KNOWLEDGE BASE</span>
-                  <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">DOCUMENTATION</span>
-                </div>
-                <div class="font-mono text-xs text-primary flex items-center gap-1.5">
-                  <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-                  <span>15 CLI MODULES</span>
-                </div>
-              </div>
-              <div>
-                <h3 class="text-xl font-bold text-on-surface group-hover:text-primary transition-colors">
-                  <a href="projects/cybersecurity-handbook.html" class="hover:underline">Ethical Hacker Command Handbook</a>
-                </h3>
-                <div class="font-mono text-xs text-primary mt-0.5 font-semibold">
-                  Field Reference &amp; Syntax System for Security Engineers
-                </div>
-              </div>
-              <p class="text-xs text-on-surface-variant leading-relaxed">
-                A structured 15-module documentation architecture covering command syntax, operational flags, realistic use cases, and safety warnings across Linux, Nmap, Metasploit, Burp Suite, Wireshark, and privilege escalation vectors.
-              </p>
-            </div>
-            <div class="pt-4 border-t border-border-hairline mt-4 flex flex-wrap items-center justify-between gap-2">
-              <div class="flex flex-wrap gap-1.5">
-                <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-primary">Linux CLI</span>
-                <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-secondary">Nmap</span>
-                <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">Metasploit</span>
-                <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-outline">SearchSploit</span>
-              </div>
-              <a href="projects/cybersecurity-handbook.html" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-primary/10 border border-primary/40 text-primary hover:bg-primary hover:text-canvas-base font-mono text-[11px] font-semibold transition-all shrink-0">
-                <span>Case Study</span>
-                <span class="material-symbols-outlined text-xs">arrow_forward</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- 6. AI Application Development Platform -->
-          <div class="bg-surface-subtle rounded-xl p-6 border border-border-hairline flex flex-col justify-between group hover:border-primary transition-all cursor-pointer" onclick="if (!event.target.closest('a')) window.location.href='projects/ai-application-platform.html'">
-            <div class="space-y-3">
-              <div class="flex flex-wrap items-center justify-between gap-2">
-                <div class="flex items-center gap-1.5 font-mono text-xs">
-                  <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface font-bold">DEVELOPMENT</span>
-                  <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-primary">LOCAL AI</span>
-                </div>
-                <div class="font-mono text-xs text-primary flex items-center gap-1.5">
-                  <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-                  <span>MULTI-AGENT RUNTIME</span>
-                </div>
-              </div>
-              <div>
-                <h3 class="text-xl font-bold text-on-surface group-hover:text-primary transition-colors">
-                  <a href="projects/ai-application-platform.html" class="hover:underline">AI Application Development Platform</a>
-                </h3>
-                <div class="font-mono text-xs text-primary mt-0.5 font-semibold">
-                  Multi-Agent Local Development Environment
-                </div>
-              </div>
-              <p class="text-xs text-on-surface-variant leading-relaxed">
-                A local AI-powered engineering environment running Qwen3-Coder 30B to assist throughout the complete software lifecycle under zero cloud dependency. Deploys specialized sub-agents dedicated to frontend engineering, backend architecture, debugging, test generation, and automated security code reviews.
-              </p>
-            </div>
-            <div class="pt-4 border-t border-border-hairline mt-4 flex flex-wrap items-center justify-between gap-2">
-              <div class="flex flex-wrap gap-1.5">
-                <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">Qwen3-Coder 30B</span>
-                <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-secondary">Ollama</span>
-                <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-primary">Multi-Agent</span>
-              </div>
-              <a href="projects/ai-application-platform.html" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-primary/10 border border-primary/40 text-primary hover:bg-primary hover:text-canvas-base font-mono text-[11px] font-semibold transition-all shrink-0">
-                <span>Case Study</span>
-                <span class="material-symbols-outlined text-xs">arrow_forward</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- 7. Local AI Compute Stack -->
-          <div class="bg-surface-subtle rounded-xl p-6 border border-border-hairline flex flex-col justify-between group hover:border-secondary transition-all cursor-pointer" onclick="if (!event.target.closest('a')) window.location.href='projects/local-ai-compute-stack.html'">
-            <div class="space-y-3">
-              <div class="flex flex-wrap items-center justify-between gap-2">
-                <div class="flex items-center gap-1.5 font-mono text-xs">
-                  <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-secondary font-bold">LOCAL AI</span>
-                  <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface">INFRASTRUCTURE</span>
-                </div>
-                <div class="font-mono text-xs text-secondary flex items-center gap-1.5">
-                  <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                  <span>RTX 4070 COMPUTE</span>
-                </div>
-              </div>
-              <div>
-                <h3 class="text-xl font-bold text-on-surface group-hover:text-secondary transition-colors">
-                  <a href="projects/local-ai-compute-stack.html" class="hover:underline">Local AI Compute Stack</a>
-                </h3>
-                <div class="font-mono text-xs text-secondary mt-0.5 font-semibold">
-                  Private AI Development &amp; Cybersecurity Compute Stack
-                </div>
-              </div>
-              <p class="text-xs text-on-surface-variant leading-relaxed">
-                An experimental compute and networking architecture designed to scale heavier local AI and security workloads, linking dedicated GPU acceleration to the local development environment via hardened remote connectivity patterns and isolated runtimes.
-              </p>
-            </div>
-            <div class="pt-4 border-t border-border-hairline mt-4 flex flex-wrap items-center justify-between gap-2">
-              <div class="flex flex-wrap gap-1.5">
-                <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-secondary">GPU Compute</span>
-                <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-primary">Kali Linux</span>
-                <span class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-secondary">Hardened Network</span>
-              </div>
-              <a href="projects/local-ai-compute-stack.html" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-secondary/10 border border-secondary/40 text-secondary hover:bg-secondary hover:text-canvas-base font-mono text-[11px] font-semibold transition-all shrink-0">
-                <span>Case Study</span>
-                <span class="material-symbols-outlined text-xs">arrow_forward</span>
-              </a>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ======================================================================= -->
-    <!-- 6. Technical Skills System (Arsenal Matrix)                              -->
-    <!-- ======================================================================= -->
-    <section class="max-w-7xl mx-auto px-6 py-12 border-t border-border-hairline" id="skills">
-      <div class="flex items-center gap-2 mb-2 font-mono text-xs text-primary">
-        <span class="material-symbols-outlined text-sm">terminal</span>
-        <span>ARSENAL MATRIX // 04</span>
-      </div>
-      <div class="mb-8">
-        <h2 class="text-2xl lg:text-3xl font-bold text-on-surface">
-          Technical Skills &amp; Knowledge Domains
-        </h2>
-        <p class="text-sm text-on-surface-variant">Structured knowledge matrix grounded in TryHackMe challenge rooms, academic study, and personal security engineering.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-        <!-- Domain 1: Reconnaissance & Enumeration -->
-        <div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3 hover:border-primary/50 transition-colors">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2 font-mono text-xs text-primary font-bold">
-              <span class="material-symbols-outlined text-base">radar</span>
-              <span>RECONNAISSANCE &amp; ENUMERATION</span>
-            </div>
-            <a href="handbook/modules/reconnaissance.html" class="text-[10px] text-primary hover:underline font-mono flex items-center gap-0.5">Module 01 ↗</a>
-          </div>
-          <p class="text-xs text-on-surface-variant">Structured discovery techniques applied to authorized educational challenge targets.</p>
-          <div class="flex flex-wrap gap-1.5">
-            <a href="handbook/nmap.html" class="px-2 py-1 rounded bg-canvas-base border border-primary/30 font-mono text-[10px] text-primary hover:border-primary hover:bg-primary/10 transition-all flex items-center gap-1 group"><span>Nmap Scanning Profiles</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
-            <a href="handbook/modules/tools-reference.html#tool-netcat" class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface hover:border-primary hover:text-primary transition-all flex items-center gap-1 group"><span>Netcat Probing</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
-            <a href="handbook/modules/tools-reference.html#tool-ffuf" class="px-2 py-1 rounded bg-canvas-base border border-secondary/30 font-mono text-[10px] text-secondary hover:border-secondary transition-all flex items-center gap-1 group"><span>ffuf Endpoint Fuzzing</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
-            <span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">Service Versioning</span>
-            <span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">Subnet Discovery</span>
-          </div>
-        </div>
-
-        <!-- Domain 2: Networking & Protocols -->
-        <div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3 hover:border-secondary/50 transition-colors">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2 font-mono text-xs text-secondary font-bold">
-              <span class="material-symbols-outlined text-base">hub</span>
-              <span>NETWORKING &amp; PROTOCOLS</span>
-            </div>
-            <a href="handbook/modules/network-security.html" class="text-[10px] text-secondary hover:underline font-mono flex items-center gap-0.5">Module 02 ↗</a>
-          </div>
-          <p class="text-xs text-on-surface-variant">Protocol analysis, traffic dissection, and layer-by-layer network exploration.</p>
-          <div class="flex flex-wrap gap-1.5">
-            <span class="px-2 py-1 rounded bg-canvas-base border border-secondary/30 font-mono text-[10px] text-secondary">TCP/IP Architecture</span>
-            <span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">DNS &amp; HTTP/S</span>
-            <span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">Subnetting (VLSM)</span>
-            <a href="handbook/modules/network-security.html" class="px-2 py-1 rounded bg-canvas-base border border-primary/30 font-mono text-[10px] text-primary hover:border-primary transition-all flex items-center gap-1 group"><span>Wireshark PCAP Decode</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
-          </div>
-        </div>
-
-        <!-- Domain 3: Linux Systems -->
-        <div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3 hover:border-primary/50 transition-colors">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2 font-mono text-xs text-primary font-bold">
-              <span class="material-symbols-outlined text-base">terminal</span>
-              <span>LINUX SYSTEMS</span>
-            </div>
-            <a href="handbook/linux.html" class="text-[10px] text-primary hover:underline font-mono flex items-center gap-0.5">Module 03 ↗</a>
-          </div>
-          <p class="text-xs text-on-surface-variant">Daily Linux administration, CLI mastery, and operating system permission controls.</p>
-          <div class="flex flex-wrap gap-1.5">
-            <a href="handbook/linux.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-primary border-primary/30 hover:border-primary transition-all flex items-center gap-1 group"><span>Kali Linux (Daily)</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
-            <span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-secondary border-secondary/30">Ubuntu / Debian</span>
-            <span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">SUID / Privileges</span>
-            <span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">Bash Automation</span>
-          </div>
-        </div>
-
-        <!-- Domain 4: Web Application Security -->
-        <div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3 hover:border-secondary/50 transition-colors">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2 font-mono text-xs text-secondary font-bold">
-              <span class="material-symbols-outlined text-base">web</span>
-              <span>WEB APPLICATION SECURITY</span>
-            </div>
-            <a href="handbook/modules/web-security.html" class="text-[10px] text-secondary hover:underline font-mono flex items-center gap-0.5">Module 04 ↗</a>
-          </div>
-          <p class="text-xs text-on-surface-variant">HTTP traffic auditing, parameter manipulation, and web vulnerability analysis in lab environments.</p>
-          <div class="flex flex-wrap gap-1.5">
-            <span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-primary border-primary/30 font-bold">OWASP Top 10</span>
-            <span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-danger-critical border-danger-critical/30 font-bold">SQL Injection (SQLi)</span>
-            <span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-secondary border-secondary/30">XSS &amp; IDOR</span>
-            <span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">Burp Suite Repeater</span>
-          </div>
-        </div>
-
-        <!-- Domain 5: Password & Credential Security -->
-        <div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3 hover:border-primary/50 transition-colors">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2 font-mono text-xs text-primary font-bold">
-              <span class="material-symbols-outlined text-base">password</span>
-              <span>PASSWORD &amp; CREDENTIAL SECURITY</span>
-            </div>
-            <a href="handbook/modules/credential-security.html" class="text-[10px] text-primary hover:underline font-mono flex items-center gap-0.5">Module 05 ↗</a>
-          </div>
-          <p class="text-xs text-on-surface-variant">Authorized educational password auditing, hash analysis, and authentication validation.</p>
-          <div class="flex flex-wrap gap-1.5">
-            <span class="px-2 py-1 rounded bg-canvas-base border border-primary/30 font-mono text-[10px] text-primary">Hashcat Recovery</span>
-            <span class="px-2 py-1 rounded bg-canvas-base border border-secondary/30 font-mono text-[10px] text-secondary">MD5 / SHA / NTLM</span>
-            <span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">John the Ripper</span>
-            <span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">Hydra Login Audits</span>
-          </div>
-        </div>
-
-        <!-- Domain 6: Exploitation & PrivEsc Concepts -->
-        <div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3 hover:border-secondary/50 transition-colors">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2 font-mono text-xs text-secondary font-bold">
-              <span class="material-symbols-outlined text-base">bug_report</span>
-              <span>EXPLOITATION &amp; PRIVESC CONCEPTS</span>
-            </div>
-            <a href="handbook/modules/exploitation.html" class="text-[10px] text-secondary hover:underline font-mono flex items-center gap-0.5">Module 07 ↗</a>
-          </div>
-          <p class="text-xs text-on-surface-variant">Controlled validation and local privilege escalation methodology in educational rooms.</p>
-          <div class="flex flex-wrap gap-1.5">
-            <span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-primary border-primary/30 font-bold">CVE &amp; CVSS Analysis</span>
-            <a href="handbook/searchsploit.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-secondary border-secondary/30 hover:border-secondary transition-all flex items-center gap-1 group"><span>SearchSploit</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
-            <a href="handbook/metasploit.html" class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline hover:border-primary transition-all flex items-center gap-1 group"><span>Metasploit Framework</span><span class="opacity-60 group-hover:opacity-100">↗</span></a>
-            <span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">Linux SUID Escalation</span>
-          </div>
-        </div>
-
-        <!-- Domain 7: Wireless Security -->
-        <div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3 hover:border-primary/50 transition-colors">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2 font-mono text-xs text-primary font-bold">
-              <span class="material-symbols-outlined text-base">wifi_tethering</span>
-              <span>WIRELESS SECURITY</span>
-            </div>
-            <a href="handbook/modules/network-security.html" class="text-[10px] text-primary hover:underline font-mono flex items-center gap-0.5">Module 02 ↗</a>
-          </div>
-          <p class="text-xs text-on-surface-variant">Authorized educational wireless analysis and radio frame evaluation.</p>
-          <div class="flex flex-wrap gap-1.5">
-            <span class="px-2 py-1 rounded bg-canvas-base border border-primary/30 font-mono text-[10px] text-primary">Wireless Recon</span>
-            <span class="px-2 py-1 rounded bg-canvas-base border border-secondary/30 font-mono text-[10px] text-secondary">Aircrack-ng Concepts</span>
-            <span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">WPA2 4-Way Handshake</span>
-            <span class="px-2 py-1 rounded bg-canvas-base border border-border-hairline font-mono text-[10px] text-on-surface">802.11 Frame Analysis</span>
-          </div>
-        </div>
-
-        <!-- Domain 8: Programming & Systems -->
-        <div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3 hover:border-secondary/50 transition-colors">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2 font-mono text-xs text-secondary font-bold">
-              <span class="material-symbols-outlined text-base">code</span>
-              <span>PROGRAMMING &amp; SYSTEMS</span>
-            </div>
-            <a href="handbook/modules/security-automation.html" class="text-[10px] text-secondary hover:underline font-mono flex items-center gap-0.5">Module 08 ↗</a>
-          </div>
-          <p class="text-xs text-on-surface-variant">Core languages powering custom security tooling, automation scripts, and systems study.</p>
-          <div class="flex flex-wrap gap-1.5">
-            <span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-primary border-primary/30 font-bold">Python 3 (Security)</span>
-            <span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-secondary border-secondary/30">C (Low-Level Core)</span>
-            <span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">Bash Automation</span>
-            <span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">SQL &amp; SQLite</span>
-            <span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-outline border-border-hairline">Git Workflows</span>
-          </div>
-        </div>
-
-        <!-- Domain 9: AI + Security Automation -->
-        <div class="bg-surface-subtle p-5 rounded-xl border border-border-hairline space-y-3 hover:border-primary/50 transition-colors">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2 font-mono text-xs text-primary font-bold">
-              <span class="material-symbols-outlined text-base">psychology</span>
-              <span>AI &amp; SECURITY AUTOMATION</span>
-            </div>
-            <a href="projects/sentinelai.html" class="text-[10px] text-primary hover:underline font-mono flex items-center gap-0.5">Systems ↗</a>
-          </div>
-          <p class="text-xs text-on-surface-variant">Independent security engineering: private local inference, agent orchestration, and tooling.</p>
-          <div class="flex flex-wrap gap-1.5">
-            <span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-primary border-primary/30 font-bold">Agentic Workflows</span>
-            <span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-secondary border-secondary/30">Ollama Local LLM</span>
-            <span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">Qwen3-Coder 30B</span>
-            <span class="px-2 py-1 rounded bg-canvas-base border font-mono text-[10px] text-on-surface border-border-hairline">Zero Cloud Telemetry</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ======================================================================= -->
-    <!-- 7. Certifications & Credentials                                           -->
-    <!-- ======================================================================= -->
-    <section class="max-w-7xl mx-auto px-6 py-12 border-t border-border-hairline" id="certifications">
-      <div class="flex items-center gap-2 mb-2 font-mono text-xs text-primary">
-        <span class="material-symbols-outlined text-sm">card_membership</span>
-        <span>CREDENTIAL INTEGRITY // 05</span>
-      </div>
-      <div class="mb-8">
-        <h2 class="text-2xl lg:text-3xl font-bold text-on-surface">
-          Certifications &amp; Structured Learning Tracks
-        </h2>
-        <p class="text-sm text-on-surface-variant">Documented certifications and verified independent security learning paths.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-        <!-- Card 1: Google Cybersecurity Pro Certificate -->
-        <div class="bg-surface-subtle p-6 rounded-xl border border-primary/40 flex flex-col justify-between">
-          <div class="space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="px-2.5 py-1 rounded bg-canvas-base border border-primary/40 font-mono text-[10px] text-primary font-bold">
-                DOCUMENTED CERTIFICATION
-              </span>
-              <span class="material-symbols-outlined text-primary text-xl">verified_user</span>
+        <!-- 1. CALION Academy -->
+        <div class="bg-white dark:bg-slate-900/60 rounded-xl p-8 border border-slate-200 dark:border-slate-800 hover:border-sky-500/50 dark:hover:border-sky-500/50 transition-all hover:shadow-md flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-11 h-11 rounded-lg bg-sky-50 dark:bg-sky-950/70 border border-sky-100 dark:border-sky-900 flex items-center justify-center text-sky-600 dark:text-sky-400 group-hover:scale-105 transition-transform">
+                <span class="material-symbols-outlined text-[24px]">school</span>
+              </div>
+              <span class="text-xs font-mono text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800 px-2.5 py-1 rounded border border-slate-200/60 dark:border-slate-700">learning.endlessus.in</span>
             </div>
-            <h3 class="text-lg font-bold text-on-surface">
-              Google Cybersecurity Professional Certificate
+            <h3 class="text-xl font-headline font-bold text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
+              CALION Academy
             </h3>
-            <p class="text-xs text-on-surface-variant leading-relaxed">
-              Eight-course rigorous program covering foundation of cybersecurity, network security operations, SIEM tool analysis, intrusion detection, packet inspection, incident response, and Python automation.
+            <p class="text-slate-600 dark:text-slate-400 text-sm mt-3 leading-relaxed">
+              Gamified offensive &amp; defensive security paths, 45 structured rooms, interactive browser terminal, and practical challenges designed for real-world cyber mastery.
             </p>
-            <ul class="space-y-2 pt-2 text-on-surface text-xs">
-              <li class="flex items-center gap-2">
-                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                <span>Linux Command Line &amp; Security Auditing</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                <span>Network Protocol Architecture &amp; Packet Filtering</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                <span>Incident Response Frameworks &amp; Documentation</span>
-              </li>
-            </ul>
           </div>
-          <div class="mt-6 pt-4 border-t border-border-hairline flex items-center justify-between font-mono text-[10px] text-outline">
-            <span>ISSUED BY GOOGLE</span>
-            <a href="certificate-viewer.html?id=google-cybersecurity" class="text-primary font-bold hover:underline flex items-center gap-1">
-              <span>View Certificate ↗</span>
+          <div class="mt-8 pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+            <span class="text-xs font-mono text-slate-400">Path → Rooms → Tasks</span>
+            <a class="inline-flex items-center gap-1.5 text-sm font-semibold text-sky-600 dark:text-sky-400 group-hover:translate-x-0.5 transition-transform" href="https://learning.endlessus.in" target="_blank">
+              <span>Enter Academy</span>
+              <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
             </a>
           </div>
         </div>
 
-        <!-- Card 2: TryHackMe Tracks -->
-        <div class="bg-surface-subtle p-6 rounded-xl border border-border-hairline flex flex-col justify-between">
-          <div class="space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="px-2.5 py-1 rounded bg-canvas-base border border-secondary/40 font-mono text-[10px] text-secondary font-bold">
-                STRUCTURED LAB TRACKS
-              </span>
-              <span class="material-symbols-outlined text-secondary text-xl">military_tech</span>
+        <!-- 2. CALION Tools -->
+        <div class="bg-white dark:bg-slate-900/60 rounded-xl p-8 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 dark:hover:border-indigo-500/50 transition-all hover:shadow-md flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-11 h-11 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 border border-indigo-100 dark:border-indigo-900 flex items-center justify-center text-indigo-600 dark:text-indigo-400 group-hover:scale-105 transition-transform">
+                <span class="material-symbols-outlined text-[24px]">construction</span>
+              </div>
+              <span class="text-xs font-mono text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800 px-2.5 py-1 rounded border border-slate-200/60 dark:border-slate-700">tools.endlessus.in</span>
             </div>
-            <h3 class="text-lg font-bold text-on-surface">
-              TryHackMe Offensive Security &amp; Pen-Testing Paths
+            <h3 class="text-xl font-headline font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+              CALION Tools
             </h3>
-            <p class="text-xs text-on-surface-variant leading-relaxed">
-              Completed structured interactive learning paths focused on real-world system exploitation, Active Directory enumeration, web vulnerability assessment, and offensive persistence.
+            <p class="text-slate-600 dark:text-slate-400 text-sm mt-3 leading-relaxed">
+              Zero-leak WebAssembly browser utilities. Audit hashes, dissect JWT tokens, calculate CIDR ranges, and encode payloads entirely client-side with zero telemetry.
             </p>
-            <ul class="space-y-2 pt-2 text-on-surface text-xs">
-              <li class="flex items-center gap-2">
-                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                <span>Pre-Security &amp; Web Fundamentals Complete</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                <span>Cyber Security 101 Path Complete</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="material-symbols-outlined text-secondary text-sm">pending</span>
-                <span>Jr Penetration Tester Path (Active / In Progress)</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="material-symbols-outlined text-primary text-sm">military_tech</span>
-                <span>TryHackMe Top 2% Globally · 140+ Rooms Completed</span>
-              </li>
-            </ul>
           </div>
-          <div class="mt-6 pt-4 border-t border-border-hairline flex items-center justify-between font-mono text-[10px] text-outline">
-            <span>PLATFORM: TRYHACKME</span>
-            <a href="certificates.html" class="text-secondary font-bold hover:underline flex items-center gap-1">
-              <span>View All THM Certificates ↗</span>
+          <div class="mt-8 pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+            <span class="text-xs font-mono text-slate-400">100% Client-Side Wasm</span>
+            <a class="inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-600 dark:text-indigo-400 group-hover:translate-x-0.5 transition-transform" href="https://tools.endlessus.in" target="_blank">
+              <span>Open Tools</span>
+              <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
             </a>
           </div>
         </div>
 
-      </div>
-
-      <!-- Dedicated Credential Vault Banner -->
-      <div class="mt-8 p-6 rounded-xl border border-border-hairline bg-surface-subtle flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div class="space-y-1">
-          <div class="font-mono text-xs text-primary font-bold flex items-center gap-2">
-            <span class="material-symbols-outlined text-base">verified</span>
-            <span>DEDICATED CREDENTIAL VAULT // DIGITAL CERTIFICATE VIEWER</span>
+        <!-- 3. CALION Library -->
+        <div class="bg-white dark:bg-slate-900/60 rounded-xl p-8 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/50 dark:hover:border-cyan-500/50 transition-all hover:shadow-md flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-11 h-11 rounded-lg bg-cyan-50 dark:bg-cyan-950/70 border border-cyan-100 dark:border-cyan-900 flex items-center justify-center text-cyan-600 dark:text-cyan-400 group-hover:scale-105 transition-transform">
+                <span class="material-symbols-outlined text-[24px]">menu_book</span>
+              </div>
+              <span class="text-xs font-mono text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800 px-2.5 py-1 rounded border border-slate-200/60 dark:border-slate-700">notes.endlessus.in</span>
+            </div>
+            <h3 class="text-xl font-headline font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+              CALION Library
+            </h3>
+            <p class="text-slate-600 dark:text-slate-400 text-sm mt-3 leading-relaxed">
+              Curated documentation, architecture teardowns, CVE write-ups, and runbooks designed for lightning-fast search and offline reference.
+            </p>
           </div>
-          <p class="text-xs sm:text-sm text-on-surface-variant">Explore verified certificate artifacts, official credential IDs, high-resolution previews, and interactive digital viewer.</p>
+          <div class="mt-8 pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+            <span class="text-xs font-mono text-slate-400">Technical Codex &amp; Docs</span>
+            <a class="inline-flex items-center gap-1.5 text-sm font-semibold text-cyan-600 dark:text-cyan-400 group-hover:translate-x-0.5 transition-transform" href="https://notes.endlessus.in" target="_blank">
+              <span>Read Library</span>
+              <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+            </a>
+          </div>
         </div>
-        <a href="certificates.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded bg-primary-container text-canvas-base font-mono text-xs font-bold hover:bg-primary transition-all shadow-[0_0_12px_rgba(16,185,129,0.25)] shrink-0">
-          <span>View All Certificates &amp; Viewer</span>
-          <span class="material-symbols-outlined text-sm">arrow_forward</span>
-        </a>
+
+        <!-- 4. Mihraj's Portfolio -->
+        <div class="bg-white dark:bg-slate-900/60 rounded-xl p-8 border border-slate-200 dark:border-slate-800 hover:border-violet-500/50 dark:hover:border-violet-500/50 transition-all hover:shadow-md flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-11 h-11 rounded-lg bg-violet-50 dark:bg-violet-950/70 border border-violet-100 dark:border-violet-900 flex items-center justify-center text-violet-600 dark:text-violet-400 group-hover:scale-105 transition-transform">
+                <span class="material-symbols-outlined text-[24px]">fingerprint</span>
+              </div>
+              <span class="text-xs font-mono text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800 px-2.5 py-1 rounded border border-slate-200/60 dark:border-slate-700">portfolio.endlessus.in</span>
+            </div>
+            <h3 class="text-xl font-headline font-bold text-slate-900 dark:text-white group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
+              Mihraj's Portfolio
+            </h3>
+            <p class="text-slate-600 dark:text-slate-400 text-sm mt-3 leading-relaxed">
+              Personal research workspace, verified penetration testing case studies, open-source projects, and engineering profile of founder Mihraj.
+            </p>
+          </div>
+          <div class="mt-8 pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+            <span class="text-xs font-mono text-slate-400">Founder &amp; Engineer</span>
+            <a class="inline-flex items-center gap-1.5 text-sm font-semibold text-violet-600 dark:text-violet-400 group-hover:translate-x-0.5 transition-transform" href="https://portfolio.endlessus.in" target="_blank">
+              <span>View Portfolio</span>
+              <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ======================================================================= -->
-    <!-- 8. Endlessus Learning Platform Gateway: Clean Separation                  -->
-    <!-- ======================================================================= -->
-    <section class="max-w-7xl mx-auto px-6 py-12 border-t border-border-hairline" id="endlessus-platform">
-      <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
-        <div class="flex items-center gap-2 font-mono text-xs text-primary font-bold">
-          <span class="material-symbols-outlined text-sm">school</span>
-          <span>ENDLESSUS // CYBERSECURITY LEARNING &amp; RESEARCH PLATFORM</span>
+    <!-- ========================================================================= -->
+    <!-- Meet the Developer & About Me                                             -->
+    <!-- ========================================================================= -->
+    <section class="max-w-6xl mx-auto px-6 py-14 border-t border-slate-200 dark:border-slate-800" id="developer">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-4 border-b border-slate-200 dark:border-slate-800">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-wider text-sky-600 dark:text-sky-400 font-semibold">Leadership &amp; Craft</span>
+          <h2 class="text-2xl sm:text-3xl font-headline font-bold text-slate-900 dark:text-white mt-1">Meet the Developer</h2>
         </div>
-        <span class="px-2.5 py-0.5 rounded-full bg-secondary/10 border border-secondary/30 text-secondary font-mono text-[10px] font-bold">
-          FREE &bull; PRACTICAL &bull; COMMUNITY
-        </span>
-      </div>
-
-      <div class="mb-8 max-w-3xl">
-        <h2 class="text-2xl lg:text-3xl font-bold text-on-surface">
-          Hands-On Cybersecurity Education, Labs &amp; Reference
-        </h2>
-        <p class="text-sm text-on-surface-variant mt-2 leading-relaxed">
-          Authored and maintained by Mihraj as a dedicated learning environment for cybersecurity students, developers, and aspiring penetration testers. Explore structured curricula, practice in safe interactive labs, and inspect field command manuals.
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2 md:mt-0 max-w-md">
+          Cybersecurity researcher, penetration testing practitioner, and systems engineer building sovereign digital tools.
         </p>
       </div>
 
-      <!-- Ecosystem Model Architecture Banner -->
-      <div class="mb-8 p-4 md:p-5 rounded-xl border border-secondary/30 bg-secondary/5 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
-        <div>
-          <div class="font-mono text-xs font-bold text-secondary flex items-center gap-1.5 uppercase tracking-wider">
-            <span class="material-symbols-outlined text-sm">psychology</span>
-            <span>THEORY → HANDBOOK → LABS ECOSYSTEM</span>
-          </div>
-          <p class="text-xs text-on-surface-variant mt-1.5 leading-relaxed max-w-2xl">
-            A complete cybersecurity learning methodology: master <strong class="text-on-surface">Why</strong> systems function in our foundational <a href="theory.html" class="text-secondary font-semibold hover:underline">Theory &amp; Concepts Path</a>, reference <strong class="text-on-surface">How</strong> tools execute in the <a href="handbook/index.html" class="text-primary font-semibold hover:underline">Command Handbook</a>, and validate your skills inside <a href="labs.html" class="text-secondary font-semibold hover:underline">Practical Labs</a>.
-          </p>
-        </div>
-        <div class="flex items-center gap-3 shrink-0">
-          <a href="theory.html" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-secondary/20 border border-secondary/40 text-secondary hover:bg-secondary hover:text-canvas-base font-mono text-xs font-bold transition-all">
-            <span class="material-symbols-outlined text-sm">auto_stories</span>
-            <span>Theory Path →</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- 7 Platform Gateway Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-        <!-- Card 1: Theory & Concepts (Foundations) -->
-        <a href="theory.html" class="block bg-surface-subtle p-6 rounded-xl border border-secondary/40 hover:border-secondary transition-all group relative overflow-hidden shadow-[0_0_15px_rgba(76,215,246,0.08)]">
-          <div class="flex items-center justify-between mb-3">
-            <span class="w-10 h-10 rounded-lg bg-secondary/10 border border-secondary/30 text-secondary flex items-center justify-center">
-              <span class="material-symbols-outlined text-xl">psychology</span>
-            </span>
-            <span class="font-mono text-xs text-secondary font-bold group-hover:translate-x-1 transition-transform">Explore Theory →</span>
-          </div>
-          <h3 class="text-lg font-bold text-on-surface group-hover:text-secondary transition-colors">Theory &amp; Concepts</h3>
-          <p class="text-xs text-on-surface-variant mt-1.5 leading-relaxed">
-            Hardware, OS kernel space, networking models (OSI &amp; TCP/IP), 10-step packet journey, database fundamentals, cryptography math, and 16 side-by-side technical comparisons.
-          </p>
-          <div class="mt-4 pt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[10px] text-outline">
-            <span>FOUNDATIONS &bull; WHY THINGS WORK</span>
-            <span class="text-secondary font-bold">19 Modules</span>
-          </div>
-        </a>
-
-        <!-- Card 2: Learning Hub -->
-        <a href="learning.html" class="block bg-surface-subtle p-6 rounded-xl border border-primary/30 hover:border-primary transition-all group relative overflow-hidden">
-          <div class="flex items-center justify-between mb-3">
-            <span class="w-10 h-10 rounded-lg bg-primary/10 border border-primary/30 text-primary flex items-center justify-center">
-              <span class="material-symbols-outlined text-xl">school</span>
-            </span>
-            <span class="font-mono text-xs text-primary font-bold group-hover:translate-x-1 transition-transform">Explore Hub →</span>
-          </div>
-          <h3 class="text-lg font-bold text-on-surface group-hover:text-primary transition-colors">Learning Hub</h3>
-          <p class="text-xs text-on-surface-variant mt-1.5 leading-relaxed">
-            12 cybersecurity disciplines, 7-stage penetration testing lifecycle, interactive concept simulators (TCP Handshake, SQLi AST), and curated CVE threat feed.
-          </p>
-          <div class="mt-4 pt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[10px] text-outline">
-            <span>CURRICULUM &bull; SIMULATORS</span>
-            <span class="text-primary font-bold">12 Disciplines</span>
-          </div>
-        </a>
-
-        <!-- Card 2: 12 Practical Labs -->
-        <a href="labs.html" class="block bg-surface-subtle p-6 rounded-xl border border-secondary/30 hover:border-secondary transition-all group relative overflow-hidden">
-          <div class="flex items-center justify-between mb-3">
-            <span class="w-10 h-10 rounded-lg bg-secondary/10 border border-secondary/30 text-secondary flex items-center justify-center">
-              <span class="material-symbols-outlined text-xl">science</span>
-            </span>
-            <span class="font-mono text-xs text-secondary font-bold group-hover:translate-x-1 transition-transform">Launch Labs →</span>
-          </div>
-          <h3 class="text-lg font-bold text-on-surface group-hover:text-secondary transition-colors">12 Practical Labs</h3>
-          <p class="text-xs text-on-surface-variant mt-1.5 leading-relaxed">
-            Safe, self-contained educational targets: Nmap discovery, web fuzzing, SQL injection, Hashcat password cracking, Metasploit, and Linux SUID privilege escalation.
-          </p>
-          <div class="mt-4 pt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[10px] text-outline">
-            <span>SAFE TARGETS &bull; HINTS &bull; FLAGS</span>
-            <span class="text-secondary font-bold">12 Labs</span>
-          </div>
-        </a>
-
-        <!-- Card 3: Security Command Handbook -->
-        <a href="handbook/index.html" class="block bg-surface-subtle p-6 rounded-xl border border-border-hairline hover:border-primary transition-all group relative overflow-hidden">
-          <div class="flex items-center justify-between mb-3">
-            <span class="w-10 h-10 rounded-lg bg-surface-raised border border-border-hairline text-on-surface flex items-center justify-center">
-              <span class="material-symbols-outlined text-xl">menu_book</span>
-            </span>
-            <span class="font-mono text-xs text-on-surface-variant group-hover:text-primary group-hover:translate-x-1 transition-all">Read Manuals →</span>
-          </div>
-          <h3 class="text-lg font-bold text-on-surface group-hover:text-primary transition-colors">Command Handbook</h3>
-          <p class="text-xs text-on-surface-variant mt-1.5 leading-relaxed">
-            15 comprehensive CLI manuals covering command syntax, operational flags, realistic use cases, and safety warnings for Linux, Nmap, Metasploit, Wireshark, and Burp.
-          </p>
-          <div class="mt-4 pt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[10px] text-outline">
-            <span>CLI REFERENCE SYSTEM</span>
-            <span class="text-primary font-bold">15 Modules</span>
-          </div>
-        </a>
-
-        <!-- Card 4: Cybersecurity Career Roadmap -->
-        <a href="roadmap.html" class="block bg-surface-subtle p-6 rounded-xl border border-border-hairline hover:border-secondary transition-all group relative overflow-hidden">
-          <div class="flex items-center justify-between mb-3">
-            <span class="w-10 h-10 rounded-lg bg-surface-raised border border-border-hairline text-on-surface flex items-center justify-center">
-              <span class="material-symbols-outlined text-xl">timeline</span>
-            </span>
-            <span class="font-mono text-xs text-on-surface-variant group-hover:text-secondary group-hover:translate-x-1 transition-all">Track Progress →</span>
-          </div>
-          <h3 class="text-lg font-bold text-on-surface group-hover:text-secondary transition-colors">Career Roadmap</h3>
-          <p class="text-xs text-on-surface-variant mt-1.5 leading-relaxed">
-            Structured 11-domain progression track from computer science foundations to advanced offensive security and cloud operations with browser progress saving.
-          </p>
-          <div class="mt-4 pt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[10px] text-outline">
-            <span>LOCAL PROGRESS SAVING</span>
-            <span class="text-secondary font-bold">11 Domains</span>
-          </div>
-        </a>
-
-        <!-- Card 5: Security Tools & Database -->
-        <a href="tools.html" class="block bg-surface-subtle p-6 rounded-xl border border-border-hairline hover:border-primary transition-all group relative overflow-hidden">
-          <div class="flex items-center justify-between mb-3">
-            <span class="w-10 h-10 rounded-lg bg-surface-raised border border-border-hairline text-on-surface flex items-center justify-center">
-              <span class="material-symbols-outlined text-xl">construction</span>
-            </span>
-            <span class="font-mono text-xs text-on-surface-variant group-hover:text-primary group-hover:translate-x-1 transition-all">Open Toolkit →</span>
-          </div>
-          <h3 class="text-lg font-bold text-on-surface group-hover:text-primary transition-colors">Tools &amp; Database</h3>
-          <p class="text-xs text-on-surface-variant mt-1.5 leading-relaxed">
-            13 zero-data-egress in-browser utility tools (CIDR Calc, Hash ID, JWT Inspector, Nmap Builder) + comprehensive 20-tool operational field guide.
-          </p>
-          <div class="mt-4 pt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[10px] text-outline">
-            <span>ZERO CLOUD EGRESS</span>
-            <span class="text-primary font-bold">13 Tools + 20 DB</span>
-          </div>
-        </a>
-
-        <!-- Card 6: Interactive Terminal Sandbox -->
-        <a href="terminal-lab.html" class="block bg-surface-subtle p-6 rounded-xl border border-primary/40 hover:border-primary transition-all group relative overflow-hidden">
-          <div class="flex items-center justify-between mb-3">
-            <span class="w-10 h-10 rounded-lg bg-primary/10 border border-primary/30 text-primary flex items-center justify-center">
-              <span class="material-symbols-outlined text-xl">terminal</span>
-            </span>
-            <span class="font-mono text-xs text-primary font-bold group-hover:translate-x-1 transition-transform">Launch Terminal →</span>
-          </div>
-          <h3 class="text-lg font-bold text-on-surface group-hover:text-primary transition-colors">Terminal Sandbox</h3>
-          <p class="text-xs text-on-surface-variant mt-1.5 leading-relaxed">
-            Browser-based practice terminal simulating authentic outputs for essential tools: Nmap, ffuf, Hydra, Hashcat, Metasploit, and Linux bash utilities.
-          </p>
-          <div class="mt-4 pt-3 border-t border-border-hairline flex items-center justify-between font-mono text-[10px] text-outline">
-            <span>INTERACTIVE CLI SANDBOX</span>
-            <span class="text-primary font-bold">Live Output</span>
-          </div>
-        </a>
-
-      </div>
-
-      <!-- Quick Reference Banner -->
-      <div class="mt-6 p-4 rounded-xl border border-border-hairline bg-surface-subtle flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
-        <span class="text-on-surface-variant">Looking for offensive syntax and quick cheatsheets?</span>
-        <div class="flex items-center gap-3">
-          <a href="payloads.html" class="text-danger-critical hover:underline font-bold flex items-center gap-1">
-            <span>Offensive Payloads Cheatsheet →</span>
-          </a>
-          <span class="text-border-hairline">|</span>
-          <a href="glossary.html" class="text-primary hover:underline font-bold flex items-center gap-1">
-            <span>Cybersecurity Glossary (60+ Terms) →</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================================================================= -->
-    <!-- 9. Resume / CV & Contact Section                                         -->
-    <!-- ======================================================================= -->
-    <section class="max-w-7xl mx-auto px-6 py-12 border-t border-border-hairline" id="contact">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        
-        <!-- Left: Direct Contact Information -->
-        <div class="lg:col-span-5 space-y-6">
-          <div class="flex items-center gap-2 font-mono text-xs text-primary">
-            <span class="material-symbols-outlined text-sm">badge</span>
-            <span>CONNECT &amp; VERIFY // 06</span>
-          </div>
-          <h2 class="text-2xl lg:text-3xl font-bold text-on-surface">
-            Resume &amp; Professional Contact
-          </h2>
-          <p class="text-sm text-on-surface-variant leading-relaxed">
-            I am actively seeking offensive security internships, penetration testing roles, and collaborative security engineering opportunities. Let's discuss defensive architecture, penetration testing workflows, or technical projects.
-          </p>
-          <div class="space-y-3 font-mono text-xs">
-            <div class="flex items-center gap-3 p-3 rounded bg-surface-subtle border border-border-hairline">
-              <span class="material-symbols-outlined text-primary text-xl">link</span>
-              <div>
-                <div class="text-[10px] text-outline">PRIMARY PORTAL</div>
-                <a class="text-on-surface hover:text-primary transition-colors font-medium" href="https://endlessus.in">endlessus.in</a>
-              </div>
-            </div>
-            <div class="flex items-center gap-3 p-3 rounded bg-surface-subtle border border-border-hairline">
-              <span class="material-symbols-outlined text-secondary text-xl">code</span>
-              <div>
-                <div class="text-[10px] text-outline">GITHUB PROFILE</div>
-                <a class="text-on-surface hover:text-secondary transition-colors font-medium" href="https://github.com/mihrajmashoor8301-collab" rel="noopener noreferrer" target="_blank">github.com/mihrajmashoor8301-collab</a>
-              </div>
-            </div>
-          </div>
-          <div class="pt-2 flex flex-wrap gap-3">
-            <a class="flex items-center justify-between gap-2 p-3 rounded-lg border border-border-hairline bg-surface-subtle hover:border-primary/50 transition-all font-mono text-xs text-on-surface" download="CV_2026_UPDATED.pdf" href="CV_2026_UPDATED.pdf">
-              <span class="material-symbols-outlined text-base text-primary">download</span>
-              <span>Download PDF Resume</span>
-            </a>
-            <a class="flex items-center justify-between gap-2 p-3 rounded-lg border border-border-hairline bg-surface-subtle hover:border-secondary/50 transition-all font-mono text-xs text-on-surface" href="resume.html">
-              <span class="material-symbols-outlined text-base text-secondary">visibility</span>
-              <span>View Web Resume</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Right: Contact Inquiry Form -->
-        <div class="lg:col-span-7 bg-surface-subtle rounded-xl p-6 md:p-8 border border-border-hairline">
-          <div class="flex items-center justify-between mb-6 pb-3 border-b border-border-hairline">
-            <div class="font-mono text-sm font-bold text-on-surface flex items-center gap-2">
-              <span class="material-symbols-outlined text-primary text-base">send</span>
-              <span>Direct Recruitment / Inquiry Dispatch</span>
-            </div>
-            <span class="font-mono text-[10px] text-primary">// SECURE_CHANNEL</span>
-          </div>
-          <form class="space-y-4" id="inquiry-form">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label class="block font-mono text-[10px] text-outline mb-1 uppercase tracking-wider">Sender Name / Organization</label>
-                <input class="w-full bg-canvas-base border border-border-hairline rounded px-3 py-2 text-on-surface placeholder:text-outline font-mono text-xs focus:border-secondary focus:ring-0 focus:outline-none transition-colors" id="form-sender" placeholder="e.g. Offensive Security Lead" required="" type="text"/>
-              </div>
-              <div>
-                <label class="block font-mono text-[10px] text-outline mb-1 uppercase tracking-wider">Contact Email</label>
-                <input class="w-full bg-canvas-base border border-border-hairline rounded px-3 py-2 text-on-surface placeholder:text-outline font-mono text-xs focus:border-secondary focus:ring-0 focus:outline-none transition-colors" id="form-email" placeholder="lead@company.com" required="" type="email"/>
-              </div>
-            </div>
-            <div>
-              <label class="block font-mono text-[10px] text-outline mb-1 uppercase tracking-wider">Inquiry Subject / Role Specification</label>
-              <input class="w-full bg-canvas-base border border-border-hairline rounded px-3 py-2 text-on-surface placeholder:text-outline font-mono text-xs focus:border-secondary focus:ring-0 focus:outline-none transition-colors" id="form-subject" placeholder="Cybersecurity Internship / Project Collaboration" required="" type="text"/>
-            </div>
-            <div>
-              <label class="block font-mono text-[10px] text-outline mb-1 uppercase tracking-wider">Message Payload</label>
-              <textarea class="w-full bg-canvas-base border border-border-hairline rounded px-3 py-2 text-on-surface placeholder:text-outline font-mono text-xs focus:border-secondary focus:ring-0 focus:outline-none transition-colors" id="form-message" placeholder="Details regarding timeline, technical scope, or team objectives..." required="" rows="4"></textarea>
-            </div>
-            <div class="pt-2 flex items-center justify-between">
-              <span class="font-mono text-[10px] text-outline flex items-center gap-1">
-                <span class="material-symbols-outlined text-xs">lock</span>
-                <span>PGP Verification Available</span>
+      <div class="bg-white dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-800 p-8 sm:p-10 shadow-sm">
+        <div class="flex flex-col lg:flex-row gap-8 items-start">
+          <!-- Profile Avatar & Verified Badges -->
+          <div class="flex flex-col items-center sm:items-start shrink-0">
+            <div class="relative">
+              <img alt="Mihraj Mashhoor K" class="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl object-cover border-2 border-slate-200 dark:border-slate-700 shadow-md" src="dp4.jpeg" onerror="this.src='https://ui-avatars.com/api/?name=Mihraj+Mashhoor&background=0284c7&color=fff&size=128'"/>
+              <span class="absolute -bottom-2 -right-2 px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-500 text-white shadow-sm flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+                ACTIVE
               </span>
-              <button class="inline-flex items-center gap-2 px-5 py-2.5 rounded bg-primary-container text-canvas-base font-mono text-xs font-bold hover:bg-primary transition-all shadow-[0_0_12px_rgba(16,185,129,0.25)] cursor-pointer" type="submit">
-                <span>Transmit Message</span>
-                <span class="material-symbols-outlined text-sm">send</span>
-              </button>
             </div>
-            <div id="inquiry-status" class="hidden mt-3 p-3 rounded bg-surface-raised border border-border-hairline text-xs font-mono"></div>
-          </form>
-        </div>
+            <div class="mt-4 flex flex-col gap-1.5 w-full">
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-sky-50 dark:bg-sky-950/60 border border-sky-100 dark:border-sky-900 text-sky-700 dark:text-sky-300 text-xs font-mono">
+                <span class="material-symbols-outlined text-[14px]">military_tech</span>
+                <span>THM Top 2% Global</span>
+              </div>
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-xs font-mono">
+                <span class="material-symbols-outlined text-[14px]">verified</span>
+                <span>Google Cyber Certified</span>
+              </div>
+            </div>
+          </div>
 
+          <!-- Developer Bio & Direction -->
+          <div class="flex-1 space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <h3 class="text-2xl font-headline font-bold text-slate-900 dark:text-white">Mihraj Mashhoor K</h3>
+                <p class="text-sm font-mono text-sky-600 dark:text-sky-400 mt-0.5">Offensive Security Researcher · B.Tech Cybersecurity</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <a class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors" href="https://github.com/mihrajmashoor8301-collab" target="_blank" title="GitHub">
+                  <span class="material-symbols-outlined text-[20px]">code</span>
+                </a>
+                <a class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors" href="https://tryhackme.com/p/mihrajmashoor8301" target="_blank" title="TryHackMe Profile">
+                  <span class="material-symbols-outlined text-[20px]">terminal</span>
+                </a>
+                <a class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors" href="https://www.linkedin.com/in/mihraj-mashhoor-k/" target="_blank" title="LinkedIn Profile">
+                  <span class="material-symbols-outlined text-[20px]">share</span>
+                </a>
+                <a class="px-3.5 py-2 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold transition-colors flex items-center gap-1.5 shadow-sm" href="mailto:mashhoormihraj@gmail.com">
+                  <span class="material-symbols-outlined text-[16px]">mail</span>
+                  <span>Contact</span>
+                </a>
+              </div>
+            </div>
+
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+              B.Tech Cybersecurity undergraduate with deep research interest in offensive security, practical penetration testing, vulnerability assessment, and sovereign software architecture. With over 140+ completed TryHackMe challenge rooms (ranked top 2% worldwide) and professional industry certifications, I design tools and educational interfaces grounded in engineering rigor rather than marketing tropes.
+            </p>
+
+            <!-- Technical Skills Matrix -->
+            <div class="pt-2">
+              <span class="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold block mb-2">Technical Competencies</span>
+              <div class="flex flex-wrap gap-2 text-xs font-mono">
+                <span class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Penetration Testing</span>
+                <span class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Vulnerability Assessment</span>
+                <span class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Linux &amp; Bash</span>
+                <span class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Python &amp; C</span>
+                <span class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Nmap &amp; Metasploit</span>
+                <span class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Web App Security (OWASP Top 10)</span>
+                <span class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Local AI &amp; Multi-Agent Systems</span>
+              </div>
+            </div>
+
+            <!-- Future Portfolio Direction -->
+            <div class="pt-3 border-t border-slate-100 dark:border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+              <span class="text-slate-500 dark:text-slate-400">
+                Independent Portfolio live at <a class="text-sky-600 dark:text-sky-400 hover:underline font-mono" href="https://portfolio.endlessus.in" target="_blank">portfolio.endlessus.in</a>
+              </span>
+              <div class="flex items-center gap-3">
+                <a class="text-sky-600 dark:text-sky-400 hover:underline font-semibold flex items-center gap-1" href="resume.html">
+                  <span>Interactive Resume</span>
+                  <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                </a>
+                <a class="text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 font-semibold flex items-center gap-1" href="https://portfolio.endlessus.in" target="_blank">
+                  <span>Case Studies</span>
+                  <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
+    <!-- ========================================================================= -->
+    <!-- Architecture Doctrine / 3 Pillars                                         -->
+    <!-- ========================================================================= -->
+    <section class="max-w-6xl mx-auto px-6 py-14 border-t border-slate-200 dark:border-slate-800" id="principles">
+      <div class="text-center max-w-xl mx-auto mb-12">
+        <span class="text-xs font-mono uppercase tracking-wider text-sky-600 dark:text-sky-400 font-semibold">Foundations</span>
+        <h2 class="text-2xl sm:text-3xl font-headline font-bold text-slate-900 dark:text-white mt-1">Core Principles</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-2">
+          Strict engineering constraints ensuring performance, reliability, and zero compromise on integrity.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Pillar 1 -->
+        <div class="bg-white dark:bg-slate-900/40 p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col">
+          <div class="w-10 h-10 rounded-lg bg-sky-50 dark:bg-sky-950/60 flex items-center justify-center text-sky-600 dark:text-sky-400 mb-4">
+            <span class="material-symbols-outlined text-[22px]">lock</span>
+          </div>
+          <h3 class="font-headline font-semibold text-base text-slate-900 dark:text-white">Zero-Leak Privacy</h3>
+          <p class="text-slate-600 dark:text-slate-400 text-sm mt-2 leading-relaxed">
+            All user data, cryptographic material, and payload analyses execute locally via browser-isolated WebAssembly. No tracking cookies or remote collection.
+          </p>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="bg-white dark:bg-slate-900/40 p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col">
+          <div class="w-10 h-10 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mb-4">
+            <span class="material-symbols-outlined text-[22px]">verified</span>
+          </div>
+          <h3 class="font-headline font-semibold text-base text-slate-900 dark:text-white">Sovereign Precision</h3>
+          <p class="text-slate-600 dark:text-slate-400 text-sm mt-2 leading-relaxed">
+            Constructed without bloated abstractions. Raw terminal tools, verified exploit teardowns, and actionable technical documentation.
+          </p>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="bg-white dark:bg-slate-900/40 p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col">
+          <div class="w-10 h-10 rounded-lg bg-cyan-50 dark:bg-cyan-950/60 flex items-center justify-center text-cyan-600 dark:text-cyan-400 mb-4">
+            <span class="material-symbols-outlined text-[22px]">splitscreen</span>
+          </div>
+          <h3 class="font-headline font-semibold text-base text-slate-900 dark:text-white">Independent Architecture</h3>
+          <p class="text-slate-600 dark:text-slate-400 text-sm mt-2 leading-relaxed">
+            Each platform operates as an autonomous node. Updates, migrations, or maintenance on one system never impede your workflow on others.
+          </p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- ========================================================================= -->
-  <!-- 10. Footer                                                                -->
+  <!-- Clean, Minimal Footer                                                     -->
   <!-- ========================================================================= -->
-  <footer class="w-full border-t border-border-hairline bg-canvas-base mt-20">
-    <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between items-center gap-4">
-      <div class="flex items-center gap-2 font-mono text-xs text-on-surface font-semibold">
-        <span class="material-symbols-outlined text-primary text-base">terminal</span>
-        <span>Mihraj Mashhoor K</span>
-        <span class="text-outline">|</span>
-        <span class="text-on-surface-variant font-normal">Offensive Security &amp; Local AI Research</span>
+  <footer class="w-full border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#060911] transition-colors">
+    <div class="max-w-6xl mx-auto px-6 py-12">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+        <div>
+          <h4 class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-900 dark:text-slate-200 mb-3">Platforms</h4>
+          <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
+            <li><a class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors" href="https://learning.endlessus.in">Academy</a></li>
+            <li><a class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors" href="https://tools.endlessus.in">Tools</a></li>
+            <li><a class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors" href="https://notes.endlessus.in">Library</a></li>
+            <li><a class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors" href="https://portfolio.endlessus.in">Portfolio</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-900 dark:text-slate-200 mb-3">Ecosystem</h4>
+          <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
+            <li><a class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors" href="#platforms">Overview</a></li>
+            <li><a class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors" href="#developer">Developer</a></li>
+            <li><a class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors" href="#principles">Principles</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-900 dark:text-slate-200 mb-3">Community</h4>
+          <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
+            <li><a class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors" href="https://github.com/mihrajmashoor8301-collab" target="_blank">GitHub</a></li>
+            <li><a class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors" href="https://tryhackme.com/p/mihrajmashoor8301" target="_blank">TryHackMe Node</a></li>
+            <li><a class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors" href="https://www.linkedin.com/in/mihraj-mashhoor-k/" target="_blank">LinkedIn</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-900 dark:text-slate-200 mb-3">Integrity</h4>
+          <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
+            <li><a class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors" href="#principles">Zero-Leak Privacy</a></li>
+            <li><a class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors" href="#principles">Sovereign Architecture</a></li>
+            <li><a class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors" href="mailto:mashhoormihraj@gmail.com">Contact Developer</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="flex items-center space-x-6 font-mono text-xs text-on-surface-variant flex-wrap gap-y-2">
-        <a class="hover:text-primary transition-colors" href="https://github.com/mihrajmashoor8301-collab" rel="noopener noreferrer" target="_blank">GitHub</a>
-        <a class="hover:text-primary transition-colors" href="learning.html">Endlessus Platform</a>
-        <a class="hover:text-primary transition-colors" href="theory.html">Theory &amp; Concepts</a>
-        <a class="hover:text-primary transition-colors" href="handbook/index.html">Handbook</a>
-        <a class="hover:text-primary transition-colors" href="CV_2026_UPDATED.pdf" target="_blank">Resume PDF</a>
-        <a class="hover:text-primary transition-colors" href="#contact">Contact</a>
-      </div>
-      <div class="font-mono text-[10px] text-outline">
-        &copy; 2026 Mihraj Mashhoor K. Authorized educational environments only.
+      <div class="pt-6 border-t border-slate-100 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400">
+        <p>© 2026 CALION Ecosystem. All sovereign rights reserved.</p>
+        <p class="mt-2 sm:mt-0 font-mono text-[11px] text-slate-400">Engineered with precision for cybersecurity researchers.</p>
       </div>
     </div>
   </footer>
 
-  <!-- Page Utilities Script -->
+  <!-- Theme toggle script -->
   <script>
-    // Mobile Menu Toggle
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuIcon = document.getElementById('menu-icon');
+    (function() {
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      const htmlElement = document.documentElement;
 
-    if (menuBtn && mobileMenu) {
-      menuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        menuIcon.textContent = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
-      });
-    }
-
-    // Smooth scroll and close mobile menu on click
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        const targetId = this.getAttribute('href');
-        if (targetId && targetId !== '#') {
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-            e.preventDefault();
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-              mobileMenu.classList.add('hidden');
-              if (menuIcon) menuIcon.textContent = 'menu';
-            }
-          }
+      themeToggleBtn.addEventListener('click', () => {
+        if (htmlElement.classList.contains('dark')) {
+          htmlElement.classList.remove('dark');
+          htmlElement.classList.add('light');
+          localStorage.setItem('calion_theme', 'light');
+          localStorage.setItem('endlessus_learning_theme', 'normal');
+        } else {
+          htmlElement.classList.remove('light');
+          htmlElement.classList.add('dark');
+          localStorage.setItem('calion_theme', 'dark');
+          localStorage.setItem('endlessus_learning_theme', 'hacker');
         }
       });
-    });
-
-    // Direct Inquiry Mailto Dispatcher with Webmail/Clipboard Fallback
-    const contactForm = document.getElementById('inquiry-form');
-    if (contactForm) {
-      contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const sender = document.getElementById('form-sender')?.value || 'Recruiter / Collaborator';
-        const email = document.getElementById('form-email')?.value || '';
-        const subject = document.getElementById('form-subject')?.value || 'Cybersecurity Role / Collaboration Inquiry';
-        const message = document.getElementById('form-message')?.value || '';
-
-        const targetEmail = 'cybermihraj32@gmail.com';
-        const body = `Sender: ${sender}\nContact Email: ${email}\n\nMessage Payload:\n${message}`;
-        const mailtoUrl = `mailto:${targetEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-        const statusEl = document.getElementById('inquiry-status');
-        if (statusEl) {
-          statusEl.classList.remove('hidden');
-          statusEl.innerHTML = `
-            <div class="flex items-center justify-between gap-2 text-primary font-bold mb-1">
-              <span>✓ Opening Email Client...</span>
-              <button type="button" id="copy-inquiry-btn" class="px-2 py-0.5 rounded bg-primary/10 border border-primary/30 text-primary hover:bg-primary/20 text-[10px] font-mono cursor-pointer">Copy to Clipboard</button>
-            </div>
-            <div class="text-[11px] text-on-surface-variant">
-              Sending to <strong>${targetEmail}</strong>. If your email application does not launch, click "Copy to Clipboard" to paste into your webmail.
-            </div>
-          `;
-          const copyBtn = document.getElementById('copy-inquiry-btn');
-          if (copyBtn) {
-            copyBtn.addEventListener('click', () => {
-              const fullText = `To: ${targetEmail}\nSubject: ${subject}\n\n${body}`;
-              navigator.clipboard.writeText(fullText).then(() => {
-                copyBtn.textContent = 'Copied!';
-                setTimeout(() => { copyBtn.textContent = 'Copy to Clipboard'; }, 2000);
-              }).catch(() => {
-                copyBtn.textContent = 'Failed to copy';
-              });
-            });
-          }
-        }
-        window.location.href = mailtoUrl;
-      });
-    }
+    })();
   </script>
-
-  <!-- Interactive Portfolio System -->
-  <script src="portfolio-interactive.js"></script>
 </body>
 </html>
