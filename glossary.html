@@ -185,13 +185,6 @@
                 <div class="text-[10px] text-outline">15 modular security guides</div>
               </div>
             </a>
-            <a href="tools.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
-              <span class="material-symbols-outlined text-sm text-warning">build</span>
-              <div>
-                <div class="font-bold text-on-surface">Security Tools</div>
-                <div class="text-[10px] text-outline">Tools encyclopedia &amp; Nmap builder</div>
-              </div>
-            </a>
             <a href="methodology.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
               <span class="material-symbols-outlined text-sm text-danger-critical">security</span>
               <div>
@@ -223,13 +216,29 @@
         </a>
       </nav>
 
-      <!-- Header Controls: Search, Theme Toggle, Mobile Toggle -->
-      <div class="flex items-center gap-2 sm:gap-3">
+      <!-- Header Controls: Streak & XP, Search, Auth Slot, Theme Toggle, Mobile Toggle -->
+      <div class="flex items-center gap-2 sm:gap-3 font-mono text-xs">
+        <!-- Streak Pill -->
+        <div class="hidden sm:flex items-center gap-1 px-2.5 py-1 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" title="Current Daily Streak">
+          <span class="text-amber-500">🔥</span>
+          <span id="header-streak-pill" class="font-bold">1d</span>
+        </div>
+
+        <!-- XP Pill -->
+        <div class="hidden sm:flex items-center gap-1 px-2.5 py-1 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" title="Total Accumulated XP">
+          <span class="text-primary font-bold">⚡</span>
+          <span id="header-xp-pill" class="font-bold">0 XP</span>
+        </div>
+
         <!-- Search Trigger -->
-        <button data-trigger-cmd class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border-hairline bg-surface-raised text-xs text-on-surface hover:border-primary transition-colors cursor-pointer" title="Search Everything (Cmd+K)">
+        <button type="button" class="academy-search-btn inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border-hairline bg-surface-raised hover:border-primary text-xs font-mono text-outline hover:text-on-surface transition-colors cursor-pointer" title="Search Academy (Cmd+K)">
           <span class="material-symbols-outlined text-sm text-primary">search</span>
-          <span class="hidden sm:inline text-[11px] text-outline">⌘K</span>
+          <span class="hidden lg:inline">Search</span>
+          <kbd class="hidden lg:inline px-1 py-0.2 rounded bg-surface-subtle border border-border-hairline text-[10px]">⌘K</kbd>
         </button>
+
+        <!-- Auth Slot -->
+        <div id="academy-auth-slot"></div>
 
         <!-- Theme Toggle: Normal View vs Hacker View -->
         <div class="flex items-center border border-border-hairline rounded-lg p-0.5 bg-surface-raised text-xs font-mono">
@@ -277,8 +286,8 @@
       <div class="space-y-6">
         <div class="flex items-center justify-between pb-4 border-b border-border-hairline">
           <div class="flex items-center gap-2 font-bold text-sm text-on-surface">
-            <span class="w-6 h-6 rounded bg-primary/20 text-primary flex items-center justify-center font-mono text-xs">E</span>
-            <span>Academy Navigation</span>
+            <span class="w-6 h-6 rounded bg-primary/20 text-primary flex items-center justify-center font-mono text-xs">C</span>
+            <span>CALION Academy</span>
           </div>
           <button id="mobile-drawer-close" class="p-1.5 rounded-lg text-on-surface-variant hover:text-on-surface">
             <span class="material-symbols-outlined text-lg">close</span>
@@ -298,7 +307,7 @@
             <div class="text-[10px] text-outline uppercase tracking-wider mb-2 font-bold">PRACTICE</div>
             <div class="space-y-1 pl-2">
               <a href="labs.html" class="block py-1 text-on-surface-variant hover:text-primary">Practical Labs (13)</a>
-              <a href="terminal-lab.html" class="block py-1 text-on-surface-variant hover:text-primary">Terminal Practice</a>
+              <a href="terminal-lab.html" class="block py-1 text-on-surface-variant hover:text-primary">Terminal Practice Sandbox</a>
             </div>
           </div>
           <div>
@@ -321,7 +330,7 @@
       </div>
 
       <div class="pt-6 border-t border-border-hairline text-center text-[10px] text-outline font-mono">
-        Endlessus Cybersecurity Academy &copy; 2026
+        CALION Academy &copy; 2026 · Free &amp; Open Cybersecurity Training
       </div>
     </div>
   </div>
@@ -561,7 +570,7 @@
         </div>
         <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
           <span class="text-outline">CWE-94</span>
-          <a href="payloads.html" class="text-danger-critical hover:underline">Payloads &rarr;</a>
+          <a href="learning.html#mod-web" class="text-primary hover:underline">Web Security &rarr;</a>
         </div>
       </div>
 
@@ -577,7 +586,7 @@
         </div>
         <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
           <span class="text-outline">CWE-98</span>
-          <a href="payloads.html#lfi" class="text-primary hover:underline">Wrappers &rarr;</a>
+          <a href="theory.html" class="text-primary hover:underline">Theory Reference &rarr;</a>
         </div>
       </div>
 
@@ -593,7 +602,7 @@
         </div>
         <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
           <span class="text-outline">Header: CSP</span>
-          <a href="tools.html#csp-tool" class="text-primary hover:underline">CSP Analyzer &rarr;</a>
+          <a href="labs.html" class="text-primary hover:underline">Practice Lab &rarr;</a>
         </div>
       </div>
 
@@ -626,7 +635,7 @@
         </div>
         <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
           <span class="text-outline">Vector: Outbound TCP</span>
-          <a href="payloads.html#shells" class="text-primary hover:underline">Generator &rarr;</a>
+          <a href="terminal-lab.html" class="text-primary hover:underline">Terminal Lab &rarr;</a>
         </div>
       </div>
 
@@ -659,7 +668,7 @@
         </div>
         <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
           <span class="text-outline">RFC 7519</span>
-          <a href="tools.html#jwt-tool" class="text-primary hover:underline">JWT Tool &rarr;</a>
+          <a href="learning.html#mod-auth" class="text-primary hover:underline">Auth Module &rarr;</a>
         </div>
       </div>
 
@@ -724,7 +733,7 @@
         </div>
         <div class="pt-2 border-t border-border-hairline/60 flex items-center justify-between text-[11px] font-mono">
           <span class="text-outline">RFC 4632</span>
-          <a href="tools.html#cidr-calc" class="text-primary hover:underline">CIDR Calculator &rarr;</a>
+          <a href="handbook/network-analysis.html" class="text-primary hover:underline">Network Handbook &rarr;</a>
         </div>
       </div>
 
@@ -833,19 +842,27 @@
     <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-2">
         <span class="w-2 h-2 rounded-full bg-primary"></span>
-        <span class="text-on-surface font-bold">Mihraj Mashhoor K</span>
-        <span>· Cybersecurity Engineering &amp; Research</span>
+        <span class="text-on-surface font-bold">CALION Academy</span>
+        <span>· Free &amp; Open Cybersecurity Training</span>
       </div>
       <div class="flex items-center gap-4 text-outline">
         <a href="index.html" class="hover:text-primary transition-colors">Portfolio</a>
         <a href="learning.html" class="hover:text-primary transition-colors">Learning</a>
         <a href="labs.html" class="hover:text-primary transition-colors">Labs</a>
-        <a href="methodology.html" class="hover:text-primary transition-colors">Methodology</a>
+        <a href="terminal-lab.html" class="hover:text-primary transition-colors">Terminal</a>
+        <a href="glossary.html" class="text-primary font-bold">Glossary</a>
       </div>
     </div>
   </footer>
 
   <script src="portfolio-interactive.js"></script>
+  <script src="learning-data.js"></script>
+  <script src="vendor/supabase.min.js"></script>
+  <script src="calion-runtime-config.js"></script>
+  <script src="academy-config.js"></script>
+  <script src="academy-state.js"></script>
+  <script src="academy-auth.js"></script>
+  <script src="academy-sync.js"></script>
   <script>
     // Client-side search and category filtering for glossary
     document.addEventListener('DOMContentLoaded', () => {

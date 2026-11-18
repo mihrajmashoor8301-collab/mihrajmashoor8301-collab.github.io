@@ -99,7 +99,7 @@ console.log('  ✓ Gitignore policy strictly prevents credential tracking');
 // -----------------------------------------------------------------------------
 // 5. Script Load Order on All Relevant Academy Pages
 // -----------------------------------------------------------------------------
-console.log('\n--- 5. Testing Script Load Order on All 9 Academy Pages ---');
+console.log('\n--- 5. Testing Script Load Order on All 11 Academy Pages ---');
 
 const ACADEMY_PAGES = [
   'auth.html',
@@ -110,7 +110,9 @@ const ACADEMY_PAGES = [
   'profile.html',
   'roadmap.html',
   'room.html',
-  'labs.html'
+  'labs.html',
+  'glossary.html',
+  'terminal-lab.html'
 ];
 
 ACADEMY_PAGES.forEach(page => {

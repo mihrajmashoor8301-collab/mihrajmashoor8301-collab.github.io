@@ -330,14 +330,29 @@
         </a>
       </nav>
 
-      <!-- Header Controls: Search, Theme Toggle, Portfolio CTA -->
-      <div class="flex items-center gap-2 sm:gap-3">
-        
+      <!-- Header Controls: Streak & XP, Search, Auth Slot, Theme Toggle, Mobile Toggle -->
+      <div class="flex items-center gap-2 sm:gap-3 font-mono text-xs">
+        <!-- Streak Pill -->
+        <div class="hidden sm:flex items-center gap-1 px-2.5 py-1 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" title="Current Daily Streak">
+          <span class="text-amber-500">🔥</span>
+          <span id="header-streak-pill" class="font-bold">1d</span>
+        </div>
+
+        <!-- XP Pill -->
+        <div class="hidden sm:flex items-center gap-1 px-2.5 py-1 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" title="Total Accumulated XP">
+          <span class="text-primary font-bold">⚡</span>
+          <span id="header-xp-pill" class="font-bold">0 XP</span>
+        </div>
+
         <!-- Search Trigger -->
-        <button data-trigger-cmd class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border-hairline bg-surface-raised text-xs text-on-surface hover:border-primary transition-colors cursor-pointer" title="Search Everything (Cmd+K)">
+        <button type="button" class="academy-search-btn inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border-hairline bg-surface-raised hover:border-primary text-xs font-mono text-outline hover:text-on-surface transition-colors cursor-pointer" title="Search Academy (Cmd+K)">
           <span class="material-symbols-outlined text-sm text-primary">search</span>
-          <span class="hidden sm:inline text-[11px] text-outline">⌘K</span>
+          <span class="hidden lg:inline">Search</span>
+          <kbd class="hidden lg:inline px-1 py-0.2 rounded bg-surface-subtle border border-border-hairline text-[10px]">⌘K</kbd>
         </button>
+
+        <!-- Auth Slot -->
+        <div id="academy-auth-slot"></div>
 
         <!-- Theme Toggle: Normal View vs Hacker View -->
         <div class="flex items-center border border-border-hairline rounded-lg p-0.5 bg-surface-raised text-xs font-mono">
@@ -355,6 +370,33 @@
         <button type="button" id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" aria-label="Toggle Mobile Menu">
           <span class="material-symbols-outlined text-base">menu</span>
         </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer for Navigation -->
+    <div id="mobile-drawer" class="academy-mobile-drawer">
+      <div>
+        <div class="academy-mobile-group-title">LEARN</div>
+        <a href="learning.html#start-here" class="academy-mobile-link">Start Here (Zero Prerequisites)</a>
+        <a href="learning.html#curriculum" class="academy-mobile-link">Full Curriculum (40 Rooms)</a>
+        <a href="learning.html#progress" class="academy-mobile-link">My Progress &amp; Milestones</a>
+      </div>
+      <div>
+        <div class="academy-mobile-group-title">PRACTICE</div>
+        <a href="labs.html" class="academy-mobile-link active">Practical Labs (13)</a>
+        <a href="terminal-lab.html" class="academy-mobile-link">Terminal Practice Sandbox</a>
+      </div>
+      <div>
+        <div class="academy-mobile-group-title">REFERENCE</div>
+        <a href="theory.html" class="academy-mobile-link">Theory &amp; Concepts</a>
+        <a href="handbook/index.html" class="academy-mobile-link">Command Handbook</a>
+        <a href="methodology.html" class="academy-mobile-link">Pentest Methodology</a>
+        <a href="glossary.html" class="academy-mobile-link">Cybersecurity Glossary</a>
+        <a href="roadmap.html" class="academy-mobile-link">Career Roadmap</a>
+      </div>
+      <div>
+        <div class="academy-mobile-group-title">PORTFOLIO</div>
+        <a href="index.html" class="academy-mobile-link">Mihraj Mashhoor K Portfolio</a>
       </div>
     </div>
 
@@ -1680,18 +1722,19 @@
     </div>
   </div>
 
-<footer class="border-t border-border-hairline bg-surface-subtle py-8 text-center font-mono text-xs text-on-surface-variant mt-16">
+  <!-- Global Footer -->
+  <footer class="border-t border-border-hairline bg-surface-subtle py-8 text-center font-mono text-xs text-on-surface-variant mt-16">
     <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-2">
         <span class="w-2 h-2 rounded-full bg-primary"></span>
-        <span class="text-on-surface font-bold">Mihraj Mashhoor K</span>
-        <span>· Cybersecurity Engineering &amp; Research</span>
+        <span class="text-on-surface font-bold">CALION Academy</span>
+        <span>· Free &amp; Open Cybersecurity Training</span>
       </div>
       <div class="flex items-center gap-4 text-outline">
         <a href="index.html" class="hover:text-primary transition-colors">Portfolio</a>
         <a href="learning.html" class="hover:text-primary transition-colors">Learning</a>
-        <a href="terminal-lab.html" class="hover:text-primary transition-colors">CLI Roadmap</a>
-        <a href="methodology.html" class="hover:text-primary transition-colors">Methodology</a>
+        <a href="labs.html" class="text-primary font-bold">Labs</a>
+        <a href="terminal-lab.html" class="hover:text-primary transition-colors">Terminal</a>
         <a href="glossary.html" class="hover:text-primary transition-colors">Glossary</a>
       </div>
     </div>

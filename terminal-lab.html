@@ -195,13 +195,6 @@
                 <div class="text-[10px] text-outline">15 modular security guides</div>
               </div>
             </a>
-            <a href="tools.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
-              <span class="material-symbols-outlined text-sm text-warning">build</span>
-              <div>
-                <div class="font-bold text-on-surface">Security Tools</div>
-                <div class="text-[10px] text-outline">Tools encyclopedia &amp; Nmap builder</div>
-              </div>
-            </a>
             <a href="methodology.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
               <span class="material-symbols-outlined text-sm text-danger-critical">security</span>
               <div>
@@ -233,18 +226,35 @@
         </a>
       </nav>
 
-      <!-- Header Controls: Search, Theme Toggle, Cheatsheet, Mobile Toggle -->
-      <div class="flex items-center gap-2 sm:gap-3">
+      <!-- Header Controls: Streak & XP, Cheatsheet, Search, Auth Slot, Theme Toggle, Mobile Toggle -->
+      <div class="flex items-center gap-2 sm:gap-3 font-mono text-xs">
+        <!-- Streak Pill -->
+        <div class="hidden sm:flex items-center gap-1 px-2.5 py-1 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" title="Current Daily Streak">
+          <span class="text-amber-500">🔥</span>
+          <span id="header-streak-pill" class="font-bold">1d</span>
+        </div>
+
+        <!-- XP Pill -->
+        <div class="hidden sm:flex items-center gap-1 px-2.5 py-1 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" title="Total Accumulated XP">
+          <span class="text-primary font-bold">⚡</span>
+          <span id="header-xp-pill" class="font-bold">0 XP</span>
+        </div>
+
+        <!-- Quick Cheatsheet Button -->
         <button id="quick-cheatsheet-btn" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded border border-primary/40 bg-primary/10 font-mono text-xs text-primary hover:bg-primary hover:text-white transition-all font-bold cursor-pointer" title="View Quick Command Cheatsheet">
           <span class="material-symbols-outlined text-sm">bolt</span>
           <span>Cheatsheet</span>
         </button>
         
         <!-- Search Trigger -->
-        <button data-trigger-cmd class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border-hairline bg-surface-raised text-xs text-on-surface hover:border-primary transition-colors cursor-pointer" title="Search Everything (Cmd+K)">
+        <button type="button" class="academy-search-btn inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border-hairline bg-surface-raised hover:border-primary text-xs font-mono text-outline hover:text-on-surface transition-colors cursor-pointer" title="Search Academy (Cmd+K)">
           <span class="material-symbols-outlined text-sm text-primary">search</span>
-          <span class="hidden sm:inline text-[11px] text-outline">⌘K</span>
+          <span class="hidden lg:inline">Search</span>
+          <kbd class="hidden lg:inline px-1 py-0.2 rounded bg-surface-subtle border border-border-hairline text-[10px]">⌘K</kbd>
         </button>
+
+        <!-- Auth Slot -->
+        <div id="academy-auth-slot"></div>
 
         <!-- Theme Toggle: Normal View vs Hacker View -->
         <div class="flex items-center border border-border-hairline rounded-lg p-0.5 bg-surface-raised text-xs font-mono">
@@ -574,8 +584,8 @@
         <div>
           <div class="text-danger-critical font-bold mb-1 flex items-center justify-between">
             <span>RCE, LFI &amp; Reverse Shell Payloads:</span>
-            <a href="payloads.html" class="text-primary hover:underline text-[10px] flex items-center gap-1 font-bold">
-              <span>Full Payloads Cheatsheet ↗</span>
+            <a href="handbook/index.html" class="text-primary hover:underline text-[10px] flex items-center gap-1 font-bold">
+              <span>Full Command Handbook ↗</span>
             </a>
           </div>
           <div class="p-2.5 rounded bg-canvas-base border border-border-hairline space-y-1 text-[11px]">
@@ -589,11 +599,21 @@
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="border-t border-border-hairline bg-canvas-base py-6 text-center text-xs font-mono text-outline">
-    <div class="max-w-7xl mx-auto px-4 space-y-1">
-      <div>© 2026 Mihraj Mashhoor K · Interactive Cybersecurity Learning Sandbox &amp; Roadmap</div>
-      <div class="text-[11px] text-outline">All demonstrations and command simulations are conducted strictly in authorized educational environments.</div>
+  <!-- Global Footer -->
+  <footer class="border-t border-border-hairline bg-surface-subtle py-8 text-center font-mono text-xs text-on-surface-variant mt-16">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-primary"></span>
+        <span class="text-on-surface font-bold">CALION Academy</span>
+        <span>· Free &amp; Open Cybersecurity Training</span>
+      </div>
+      <div class="flex items-center gap-4 text-outline">
+        <a href="index.html" class="hover:text-primary transition-colors">Portfolio</a>
+        <a href="learning.html" class="hover:text-primary transition-colors">Learning</a>
+        <a href="labs.html" class="hover:text-primary transition-colors">Labs</a>
+        <a href="terminal-lab.html" class="text-primary font-bold">Terminal</a>
+        <a href="glossary.html" class="hover:text-primary transition-colors">Glossary</a>
+      </div>
     </div>
   </footer>
 
@@ -998,6 +1018,7 @@ www-data`,
               <button class="run-cmd-btn px-2.5 py-1 rounded bg-primary/10 border border-primary/40 hover:bg-primary hover:text-canvas-base text-primary font-mono text-[10px] font-bold transition-all shrink-0 flex items-center gap-1 cursor-pointer"
                       data-cmd="${escapeHtml(card.command)}"
                       data-analysis="${escapeHtml(card.analysis || '')}"
+                      data-output="${escapeHtml(card.expectedOutput || '')}"
                       data-stage="${escapeHtml(card.stage || '')}">
                 <span>Run</span>
                 <span class="material-symbols-outlined text-xs">play_arrow</span>
@@ -1047,11 +1068,12 @@ ${escapeHtml(card.expectedOutput)}
           const cmd = btn.getAttribute('data-cmd');
           const analysis = btn.getAttribute('data-analysis');
           const stage = btn.getAttribute('data-stage');
+          const output = btn.getAttribute('data-output');
           if (stage) {
             completedStages.add(stage);
             updateRoadmapProgress();
           }
-          executeInLabTerminal(cmd, analysis);
+          executeInLabTerminal(cmd, analysis, output);
         });
       });
 
@@ -1101,7 +1123,7 @@ ${escapeHtml(card.expectedOutput)}
       labOutput.scrollTop = labOutput.scrollHeight;
     }
 
-    function executeInLabTerminal(cmdRaw, customAnalysis = '') {
+    function executeInLabTerminal(cmdRaw, customAnalysis = '', expectedOutput = '') {
       const cmd = cmdRaw.trim();
       if (!cmd) return;
       labHistory.push(cmd);
@@ -1116,11 +1138,43 @@ ${escapeHtml(card.expectedOutput)}
       // Print prompt echo
       appendLabOutput(`<div class="flex items-center gap-2 mt-2"><span class="text-primary font-bold">guest@sec-station:~/lab$</span> <span class="text-on-surface">${escapeHtml(cmd)}</span></div>`);
 
-      // Delegate command through global interactive command engine if available
-      if (window.cyberCommandEngine && window.cyberCommandEngine.run) {
+      // Educational output resolution:
+      // 1. If explicit expected output is supplied (from Run button), display it directly in a styled code block.
+      // 2. Otherwise query cyberCommandEngine.
+      // 3. If unrecognized, look up matching command across all LESSONS tracks.
+      // 4. Default to simulated fallback.
+      let outputDisplayed = false;
+      if (expectedOutput) {
+        appendLabOutput(`
+          <pre class="font-mono text-xs text-on-surface bg-canvas-base/80 p-2.5 rounded border border-border-hairline overflow-x-auto my-1 leading-relaxed whitespace-pre-wrap">${escapeHtml(expectedOutput)}</pre>
+        `);
+        outputDisplayed = true;
+      } else if (window.cyberCommandEngine && window.cyberCommandEngine.run) {
         const responseHtml = window.cyberCommandEngine.run(cmd);
-        if (responseHtml) {
+        if (responseHtml && !responseHtml.includes('Command not recognized:')) {
           appendLabOutput(responseHtml);
+          outputDisplayed = true;
+        } else {
+          // Attempt lookup in LESSONS cards
+          let matchedCard = null;
+          Object.values(LESSONS).forEach(track => {
+            if (track.cards) {
+              const found = track.cards.find(c => c.command && c.command.toLowerCase() === cmd.toLowerCase());
+              if (found) matchedCard = found;
+            }
+          });
+          if (matchedCard && matchedCard.expectedOutput) {
+            appendLabOutput(`
+              <pre class="font-mono text-xs text-on-surface bg-canvas-base/80 p-2.5 rounded border border-border-hairline overflow-x-auto my-1 leading-relaxed whitespace-pre-wrap">${escapeHtml(matchedCard.expectedOutput)}</pre>
+            `);
+            if (!customAnalysis && matchedCard.analysis) {
+              customAnalysis = matchedCard.analysis;
+            }
+            outputDisplayed = true;
+          } else if (responseHtml) {
+            appendLabOutput(responseHtml);
+            outputDisplayed = true;
+          }
         }
       }
 
@@ -1237,6 +1291,13 @@ ${escapeHtml(card.expectedOutput)}
       })[m]);
     }
   </script>
+  <script src="learning-data.js"></script>
+  <script src="vendor/supabase.min.js"></script>
+  <script src="calion-runtime-config.js"></script>
+  <script src="academy-config.js"></script>
+  <script src="academy-state.js"></script>
+  <script src="academy-auth.js"></script>
+  <script src="academy-sync.js"></script>
   <script src="academy-nav.js"></script>
 </body>
 </html>
