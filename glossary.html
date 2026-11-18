@@ -15,15 +15,21 @@
   <meta property="og:url" content="https://learning.endlessus.in/glossary.html"/>
   <meta property="og:type" content="article"/>
 
+  <!-- Immediate Theme & Sound Initializer -->
+  <script src="calion-theme.js"></script>
+  <script src="calion-sound.js"></script>
   <script>
     (function() {
-      const savedTheme = localStorage.getItem('endlessus_learning_theme') || localStorage.getItem('endlessus_view_mode') || localStorage.getItem('theme') || 'normal';
-      if (savedTheme === 'hacker' || savedTheme === 'dark') {
-        document.documentElement.classList.add('dark', 'theme-hacker');
-        document.documentElement.classList.remove('theme-normal');
+      const savedTheme = localStorage.getItem('calion_theme') || 'soft';
+      if (savedTheme === 'dark' || savedTheme === 'hacker') {
+        document.documentElement.classList.add('dark', 'theme-dark');
+        document.documentElement.classList.remove('light', 'theme-soft-light', 'theme-classic-white');
+      } else if (savedTheme === 'classic' || savedTheme === 'white') {
+        document.documentElement.classList.add('light', 'theme-classic-white');
+        document.documentElement.classList.remove('dark', 'theme-dark', 'theme-soft-light');
       } else {
-        document.documentElement.classList.remove('dark', 'theme-hacker');
-        document.documentElement.classList.add('theme-normal');
+        document.documentElement.classList.add('light', 'theme-soft-light');
+        document.documentElement.classList.remove('dark', 'theme-dark', 'theme-classic-white');
       }
     })();
   </script>
@@ -230,27 +236,13 @@
           <span id="header-xp-pill" class="font-bold">0 XP</span>
         </div>
 
-        <!-- Search Trigger -->
-        <button type="button" class="academy-search-btn inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border-hairline bg-surface-raised hover:border-primary text-xs font-mono text-outline hover:text-on-surface transition-colors cursor-pointer" title="Search Academy (Cmd+K)">
-          <span class="material-symbols-outlined text-sm text-primary">search</span>
-          <span class="hidden lg:inline">Search</span>
-          <kbd class="hidden lg:inline px-1 py-0.2 rounded bg-surface-subtle border border-border-hairline text-[10px]">⌘K</kbd>
-        </button>
-
         <!-- Auth Slot -->
         <div id="academy-auth-slot"></div>
 
-        <!-- Theme Toggle: Normal View vs Hacker View -->
-        <div class="flex items-center border border-border-hairline rounded-lg p-0.5 bg-surface-raised text-xs font-mono">
-          <button type="button" id="theme-toggle-normal" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold bg-primary text-white" title="Switch to Normal View (Light mode)">
-            <span class="material-symbols-outlined text-xs">light_mode</span>
-            <span class="hidden sm:inline">Normal</span>
-          </button>
-          <button type="button" id="theme-toggle-hacker" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold text-outline hover:text-on-surface" title="Switch to Hacker View (Dark HUD)">
-            <span class="material-symbols-outlined text-xs">terminal</span>
-            <span class="hidden sm:inline">Hacker</span>
-          </button>
-        </div>
+        <!-- 3-Theme Selector Toggle Button -->
+        <button aria-label="Toggle theme mode" class="w-8 h-8 rounded-lg bg-surface-raised hover:bg-surface-subtle border border-border-hairline flex items-center justify-center text-outline hover:text-on-surface transition-colors calion-theme-toggle" id="theme-toggle" type="button" title="Switch Theme (Soft Light → Dark → Classic)">
+          <span class="material-symbols-outlined text-[18px]">contrast</span>
+        </button>
 
         <!-- Mobile Menu Toggle Button -->
         <button type="button" id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" aria-label="Toggle Mobile Menu">

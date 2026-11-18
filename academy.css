@@ -10,39 +10,40 @@
    SEMANTIC THEME TOKENS (CALION STITCH SPECIFICATION)
    ========================================================================== */
 
+/* 1. SOFT LIGHT THEME (Default: Comfortable off-white with blue-grey tint & high-contrast elevated cards) */
 :root,
-html.theme-normal,
-body.theme-normal,
+html.theme-soft-light,
+body.theme-soft-light,
 html.light,
 body.light {
-  /* Stitch Light Palette */
-  --color-canvas-base: #F4F6FA;
-  --color-surface-subtle: #FFFFFF;
-  --color-surface-raised: #F1F5F9;
+  /* Surface distribution: 70% soft canvas (#EEF2F6), 30% elevated white/tinted panels (#FFFFFF) */
+  --color-canvas-base: #EEF2F6;
+  --color-surface-subtle: #F8FAFC;
+  --color-surface-raised: #FFFFFF;
   --color-surface-container: #E2E8F0;
-  --color-border-hairline: #E2E8F0;
-  --color-border-medium: #CBD5E1;
+  --color-border-hairline: #CBD5E1;
+  --color-border-medium: #94A3B8;
   --color-primary: #0284C7;
   --color-primary-container: #E0F2FE;
   --color-secondary: #4F46E5;
   --color-on-surface: #0F172A;
-  --color-on-surface-variant: #475569;
-  --color-outline: #64748B;
+  --color-on-surface-variant: #334155;
+  --color-outline: #475569;
   --color-warning: #D97706;
   --color-danger-critical: #DC2626;
 
   /* Academy Semantic Variables */
-  --academy-bg: #F4F6FA;
-  --academy-bg-deep: #EAEFF7;
+  --academy-bg: #EEF2F6;
+  --academy-bg-deep: #E2E8F0;
   --academy-surface: #FFFFFF;
-  --academy-surface-raised: #F1F5F9;
-  --academy-surface-subtle: #FFFFFF;
-  --academy-border: #E2E8F0;
-  --academy-border-strong: #CBD5E1;
+  --academy-surface-raised: #FFFFFF;
+  --academy-surface-subtle: #F8FAFC;
+  --academy-border: #CBD5E1;
+  --academy-border-strong: #94A3B8;
   
   --academy-text: #0F172A;
-  --academy-text-secondary: #475569;
-  --academy-text-muted: #64748B;
+  --academy-text-secondary: #334155;
+  --academy-text-muted: #475569;
   --academy-text-disabled: #94A3B8;
   
   --academy-primary: #0284C7;
@@ -68,6 +69,38 @@ body.light {
 
   --academy-card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
   --academy-card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+}
+
+/* 2. CLASSIC WHITE THEME (Clean, bright white canvas & crisp borders) */
+html.theme-classic-white,
+body.theme-classic-white {
+  --color-canvas-base: #FFFFFF;
+  --color-surface-subtle: #F8FAFC;
+  --color-surface-raised: #FFFFFF;
+  --color-surface-container: #F1F5F9;
+  --color-border-hairline: #E2E8F0;
+  --color-border-medium: #CBD5E1;
+  --color-primary: #0284C7;
+  --color-primary-container: #E0F2FE;
+  --color-secondary: #4F46E5;
+  --color-on-surface: #0F172A;
+  --color-on-surface-variant: #475569;
+  --color-outline: #64748B;
+  --color-warning: #D97706;
+  --color-danger-critical: #DC2626;
+
+  --academy-bg: #FFFFFF;
+  --academy-bg-deep: #F8FAFC;
+  --academy-surface: #FFFFFF;
+  --academy-surface-raised: #FFFFFF;
+  --academy-surface-subtle: #F1F5F9;
+  --academy-border: #E2E8F0;
+  --academy-border-strong: #CBD5E1;
+  
+  --academy-text: #0F172A;
+  --academy-text-secondary: #475569;
+  --academy-text-muted: #64748B;
+  --academy-text-disabled: #94A3B8;
 }
 
 html.dark,
@@ -911,11 +944,37 @@ html.dark .academy-theme-btn.active {
   background-color: rgba(2, 132, 199, 0.18) !important;
 }
 
+/* ==========================================================================
+   ANSWER FEEDBACK ANIMATIONS (Improvement 5)
+   ========================================================================== */
+
+@keyframes calion-correct-pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+  50% { transform: scale(1.015); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+@keyframes calion-incorrect-shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+.calion-feedback-correct {
+  animation: calion-correct-pulse 0.45s ease-out;
+}
+
+.calion-feedback-incorrect {
+  animation: calion-incorrect-shake 0.4s ease-in-out;
+}
+
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   .node-pulse-ring,
   .animate-modal-in,
-  .animate-check-bounce {
+  .animate-check-bounce,
+  .calion-feedback-correct,
+  .calion-feedback-incorrect {
     animation: none !important;
     transition: none !important;
   }

@@ -17,16 +17,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 
-  <!-- Immediate Theme Initializer -->
+  <!-- Immediate Theme & Sound Initializer -->
+  <script src="calion-theme.js"></script>
+  <script src="calion-sound.js"></script>
   <script>
     (function() {
-      const savedTheme = localStorage.getItem('calion_theme') || localStorage.getItem('endlessus_learning_theme') || 'light';
+      const savedTheme = localStorage.getItem('calion_theme') || 'soft';
       if (savedTheme === 'dark' || savedTheme === 'hacker') {
-        document.documentElement.classList.add('dark', 'theme-hacker');
-        document.documentElement.classList.remove('theme-normal', 'light');
+        document.documentElement.classList.add('dark', 'theme-dark');
+        document.documentElement.classList.remove('light', 'theme-soft-light', 'theme-classic-white');
+      } else if (savedTheme === 'classic' || savedTheme === 'white') {
+        document.documentElement.classList.add('light', 'theme-classic-white');
+        document.documentElement.classList.remove('dark', 'theme-dark', 'theme-soft-light');
       } else {
-        document.documentElement.classList.add('light', 'theme-normal');
-        document.documentElement.classList.remove('dark', 'theme-hacker');
+        document.documentElement.classList.add('light', 'theme-soft-light');
+        document.documentElement.classList.remove('dark', 'theme-dark', 'theme-classic-white');
       }
     })();
   </script>
@@ -115,7 +120,7 @@
         </a>
       </nav>
 
-      <!-- Right Action Bar -->
+      <!-- Right Action Bar: Streak/XP HUD, Sound Toggle, Theme Selector, Cadet Avatar -->
       <div class="flex items-center gap-2">
         <!-- Live Streak & XP Badges -->
         <div class="hidden sm:flex items-center gap-2 font-mono text-xs">
@@ -129,19 +134,15 @@
           </span>
         </div>
 
-        <button type="button" class="academy-search-btn inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border-hairline bg-surface-raised hover:border-primary text-xs font-mono text-outline hover:text-on-surface transition-colors" title="Search Academy (Cmd+K)">
-          <span class="material-symbols-outlined text-sm text-primary">search</span>
-          <span class="hidden lg:inline">Search</span>
+        <!-- Sound Effects Toggle Button -->
+        <button aria-label="Toggle sound effects" class="w-8 h-8 rounded-lg bg-surface-raised hover:bg-surface-subtle border border-border-hairline flex items-center justify-center text-outline hover:text-on-surface transition-colors calion-sound-toggle" id="sound-toggle-btn" type="button" title="Mute/Unmute Sound Effects">
+          <span class="material-symbols-outlined text-[18px]">volume_up</span>
         </button>
 
-        <div class="flex items-center p-0.5 rounded-lg border border-border-hairline bg-surface-raised font-mono text-xs">
-          <button type="button" id="theme-toggle-normal" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold" aria-pressed="true" title="Switch to Normal View (Light)">
-            <span class="material-symbols-outlined text-xs">light_mode</span>
-          </button>
-          <button type="button" id="theme-toggle-hacker" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold" aria-pressed="false" title="Switch to Hacker View (Dark HUD)">
-            <span class="material-symbols-outlined text-xs">terminal</span>
-          </button>
-        </div>
+        <!-- 3-Theme Selector Toggle Button -->
+        <button aria-label="Toggle theme mode" class="w-8 h-8 rounded-lg bg-surface-raised hover:bg-surface-subtle border border-border-hairline flex items-center justify-center text-outline hover:text-on-surface transition-colors calion-theme-toggle" id="theme-toggle" type="button" title="Switch Theme (Soft Light → Dark → Classic)">
+          <span class="material-symbols-outlined text-[18px]">contrast</span>
+        </button>
 
         <!-- Cadet Avatar / Profile -->
         <a href="profile.html" class="w-8 h-8 rounded-full bg-gradient-to-tr from-sky-500 to-indigo-600 text-white font-mono text-xs font-bold flex items-center justify-center shadow-sm" id="cadet-avatar-badge" title="View Profile">
@@ -266,13 +267,11 @@
         </div>
       </div>
 
-      <!-- Two-Column TryHackMe Room Workspace -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <!-- Single Focused Column TryHackMe Room Workspace (Improvement 7) -->
+      <div class="max-w-4xl mx-auto space-y-6">
         
-        <!-- =====================================================================
-             MAIN TASK & CONTENT COLUMN (8 of 12 columns)
-             ===================================================================== -->
-        <div class="lg:col-span-8 space-y-6">
+        <!-- Main Task & Content Column -->
+        <div class="space-y-6">
 
           <!-- Learning Objectives & Terminology Card -->
           <div class="p-5 sm:p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4">
@@ -298,22 +297,45 @@
             </div>
           </div>
 
-          <!-- Tasks Heading Toolbar -->
-          <div class="flex items-center justify-between pt-2">
-            <h2 class="text-xl font-bold font-mono text-on-surface flex items-center gap-2">
-              <span class="material-symbols-outlined text-primary text-xl">view_stream</span>
-              <span>Room Tasks</span>
-            </h2>
-            <div class="flex items-center gap-2 text-xs font-mono">
-              <button type="button" id="btn-expand-all" class="text-outline hover:text-primary transition-colors cursor-pointer">Expand All</button>
-              <span class="text-outline/40">·</span>
-              <button type="button" id="btn-collapse-all" class="text-outline hover:text-primary transition-colors cursor-pointer">Collapse All</button>
+          <!-- Tasks Heading Toolbar & Sleek Stepper -->
+          <div class="space-y-3 pt-2">
+            <div class="flex items-center justify-between">
+              <h2 class="text-xl font-bold font-mono text-on-surface flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-xl">view_stream</span>
+                <span>Room Tasks</span>
+              </h2>
+              <div class="flex items-center gap-2 text-xs font-mono">
+                <button type="button" id="btn-expand-all" class="text-outline hover:text-primary transition-colors cursor-pointer">Expand All</button>
+                <span class="text-outline/40">·</span>
+                <button type="button" id="btn-collapse-all" class="text-outline hover:text-primary transition-colors cursor-pointer">Collapse All</button>
+              </div>
             </div>
+            
+            <!-- Sleek Horizontal Task Jump Strip (Satisfies task navigation without cluttered sidebar) -->
+            <nav id="sidebar-task-nav" class="flex flex-wrap items-center gap-2 font-mono text-xs" aria-label="Task Quick Jump">
+              <!-- Populated dynamically with .task-jump-link -->
+            </nav>
           </div>
 
           <!-- TryHackMe Task Stream (Accordion Stack) -->
           <div id="lessons-outline-container" class="space-y-4">
             <!-- Populated dynamically with full TryHackMe Task Cards -->
+          </div>
+
+          <!-- Associated Practical Lab Target (if mapped to this room) -->
+          <div id="related-practice-box" class="hidden p-5 rounded-2xl border border-secondary/30 bg-secondary/5 space-y-3 font-mono text-xs">
+            <div class="flex items-center gap-2 font-bold text-secondary text-[11px] uppercase tracking-wider">
+              <span class="material-symbols-outlined text-base">science</span>
+              <span>PRACTICAL LAB TARGET</span>
+            </div>
+            <div>
+              <h3 id="practice-lab-title" class="font-bold text-sm text-on-surface">Practical Lab</h3>
+              <p id="practice-lab-desc" class="text-xs text-on-surface-variant font-sans mt-1">Practice what you learned in a live simulated terminal.</p>
+            </div>
+            <a id="practice-lab-link" href="#" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-secondary text-white font-bold hover:opacity-95 shadow transition-all">
+              <span>Launch Lab Scenario</span>
+              <span class="material-symbols-outlined text-sm">open_in_new</span>
+            </a>
           </div>
 
           <!-- Bottom Navigation Bar (Prev / Next Room) -->
@@ -326,9 +348,9 @@
               </div>
             </a>
 
-            <a id="module-syllabus-link" href="#" class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-surface-raised border border-border-hairline text-on-surface hover:text-primary transition-colors">
+            <a id="module-syllabus-link" href="learning.html" class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-surface-raised border border-border-hairline text-on-surface hover:text-primary transition-colors">
               <span class="material-symbols-outlined text-sm">view_list</span>
-              <span>Back to Module Outline</span>
+              <span>Back to Learning Tree</span>
             </a>
 
             <a id="next-room-link" href="#" class="inline-flex items-center justify-end gap-2 px-4 py-2.5 rounded-xl border border-border-hairline bg-surface-subtle hover:border-primary text-on-surface transition-colors text-right">
@@ -341,62 +363,6 @@
           </div>
 
         </div>
-
-        <!-- =====================================================================
-             SECONDARY STICKY SIDEBAR (4 of 12 columns)
-             ===================================================================== -->
-        <aside class="space-y-5 lg:sticky lg:top-20 lg:col-span-4">
-          
-          <!-- Sticky Task Quick-Jump List -->
-          <div class="p-5 rounded-2xl border border-border-hairline bg-surface-subtle space-y-4 font-mono text-xs">
-            <div class="flex items-center justify-between border-b border-border-hairline pb-3">
-              <span class="font-bold text-on-surface uppercase tracking-wider text-[11px]">Tasks in this Room</span>
-              <span id="sidebar-progress-badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-primary/10 text-primary">0%</span>
-            </div>
-
-            <!-- Quick-Jump Task Links -->
-            <nav id="sidebar-task-nav" class="space-y-1.5" aria-label="Task Quick Jump">
-              <!-- Populated dynamically -->
-            </nav>
-
-            <div class="pt-3 border-t border-border-hairline/60 flex items-center justify-between text-[11px] text-outline">
-              <span id="sidebar-solved-count">0 of 0 questions solved</span>
-              <span id="sidebar-room-xp" class="text-primary font-bold">+0 XP</span>
-            </div>
-          </div>
-
-          <!-- Associated Practical Lab Target (if mapped) -->
-          <div id="related-practice-box" class="hidden p-5 rounded-2xl border border-secondary/30 bg-secondary/5 space-y-3 font-mono text-xs">
-            <div class="flex items-center gap-2 font-bold text-secondary text-[11px] uppercase tracking-wider">
-              <span class="material-symbols-outlined text-base">science</span>
-              <span>PRACTICAL LAB TARGET</span>
-            </div>
-            <div>
-              <h3 id="practice-lab-title" class="font-bold text-sm text-on-surface">Practical Lab</h3>
-              <p id="practice-lab-desc" class="text-xs text-on-surface-variant font-sans mt-1">Practice what you learned in a live simulated terminal.</p>
-            </div>
-            <a id="practice-lab-link" href="#" class="inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl bg-secondary text-white font-bold hover:opacity-95 shadow transition-all">
-              <span>Launch Lab Scenario</span>
-              <span class="material-symbols-outlined text-sm">open_in_new</span>
-            </a>
-          </div>
-
-          <!-- Focused Reader Mode Switch -->
-          <div class="p-4 rounded-xl border border-border-hairline bg-surface-subtle font-mono text-xs text-on-surface-variant space-y-2">
-            <div class="flex items-center gap-1.5 font-bold text-on-surface text-[11px]">
-              <span class="material-symbols-outlined text-sm text-primary">auto_stories</span>
-              <span>Distraction-Free Mode</span>
-            </div>
-            <p class="text-[11px] font-sans">
-              Prefer reading one task per page? You can open this room in the focused section reader.
-            </p>
-            <a id="focused-reader-link" href="lesson.html" class="inline-flex items-center gap-1 text-primary hover:underline text-[11px] font-bold">
-              <span>Open in Lesson Reader</span>
-              <span class="material-symbols-outlined text-xs">arrow_forward</span>
-            </a>
-          </div>
-
-        </aside>
 
       </div>
 
@@ -542,19 +508,30 @@
         bModuleLink.href = `learning.html?stage=${room.stageId || 'pre-security'}`;
       }
 
-      document.getElementById('breadcrumb-room-title').textContent = `${room.id.toUpperCase()}: ${room.title}`;
+      const bTitle = document.getElementById('breadcrumb-room-title');
+      if (bTitle) bTitle.textContent = `${room.id.toUpperCase()}: ${room.title}`;
+
       const syllabusLink = document.getElementById('module-syllabus-link');
       if (syllabusLink) {
         syllabusLink.href = `learning.html?stage=${room.stageId || 'pre-security'}`;
         syllabusLink.innerHTML = `<span class="material-symbols-outlined text-sm">account_tree</span><span>Back to Learning Tree</span>`;
       }
-      document.getElementById('focused-reader-link').href = `lesson.html?room=${room.id}&task=0`;
+
+      const focusedReaderLink = document.getElementById('focused-reader-link');
+      if (focusedReaderLink) focusedReaderLink.href = `lesson.html?room=${room.id}&task=0`;
 
       // Header Hero Badges
-      document.getElementById('room-id-badge').textContent = room.id.toUpperCase();
-      document.getElementById('room-title').textContent = room.title;
-      document.getElementById('room-why').textContent = room.description || room.whyAreYouHere || room.title;
-      document.getElementById('room-est-time').textContent = room.estimatedTime || '25 min';
+      const roomIdBadge = document.getElementById('room-id-badge');
+      if (roomIdBadge) roomIdBadge.textContent = room.id.toUpperCase();
+
+      const roomTitleEl = document.getElementById('room-title');
+      if (roomTitleEl) roomTitleEl.textContent = room.title;
+
+      const roomWhyEl = document.getElementById('room-why');
+      if (roomWhyEl) roomWhyEl.textContent = room.description || room.whyAreYouHere || room.title;
+
+      const roomEstTime = document.getElementById('room-est-time');
+      if (roomEstTime) roomEstTime.textContent = room.estimatedTime || '25 min';
 
       const lessons = Array.isArray(room.lessons) && room.lessons.length > 0
         ? room.lessons
@@ -982,23 +959,24 @@
           `;
         }).join('');
 
-        // Populate Sticky Sidebar Table of Contents
-        sidebarNav.innerHTML = lessons.map((les, taskIdx) => {
-          const taskDone = isTaskDone(taskIdx);
-          const cleanTitle = les.title.replace(/^[0-9]+\.\s*/, '');
-
-          return `
-            <a href="#task-card-${taskIdx}" class="task-jump-link flex items-center justify-between gap-2 px-3 py-2 rounded-lg border transition-colors ${taskDone ? 'border-primary/20 bg-primary/5 text-on-surface font-semibold' : 'border-transparent text-on-surface-variant hover:bg-surface-raised'}" data-task-idx="${taskIdx}">
-              <div class="flex items-center gap-2 truncate">
-                <span class="w-4 h-4 rounded-full flex items-center justify-center text-[10px] shrink-0 ${taskDone ? 'text-primary' : 'text-outline'}">
+        // Populate Task Quick Jump Stepper (Improvement 7)
+        if (sidebarNav) {
+          sidebarNav.innerHTML = lessons.map((les, taskIdx) => {
+            const taskDone = isTaskDone(taskIdx);
+            return `
+              <a href="#task-card-${taskIdx}" class="task-jump-link inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-all ${
+                taskDone
+                  ? 'border-primary/40 bg-primary/10 text-primary font-bold'
+                  : 'border-border-hairline bg-surface-subtle hover:border-primary text-outline hover:text-on-surface'
+              }" data-task-idx="${taskIdx}">
+                <span class="w-4 h-4 rounded-full flex items-center justify-center text-[10px] ${taskDone ? 'bg-primary text-black font-bold' : 'bg-surface-raised text-outline'}">
                   ${taskDone ? '✓' : (taskIdx + 1)}
                 </span>
-                <span class="truncate">${escapeHtml(cleanTitle)}</span>
-              </div>
-              ${taskDone ? '<span class="text-primary text-xs shrink-0">✓</span>' : ''}
-            </a>
-          `;
-        }).join('');
+                <span>Task ${taskIdx + 1}</span>
+              </a>
+            `;
+          }).join('');
+        }
 
         // Wire Accordion Toggles
         document.querySelectorAll('.task-accordion-toggle').forEach(btn => {
@@ -1113,12 +1091,30 @@
         }
 
         const feedbackEl = document.getElementById(`q-feedback-${idx}`);
+        const qCardEl = document.getElementById(`q-card-${idx}`);
         if (feedbackEl) feedbackEl.classList.remove('hidden');
 
         if (isCorrect) {
+          if (window.CalionSound) {
+            window.CalionSound.playCorrect();
+            window.CalionSound.triggerVisualFeedback(qCardEl || feedbackEl, true);
+          }
           const res = AcademyState.solveQuestion(room.id, idx, q);
+
+          // Track last position (Improvement 2)
+          let currentTaskIdx = 0;
+          for (let t = 0; t < taskQuestionMapping.length; t++) {
+            if (taskQuestionMapping[t].some(item => item.originalIdx === idx)) {
+              currentTaskIdx = t;
+              break;
+            }
+          }
+          if (typeof AcademyState.setLastActivePosition === 'function') {
+            AcademyState.setLastActivePosition(room.id, currentTaskIdx, idx);
+          }
+
           if (feedbackEl) {
-            feedbackEl.className = 'p-3 rounded-lg bg-primary/10 border border-primary/30 text-on-surface text-xs font-mono block';
+            feedbackEl.className = 'p-3 rounded-lg bg-primary/10 border border-primary/30 text-on-surface text-xs font-mono block calion-feedback-correct';
             feedbackEl.innerHTML = `
               <div class="flex items-center gap-1.5 text-primary font-bold mb-0.5">
                 <span class="material-symbols-outlined text-sm">check_circle</span>
@@ -1131,8 +1127,12 @@
           renderTasks();
           renderOverallProgress();
         } else {
+          if (window.CalionSound) {
+            window.CalionSound.playIncorrect();
+            window.CalionSound.triggerVisualFeedback(qCardEl || feedbackEl, false);
+          }
           if (feedbackEl) {
-            feedbackEl.className = 'p-3 rounded-lg bg-danger-critical/10 border border-danger-critical/30 text-on-surface text-xs font-mono block';
+            feedbackEl.className = 'p-3 rounded-lg bg-danger-critical/10 border border-danger-critical/30 text-on-surface text-xs font-mono block calion-feedback-incorrect';
             feedbackEl.innerHTML = `
               <div class="flex items-center gap-1.5 text-danger-critical font-bold mb-0.5">
                 <span class="material-symbols-outlined text-sm">close</span>

@@ -35,7 +35,8 @@
     LAST_ROOM: 'calion_last_room',
     THEME: 'calion_learning_theme',
     TASKS: 'calion_task_progress',
-    LAB_FLAGS: 'calion_lab_flags'
+    LAB_FLAGS: 'calion_lab_flags',
+    LAST_POS: 'calion_last_position'
   };
 
   const LEGACY_KEYS = {
@@ -48,6 +49,7 @@
     LAST_ACTIVE: 'endlessus_last_active',
     LAST_ROOM: 'endlessus_last_room',
     THEME: 'endlessus_learning_theme',
+    LAST_POS: 'endlessus_last_position',
     TASKS: 'endlessus_task_progress',
     LAB_FLAGS: 'endlessus_lab_flags'
   };
@@ -168,6 +170,88 @@
       }
     } catch (e) {}
     return null;
+  }
+
+  function setLastActivePosition(roomId, taskIdx, questionIdx) {
+    if (!roomId) return;
+    const pos = {
+      roomId: String(roomId),
+      taskIdx: typeof taskIdx === 'number' ? taskIdx : 0,
+      questionIdx: typeof questionIdx === 'number' ? questionIdx : 0,
+      updatedAt: Date.now()
+    };
+    safeSet(KEYS.LAST_POS, pos);
+    setLastActiveRoom(roomId);
+    dispatchStateChange({ type: 'position-updated', position: pos });
+  }
+
+  function getLastActivePosition(roomsList) {
+    const list = roomsList || (typeof window !== 'undefined' && (window.CALION_ROOMS || window.ENDLESSUS_ROOMS)) || [];
+    const completedRooms = getCompletedRooms();
+    const isNew = completedRooms.length === 0;
+
+    let stored = safeGet(KEYS.LAST_POS, null);
+    let targetRoomId = (stored && stored.roomId) || getLastActiveRoom() || 'room-01';
+    let taskIdx = (stored && typeof stored.taskIdx === 'number') ? stored.taskIdx : 0;
+    let questionIdx = (stored && typeof stored.questionIdx === 'number') ? stored.questionIdx : 0;
+
+    // Check if currently targeted room is already completed
+    if (completedRooms.includes(targetRoomId)) {
+      const nextRoom = getNextIncompleteRoom(list);
+      if (nextRoom && nextRoom.id !== targetRoomId) {
+        targetRoomId = nextRoom.id;
+        taskIdx = 0;
+        questionIdx = 0;
+      }
+    }
+
+    const room = list.find(r => r.id === targetRoomId) || list[0] || {
+      id: 'room-01',
+      title: 'Introduction to Computers',
+      stageId: 'pre-security',
+      stageOrder: 1,
+      tasks: [{ title: 'Von Neumann Architecture & The Execution Cycle' }]
+    };
+
+    // Stage labels
+    let stageName = 'Stage 1 · Pre-Security';
+    if (room.stageId === 'cyber-security' || room.stageOrder === 2) {
+      stageName = 'Stage 2 · Cyber Security';
+    } else if (room.stageId === 'defensive-security' || room.stageOrder === 3) {
+      stageName = 'Stage 3 · Defensive Security';
+    } else if (room.stageId === 'offensive-security' || room.stageOrder === 4) {
+      stageName = 'Stage 4 · Offensive Security';
+    }
+
+    // Task title
+    let taskTitle = `Task ${taskIdx + 1}`;
+    if (room.tasks && room.tasks[taskIdx] && room.tasks[taskIdx].title) {
+      taskTitle = `Task ${taskIdx + 1}: ${room.tasks[taskIdx].title}`;
+    }
+
+    const isAllComplete = completedRooms.length > 0 && list.length > 0 && completedRooms.length >= list.length;
+    let buttonText = 'Continue Learning';
+    if (isNew) {
+      buttonText = 'Start Learning';
+    } else if (isAllComplete) {
+      buttonText = 'Curriculum Complete (100%)';
+    } else {
+      buttonText = `Continue: ${room.id.toUpperCase()}`;
+    }
+
+    return {
+      roomId: room.id,
+      room,
+      stageId: room.stageId || 'pre-security',
+      stageName,
+      taskIdx,
+      taskTitle,
+      questionIdx,
+      url: `room.html?id=${room.id}#task-card-${taskIdx}`,
+      buttonText,
+      isNewLearner: isNew,
+      isCurriculumComplete: isAllComplete
+    };
   }
 
   function markRoomCompleted(roomId) {
@@ -472,6 +556,8 @@
     getStreak,
     setLastActiveRoom,
     getLastActiveRoom,
+    setLastActivePosition,
+    getLastActivePosition,
     getNextIncompleteRoom,
     getLevelProgress,
     getStageProgress,

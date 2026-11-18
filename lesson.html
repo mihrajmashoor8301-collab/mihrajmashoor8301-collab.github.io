@@ -17,16 +17,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 
-  <!-- Immediate Theme Initializer -->
+  <!-- Immediate Theme & Sound Initializer -->
+  <script src="calion-theme.js"></script>
+  <script src="calion-sound.js"></script>
   <script>
     (function() {
-      const savedTheme = localStorage.getItem('calion_theme') || localStorage.getItem('endlessus_learning_theme') || 'light';
+      const savedTheme = localStorage.getItem('calion_theme') || 'soft';
       if (savedTheme === 'dark' || savedTheme === 'hacker') {
-        document.documentElement.classList.add('dark', 'theme-hacker');
-        document.documentElement.classList.remove('theme-normal', 'light');
+        document.documentElement.classList.add('dark', 'theme-dark');
+        document.documentElement.classList.remove('light', 'theme-soft-light', 'theme-classic-white');
+      } else if (savedTheme === 'classic' || savedTheme === 'white') {
+        document.documentElement.classList.add('light', 'theme-classic-white');
+        document.documentElement.classList.remove('dark', 'theme-dark', 'theme-soft-light');
       } else {
-        document.documentElement.classList.add('light', 'theme-normal');
-        document.documentElement.classList.remove('dark', 'theme-hacker');
+        document.documentElement.classList.add('light', 'theme-soft-light');
+        document.documentElement.classList.remove('dark', 'theme-dark', 'theme-classic-white');
       }
     })();
   </script>
@@ -137,15 +142,9 @@
           <span>Room</span>
         </a>
 
-        <!-- Search button -->
-        <button type="button" class="academy-search-btn hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 hover:border-primary text-xs font-mono text-slate-600 dark:text-slate-300 transition-colors" title="Search Academy (Cmd+K)">
-          <span class="material-symbols-outlined text-sm text-primary">search</span>
-        </button>
-
-        <!-- Theme Toggle -->
-        <button aria-label="Toggle theme mode" class="w-9 h-9 rounded-lg bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 transition-colors" id="theme-toggle" type="button">
-          <span class="material-symbols-outlined text-[19px] dark:hidden block">dark_mode</span>
-          <span class="material-symbols-outlined text-[19px] hidden dark:block">light_mode</span>
+        <!-- 3-Theme Selector Toggle Button -->
+        <button aria-label="Toggle theme mode" class="w-8 h-8 rounded-lg bg-surface-raised hover:bg-surface-subtle border border-border-hairline flex items-center justify-center text-outline hover:text-on-surface transition-colors calion-theme-toggle" id="theme-toggle" type="button" title="Switch Theme (Soft Light → Dark → Classic)">
+          <span class="material-symbols-outlined text-[18px]">contrast</span>
         </button>
 
         <!-- Cadet Avatar / Profile -->
@@ -962,18 +961,28 @@
         }
 
         const feedbackEl = document.getElementById(`q-feedback-${idx}`);
-        feedbackEl.classList.remove('hidden');
+        const qCardEl = document.getElementById(`q-card-${idx}`);
+        if (feedbackEl) feedbackEl.classList.remove('hidden');
 
         if (isCorrect) {
+          if (window.CalionSound) {
+            window.CalionSound.playCorrect();
+            window.CalionSound.triggerVisualFeedback(qCardEl || feedbackEl, true);
+          }
           const res = AcademyState.solveQuestion(room.id, idx, q);
-          feedbackEl.className = 'p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-mono block';
-          feedbackEl.innerHTML = `
-            <div class="flex items-center gap-1.5 text-emerald-600 font-bold mb-1">
-              <span class="material-symbols-outlined text-sm">check_circle</span>
-              <span>Correct! ${res.xp > 0 ? '(+25 XP Awarded)' : ''}</span>
-            </div>
-            <p class="text-slate-600 dark:text-slate-400 font-sans">${escapeHtml(q.explanation || 'Well done! Answer verified.')}</p>
-          `;
+          if (typeof AcademyState.setLastActivePosition === 'function') {
+            AcademyState.setLastActivePosition(room.id, taskIdx, idx);
+          }
+          if (feedbackEl) {
+            feedbackEl.className = 'p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-mono block calion-feedback-correct';
+            feedbackEl.innerHTML = `
+              <div class="flex items-center gap-1.5 text-emerald-600 font-bold mb-1">
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+                <span>Correct! ${res.xp > 0 ? '(+25 XP Awarded)' : ''}</span>
+              </div>
+              <p class="text-slate-600 dark:text-slate-400 font-sans">${escapeHtml(q.explanation || 'Well done! Answer verified.')}</p>
+            `;
+          }
           renderQuestions();
 
           // Check if all questions are now solved
@@ -986,14 +995,20 @@
             }
           }
         } else {
-          feedbackEl.className = 'p-3 rounded-lg bg-rose-50 dark:bg-rose-950/40 border border-rose-300 dark:border-rose-800 text-rose-800 dark:text-rose-300 text-xs font-mono block';
-          feedbackEl.innerHTML = `
-            <div class="flex items-center gap-1.5 text-rose-600 font-bold mb-1">
-              <span class="material-symbols-outlined text-sm">close</span>
-              <span>Incorrect Answer</span>
-            </div>
-            <p class="text-slate-600 dark:text-slate-400 font-sans">Review the explanation above or use the hint for guidance.</p>
-          `;
+          if (window.CalionSound) {
+            window.CalionSound.playIncorrect();
+            window.CalionSound.triggerVisualFeedback(qCardEl || feedbackEl, false);
+          }
+          if (feedbackEl) {
+            feedbackEl.className = 'p-3 rounded-lg bg-rose-50 dark:bg-rose-950/40 border border-rose-300 dark:border-rose-800 text-rose-800 dark:text-rose-300 text-xs font-mono block calion-feedback-incorrect';
+            feedbackEl.innerHTML = `
+              <div class="flex items-center gap-1.5 text-rose-600 font-bold mb-1">
+                <span class="material-symbols-outlined text-sm">close</span>
+                <span>Incorrect Answer</span>
+              </div>
+              <p class="text-slate-600 dark:text-slate-400 font-sans">Review the explanation above or use the hint for guidance.</p>
+            `;
+          }
         }
       }
 

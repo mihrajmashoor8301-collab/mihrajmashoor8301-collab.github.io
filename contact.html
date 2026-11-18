@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact – Mihraj Mashhoor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <script src="/tailwind.cdn.js"></script>
+</head>
+<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+  <header class="p-4 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
+    <a href="index.html" class="text-xl font-bold">Mihraj Mashhoor</a>
+    <button id="theme-toggle" aria-label="Toggle theme" class="p-2 rounded-lg text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white border border-slate-200 dark:border-slate-800">
+      <span class="material-symbols-outlined text-[20px] dark:hidden block">dark_mode</span>
+      <span class="material-symbols-outlined text-[20px] hidden dark:block">light_mode</span>
+    </button>
+  </header>
+  <main class="flex-grow container mx-auto px-4 py-12 max-w-2xl">
+    <h1 class="text-3xl font-bold text-center mb-8">Get in Touch</h1>
+    <form x-data="{sending:false, success:false, error:false}" @submit.prevent="sending=true;fetch('https://formspree.io/f/your-form-id', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:$refs.name.value,email:$refs.email.value,message:$refs.message.value})}).then(r=>{if(r.ok){success=true;error=false}else{error=true}}).catch(()=>{error=true}).finally(()=>{sending=false});" class="space-y-6">
+      <div>
+        <label class="block text-sm font-medium mb-1" for="name">Name</label>
+        <input type="text" id="name" x-ref="name" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-1" for="email">Email</label>
+        <input type="email" id="email" x-ref="email" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-1" for="message">Message</label>
+        <textarea id="message" x-ref="message" rows="5" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"></textarea>
+      </div>
+      <div class="flex items-center justify-between">
+        <button type="submit" :disabled="sending" class="px-4 py-2 bg-sky-600 text-white rounded hover:bg-sky-700 transition disabled:opacity-50">
+          <span x-show="!sending">Send</span>
+          <span x-show="sending">Sending…</span>
+        </button>
+        <template x-if="success">
+          <p class="text-green-600">✅ Message sent!</p>
+        </template>
+        <template x-if="error">
+          <p class="text-red-600">⚠️ Failed to send. Try again.</p>
+        </template>
+      </div>
+    </form>
+  </main>
+  <footer class="p-4 text-center text-xs text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800">
+    © 2026 Mihraj Mashhoor. All rights reserved.
+  </footer>
+  <script>
+    const btn=document.getElementById('theme-toggle');
+    const html=document.documentElement;
+    btn.addEventListener('click',()=>{if(html.classList.contains('dark')){html.classList.remove('dark');html.classList.add('light');localStorage.setItem('calion_theme','light');}else{html.classList.remove('light');html.classList.add('dark');localStorage.setItem('calion_theme','dark');}});
+  </script>
+</body>
+</html>

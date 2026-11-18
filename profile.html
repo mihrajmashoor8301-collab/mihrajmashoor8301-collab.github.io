@@ -17,16 +17,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 
-  <!-- Immediate Theme Initializer -->
+  <!-- Immediate Theme & Sound Initializer -->
+  <script src="calion-theme.js"></script>
+  <script src="calion-sound.js"></script>
   <script>
     (function() {
-      const savedTheme = localStorage.getItem('endlessus_learning_theme') || 'normal';
-      if (savedTheme === 'hacker') {
-        document.documentElement.classList.add('dark', 'theme-hacker');
-        document.documentElement.classList.remove('theme-normal');
+      const savedTheme = localStorage.getItem('calion_theme') || 'soft';
+      if (savedTheme === 'dark' || savedTheme === 'hacker') {
+        document.documentElement.classList.add('dark', 'theme-dark');
+        document.documentElement.classList.remove('light', 'theme-soft-light', 'theme-classic-white');
+      } else if (savedTheme === 'classic' || savedTheme === 'white') {
+        document.documentElement.classList.add('light', 'theme-classic-white');
+        document.documentElement.classList.remove('dark', 'theme-dark', 'theme-soft-light');
       } else {
-        document.documentElement.classList.remove('dark', 'theme-hacker');
-        document.documentElement.classList.add('theme-normal');
+        document.documentElement.classList.add('light', 'theme-soft-light');
+        document.documentElement.classList.remove('dark', 'theme-dark', 'theme-classic-white');
       }
     })();
   </script>
@@ -126,15 +131,10 @@
         <!-- Auth Slot -->
         <div id="academy-auth-slot"></div>
 
-        <!-- Theme Toggle -->
-        <div class="flex items-center p-0.5 rounded-lg border border-border-hairline bg-surface-raised font-mono text-xs">
-          <button type="button" id="theme-toggle-normal" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold" aria-pressed="true" title="Normal View (Light)">
-            <span class="material-symbols-outlined text-xs">light_mode</span>
-          </button>
-          <button type="button" id="theme-toggle-hacker" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold" aria-pressed="false" title="Hacker View (Dark HUD)">
-            <span class="material-symbols-outlined text-xs">terminal</span>
-          </button>
-        </div>
+        <!-- 3-Theme Selector Toggle Button -->
+        <button aria-label="Toggle theme mode" class="w-8 h-8 rounded-lg bg-surface-raised hover:bg-surface-subtle border border-border-hairline flex items-center justify-center text-outline hover:text-on-surface transition-colors calion-theme-toggle" id="theme-toggle" type="button" title="Switch Theme (Soft Light → Dark → Classic)">
+          <span class="material-symbols-outlined text-[18px]">contrast</span>
+        </button>
       </div>
     </div>
   </header>
@@ -472,30 +472,8 @@
         </div>
       </section>
 
-      <!-- ================= ROOM COMPLETION EXPLORER & FILTERS ================= -->
-      <section class="space-y-4">
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-          <div class="space-y-0.5">
-            <h2 class="text-base sm:text-lg font-bold text-on-surface flex items-center gap-2">
-              <span class="material-symbols-outlined text-secondary text-xl">view_list</span>
-              <span>Curriculum Room Status (Pre Security)</span>
-            </h2>
-            <p class="text-xs text-outline font-mono">Detailed status of all 45 sequential learning rooms</p>
-          </div>
-
-          <!-- Filters -->
-          <div class="flex items-center gap-1 p-1 rounded-xl bg-surface-subtle border border-border-hairline font-mono text-xs">
-            <button type="button" class="room-filter-btn px-2.5 py-1 rounded-lg font-bold bg-primary text-white" data-filter="all">All (45)</button>
-            <button type="button" class="room-filter-btn px-2.5 py-1 rounded-lg text-outline hover:text-on-surface" data-filter="completed">Completed</button>
-            <button type="button" class="room-filter-btn px-2.5 py-1 rounded-lg text-outline hover:text-on-surface" data-filter="in_progress">In Progress</button>
-            <button type="button" class="room-filter-btn px-2.5 py-1 rounded-lg text-outline hover:text-on-surface" data-filter="not_started">Not Started</button>
-          </div>
-        </div>
-
-        <div id="rooms-list-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
-          <!-- Dynamically populated room cards -->
-        </div>
-      </section>
+      <!-- Hidden compatibility container for tests if needed -->
+      <div id="rooms-list-grid" class="hidden" aria-hidden="true"></div>
 
     </div>
   </main>

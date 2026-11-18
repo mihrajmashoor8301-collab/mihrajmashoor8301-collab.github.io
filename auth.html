@@ -17,16 +17,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 
-  <!-- Immediate Theme Initializer -->
+  <!-- Immediate Theme & Sound Initializer -->
+  <script src="calion-theme.js"></script>
+  <script src="calion-sound.js"></script>
   <script>
     (function() {
-      const savedTheme = localStorage.getItem('calion_learning_theme') || localStorage.getItem('endlessus_learning_theme') || 'normal';
-      if (savedTheme === 'hacker') {
-        document.documentElement.classList.add('dark', 'theme-hacker');
-        document.documentElement.classList.remove('theme-normal');
+      const savedTheme = localStorage.getItem('calion_theme') || 'soft';
+      if (savedTheme === 'dark' || savedTheme === 'hacker') {
+        document.documentElement.classList.add('dark', 'theme-dark');
+        document.documentElement.classList.remove('light', 'theme-soft-light', 'theme-classic-white');
+      } else if (savedTheme === 'classic' || savedTheme === 'white') {
+        document.documentElement.classList.add('light', 'theme-classic-white');
+        document.documentElement.classList.remove('dark', 'theme-dark', 'theme-soft-light');
       } else {
-        document.documentElement.classList.remove('dark', 'theme-hacker');
-        document.documentElement.classList.add('theme-normal');
+        document.documentElement.classList.add('light', 'theme-soft-light');
+        document.documentElement.classList.remove('dark', 'theme-dark', 'theme-classic-white');
       }
     })();
   </script>
@@ -75,43 +80,48 @@
 <body class="bg-canvas text-on-surface font-sans min-h-screen flex flex-col antialiased selection:bg-primary/20 selection:text-primary">
 
   <!-- =========================================================================
-       1. GLOBAL ACADEMY STICKY HEADER
+       1. GLOBAL ACADEMY MINIMAL HEADER (Improvements 12 & 13)
        ========================================================================= -->
   <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
       
-      <!-- Brand -->
+      <!-- Official CALION Logo Branding (Improvement 13) -->
       <div class="flex items-center gap-3">
-        <a href="learning.html" class="flex items-center gap-2.5 text-on-surface hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded py-1">
-          <span class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center font-mono font-black text-primary text-base">C</span>
-          <div class="flex flex-col">
-            <span class="font-bold text-sm tracking-tight leading-none text-on-surface">CALION Academy</span>
-            <span class="text-[10px] font-mono text-outline tracking-wider uppercase mt-0.5">Cybersecurity Education</span>
-          </div>
+        <a aria-label="CALION Academy Home" class="flex items-center gap-2 group" href="learning.html">
+          <svg class="h-7 w-auto" fill="none" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="calion_grad_auth_hdr" x1="0%" x2="100%" y1="0%" y2="100%">
+                <stop offset="0%" stop-color="#00F0FF"></stop>
+                <stop offset="50%" stop-color="#0284C7"></stop>
+                <stop offset="100%" stop-color="#6366F1"></stop>
+              </linearGradient>
+            </defs>
+            <g transform="translate(10, 10)">
+              <path d="M 55 10 L 25 10 L 10 25 L 10 55 L 25 70 L 55 70" stroke="url(#calion_grad_auth_hdr)" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"></path>
+              <path class="stroke-slate-900 dark:stroke-white transition-colors" d="M 42 70 L 42 22 L 58 22 L 68 70" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"></path>
+              <path d="M 33 46 L 56 46" stroke="url(#calion_grad_auth_hdr)" stroke-linecap="round" stroke-width="4.5"></path>
+              <circle cx="55" cy="10" fill="#00F0FF" r="3.5"></circle>
+              <circle cx="25" cy="70" fill="#6366F1" r="3"></circle>
+              <circle class="fill-slate-900 dark:fill-white transition-colors" cx="42" cy="22" r="2.5"></circle>
+            </g>
+            <text class="fill-slate-900 dark:fill-white font-headline font-bold transition-colors" font-size="34" letter-spacing="0.22em" x="100" y="58">CALION</text>
+            <rect fill="#00F0FF" height="6" rx="1.5" width="6" x="362" y="38"></rect>
+            <rect fill="#6366F1" height="6" rx="1.5" width="6" x="362" y="48"></rect>
+          </svg>
+          <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-mono font-semibold tracking-wider bg-surface-raised text-primary border border-border-hairline">
+            ACADEMY
+          </span>
         </a>
       </div>
 
-      <!-- Center Desktop Navigation -->
-      <nav class="hidden md:flex items-center gap-1 text-xs font-mono" aria-label="Main Navigation">
-        <a href="learning.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Learning Paths</a>
-        <a href="modules.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Modules</a>
-        <a href="labs.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Practical Labs</a>
-        <a href="roadmap.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Roadmap</a>
-        <a href="terminal-lab.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Terminal</a>
-        <a href="glossary.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Glossary</a>
-      </nav>
-
-      <!-- Right Action Bar -->
+      <!-- Right Action Bar: Theme Toggle Only (Improvement 12) -->
       <div class="flex items-center gap-2 font-mono text-xs">
-        <!-- Theme Toggle -->
-        <div class="flex items-center p-0.5 rounded-lg border border-border-hairline bg-surface-raised font-mono text-xs">
-          <button type="button" id="theme-toggle-normal" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold" aria-pressed="true" title="Normal View (Light)">
-            <span class="material-symbols-outlined text-xs">light_mode</span>
-          </button>
-          <button type="button" id="theme-toggle-hacker" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold" aria-pressed="false" title="Hacker View (Dark HUD)">
-            <span class="material-symbols-outlined text-xs">terminal</span>
-          </button>
-        </div>
+        <a href="learning.html" class="px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-raised hover:border-primary text-on-surface text-xs font-mono transition-colors">
+          <span>Return to Academy</span>
+        </a>
+        <button aria-label="Toggle theme mode" class="w-8 h-8 rounded-lg bg-surface-raised hover:bg-surface-subtle border border-border-hairline flex items-center justify-center text-outline hover:text-on-surface transition-colors calion-theme-toggle" id="theme-toggle" type="button" title="Switch Theme (Soft Light → Dark → Classic)">
+          <span class="material-symbols-outlined text-[18px]">contrast</span>
+        </button>
       </div>
     </div>
   </header>
