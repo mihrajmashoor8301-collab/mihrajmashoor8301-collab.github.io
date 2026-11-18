@@ -104,247 +104,78 @@
   // 2. MASTER ACADEMY SEARCH INDEX
   // =========================================================================
   const ACADEMY_SEARCH_INDEX = [
-    // --- AUTHORITATIVE 8 PRE-SECURITY CURRICULUM LEVELS ---
+    // --- 4 AUTHORITATIVE CALION ACADEMY PROGRESSION STAGES ---
     {
-      title: "Level 00: Start Here (Foundations)",
-      desc: "Zero experience required. Discover what ethical cybersecurity is, legal boundaries, and your first command.",
-      url: "module.html?id=level-0",
-      type: "Module",
-      badgeClass: "badge-room",
-      keywords: ["start", "beginner", "foundations", "zero", "welcome", "terminal", "intro", "level 0"]
+      title: "Stage 1: Pre-Security (10 Rooms)",
+      desc: "Computer architecture, Internet routing, networking protocols, Linux & Windows foundations, virtualization, and intro to security.",
+      url: "learning.html?stage=pre-security",
+      type: "Stage",
+      badgeClass: "badge-stage",
+      keywords: ["pre-security", "foundations", "beginner", "stage 1", "computer", "linux", "networking", "windows", "virtualization"]
     },
     {
-      title: "Level 01: Computer Fundamentals",
-      desc: "Hardware architecture, binary logic, CPU instruction cycles, memory hierarchy, and storage.",
-      url: "module.html?id=level-1",
-      type: "Module",
-      badgeClass: "badge-room",
-      keywords: ["hardware", "cpu", "ram", "storage", "binary", "bus", "registers", "bits", "computer", "level 1"]
+      title: "Stage 2: Cyber Security Foundations (10 Rooms)",
+      desc: "Threat landscape, CIA triad, cryptography, PKI, authentication, web architectures, firewalls, and security frameworks.",
+      url: "learning.html?stage=cyber-security",
+      type: "Stage",
+      badgeClass: "badge-stage",
+      keywords: ["cyber security", "threat", "cia triad", "crypto", "encryption", "web security", "stage 2", "firewalls", "siem"]
     },
     {
-      title: "Level 02: Linux Fundamentals",
-      desc: "Linux filesystem hierarchy, UNIX permissions, user/group management, processes, shell CLI, and scripting.",
-      url: "module.html?id=level-2",
-      type: "Module",
-      badgeClass: "badge-room",
-      keywords: ["linux", "bash", "cli", "permissions", "chmod", "filesystem", "processes", "grep", "terminal", "level 2"]
+      title: "Stage 3: Defensive Security (12 Rooms)",
+      desc: "SOC operations, log analysis, threat intelligence, incident response, network traffic analysis, digital forensics, and SIEM rule tuning.",
+      url: "learning.html?stage=defensive-security",
+      type: "Stage",
+      badgeClass: "badge-stage",
+      keywords: ["defensive", "blue team", "soc", "siem", "splunk", "wireshark", "forensics", "incident response", "yara", "stage 3"]
     },
     {
-      title: "Level 03: Windows Fundamentals",
-      desc: "Windows OS architecture, NTFS permissions, Windows Registry, Event Viewer, Active Directory basics, and PowerShell.",
-      url: "module.html?id=level-3",
-      type: "Module",
-      badgeClass: "badge-room",
-      keywords: ["windows", "powershell", "registry", "ntfs", "services", "event viewer", "cmd", "sysinternals", "level 3"]
+      title: "Stage 4: Offensive Security (15 Rooms)",
+      desc: "Penetration testing methodology, active recon, vulnerability assessment, web attacks, privilege escalation, and capstone engagement.",
+      url: "learning.html?stage=offensive-security",
+      type: "Stage",
+      badgeClass: "badge-stage",
+      keywords: ["offensive", "red team", "pentest", "nmap", "sqli", "xss", "metasploit", "privesc", "buffer overflow", "stage 4"]
     },
-    {
-      title: "Level 04: Networking Fundamentals",
-      desc: "OSI & TCP/IP models, IPv4/IPv6 addressing, subnet masks, CIDR notation, routing, NAT, switches, and ports.",
-      url: "module.html?id=level-4",
-      type: "Module",
-      badgeClass: "badge-room",
-      keywords: ["networking", "packets", "ip", "subnet", "cidr", "ports", "tcp", "udp", "dns", "dhcp", "wireshark", "level 4"]
-    },
-    {
-      title: "Level 05: Internet & Web Fundamentals",
-      desc: "Web servers, HTTP/HTTPS methods, response codes, headers, cookies, sessions, REST APIs, and DNS resolution.",
-      url: "module.html?id=level-5",
-      type: "Module",
-      badgeClass: "badge-room",
-      keywords: ["web", "http", "https", "headers", "status codes", "cookies", "sessions", "rest", "api", "json", "dns", "level 5"]
-    },
-    {
-      title: "Level 06: Cybersecurity Fundamentals",
-      desc: "The CIA triad, threat models, CVEs, CVSS scoring, defense-in-depth, symmetric/asymmetric cryptography, and hashes.",
-      url: "module.html?id=level-6",
-      type: "Module",
-      badgeClass: "badge-room",
-      keywords: ["security", "cia triad", "threats", "cve", "cvss", "defense", "vulnerability", "risk", "crypto", "hashing", "level 6"]
-    },
-    {
-      title: "Level 07: First Practical Security Labs",
-      desc: "Offensive tooling introduction, Nmap reconnaissance, security headers hardening, web flaws, and terminal drills.",
-      url: "module.html?id=level-7",
-      type: "Module",
-      badgeClass: "badge-room",
-      keywords: ["labs", "nmap", "practical", "scanning", "headers", "penetration testing", "terminal", "hands-on", "level 7"]
-    },
-
-    // --- 13 PRACTICAL LABS ---
-    {
-      title: "Lab 01: HTTP Security Headers Hardening",
-      desc: "Analyze and remediate missing CSP, HSTS, X-Content-Type-Options, and X-Frame-Options headers.",
-      url: "labs.html?lab=lab-headers",
-      type: "Practical Lab",
-      badgeClass: "badge-lab",
-      keywords: ["headers", "csp", "hsts", "xfo", "curl", "hardening", "web", "lab 1"]
-    },
-    {
-      title: "Lab 02: Linux Permissions & Octal Masking",
-      desc: "Audit UNIX file permissions, calculate octal masks (chmod/chown), and isolate sensitive credential stores.",
-      url: "labs.html?lab=lab-permissions",
-      type: "Practical Lab",
-      badgeClass: "badge-lab",
-      keywords: ["linux", "permissions", "chmod", "chown", "octal", "umask", "rwx", "lab 2"]
-    },
-    {
-      title: "Lab 03: Authentication & Rate Limiting Bypass",
-      desc: "Analyze broken authentication endpoints, brute-force mitigation gaps, and spoof X-Forwarded-For headers.",
-      url: "labs.html?lab=lab-auth",
-      type: "Practical Lab",
-      badgeClass: "badge-lab",
-      keywords: ["auth", "authentication", "rate limiting", "x-forwarded-for", "brute force", "login", "lab 3"]
-    },
-    {
-      title: "Lab 04: Insecure Direct Object References (IDOR)",
-      desc: "Identify horizontal privilege escalation vulnerabilities in REST APIs and tamper with user object IDs.",
-      url: "labs.html?lab=lab-idor",
-      type: "Practical Lab",
-      badgeClass: "badge-lab",
-      keywords: ["idor", "access control", "api", "horizontal escalation", "object reference", "tampering", "lab 4"]
-    },
-    {
-      title: "Lab 05: UNION-Based SQL Injection",
-      desc: "Determine column counts with ORDER BY, identify reflected data types, and extract database records via UNION SELECT.",
-      url: "labs.html?lab=lab-sqli",
-      type: "Practical Lab",
-      badgeClass: "badge-lab",
-      keywords: ["sqli", "sql injection", "union select", "order by", "database", "extraction", "payload", "lab 5"]
-    },
-    {
-      title: "Lab 06: Reflected XSS & Context Escaping",
-      desc: "Break out of attribute and script contexts, construct harmless alert payloads, and verify input sanitization.",
-      url: "labs.html?lab=lab-xss",
-      type: "Practical Lab",
-      badgeClass: "badge-lab",
-      keywords: ["xss", "cross-site scripting", "context escaping", "javascript", "payload", "html", "lab 6"]
-    },
-    {
-      title: "Lab 07: CSRF & SameSite Protections",
-      desc: "Construct cross-origin request forging exploits and implement anti-CSRF token verification and SameSite cookies.",
-      url: "labs.html?lab=lab-csrf",
-      type: "Practical Lab",
-      badgeClass: "badge-lab",
-      keywords: ["csrf", "cross-site request forgery", "samesite", "anti-csrf token", "cookies", "lab 7"]
-    },
-    {
-      title: "Lab 08: Network Service & SMB Enumeration",
-      desc: "Enumerate open ports with Nmap, query RPC endpoints, and extract null-session shared folders using smbclient.",
-      url: "labs.html?lab=lab-network",
-      type: "Practical Lab",
-      badgeClass: "badge-lab",
-      keywords: ["network", "nmap", "smb", "smbclient", "shares", "null session", "enumeration", "ports", "lab 8"]
-    },
-    {
-      title: "Lab 09: Security Incident Log Analysis",
-      desc: "Investigate Apache access logs and auth.log to detect brute-force attacks, directory fuzzing, and web shells.",
-      url: "labs.html?lab=lab-logs",
-      type: "Practical Lab",
-      badgeClass: "badge-lab",
-      keywords: ["logs", "siem", "grep", "auth.log", "access.log", "incident response", "forensics", "blue team", "lab 9"]
-    },
-    {
-      title: "Lab 10: SUID Privilege Escalation",
-      desc: "Locate SUID binaries with find, identify GTFOBins breakout techniques, and escalate privileges from cadet to root.",
-      url: "labs.html?lab=lab-suid",
-      type: "Practical Lab",
-      badgeClass: "badge-lab",
-      keywords: ["suid", "privesc", "gtfobins", "find", "root", "privilege escalation", "linux", "lab 10"]
-    },
-    {
-      title: "Lab 11: JWT 'None' Algorithm Exploitation",
-      desc: "Deconstruct JSON Web Tokens, modify payload claims to admin, sign with 'alg': 'none', and bypass API auth.",
-      url: "labs.html?lab=lab-jwt",
-      type: "Practical Lab",
-      badgeClass: "badge-lab",
-      keywords: ["jwt", "tokens", "json web token", "alg none", "signature bypass", "claims", "api", "lab 11"]
-    },
-    {
-      title: "Lab 12: XOR & Frequency Analysis Decryption",
-      desc: "Analyze ciphertext byte frequencies, deduce repeating XOR keys, and decrypt intercepted communications.",
-      url: "labs.html?lab=lab-crypto",
-      type: "Practical Lab",
-      badgeClass: "badge-lab",
-      keywords: ["crypto", "cryptography", "xor", "frequency analysis", "cipher", "decryption", "keys", "lab 12"]
-    },
-    {
-      title: "Lab 13: Capstone Pentest: Final Enterprise Target",
-      desc: "Execute a full multi-stage engagement: Nmap enumeration, web reconnaissance, vulnerability exploitation, and SUID root.",
-      url: "labs.html?lab=lab-capstone",
-      type: "Practical Lab",
-      badgeClass: "badge-lab",
-      keywords: ["capstone", "pentest", "enterprise", "root", "nmap", "suid", "full assessment", "junior pentester", "lab 13"]
-    },
-
-    // --- INTERACTIVE HUBS ---
     {
       title: "Terminal Practice Sandbox",
-      desc: "Interactive Linux and tools command sandbox with 6-stage guided scenarios for Nmap, Gobuster, Hydra, and SQLMap.",
+      desc: "Isolated full-screen Linux command-line practice terminal with simulated networking and security tools.",
       url: "terminal-lab.html",
-      type: "Practice Hub",
+      type: "Sandbox",
       badgeClass: "badge-lab",
-      keywords: ["terminal", "sandbox", "cli", "linux", "interactive shell", "hands-on"]
-    },
-
-    // --- REFERENCE & THEORY ---
-    {
-      title: "Theory & Concepts Reference",
-      desc: "Foundational conceptual knowledge: CIA Triad, OSI 7-Layer model, packet journeys, cryptography, and SIEM telemetry.",
-      url: "theory.html",
-      type: "Reference",
-      badgeClass: "badge-glossary",
-      keywords: ["theory", "concepts", "osi", "tcp/ip", "cia triad", "cryptography", "packet journey", "threat modeling"]
+      keywords: ["terminal", "bash", "cli", "linux", "sandbox", "commands"]
     },
     {
-      title: "The Ethical Hacker's Command Handbook",
-      desc: "15 modular command guides covering Linux, Networking, Web, Nmap, Metasploit, PrivEsc, and Security Automation.",
-      url: "handbook/index.html",
-      type: "Handbook",
-      badgeClass: "badge-tool",
-      keywords: ["handbook", "commands", "cheatsheet", "linux commands", "nmap commands", "privesc guide", "metasploit"]
-    },
-    {
-      title: "Penetration Testing Methodology Framework",
-      desc: "Structured 12-stage assessment lifecycle from Rules of Engagement to Reporting, plus Attack/Detection/Defense Matrix.",
-      url: "methodology.html",
-      type: "Methodology",
-      badgeClass: "badge-methodology",
-      keywords: ["methodology", "ptes", "framework", "lifecycle", "attack matrix", "defense matrix", "reporting", "rules of engagement"]
-    },
-    {
-      title: "Cybersecurity Glossary & Terminology Reference",
-      desc: "Comprehensive searchable definitions for 60+ key concepts: CVE, CVSS, CWE, Zero Trust, IDOR, SUID, Kerberos, SIEM.",
-      url: "glossary.html",
-      type: "Glossary",
-      badgeClass: "badge-glossary",
-      keywords: ["glossary", "dictionary", "terminology", "acronyms", "definitions", "cve", "cvss", "cwe", "zero trust"]
-    },
-    {
-      title: "Interactive Cybersecurity Career Roadmap",
-      desc: "Track your progress across 11 core disciplines: Networking, Linux, Web, Pentesting, PrivEsc, AD, Cloud, and SOC.",
-      url: "roadmap.html",
-      type: "Roadmap",
-      badgeClass: "badge-room",
-      keywords: ["roadmap", "career", "disciplines", "tracker", "milestones", "pathway", "skills"]
+      title: "Learner Profile & Learning Progress",
+      desc: "View your earned XP, daily streak, completed rooms across all 4 stages, and learning statistics.",
+      url: "profile.html",
+      type: "Profile",
+      badgeClass: "badge-profile",
+      keywords: ["profile", "streak", "xp", "progress", "account", "settings"]
     }
   ];
 
   // Dynamically populate rooms into the search index if ENDLESSUS_ROOMS is available
   function enrichSearchIndex() {
-    if (typeof ENDLESSUS_ROOMS !== 'undefined' && Array.isArray(ENDLESSUS_ROOMS)) {
-      ENDLESSUS_ROOMS.forEach(r => {
-        const vocabKeywords = r.vocabulary ? r.vocabulary.map(v => v.term.toLowerCase()) : [];
+    const allRooms = (typeof CALION_ROOMS !== 'undefined' && Array.isArray(CALION_ROOMS))
+      ? CALION_ROOMS
+      : ((typeof ENDLESSUS_ROOMS !== 'undefined' && Array.isArray(ENDLESSUS_ROOMS)) ? ENDLESSUS_ROOMS : []);
+
+    if (allRooms.length > 0) {
+      allRooms.forEach(r => {
         const isAlreadyIndexed = ACADEMY_SEARCH_INDEX.some(item => item.url === `room.html?id=${r.id}`);
         if (!isAlreadyIndexed) {
-          const lvl = typeof r.level === 'number' ? r.level : r.stage;
+          const stageName = r.stageTitle || (r.stageId ? r.stageId.replace('-', ' ') : `Stage ${r.stageOrder || r.level || 1}`);
+          const skillKws = Array.isArray(r.skillsGained) ? r.skillsGained : [];
+          const toolKws = Array.isArray(r.toolsAndCommands) ? r.toolsAndCommands : [];
           ACADEMY_SEARCH_INDEX.push({
             title: `${r.id.toUpperCase()}: ${r.title}`,
-            desc: r.whyAreYouHere ? (r.whyAreYouHere.substring(0, 95) + '...') : r.tagline,
+            desc: r.description || (r.whyAreYouHere ? (r.whyAreYouHere.substring(0, 95) + '...') : r.tagline || ''),
             url: `room.html?id=${r.id}`,
             roomId: r.id,
-            type: `Room · Level ${lvl}`,
+            type: `Room · ${stageName}`,
             badgeClass: 'badge-room',
-            keywords: [r.id, r.title.toLowerCase(), ...vocabKeywords]
+            keywords: [r.id, r.title.toLowerCase(), ...skillKws, ...toolKws]
           });
         }
       });

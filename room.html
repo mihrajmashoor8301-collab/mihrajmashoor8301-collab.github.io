@@ -103,14 +103,16 @@
         </span>
       </div>
 
-      <!-- Center Desktop Navigation -->
-      <nav class="hidden md:flex items-center gap-1 text-xs font-mono" aria-label="Main Navigation">
-        <a href="learning.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Learn</a>
-        <a href="modules.html" class="px-3 py-1.5 rounded-md text-primary font-bold bg-surface-raised transition-colors">Modules</a>
-        <a href="roadmap.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Roadmap</a>
-        <a href="labs.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Labs</a>
-        <a href="terminal-lab.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Terminal</a>
-        <a href="glossary.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised transition-colors">Glossary</a>
+      <!-- Center Minimal Navigation -->
+      <nav class="flex items-center gap-1 text-xs font-mono" aria-label="Main Navigation">
+        <a href="learning.html" class="px-3 py-1.5 rounded-md text-primary font-bold bg-surface-raised flex items-center gap-1.5 transition-colors">
+          <span class="material-symbols-outlined text-[15px]">school</span>
+          <span>Learn</span>
+        </a>
+        <a href="terminal-lab.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised flex items-center gap-1.5 transition-colors">
+          <span class="material-symbols-outlined text-[15px]">terminal</span>
+          <span>Terminal</span>
+        </a>
       </nav>
 
       <!-- Right Action Bar -->
@@ -141,9 +143,10 @@
           </button>
         </div>
 
-        <button type="button" id="mobile-menu-btn" class="md:hidden p-1.5 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" aria-label="Open Mobile Menu">
-          <span class="material-symbols-outlined text-base">menu</span>
-        </button>
+        <!-- Cadet Avatar / Profile -->
+        <a href="profile.html" class="w-8 h-8 rounded-full bg-gradient-to-tr from-sky-500 to-indigo-600 text-white font-mono text-xs font-bold flex items-center justify-center shadow-sm" id="cadet-avatar-badge" title="View Profile">
+          CA
+        </a>
       </div>
     </div>
   </header>
@@ -153,15 +156,12 @@
     <div class="w-72 max-w-[80vw] h-full bg-surface-subtle border-r border-border-hairline p-5 flex flex-col justify-between overflow-y-auto font-mono text-xs">
       <div class="space-y-4">
         <div class="flex items-center justify-between pb-3 border-b border-border-hairline">
-          <span class="font-bold text-sm text-primary">Academy</span>
+          <span class="font-bold text-sm text-primary">CALION Academy</span>
           <button type="button" id="mobile-drawer-close" class="p-1 rounded text-outline hover:text-on-surface"><span class="material-symbols-outlined text-base">close</span></button>
         </div>
-        <a href="learning.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Learn (Dashboard)</a>
-        <a href="modules.html" class="block px-2.5 py-2 rounded-lg bg-surface-raised text-primary font-bold">Path Outline (Pre Security)</a>
-        <a href="roadmap.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Career Roadmap</a>
-        <a href="labs.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Practical Labs (13)</a>
+        <a href="learning.html" class="block px-2.5 py-2 rounded-lg bg-surface-raised text-primary font-bold">Learning Tree</a>
         <a href="terminal-lab.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Terminal Sandbox</a>
-        <a href="glossary.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Glossary</a>
+        <a href="profile.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Learner Profile</a>
       </div>
       <div class="text-[11px] text-outline pt-4 border-t border-border-hairline">
         Free &amp; Open Cybersecurity Training
@@ -507,7 +507,13 @@
         normalizedId = 'room-' + String(parseInt(numPart, 10)).padStart(2, '0');
       }
 
-      const room = PRE_SECURITY_ROOM_MAP[normalizedId];
+      const allRooms = (typeof CALION_ROOMS !== 'undefined' && Array.isArray(CALION_ROOMS))
+        ? CALION_ROOMS
+        : ((typeof PRE_SECURITY_ROOMS !== 'undefined' && Array.isArray(PRE_SECURITY_ROOMS)) ? PRE_SECURITY_ROOMS : []);
+
+      const roomMap = (typeof PRE_SECURITY_ROOM_MAP !== 'undefined') ? PRE_SECURITY_ROOM_MAP : {};
+      const room = allRooms.find(r => r.id === normalizedId) || roomMap[normalizedId];
+
       if (!room) {
         showNotFound();
         return;
@@ -526,30 +532,41 @@
       // Title & Meta
       document.title = `${room.id.toUpperCase()}: ${room.title} · CALION Academy`;
       const descEl = document.getElementById('page-desc');
-      if (descEl) descEl.setAttribute('content', room.whyAreYouHere || room.title);
+      if (descEl) descEl.setAttribute('content', room.whyAreYouHere || room.description || room.title);
 
-      // Level / Module Breadcrumb link
-      const lvlId = typeof room.level === 'number' ? room.level : room.stage;
-      const levelObj = (typeof PRE_SECURITY_LEVELS !== 'undefined') ? PRE_SECURITY_LEVELS.find(l => l.id === lvlId) : null;
-      
+      // Level / Stage Breadcrumb link
+      const stageName = room.stageTitle || (room.stageId ? room.stageId.replace('-', ' ') : 'Pre-Security');
       const bModuleLink = document.getElementById('breadcrumb-module-link');
-      bModuleLink.textContent = levelObj ? `Level ${levelObj.number || '0' + levelObj.id}: ${levelObj.title}` : `Level ${lvlId}`;
-      bModuleLink.href = `module.html?id=level-${lvlId}`;
+      if (bModuleLink) {
+        bModuleLink.textContent = stageName;
+        bModuleLink.href = `learning.html?stage=${room.stageId || 'pre-security'}`;
+      }
 
       document.getElementById('breadcrumb-room-title').textContent = `${room.id.toUpperCase()}: ${room.title}`;
-      document.getElementById('module-syllabus-link').href = `module.html?id=level-${lvlId}`;
+      const syllabusLink = document.getElementById('module-syllabus-link');
+      if (syllabusLink) {
+        syllabusLink.href = `learning.html?stage=${room.stageId || 'pre-security'}`;
+        syllabusLink.innerHTML = `<span class="material-symbols-outlined text-sm">account_tree</span><span>Back to Learning Tree</span>`;
+      }
       document.getElementById('focused-reader-link').href = `lesson.html?room=${room.id}&task=0`;
 
       // Header Hero Badges
       document.getElementById('room-id-badge').textContent = room.id.toUpperCase();
       document.getElementById('room-title').textContent = room.title;
-      document.getElementById('room-why').textContent = room.whyAreYouHere || room.title;
-      document.getElementById('room-est-time').textContent = room.estimatedTime || '20 min';
+      document.getElementById('room-why').textContent = room.description || room.whyAreYouHere || room.title;
+      document.getElementById('room-est-time').textContent = room.estimatedTime || '25 min';
 
       const lessons = Array.isArray(room.lessons) && room.lessons.length > 0
         ? room.lessons
-        : [{ title: '1. ' + room.title, content: room.whyAreYouHere || 'Comprehensive cybersecurity lesson content.' }];
-      const questions = Array.isArray(room.questions) ? room.questions : [];
+        : [{ title: '1. ' + room.title, content: room.whyAreYouHere || room.description || 'Comprehensive cybersecurity lesson content.' }];
+      
+      // Collect all questions across lessons or from room
+      let questions = Array.isArray(room.questions) ? room.questions : [];
+      if (questions.length === 0) {
+        lessons.forEach(l => {
+          if (Array.isArray(l.questions)) questions = questions.concat(l.questions);
+        });
+      }
 
       document.getElementById('room-tasks-count').textContent = `${lessons.length} Task${lessons.length === 1 ? '' : 's'}`;
       document.getElementById('room-questions-count').textContent = `${questions.length} Question${questions.length === 1 ? '' : 's'}`;
@@ -601,6 +618,21 @@
 
       // Map questions to lessons deterministically
       function mapQuestionsToLessons(lesList, qList) {
+        // If lessons already have their own questions array populated
+        const hasPerLessonQuestions = lesList.some(l => Array.isArray(l.questions) && l.questions.length > 0);
+        if (hasPerLessonQuestions) {
+          let globalIdx = 0;
+          return lesList.map((les) => {
+            const arr = Array.isArray(les.questions) ? les.questions : [];
+            const mapped = arr.map(q => {
+              const res = { question: q, originalIdx: globalIdx };
+              globalIdx++;
+              return res;
+            });
+            return mapped;
+          });
+        }
+
         const mapping = lesList.map(() => []);
         if (!qList || qList.length === 0) return mapping;
 
@@ -694,10 +726,91 @@
               <!-- Task Collapsible Body -->
               <div id="task-body-${taskIdx}" class="task-body ${isOpenByDefault ? 'block' : 'hidden'} border-t border-border-hairline/60 p-5 sm:p-6 space-y-6 bg-surface-subtle">
                 
-                <!-- Lesson Text Content -->
-                <article class="prose max-w-none text-on-surface text-sm leading-relaxed space-y-3 font-sans">
-                  ${formatMarkdownContent(les.content)}
-                </article>
+                <!-- Lesson Text & Concept Content -->
+                ${les.concept ? `
+                  <div class="prose max-w-none text-on-surface text-sm leading-relaxed space-y-3 font-sans">
+                    <p class="text-sm sm:text-base leading-relaxed">${escapeHtml(les.concept)}</p>
+                  </div>
+
+                  ${les.whyItMatters ? `
+                    <div class="p-4 rounded-xl border border-sky-200 dark:border-sky-900 bg-sky-50/50 dark:bg-sky-950/20 text-xs font-sans space-y-1">
+                      <div class="flex items-center gap-1.5 font-bold font-mono text-primary uppercase text-[11px]">
+                        <span class="material-symbols-outlined text-sm">priority_high</span>
+                        <span>Why It Matters</span>
+                      </div>
+                      <p class="text-on-surface leading-relaxed">${escapeHtml(les.whyItMatters)}</p>
+                    </div>
+                  ` : ''}
+
+                  ${Array.isArray(les.examples) && les.examples.length > 0 ? `
+                    <div class="space-y-2 pt-1 font-sans text-xs">
+                      <div class="font-mono font-bold text-[11px] uppercase text-outline flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm text-secondary">tips_and_updates</span>
+                        <span>Technical Context &amp; Examples</span>
+                      </div>
+                      <ul class="space-y-1.5 list-disc list-inside text-on-surface bg-surface-raised/40 p-3 rounded-xl border border-border-hairline">
+                        ${les.examples.map(ex => `<li>${escapeHtml(ex)}</li>`).join('')}
+                      </ul>
+                    </div>
+                  ` : ''}
+
+                  ${Array.isArray(les.commands) && les.commands.length > 0 ? `
+                    <div class="space-y-2 pt-1">
+                      <div class="font-mono font-bold text-[11px] uppercase text-outline flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm text-primary">terminal</span>
+                        <span>Commands &amp; Tool Syntax</span>
+                      </div>
+                      <div class="space-y-2">
+                        ${les.commands.map(c => `
+                          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-2.5 rounded-lg bg-[#090D12] border border-[#1F2937] text-xs font-mono">
+                            <div class="flex items-center gap-2 overflow-x-auto text-[#00F0FF]">
+                              <span class="text-slate-500">$</span>
+                              <code class="font-bold">${escapeHtml(c.cmd || c)}</code>
+                            </div>
+                            <span class="text-[11px] text-slate-400 font-sans sm:text-right">${escapeHtml(c.desc || '')}</span>
+                          </div>
+                        `).join('')}
+                      </div>
+                    </div>
+                  ` : ''}
+
+                  ${les.guidedExercise ? `
+                    <div class="p-4 rounded-xl border border-border-hairline bg-surface-raised space-y-1.5 font-sans text-xs">
+                      <div class="flex items-center gap-1.5 font-mono font-bold text-[11px] uppercase text-on-surface">
+                        <span class="material-symbols-outlined text-sm text-emerald-500">fitness_center</span>
+                        <span>Guided Exercise</span>
+                      </div>
+                      <p class="text-on-surface-variant leading-relaxed">${escapeHtml(les.guidedExercise)}</p>
+                    </div>
+                  ` : ''}
+
+                  ${les.isFinalReview && les.reviewSummary ? `
+                    <div class="p-5 rounded-xl border-2 border-primary/40 bg-primary/5 space-y-3 font-sans text-xs">
+                      <div class="flex items-center gap-2 font-mono font-bold text-primary uppercase text-xs">
+                        <span class="material-symbols-outlined text-base">verified</span>
+                        <span>Task ${taskIdx + 1}: Learning Review &amp; Knowledge Synthesis</span>
+                      </div>
+                      <div class="space-y-2 text-on-surface">
+                        <div><strong>Core Concepts:</strong> ${escapeHtml(les.reviewSummary.mainConcepts || '')}</div>
+                        <div><strong>Key Takeaways:</strong> ${escapeHtml(les.reviewSummary.technicalTakeaways || '')}</div>
+                        ${Array.isArray(les.reviewSummary.commandsCovered) ? `
+                          <div class="flex flex-wrap items-center gap-1.5 pt-1">
+                            <strong class="font-mono text-[11px]">Commands Covered:</strong>
+                            ${les.reviewSummary.commandsCovered.map(cmd => `<code class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline font-mono text-[10px] text-primary">${escapeHtml(cmd)}</code>`).join('')}
+                          </div>
+                        ` : ''}
+                        <div><strong>Common Pitfalls:</strong> ${escapeHtml(les.reviewSummary.commonMistakes || '')}</div>
+                        <div class="p-3 rounded-lg bg-surface-subtle border border-border-hairline text-emerald-600 dark:text-emerald-400 font-medium">
+                          <strong>Learning Outcome:</strong> ${escapeHtml(les.reviewSummary.learningOutcome || '')}
+                        </div>
+                      </div>
+                    </div>
+                  ` : ''}
+                ` : `
+                  <article class="prose max-w-none text-on-surface text-sm leading-relaxed space-y-3 font-sans">
+                    ${formatMarkdownContent(les.content)}
+                  </article>
+                `}
 
                 <!-- Architecture Diagram (if present on task 0) -->
                 ${(room.diagramSvg && taskIdx === 0) ? `
@@ -1051,8 +1164,15 @@
         document.getElementById('modal-xp-stat').textContent = `+${earnedXP} XP Earned`;
 
         const learnedList = document.getElementById('modal-learned-list');
-        if (learnedList && room.objectives) {
-          learnedList.innerHTML = room.objectives.slice(0, 3).map(obj => `
+        if (learnedList) {
+          const items = [];
+          if (lessons[lessons.length - 1]?.reviewSummary?.learningOutcome) {
+            items.push(lessons[lessons.length - 1].reviewSummary.learningOutcome);
+          }
+          if (Array.isArray(room.objectives)) {
+            items.push(...room.objectives.slice(0, 2));
+          }
+          learnedList.innerHTML = items.slice(0, 3).map(obj => `
             <li class="flex items-start gap-2">
               <span class="material-symbols-outlined text-emerald-500 text-[16px] shrink-0 mt-0.5">check</span>
               <span>${escapeHtml(obj)}</span>
@@ -1062,8 +1182,12 @@
 
         const skillsBox = document.getElementById('modal-skills-tags');
         if (skillsBox) {
-          const vocabTags = (room.vocabulary || []).slice(0, 4).map(v => v.term);
-          skillsBox.innerHTML = vocabTags.map(tag => `
+          const tags = (Array.isArray(room.skillsGained) && room.skillsGained.length > 0)
+            ? room.skillsGained.slice(0, 5)
+            : ((Array.isArray(room.toolsAndCommands) && room.toolsAndCommands.length > 0)
+              ? room.toolsAndCommands.slice(0, 5)
+              : (room.vocabulary || []).slice(0, 4).map(v => v.term));
+          skillsBox.innerHTML = tags.map(tag => `
             <span class="px-2 py-0.5 rounded bg-sky-50 dark:bg-sky-950/60 border border-sky-200 dark:border-sky-800 text-sky-700 dark:text-sky-300 font-mono text-[10px]">
               ${escapeHtml(tag)}
             </span>
@@ -1076,8 +1200,8 @@
             nextBtnModal.href = `room.html?id=${nextRoom.id}`;
             nextBtnModal.innerHTML = `<span>Continue to ${nextRoom.id.toUpperCase()}</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span>`;
           } else {
-            nextBtnModal.href = 'learning.html';
-            nextBtnModal.innerHTML = `<span>Back to Learning Path</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span>`;
+            nextBtnModal.href = `learning.html?stage=${room.stageId || 'pre-security'}`;
+            nextBtnModal.innerHTML = `<span>Return to Learning Tree</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span>`;
           }
         }
 
@@ -1188,13 +1312,15 @@
       window.addEventListener('endlessus-progress-updated', () => {
         renderOverallProgress();
       });
+      window.addEventListener('calion-progress-updated', () => {
+        renderOverallProgress();
+      });
 
       // Prev / Next Room Navigation
-      const allRooms = (typeof ENDLESSUS_ROOMS !== 'undefined') ? ENDLESSUS_ROOMS : [];
       const currentIdx = allRooms.findIndex(r => r.id === room.id);
-
       const prevRoom = currentIdx > 0 ? allRooms[currentIdx - 1] : null;
-      const nextRoom = currentIdx >= 0 && currentIdx < allRooms.length - 1 ? allRooms[currentIdx + 1] : null;
+      const nextRoom = (room.nextRoomId && allRooms.find(r => r.id === room.nextRoomId)) 
+        || (currentIdx >= 0 && currentIdx < allRooms.length - 1 ? allRooms[currentIdx + 1] : null);
 
       const prevLink = document.getElementById('prev-room-link');
       const prevTitle = document.getElementById('prev-room-title');

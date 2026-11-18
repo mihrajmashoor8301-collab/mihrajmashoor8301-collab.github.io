@@ -400,8 +400,8 @@
       }
 
       // Get rooms in this level
-      const allRooms = (typeof ENDLESSUS_ROOMS !== 'undefined') ? ENDLESSUS_ROOMS : [];
-      const roomsInLevel = allRooms.filter(r => (typeof r.level === 'number' ? r.level : r.stage) === level.id);
+      const allRooms = (typeof CALION_ROOMS !== 'undefined') ? CALION_ROOMS : ((typeof ENDLESSUS_ROOMS !== 'undefined') ? ENDLESSUS_ROOMS : []);
+      const roomsInLevel = allRooms.filter(r => (typeof r.level === 'number' ? r.level : r.stage) === level.id || (typeof r.stageOrder === 'number' && (r.stageOrder === level.id || r.stageOrder - 1 === level.id)));
 
       document.getElementById('module-room-count').textContent = `${roomsInLevel.length} Rooms`;
       document.getElementById('rooms-count-pill').textContent = `${roomsInLevel.length} Rooms`;

@@ -517,7 +517,7 @@
         // Group rooms by stage
         const stageRoomsMap = {};
         ENDLESSUS_STAGES.forEach(st => {
-          stageRoomsMap[st.id] = ENDLESSUS_ROOMS.filter(r => r.stage === st.id);
+          stageRoomsMap[st.id] = ENDLESSUS_ROOMS.filter(r => (typeof st.order === 'number' && (r.stageOrder === st.order || r.stage === st.order)) || r.stageOrder === st.id + 1 || r.stageId === st.id);
         });
 
         // Determine stage statuses
@@ -591,7 +591,7 @@
         }
 
         if (nextRoom) {
-          const stageObj = ENDLESSUS_STAGES.find(s => s.id === nextRoom.stage);
+          const stageObj = ENDLESSUS_STAGES.find(s => s.id === nextRoom.stage || (s.id + 1) === nextRoom.stageOrder || s.id === nextRoom.stageId);
           stageBadge.textContent = `Stage ${stageObj ? stageObj.number : nextRoom.stage} · ${stageObj ? stageObj.title : ''}`;
           titleEl.textContent = `${nextRoom.title}`;
           descEl.textContent = nextRoom.whyAreYouHere ? nextRoom.whyAreYouHere.slice(0, 190) + '...' : (nextRoom.objectives ? nextRoom.objectives[0] : 'Continue your hands-on journey.');

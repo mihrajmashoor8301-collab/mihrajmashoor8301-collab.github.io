@@ -317,7 +317,7 @@
 
   function getNextIncompleteRoom(roomsList) {
     const completed = new Set(getCompletedRooms());
-    const list = roomsList || (typeof window !== 'undefined' && window.ENDLESSUS_ROOMS) || [];
+    const list = roomsList || (typeof window !== 'undefined' && (window.CALION_ROOMS || window.ENDLESSUS_ROOMS)) || [];
     for (let i = 0; i < list.length; i++) {
       if (!completed.has(list[i].id)) {
         return list[i];
@@ -327,15 +327,60 @@
   }
 
   function getLevelProgress(levelId, roomsList) {
-    const list = roomsList || (typeof window !== 'undefined' && window.ENDLESSUS_ROOMS) || [];
+    const list = roomsList || (typeof window !== 'undefined' && (window.CALION_ROOMS || window.ENDLESSUS_ROOMS)) || [];
     const lvlNum = parseInt(levelId, 10);
-    const roomsInLevel = list.filter(r => (typeof r.level === 'number' ? r.level : r.stage) === lvlNum);
+    const roomsInLevel = list.filter(r => (typeof r.level === 'number' ? r.level : (typeof r.stageOrder === 'number' ? r.stageOrder : r.stage)) === lvlNum);
     const total = roomsInLevel.length;
     if (total === 0) return { completed: 0, total: 0, percentage: 0 };
     const completedRooms = new Set(getCompletedRooms());
     const completed = roomsInLevel.filter(r => completedRooms.has(r.id)).length;
     const percentage = Math.round((completed / total) * 100);
     return { completed, total, percentage };
+  }
+
+  function getStageProgress(stageIdOrOrder, roomsList) {
+    const list = roomsList || (typeof window !== 'undefined' && (window.CALION_ROOMS || window.ENDLESSUS_ROOMS)) || [];
+    const roomsInStage = list.filter(r => {
+      if (typeof stageIdOrOrder === 'string') {
+        return r.stageId === stageIdOrOrder || r.id.startsWith(stageIdOrOrder);
+      }
+      if (typeof stageIdOrOrder === 'number') {
+        return r.stageOrder === stageIdOrOrder || r.stage === stageIdOrOrder || r.level === stageIdOrOrder;
+      }
+      return false;
+    });
+
+    const total = roomsInStage.length;
+    if (total === 0) return { completed: 0, total: 0, percentage: 0, rooms: [] };
+
+    const completedRooms = new Set(getCompletedRooms());
+    const completed = roomsInStage.filter(r => completedRooms.has(r.id)).length;
+    const percentage = Math.round((completed / total) * 100);
+    return { completed, total, percentage, rooms: roomsInStage };
+  }
+
+  function isStageUnlocked(stageIdOrOrder, roomsList) {
+    // Stage 1 (Pre-Security) is always unlocked
+    if (stageIdOrOrder === 'pre-security' || stageIdOrOrder === 1) return true;
+
+    const list = roomsList || (typeof window !== 'undefined' && (window.CALION_ROOMS || window.ENDLESSUS_ROOMS)) || [];
+    const completedRooms = new Set(getCompletedRooms());
+
+    // Stage 2 (Cyber Security) unlocks when Stage 1 has >= 3 completed rooms
+    if (stageIdOrOrder === 'cyber-security' || stageIdOrOrder === 2) {
+      const s1Rooms = list.filter(r => r.stageId === 'pre-security' || r.stageOrder === 1);
+      const s1Completed = s1Rooms.filter(r => completedRooms.has(r.id)).length;
+      return s1Completed >= 3;
+    }
+
+    // Stage 3 (Defensive) and Stage 4 (Offensive) unlock when Stage 2 has >= 3 completed rooms
+    if (stageIdOrOrder === 'defensive-security' || stageIdOrOrder === 3 || stageIdOrOrder === 'offensive-security' || stageIdOrOrder === 4) {
+      const s2Rooms = list.filter(r => r.stageId === 'cyber-security' || r.stageOrder === 2);
+      const s2Completed = s2Rooms.filter(r => completedRooms.has(r.id)).length;
+      return s2Completed >= 3;
+    }
+
+    return true;
   }
 
   function resetAllProgress() {
@@ -429,6 +474,8 @@
     getLastActiveRoom,
     getNextIncompleteRoom,
     getLevelProgress,
+    getStageProgress,
+    isStageUnlocked,
     resetAllProgress
   };
 });

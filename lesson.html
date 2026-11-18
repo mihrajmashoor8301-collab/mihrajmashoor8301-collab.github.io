@@ -106,6 +106,18 @@
         </div>
       </div>
 
+      <!-- Center Minimal Navigation -->
+      <nav class="hidden sm:flex items-center gap-1 text-xs font-mono" aria-label="Main Navigation">
+        <a href="learning.html" class="px-3 py-1.5 rounded-md text-primary font-bold bg-slate-100 dark:bg-slate-800 flex items-center gap-1.5 transition-colors">
+          <span class="material-symbols-outlined text-[15px]">school</span>
+          <span>Learn</span>
+        </a>
+        <a href="terminal-lab.html" class="px-3 py-1.5 rounded-md text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-1.5 transition-colors">
+          <span class="material-symbols-outlined text-[15px]">terminal</span>
+          <span>Terminal</span>
+        </a>
+      </nav>
+
       <!-- Right Header Actions -->
       <div class="flex items-center gap-3 font-mono text-xs">
         <!-- Live Streak & XP Badges -->
@@ -122,8 +134,13 @@
 
         <a id="header-room-link" href="#" class="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 hover:border-primary text-xs font-mono text-slate-700 dark:text-slate-300 transition-colors">
           <span class="material-symbols-outlined text-xs">meeting_room</span>
-          <span>Room Overview</span>
+          <span>Room</span>
         </a>
+
+        <!-- Search button -->
+        <button type="button" class="academy-search-btn hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 hover:border-primary text-xs font-mono text-slate-600 dark:text-slate-300 transition-colors" title="Search Academy (Cmd+K)">
+          <span class="material-symbols-outlined text-sm text-primary">search</span>
+        </button>
 
         <!-- Theme Toggle -->
         <button aria-label="Toggle theme mode" class="w-9 h-9 rounded-lg bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 transition-colors" id="theme-toggle" type="button">
@@ -131,7 +148,12 @@
           <span class="material-symbols-outlined text-[19px] hidden dark:block">light_mode</span>
         </button>
 
-        <button type="button" id="mobile-menu-btn" class="md:hidden p-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300" aria-label="Open Mobile Menu">
+        <!-- Cadet Avatar / Profile -->
+        <a href="profile.html" class="w-8 h-8 rounded-full bg-gradient-to-tr from-sky-500 to-indigo-600 text-white font-mono text-xs font-bold flex items-center justify-center shadow-sm" id="cadet-avatar-badge" title="View Profile">
+          CA
+        </a>
+
+        <button type="button" id="mobile-menu-btn" class="sm:hidden p-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300" aria-label="Open Mobile Menu">
           <span class="material-symbols-outlined text-base">menu</span>
         </button>
       </div>
@@ -139,7 +161,7 @@
   </header>
 
   <!-- Mobile Drawer -->
-  <div id="mobile-drawer" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden md:hidden">
+  <div id="mobile-drawer" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden sm:hidden">
     <div class="w-72 max-w-[80vw] h-full bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 p-5 flex flex-col justify-between overflow-y-auto font-mono text-xs">
       <div class="space-y-4">
         <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
@@ -148,12 +170,9 @@
             <span class="material-symbols-outlined text-base">close</span>
           </button>
         </div>
-        <a href="learning.html" class="block px-2.5 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Pathways &amp; Skill Tree</a>
-        <a href="modules.html" class="block px-2.5 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Curriculum Outline</a>
-        <a href="roadmap.html" class="block px-2.5 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Career Roadmap</a>
-        <a href="labs.html" class="block px-2.5 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Practical Labs</a>
+        <a href="learning.html" class="block px-2.5 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Learn (Learning Tree)</a>
         <a href="terminal-lab.html" class="block px-2.5 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Terminal Sandbox</a>
-        <a href="glossary.html" class="block px-2.5 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Glossary</a>
+        <a href="profile.html" class="block px-2.5 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Profile &amp; Settings</a>
       </div>
     </div>
   </div>
@@ -608,7 +627,8 @@
         roomId = 'room-' + String(parseInt(numPart, 10)).padStart(2, '0');
       }
 
-      const room = PRE_SECURITY_ROOM_MAP[roomId];
+      const room = (typeof CALION_ROOM_MAP !== 'undefined' && CALION_ROOM_MAP[roomId]) || 
+                   (typeof PRE_SECURITY_ROOM_MAP !== 'undefined' && PRE_SECURITY_ROOM_MAP[roomId]);
       if (!room) {
         showNotFound();
         return;

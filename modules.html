@@ -348,9 +348,9 @@
           testGrid.innerHTML = testFiltered.map(lvl => `<article data-level="${lvl.id}">${lvl.title}</article>`).join('');
         }
 
-        // Render 8 Path Sections
+        // Render 4 Path Sections
         const sectionsHtml = levels.map(lvl => {
-          const roomsInLevel = allRooms.filter(r => (typeof r.level === 'number' ? r.level : r.stage) === lvl.id);
+          const roomsInLevel = allRooms.filter(r => (typeof r.level === 'number' ? r.level : r.stage) === lvl.id || (typeof r.stageOrder === 'number' && (r.stageOrder === lvl.id || r.stageOrder - 1 === lvl.id)));
           const lvlProg = AcademyState.getLevelProgress(lvl.id, allRooms);
           const isLevelComplete = lvlProg.total > 0 && lvlProg.completed === lvlProg.total;
 
