@@ -186,6 +186,7 @@ server.listen(PORT, async () => {
     // Test persistence across navigation to other pages
     const auditedPages = [
       { url: `http://127.0.0.1:${PORT}/learning.html`, name: 'Academy Home' },
+      { url: `http://127.0.0.1:${PORT}/tools.html`, name: 'Security Tools' },
       { url: `http://127.0.0.1:${PORT}/roadmap/pre-security/`, name: 'Pre-Security Roadmap' },
       { url: `http://127.0.0.1:${PORT}/room.html?id=room-01`, name: 'Room 01' },
       { url: `http://127.0.0.1:${PORT}/lesson.html?room=room-01&task=0`, name: 'Lesson 01' },

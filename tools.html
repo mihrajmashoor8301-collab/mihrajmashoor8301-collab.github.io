@@ -17,22 +17,10 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 
-  <!-- Immediate Theme Initializer -->
-  <script>
-    (function() {
-      const savedTheme = localStorage.getItem('endlessus_learning_theme') || 'normal';
-      if (savedTheme === 'hacker') {
-        document.documentElement.classList.add('dark', 'theme-hacker');
-        document.documentElement.classList.remove('theme-normal');
-      } else {
-        document.documentElement.classList.remove('dark', 'theme-hacker');
-        document.documentElement.classList.add('theme-normal');
-      }
-    })();
-  </script>
+  <script src="calion-theme.js"></script>
 
   <link rel="stylesheet" href="academy.css"/>
   <script src="tailwind.cdn.js"></script>
@@ -70,9 +58,24 @@
     body {
       background-color: var(--color-canvas-base);
       color: var(--color-on-surface);
-      font-family: 'Inter', sans-serif;
+      font-family: var(--academy-font-sans, 'Inter', sans-serif);
       transition: background-color 0.2s ease, color 0.2s ease;
     }
+    .tools-hero-title {
+      max-width: 850px;
+      font-family: var(--academy-font-display, 'Space Grotesk', sans-serif);
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+    #tab-browser-tools h3, #tab-nmap-builder h3, #tab-tool-db h3 {
+      font-family: var(--academy-font-display, 'Space Grotesk', sans-serif);
+      letter-spacing: -0.015em;
+    }
+    .tools-tab-btn { font-family: var(--academy-font-sans, 'Inter', sans-serif); }
+    .tools-footer { font-family: var(--academy-font-sans, 'Inter', sans-serif); }
+    .tools-footer a { color: inherit; text-decoration: none; }
+    .tools-footer a:hover { color: var(--color-primary); }
     .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; vertical-align: middle; line-height: 1; }
     .telemetry-grid {
       background-size: 32px 32px;
@@ -93,201 +96,40 @@
     }
   </style>
 </head>
-<body class="bg-canvas-base text-on-surface antialiased telemetry-grid min-h-screen flex flex-col font-sans selection:bg-primary selection:text-white">
+<body class="bg-canvas-base text-on-surface antialiased min-h-screen flex flex-col font-sans selection:bg-primary selection:text-white">
 
-  <!-- =========================================================================
-       CALION TOOLS HEADER (Stitch Design)
-       ========================================================================= -->
-  <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-      
-      <!-- Brand & Tagline -->
-      <div class="flex items-center space-x-3">
-        <a class="flex items-center space-x-2.5 group" href="tools.html">
-          <svg class="h-8 w-auto" fill="none" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="header_calion_grad_t" x1="0%" x2="100%" y1="0%" y2="100%">
-                <stop offset="0%" stop-color="#00F0FF"></stop>
-                <stop offset="50%" stop-color="#0284C7"></stop>
-                <stop offset="100%" stop-color="#6366F1"></stop>
-              </linearGradient>
-            </defs>
-            <g transform="translate(10, 10)">
-              <path d="M 55 10 L 25 10 L 10 25 L 10 55 L 25 70 L 55 70" stroke="url(#header_calion_grad_t)" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"></path>
-              <path class="stroke-slate-900 dark:stroke-white transition-colors" d="M 42 70 L 42 22 L 58 22 L 68 70" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"></path>
-              <path d="M 33 46 L 56 46" stroke="url(#header_calion_grad_t)" stroke-linecap="round" stroke-width="4.5"></path>
-              <circle cx="55" cy="10" fill="#00F0FF" r="3.5"></circle>
-              <circle cx="25" cy="70" fill="#6366F1" r="3"></circle>
-              <circle class="fill-slate-900 dark:fill-white transition-colors" cx="42" cy="22" r="2.5"></circle>
-            </g>
-            <text class="fill-slate-900 dark:fill-white font-headline text-[34px] font-bold transition-colors" letter-spacing="0.22em" x="100" y="58">CALION</text>
-            <text fill="#0284C7" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" letter-spacing="0.42em" x="102" y="74">DIGITAL ECOSYSTEM</text>
-            <rect fill="#00F0FF" height="6" rx="1.5" width="6" x="362" y="38"></rect>
-            <rect fill="#6366F1" height="6" rx="1.5" width="6" x="362" y="48"></rect>
-          </svg>
-          <span class="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">TOOLS</span>
-        </a>
-        <span class="hidden md:inline-block text-xs font-mono text-outline pl-3 border-l border-border-hairline">tools.endlessus.in</span>
-      </div>
-
-      <!-- Quick Nav & Actions -->
-      <div class="flex items-center space-x-4">
-        <a class="text-xs font-mono font-medium text-on-surface-variant hover:text-primary transition-colors hidden sm:inline-block" href="#tool-hash-id">Hash Engine</a>
-        <a class="text-xs font-mono font-medium text-on-surface-variant hover:text-primary transition-colors hidden sm:inline-block" href="#tool-base64">Encoders</a>
-        <a class="text-xs font-mono font-medium text-on-surface-variant hover:text-primary transition-colors hidden sm:inline-block" href="#tool-jwt">JWT Inspector</a>
-        <a class="text-xs font-mono font-medium text-on-surface-variant hover:text-primary transition-colors hidden sm:inline-block" href="#tool-nmap">Nmap Builder</a>
-        
-        <div class="h-4 w-px bg-border-hairline hidden sm:block"></div>
-
-        <!-- Local client execution status -->
-        <div class="hidden lg:flex items-center space-x-1.5 text-xs font-mono text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800/40">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>Zero-Telemetry WASM</span>
-        </div>
-
-        <!-- Light / Dark Mode Toggle -->
-        <button aria-label="Toggle Dark / Light Theme" class="p-2 rounded-lg border border-border-hairline hover:bg-surface-raised text-on-surface-variant transition-colors flex items-center justify-center" id="theme-toggle" type="button">
-          <span class="material-symbols-outlined text-[19px] dark:hidden block">dark_mode</span>
-          <span class="material-symbols-outlined text-[19px] hidden dark:block">light_mode</span>
-        </button>
-      </div>
+  <header class="calion-global-header">
+    <div class="calion-nav-left">
+      <a aria-label="CALION Academy Home" class="calion-brand-link" href="/">
+        <svg class="calion-logo-svg h-7 w-auto shrink-0 select-none" height="28" style="height:28px;width:auto" fill="none" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg" aria-label="CALION Logo">
+          <defs>
+            <linearGradient id="calion_grad_tools" x1="0%" x2="100%" y1="0%" y2="100%">
+              <stop offset="0%" stop-color="#00F0FF"></stop><stop offset="50%" stop-color="#0284C7"></stop><stop offset="100%" stop-color="#6366F1"></stop>
+            </linearGradient>
+          </defs>
+          <g transform="translate(10, 10)">
+            <path d="M 55 10 L 25 10 L 10 25 L 10 55 L 25 70 L 55 70" stroke="url(#calion_grad_tools)" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"></path>
+            <path class="stroke-slate-900 dark:stroke-white transition-colors" d="M 42 70 L 42 22 L 58 22 L 68 70" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"></path>
+            <path d="M 33 46 L 56 46" stroke="url(#calion_grad_tools)" stroke-linecap="round" stroke-width="4.5"></path>
+            <circle cx="55" cy="10" fill="#00F0FF" r="3.5"></circle><circle cx="25" cy="70" fill="#6366F1" r="3"></circle>
+            <circle class="fill-slate-900 dark:fill-white transition-colors" cx="42" cy="22" r="2.5"></circle>
+          </g>
+          <text class="fill-slate-900 dark:fill-white font-headline font-bold transition-colors" font-size="34" letter-spacing="0.22em" x="100" y="58">CALION</text>
+          <rect fill="#00F0FF" height="6" rx="1.5" width="6" x="362" y="38"></rect><rect fill="#6366F1" height="6" rx="1.5" width="6" x="362" y="48"></rect>
+        </svg>
+        <span class="calion-brand-badge">Tools</span>
+      </a>
     </div>
-  </header>
-            </a>
-            <a href="payloads.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
-              <span class="material-symbols-outlined text-sm text-danger-critical">code</span>
-              <div>
-                <div class="font-bold text-on-surface">Interactive Payloads</div>
-                <div class="text-[10px] text-outline">Live web exploit tester</div>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <!-- Reference Popover (Active) -->
-        <div class="relative group">
-          <button type="button" class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-primary font-bold bg-primary/10 border border-primary/30 transition-colors cursor-pointer" aria-current="page" aria-haspopup="true">
-            <span class="material-symbols-outlined text-sm">library_books</span>
-            <span>Reference</span>
-            <span class="material-symbols-outlined text-xs">arrow_drop_down</span>
-          </button>
-          <div class="absolute left-0 mt-1 w-56 py-2 rounded-xl bg-surface-subtle border border-border-hairline shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all z-50">
-            <a href="theory.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
-              <span class="material-symbols-outlined text-sm text-secondary">psychology</span>
-              <div>
-                <div class="font-bold text-on-surface">Theory &amp; Concepts</div>
-                <div class="text-[10px] text-outline">Theoretical cybersecurity foundations</div>
-              </div>
-            </a>
-            <a href="handbook/index.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
-              <span class="material-symbols-outlined text-sm text-primary">menu_book</span>
-              <div>
-                <div class="font-bold text-on-surface">Command Handbook</div>
-                <div class="text-[10px] text-outline">15 modular security guides</div>
-              </div>
-            </a>
-            <a href="tools.html" class="flex items-center gap-2 px-3 py-2 text-xs text-primary font-bold bg-primary/10">
-              <span class="material-symbols-outlined text-sm text-warning">build</span>
-              <div>
-                <div class="font-bold text-primary">Security Tools</div>
-                <div class="text-[10px] text-outline">Tools encyclopedia &amp; Nmap builder</div>
-              </div>
-            </a>
-            <a href="methodology.html" class="flex items-center gap-2 px-3 py-2 text-xs text-on-surface-variant hover:text-primary hover:bg-surface-raised">
-              <span class="material-symbols-outlined text-sm text-danger-critical">security</span>
-              <div>
-                <div class="font-bold text-on-surface">Pentest Methodology</div>
-                <div class="text-[10px] text-outline">12-stage framework &amp; attack matrix</div>
-              </div>
-            </a>
-
-
-          </div>
-        </div>
-
-        <!-- Portfolio Link -->
-        <a href="index.html" class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-raised transition-colors font-medium">
-          <span class="material-symbols-outlined text-sm">person</span>
-          <span>Portfolio</span>
-        </a>
+    <div class="calion-nav-right">
+      <nav class="calion-nav-links" aria-label="Primary">
+        <a class="calion-nav-item" href="/"><span class="material-symbols-outlined text-[16px]">school</span><span>Academy</span></a>
+        <a class="calion-nav-item hide-mobile" href="terminal-lab.html"><span class="material-symbols-outlined text-[16px]">terminal</span><span>Terminal</span></a>
+        <a class="calion-nav-item active" aria-current="page" href="tools.html"><span class="material-symbols-outlined text-[16px]">build</span><span>Tools</span></a>
       </nav>
-
-      <!-- Header Controls: Search, Theme Toggle, Mobile Toggle -->
-      <div class="flex items-center gap-2 sm:gap-3">
-        
-        <!-- Search Trigger -->
-        <button data-trigger-cmd class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border-hairline bg-surface-raised text-xs text-on-surface hover:border-primary transition-colors cursor-pointer" title="Search Everything (Cmd+K)">
-          <span class="material-symbols-outlined text-sm text-primary">search</span>
-          <span class="hidden sm:inline text-[11px] text-outline">⌘K</span>
-        </button>
-
-        <!-- Theme Toggle: Normal View vs Hacker View -->
-        <div class="flex items-center border border-border-hairline rounded-lg p-0.5 bg-surface-raised text-xs font-mono">
-          <button type="button" id="theme-toggle-normal" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold bg-primary text-white" title="Switch to Normal View (Light mode)">
-            <span class="material-symbols-outlined text-xs">light_mode</span>
-            <span class="hidden sm:inline">Normal</span>
-          </button>
-          <button type="button" id="theme-toggle-hacker" class="px-2 py-1 rounded text-xs flex items-center gap-1 font-bold text-outline hover:text-on-surface" title="Switch to Hacker View (Dark HUD)">
-            <span class="material-symbols-outlined text-xs">terminal</span>
-            <span class="hidden sm:inline">Hacker</span>
-          </button>
-        </div>
-
-        <!-- Mobile Menu Toggle Button -->
-        <button type="button" id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" aria-label="Toggle Mobile Menu">
-          <span class="material-symbols-outlined text-base">menu</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Contextual Breadcrumb Sub-Header -->
-    <div class="border-t border-border-hairline bg-surface-raised/70 px-4 sm:px-6 py-2 text-xs">
-      <div class="max-w-7xl mx-auto flex items-center justify-between">
-        <div class="flex items-center gap-1.5 text-on-surface-variant font-mono text-[11px]">
-          <a href="learning.html" class="hover:text-primary transition-colors flex items-center gap-1">
-            <span class="material-symbols-outlined text-xs">school</span>
-            <span>Academy</span>
-          </a>
-          <span class="text-outline">/</span>
-          <span>Reference</span>
-          <span class="text-outline">/</span>
-          <span class="text-primary font-bold">Security Tools &amp; Builder</span>
-        </div>
-        <div class="hidden sm:flex items-center gap-3 text-[11px] font-mono">
-          <span class="text-outline">13 Client Tools · 20 Manuals</span>
-          <span class="text-outline">·</span>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- Mobile Drawer for Navigation -->
-    <div id="mobile-drawer" class="academy-mobile-drawer">
-      <div>
-        <div class="academy-mobile-group-title">LEARN</div>
-
-
-
-      </div>
-      <div>
-        <div class="academy-mobile-group-title">PRACTICE</div>
-
-        <a href="terminal-lab.html" class="academy-mobile-link">Terminal Practice Sandbox</a>
-        <a href="payloads.html" class="academy-mobile-link">Interactive Payloads</a>
-      </div>
-      <div>
-        <div class="academy-mobile-group-title">REFERENCE</div>
-        <a href="theory.html" class="academy-mobile-link">Theory & Concepts</a>
-        <a href="handbook/index.html" class="academy-mobile-link">Command Handbook</a>
-        <a href="tools.html" class="academy-mobile-link active">Security Tools</a>
-        <a href="methodology.html" class="academy-mobile-link">Pentest Methodology</a>
-
-
-      </div>
-      <div>
-        <div class="academy-mobile-group-title">PORTFOLIO</div>
-        <a href="index.html" class="academy-mobile-link">Mihraj Mashhoor K Portfolio</a>
-      </div>
+      <div id="academy-user-nav" class="academy-user-nav relative"></div>
+      <button class="calion-theme-toggle" id="theme-toggle" type="button" aria-label="Toggle theme" title="Toggle theme">
+        <span class="material-symbols-outlined text-[18px]">dark_mode</span>
+      </button>
     </div>
   </header>
 
@@ -300,7 +142,7 @@
         <span class="material-symbols-outlined text-sm">build</span>
         <span>BROWSER-SIDE SECURITY SUITE &amp; TOOL ENCYCLOPEDIA</span>
       </div>
-      <h1 class="text-3xl sm:text-5xl font-black text-on-surface tracking-tight font-mono">
+      <h1 class="tools-hero-title font-bold text-on-surface">
         Interactive Security <span class="text-primary">Toolkit &amp; DB</span>
       </h1>
       <p class="text-sm sm:text-base text-on-surface-variant max-w-3xl leading-relaxed">
@@ -323,15 +165,15 @@
 
       <!-- Main Navigation Tabs -->
       <div class="flex flex-wrap gap-2 pt-2 border-b border-border-hairline pb-4 font-mono text-xs">
-        <button data-target="tab-browser-tools" class="tab-btn active px-4 py-2 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-2">
+        <button data-target="tab-browser-tools" class="tab-btn tools-tab-btn active px-4 py-2 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-2">
           <span class="material-symbols-outlined text-base">terminal</span>
           <span>1. In-Browser Security Tools (13)</span>
         </button>
-        <button data-target="tab-nmap-builder" class="tab-btn px-4 py-2 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-2" id="nmap-builder">
+        <button data-target="tab-nmap-builder" class="tab-btn tools-tab-btn px-4 py-2 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-2" id="nmap-builder">
           <span class="material-symbols-outlined text-base">tune</span>
           <span>2. Interactive Nmap Command Builder</span>
         </button>
-        <button data-target="tab-tool-db" class="tab-btn px-4 py-2 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-2" id="tool-db">
+        <button data-target="tab-tool-db" class="tab-btn tools-tab-btn px-4 py-2 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-2" id="tool-db">
           <span class="material-symbols-outlined text-base">library_books</span>
           <span>3. Security Tool Database (20)</span>
         </button>
@@ -372,7 +214,7 @@
           <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-primary text-xl">code</span>
-              <h3 class="font-mono text-sm font-bold text-on-surface">1. Base64 Encoder / Decoder</h3>
+              <h3 class="font-headline text-sm font-bold text-on-surface">1. Base64 Encoder / Decoder</h3>
             </div>
             <span class="text-[10px] font-mono text-outline">Standard &amp; URL-safe</span>
           </div>
@@ -396,7 +238,7 @@
           <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-secondary text-xl">link</span>
-              <h3 class="font-mono text-sm font-bold text-on-surface">2. URL / URI Encoder / Decoder</h3>
+              <h3 class="font-headline text-sm font-bold text-on-surface">2. URL / URI Encoder / Decoder</h3>
             </div>
             <span class="text-[10px] font-mono text-outline">Percent-Encoding</span>
           </div>
@@ -419,7 +261,7 @@
           <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-primary text-xl">badge</span>
-              <h3 class="font-mono text-sm font-bold text-on-surface">3. JWT Inspector &amp; Claims Analyzer</h3>
+              <h3 class="font-headline text-sm font-bold text-on-surface">3. JWT Inspector &amp; Claims Analyzer</h3>
             </div>
             <span class="text-[10px] font-mono text-primary border border-primary/30 px-2 py-0.5 rounded bg-canvas-base">Local Token Parser</span>
           </div>
@@ -454,7 +296,7 @@
           <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-warning text-xl">fingerprint</span>
-              <h3 class="font-mono text-sm font-bold text-on-surface">4. Cryptographic Hash Identifier</h3>
+              <h3 class="font-headline text-sm font-bold text-on-surface">4. Cryptographic Hash Identifier</h3>
             </div>
             <span class="text-[10px] font-mono text-outline">Length &amp; Format Heuristics</span>
           </div>
@@ -473,7 +315,7 @@
           <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-secondary text-xl">calculate</span>
-              <h3 class="font-mono text-sm font-bold text-on-surface">5. CIDR &amp; IPv4 Subnet Calculator</h3>
+              <h3 class="font-headline text-sm font-bold text-on-surface">5. CIDR &amp; IPv4 Subnet Calculator</h3>
             </div>
             <span class="text-[10px] font-mono text-outline">RFC 4632</span>
           </div>
@@ -498,7 +340,7 @@
           <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-primary text-xl">rule</span>
-              <h3 class="font-mono text-sm font-bold text-on-surface">6. HTTP Security Header Evaluator</h3>
+              <h3 class="font-headline text-sm font-bold text-on-surface">6. HTTP Security Header Evaluator</h3>
             </div>
             <span class="text-[10px] font-mono text-outline">Defense Audit</span>
           </div>
@@ -517,7 +359,7 @@
           <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-danger-critical text-xl">shield</span>
-              <h3 class="font-mono text-sm font-bold text-on-surface">7. CSP (Content Security Policy) Audit</h3>
+              <h3 class="font-headline text-sm font-bold text-on-surface">7. CSP (Content Security Policy) Audit</h3>
             </div>
             <span class="text-[10px] font-mono text-outline">Directives &amp; Bypasses</span>
           </div>
@@ -536,7 +378,7 @@
           <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-primary text-xl">password</span>
-              <h3 class="font-mono text-sm font-bold text-on-surface">8. Password Entropy &amp; Crack Time</h3>
+              <h3 class="font-headline text-sm font-bold text-on-surface">8. Password Entropy &amp; Crack Time</h3>
             </div>
             <span class="text-[10px] font-mono text-outline">Shannon Entropy</span>
           </div>
@@ -556,7 +398,7 @@
           <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-secondary text-xl">regular_expression</span>
-              <h3 class="font-mono text-sm font-bold text-on-surface">9. Regular Expression Tester</h3>
+              <h3 class="font-headline text-sm font-bold text-on-surface">9. Regular Expression Tester</h3>
             </div>
             <span class="text-[10px] font-mono text-outline">JS Engine</span>
           </div>
@@ -578,7 +420,7 @@
           <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-warning text-xl">data_object</span>
-              <h3 class="font-mono text-sm font-bold text-on-surface">10. JSON Formatter &amp; Linter</h3>
+              <h3 class="font-headline text-sm font-bold text-on-surface">10. JSON Formatter &amp; Linter</h3>
             </div>
             <span class="text-[10px] font-mono text-outline">Pretty / Minify</span>
           </div>
@@ -595,7 +437,7 @@
           <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-primary text-xl">html</span>
-              <h3 class="font-mono text-sm font-bold text-on-surface">11. HTML Entity Sanitizer &amp; Decoder</h3>
+              <h3 class="font-headline text-sm font-bold text-on-surface">11. HTML Entity Sanitizer &amp; Decoder</h3>
             </div>
             <span class="text-[10px] font-mono text-outline">Anti-XSS Escaping</span>
           </div>
@@ -612,7 +454,7 @@
           <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-secondary text-xl">schedule</span>
-              <h3 class="font-mono text-sm font-bold text-on-surface">12. UNIX Epoch Timestamp Converter</h3>
+              <h3 class="font-headline text-sm font-bold text-on-surface">12. UNIX Epoch Timestamp Converter</h3>
             </div>
             <span class="text-[10px] font-mono text-outline">Forensic Timestamps</span>
           </div>
@@ -632,7 +474,7 @@
           <div class="flex items-center justify-between border-b border-border-hairline/60 pb-3">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-primary text-xl">fingerprint</span>
-              <h3 class="font-mono text-sm font-bold text-on-surface">13. Client Fingerprint &amp; UA Inspector</h3>
+              <h3 class="font-headline text-sm font-bold text-on-surface">13. Client Fingerprint &amp; UA Inspector</h3>
             </div>
             <span class="text-[10px] font-mono text-outline">Recon &amp; Privacy</span>
           </div>
@@ -671,7 +513,7 @@
         <div class="lg:col-span-7 space-y-6">
           <div class="p-6 rounded-2xl border border-border-hairline bg-surface-subtle space-y-5">
             
-            <h3 class="font-mono text-sm font-bold text-primary flex items-center gap-2 border-b border-border-hairline/60 pb-3">
+            <h3 class="font-headline text-sm font-bold text-primary flex items-center gap-2 border-b border-border-hairline/60 pb-3">
               <span class="material-symbols-outlined text-base">tune</span>
               <span>Nmap Scan Configuration Matrix</span>
             </h3>
@@ -857,7 +699,7 @@
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">01</span>
               <div>
-                <h3 class="font-mono text-lg font-bold text-on-surface">Nmap (Network Mapper)</h3>
+                <h3 class="font-headline text-lg font-bold text-on-surface">Nmap (Network Mapper)</h3>
                 <span class="font-mono text-xs text-outline">Category: Network Exploration &amp; Port Auditing</span>
               </div>
             </div>
@@ -901,7 +743,7 @@
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-sm">02</span>
               <div>
-                <h3 class="font-mono text-lg font-bold text-on-surface">Burp Suite</h3>
+                <h3 class="font-headline text-lg font-bold text-on-surface">Burp Suite</h3>
                 <span class="font-mono text-xs text-outline">Category: Web Application Intercepting Proxy</span>
               </div>
             </div>
@@ -935,7 +777,7 @@
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-secondary/30 text-secondary font-mono font-bold text-sm">03</span>
               <div>
-                <h3 class="font-mono text-lg font-bold text-on-surface">Wireshark</h3>
+                <h3 class="font-headline text-lg font-bold text-on-surface">Wireshark</h3>
                 <span class="font-mono text-xs text-outline">Category: Deep Packet Inspection &amp; PCAP Analysis</span>
               </div>
             </div>
@@ -965,7 +807,7 @@
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-danger-critical/30 text-danger-critical font-mono font-bold text-sm">04</span>
               <div>
-                <h3 class="font-mono text-lg font-bold text-on-surface">Metasploit Framework</h3>
+                <h3 class="font-headline text-lg font-bold text-on-surface">Metasploit Framework</h3>
                 <span class="font-mono text-xs text-outline">Category: Modular Exploitation &amp; Post-Exploitation</span>
               </div>
             </div>
@@ -995,7 +837,7 @@
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">05</span>
               <div>
-                <h3 class="font-mono text-lg font-bold text-on-surface">ffuf (Fuzz Faster U Fool)</h3>
+                <h3 class="font-headline text-lg font-bold text-on-surface">ffuf (Fuzz Faster U Fool)</h3>
                 <span class="font-mono text-xs text-outline">Category: Web Directory &amp; Parameter Fuzzer</span>
               </div>
             </div>
@@ -1013,7 +855,7 @@
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-secondary/30 text-secondary font-mono font-bold text-sm">06</span>
               <div>
-                <h3 class="font-mono text-lg font-bold text-on-surface">Gobuster</h3>
+                <h3 class="font-headline text-lg font-bold text-on-surface">Gobuster</h3>
                 <span class="font-mono text-xs text-outline">Category: URI &amp; DNS Subdomain Bruteforcer</span>
               </div>
             </div>
@@ -1030,7 +872,7 @@
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-sm">07</span>
               <div>
-                <h3 class="font-mono text-lg font-bold text-on-surface">Nikto</h3>
+                <h3 class="font-headline text-lg font-bold text-on-surface">Nikto</h3>
                 <span class="font-mono text-xs text-outline">Category: Web Server Misconfiguration Scanner</span>
               </div>
             </div>
@@ -1045,7 +887,7 @@
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">08</span>
               <div>
-                <h3 class="font-mono text-lg font-bold text-on-surface">Netcat (nc)</h3>
+                <h3 class="font-headline text-lg font-bold text-on-surface">Netcat (nc)</h3>
                 <span class="font-mono text-xs text-outline">Category: Raw TCP/UDP Swiss Army Knife</span>
               </div>
             </div>
@@ -1068,7 +910,7 @@
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-secondary/30 text-secondary font-mono font-bold text-sm">09</span>
               <div>
-                <h3 class="font-mono text-lg font-bold text-on-surface">cURL</h3>
+                <h3 class="font-headline text-lg font-bold text-on-surface">cURL</h3>
                 <span class="font-mono text-xs text-outline">Category: Command-Line URL Transfer &amp; API Testing</span>
               </div>
             </div>
@@ -1082,7 +924,7 @@
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">10</span>
               <div>
-                <h3 class="font-mono text-lg font-bold text-on-surface">Dig &amp; WHOIS</h3>
+                <h3 class="font-headline text-lg font-bold text-on-surface">Dig &amp; WHOIS</h3>
                 <span class="font-mono text-xs text-outline">Category: DNS Interrogation &amp; Registrar Metadata</span>
               </div>
             </div>
@@ -1096,7 +938,7 @@
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-secondary/30 text-secondary font-mono font-bold text-sm">11</span>
               <div>
-                <h3 class="font-mono text-lg font-bold text-on-surface">WhatWeb</h3>
+                <h3 class="font-headline text-lg font-bold text-on-surface">WhatWeb</h3>
                 <span class="font-mono text-xs text-outline">Category: Web Technology Fingerprinting</span>
               </div>
             </div>
@@ -1110,7 +952,7 @@
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-sm">12</span>
               <div>
-                <h3 class="font-mono text-lg font-bold text-on-surface">Amass &amp; Subfinder</h3>
+                <h3 class="font-headline text-lg font-bold text-on-surface">Amass &amp; Subfinder</h3>
                 <span class="font-mono text-xs text-outline">Category: Active &amp; Passive Subdomain Enumeration</span>
               </div>
             </div>
@@ -1124,7 +966,7 @@
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">13</span>
               <div>
-                <h3 class="font-mono text-lg font-bold text-on-surface">John the Ripper</h3>
+                <h3 class="font-headline text-lg font-bold text-on-surface">John the Ripper</h3>
                 <span class="font-mono text-xs text-outline">Category: Offline Password &amp; Shadow File Cracker</span>
               </div>
             </div>
@@ -1142,7 +984,7 @@
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-secondary/30 text-secondary font-mono font-bold text-sm">14</span>
               <div>
-                <h3 class="font-mono text-lg font-bold text-on-surface">Hashcat</h3>
+                <h3 class="font-headline text-lg font-bold text-on-surface">Hashcat</h3>
                 <span class="font-mono text-xs text-outline">Category: GPU-Accelerated Password Hash Recovery</span>
               </div>
             </div>
@@ -1160,7 +1002,7 @@
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-danger-critical/30 text-danger-critical font-mono font-bold text-sm">15</span>
               <div>
-                <h3 class="font-mono text-lg font-bold text-on-surface">THC Hydra</h3>
+                <h3 class="font-headline text-lg font-bold text-on-surface">THC Hydra</h3>
                 <span class="font-mono text-xs text-outline">Category: Fast Online Network Login Auditing</span>
               </div>
             </div>
@@ -1178,7 +1020,7 @@
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">16</span>
               <div>
-                <h3 class="font-mono text-lg font-bold text-on-surface">tcpdump</h3>
+                <h3 class="font-headline text-lg font-bold text-on-surface">tcpdump</h3>
                 <span class="font-mono text-xs text-outline">Category: CLI Network Packet Sniffer</span>
               </div>
             </div>
@@ -1192,7 +1034,7 @@
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-danger-critical/30 text-danger-critical font-mono font-bold text-sm">17</span>
               <div>
-                <h3 class="font-mono text-lg font-bold text-on-surface">SQLMap</h3>
+                <h3 class="font-headline text-lg font-bold text-on-surface">SQLMap</h3>
                 <span class="font-mono text-xs text-outline">Category: Automated SQL Injection Detection &amp; Database Takeover</span>
               </div>
             </div>
@@ -1210,7 +1052,7 @@
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-warning/30 text-warning font-mono font-bold text-sm">18</span>
               <div>
-                <h3 class="font-mono text-lg font-bold text-on-surface">Responder</h3>
+                <h3 class="font-headline text-lg font-bold text-on-surface">Responder</h3>
                 <span class="font-mono text-xs text-outline">Category: LLMNR, NBT-NS &amp; mDNS Poisoner</span>
               </div>
             </div>
@@ -1224,7 +1066,7 @@
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-primary/30 text-primary font-mono font-bold text-sm">19</span>
               <div>
-                <h3 class="font-mono text-lg font-bold text-on-surface">LinPEAS &amp; WinPEAS (PEASS-ng)</h3>
+                <h3 class="font-headline text-lg font-bold text-on-surface">LinPEAS &amp; WinPEAS (PEASS-ng)</h3>
                 <span class="font-mono text-xs text-outline">Category: Automated Privilege Escalation Enumeration</span>
               </div>
             </div>
@@ -1261,7 +1103,7 @@
             <div class="flex items-center gap-3">
               <span class="p-2 rounded-lg bg-canvas-base border border-secondary/30 text-secondary font-mono font-bold text-sm">20</span>
               <div>
-                <h3 class="font-mono text-lg font-bold text-on-surface">Searchsploit (Exploit-DB CLI)</h3>
+                <h3 class="font-headline text-lg font-bold text-on-surface">Searchsploit (Exploit-DB CLI)</h3>
                 <span class="font-mono text-xs text-outline">Category: Offline Exploit &amp; CVE PoC Query Engine</span>
               </div>
             </div>
@@ -1297,22 +1139,12 @@
 
   </main>
 
-  <!-- Global Footer -->
-  <footer class="border-t border-border-hairline bg-surface-subtle py-8 text-center font-mono text-xs text-on-surface-variant mt-16">
-    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-primary"></span>
-        <span class="text-on-surface font-bold">Mihraj Mashhoor K</span>
-        <span>· Cybersecurity Engineering &amp; Research</span>
-      </div>
-      <div class="flex items-center gap-4 text-outline">
-        <a href="index.html" class="hover:text-primary transition-colors">Portfolio</a>
-        <a href="learning.html" class="hover:text-primary transition-colors">Learning</a>
-
-        <a href="methodology.html" class="hover:text-primary transition-colors">Methodology</a>
-
-      </div>
-    </div>
+  <footer class="home-footer tools-footer">
+    <strong>CALION Academy</strong>
+    <div>Structured cybersecurity education and practical tools.</div>
+    <section aria-label="Platforms">
+      <span>Platforms</span><a href="/">Academy</a><a href="tools.html" aria-current="page">Security Tools</a><a href="terminal-lab.html">Terminal</a><a href="https://payloads.endlessus.in">CALION Payload Hub</a><a href="profile.html">Account</a>
+    </section>
   </footer>
 
   <script src="portfolio-interactive.js"></script>
@@ -1900,6 +1732,10 @@
       }
     });
   </script>
+  <script src="vendor/supabase.min.js"></script>
+  <script src="calion-runtime-config.js"></script>
+  <script src="academy-config.js"></script>
+  <script src="academy-auth.js"></script>
   <script src="academy-nav.js"></script>
 </body>
 </html>
