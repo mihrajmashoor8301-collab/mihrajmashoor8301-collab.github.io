@@ -278,15 +278,20 @@
   }
 
   // Update Profile
-  async function updateProfile({ displayName, bio, isPublic, avatarUrl }) {
+  async function updateProfile({ username, displayName, bio, isPublic, avatarUrl }) {
     if (!currentUser) return { success: false, error: 'Not authenticated.' };
     const sb = getClient();
     if (!sb) return { success: false, error: 'Supabase not configured.' };
 
     try {
-      const updates = {
-        updated_at: new Date().toISOString()
-      };
+      const updates = {};
+      if (username !== undefined) {
+        const cleanUsername = String(username).trim();
+        if (!/^[a-zA-Z0-9_-]{3,30}$/.test(cleanUsername)) {
+          return { success: false, error: 'Username must be 3–30 characters and use only letters, numbers, underscores, or hyphens.' };
+        }
+        updates.username = cleanUsername;
+      }
       if (displayName !== undefined) updates.display_name = String(displayName).trim().slice(0, 60);
       if (bio !== undefined) updates.bio = String(bio).trim().slice(0, 500);
       if (isPublic !== undefined) updates.is_public = Boolean(isPublic);
@@ -299,7 +304,12 @@
         .select()
         .single();
 
-      if (error) return { success: false, error: error.message };
+      if (error) {
+        if (error.code === '23505' || /unique constraint|duplicate key/i.test(error.message || '')) {
+          return { success: false, error: 'That username is already taken. Choose another one.' };
+        }
+        return { success: false, error: error.message };
+      }
       currentProfile = data;
       dispatchAuthChange('PROFILE_UPDATED');
       return { success: true, profile: data };
