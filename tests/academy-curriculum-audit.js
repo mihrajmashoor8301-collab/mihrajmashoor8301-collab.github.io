@@ -16,11 +16,14 @@ for(const [legacy,canonical] of Object.entries(aliases)){assert(/^ps-room-\d{2}$
 assert.equal(state.formatAnswerMask({type:'exact',acceptedAnswers:['ZERO TRUST']}),'_ _ _ _   _ _ _ _ _');
 assert.equal(state.formatAnswerMask({type:'multiple-choice',acceptedAnswers:['A']}),'');
 const memory=new Map();global.localStorage={getItem:k=>memory.has(k)?memory.get(k):null,setItem:(k,v)=>memory.set(k,v),removeItem:k=>memory.delete(k)};
-memory.set('calion_completed_rooms',JSON.stringify(['ps-room-01','room-01']));
-memory.set('calion_question_progress',JSON.stringify({'ps-room-01_q0':true,'room-01_q0':true}));
+memory.set(state.KEYS.ROOMS,JSON.stringify(['ps-room-01','room-01']));
+memory.set(state.KEYS.QUESTIONS,JSON.stringify({'ps-room-01_q0':true,'room-01_q0':true}));
 assert.deepEqual(state.getCompletedRooms(),['room-01']);assert.equal(state.calculateTotalXP(),75,'legacy duplicate room/question aliases count once');
 memory.set('calion_user_xp',JSON.stringify(3200));assert.equal(state.calculateTotalXP(),3200,'historical XP is never reduced during normalization');
-assert.deepEqual(JSON.parse(memory.get('calion_completed_rooms')),['ps-room-01','room-01'],'raw progress records remain stored');delete global.localStorage;
+assert.deepEqual(JSON.parse(memory.get(state.KEYS.ROOMS)),['ps-room-01','room-01'],'current curriculum progress remains stored');
+memory.set('calion_completed_rooms',JSON.stringify(['room-11']));
+assert.deepEqual(state.getCompletedRooms(),['room-01'],'unversioned curriculum completions are preserved but not credited to the current curriculum');
+assert.deepEqual(JSON.parse(memory.get('calion_completed_rooms')),['room-11'],'unversioned local progress remains stored');delete global.localStorage;
 const buildScript=fs.readFileSync(path.join(__dirname,'../scripts/build-pages.js'),'utf8');
 assert(buildScript.includes("'calion-curriculum-pre-security.js'")&&buildScript.includes("'pre-security-data.js'"),'Retired curriculum bundles must stay out of production output');
 console.log('✓ 47 rooms, 4 stage counts, 141 lessons and 141 unique questions audited');

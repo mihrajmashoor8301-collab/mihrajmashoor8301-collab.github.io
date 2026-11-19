@@ -103,51 +103,51 @@
             <rect fill="#6366F1" height="6" rx="1.5" width="6" x="362" y="48"></rect>
           </svg>
         </a>
-        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-semibold tracking-wider bg-surface-raised text-primary border border-border-hairline">
+        <span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-semibold tracking-wider bg-surface-raised text-primary border border-border-hairline">
           ROOM
         </span>
       </div>
 
-      <!-- Center Minimal Navigation -->
-      <nav class="flex items-center gap-1 text-xs font-mono" aria-label="Main Navigation">
-        <a href="/" class="px-3 py-1.5 rounded-md text-primary font-bold bg-surface-raised flex items-center gap-1.5 transition-colors">
+      <!-- Center Navigation -->
+      <nav class="hidden md:flex items-center gap-1 sm:gap-2 text-xs font-mono" aria-label="Main Navigation">
+        <a href="/" class="px-3 py-1.5 rounded-lg text-primary font-bold bg-surface-raised flex items-center gap-1.5 transition-colors">
           <span class="material-symbols-outlined text-[15px]">school</span>
-          <span>Learn</span>
+          <span>Academy</span>
         </a>
-        <a href="terminal-lab.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised flex items-center gap-1.5 transition-colors">
-          <span class="material-symbols-outlined text-[15px]">terminal</span>
+        <a href="terminal-lab.html" class="px-3 py-1.5 rounded-lg text-on-surface hover:text-primary hover:bg-surface-raised flex items-center gap-1.5 transition-colors hidden sm:flex">
+          <span class="material-symbols-outlined text-[15px] text-secondary">terminal</span>
           <span>Terminal</span>
         </a>
       </nav>
 
-      <!-- Right Action Bar: Streak/XP HUD, Sound Toggle, Theme Selector, Cadet Avatar -->
-      <div class="flex items-center gap-2">
+      <!-- Right Action Bar: Streak/XP HUD, Sound Toggle, User Profile & Theme Toggle -->
+      <div class="flex items-center gap-2 sm:gap-3">
         <!-- Live Streak & XP Badges -->
-        <div class="hidden sm:flex items-center gap-2 font-mono text-xs">
+        <div class="hidden md:flex items-center gap-2 font-mono text-xs">
           <span class="px-2.5 py-1 rounded-lg bg-surface-raised border border-border-hairline text-outline flex items-center gap-1" title="Daily Learning Streak">
             <span>🔥</span>
-            <span class="font-bold text-on-surface" data-academy-streak>1d</span>
+            <span class="font-bold text-on-surface" data-academy-streak id="header-streak-pill">1d</span>
           </span>
           <span class="px-2.5 py-1 rounded-lg bg-surface-raised border border-border-hairline text-outline flex items-center gap-1" title="Earned Knowledge Points">
             <span class="text-primary font-bold">⚡</span>
-            <span class="font-bold text-on-surface" data-academy-xp>0 XP</span>
+            <span class="font-bold text-on-surface" data-academy-xp id="header-xp-pill">0 XP</span>
           </span>
         </div>
 
         <!-- Sound Effects Toggle Button -->
-        <button aria-label="Toggle sound effects" class="w-8 h-8 rounded-lg bg-surface-raised hover:bg-surface-subtle border border-border-hairline flex items-center justify-center text-outline hover:text-on-surface transition-colors calion-sound-toggle" id="sound-toggle-btn" type="button" title="Mute/Unmute Sound Effects">
+        <button aria-label="Toggle sound effects" class="hidden sm:flex w-9 h-9 rounded-xl bg-surface-raised hover:bg-surface-subtle border border-border-hairline items-center justify-center text-outline hover:text-on-surface transition-colors calion-sound-toggle" id="sound-toggle-btn" type="button" title="Mute/Unmute Sound Effects">
           <span class="material-symbols-outlined text-[18px]">volume_up</span>
         </button>
 
-        <!-- 3-Theme Selector Toggle Button -->
-        <button aria-label="Toggle theme mode" class="w-8 h-8 rounded-lg bg-surface-raised hover:bg-surface-subtle border border-border-hairline flex items-center justify-center text-outline hover:text-on-surface transition-colors calion-theme-toggle" id="theme-toggle" type="button" title="Switch Theme (Soft Light → Dark → Classic)">
-          <span class="material-symbols-outlined text-[18px]">contrast</span>
-        </button>
+        <div class="h-4 w-px bg-border-hairline hidden sm:block"></div>
 
-        <!-- Cadet Avatar / Profile -->
-        <a href="profile.html" class="w-8 h-8 rounded-full bg-gradient-to-tr from-sky-500 to-indigo-600 text-white font-mono text-xs font-bold flex items-center justify-center shadow-sm" id="cadet-avatar-badge" title="View Profile">
-          CA
-        </a>
+        <!-- Cadet Avatar & Dropdown -->
+        <div id="academy-user-nav" class="academy-user-nav relative"></div>
+
+        <!-- Theme Toggle Button -->
+        <button aria-label="Toggle theme mode" class="calion-theme-toggle" id="theme-toggle" type="button" title="Toggle theme">
+          <span class="material-symbols-outlined text-[18px]">dark_mode</span>
+        </button>
       </div>
     </div>
   </header>

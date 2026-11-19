@@ -18,6 +18,7 @@
 })(typeof self !== 'undefined' ? self : this, function (AcademyAuth, AcademyState) {
   'use strict';
 
+  const CURRICULUM_ID = 'calion-academy-47-v1';
   let syncQueue = [];
   let isSyncing = false;
 
@@ -54,7 +55,8 @@
       const { data: roomRows } = await sb
         .from('room_progress')
         .select('*')
-        .eq('user_id', userId);
+        .eq('user_id', userId)
+        .eq('curriculum_id', CURRICULUM_ID);
 
       if (Array.isArray(roomRows) && roomRows.length > 0) {
         const localRooms = new Set(AcademyState.getCompletedRooms());
@@ -132,6 +134,7 @@
       const payload = {
         user_id: user.id,
         room_id: roomId,
+        curriculum_id: CURRICULUM_ID,
         status: isCompleted ? 'completed' : (pct > 0 ? 'in_progress' : 'not_started'),
         progress_pct: pct,
         questions_solved: questionsSolved,
@@ -139,7 +142,7 @@
         last_accessed_at: new Date().toISOString()
       };
 
-      await sb.from('room_progress').upsert(payload, { onConflict: 'user_id,room_id' });
+      await sb.from('room_progress').upsert(payload, { onConflict: 'user_id,room_id,curriculum_id' });
     } catch (e) {
       console.warn('[AcademySync] Error pushing room progress:', e);
     }
@@ -228,7 +231,7 @@
       let serverRoomMap = {};
       let serverLabMap = {};
       try {
-        const { data: serverRooms } = await sb.from('room_progress').select('room_id, status, progress_pct, completed_at').eq('user_id', userId);
+        const { data: serverRooms } = await sb.from('room_progress').select('room_id, status, progress_pct, completed_at').eq('user_id', userId).eq('curriculum_id', CURRICULUM_ID);
         if (Array.isArray(serverRooms)) {
           serverRooms.forEach(r => { serverRoomMap[r.room_id] = r; });
         }
@@ -250,6 +253,7 @@
           return {
             user_id: userId,
             room_id: roomId,
+            curriculum_id: CURRICULUM_ID,
             status: 'completed',
             progress_pct: 100,
             questions_solved: questionsSolved,
@@ -258,7 +262,7 @@
           };
         });
 
-        await sb.from('room_progress').upsert(roomUpserts, { onConflict: 'user_id,room_id' });
+        await sb.from('room_progress').upsert(roomUpserts, { onConflict: 'user_id,room_id,curriculum_id' });
       }
 
       // Also upsert in-progress rooms (NEVER overwrite completed rooms or higher server progress)
@@ -281,13 +285,14 @@
           return {
             user_id: userId,
             room_id: roomId,
+            curriculum_id: CURRICULUM_ID,
             status: 'in_progress',
             progress_pct: safePct,
             questions_solved: questionsSolved,
             last_accessed_at: new Date().toISOString()
           };
         });
-        await sb.from('room_progress').upsert(ipUpserts, { onConflict: 'user_id,room_id' });
+        await sb.from('room_progress').upsert(ipUpserts, { onConflict: 'user_id,room_id,curriculum_id' });
       }
 
       // 2. Batch verify labs (NEVER downgrade existing verified labs, and always verify cryptographically on server)
@@ -361,7 +366,8 @@
       const { data: roomRows } = await sb
         .from('room_progress')
         .select('room_id, status, progress_pct, completed_at')
-        .eq('user_id', userId);
+        .eq('user_id', userId)
+        .eq('curriculum_id', CURRICULUM_ID);
 
       const completedRooms = (roomRows || []).filter(r => r.status === 'completed');
       const curriculum = (typeof window !== 'undefined' && window.CALION_ROOMS) || [];

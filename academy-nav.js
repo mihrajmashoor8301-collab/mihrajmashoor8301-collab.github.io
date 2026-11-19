@@ -1,107 +1,88 @@
 /**
- * Endlessus Academy - Unified Navigation, Search & Theme Controller
- * Authoritative global script for the Endlessus Cybersecurity Academy ecosystem.
+ * CALION Academy - Unified Navigation, Header & Search Controller
+ * Authoritative global script for the CALION Cybersecurity Academy ecosystem.
  */
 
 (function () {
   'use strict';
 
   // =========================================================================
-  // 1. THEME CONTROLLER (ZERO-FLICKER + SYNC)
+  // 1. THEME DELEGATION (Powered by CalionTheme)
   // =========================================================================
-  const THEME_KEY = 'endlessus_learning_theme';
-
   function getStoredTheme() {
-    const val = localStorage.getItem(THEME_KEY) || localStorage.getItem('endlessus_view_mode') || localStorage.getItem('theme') || 'normal';
-    if (val === 'hacker' || val === 'dark') return 'hacker';
-    return 'normal';
+    if (typeof window !== 'undefined' && window.CalionTheme && typeof window.CalionTheme.getTheme === 'function') {
+      return window.CalionTheme.getTheme();
+    }
+    const val = localStorage.getItem('calion_theme') || localStorage.getItem('theme') || localStorage.getItem('endlessus_learning_theme') || 'light';
+    return (val === 'dark' || val === 'hacker') ? 'dark' : 'light';
   }
 
   function applyTheme(theme, persist) {
-    const normalized = (theme === 'hacker' || theme === 'dark') ? 'hacker' : 'normal';
-    if (persist) {
-      try {
-        localStorage.setItem(THEME_KEY, normalized);
-      } catch (e) {
-        console.warn('[Endlessus Theme] localStorage write failed:', e);
-      }
+    if (typeof window !== 'undefined' && window.CalionTheme && typeof window.CalionTheme.setTheme === 'function') {
+      return window.CalionTheme.setTheme(theme);
     }
-
-    const isHacker = normalized === 'hacker';
+    const isDark = (theme === 'dark' || theme === 'hacker');
+    const normalized = isDark ? 'dark' : 'light';
     const root = document.documentElement;
     const body = document.body;
 
-    if (isHacker) {
-      root.classList.add('dark', 'theme-hacker');
-      root.classList.remove('theme-normal');
+    if (isDark) {
+      if (root) {
+        root.classList.add('dark', 'theme-dark', 'theme-hacker');
+        root.classList.remove('light', 'theme-light', 'theme-soft-light', 'theme-classic-white', 'theme-normal');
+      }
       if (body) {
-        body.classList.add('dark', 'theme-hacker');
-        body.classList.remove('theme-normal');
+        body.classList.add('dark', 'theme-dark', 'theme-hacker');
+        body.classList.remove('light', 'theme-light', 'theme-soft-light', 'theme-classic-white', 'theme-normal');
       }
     } else {
-      root.classList.remove('dark', 'theme-hacker');
-      root.classList.add('theme-normal');
+      if (root) {
+        root.classList.add('light', 'theme-light', 'theme-soft-light', 'theme-normal');
+        root.classList.remove('dark', 'theme-dark', 'theme-hacker');
+      }
       if (body) {
-        body.classList.remove('dark', 'theme-hacker');
-        body.classList.add('theme-normal');
+        body.classList.add('light', 'theme-light', 'theme-soft-light', 'theme-normal');
+        body.classList.remove('dark', 'theme-dark', 'theme-hacker');
       }
     }
 
-    // Sync all theme button states across DOM
-    syncThemeButtons(normalized);
+    if (persist !== false) {
+      try {
+        localStorage.setItem('calion_theme', normalized);
+        localStorage.setItem('theme', normalized);
+        localStorage.setItem('endlessus_learning_theme', isDark ? 'hacker' : 'normal');
+      } catch (_) {}
+    }
 
-    // Notify listeners (CALION primary + legacy Endlessus)
+    syncThemeButtons(normalized);
     window.dispatchEvent(new CustomEvent('calion-theme-changed', { detail: { theme: normalized } }));
-    window.dispatchEvent(new CustomEvent('endlessus-theme-changed', { detail: { theme: normalized } }));
+    window.dispatchEvent(new CustomEvent('endlessus-theme-changed', { detail: { theme: isDark ? 'hacker' : 'normal' } }));
+    return normalized;
   }
 
   function syncThemeButtons(theme) {
-    const isNormal = theme === 'normal';
-
-    // All Tailwind-style toggle buttons
-    document.querySelectorAll('#theme-toggle-normal, .theme-toggle-normal').forEach(btn => {
-      btn.className = isNormal
-        ? 'px-2 py-1 rounded text-xs flex items-center gap-1 font-bold bg-primary text-white cursor-pointer transition-all'
-        : 'px-2 py-1 rounded text-xs flex items-center gap-1 font-bold text-outline hover:text-on-surface cursor-pointer transition-all';
-      btn.setAttribute('aria-pressed', isNormal ? 'true' : 'false');
-    });
-
-    document.querySelectorAll('#theme-toggle-hacker, .theme-toggle-hacker').forEach(btn => {
-      btn.className = isNormal
-        ? 'px-2 py-1 rounded text-xs flex items-center gap-1 font-bold text-outline hover:text-on-surface cursor-pointer transition-all'
-        : 'px-2 py-1 rounded text-xs flex items-center gap-1 font-bold bg-primary text-black cursor-pointer transition-all';
-      btn.setAttribute('aria-pressed', isNormal ? 'false' : 'true');
-    });
-
-    // Learning Hub CSS buttons
-    document.querySelectorAll('#toggle-normal, .toggle-normal').forEach(btn => {
-      btn.classList.toggle('active', isNormal);
-    });
-    document.querySelectorAll('#toggle-hacker, .toggle-hacker').forEach(btn => {
-      btn.classList.toggle('active', !isNormal);
-    });
-
-    // Generic class-based buttons
-    document.querySelectorAll('.academy-theme-btn').forEach(btn => {
-      const mode = btn.dataset.theme;
-      if (mode) {
-        btn.classList.toggle('active', mode === theme);
-      }
+    if (typeof window !== 'undefined' && window.CalionTheme && typeof window.CalionTheme.init === 'function') {
+      window.CalionTheme.init();
+      return;
+    }
+    const isDark = (theme === 'dark' || theme === 'hacker');
+    document.querySelectorAll('#theme-toggle, .calion-theme-toggle').forEach(btn => {
+      btn.setAttribute('aria-label', isDark ? 'Switch to Light theme' : 'Switch to Dark theme');
+      btn.setAttribute('title', isDark ? 'Switch to Light theme' : 'Switch to Dark theme');
+      const icon = btn.querySelector('.material-symbols-outlined');
+      if (icon) icon.textContent = isDark ? 'light_mode' : 'dark_mode';
     });
   }
 
   // Cross-tab synchronization
   window.addEventListener('storage', (e) => {
-    if (e.key === THEME_KEY || e.key === 'endlessus_view_mode') {
+    if (['calion_theme', 'theme', 'endlessus_learning_theme'].includes(e.key)) {
       applyTheme(getStoredTheme(), false);
     }
   });
 
-  // Initial immediate application
-  applyTheme(getStoredTheme(), false);
-
   // =========================================================================
-  // 2. MASTER ACADEMY SEARCH INDEX
+  // 2. MASTER ACADEMY SEARCH INDEX (Strictly Preserved for Learning Architecture)
   // =========================================================================
   const ACADEMY_SEARCH_INDEX = [
     // Learning path selection intentionally lives only on Academy home.
@@ -131,45 +112,6 @@
     }
   ];
 
-  // Dynamically populate rooms into the search index if ENDLESSUS_ROOMS is available
-  function enrichSearchIndex() {
-    const allRooms = (typeof CALION_ROOMS !== 'undefined' && Array.isArray(CALION_ROOMS))
-      ? CALION_ROOMS
-      : ((typeof ENDLESSUS_ROOMS !== 'undefined' && Array.isArray(ENDLESSUS_ROOMS)) ? ENDLESSUS_ROOMS : []);
-
-    if (allRooms.length > 0) {
-      allRooms.forEach(r => {
-        const isAlreadyIndexed = ACADEMY_SEARCH_INDEX.some(item => item.url === `room.html?id=${r.id}`);
-        if (!isAlreadyIndexed) {
-          const stageName = r.stageTitle || (r.stageId ? r.stageId.replace('-', ' ') : `Stage ${r.stageOrder || r.level || 1}`);
-          const skillKws = Array.isArray(r.skillsGained) ? r.skillsGained : [];
-          const toolKws = Array.isArray(r.toolsAndCommands) ? r.toolsAndCommands : [];
-          ACADEMY_SEARCH_INDEX.push({
-            title: `${r.id.toUpperCase()}: ${r.title}`,
-            desc: r.description || (r.whyAreYouHere ? (r.whyAreYouHere.substring(0, 95) + '...') : r.tagline || ''),
-            url: `room.html?id=${r.id}`,
-            roomId: r.id,
-            type: `Room · ${stageName}`,
-            badgeClass: 'badge-room',
-            keywords: [r.id, r.title.toLowerCase(), ...skillKws, ...toolKws]
-          });
-        }
-      });
-    }
-  }
-
-  // =========================================================================
-  // 3. SEARCH INTERFACE: REMOVED (Improvement 9)
-  // Kept as clean no-ops for test & script compatibility
-  // =========================================================================
-  function ensureSearchModalExists() {}
-  function openSearch() {}
-  function closeSearch() {}
-  function handleSearchKeydown() {}
-  function updateActiveSearchItem() {}
-  function navigateToItem() {}
-  function renderSearchResults() {}
-
   function escapeHtml(str) {
     if (!str) return '';
     return String(str)
@@ -180,93 +122,234 @@
       .replace(/'/g, '&#039;');
   }
 
-  // =========================================================================
-  // 4. GLOBAL EVENT LISTENERS & DROPDOWNS
-  // =========================================================================
-  function initAcademyGlobalListeners() {
-    // Global delegated theme toggle buttons wiring
-    document.addEventListener('click', (e) => {
-      const normalTarget = e.target.closest('#theme-toggle-normal, .theme-toggle-normal, #toggle-normal, [data-theme="normal"]');
-      if (normalTarget) {
-        e.preventDefault();
-        applyTheme('normal', true);
-        return;
-      }
-      const hackerTarget = e.target.closest('#theme-toggle-hacker, .theme-toggle-hacker, #toggle-hacker, [data-theme="hacker"]');
-      if (hackerTarget) {
-        e.preventDefault();
-        applyTheme('hacker', true);
-        return;
-      }
-    });
+  // Search stubs kept for backwards compatibility
+  function openSearch() {}
+  function closeSearch() {}
 
-    // Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn') || document.getElementById('mobile-drawer-toggle');
-    const mobileDrawer = document.getElementById('mobile-drawer') || document.getElementById('mobile-menu-drawer') || document.getElementById('academy-mobile-drawer');
-    if (mobileMenuBtn && mobileDrawer) {
-      mobileMenuBtn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        mobileDrawer.classList.toggle('open');
-        if (mobileDrawer.classList.contains('hidden')) {
-          mobileDrawer.classList.remove('hidden');
-        }
-      });
+  // =========================================================================
+  // 3. CANONICAL CALION LOGO MARK (Standardized Vector Asset)
+  // =========================================================================
+  const CALION_LOGO_SVG = `
+    <svg class="calion-logo-svg h-7 w-auto shrink-0 select-none" height="28" style="height:28px; width:auto;" fill="none" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg" aria-label="CALION Logo">
+      <defs>
+        <linearGradient id="calion_grad_shared" x1="0%" x2="100%" y1="0%" y2="100%">
+          <stop offset="0%" stop-color="#00F0FF"></stop>
+          <stop offset="50%" stop-color="#0284C7"></stop>
+          <stop offset="100%" stop-color="#6366F1"></stop>
+        </linearGradient>
+      </defs>
+      <g transform="translate(10, 10)">
+        <path d="M 55 10 L 25 10 L 10 25 L 10 55 L 25 70 L 55 70" stroke="url(#calion_grad_shared)" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"></path>
+        <path class="stroke-slate-900 dark:stroke-white transition-colors" d="M 42 70 L 42 22 L 58 22 L 68 70" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"></path>
+        <path d="M 33 46 L 56 46" stroke="url(#calion_grad_shared)" stroke-linecap="round" stroke-width="4.5"></path>
+        <circle cx="55" cy="10" fill="#00F0FF" r="3.5"></circle>
+        <circle cx="25" cy="70" fill="#6366F1" r="3"></circle>
+        <circle class="fill-slate-900 dark:fill-white transition-colors" cx="42" cy="22" r="2.5"></circle>
+      </g>
+      <text class="fill-slate-900 dark:fill-white font-headline font-bold transition-colors" font-size="34" letter-spacing="0.22em" x="100" y="58">CALION</text>
+      <rect fill="#00F0FF" height="6" rx="1.5" width="6" x="362" y="38"></rect>
+      <rect fill="#6366F1" height="6" rx="1.5" width="6" x="362" y="48"></rect>
+    </svg>
+  `;
 
-      // Close mobile drawer on link click
-      mobileDrawer.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-          mobileDrawer.classList.remove('open');
-        });
-      });
+  // =========================================================================
+  // 4. GLOBAL USER IDENTITY & DROPDOWN RENDERER
+  // =========================================================================
+  function syncHeaderAuth() {
+    let authSlots = document.querySelectorAll('#academy-user-nav, #academy-auth-slot, .academy-auth-slot, .academy-user-nav');
+    
+    // Auto-discover placement before theme toggle if no slot is present
+    if (authSlots.length === 0) {
+      const themeToggle = document.querySelector('#theme-toggle, .calion-theme-toggle');
+      if (themeToggle && themeToggle.parentElement) {
+        const slot = document.createElement('div');
+        slot.id = 'academy-user-nav';
+        slot.className = 'academy-user-nav relative';
+        themeToggle.parentElement.insertBefore(slot, themeToggle);
+        authSlots = [slot];
+      }
     }
 
-    // Accessible Dropdown Click Toggles (for desktop navigation)
-    document.querySelectorAll('.lh-nav-dropdown, .academy-nav-dropdown').forEach(dropdown => {
-      const toggle = dropdown.querySelector('button');
-      if (toggle) {
-        toggle.addEventListener('click', function (e) {
-          e.stopPropagation();
-          const isOpen = dropdown.classList.contains('open');
-          // Close others
-          document.querySelectorAll('.lh-nav-dropdown, .academy-nav-dropdown').forEach(d => d.classList.remove('open'));
-          if (!isOpen) {
-            dropdown.classList.add('open');
-            toggle.setAttribute('aria-expanded', 'true');
-          } else {
-            dropdown.classList.remove('open');
-            toggle.setAttribute('aria-expanded', 'false');
-          }
-        });
+    const auth = window.AcademyAuth;
+    const isAuthed = Boolean(auth && typeof auth.isAuthenticated === 'function' && auth.isAuthenticated());
+    const user = isAuthed ? auth.getUser() : null;
+    const profile = isAuthed ? auth.getProfile() : null;
+
+    authSlots.forEach(slot => {
+      // Determine if on roadmap page where cross-path links must be restricted
+      const isRoadmapPage = Boolean(slot.closest('.rm-nav') || document.body.classList.contains('roadmap-page'));
+
+      if (isAuthed && (profile || user)) {
+        const displayName = (profile && (profile.display_name || profile.username)) || (user && user.email ? user.email.split('@')[0] : 'Learner');
+        const email = (user && user.email) ? user.email : '';
+        const initial = displayName.charAt(0).toUpperCase();
+        const avatarUrl = profile && profile.avatar_url ? profile.avatar_url : '';
+
+        const avatarMarkup = avatarUrl 
+          ? `<img src="${escapeHtml(avatarUrl)}" alt="${escapeHtml(displayName)}" class="w-6 h-6 rounded-full object-cover border border-primary/30 shrink-0"/>`
+          : `<span class="w-6 h-6 rounded-full bg-gradient-to-tr from-sky-500 to-indigo-600 text-white font-bold flex items-center justify-center text-[10px] shrink-0 shadow-xs">${escapeHtml(initial)}</span>`;
+
+        slot.innerHTML = `
+          <div class="relative academy-profile-menu">
+            <button type="button" class="academy-profile-btn flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-2.5 sm:py-1 rounded-xl border border-border-hairline bg-surface-raised hover:bg-surface-subtle transition-all cursor-pointer text-xs font-mono select-none" aria-expanded="false" aria-haspopup="true" aria-label="User account menu for ${escapeHtml(displayName)}">
+              ${avatarMarkup}
+              <span class="academy-profile-username font-bold text-on-surface max-w-[100px] truncate hidden sm:inline">${escapeHtml(displayName)}</span>
+              <span class="material-symbols-outlined text-[15px] text-outline">expand_more</span>
+            </button>
+            <div class="academy-profile-dropdown absolute right-0 top-full mt-2 w-56 p-2 rounded-2xl border border-border-hairline bg-surface-raised/98 backdrop-blur-xl shadow-xl space-y-1 font-mono text-xs hidden z-50">
+              <div class="px-3 py-2 border-b border-border-hairline/60">
+                <div class="font-bold text-on-surface truncate">${escapeHtml(displayName)}</div>
+                ${email ? `<div class="text-[10px] text-outline truncate mt-0.5">${escapeHtml(email)}</div>` : ''}
+              </div>
+              <a href="profile.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-surface-subtle text-on-surface hover:text-primary transition-colors font-medium">
+                <span class="material-symbols-outlined text-[16px] text-primary">person</span>
+                <span>View Profile</span>
+              </a>
+              ${!isRoadmapPage ? `
+                <a href="/" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-surface-subtle text-on-surface hover:text-primary transition-colors">
+                  <span class="material-symbols-outlined text-[16px] text-secondary">school</span>
+                  <span>Academy Home</span>
+                </a>
+                <a href="terminal-lab.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-surface-subtle text-on-surface hover:text-primary transition-colors">
+                  <span class="material-symbols-outlined text-[16px] text-emerald-500">terminal</span>
+                  <span>Terminal</span>
+                </a>
+              ` : `
+                <a href="/" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-surface-subtle text-on-surface hover:text-primary transition-colors">
+                  <span class="material-symbols-outlined text-[16px] text-secondary">school</span>
+                  <span>Academy Home</span>
+                </a>
+              `}
+              <div class="border-t border-border-hairline/60 pt-1">
+                <button type="button" class="header-logout-btn w-full text-left flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-red-500/10 text-red-600 dark:text-red-400 transition-colors cursor-pointer">
+                  <span class="material-symbols-outlined text-[16px]">logout</span>
+                  <span>Sign Out</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      } else {
+        // Guest user presentation
+        slot.innerHTML = `
+          <div class="relative academy-profile-menu">
+            <button type="button" class="academy-profile-btn flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-2.5 sm:py-1 rounded-xl border border-border-hairline bg-surface-raised hover:bg-surface-subtle transition-all cursor-pointer text-xs font-mono select-none" aria-expanded="false" aria-haspopup="true" aria-label="Guest account menu">
+              <span class="w-6 h-6 rounded-full bg-surface-subtle border border-border-hairline flex items-center justify-center text-outline shrink-0">
+                <span class="material-symbols-outlined text-[15px]">person</span>
+              </span>
+              <span class="font-bold text-outline hidden sm:inline">Guest</span>
+              <span class="material-symbols-outlined text-[15px] text-outline">expand_more</span>
+            </button>
+            <div class="academy-profile-dropdown absolute right-0 top-full mt-2 w-52 p-2 rounded-2xl border border-border-hairline bg-surface-raised/98 backdrop-blur-xl shadow-xl space-y-1 font-mono text-xs hidden z-50">
+              <div class="px-3 py-2 border-b border-border-hairline/60">
+                <div class="font-bold text-on-surface">Guest Learner</div>
+                <div class="text-[10px] text-outline mt-0.5">Progress saved locally</div>
+              </div>
+              <a href="profile.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-surface-subtle text-on-surface hover:text-primary transition-colors font-medium">
+                <span class="material-symbols-outlined text-[16px] text-primary">badge</span>
+                <span>View Profile</span>
+              </a>
+              ${!isRoadmapPage ? `
+                <a href="auth.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-primary/10 text-primary hover:bg-primary/20 font-bold transition-colors">
+                  <span class="material-symbols-outlined text-[16px]">login</span>
+                  <span>Sign In / Enlist</span>
+                </a>
+              ` : `
+                <a href="/" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-surface-subtle text-on-surface hover:text-primary transition-colors">
+                  <span class="material-symbols-outlined text-[16px] text-secondary">school</span>
+                  <span>Academy Home</span>
+                </a>
+              `}
+            </div>
+          </div>
+        `;
       }
     });
 
-    // Close open dropdowns on outside click or Esc
-    document.addEventListener('click', function () {
-      document.querySelectorAll('.lh-nav-dropdown, .academy-nav-dropdown').forEach(d => {
-        d.classList.remove('open');
-        const b = d.querySelector('button');
-        if (b) b.setAttribute('aria-expanded', 'false');
+    // Wire dropdown toggles & keyboard accessibility
+    document.querySelectorAll('.academy-profile-menu').forEach(menu => {
+      const toggleBtn = menu.querySelector('.academy-profile-btn');
+      const dropdown = menu.querySelector('.academy-profile-dropdown');
+      if (!toggleBtn || !dropdown || menu.__wired) return;
+      menu.__wired = true;
+
+      function closeMenu() {
+        dropdown.classList.add('hidden');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+      }
+
+      function openMenu() {
+        // Close other open menus first
+        document.querySelectorAll('.academy-profile-dropdown').forEach(d => d.classList.add('hidden'));
+        document.querySelectorAll('.academy-profile-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
+        dropdown.classList.remove('hidden');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+      }
+
+      toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = !dropdown.classList.contains('hidden');
+        if (isOpen) closeMenu();
+        else openMenu();
+      });
+
+      // Keyboard support
+      toggleBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openMenu();
+          const firstLink = dropdown.querySelector('a, button');
+          if (firstLink) firstLink.focus();
+        }
       });
     });
 
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') {
-        document.querySelectorAll('.lh-nav-dropdown, .academy-nav-dropdown').forEach(d => {
-          d.classList.remove('open');
-          const b = d.querySelector('button');
-          if (b) b.setAttribute('aria-expanded', 'false');
-        });
-        if (mobileDrawer) mobileDrawer.classList.remove('open');
-      }
+    // Wire sign out action
+    document.querySelectorAll('.header-logout-btn').forEach(btn => {
+      if (btn.__wired) return;
+      btn.__wired = true;
+      btn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        if (auth && typeof auth.signOut === 'function') {
+          await auth.signOut();
+          window.location.reload();
+        }
+      });
     });
   }
 
+  // Close dropdowns globally on outside click or Esc
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.academy-profile-dropdown').forEach(d => d.classList.add('hidden'));
+    document.querySelectorAll('.academy-profile-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.academy-profile-dropdown').forEach(d => d.classList.add('hidden'));
+      document.querySelectorAll('.academy-profile-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
+    }
+  });
+
+  function syncHeaderStats() {
+    if (typeof window === 'undefined' || typeof window.AcademyState === 'undefined') return;
+    const streakEls = document.querySelectorAll('#header-streak-pill, .header-streak-pill');
+    const xpEls = document.querySelectorAll('#header-xp-pill, .header-xp-pill');
+    const streak = window.AcademyState.getStreak ? window.AcademyState.getStreak() : 1;
+    const xp = window.AcademyState.calculateTotalXP ? window.AcademyState.calculateTotalXP() : 0;
+    streakEls.forEach(el => { el.textContent = `${streak}d`; });
+    xpEls.forEach(el => { el.textContent = `${xp.toLocaleString()} XP`; });
+  }
+
+  // =========================================================================
+  // 5. UNIFIED HEADER INITIALIZATION
   // =========================================================================
   function initAll() {
-    initAcademyGlobalListeners();
-    syncThemeButtons(getStoredTheme());
+    applyTheme(getStoredTheme(), false);
     syncHeaderStats();
     syncHeaderAuth();
+
+    // Event hooks for reactive state updates
     window.addEventListener('calion-progress-updated', syncHeaderStats);
     window.addEventListener('endlessus-progress-updated', syncHeaderStats);
     window.addEventListener('calion-auth-changed', () => {
@@ -289,96 +372,16 @@
     initAll();
   }
 
-  function syncHeaderStats() {
-    if (typeof window === 'undefined' || typeof window.AcademyState === 'undefined') return;
-    const streakEls = document.querySelectorAll('#header-streak-pill, .header-streak-pill');
-    const xpEls = document.querySelectorAll('#header-xp-pill, .header-xp-pill');
-    const streak = window.AcademyState.getStreak ? window.AcademyState.getStreak() : 1;
-    const xp = window.AcademyState.calculateTotalXP ? window.AcademyState.calculateTotalXP() : 0;
-    streakEls.forEach(el => { el.textContent = `${streak}d`; });
-    xpEls.forEach(el => { el.textContent = `${xp.toLocaleString()} XP`; });
-  }
-
-  function syncHeaderAuth() {
-    let authSlots = document.querySelectorAll('#academy-auth-slot, .academy-auth-slot');
-    
-    if (authSlots.length === 0) {
-      const themeToggle = document.querySelector('#theme-toggle-normal, .theme-toggle-normal');
-      if (themeToggle && themeToggle.parentElement) {
-        const parent = themeToggle.parentElement.parentElement;
-        if (parent) {
-          const slot = document.createElement('div');
-          slot.id = 'academy-auth-slot';
-          slot.className = 'academy-auth-slot';
-          parent.insertBefore(slot, themeToggle.parentElement);
-          authSlots = [slot];
-        }
-      }
-    }
-
-    const auth = window.AcademyAuth;
-    const isAuthed = auth && typeof auth.isAuthenticated === 'function' && auth.isAuthenticated();
-    const user = isAuthed ? auth.getUser() : null;
-    const profile = isAuthed ? auth.getProfile() : null;
-
-    authSlots.forEach(slot => {
-      if (isAuthed && (profile || user)) {
-        const displayName = (profile && (profile.display_name || profile.username)) || (user && user.email ? user.email.split('@')[0] : 'Learner');
-        const initial = displayName.charAt(0).toUpperCase();
-
-        slot.innerHTML = `
-          <div class="relative group">
-            <button type="button" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-primary/30 bg-primary/10 hover:bg-primary/20 text-on-surface font-mono text-xs transition-all">
-              <span class="w-5 h-5 rounded-full bg-primary text-white font-bold flex items-center justify-center text-[10px]">${escapeHtml(initial)}</span>
-              <span class="font-bold text-primary max-w-[100px] truncate hidden sm:inline">${escapeHtml(displayName)}</span>
-              <span class="material-symbols-outlined text-xs text-outline">expand_more</span>
-            </button>
-            <div class="absolute right-0 top-full pt-1 hidden group-hover:block z-50">
-              <div class="w-48 p-2 rounded-xl border border-border-hairline bg-surface-subtle shadow-xl space-y-1 font-mono text-xs">
-                <a href="profile.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-surface-raised text-on-surface transition-colors font-bold">
-                  <span class="material-symbols-outlined text-sm text-primary">person</span>
-                  <span>My Profile</span>
-                </a>
-                <a href="learning.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-surface-raised text-on-surface transition-colors">
-                  <span class="material-symbols-outlined text-sm text-secondary">route</span>
-                  <span>Academy Home</span>
-                </a>
-                <button type="button" class="header-logout-btn w-full text-left flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-danger/10 text-danger transition-colors">
-                  <span class="material-symbols-outlined text-sm">logout</span>
-                  <span>Sign Out</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        `;
-
-        slot.querySelectorAll('.header-logout-btn').forEach(btn => {
-          btn.addEventListener('click', async (e) => {
-            e.preventDefault();
-            if (auth && typeof auth.signOut === 'function') {
-              await auth.signOut();
-              window.location.reload();
-            }
-          });
-        });
-      } else {
-        slot.innerHTML = `
-          <a href="auth.html" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-primary/30 bg-primary/10 hover:bg-primary/20 text-primary font-bold font-mono text-xs transition-all" title="Sign In or Enlist">
-            <span class="material-symbols-outlined text-xs">login</span>
-            <span class="hidden sm:inline">Sign In</span>
-          </a>
-        `;
-      }
-    });
-  }
-
-  // Expose global API
+  // Expose authoritative API
   window.CalionAcademy = window.EndlessusAcademy = {
     setTheme: applyTheme,
     getTheme: getStoredTheme,
     openSearch: openSearch,
     closeSearch: closeSearch,
-    searchIndex: ACADEMY_SEARCH_INDEX
+    searchIndex: ACADEMY_SEARCH_INDEX,
+    syncHeaderAuth,
+    syncHeaderStats,
+    logoSvg: CALION_LOGO_SVG
   };
 
 })();

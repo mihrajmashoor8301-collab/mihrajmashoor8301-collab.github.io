@@ -25,18 +25,20 @@
   'use strict';
 
   const KEYS = {
-    ROOMS: 'calion_completed_rooms',
-    ROOM_PROG: 'calion_room_progress',
-    QUESTIONS: 'calion_question_progress',
+    // Keep legacy 45-room progress intact, but never count it as completion of
+    // the re-indexed 47-room curriculum.
+    ROOMS: 'calion_47_completed_rooms',
+    ROOM_PROG: 'calion_47_room_progress',
+    QUESTIONS: 'calion_47_question_progress',
     LABS: 'calion_completed_labs',
     XP: 'calion_user_xp',
     STREAK: 'calion_streak_days',
     LAST_ACTIVE: 'calion_last_active',
     LAST_ROOM: 'calion_last_room',
     THEME: 'calion_learning_theme',
-    TASKS: 'calion_task_progress',
+    TASKS: 'calion_47_task_progress',
     LAB_FLAGS: 'calion_lab_flags',
-    LAST_POS: 'calion_last_position'
+    LAST_POS: 'calion_47_last_position'
   };
 
   const LEGACY_KEYS = {

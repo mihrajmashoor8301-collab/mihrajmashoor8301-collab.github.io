@@ -79,7 +79,7 @@
       
       <!-- Brand & Section Label -->
       <div class="flex items-center gap-3">
-        <a aria-label="CALION Academy Home" class="flex items-center gap-2 group" href="learning.html">
+        <a aria-label="CALION Academy Home" class="flex items-center gap-2 group" href="/">
           <svg class="h-7 w-auto" fill="none" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="calion_grad_hdr_mo" x1="0%" x2="100%" y1="0%" y2="100%">
@@ -119,9 +119,12 @@
 
       <!-- Right Action Bar -->
       <div class="flex items-center gap-2">
-        <!-- 3-Theme Selector Toggle Button -->
-        <button aria-label="Toggle theme mode" class="w-8 h-8 rounded-lg bg-surface-raised hover:bg-surface-subtle border border-border-hairline flex items-center justify-center text-outline hover:text-on-surface transition-colors calion-theme-toggle" id="theme-toggle" type="button" title="Switch Theme (Soft Light → Dark → Classic)">
-          <span class="material-symbols-outlined text-[18px]">contrast</span>
+        <!-- User Profile -->
+        <div id="academy-user-nav" class="academy-user-nav relative"></div>
+
+        <!-- Theme Toggle Button -->
+        <button aria-label="Toggle theme mode" class="calion-theme-toggle" id="theme-toggle" type="button" title="Toggle theme">
+          <span class="material-symbols-outlined text-[18px]">dark_mode</span>
         </button>
 
         <button type="button" id="mobile-menu-btn" class="md:hidden p-1.5 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" aria-label="Open Mobile Menu">

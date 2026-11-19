@@ -87,7 +87,7 @@
       
       <!-- Official CALION Logo Branding (Improvement 13) -->
       <div class="flex items-center gap-3">
-        <a aria-label="CALION Academy Home" class="flex items-center gap-2 group" href="learning.html">
+        <a aria-label="CALION Academy Home" class="flex items-center gap-2 group" href="/">
           <svg class="h-7 w-auto" fill="none" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="calion_grad_auth_hdr" x1="0%" x2="100%" y1="0%" y2="100%">
@@ -116,11 +116,11 @@
 
       <!-- Right Action Bar: Theme Toggle Only (Improvement 12) -->
       <div class="flex items-center gap-2 font-mono text-xs">
-        <a href="learning.html" class="px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-raised hover:border-primary text-on-surface text-xs font-mono transition-colors">
+        <a href="/" class="px-3 py-1.5 rounded-lg border border-border-hairline bg-surface-raised hover:border-primary text-on-surface text-xs font-mono transition-colors">
           <span>Return to Academy</span>
         </a>
-        <button aria-label="Toggle theme mode" class="w-8 h-8 rounded-lg bg-surface-raised hover:bg-surface-subtle border border-border-hairline flex items-center justify-center text-outline hover:text-on-surface transition-colors calion-theme-toggle" id="theme-toggle" type="button" title="Switch Theme (Soft Light → Dark → Classic)">
-          <span class="material-symbols-outlined text-[18px]">contrast</span>
+        <button aria-label="Toggle theme mode" class="calion-theme-toggle" id="theme-toggle" type="button" title="Toggle theme">
+          <span class="material-symbols-outlined text-[18px]">dark_mode</span>
         </button>
       </div>
     </div>
