@@ -86,6 +86,32 @@
     }
   }
 
+  function normalizeRoomId(id) {
+    if (typeof id !== 'string') return id;
+    const clean = id.trim().toLowerCase();
+    const aliases = (typeof window !== 'undefined' && window.CALION_ROOM_ID_ALIASES) || (typeof module !== 'undefined' && module.exports ? require('./learning-data.js').CALION_ROOM_ID_ALIASES : {});
+    if (aliases && aliases[clean]) return aliases[clean];
+    const match = clean.match(/^(?:ps-)?room-(\d{1,2})$/) || clean.match(/^(\d{1,2})$/);
+    if (!match) return clean;
+    const number = Number(match[1]);
+    return number >= 1 && number <= 47 ? `room-${String(number).padStart(2, '0')}` : clean;
+  }
+
+  function formatAnswerMask(question) {
+    if (!question || question.type === 'multiple-choice' || question.type === 'mc') return '';
+    const answer = (question.acceptedAnswers || [])[0];
+    if (!answer) return '';
+    const chars = Array.from(String(answer));
+    let out = '';
+    chars.forEach((ch, index) => {
+      if (/\s/u.test(ch)) out = out.replace(/ $/, '') + '   ';
+      else out += (out && !out.endsWith('   ') ? ' ' : '') + '_';
+    });
+    return out.trim();
+  }
+
+  // Client-side answers are downloadable with curriculum data; this is a learning
+  // check, not a security boundary.
   // Authoritative answer validation
   function validateAnswer(questionObj, userInput) {
     if (!questionObj || typeof userInput !== 'string') return false;
@@ -115,17 +141,25 @@
     const labs = getCompletedLabs();
 
     const roomXP = rooms.length * 50;
-    const questionXP = Object.keys(questions).filter(k => questions[k] === true).length * 25;
+    const normalizedQuestionKeys = new Set();
+    Object.keys(questions).forEach(key => {
+      if (questions[key] !== true) return;
+      const match = key.match(/^((?:ps-)?room-\d{1,2})_q(\d+)$/i);
+      normalizedQuestionKeys.add(match ? `${normalizeRoomId(match[1])}_q${match[2]}` : key);
+    });
+    const questionXP = normalizedQuestionKeys.size * 25;
     const labXP = labs.length * 75;
 
     const total = roomXP + questionXP + labXP;
-    safeSet(KEYS.XP, total);
-    return total;
+    const historical = Number(safeGet(KEYS.XP, 0)) || 0;
+    const preserved = Math.max(historical, total);
+    safeSet(KEYS.XP, preserved);
+    return preserved;
   }
 
   function getCompletedRooms() {
     const raw = safeGet(KEYS.ROOMS, []);
-    return Array.isArray(raw) ? raw.filter(id => typeof id === 'string') : [];
+    return Array.isArray(raw) ? Array.from(new Set(raw.filter(id => typeof id === 'string').map(normalizeRoomId))) : [];
   }
 
   function getCompletedLabs() {
@@ -145,7 +179,7 @@
 
   function isRoomCompleted(roomId) {
     if (!roomId) return false;
-    return getCompletedRooms().includes(roomId);
+    return getCompletedRooms().includes(normalizeRoomId(roomId));
   }
 
   function isQuestionSolved(questionKey) {
@@ -192,7 +226,7 @@
 
     const defaultFirstId = (list[0] && list[0].id) || 'room-01';
     let stored = safeGet(KEYS.LAST_POS, null);
-    let targetRoomId = (stored && stored.roomId) || getLastActiveRoom() || defaultFirstId;
+    let targetRoomId = normalizeRoomId((stored && stored.roomId) || getLastActiveRoom() || defaultFirstId);
     let taskIdx = (stored && typeof stored.taskIdx === 'number') ? stored.taskIdx : 0;
     let questionIdx = (stored && typeof stored.questionIdx === 'number') ? stored.questionIdx : 0;
 
@@ -206,7 +240,7 @@
       }
     }
 
-    const room = list.find(r => r.id === targetRoomId || (r.legacyId && r.legacyId === targetRoomId)) || list[0] || {
+    const room = list.find(r => r.id === targetRoomId || (r.legacyId && normalizeRoomId(r.legacyId) === targetRoomId)) || list[0] || {
       id: 'room-01',
       title: 'Introduction to Computers',
       stageId: 'pre-security',
@@ -258,6 +292,7 @@
 
   function markRoomCompleted(roomId) {
     if (!roomId) return false;
+    roomId = normalizeRoomId(roomId);
     const rooms = getCompletedRooms();
     let newlyCompleted = false;
 
@@ -320,6 +355,7 @@
 
   function markRoomIncomplete(roomId) {
     if (!roomId) return;
+    roomId = normalizeRoomId(roomId);
     let rooms = getCompletedRooms().filter(id => id !== roomId);
     safeSet(KEYS.ROOMS, rooms);
 
@@ -333,6 +369,7 @@
 
   function solveQuestion(roomId, qIdx, questionObj) {
     if (!roomId || qIdx === undefined || qIdx === null) return { success: false, alreadySolved: false };
+    roomId = normalizeRoomId(roomId);
     const qKey = `${roomId}_q${qIdx}`;
     const qMap = getQuestionProgress();
 
@@ -535,6 +572,8 @@
 
   return {
     KEYS,
+    normalizeRoomId,
+    formatAnswerMask,
     safeGet,
     safeSet,
     validateAnswer,

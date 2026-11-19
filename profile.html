@@ -325,8 +325,8 @@
                 <span id="stage-1-rooms">0 / 10 rooms</span>
                 <span id="stage-1-rem">10 left</span>
               </div>
-              <a href="learning.html?stage=pre-security" class="w-full py-2 rounded-xl bg-surface-raised hover:bg-surface-overlay text-on-surface hover:text-primary font-bold text-center block transition-colors border border-border-hairline">
-                Explore Stage →
+              <a href="/" class="w-full py-2 rounded-xl bg-surface-raised hover:bg-surface-overlay text-on-surface hover:text-primary font-bold text-center block transition-colors border border-border-hairline">
+                Choose at Academy Home →
               </a>
             </div>
           </div>
@@ -354,8 +354,8 @@
                 <span id="stage-2-rooms">0 / 10 rooms</span>
                 <span id="stage-2-rem">10 left</span>
               </div>
-              <a href="learning.html?stage=cyber-security" class="w-full py-2 rounded-xl bg-surface-raised hover:bg-surface-overlay text-on-surface hover:text-indigo-600 font-bold text-center block transition-colors border border-border-hairline">
-                Explore Stage →
+              <a href="/" class="w-full py-2 rounded-xl bg-surface-raised hover:bg-surface-overlay text-on-surface hover:text-indigo-600 font-bold text-center block transition-colors border border-border-hairline">
+                Choose at Academy Home →
               </a>
             </div>
           </div>
@@ -383,8 +383,8 @@
                 <span id="stage-3-rooms">0 / 12 rooms</span>
                 <span id="stage-3-rem">12 left</span>
               </div>
-              <a href="learning.html?stage=defensive-security" class="w-full py-2 rounded-xl bg-surface-raised hover:bg-surface-overlay text-on-surface hover:text-teal-600 font-bold text-center block transition-colors border border-border-hairline">
-                Explore Stage →
+              <a href="/" class="w-full py-2 rounded-xl bg-surface-raised hover:bg-surface-overlay text-on-surface hover:text-teal-600 font-bold text-center block transition-colors border border-border-hairline">
+                Choose at Academy Home →
               </a>
             </div>
           </div>
@@ -412,8 +412,8 @@
                 <span id="stage-4-rooms">0 / 15 rooms</span>
                 <span id="stage-4-rem">15 left</span>
               </div>
-              <a href="learning.html?stage=offensive-security" class="w-full py-2 rounded-xl bg-surface-raised hover:bg-surface-overlay text-on-surface hover:text-rose-600 font-bold text-center block transition-colors border border-border-hairline">
-                Explore Stage →
+              <a href="/" class="w-full py-2 rounded-xl bg-surface-raised hover:bg-surface-overlay text-on-surface hover:text-rose-600 font-bold text-center block transition-colors border border-border-hairline">
+                Choose at Academy Home →
               </a>
             </div>
           </div>
@@ -637,6 +637,7 @@
         cadetRankTitle.textContent = 'Status: Guest Learner';
         profileVisibilityBadge.textContent = 'Local Storage Only';
 
+        const completedPaths = (window.CALION_STAGES || []).filter(stage => { const p = AcademyState.getStageProgress(stage.id); return p.total > 0 && p.completed === p.total; }).length;
         updateStatsUI({
           totalRoomsCompleted: completedRooms.length,
           totalAvailableRooms: 47,
@@ -644,7 +645,7 @@
           totalAvailableLabs: 13,
           totalXP: xp,
           streakDays: streak,
-          completedPaths: completedRooms.length >= 47 ? 1 : 0,
+          completedPaths,
           achievementsCount: completedRooms.length >= 1 ? 1 : 0
         });
 

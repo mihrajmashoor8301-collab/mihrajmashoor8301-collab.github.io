@@ -7,5 +7,22 @@
 /scripts/*     /404.html    404
 /server/*      /404.html    404
 
+# Dedicated, isolated learning path roadmaps. Each route uses roadmap.html with its path selected by URL.
+/roadmap/pre-security       /roadmap.html 200
+/roadmap/cyber-security     /roadmap.html 200
+/roadmap/defensive-security /roadmap.html 200
+/roadmap/offensive-security /roadmap.html 200
+/roadmap/pre-security/       /roadmap/pre-security 301
+/roadmap/cyber-security/     /roadmap/cyber-security 301
+/roadmap/defensive-security/ /roadmap/defensive-security 301
+/roadmap/offensive-security/ /roadmap/offensive-security 301
+
+# Retire the competing Modules and unified legacy roadmap interfaces.
+/modules       / 301
+/modules/      / 301
+/modules.html  / 301
+/module.html   / 301
+/roadmap.html  / 301
+
 # Transparently serve the Academy Dashboard at the subdomain root
 /              /learning.html    200

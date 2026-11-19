@@ -142,7 +142,8 @@ const CALION_ROOMS = [
             "id": "q-01-1",
             "type": "exact",
             "question": "Which CPU register points to the memory address of the next instruction to execute?",
-            "visualSlots": "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _",
+            "visualSlots": "_ _ _ _ _ _ _ _ _ _ _   _ _ _ _ _ _ _",
+            "answerLength": 18,
             "acceptedAnswers": [
               "Instruction Pointer",
               "program counter",
@@ -152,7 +153,8 @@ const CALION_ROOMS = [
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
-            "hint": "Often abbreviated as PC, or RIP/EIP in x86/x64.",
+            "hint": "Think of the CPU register that records where execution should continue after the current instruction.",
+            "hints": ["Think of the CPU register that records where execution should continue after the current instruction.","The response names a specific concept or process; distinguish it from nearby terms.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "The Program Counter (PC / RIP) points to the next instruction in memory."
           }
         ]
@@ -193,6 +195,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Running programs decrypt passwords and secrets in memory.",
+            "hints": ["Running programs decrypt passwords and secrets in memory.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Volatile memory contains active process artifacts, decrypted keys, and memory-only malware."
           }
         ]
@@ -238,6 +241,7 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "What is the CPU ring number corresponding to Kernel Mode in x86 architecture?",
             "visualSlots": "_",
+            "answerLength": 1,
             "acceptedAnswers": [
               "0",
               "Ring 0",
@@ -246,6 +250,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "The most privileged inner ring.",
+            "hints": ["The most privileged inner ring.","The response is numeric; check the protocol, event, or calculation context carefully.","Check whether the question asks for a total, a usable count, or a reserved value."],
             "explanation": "Ring 0 is the highest privilege level, reserved exclusively for the OS kernel."
           }
         ]
@@ -256,7 +261,8 @@ const CALION_ROOMS = [
         "id": "q-01-1",
         "type": "exact",
         "question": "Which CPU register points to the memory address of the next instruction to execute?",
-        "visualSlots": "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _",
+        "visualSlots": "_ _ _ _ _ _ _ _ _ _ _   _ _ _ _ _ _ _",
+        "answerLength": 18,
         "acceptedAnswers": [
           "Instruction Pointer",
           "program counter",
@@ -266,7 +272,8 @@ const CALION_ROOMS = [
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
-        "hint": "Often abbreviated as PC, or RIP/EIP in x86/x64.",
+        "hint": "Think of the CPU register that records where execution should continue after the current instruction.",
+        "hints": ["Think of the CPU register that records where execution should continue after the current instruction.","The response names a specific concept or process; distinguish it from nearby terms.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "The Program Counter (PC / RIP) points to the next instruction in memory."
       },
       {
@@ -281,6 +288,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Running programs decrypt passwords and secrets in memory.",
+        "hints": ["Running programs decrypt passwords and secrets in memory.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Volatile memory contains active process artifacts, decrypted keys, and memory-only malware."
       },
       {
@@ -288,6 +296,7 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "What is the CPU ring number corresponding to Kernel Mode in x86 architecture?",
         "visualSlots": "_",
+        "answerLength": 1,
         "acceptedAnswers": [
           "0",
           "Ring 0",
@@ -296,6 +305,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "The most privileged inner ring.",
+        "hints": ["The most privileged inner ring.","The response is numeric; check the protocol, event, or calculation context carefully.","Check whether the question asks for a total, a usable count, or a reserved value."],
         "explanation": "Ring 0 is the highest privilege level, reserved exclusively for the OS kernel."
       }
     ],
@@ -389,6 +399,7 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "What networking paradigm breaks data into chunks that route independently?",
             "visualSlots": "_ _ _ _ _ _   _ _ _ _ _ _ _ _ _",
+            "answerLength": 15,
             "acceptedAnswers": [
               "packet switching",
               "packet-switching"
@@ -396,6 +407,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Contrasted with circuit switching.",
+            "hints": ["Contrasted with circuit switching.","The response names a specific concept or process; distinguish it from nearby terms.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "Packet switching allows packets to traverse independent paths across the network."
           }
         ]
@@ -429,13 +441,15 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "Which routing protocol is used by Autonomous Systems to exchange routing data across the Internet?",
             "visualSlots": "_ _ _",
+            "answerLength": 3,
             "acceptedAnswers": [
               "BGP",
               "Border Gateway Protocol"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
-            "hint": "Three-letter acronym for Border Gateway Protocol.",
+            "hint": "Focus on the protocol used to exchange reachability information between autonomous systems.",
+            "hints": ["Focus on the protocol used to exchange reachability information between autonomous systems.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "BGP is the core routing protocol coordinating Autonomous Systems globally."
           }
         ]
@@ -487,6 +501,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "TTL decrements at each hop until it hits zero.",
+            "hints": ["TTL decrements at each hop until it hits zero.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Traceroute increments TTL from 1 upward, causing each intermediate hop to return an ICMP Time Exceeded message."
           }
         ]
@@ -498,6 +513,7 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "What networking paradigm breaks data into chunks that route independently?",
         "visualSlots": "_ _ _ _ _ _   _ _ _ _ _ _ _ _ _",
+        "answerLength": 15,
         "acceptedAnswers": [
           "packet switching",
           "packet-switching"
@@ -505,6 +521,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Contrasted with circuit switching.",
+        "hints": ["Contrasted with circuit switching.","The response names a specific concept or process; distinguish it from nearby terms.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "Packet switching allows packets to traverse independent paths across the network."
       },
       {
@@ -512,13 +529,15 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "Which routing protocol is used by Autonomous Systems to exchange routing data across the Internet?",
         "visualSlots": "_ _ _",
+        "answerLength": 3,
         "acceptedAnswers": [
           "BGP",
           "Border Gateway Protocol"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
-        "hint": "Three-letter acronym for Border Gateway Protocol.",
+        "hint": "Focus on the protocol used to exchange reachability information between autonomous systems.",
+        "hints": ["Focus on the protocol used to exchange reachability information between autonomous systems.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "BGP is the core routing protocol coordinating Autonomous Systems globally."
       },
       {
@@ -533,6 +552,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "TTL decrements at each hop until it hits zero.",
+        "hints": ["TTL decrements at each hop until it hits zero.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Traceroute increments TTL from 1 upward, causing each intermediate hop to return an ICMP Time Exceeded message."
       }
     ],
@@ -626,6 +646,7 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "How many bits are in a standard physical Ethernet MAC address?",
             "visualSlots": "_ _",
+            "answerLength": 2,
             "acceptedAnswers": [
               "48",
               "48 bits",
@@ -634,6 +655,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Six hexadecimal octets (6 x 8 bits).",
+            "hints": ["Six hexadecimal octets (6 x 8 bits).","The response is numeric; check the protocol, event, or calculation context carefully.","Check whether the question asks for a total, a usable count, or a reserved value."],
             "explanation": "A standard MAC address is 48 bits (6 bytes) long, represented as 12 hexadecimal characters."
           }
         ]
@@ -674,6 +696,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Look for the common home router default subnet.",
+            "hints": ["Look for the common home router default subnet.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "192.168.0.0/16 is explicitly defined by RFC 1918 as a private non-routable range."
           }
         ]
@@ -719,12 +742,14 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "How many usable host IP addresses are available on an IPv4 /24 subnet?",
             "visualSlots": "_ _ _",
+            "answerLength": 3,
             "acceptedAnswers": [
               "254"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "2^8 minus 2 reserved addresses (network and broadcast).",
+            "hints": ["2^8 minus 2 reserved addresses (network and broadcast).","The response is numeric; check the protocol, event, or calculation context carefully.","Check whether the question asks for a total, a usable count, or a reserved value."],
             "explanation": "A /24 subnet provides 256 addresses minus 2 reserved (network and broadcast) = 254 usable hosts."
           }
         ]
@@ -736,6 +761,7 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "How many bits are in a standard physical Ethernet MAC address?",
         "visualSlots": "_ _",
+        "answerLength": 2,
         "acceptedAnswers": [
           "48",
           "48 bits",
@@ -744,6 +770,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Six hexadecimal octets (6 x 8 bits).",
+        "hints": ["Six hexadecimal octets (6 x 8 bits).","The response is numeric; check the protocol, event, or calculation context carefully.","Check whether the question asks for a total, a usable count, or a reserved value."],
         "explanation": "A standard MAC address is 48 bits (6 bytes) long, represented as 12 hexadecimal characters."
       },
       {
@@ -758,6 +785,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Look for the common home router default subnet.",
+        "hints": ["Look for the common home router default subnet.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "192.168.0.0/16 is explicitly defined by RFC 1918 as a private non-routable range."
       },
       {
@@ -765,12 +793,14 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "How many usable host IP addresses are available on an IPv4 /24 subnet?",
         "visualSlots": "_ _ _",
+        "answerLength": 3,
         "acceptedAnswers": [
           "254"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "2^8 minus 2 reserved addresses (network and broadcast).",
+        "hints": ["2^8 minus 2 reserved addresses (network and broadcast).","The response is numeric; check the protocol, event, or calculation context carefully.","Check whether the question asks for a total, a usable count, or a reserved value."],
         "explanation": "A /24 subnet provides 256 addresses minus 2 reserved (network and broadcast) = 254 usable hosts."
       }
     ],
@@ -863,7 +893,8 @@ const CALION_ROOMS = [
             "id": "q-04-1",
             "type": "exact",
             "question": "What flag does a server send back in response to an initial TCP SYN packet?",
-            "visualSlots": "_ _ _ - _ _ _",
+            "visualSlots": "_ _ _ _ _ _ _",
+            "answerLength": 7,
             "acceptedAnswers": [
               "SYN-ACK",
               "SYN/ACK",
@@ -872,6 +903,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Synchronize-Acknowledgment flag combination.",
+            "hints": ["Synchronize-Acknowledgment flag combination.","The response is a technical term or command used in this lesson.","Recall the named tool and the option that produces the behavior described; similar flags can do different jobs."],
             "explanation": "The server acknowledges the client's SYN and synchronizes its own sequence number with SYN-ACK."
           }
         ]
@@ -905,12 +937,14 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "Which standard port number is assigned to Secure Shell (SSH) remote administrative access?",
             "visualSlots": "_ _",
+            "answerLength": 2,
             "acceptedAnswers": [
               "22"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "The default port for secure command-line administration.",
+            "hints": ["The default port for secure command-line administration.","The response is numeric; check the protocol, event, or calculation context carefully.","Recall the standard service port associated with the named protocol."],
             "explanation": "Port 22 is the standard IANA assigned port for SSH."
           }
         ]
@@ -962,6 +996,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Differentiate connection-oriented TCP from connectionless UDP is the central takeaway of this room."
           }
         ]
@@ -972,7 +1007,8 @@ const CALION_ROOMS = [
         "id": "q-04-1",
         "type": "exact",
         "question": "What flag does a server send back in response to an initial TCP SYN packet?",
-        "visualSlots": "_ _ _ - _ _ _",
+        "visualSlots": "_ _ _ _ _ _ _",
+        "answerLength": 7,
         "acceptedAnswers": [
           "SYN-ACK",
           "SYN/ACK",
@@ -981,6 +1017,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Synchronize-Acknowledgment flag combination.",
+        "hints": ["Synchronize-Acknowledgment flag combination.","The response is a technical term or command used in this lesson.","Recall the named tool and the option that produces the behavior described; similar flags can do different jobs."],
         "explanation": "The server acknowledges the client's SYN and synchronizes its own sequence number with SYN-ACK."
       },
       {
@@ -988,12 +1025,14 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "Which standard port number is assigned to Secure Shell (SSH) remote administrative access?",
         "visualSlots": "_ _",
+        "answerLength": 2,
         "acceptedAnswers": [
           "22"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "The default port for secure command-line administration.",
+        "hints": ["The default port for secure command-line administration.","The response is numeric; check the protocol, event, or calculation context carefully.","Recall the standard service port associated with the named protocol."],
         "explanation": "Port 22 is the standard IANA assigned port for SSH."
       },
       {
@@ -1008,6 +1047,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Differentiate connection-oriented TCP from connectionless UDP is the central takeaway of this room."
       }
     ],
@@ -1101,7 +1141,8 @@ const CALION_ROOMS = [
             "id": "q-05-1",
             "type": "exact",
             "question": "Which directory stores system configuration files such as user accounts and network settings?",
-            "visualSlots": "/ _ _ _",
+            "visualSlots": "_ _ _ _",
+            "answerLength": 4,
             "acceptedAnswers": [
               "/etc",
               "etc"
@@ -1109,6 +1150,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Short three-letter folder under root.",
+            "hints": ["Short three-letter folder under root.","The response is a command option or path; punctuation at the start can be significant.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "/etc contains all core system and service configuration files in Linux."
           }
         ]
@@ -1142,12 +1184,14 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "Which command-line command is used to display your current working directory path?",
             "visualSlots": "_ _ _",
+            "answerLength": 3,
             "acceptedAnswers": [
               "pwd"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Stands for Print Working Directory.",
+            "hints": ["Stands for Print Working Directory.","The response is a technical term or command used in this lesson.","Use the utility demonstrated for this operation, rather than a related command."],
             "explanation": "pwd prints the absolute path of your current location in the filesystem."
           }
         ]
@@ -1204,6 +1248,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Navigate the inverted tree filesystem from root (/) is the central takeaway of this room."
           }
         ]
@@ -1214,7 +1259,8 @@ const CALION_ROOMS = [
         "id": "q-05-1",
         "type": "exact",
         "question": "Which directory stores system configuration files such as user accounts and network settings?",
-        "visualSlots": "/ _ _ _",
+        "visualSlots": "_ _ _ _",
+        "answerLength": 4,
         "acceptedAnswers": [
           "/etc",
           "etc"
@@ -1222,6 +1268,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Short three-letter folder under root.",
+        "hints": ["Short three-letter folder under root.","The response is a command option or path; punctuation at the start can be significant.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "/etc contains all core system and service configuration files in Linux."
       },
       {
@@ -1229,12 +1276,14 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "Which command-line command is used to display your current working directory path?",
         "visualSlots": "_ _ _",
+        "answerLength": 3,
         "acceptedAnswers": [
           "pwd"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Stands for Print Working Directory.",
+        "hints": ["Stands for Print Working Directory.","The response is a technical term or command used in this lesson.","Use the utility demonstrated for this operation, rather than a related command."],
         "explanation": "pwd prints the absolute path of your current location in the filesystem."
       },
       {
@@ -1249,6 +1298,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Navigate the inverted tree filesystem from root (/) is the central takeaway of this room."
       }
     ],
@@ -1341,6 +1391,7 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "Which Windows Registry hive contains hardware, driver, and system-wide security settings applied to all users?",
             "visualSlots": "_ _ _ _",
+            "answerLength": 4,
             "acceptedAnswers": [
               "HKLM",
               "HKEY_LOCAL_MACHINE"
@@ -1348,6 +1399,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Four-letter acronym starting with HK.",
+            "hints": ["Four-letter acronym starting with HK.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "HKLM (HKEY_LOCAL_MACHINE) stores configuration data common to all users and hardware."
           }
         ]
@@ -1388,6 +1440,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "The operating system core runs under this account.",
+            "hints": ["The operating system core runs under this account.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "NT AUTHORITY\\SYSTEM has complete control over the local Windows machine, higher than a normal Administrator."
           }
         ]
@@ -1438,6 +1491,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Understand Windows architecture (User Mode vs Kernel Mode, Win32 subsystem) is the central takeaway of this room."
           }
         ]
@@ -1449,6 +1503,7 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "Which Windows Registry hive contains hardware, driver, and system-wide security settings applied to all users?",
         "visualSlots": "_ _ _ _",
+        "answerLength": 4,
         "acceptedAnswers": [
           "HKLM",
           "HKEY_LOCAL_MACHINE"
@@ -1456,6 +1511,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Four-letter acronym starting with HK.",
+        "hints": ["Four-letter acronym starting with HK.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "HKLM (HKEY_LOCAL_MACHINE) stores configuration data common to all users and hardware."
       },
       {
@@ -1470,6 +1526,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "The operating system core runs under this account.",
+        "hints": ["The operating system core runs under this account.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "NT AUTHORITY\\SYSTEM has complete control over the local Windows machine, higher than a normal Administrator."
       },
       {
@@ -1484,6 +1541,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Understand Windows architecture (User Mode vs Kernel Mode, Win32 subsystem) is the central takeaway of this room."
       }
     ],
@@ -1577,13 +1635,15 @@ const CALION_ROOMS = [
             "id": "q-07-1",
             "type": "exact",
             "question": "Which redirection operator appends command output to the end of a file without overwriting it?",
-            "visualSlots": "> >",
+            "visualSlots": "_ _",
+            "answerLength": 2,
             "acceptedAnswers": [
               ">>"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
-            "hint": "Two greater-than symbols side by side.",
+            "hint": "This shell operator changes how new output is written to a file that already exists.",
+            "hints": ["This shell operator changes how new output is written to a file that already exists.","The response is a technical term or command used in this lesson.","Use the utility demonstrated for this operation, rather than a related command."],
             "explanation": ">> appends output to the destination file, while > overwrites it."
           }
         ]
@@ -1616,14 +1676,16 @@ const CALION_ROOMS = [
             "id": "q-07-2",
             "type": "exact",
             "question": "Which grep flag inverts the search to return only lines that do NOT match the specified pattern?",
-            "visualSlots": "- _",
+            "visualSlots": "_ _",
+            "answerLength": 2,
             "acceptedAnswers": [
               "-v",
               "v"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
-            "hint": "Single letter flag for inVerted match.",
+            "hint": "This grep option reverses the usual include-matching-lines behavior.",
+            "hints": ["This grep option reverses the usual include-matching-lines behavior.","The response is a command option or path; punctuation at the start can be significant.","Recall the named tool and the option that produces the behavior described; similar flags can do different jobs."],
             "explanation": "grep -v inverts matching, displaying all lines that do not contain the pattern."
           }
         ]
@@ -1675,6 +1737,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Master Standard Input (stdin), Standard Output (stdout), and Standard Error (stderr) is the central takeaway of this room."
           }
         ]
@@ -1685,27 +1748,31 @@ const CALION_ROOMS = [
         "id": "q-07-1",
         "type": "exact",
         "question": "Which redirection operator appends command output to the end of a file without overwriting it?",
-        "visualSlots": "> >",
+        "visualSlots": "_ _",
+        "answerLength": 2,
         "acceptedAnswers": [
           ">>"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
-        "hint": "Two greater-than symbols side by side.",
+        "hint": "This shell operator changes how new output is written to a file that already exists.",
+        "hints": ["This shell operator changes how new output is written to a file that already exists.","The response is a technical term or command used in this lesson.","Use the utility demonstrated for this operation, rather than a related command."],
         "explanation": ">> appends output to the destination file, while > overwrites it."
       },
       {
         "id": "q-07-2",
         "type": "exact",
         "question": "Which grep flag inverts the search to return only lines that do NOT match the specified pattern?",
-        "visualSlots": "- _",
+        "visualSlots": "_ _",
+        "answerLength": 2,
         "acceptedAnswers": [
           "-v",
           "v"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
-        "hint": "Single letter flag for inVerted match.",
+        "hint": "This grep option reverses the usual include-matching-lines behavior.",
+        "hints": ["This grep option reverses the usual include-matching-lines behavior.","The response is a command option or path; punctuation at the start can be significant.","Recall the named tool and the option that produces the behavior described; similar flags can do different jobs."],
         "explanation": "grep -v inverts matching, displaying all lines that do not contain the pattern."
       },
       {
@@ -1720,6 +1787,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Master Standard Input (stdin), Standard Output (stdout), and Standard Error (stderr) is the central takeaway of this room."
       }
     ],
@@ -1813,12 +1881,14 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "Which HTTP method is designed to retrieve data from a web server without altering server state?",
             "visualSlots": "_ _ _",
+            "answerLength": 3,
             "acceptedAnswers": [
               "GET"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Three-letter word for retrieving.",
+            "hints": ["Three-letter word for retrieving.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "GET is safe and idempotent, meant strictly for retrieving resources."
           }
         ]
@@ -1848,12 +1918,14 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "Which HTTP status code signifies that a requested resource was not found on the server?",
             "visualSlots": "_ _ _",
+            "answerLength": 3,
             "acceptedAnswers": [
               "404"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "The most famous error code on the internet.",
+            "hints": ["The most famous error code on the internet.","The response is numeric; check the protocol, event, or calculation context carefully.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "404 Not Found indicates the server cannot locate the requested URI."
           }
         ]
@@ -1904,6 +1976,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Explain the HTTP stateless request-response model is the central takeaway of this room."
           }
         ]
@@ -1915,12 +1988,14 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "Which HTTP method is designed to retrieve data from a web server without altering server state?",
         "visualSlots": "_ _ _",
+        "answerLength": 3,
         "acceptedAnswers": [
           "GET"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Three-letter word for retrieving.",
+        "hints": ["Three-letter word for retrieving.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "GET is safe and idempotent, meant strictly for retrieving resources."
       },
       {
@@ -1928,12 +2003,14 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "Which HTTP status code signifies that a requested resource was not found on the server?",
         "visualSlots": "_ _ _",
+        "answerLength": 3,
         "acceptedAnswers": [
           "404"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "The most famous error code on the internet.",
+        "hints": ["The most famous error code on the internet.","The response is numeric; check the protocol, event, or calculation context carefully.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "404 Not Found indicates the server cannot locate the requested URI."
       },
       {
@@ -1948,6 +2025,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Explain the HTTP stateless request-response model is the central takeaway of this room."
       }
     ],
@@ -2044,6 +2122,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Bare-metal hypervisors run directly on the physical hardware.",
+            "hints": ["Bare-metal hypervisors run directly on the physical hardware.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Type-1 hypervisors interface directly with physical CPU and memory without an intermediary operating system."
           }
         ]
@@ -2077,6 +2156,7 @@ const CALION_ROOMS = [
             "question": "Which Linux kernel feature is used by container engines to restrict and meter CPU and memory usage per container?",
             "options": [],
             "visualSlots": "_ _ _ _ _ _ _",
+            "answerLength": 7,
             "acceptedAnswers": [
               "cgroups",
               "control groups",
@@ -2084,7 +2164,8 @@ const CALION_ROOMS = [
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
-            "hint": "Short for Control Groups.",
+            "hint": "Containers use a Linux kernel mechanism to account for and constrain resource usage.",
+            "hints": ["Containers use a Linux kernel mechanism to account for and constrain resource usage.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "Control Groups (cgroups) limit and isolate resource usage (CPU, memory, disk I/O) for processes."
           }
         ]
@@ -2130,6 +2211,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Differentiate Type-1 (Bare-Metal) from Type-2 (Hosted) Hypervisors is the central takeaway of this room."
           }
         ]
@@ -2148,6 +2230,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Bare-metal hypervisors run directly on the physical hardware.",
+        "hints": ["Bare-metal hypervisors run directly on the physical hardware.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Type-1 hypervisors interface directly with physical CPU and memory without an intermediary operating system."
       },
       {
@@ -2156,6 +2239,7 @@ const CALION_ROOMS = [
         "question": "Which Linux kernel feature is used by container engines to restrict and meter CPU and memory usage per container?",
         "options": [],
         "visualSlots": "_ _ _ _ _ _ _",
+        "answerLength": 7,
         "acceptedAnswers": [
           "cgroups",
           "control groups",
@@ -2163,7 +2247,8 @@ const CALION_ROOMS = [
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
-        "hint": "Short for Control Groups.",
+        "hint": "Containers use a Linux kernel mechanism to account for and constrain resource usage.",
+        "hints": ["Containers use a Linux kernel mechanism to account for and constrain resource usage.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "Control Groups (cgroups) limit and isolate resource usage (CPU, memory, disk I/O) for processes."
       },
       {
@@ -2178,6 +2263,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Differentiate Type-1 (Bare-Metal) from Type-2 (Hosted) Hypervisors is the central takeaway of this room."
       }
     ],
@@ -2267,6 +2353,7 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "What four-letter acronym designates sophisticated, well-resourced nation-state adversary groups?",
             "visualSlots": "_ _ _",
+            "answerLength": 3,
             "acceptedAnswers": [
               "APT",
               "APTs"
@@ -2274,6 +2361,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Advanced Persistent Threat.",
+            "hints": ["Advanced Persistent Threat.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "APT stands for Advanced Persistent Threat, representing elite nation-state threat groups."
           }
         ]
@@ -2311,6 +2399,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Layered barriers make compromise exponentially harder.",
+            "hints": ["Layered barriers make compromise exponentially harder.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Defense in Depth implements layered controls so that if one security mechanism fails, others step in to halt the attack."
           }
         ]
@@ -2357,6 +2446,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Define cybersecurity and the threat landscape is the central takeaway of this room."
           }
         ]
@@ -2368,6 +2458,7 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "What four-letter acronym designates sophisticated, well-resourced nation-state adversary groups?",
         "visualSlots": "_ _ _",
+        "answerLength": 3,
         "acceptedAnswers": [
           "APT",
           "APTs"
@@ -2375,6 +2466,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Advanced Persistent Threat.",
+        "hints": ["Advanced Persistent Threat.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "APT stands for Advanced Persistent Threat, representing elite nation-state threat groups."
       },
       {
@@ -2389,6 +2481,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Layered barriers make compromise exponentially harder.",
+        "hints": ["Layered barriers make compromise exponentially harder.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Defense in Depth implements layered controls so that if one security mechanism fails, others step in to halt the attack."
       },
       {
@@ -2403,6 +2496,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Define cybersecurity and the threat landscape is the central takeaway of this room."
       }
     ],
@@ -2496,6 +2590,7 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "What term describes the path or mechanism by which an attacker attacks or gains access to a target system?",
             "visualSlots": "_ _ _ _ _ _   _ _ _ _ _ _",
+            "answerLength": 12,
             "acceptedAnswers": [
               "threat vector",
               "threat-vector",
@@ -2504,6 +2599,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Two words describing the attack path.",
+            "hints": ["Two words describing the attack path.","The response names a specific concept or process; distinguish it from nearby terms.","Look for the standard term that precisely defines the behavior described in the question."],
             "explanation": "A threat vector (or attack vector) is the specific path by which an adversary delivers an attack."
           }
         ]
@@ -2543,6 +2639,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Minimum privilege required for the task.",
+            "hints": ["Minimum privilege required for the task.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "The Principle of Least Privilege ensures that compromised processes have minimal power to cause widespread damage."
           }
         ]
@@ -2588,6 +2685,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Define cyber assets and asset valuation methodologies is the central takeaway of this room."
           }
         ]
@@ -2599,6 +2697,7 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "What term describes the path or mechanism by which an attacker attacks or gains access to a target system?",
         "visualSlots": "_ _ _ _ _ _   _ _ _ _ _ _",
+        "answerLength": 12,
         "acceptedAnswers": [
           "threat vector",
           "threat-vector",
@@ -2607,6 +2706,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Two words describing the attack path.",
+        "hints": ["Two words describing the attack path.","The response names a specific concept or process; distinguish it from nearby terms.","Look for the standard term that precisely defines the behavior described in the question."],
         "explanation": "A threat vector (or attack vector) is the specific path by which an adversary delivers an attack."
       },
       {
@@ -2621,6 +2721,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Minimum privilege required for the task.",
+        "hints": ["Minimum privilege required for the task.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "The Principle of Least Privilege ensures that compromised processes have minimal power to cause widespread damage."
       },
       {
@@ -2635,6 +2736,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Define cyber assets and asset valuation methodologies is the central takeaway of this room."
       }
     ],
@@ -2731,6 +2833,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "The hospital staff can no longer access the systems to treat patients.",
+            "hints": ["The hospital staff can no longer access the systems to treat patients.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Ransomware primarily destroys Availability by preventing authorized users from accessing their critical systems and data."
           }
         ]
@@ -2762,7 +2865,8 @@ const CALION_ROOMS = [
             "id": "q-12-2",
             "type": "exact",
             "question": "What mathematical security property ensures that a sender cannot deny having sent a message or initiated a transaction?",
-            "visualSlots": "_ _ _ - _ _ _ _ _ _ _ _ _ _ _",
+            "visualSlots": "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _",
+            "answerLength": 15,
             "acceptedAnswers": [
               "non-repudiation",
               "non repudiation"
@@ -2770,6 +2874,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Non- followed by repudiation.",
+            "hints": ["Non- followed by repudiation.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "Non-repudiation provides undeniable cryptographic proof of the origin and integrity of data."
           }
         ]
@@ -2814,6 +2919,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Deconstruct the CIA Triad: Confidentiality, Integrity, and Availability is the central takeaway of this room."
           }
         ]
@@ -2832,13 +2938,15 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "The hospital staff can no longer access the systems to treat patients.",
+        "hints": ["The hospital staff can no longer access the systems to treat patients.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Ransomware primarily destroys Availability by preventing authorized users from accessing their critical systems and data."
       },
       {
         "id": "q-12-2",
         "type": "exact",
         "question": "What mathematical security property ensures that a sender cannot deny having sent a message or initiated a transaction?",
-        "visualSlots": "_ _ _ - _ _ _ _ _ _ _ _ _ _ _",
+        "visualSlots": "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _",
+        "answerLength": 15,
         "acceptedAnswers": [
           "non-repudiation",
           "non repudiation"
@@ -2846,6 +2954,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Non- followed by repudiation.",
+        "hints": ["Non- followed by repudiation.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "Non-repudiation provides undeniable cryptographic proof of the origin and integrity of data."
       },
       {
@@ -2860,6 +2969,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Deconstruct the CIA Triad: Confidentiality, Integrity, and Availability is the central takeaway of this room."
       }
     ],
@@ -2948,6 +3058,7 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "What term specifically describes a bug, flaw, or weakness in software or hardware that can be exploited?",
             "visualSlots": "_ _ _ _ _ _ _ _ _ _ _ _ _",
+            "answerLength": 13,
             "acceptedAnswers": [
               "vulnerability",
               "vulnerabilities"
@@ -2955,6 +3066,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "A weakness in the system.",
+            "hints": ["A weakness in the system.","The response is a technical term or command used in this lesson.","Look for the standard term that precisely defines the behavior described in the question."],
             "explanation": "A vulnerability is a weakness in software, hardware, or configuration that can be exploited."
           }
         ]
@@ -2991,6 +3103,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Shifting financial liability to an insurance company.",
+            "hints": ["Shifting financial liability to an insurance company.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Risk Transfer shifts the financial burden of an incident to a third party, such as an insurance underwriter."
           }
         ]
@@ -3033,6 +3146,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Differentiate between a Threat, a Vulnerability, and a Risk is the central takeaway of this room."
           }
         ]
@@ -3044,6 +3158,7 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "What term specifically describes a bug, flaw, or weakness in software or hardware that can be exploited?",
         "visualSlots": "_ _ _ _ _ _ _ _ _ _ _ _ _",
+        "answerLength": 13,
         "acceptedAnswers": [
           "vulnerability",
           "vulnerabilities"
@@ -3051,6 +3166,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "A weakness in the system.",
+        "hints": ["A weakness in the system.","The response is a technical term or command used in this lesson.","Look for the standard term that precisely defines the behavior described in the question."],
         "explanation": "A vulnerability is a weakness in software, hardware, or configuration that can be exploited."
       },
       {
@@ -3065,6 +3181,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Shifting financial liability to an insurance company.",
+        "hints": ["Shifting financial liability to an insurance company.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Risk Transfer shifts the financial burden of an incident to a third party, such as an insurance underwriter."
       },
       {
@@ -3079,6 +3196,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Differentiate between a Threat, a Vulnerability, and a Risk is the central takeaway of this room."
       }
     ],
@@ -3178,6 +3296,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Must combine two different factor categories.",
+            "hints": ["Must combine two different factor categories.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "True MFA requires combining distinct factor categories (Knowledge + Possession or Biometrics)."
           }
         ]
@@ -3211,13 +3330,15 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "Which enterprise access control model assigns permissions to job roles rather than directly to individual users?",
             "visualSlots": "_ _ _ _",
+            "answerLength": 4,
             "acceptedAnswers": [
               "RBAC",
               "Role-Based Access Control"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
-            "hint": "Four-letter acronym for Role-Based Access Control.",
+            "hint": "Match permissions to organizational job functions rather than individual identities.",
+            "hints": ["Match permissions to organizational job functions rather than individual identities.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "RBAC assigns permissions to functional roles, simplifying user permission management."
           }
         ]
@@ -3263,6 +3384,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Differentiate Authentication (AuthN) from Authorization (AuthZ) is the central takeaway of this room."
           }
         ]
@@ -3281,6 +3403,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Must combine two different factor categories.",
+        "hints": ["Must combine two different factor categories.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "True MFA requires combining distinct factor categories (Knowledge + Possession or Biometrics)."
       },
       {
@@ -3288,13 +3411,15 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "Which enterprise access control model assigns permissions to job roles rather than directly to individual users?",
         "visualSlots": "_ _ _ _",
+        "answerLength": 4,
         "acceptedAnswers": [
           "RBAC",
           "Role-Based Access Control"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
-        "hint": "Four-letter acronym for Role-Based Access Control.",
+        "hint": "Match permissions to organizational job functions rather than individual identities.",
+        "hints": ["Match permissions to organizational job functions rather than individual identities.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "RBAC assigns permissions to functional roles, simplifying user permission management."
       },
       {
@@ -3309,6 +3434,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Differentiate Authentication (AuthN) from Authorization (AuthZ) is the central takeaway of this room."
       }
     ],
@@ -3404,7 +3530,8 @@ const CALION_ROOMS = [
               "The Symmetric Session Hash"
             ],
             "correctIndex": 1,
-            "hint": "The private key is never shared.",
+            "hint": "In public-key cryptography, one key may be published; the other must remain confidential.",
+            "hints": ["In public-key cryptography, one key may be published; the other must remain confidential.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "The private key must never leave the owner's control; it decrypts data encrypted with the public key."
           }
         ]
@@ -3438,12 +3565,14 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "Which legacy 128-bit hash function is considered cryptographically broken due to practical collision vulnerabilities?",
             "visualSlots": "_ _ _",
+            "answerLength": 3,
             "acceptedAnswers": [
               "MD5"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Three-letter hash algorithm starting with M.",
+            "hints": ["Three-letter hash algorithm starting with M.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "MD5 was demonstrated to have practical hash collision vulnerabilities and must never be used for security."
           }
         ]
@@ -3489,6 +3618,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Differentiate Symmetric encryption (AES) from Asymmetric encryption (RSA/ECC) is the central takeaway of this room."
           }
         ]
@@ -3506,7 +3636,8 @@ const CALION_ROOMS = [
           "The Symmetric Session Hash"
         ],
         "correctIndex": 1,
-        "hint": "The private key is never shared.",
+        "hint": "In public-key cryptography, one key may be published; the other must remain confidential.",
+        "hints": ["In public-key cryptography, one key may be published; the other must remain confidential.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "The private key must never leave the owner's control; it decrypts data encrypted with the public key."
       },
       {
@@ -3514,12 +3645,14 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "Which legacy 128-bit hash function is considered cryptographically broken due to practical collision vulnerabilities?",
         "visualSlots": "_ _ _",
+        "answerLength": 3,
         "acceptedAnswers": [
           "MD5"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Three-letter hash algorithm starting with M.",
+        "hints": ["Three-letter hash algorithm starting with M.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "MD5 was demonstrated to have practical hash collision vulnerabilities and must never be used for security."
       },
       {
@@ -3534,6 +3667,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Differentiate Symmetric encryption (AES) from Asymmetric encryption (RSA/ECC) is the central takeaway of this room."
       }
     ],
@@ -3622,6 +3756,7 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "What type of malware self-replicates across networks automatically without requiring user interaction?",
             "visualSlots": "_ _ _ _",
+            "answerLength": 4,
             "acceptedAnswers": [
               "worm",
               "worms"
@@ -3629,6 +3764,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Four-letter word, named after an organism that burrows.",
+            "hints": ["Four-letter word, named after an organism that burrows.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "A worm is standalone, self-propagating malware that spreads automatically over networks."
           }
         ]
@@ -3669,6 +3805,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Like a lighthouse sending regular signals.",
+            "hints": ["Like a lighthouse sending regular signals.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Beaconing is the regular heartbeat communication sent by malware agents to their C2 server."
           }
         ]
@@ -3713,6 +3850,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Classify malware types: viruses, worms, trojans, ransomware, and rootkits is the central takeaway of this room."
           }
         ]
@@ -3724,6 +3862,7 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "What type of malware self-replicates across networks automatically without requiring user interaction?",
         "visualSlots": "_ _ _ _",
+        "answerLength": 4,
         "acceptedAnswers": [
           "worm",
           "worms"
@@ -3731,6 +3870,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Four-letter word, named after an organism that burrows.",
+        "hints": ["Four-letter word, named after an organism that burrows.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "A worm is standalone, self-propagating malware that spreads automatically over networks."
       },
       {
@@ -3745,6 +3885,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Like a lighthouse sending regular signals.",
+        "hints": ["Like a lighthouse sending regular signals.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Beaconing is the regular heartbeat communication sent by malware agents to their C2 server."
       },
       {
@@ -3759,6 +3900,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Classify malware types: viruses, worms, trojans, ransomware, and rootkits is the central takeaway of this room."
       }
     ],
@@ -3846,7 +3988,8 @@ const CALION_ROOMS = [
             "id": "q-17-1",
             "type": "exact",
             "question": "What is the core architectural philosophy and guiding mantra of Zero Trust security?",
-            "visualSlots": "_ _ _ _ _   _ _ _ _ _ ,   _ _ _ _ _ _   _ _ _ _ _ _",
+            "visualSlots": "_ _ _ _ _   _ _ _ _ _ _   _ _ _ _ _ _   _ _ _ _ _ _",
+            "answerLength": 23,
             "acceptedAnswers": [
               "Never Trust, Always Verify",
               "Never trust always verify"
@@ -3854,6 +3997,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Four words: Never ... Always ...",
+            "hints": ["Four words: Never ... Always ...","The response names a specific concept or process; distinguish it from nearby terms.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "Zero Trust eliminates implicit trust with the mantra: 'Never Trust, Always Verify'."
           }
         ]
@@ -3890,6 +4034,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Contains the blast radius of a public server breach.",
+            "hints": ["Contains the blast radius of a public server breach.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "A DMZ acts as a buffer zone, preventing compromised external servers from reaching private internal networks."
           }
         ]
@@ -3934,6 +4079,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Contrast legacy perimeter security (castle-and-moat) with Zero Trust Architecture is the central takeaway of this room."
           }
         ]
@@ -3944,7 +4090,8 @@ const CALION_ROOMS = [
         "id": "q-17-1",
         "type": "exact",
         "question": "What is the core architectural philosophy and guiding mantra of Zero Trust security?",
-        "visualSlots": "_ _ _ _ _   _ _ _ _ _ ,   _ _ _ _ _ _   _ _ _ _ _ _",
+        "visualSlots": "_ _ _ _ _   _ _ _ _ _ _   _ _ _ _ _ _   _ _ _ _ _ _",
+        "answerLength": 23,
         "acceptedAnswers": [
           "Never Trust, Always Verify",
           "Never trust always verify"
@@ -3952,6 +4099,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Four words: Never ... Always ...",
+        "hints": ["Four words: Never ... Always ...","The response names a specific concept or process; distinguish it from nearby terms.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "Zero Trust eliminates implicit trust with the mantra: 'Never Trust, Always Verify'."
       },
       {
@@ -3966,6 +4114,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Contains the blast radius of a public server breach.",
+        "hints": ["Contains the blast radius of a public server breach.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "A DMZ acts as a buffer zone, preventing compromised external servers from reaching private internal networks."
       },
       {
@@ -3980,6 +4129,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Contrast legacy perimeter security (castle-and-moat) with Zero Trust Architecture is the central takeaway of this room."
       }
     ],
@@ -4074,6 +4224,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Scanning finds potential flaws; pentesting verifies real-world exploitability.",
+            "hints": ["Scanning finds potential flaws; pentesting verifies real-world exploitability.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Scanning broadly identifies potential vulnerabilities; penetration testing manually validates and chains vulnerabilities to prove impact."
           }
         ]
@@ -4102,6 +4253,7 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "What data-driven scoring system calculates the probability (percentage) that a vulnerability will be exploited in the wild within 30 days?",
             "visualSlots": "_ _ _ _",
+            "answerLength": 4,
             "acceptedAnswers": [
               "EPSS",
               "Exploit Prediction Scoring System"
@@ -4109,6 +4261,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Four-letter acronym starting with E.",
+            "hints": ["Four-letter acronym starting with E.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "EPSS (Exploit Prediction Scoring System) models real-world exploit probability to prioritize patching."
           }
         ]
@@ -4153,6 +4306,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Explain the continuous vulnerability management lifecycle is the central takeaway of this room."
           }
         ]
@@ -4171,6 +4325,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Scanning finds potential flaws; pentesting verifies real-world exploitability.",
+        "hints": ["Scanning finds potential flaws; pentesting verifies real-world exploitability.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Scanning broadly identifies potential vulnerabilities; penetration testing manually validates and chains vulnerabilities to prove impact."
       },
       {
@@ -4178,6 +4333,7 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "What data-driven scoring system calculates the probability (percentage) that a vulnerability will be exploited in the wild within 30 days?",
         "visualSlots": "_ _ _ _",
+        "answerLength": 4,
         "acceptedAnswers": [
           "EPSS",
           "Exploit Prediction Scoring System"
@@ -4185,6 +4341,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Four-letter acronym starting with E.",
+        "hints": ["Four-letter acronym starting with E.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "EPSS (Exploit Prediction Scoring System) models real-world exploit probability to prioritize patching."
       },
       {
@@ -4199,6 +4356,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Explain the continuous vulnerability management lifecycle is the central takeaway of this room."
       }
     ],
@@ -4297,6 +4455,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Attackers delete evidence on compromised machines.",
+            "hints": ["Attackers delete evidence on compromised machines.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Adversaries wipe local logs upon compromise; centralized streaming logs preserve immutable evidence for forensic analysis."
           }
         ]
@@ -4325,13 +4484,15 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "Which type of intrusion system is deployed directly in-line with network traffic to actively block and drop malicious packets?",
             "visualSlots": "_ _ _",
+            "answerLength": 3,
             "acceptedAnswers": [
               "IPS",
               "Intrusion Prevention System"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
-            "hint": "Three-letter acronym for Intrusion Prevention System.",
+            "hint": "This in-line network control actively drops malicious traffic instead of only observing it.",
+            "hints": ["This in-line network control actively drops malicious traffic instead of only observing it.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "An IPS (Intrusion Prevention System) sits in-line to actively block detected attacks."
           }
         ]
@@ -4376,6 +4537,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Explain the necessity of centralized log aggregation and security telemetry is the central takeaway of this room."
           }
         ]
@@ -4394,6 +4556,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Attackers delete evidence on compromised machines.",
+        "hints": ["Attackers delete evidence on compromised machines.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Adversaries wipe local logs upon compromise; centralized streaming logs preserve immutable evidence for forensic analysis."
       },
       {
@@ -4401,13 +4564,15 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "Which type of intrusion system is deployed directly in-line with network traffic to actively block and drop malicious packets?",
         "visualSlots": "_ _ _",
+        "answerLength": 3,
         "acceptedAnswers": [
           "IPS",
           "Intrusion Prevention System"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
-        "hint": "Three-letter acronym for Intrusion Prevention System.",
+        "hint": "This in-line network control actively drops malicious traffic instead of only observing it.",
+        "hints": ["This in-line network control actively drops malicious traffic instead of only observing it.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "An IPS (Intrusion Prevention System) sits in-line to actively block detected attacks."
       },
       {
@@ -4422,6 +4587,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Explain the necessity of centralized log aggregation and security telemetry is the central takeaway of this room."
       }
     ],
@@ -4518,6 +4684,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Limit the blast radius and stop the attack from spreading.",
+            "hints": ["Limit the blast radius and stop the attack from spreading.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Containment limits the scope and impact of the incident, preventing lateral movement and exfiltration while preserving evidence."
           }
         ]
@@ -4550,6 +4717,7 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "What legal documentation tracks every individual who collected, accessed, transported, and analyzed forensic evidence?",
             "visualSlots": "_ _ _ _ _   _ _   _ _ _ _ _ _ _",
+            "answerLength": 14,
             "acceptedAnswers": [
               "chain of custody",
               "chain-of-custody"
@@ -4557,6 +4725,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Chain of ...",
+            "hints": ["Chain of ...","The response names a specific concept or process; distinguish it from nearby terms.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "The Chain of Custody preserves legal admissibility by proving evidence was not tampered with."
           }
         ]
@@ -4602,6 +4771,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Memorize the 6 phases of the Incident Response lifecycle (NIST SP 800-61 / SANS) is the central takeaway of this room."
           }
         ]
@@ -4620,6 +4790,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Limit the blast radius and stop the attack from spreading.",
+        "hints": ["Limit the blast radius and stop the attack from spreading.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Containment limits the scope and impact of the incident, preventing lateral movement and exfiltration while preserving evidence."
       },
       {
@@ -4627,6 +4798,7 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "What legal documentation tracks every individual who collected, accessed, transported, and analyzed forensic evidence?",
         "visualSlots": "_ _ _ _ _   _ _   _ _ _ _ _ _ _",
+        "answerLength": 14,
         "acceptedAnswers": [
           "chain of custody",
           "chain-of-custody"
@@ -4634,6 +4806,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Chain of ...",
+        "hints": ["Chain of ...","The response names a specific concept or process; distinguish it from nearby terms.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "The Chain of Custody preserves legal admissibility by proving evidence was not tampered with."
       },
       {
@@ -4648,6 +4821,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Memorize the 6 phases of the Incident Response lifecycle (NIST SP 800-61 / SANS) is the central takeaway of this room."
       }
     ],
@@ -4744,6 +4918,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Defend, detect, and respond.",
+            "hints": ["Defend, detect, and respond.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "The Blue Team is dedicated to defending organizational assets, detecting threats, and executing incident response."
           }
         ]
@@ -4772,6 +4947,7 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "What proactive security practice involves iteratively searching networks and endpoints for undetected threats without waiting for an alert?",
             "visualSlots": "_ _ _ _ _ _   _ _ _ _ _ _ _",
+            "answerLength": 13,
             "acceptedAnswers": [
               "threat hunting",
               "threat-hunting"
@@ -4779,6 +4955,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Hunting for threats.",
+            "hints": ["Hunting for threats.","The response names a specific concept or process; distinguish it from nearby terms.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "Threat Hunting actively searches environment telemetry to detect stealthy adversaries."
           }
         ]
@@ -4822,6 +4999,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Define the core mission and mindset of the Blue Team is the central takeaway of this room."
           }
         ]
@@ -4840,6 +5018,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Defend, detect, and respond.",
+        "hints": ["Defend, detect, and respond.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "The Blue Team is dedicated to defending organizational assets, detecting threats, and executing incident response."
       },
       {
@@ -4847,6 +5026,7 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "What proactive security practice involves iteratively searching networks and endpoints for undetected threats without waiting for an alert?",
         "visualSlots": "_ _ _ _ _ _   _ _ _ _ _ _ _",
+        "answerLength": 13,
         "acceptedAnswers": [
           "threat hunting",
           "threat-hunting"
@@ -4854,6 +5034,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Hunting for threats.",
+        "hints": ["Hunting for threats.","The response names a specific concept or process; distinguish it from nearby terms.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "Threat Hunting actively searches environment telemetry to detect stealthy adversaries."
       },
       {
@@ -4868,6 +5049,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Define the core mission and mindset of the Blue Team is the central takeaway of this room."
       }
     ],
@@ -4961,6 +5143,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "The front-line defense tier.",
+            "hints": ["The front-line defense tier.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Tier 1 analysts handle the high-volume initial triage and verification of SIEM alerts."
           }
         ]
@@ -4988,13 +5171,15 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "What operational SOC metric measures the average time elapsed from initial intrusion until detection by security analysts?",
             "visualSlots": "_ _ _ _",
+            "answerLength": 4,
             "acceptedAnswers": [
               "MTTD",
               "Mean Time to Detect"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
-            "hint": "Four-letter acronym for Mean Time to Detect.",
+            "hint": "Think of the mean elapsed time between the initial intrusion and analyst detection.",
+            "hints": ["Think of the mean elapsed time between the initial intrusion and analyst detection.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "MTTD (Mean Time to Detect) measures how quickly an organization identifies active threats."
           }
         ]
@@ -5038,6 +5223,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Analyze SOC tier structures: Tier 1 Triage, Tier 2 Incident Responder, Tier 3 Threat Hunter is the central takeaway of this room."
           }
         ]
@@ -5056,6 +5242,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "The front-line defense tier.",
+        "hints": ["The front-line defense tier.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Tier 1 analysts handle the high-volume initial triage and verification of SIEM alerts."
       },
       {
@@ -5063,13 +5250,15 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "What operational SOC metric measures the average time elapsed from initial intrusion until detection by security analysts?",
         "visualSlots": "_ _ _ _",
+        "answerLength": 4,
         "acceptedAnswers": [
           "MTTD",
           "Mean Time to Detect"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
-        "hint": "Four-letter acronym for Mean Time to Detect.",
+        "hint": "Think of the mean elapsed time between the initial intrusion and analyst detection.",
+        "hints": ["Think of the mean elapsed time between the initial intrusion and analyst detection.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "MTTD (Mean Time to Detect) measures how quickly an organization identifies active threats."
       },
       {
@@ -5084,6 +5273,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Analyze SOC tier structures: Tier 1 Triage, Tier 2 Incident Responder, Tier 3 Threat Hunter is the central takeaway of this room."
       }
     ],
@@ -5172,12 +5362,14 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "In the standard Syslog severity scale (0\u20137), which number represents the highest priority: Emergency (system unusable)?",
             "visualSlots": "_",
+            "answerLength": 1,
             "acceptedAnswers": [
               "0"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "The lowest number represents the highest urgency.",
+            "hints": ["The lowest number represents the highest urgency.","The response is numeric; check the protocol, event, or calculation context carefully.","Check whether the question asks for a total, a usable count, or a reserved value."],
             "explanation": "Severity 0 is Emergency, indicating the system is unusable."
           }
         ]
@@ -5206,12 +5398,14 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "In an AWK script, which built-in variable represents the total number of fields (columns) in the current record?",
             "visualSlots": "_ _",
+            "answerLength": 2,
             "acceptedAnswers": [
               "NF"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Short for Number of Fields.",
+            "hints": ["Short for Number of Fields.","The response is a short standard abbreviation used in this subject area.","Check whether the question asks for a total, a usable count, or a reserved value."],
             "explanation": "NF holds the number of fields in the current line, allowing reference to the last column as $NF."
           }
         ]
@@ -5258,6 +5452,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Deconstruct standardized syslog message formats (RFC 5424) is the central takeaway of this room."
           }
         ]
@@ -5269,12 +5464,14 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "In the standard Syslog severity scale (0\u20137), which number represents the highest priority: Emergency (system unusable)?",
         "visualSlots": "_",
+        "answerLength": 1,
         "acceptedAnswers": [
           "0"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "The lowest number represents the highest urgency.",
+        "hints": ["The lowest number represents the highest urgency.","The response is numeric; check the protocol, event, or calculation context carefully.","Check whether the question asks for a total, a usable count, or a reserved value."],
         "explanation": "Severity 0 is Emergency, indicating the system is unusable."
       },
       {
@@ -5282,12 +5479,14 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "In an AWK script, which built-in variable represents the total number of fields (columns) in the current record?",
         "visualSlots": "_ _",
+        "answerLength": 2,
         "acceptedAnswers": [
           "NF"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Short for Number of Fields.",
+        "hints": ["Short for Number of Fields.","The response is a short standard abbreviation used in this subject area.","Check whether the question asks for a total, a usable count, or a reserved value."],
         "explanation": "NF holds the number of fields in the current line, allowing reference to the last column as $NF."
       },
       {
@@ -5302,6 +5501,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Deconstruct standardized syslog message formats (RFC 5424) is the central takeaway of this room."
       }
     ],
@@ -5391,12 +5591,14 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "Which Windows Security Event ID records an unsuccessful account logon attempt?",
             "visualSlots": "_ _ _ _",
+            "answerLength": 4,
             "acceptedAnswers": [
               "4625"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Follows 4624.",
+            "hints": ["Follows 4624.","The response is numeric; check the protocol, event, or calculation context carefully.","Match the precise event identifier to the event meaning in the lesson."],
             "explanation": "Event ID 4625 is generated whenever an account logon attempt fails."
           }
         ]
@@ -5425,6 +5627,7 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "Which Sysmon Event ID records outbound process network connections, including source and destination IP and port?",
             "visualSlots": "_",
+            "answerLength": 1,
             "acceptedAnswers": [
               "3",
               "Event ID 3"
@@ -5432,6 +5635,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Single digit number for Network Connection.",
+            "hints": ["Single digit number for Network Connection.","The response is numeric; check the protocol, event, or calculation context carefully.","Recall the standard service port associated with the named protocol."],
             "explanation": "Sysmon Event ID 3 monitors and logs TCP/UDP network connections initiated by processes."
           }
         ]
@@ -5475,6 +5679,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Analyze Windows Event Log architecture (System, Security, Application) is the central takeaway of this room."
           }
         ]
@@ -5486,12 +5691,14 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "Which Windows Security Event ID records an unsuccessful account logon attempt?",
         "visualSlots": "_ _ _ _",
+        "answerLength": 4,
         "acceptedAnswers": [
           "4625"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Follows 4624.",
+        "hints": ["Follows 4624.","The response is numeric; check the protocol, event, or calculation context carefully.","Match the precise event identifier to the event meaning in the lesson."],
         "explanation": "Event ID 4625 is generated whenever an account logon attempt fails."
       },
       {
@@ -5499,6 +5706,7 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "Which Sysmon Event ID records outbound process network connections, including source and destination IP and port?",
         "visualSlots": "_",
+        "answerLength": 1,
         "acceptedAnswers": [
           "3",
           "Event ID 3"
@@ -5506,6 +5714,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Single digit number for Network Connection.",
+        "hints": ["Single digit number for Network Connection.","The response is numeric; check the protocol, event, or calculation context carefully.","Recall the standard service port associated with the named protocol."],
         "explanation": "Sysmon Event ID 3 monitors and logs TCP/UDP network connections initiated by processes."
       },
       {
@@ -5520,6 +5729,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Analyze Windows Event Log architecture (System, Security, Application) is the central takeaway of this room."
       }
     ],
@@ -5610,12 +5820,14 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "Which Linux command displays failed login attempts recorded in the /var/log/btmp binary log?",
             "visualSlots": "_ _ _ _ _",
+            "answerLength": 5,
             "acceptedAnswers": [
               "lastb"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "The letter 'b' appended to 'last'.",
+            "hints": ["The letter 'b' appended to 'last'.","The response is a technical term or command used in this lesson.","Use the utility demonstrated for this operation, rather than a related command."],
             "explanation": "lastb reads /var/log/btmp to display failed authentication attempts."
           }
         ]
@@ -5643,14 +5855,16 @@ const CALION_ROOMS = [
             "id": "q-25-2",
             "type": "exact",
             "question": "Which journalctl flag is used to specify and filter events by a specific systemd service unit name?",
-            "visualSlots": "- _",
+            "visualSlots": "_ _",
+            "answerLength": 2,
             "acceptedAnswers": [
               "-u",
               "u"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
-            "hint": "Single letter flag for Unit.",
+            "hint": "The option selects one systemd unit when filtering journal entries.",
+            "hints": ["The option selects one systemd unit when filtering journal entries.","The response is a command option or path; punctuation at the start can be significant.","Recall the named tool and the option that produces the behavior described; similar flags can do different jobs."],
             "explanation": "journalctl -u <unit> filters log output specifically to that service."
           }
         ]
@@ -5699,6 +5913,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Analyze Linux logging architecture (/var/log/auth.log, syslog, wtmp, btmp) is the central takeaway of this room."
           }
         ]
@@ -5710,26 +5925,30 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "Which Linux command displays failed login attempts recorded in the /var/log/btmp binary log?",
         "visualSlots": "_ _ _ _ _",
+        "answerLength": 5,
         "acceptedAnswers": [
           "lastb"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "The letter 'b' appended to 'last'.",
+        "hints": ["The letter 'b' appended to 'last'.","The response is a technical term or command used in this lesson.","Use the utility demonstrated for this operation, rather than a related command."],
         "explanation": "lastb reads /var/log/btmp to display failed authentication attempts."
       },
       {
         "id": "q-25-2",
         "type": "exact",
         "question": "Which journalctl flag is used to specify and filter events by a specific systemd service unit name?",
-        "visualSlots": "- _",
+        "visualSlots": "_ _",
+        "answerLength": 2,
         "acceptedAnswers": [
           "-u",
           "u"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
-        "hint": "Single letter flag for Unit.",
+        "hint": "The option selects one systemd unit when filtering journal entries.",
+        "hints": ["The option selects one systemd unit when filtering journal entries.","The response is a command option or path; punctuation at the start can be significant.","Recall the named tool and the option that produces the behavior described; similar flags can do different jobs."],
         "explanation": "journalctl -u <unit> filters log output specifically to that service."
       },
       {
@@ -5744,6 +5963,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Analyze Linux logging architecture (/var/log/auth.log, syslog, wtmp, btmp) is the central takeaway of this room."
       }
     ],
@@ -5831,14 +6051,16 @@ const CALION_ROOMS = [
             "id": "q-26-1",
             "type": "exact",
             "question": "Which tcpdump flag is used to save captured packets directly into a binary PCAP file on disk?",
-            "visualSlots": "- _",
+            "visualSlots": "_ _",
+            "answerLength": 2,
             "acceptedAnswers": [
               "-w",
               "w"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
-            "hint": "Single letter flag for Write.",
+            "hint": "This capture option writes packets to a file rather than printing decoded details.",
+            "hints": ["This capture option writes packets to a file rather than printing decoded details.","The response is a command option or path; punctuation at the start can be significant.","Recall the named tool and the option that produces the behavior described; similar flags can do different jobs."],
             "explanation": "tcpdump -w <filename> writes raw packets to a PCAP file for later analysis."
           }
         ]
@@ -5874,6 +6096,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Follow the TCP...",
+            "hints": ["Follow the TCP...","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Follow TCP Stream reassembles TCP sequence data to display the full conversation transcript between client and server."
           }
         ]
@@ -5918,6 +6141,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Capture raw network packets on Linux interfaces using tcpdump is the central takeaway of this room."
           }
         ]
@@ -5928,14 +6152,16 @@ const CALION_ROOMS = [
         "id": "q-26-1",
         "type": "exact",
         "question": "Which tcpdump flag is used to save captured packets directly into a binary PCAP file on disk?",
-        "visualSlots": "- _",
+        "visualSlots": "_ _",
+        "answerLength": 2,
         "acceptedAnswers": [
           "-w",
           "w"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
-        "hint": "Single letter flag for Write.",
+        "hint": "This capture option writes packets to a file rather than printing decoded details.",
+        "hints": ["This capture option writes packets to a file rather than printing decoded details.","The response is a command option or path; punctuation at the start can be significant.","Recall the named tool and the option that produces the behavior described; similar flags can do different jobs."],
         "explanation": "tcpdump -w <filename> writes raw packets to a PCAP file for later analysis."
       },
       {
@@ -5950,6 +6176,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Follow the TCP...",
+        "hints": ["Follow the TCP...","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Follow TCP Stream reassembles TCP sequence data to display the full conversation transcript between client and server."
       },
       {
@@ -5964,6 +6191,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Capture raw network packets on Linux interfaces using tcpdump is the central takeaway of this room."
       }
     ],
@@ -6052,6 +6280,7 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "What stage in the SIEM pipeline translates heterogeneous log formats into a standardized, unified schema (such as ECS or CIM)?",
             "visualSlots": "_ _ _ _ _ _ _ _ _ _ _ _ _",
+            "answerLength": 13,
             "acceptedAnswers": [
               "normalization",
               "parsing",
@@ -6060,6 +6289,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Making all log fields normal and standardized.",
+            "hints": ["Making all log fields normal and standardized.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "Normalization maps disparate vendor log fields into a single unified schema."
           }
         ]
@@ -6095,6 +6325,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Calculates statistical metrics.",
+            "hints": ["Calculates statistical metrics.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "| stats calculates summary statistics across events, such as count, avg, sum, or dc (distinct count)."
           }
         ]
@@ -6138,6 +6369,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Explain the core architecture of a modern SIEM platform is the central takeaway of this room."
           }
         ]
@@ -6149,6 +6381,7 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "What stage in the SIEM pipeline translates heterogeneous log formats into a standardized, unified schema (such as ECS or CIM)?",
         "visualSlots": "_ _ _ _ _ _ _ _ _ _ _ _ _",
+        "answerLength": 13,
         "acceptedAnswers": [
           "normalization",
           "parsing",
@@ -6157,6 +6390,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Making all log fields normal and standardized.",
+        "hints": ["Making all log fields normal and standardized.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "Normalization maps disparate vendor log fields into a single unified schema."
       },
       {
@@ -6171,6 +6405,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Calculates statistical metrics.",
+        "hints": ["Calculates statistical metrics.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "| stats calculates summary statistics across events, such as count, avg, sum, or dc (distinct count)."
       },
       {
@@ -6185,6 +6420,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Explain the core architecture of a modern SIEM platform is the central takeaway of this room."
       }
     ],
@@ -6281,6 +6517,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Tactical feeds feed firewalls and SIEMs.",
+            "hints": ["Tactical feeds feed firewalls and SIEMs.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Tactical CTI focuses on technical indicators of compromise (IoCs) like IPs, hashes, and domains."
           }
         ]
@@ -6308,7 +6545,8 @@ const CALION_ROOMS = [
             "id": "q-28-2",
             "type": "exact",
             "question": "At the apex of the Pyramid of Pain, what does the acronym TTP stand for?",
-            "visualSlots": "_ _ _ _ _ _ _ ,   _ _ _ _ _ _ _ _ _ _   &   _ _ _ _ _ _ _ _ _ _",
+            "visualSlots": "_ _ _ _ _ _ _ _   _ _ _ _ _ _ _ _ _ _   _ _ _   _ _ _ _ _ _ _ _ _ _",
+            "answerLength": 31,
             "acceptedAnswers": [
               "Tactics, Techniques and Procedures",
               "Tactics Techniques and Procedures",
@@ -6317,6 +6555,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Tactics, Techniques and...",
+            "hints": ["Tactics, Techniques and...","The response names a specific concept or process; distinguish it from nearby terms.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "TTPs (Tactics, Techniques, and Procedures) represent how an adversary operates."
           }
         ]
@@ -6361,6 +6600,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Differentiate Strategic, Tactical, and Operational Cyber Threat Intelligence (CTI) is the central takeaway of this room."
           }
         ]
@@ -6379,13 +6619,15 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Tactical feeds feed firewalls and SIEMs.",
+        "hints": ["Tactical feeds feed firewalls and SIEMs.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Tactical CTI focuses on technical indicators of compromise (IoCs) like IPs, hashes, and domains."
       },
       {
         "id": "q-28-2",
         "type": "exact",
         "question": "At the apex of the Pyramid of Pain, what does the acronym TTP stand for?",
-        "visualSlots": "_ _ _ _ _ _ _ ,   _ _ _ _ _ _ _ _ _ _   &   _ _ _ _ _ _ _ _ _ _",
+        "visualSlots": "_ _ _ _ _ _ _ _   _ _ _ _ _ _ _ _ _ _   _ _ _   _ _ _ _ _ _ _ _ _ _",
+        "answerLength": 31,
         "acceptedAnswers": [
           "Tactics, Techniques and Procedures",
           "Tactics Techniques and Procedures",
@@ -6394,6 +6636,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Tactics, Techniques and...",
+        "hints": ["Tactics, Techniques and...","The response names a specific concept or process; distinguish it from nearby terms.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "TTPs (Tactics, Techniques, and Procedures) represent how an adversary operates."
       },
       {
@@ -6408,6 +6651,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Differentiate Strategic, Tactical, and Operational Cyber Threat Intelligence (CTI) is the central takeaway of this room."
       }
     ],
@@ -6503,6 +6747,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Think about volatile RAM.",
+            "hints": ["Think about volatile RAM.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Pulling the power cord destroys volatile RAM, wiping in-memory malware, network connections, and cryptographic keys."
           }
         ]
@@ -6530,7 +6775,8 @@ const CALION_ROOMS = [
             "id": "q-29-2",
             "type": "exact",
             "question": "What is the recommended industry best practice for restoring a heavily compromised operating system to ensure complete eradication of backdoors?",
-            "visualSlots": "_ _ - _ _ _ _ _ _ _",
+            "visualSlots": "_ _ _ _ _ _ _ _ _ _",
+            "answerLength": 10,
             "acceptedAnswers": [
               "re-imaging",
               "reimaging",
@@ -6540,6 +6786,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Wiping and re-... from a gold master image.",
+            "hints": ["Wiping and re-... from a gold master image.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "Re-imaging from a trusted baseline guarantees complete removal of all rootkits and persistent backdoors."
           }
         ]
@@ -6583,6 +6830,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Execute standardized incident response playbooks for ransomware and credential theft is the central takeaway of this room."
           }
         ]
@@ -6601,13 +6849,15 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Think about volatile RAM.",
+        "hints": ["Think about volatile RAM.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Pulling the power cord destroys volatile RAM, wiping in-memory malware, network connections, and cryptographic keys."
       },
       {
         "id": "q-29-2",
         "type": "exact",
         "question": "What is the recommended industry best practice for restoring a heavily compromised operating system to ensure complete eradication of backdoors?",
-        "visualSlots": "_ _ - _ _ _ _ _ _ _",
+        "visualSlots": "_ _ _ _ _ _ _ _ _ _",
+        "answerLength": 10,
         "acceptedAnswers": [
           "re-imaging",
           "reimaging",
@@ -6617,6 +6867,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Wiping and re-... from a gold master image.",
+        "hints": ["Wiping and re-... from a gold master image.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "Re-imaging from a trusted baseline guarantees complete removal of all rootkits and persistent backdoors."
       },
       {
@@ -6631,6 +6882,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Execute standardized incident response playbooks for ransomware and credential theft is the central takeaway of this room."
       }
     ],
@@ -6726,6 +6978,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Blocks write commands at the hardware layer.",
+            "hints": ["Blocks write commands at the hardware layer.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "A hardware write-blocker prevents any write signals from reaching the suspect evidence media."
           }
         ]
@@ -6754,6 +7007,7 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "What forensic technique recovers deleted files from raw unallocated disk space by scanning for known file headers and footers without relying on filesystem metadata?",
             "visualSlots": "_ _ _ _   _ _ _ _ _ _ _",
+            "answerLength": 11,
             "acceptedAnswers": [
               "file carving",
               "carving",
@@ -6761,7 +7015,8 @@ const CALION_ROOMS = [
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
-            "hint": "Carving files out of raw sectors.",
+            "hint": "This recovery technique scans raw storage for known file signatures without filesystem metadata.",
+            "hints": ["This recovery technique scans raw storage for known file signatures without filesystem metadata.","The response names a specific concept or process; distinguish it from nearby terms.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "File carving inspects raw bytes for signature headers and footers to reconstruct deleted files."
           }
         ]
@@ -6808,6 +7063,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Differentiate forensic disk acquisition from standard file copying is the central takeaway of this room."
           }
         ]
@@ -6826,6 +7082,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Blocks write commands at the hardware layer.",
+        "hints": ["Blocks write commands at the hardware layer.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "A hardware write-blocker prevents any write signals from reaching the suspect evidence media."
       },
       {
@@ -6833,6 +7090,7 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "What forensic technique recovers deleted files from raw unallocated disk space by scanning for known file headers and footers without relying on filesystem metadata?",
         "visualSlots": "_ _ _ _   _ _ _ _ _ _ _",
+        "answerLength": 11,
         "acceptedAnswers": [
           "file carving",
           "carving",
@@ -6840,7 +7098,8 @@ const CALION_ROOMS = [
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
-        "hint": "Carving files out of raw sectors.",
+        "hint": "This recovery technique scans raw storage for known file signatures without filesystem metadata.",
+        "hints": ["This recovery technique scans raw storage for known file signatures without filesystem metadata.","The response names a specific concept or process; distinguish it from nearby terms.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "File carving inspects raw bytes for signature headers and footers to reconstruct deleted files."
       },
       {
@@ -6855,6 +7114,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Differentiate forensic disk acquisition from standard file copying is the central takeaway of this room."
       }
     ],
@@ -6950,6 +7210,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Focuses on behavior rather than static file hashes.",
+            "hints": ["Focuses on behavior rather than static file hashes.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "EDR continuously analyzes behavioral activity in real time, detecting malicious actions regardless of static signatures."
           }
         ]
@@ -6978,6 +7239,7 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "What evasion technique involves launching a legitimate system process in a suspended state, replacing its code in memory with malware, and resuming execution?",
             "visualSlots": "_ _ _ _ _ _ _   _ _ _ _ _ _ _ _ _",
+            "answerLength": 16,
             "acceptedAnswers": [
               "process hollowing",
               "process-hollowing"
@@ -6985,6 +7247,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Process ...ing (emptying out the core).",
+            "hints": ["Process ...ing (emptying out the core).","The response names a specific concept or process; distinguish it from nearby terms.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "Process Hollowing carves out a legitimate process's memory to execute stealthy malware under its identity."
           }
         ]
@@ -7028,6 +7291,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Compare signature-based Antivirus (AV) with behavioral Endpoint Detection and Response (EDR) is the central takeaway of this room."
           }
         ]
@@ -7046,6 +7310,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Focuses on behavior rather than static file hashes.",
+        "hints": ["Focuses on behavior rather than static file hashes.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "EDR continuously analyzes behavioral activity in real time, detecting malicious actions regardless of static signatures."
       },
       {
@@ -7053,6 +7318,7 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "What evasion technique involves launching a legitimate system process in a suspended state, replacing its code in memory with malware, and resuming execution?",
         "visualSlots": "_ _ _ _ _ _ _   _ _ _ _ _ _ _ _ _",
+        "answerLength": 16,
         "acceptedAnswers": [
           "process hollowing",
           "process-hollowing"
@@ -7060,6 +7326,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Process ...ing (emptying out the core).",
+        "hints": ["Process ...ing (emptying out the core).","The response names a specific concept or process; distinguish it from nearby terms.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "Process Hollowing carves out a legitimate process's memory to execute stealthy malware under its identity."
       },
       {
@@ -7074,6 +7341,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Compare signature-based Antivirus (AV) with behavioral Endpoint Detection and Response (EDR) is the central takeaway of this room."
       }
     ],
@@ -7168,6 +7436,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Look at the user email activity.",
+            "hints": ["Look at the user email activity.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "The initial access vector was spear-phishing delivering a masqueraded executable (invoice.pdf.exe)."
           }
         ]
@@ -7194,7 +7463,8 @@ const CALION_ROOMS = [
             "id": "q-32-2",
             "type": "exact",
             "question": "Which Windows process memory was dumped by the adversary on WS-042 to extract plaintext and hashed domain credentials?",
-            "visualSlots": "_ _ _ _ _ . _ _ _",
+            "visualSlots": "_ _ _ _ _ _ _ _ _",
+            "answerLength": 9,
             "acceptedAnswers": [
               "lsass.exe",
               "lsass"
@@ -7202,6 +7472,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Local Security Authority Subsystem Service executable.",
+            "hints": ["Local Security Authority Subsystem Service executable.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "lsass.exe holds cached authentication tokens, Kerberos tickets, and NTLM hashes in memory."
           }
         ]
@@ -7245,6 +7516,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Correlate a full multi-stage enterprise breach across firewall, syslog, and Windows events is the central takeaway of this room."
           }
         ]
@@ -7263,13 +7535,15 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Look at the user email activity.",
+        "hints": ["Look at the user email activity.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "The initial access vector was spear-phishing delivering a masqueraded executable (invoice.pdf.exe)."
       },
       {
         "id": "q-32-2",
         "type": "exact",
         "question": "Which Windows process memory was dumped by the adversary on WS-042 to extract plaintext and hashed domain credentials?",
-        "visualSlots": "_ _ _ _ _ . _ _ _",
+        "visualSlots": "_ _ _ _ _ _ _ _ _",
+        "answerLength": 9,
         "acceptedAnswers": [
           "lsass.exe",
           "lsass"
@@ -7277,6 +7551,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Local Security Authority Subsystem Service executable.",
+        "hints": ["Local Security Authority Subsystem Service executable.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "lsass.exe holds cached authentication tokens, Kerberos tickets, and NTLM hashes in memory."
       },
       {
@@ -7291,6 +7566,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Correlate a full multi-stage enterprise breach across firewall, syslog, and Windows events is the central takeaway of this room."
       }
     ],
@@ -7387,6 +7663,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Full crystal-clear transparency.",
+            "hints": ["Full crystal-clear transparency.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "White-box testing provides full visibility into internal architecture and source code for comprehensive assessment."
           }
         ]
@@ -7418,6 +7695,7 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "What is the final and most important phase of a professional penetration test that translates findings into defensive value for the client?",
             "visualSlots": "_ _ _ _ _ _ _ _ _",
+            "answerLength": 9,
             "acceptedAnswers": [
               "reporting",
               "report",
@@ -7426,6 +7704,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Documenting findings and fixes.",
+            "hints": ["Documenting findings and fixes.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "The Reporting phase documents vulnerabilities, business impact, and remediation roadmaps."
           }
         ]
@@ -7469,6 +7748,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Define ethical hacking and its defensive objectives is the central takeaway of this room."
           }
         ]
@@ -7487,6 +7767,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Full crystal-clear transparency.",
+        "hints": ["Full crystal-clear transparency.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "White-box testing provides full visibility into internal architecture and source code for comprehensive assessment."
       },
       {
@@ -7494,6 +7775,7 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "What is the final and most important phase of a professional penetration test that translates findings into defensive value for the client?",
         "visualSlots": "_ _ _ _ _ _ _ _ _",
+        "answerLength": 9,
         "acceptedAnswers": [
           "reporting",
           "report",
@@ -7502,6 +7784,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Documenting findings and fixes.",
+        "hints": ["Documenting findings and fixes.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "The Reporting phase documents vulnerabilities, business impact, and remediation roadmaps."
       },
       {
@@ -7516,6 +7799,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Define ethical hacking and its defensive objectives is the central takeaway of this room."
       }
     ],
@@ -7603,6 +7887,7 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "What major United States federal statute criminalizes unauthorized access to protected computer systems?",
             "visualSlots": "_ _ _ _",
+            "answerLength": 4,
             "acceptedAnswers": [
               "CFAA",
               "Computer Fraud and Abuse Act"
@@ -7610,6 +7895,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Four-letter acronym starting with C.",
+            "hints": ["Four-letter acronym starting with C.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "The CFAA (Computer Fraud and Abuse Act) is the primary federal cybercrime law in the United States."
           }
         ]
@@ -7646,6 +7932,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Notify emergency contacts immediately.",
+            "hints": ["Notify emergency contacts immediately.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Active real-world breaches must be escalated immediately to client leadership via established emergency channels."
           }
         ]
@@ -7688,6 +7975,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Explain the Computer Fraud and Abuse Act (CFAA) and international cyber laws is the central takeaway of this room."
           }
         ]
@@ -7699,6 +7987,7 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "What major United States federal statute criminalizes unauthorized access to protected computer systems?",
         "visualSlots": "_ _ _ _",
+        "answerLength": 4,
         "acceptedAnswers": [
           "CFAA",
           "Computer Fraud and Abuse Act"
@@ -7706,6 +7995,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Four-letter acronym starting with C.",
+        "hints": ["Four-letter acronym starting with C.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "The CFAA (Computer Fraud and Abuse Act) is the primary federal cybercrime law in the United States."
       },
       {
@@ -7720,6 +8010,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Notify emergency contacts immediately.",
+        "hints": ["Notify emergency contacts immediately.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Active real-world breaches must be escalated immediately to client leadership via established emergency channels."
       },
       {
@@ -7734,6 +8025,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Explain the Computer Fraud and Abuse Act (CFAA) and international cyber laws is the central takeaway of this room."
       }
     ],
@@ -7830,6 +8122,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Zero direct packets sent to the target.",
+            "hints": ["Zero direct packets sent to the target.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Passive reconnaissance gathers data from third-party public repositories without sending traffic to the target."
           }
         ]
@@ -7863,13 +8156,15 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "Which DNS record type specifies the mail servers responsible for accepting incoming email for a domain?",
             "visualSlots": "_ _",
+            "answerLength": 2,
             "acceptedAnswers": [
               "MX",
               "Mail Exchange"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
-            "hint": "Two-letter acronym for Mail Exchange.",
+            "hint": "This DNS record identifies which hosts receive mail for a domain.",
+            "hints": ["This DNS record identifies which hosts receive mail for a domain.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "MX records specify the designated mail exchange servers for a domain."
           }
         ]
@@ -7915,6 +8210,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Differentiate passive reconnaissance (zero touch) from active reconnaissance is the central takeaway of this room."
           }
         ]
@@ -7933,6 +8229,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Zero direct packets sent to the target.",
+        "hints": ["Zero direct packets sent to the target.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Passive reconnaissance gathers data from third-party public repositories without sending traffic to the target."
       },
       {
@@ -7940,13 +8237,15 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "Which DNS record type specifies the mail servers responsible for accepting incoming email for a domain?",
         "visualSlots": "_ _",
+        "answerLength": 2,
         "acceptedAnswers": [
           "MX",
           "Mail Exchange"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
-        "hint": "Two-letter acronym for Mail Exchange.",
+        "hint": "This DNS record identifies which hosts receive mail for a domain.",
+        "hints": ["This DNS record identifies which hosts receive mail for a domain.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "MX records specify the designated mail exchange servers for a domain."
       },
       {
@@ -7961,6 +8260,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Differentiate passive reconnaissance (zero touch) from active reconnaissance is the central takeaway of this room."
       }
     ],
@@ -8051,13 +8351,15 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "What packet does Nmap send upon receiving a SYN-ACK during a TCP SYN stealth scan (-sS) to abort the handshake?",
             "visualSlots": "_ _ _",
+            "answerLength": 3,
             "acceptedAnswers": [
               "RST",
               "Reset"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
-            "hint": "Three-letter flag for Reset.",
+            "hint": "The scanner ends the half-open connection before the normal TCP handshake finishes.",
+            "hints": ["The scanner ends the half-open connection before the normal TCP handshake finishes.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "Nmap sends an RST packet to tear down the half-open connection before an application session is established."
           }
         ]
@@ -8093,6 +8395,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "OS kernels throttle ICMP error responses.",
+            "hints": ["OS kernels throttle ICMP error responses.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Operating systems rate-limit ICMP Destination Unreachable responses, causing UDP scanners to wait for timeouts."
           }
         ]
@@ -8139,6 +8442,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Execute ICMP ping sweeps to discover live network hosts is the central takeaway of this room."
           }
         ]
@@ -8150,13 +8454,15 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "What packet does Nmap send upon receiving a SYN-ACK during a TCP SYN stealth scan (-sS) to abort the handshake?",
         "visualSlots": "_ _ _",
+        "answerLength": 3,
         "acceptedAnswers": [
           "RST",
           "Reset"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
-        "hint": "Three-letter flag for Reset.",
+        "hint": "The scanner ends the half-open connection before the normal TCP handshake finishes.",
+        "hints": ["The scanner ends the half-open connection before the normal TCP handshake finishes.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "Nmap sends an RST packet to tear down the half-open connection before an application session is established."
       },
       {
@@ -8171,6 +8477,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "OS kernels throttle ICMP error responses.",
+        "hints": ["OS kernels throttle ICMP error responses.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Operating systems rate-limit ICMP Destination Unreachable responses, causing UDP scanners to wait for timeouts."
       },
       {
@@ -8185,6 +8492,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Execute ICMP ping sweeps to discover live network hosts is the central takeaway of this room."
       }
     ],
@@ -8273,7 +8581,8 @@ const CALION_ROOMS = [
             "id": "q-37-1",
             "type": "exact",
             "question": "Which Nmap command-line flag enables advanced Service Version Detection across open ports?",
-            "visualSlots": "- _ _",
+            "visualSlots": "_ _ _",
+            "answerLength": 3,
             "acceptedAnswers": [
               "-sV",
               "sV"
@@ -8281,6 +8590,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Lowercase s, uppercase V.",
+            "hints": ["Lowercase s, uppercase V.","The response is a command option or path; punctuation at the start can be significant.","Recall the named tool and the option that produces the behavior described; similar flags can do different jobs."],
             "explanation": "-sV instructs Nmap to probe open ports to determine service and version information."
           }
         ]
@@ -8308,14 +8618,16 @@ const CALION_ROOMS = [
             "id": "q-37-2",
             "type": "exact",
             "question": "Which shorthand Nmap flag is equivalent to running default safe NSE reconnaissance scripts (--script=default)?",
-            "visualSlots": "- _ _",
+            "visualSlots": "_ _ _",
+            "answerLength": 3,
             "acceptedAnswers": [
               "-sC",
               "sC"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
-            "hint": "Lowercase s, uppercase C.",
+            "hint": "This flag is case-sensitive, so check the capitalization of every character.",
+            "hints": ["This flag is case-sensitive; check the capitalization of each character.","The response is a command option or path; punctuation at the start can be significant.","Recall the named tool and the option that produces the behavior described; similar flags can do different jobs."],
             "explanation": "-sC executes default NSE scripts against all discovered open ports."
           }
         ]
@@ -8362,6 +8674,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Extract application banners using netcat and curl is the central takeaway of this room."
           }
         ]
@@ -8372,7 +8685,8 @@ const CALION_ROOMS = [
         "id": "q-37-1",
         "type": "exact",
         "question": "Which Nmap command-line flag enables advanced Service Version Detection across open ports?",
-        "visualSlots": "- _ _",
+        "visualSlots": "_ _ _",
+        "answerLength": 3,
         "acceptedAnswers": [
           "-sV",
           "sV"
@@ -8380,20 +8694,23 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Lowercase s, uppercase V.",
+        "hints": ["Lowercase s, uppercase V.","The response is a command option or path; punctuation at the start can be significant.","Recall the named tool and the option that produces the behavior described; similar flags can do different jobs."],
         "explanation": "-sV instructs Nmap to probe open ports to determine service and version information."
       },
       {
         "id": "q-37-2",
         "type": "exact",
         "question": "Which shorthand Nmap flag is equivalent to running default safe NSE reconnaissance scripts (--script=default)?",
-        "visualSlots": "- _ _",
+        "visualSlots": "_ _ _",
+        "answerLength": 3,
         "acceptedAnswers": [
           "-sC",
           "sC"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
-        "hint": "Lowercase s, uppercase C.",
+        "hint": "This flag is case-sensitive, so check the capitalization of every character.",
+        "hints": ["This flag is case-sensitive; check the capitalization of each character.","The response is a command option or path; punctuation at the start can be significant.","Recall the named tool and the option that produces the behavior described; similar flags can do different jobs."],
         "explanation": "-sC executes default NSE scripts against all discovered open ports."
       },
       {
@@ -8408,6 +8725,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Extract application banners using netcat and curl is the central takeaway of this room."
       }
     ],
@@ -8503,6 +8821,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "The client environment is entirely under the user's control.",
+            "hints": ["The client environment is entirely under the user's control.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Attackers have complete control over the browser and can bypass any frontend validation using tools like Burp Suite or curl."
           }
         ]
@@ -8531,12 +8850,14 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "Which core tab/module in Burp Suite allows testers to manually modify and repeatedly resend individual HTTP requests?",
             "visualSlots": "_ _ _ _ _ _ _ _",
+            "answerLength": 8,
             "acceptedAnswers": [
               "Repeater"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Repeats requests.",
+            "hints": ["Repeats requests.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "Burp Suite Repeater enables rapid manual request modification and testing."
           }
         ]
@@ -8580,6 +8901,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Deconstruct modern web architectures (SPA, REST APIs, microservices) is the central takeaway of this room."
           }
         ]
@@ -8598,6 +8920,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "The client environment is entirely under the user's control.",
+        "hints": ["The client environment is entirely under the user's control.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Attackers have complete control over the browser and can bypass any frontend validation using tools like Burp Suite or curl."
       },
       {
@@ -8605,12 +8928,14 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "Which core tab/module in Burp Suite allows testers to manually modify and repeatedly resend individual HTTP requests?",
         "visualSlots": "_ _ _ _ _ _ _ _",
+        "answerLength": 8,
         "acceptedAnswers": [
           "Repeater"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Repeats requests.",
+        "hints": ["Repeats requests.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "Burp Suite Repeater enables rapid manual request modification and testing."
       },
       {
@@ -8625,6 +8950,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Deconstruct modern web architectures (SPA, REST APIs, microservices) is the central takeaway of this room."
       }
     ],
@@ -8713,6 +9039,7 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "Which category currently holds the #1 rank in the OWASP Top 10 Web Application Security Risks?",
             "visualSlots": "_ _ _ _ _ _   _ _ _ _ _ _   _ _ _ _ _ _ _",
+            "answerLength": 19,
             "acceptedAnswers": [
               "Broken Access Control",
               "A01:2021-Broken Access Control",
@@ -8721,6 +9048,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "When access controls are broken.",
+            "hints": ["When access controls are broken.","The response names a specific concept or process; distinguish it from nearby terms.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "Broken Access Control is the #1 web risk, affecting over 94% of tested web applications."
           }
         ]
@@ -8749,13 +9077,15 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "What vulnerability occurs when a web application fetches a remote URL supplied by a user without validating the destination, exposing internal services or cloud metadata?",
             "visualSlots": "_ _ _ _",
+            "answerLength": 4,
             "acceptedAnswers": [
               "SSRF",
               "Server-Side Request Forgery"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
-            "hint": "Four-letter acronym for Server-Side Request Forgery.",
+            "hint": "The issue occurs when a server makes an untrusted request to a destination supplied by a user.",
+            "hints": ["The issue occurs when a server makes an untrusted request to a destination supplied by a user.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "SSRF (Server-Side Request Forgery) induces servers to make unauthorized requests to internal resources."
           }
         ]
@@ -8798,6 +9128,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Analyze the OWASP Top 10 categories (Broken Access Control, Cryptographic Failures, Injection) is the central takeaway of this room."
           }
         ]
@@ -8809,6 +9140,7 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "Which category currently holds the #1 rank in the OWASP Top 10 Web Application Security Risks?",
         "visualSlots": "_ _ _ _ _ _   _ _ _ _ _ _   _ _ _ _ _ _ _",
+        "answerLength": 19,
         "acceptedAnswers": [
           "Broken Access Control",
           "A01:2021-Broken Access Control",
@@ -8817,6 +9149,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "When access controls are broken.",
+        "hints": ["When access controls are broken.","The response names a specific concept or process; distinguish it from nearby terms.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "Broken Access Control is the #1 web risk, affecting over 94% of tested web applications."
       },
       {
@@ -8824,13 +9157,15 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "What vulnerability occurs when a web application fetches a remote URL supplied by a user without validating the destination, exposing internal services or cloud metadata?",
         "visualSlots": "_ _ _ _",
+        "answerLength": 4,
         "acceptedAnswers": [
           "SSRF",
           "Server-Side Request Forgery"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
-        "hint": "Four-letter acronym for Server-Side Request Forgery.",
+        "hint": "The issue occurs when a server makes an untrusted request to a destination supplied by a user.",
+        "hints": ["The issue occurs when a server makes an untrusted request to a destination supplied by a user.","The response is a short standard abbreviation used in this subject area.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "SSRF (Server-Side Request Forgery) induces servers to make unauthorized requests to internal resources."
       },
       {
@@ -8845,6 +9180,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Analyze the OWASP Top 10 categories (Broken Access Control, Cryptographic Failures, Injection) is the central takeaway of this room."
       }
     ],
@@ -8940,6 +9276,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Stored permanently in the database.",
+            "hints": ["Stored permanently in the database.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Stored XSS is stored in the database and executes automatically whenever any victim views the infected page."
           }
         ]
@@ -8967,7 +9304,8 @@ const CALION_ROOMS = [
             "id": "q-40-2",
             "type": "exact",
             "question": "What is the single most effective defensive programming technique that completely eliminates SQL Injection vulnerabilities?",
-            "visualSlots": "_ _ _ _ _ _ _ _ _ _ _ _   _ _ _ _ _ _ _",
+            "visualSlots": "_ _ _ _ _ _ _ _ _ _ _ _ _   _ _ _ _ _ _ _",
+            "answerLength": 20,
             "acceptedAnswers": [
               "parameterized queries",
               "parameterized query",
@@ -8977,6 +9315,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Parameterized ... or Prepared ...",
+            "hints": ["Parameterized ... or Prepared ...","The response names a specific concept or process; distinguish it from nearby terms.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "Parameterized queries separate SQL code from user data, preventing inputs from altering query logic."
           }
         ]
@@ -9020,6 +9359,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Identify and exploit Reflected, Stored, and DOM-based Cross-Site Scripting (XSS) is the central takeaway of this room."
           }
         ]
@@ -9038,13 +9378,15 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Stored permanently in the database.",
+        "hints": ["Stored permanently in the database.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Stored XSS is stored in the database and executes automatically whenever any victim views the infected page."
       },
       {
         "id": "q-40-2",
         "type": "exact",
         "question": "What is the single most effective defensive programming technique that completely eliminates SQL Injection vulnerabilities?",
-        "visualSlots": "_ _ _ _ _ _ _ _ _ _ _ _   _ _ _ _ _ _ _",
+        "visualSlots": "_ _ _ _ _ _ _ _ _ _ _ _ _   _ _ _ _ _ _ _",
+        "answerLength": 20,
         "acceptedAnswers": [
           "parameterized queries",
           "parameterized query",
@@ -9054,6 +9396,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Parameterized ... or Prepared ...",
+        "hints": ["Parameterized ... or Prepared ...","The response names a specific concept or process; distinguish it from nearby terms.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "Parameterized queries separate SQL code from user data, preventing inputs from altering query logic."
       },
       {
@@ -9068,6 +9411,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Identify and exploit Reflected, Stored, and DOM-based Cross-Site Scripting (XSS) is the central takeaway of this room."
       }
     ],
@@ -9156,6 +9500,7 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "What credential attack tests a single common password against thousands of accounts to bypass lockout thresholds?",
             "visualSlots": "_ _ _ _ _ _ _ _   _ _ _ _ _ _ _ _",
+            "answerLength": 16,
             "acceptedAnswers": [
               "password spraying",
               "password-spraying"
@@ -9163,6 +9508,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Spraying a password across accounts.",
+            "hints": ["Spraying a password across accounts.","The response names a specific concept or process; distinguish it from nearby terms.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "Password spraying tests one password across many accounts to avoid triggering lockout limits."
           }
         ]
@@ -9191,6 +9537,7 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "In the famous JWT implementation vulnerability, which algorithm value is set to trick the server into accepting an unsigned token?",
             "visualSlots": "_ _ _ _",
+            "answerLength": 4,
             "acceptedAnswers": [
               "none",
               "\"none\""
@@ -9198,6 +9545,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Four letters meaning no algorithm.",
+            "hints": ["Four letters meaning no algorithm.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "Setting 'alg': 'none' exploits vulnerable libraries that bypass signature verification."
           }
         ]
@@ -9242,6 +9590,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Perform online brute-force and credential-stuffing tests using Hydra is the central takeaway of this room."
           }
         ]
@@ -9253,6 +9602,7 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "What credential attack tests a single common password against thousands of accounts to bypass lockout thresholds?",
         "visualSlots": "_ _ _ _ _ _ _ _   _ _ _ _ _ _ _ _",
+        "answerLength": 16,
         "acceptedAnswers": [
           "password spraying",
           "password-spraying"
@@ -9260,6 +9610,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Spraying a password across accounts.",
+        "hints": ["Spraying a password across accounts.","The response names a specific concept or process; distinguish it from nearby terms.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "Password spraying tests one password across many accounts to avoid triggering lockout limits."
       },
       {
@@ -9267,6 +9618,7 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "In the famous JWT implementation vulnerability, which algorithm value is set to trick the server into accepting an unsigned token?",
         "visualSlots": "_ _ _ _",
+        "answerLength": 4,
         "acceptedAnswers": [
           "none",
           "\"none\""
@@ -9274,6 +9626,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Four letters meaning no algorithm.",
+        "hints": ["Four letters meaning no algorithm.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "Setting 'alg': 'none' exploits vulnerable libraries that bypass signature verification."
       },
       {
@@ -9288,6 +9641,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Perform online brute-force and credential-stuffing tests using Hydra is the central takeaway of this room."
       }
     ],
@@ -9383,6 +9737,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Safe, reproducible proof of impact.",
+            "hints": ["Safe, reproducible proof of impact.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "A professional PoC proves vulnerability impact in a controlled, non-destructive, reproducible manner."
           }
         ]
@@ -9410,12 +9765,14 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "What command-line tool is most commonly used by security researchers to provide a single, reproducible command demonstrating HTTP vulnerabilities?",
             "visualSlots": "_ _ _ _",
+            "answerLength": 4,
             "acceptedAnswers": [
               "curl"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Four-letter utility for transferring data with URLs.",
+            "hints": ["Four-letter utility for transferring data with URLs.","The response is a technical term or command used in this lesson.","Use the utility demonstrated for this operation, rather than a related command."],
             "explanation": "curl commands provide clean, copy-pasteable reproduction steps for web vulnerabilities."
           }
         ]
@@ -9459,6 +9816,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Differentiate theoretical vulnerabilities from validated exploitable flaws is the central takeaway of this room."
           }
         ]
@@ -9477,6 +9835,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Safe, reproducible proof of impact.",
+        "hints": ["Safe, reproducible proof of impact.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "A professional PoC proves vulnerability impact in a controlled, non-destructive, reproducible manner."
       },
       {
@@ -9484,12 +9843,14 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "What command-line tool is most commonly used by security researchers to provide a single, reproducible command demonstrating HTTP vulnerabilities?",
         "visualSlots": "_ _ _ _",
+        "answerLength": 4,
         "acceptedAnswers": [
           "curl"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Four-letter utility for transferring data with URLs.",
+        "hints": ["Four-letter utility for transferring data with URLs.","The response is a technical term or command used in this lesson.","Use the utility demonstrated for this operation, rather than a related command."],
         "explanation": "curl commands provide clean, copy-pasteable reproduction steps for web vulnerabilities."
       },
       {
@@ -9504,6 +9865,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Differentiate theoretical vulnerabilities from validated exploitable flaws is the central takeaway of this room."
       }
     ],
@@ -9593,12 +9955,14 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "What curated online repository catalogs legitimate Unix binaries that can be abused to bypass security restrictions and escalate privileges?",
             "visualSlots": "_ _ _ _ _ _ _ _",
+            "answerLength": 8,
             "acceptedAnswers": [
               "GTFOBins"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "GTFO followed by Bins.",
+            "hints": ["GTFO followed by Bins.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "GTFOBins documents how legitimate binaries can be abused for privilege escalation."
           }
         ]
@@ -9627,13 +9991,15 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "What is the numeric octal special permission bit that represents SetUID (SUID)?",
             "visualSlots": "_ _ _ _",
+            "answerLength": 4,
             "acceptedAnswers": [
               "4000",
               "4"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
-            "hint": "The 4-digit octal value for SUID.",
+            "hint": "This four-digit octal special permission lets an executable run with its owner identity.",
+            "hints": ["This four-digit octal special permission lets an executable run with its owner identity.","The response is numeric; check the protocol, event, or calculation context carefully.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "4000 represents the SUID special permission bit in Linux octal notation."
           }
         ]
@@ -9678,6 +10044,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Audit user permissions and sudo privileges (sudo -l) is the central takeaway of this room."
           }
         ]
@@ -9689,12 +10056,14 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "What curated online repository catalogs legitimate Unix binaries that can be abused to bypass security restrictions and escalate privileges?",
         "visualSlots": "_ _ _ _ _ _ _ _",
+        "answerLength": 8,
         "acceptedAnswers": [
           "GTFOBins"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "GTFO followed by Bins.",
+        "hints": ["GTFO followed by Bins.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "GTFOBins documents how legitimate binaries can be abused for privilege escalation."
       },
       {
@@ -9702,13 +10071,15 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "What is the numeric octal special permission bit that represents SetUID (SUID)?",
         "visualSlots": "_ _ _ _",
+        "answerLength": 4,
         "acceptedAnswers": [
           "4000",
           "4"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
-        "hint": "The 4-digit octal value for SUID.",
+        "hint": "This four-digit octal special permission lets an executable run with its owner identity.",
+        "hints": ["This four-digit octal special permission lets an executable run with its owner identity.","The response is numeric; check the protocol, event, or calculation context carefully.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "4000 represents the SUID special permission bit in Linux octal notation."
       },
       {
@@ -9723,6 +10094,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Audit user permissions and sudo privileges (sudo -l) is the central takeaway of this room."
       }
     ],
@@ -9812,6 +10184,7 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "Which Windows privilege allows a process to impersonate a client token, routinely abused by Potato exploits to elevate to SYSTEM?",
             "visualSlots": "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _",
+            "answerLength": 22,
             "acceptedAnswers": [
               "SeImpersonatePrivilege",
               "SeImpersonate"
@@ -9819,6 +10192,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Starts with Se, contains Impersonate.",
+            "hints": ["Starts with Se, contains Impersonate.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "SeImpersonatePrivilege allows a process to impersonate security tokens, enabling elevation to SYSTEM."
           }
         ]
@@ -9855,6 +10229,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Wrap the path in quotation marks.",
+            "hints": ["Wrap the path in quotation marks.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Enclosing the service path in quotation marks ensures Windows treats the entire string as a single path without ambiguity."
           }
         ]
@@ -9899,6 +10274,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Audit Windows privilege tokens using whoami /priv (SeImpersonatePrivilege, SeDebugPrivilege) is the central takeaway of this room."
           }
         ]
@@ -9910,6 +10286,7 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "Which Windows privilege allows a process to impersonate a client token, routinely abused by Potato exploits to elevate to SYSTEM?",
         "visualSlots": "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _",
+        "answerLength": 22,
         "acceptedAnswers": [
           "SeImpersonatePrivilege",
           "SeImpersonate"
@@ -9917,6 +10294,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Starts with Se, contains Impersonate.",
+        "hints": ["Starts with Se, contains Impersonate.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "SeImpersonatePrivilege allows a process to impersonate security tokens, enabling elevation to SYSTEM."
       },
       {
@@ -9931,6 +10309,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Wrap the path in quotation marks.",
+        "hints": ["Wrap the path in quotation marks.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Enclosing the service path in quotation marks ensures Windows treats the entire string as a single path without ambiguity."
       },
       {
@@ -9945,6 +10324,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Audit Windows privilege tokens using whoami /priv (SeImpersonatePrivilege, SeDebugPrivilege) is the central takeaway of this room."
       }
     ],
@@ -10041,6 +10421,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Think about inbound vs outbound firewall rules.",
+            "hints": ["Think about inbound vs outbound firewall rules.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Firewalls block incoming connections to bind shells; reverse shells initiate outbound traffic which is permitted by egress policies."
           }
         ]
@@ -10068,12 +10449,14 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "Which Metasploit command-line utility is used to generate standalone shellcode, executables, and reverse shell payloads in various formats?",
             "visualSlots": "_ _ _ _ _ _ _ _",
+            "answerLength": 8,
             "acceptedAnswers": [
               "msfvenom"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "msf followed by venom.",
+            "hints": ["msf followed by venom.","The response is a technical term or command used in this lesson.","Use the utility demonstrated for this operation, rather than a related command."],
             "explanation": "msfvenom combines the legacy msfpayload and msfencode tools into a unified payload generator."
           }
         ]
@@ -10118,6 +10501,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Differentiate Reverse Shells from Bind Shells and evaluate firewall traversal is the central takeaway of this room."
           }
         ]
@@ -10136,6 +10520,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Think about inbound vs outbound firewall rules.",
+        "hints": ["Think about inbound vs outbound firewall rules.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Firewalls block incoming connections to bind shells; reverse shells initiate outbound traffic which is permitted by egress policies."
       },
       {
@@ -10143,12 +10528,14 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "Which Metasploit command-line utility is used to generate standalone shellcode, executables, and reverse shell payloads in various formats?",
         "visualSlots": "_ _ _ _ _ _ _ _",
+        "answerLength": 8,
         "acceptedAnswers": [
           "msfvenom"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "msf followed by venom.",
+        "hints": ["msf followed by venom.","The response is a technical term or command used in this lesson.","Use the utility demonstrated for this operation, rather than a related command."],
         "explanation": "msfvenom combines the legacy msfpayload and msfencode tools into a unified payload generator."
       },
       {
@@ -10163,6 +10550,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Differentiate Reverse Shells from Bind Shells and evaluate firewall traversal is the central takeaway of this room."
       }
     ],
@@ -10259,6 +10647,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Written for senior leadership in business language.",
+            "hints": ["Written for senior leadership in business language.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "The Executive Summary translates technical findings into business risk for C-level executives and decision-makers."
           }
         ]
@@ -10287,6 +10676,7 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "What follow-up assessment is conducted 30 to 60 days after report delivery to verify that developer patches successfully resolved the findings?",
             "visualSlots": "_ _ _ _ _ _",
+            "answerLength": 6,
             "acceptedAnswers": [
               "retest",
               "retesting",
@@ -10296,6 +10686,7 @@ const CALION_ROOMS = [
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "Testing again to verify fixes.",
+            "hints": ["Testing again to verify fixes.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "A retest confirms that vulnerabilities have been properly remediated by the development team."
           }
         ]
@@ -10338,6 +10729,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Structure a professional penetration testing report is the central takeaway of this room."
           }
         ]
@@ -10356,6 +10748,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Written for senior leadership in business language.",
+        "hints": ["Written for senior leadership in business language.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "The Executive Summary translates technical findings into business risk for C-level executives and decision-makers."
       },
       {
@@ -10363,6 +10756,7 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "What follow-up assessment is conducted 30 to 60 days after report delivery to verify that developer patches successfully resolved the findings?",
         "visualSlots": "_ _ _ _ _ _",
+        "answerLength": 6,
         "acceptedAnswers": [
           "retest",
           "retesting",
@@ -10372,6 +10766,7 @@ const CALION_ROOMS = [
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "Testing again to verify fixes.",
+        "hints": ["Testing again to verify fixes.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "A retest confirms that vulnerabilities have been properly remediated by the development team."
       },
       {
@@ -10386,6 +10781,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Structure a professional penetration testing report is the central takeaway of this room."
       }
     ],
@@ -10481,6 +10877,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 1,
             "hint": "Executing system commands through an unsanitized parameter.",
+            "hints": ["Executing system commands through an unsanitized parameter.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "The vulnerability was OS Command Injection, permitting arbitrary shell commands via the system parameter."
           }
         ]
@@ -10508,12 +10905,14 @@ const CALION_ROOMS = [
             "type": "exact",
             "question": "What user identity was obtained by exploiting the sudo find configuration on the capstone target host?",
             "visualSlots": "_ _ _ _",
+            "answerLength": 4,
             "acceptedAnswers": [
               "root"
             ],
             "caseSensitive": false,
             "trimWhitespace": true,
             "hint": "The ultimate administrative superuser in Linux.",
+            "hints": ["The ultimate administrative superuser in Linux.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
             "explanation": "Exploiting the misconfigured sudo find permission granted full root superuser access."
           }
         ]
@@ -10563,6 +10962,7 @@ const CALION_ROOMS = [
             ],
             "correctIndex": 0,
             "hint": "Reflect on the primary learning objective of this room.",
+            "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
             "explanation": "Understanding Execute a full penetration testing engagement from reconnaissance to exploitation is the central takeaway of this room."
           }
         ]
@@ -10581,6 +10981,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 1,
         "hint": "Executing system commands through an unsanitized parameter.",
+        "hints": ["Executing system commands through an unsanitized parameter.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "The vulnerability was OS Command Injection, permitting arbitrary shell commands via the system parameter."
       },
       {
@@ -10588,12 +10989,14 @@ const CALION_ROOMS = [
         "type": "exact",
         "question": "What user identity was obtained by exploiting the sudo find configuration on the capstone target host?",
         "visualSlots": "_ _ _ _",
+        "answerLength": 4,
         "acceptedAnswers": [
           "root"
         ],
         "caseSensitive": false,
         "trimWhitespace": true,
         "hint": "The ultimate administrative superuser in Linux.",
+        "hints": ["The ultimate administrative superuser in Linux.","The response is a technical term or command used in this lesson.","Compare the lesson example with the exact wording of the question, then use the displayed mask for the response format."],
         "explanation": "Exploiting the misconfigured sudo find permission granted full root superuser access."
       },
       {
@@ -10608,6 +11011,7 @@ const CALION_ROOMS = [
         ],
         "correctIndex": 0,
         "hint": "Reflect on the primary learning objective of this room.",
+        "hints": ["Reflect on the primary learning objective of this room.","Revisit the lesson’s key distinction; a distractor may describe a related but different behavior.","Match the option to the exact learning objective and eliminate choices outside this question’s topic."],
         "explanation": "Understanding Execute a full penetration testing engagement from reconnaissance to exploitation is the central takeaway of this room."
       }
     ],
@@ -10691,12 +11095,25 @@ const PRE_SECURITY_LEVELS = [
   }
 ];
 
+// Semantic compatibility map for the retired 12-room ps-room curriculum.
+// These aliases map topics to the equivalent canonical 47-room room; raw stored
+// progress keys are retained and are never deleted.
+const CALION_ROOM_ID_ALIASES = {
+  'ps-room-01': 'room-01', 'ps-room-02': 'room-01',
+  'ps-room-03': 'room-09', 'ps-room-04': 'room-05',
+  'ps-room-05': 'room-07', 'ps-room-06': 'room-06',
+  'ps-room-07': 'room-03', 'ps-room-08': 'room-04',
+  'ps-room-09': 'room-03', 'ps-room-10': 'room-08',
+  'ps-room-11': 'room-15', 'ps-room-12': 'room-12'
+};
+
 const CALION_ROOM_MAP = {};
 CALION_ROOMS.forEach(r => { CALION_ROOM_MAP[r.id] = r; });
 const PRE_SECURITY_ROOM_MAP = CALION_ROOM_MAP;
 
 if (typeof window !== 'undefined') {
   window.CALION_STAGES = CALION_STAGES;
+  window.CALION_ROOM_ID_ALIASES = CALION_ROOM_ID_ALIASES;
   window.CALION_ROOMS = CALION_ROOMS;
   window.CALION_ROOM_MAP = CALION_ROOM_MAP;
   window.PRE_SECURITY_ROOMS = CALION_ROOMS;
@@ -10711,6 +11128,7 @@ if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     CALION_STAGES,
     CALION_ROOMS,
+    CALION_ROOM_ID_ALIASES,
     CALION_ROOM_MAP,
     PRE_SECURITY_ROOMS,
     PRE_SECURITY_ROOM_MAP,

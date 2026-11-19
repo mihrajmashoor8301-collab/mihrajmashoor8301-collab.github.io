@@ -336,23 +336,23 @@
       // Local fallback calculation when offline or unconfigured
       const rooms = AcademyState.getCompletedRooms();
       const labs = AcademyState.getCompletedLabs();
+      const curriculum = (typeof window !== 'undefined' && window.CALION_ROOMS) || [];
+      const stages = (typeof window !== 'undefined' && window.CALION_STAGES) || [];
+      const completedPaths = stages.filter(stage => { const p = AcademyState.getStageProgress(stage.id, curriculum); return p.total > 0 && p.completed === p.total; }).length;
+      const preSecurity = AcademyState.getStageProgress('pre-security', curriculum);
       const xp = AcademyState.calculateTotalXP();
       const streak = AcademyState.getStreak();
 
       return {
         totalRoomsCompleted: rooms.length,
-        totalAvailableRooms: 45,
+        totalAvailableRooms: curriculum.length || 47,
         totalLabsCompleted: labs.length,
         totalAvailableLabs: 13,
         totalXP: xp,
         streakDays: streak,
-        completedPaths: rooms.length >= 45 ? 1 : 0,
+        completedPaths,
         achievementsCount: rooms.length >= 1 ? (rooms.length >= 5 ? 2 : 1) : 0,
-        preSecurityProgress: {
-          total: 45,
-          completed: rooms.length,
-          percentage: Math.round((rooms.length / 45) * 100)
-        }
+        preSecurityProgress: { total: preSecurity.total, completed: preSecurity.completed, percentage: preSecurity.percentage }
       };
     }
 
@@ -364,6 +364,13 @@
         .eq('user_id', userId);
 
       const completedRooms = (roomRows || []).filter(r => r.status === 'completed');
+      const curriculum = (typeof window !== 'undefined' && window.CALION_ROOMS) || [];
+      const stages = (typeof window !== 'undefined' && window.CALION_STAGES) || [];
+      const canonicalRoomIds = new Set(curriculum.map(r => r.id));
+      const completedRoomIds = new Set(completedRooms.map(r => AcademyState.normalizeRoomId(r.room_id)).filter(id => canonicalRoomIds.has(id)));
+      const completedPaths = stages.filter(stage => { const pathRooms = curriculum.filter(r => r.stageId === stage.id); return pathRooms.length > 0 && pathRooms.every(r => completedRoomIds.has(r.id)); }).length;
+      const preSecurityRooms = curriculum.filter(r => r.stageId === 'pre-security');
+      const preSecurityCompleted = preSecurityRooms.filter(r => completedRoomIds.has(r.id)).length;
 
       // 2. Lab stats
       const { data: labRows } = await sb
@@ -390,18 +397,18 @@
       const streak = profile ? profile.streak_days : AcademyState.getStreak();
 
       return {
-        totalRoomsCompleted: completedRooms.length,
-        totalAvailableRooms: 45,
+        totalRoomsCompleted: completedRoomIds.size,
+        totalAvailableRooms: curriculum.length || 47,
         totalLabsCompleted: completedLabs.length,
         totalAvailableLabs: 13,
         totalXP: xp,
         streakDays: streak,
-        completedPaths: completedRooms.length >= 45 ? 1 : 0,
+        completedPaths,
         achievementsCount: (achRows || []).length,
         preSecurityProgress: {
-          total: 45,
-          completed: completedRooms.length,
-          percentage: Math.round((completedRooms.length / 45) * 100)
+          total: preSecurityRooms.length,
+          completed: preSecurityCompleted,
+          percentage: preSecurityRooms.length ? Math.round((preSecurityCompleted / preSecurityRooms.length) * 100) : 0
         },
         rawRoomRows: roomRows || [],
         rawLabRows: labRows || []
@@ -423,7 +430,7 @@
       { id: 'lab-practitioner', title: 'Lab Practitioner', description: 'Successfully solve and verify your first practical terminal lab.', icon: 'terminal', required_count: 1, xp_bonus: 100, category: 'lab' },
       { id: 'lab-specialist', title: 'Lab Specialist', description: 'Complete 5 practical security labs.', icon: 'memory', required_count: 5, xp_bonus: 200, category: 'lab' },
       { id: 'lab-master', title: 'Master of the Sandbox', description: 'Conquer all 13 practical security labs.', icon: 'bolt', required_count: 13, xp_bonus: 500, category: 'lab' },
-      { id: 'pre-security-graduate', title: 'Pre Security Graduate', description: 'Achieve 100% completion across all 45 rooms in Pre Security.', icon: 'verified', required_count: 45, xp_bonus: 500, category: 'path' },
+      { id: 'pre-security-graduate', title: 'Pre Security Graduate', description: 'Achieve 100% completion across all 10 Pre-Security rooms.', icon: 'verified', required_count: 10, xp_bonus: 500, category: 'path' },
       { id: 'streak-week', title: 'Consistent Operator', description: 'Maintain a 7-day daily learning streak.', icon: 'local_fire_department', required_count: 7, xp_bonus: 150, category: 'streak' }
     ];
 
@@ -439,7 +446,7 @@
         if (a.id === 'explorer') isUnlocked = rooms >= 5;
         if (a.id === 'dedicated-learner') isUnlocked = rooms >= 10;
         if (a.id === 'security-enthusiast') isUnlocked = rooms >= 25;
-        if (a.id === 'pre-security-graduate') isUnlocked = rooms >= 45;
+        if (a.id === 'pre-security-graduate') { const p = AcademyState.getStageProgress('pre-security'); isUnlocked = p.total > 0 && p.completed === p.total; }
         if (a.id === 'lab-practitioner') isUnlocked = labs >= 1;
         if (a.id === 'lab-specialist') isUnlocked = labs >= 5;
         if (a.id === 'lab-master') isUnlocked = labs >= 13;

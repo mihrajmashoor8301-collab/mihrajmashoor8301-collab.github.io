@@ -76,7 +76,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
       <!-- Brand & Section Label -->
       <div class="flex items-center gap-4">
-        <a aria-label="CALION Academy Home" class="flex items-center gap-2 group" href="learning.html">
+        <a aria-label="CALION Academy Home" class="flex items-center gap-2 group" href="/">
           <svg class="h-7 w-auto" fill="none" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="calion_grad_hdr_l" x1="0%" x2="100%" y1="0%" y2="100%">
@@ -113,7 +113,7 @@
 
       <!-- Center Minimal Navigation -->
       <nav class="hidden sm:flex items-center gap-1 text-xs font-mono" aria-label="Main Navigation">
-        <a href="learning.html" class="px-3 py-1.5 rounded-md text-primary font-bold bg-slate-100 dark:bg-slate-800 flex items-center gap-1.5 transition-colors">
+        <a href="/" class="px-3 py-1.5 rounded-md text-primary font-bold bg-slate-100 dark:bg-slate-800 flex items-center gap-1.5 transition-colors">
           <span class="material-symbols-outlined text-[15px]">school</span>
           <span>Learn</span>
         </a>
@@ -169,7 +169,7 @@
             <span class="material-symbols-outlined text-base">close</span>
           </button>
         </div>
-        <a href="learning.html" class="block px-2.5 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Learn (Learning Tree)</a>
+        <a href="/" class="block px-2.5 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Learn (Learning Tree)</a>
         <a href="terminal-lab.html" class="block px-2.5 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Terminal Sandbox</a>
         <a href="profile.html" class="block px-2.5 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Profile &amp; Settings</a>
       </div>
@@ -189,9 +189,9 @@
         The requested room or task index is invalid or does not exist.
       </p>
       <div class="pt-6">
-        <a href="modules.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-sky-600 text-white text-xs font-mono font-bold hover:bg-sky-700 shadow transition-all">
+        <a href="/" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-sky-600 text-white text-xs font-mono font-bold hover:bg-sky-700 shadow transition-all">
           <span class="material-symbols-outlined text-sm">arrow_back</span>
-          <span>Return to Modules</span>
+          <span>Return to Academy Home</span>
         </a>
       </div>
     </div>
@@ -201,9 +201,9 @@
 
       <!-- Breadcrumbs -->
       <nav aria-label="Breadcrumb" class="flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400">
-        <a href="learning.html" class="hover:text-primary transition-colors">Academy</a>
+        <a href="/" class="hover:text-primary transition-colors">Academy Home</a>
         <span class="material-symbols-outlined text-xs">chevron_right</span>
-        <a href="modules.html" class="hover:text-primary transition-colors">Pre Security</a>
+        <a href="/" class="hover:text-primary transition-colors">Academy Home</a>
         <span class="material-symbols-outlined text-xs">chevron_right</span>
         <a id="breadcrumb-module-link" href="#" class="hover:text-primary transition-colors">Level</a>
         <span class="material-symbols-outlined text-xs">chevron_right</span>
@@ -523,7 +523,7 @@
         <button type="button" class="w-full sm:w-auto py-3 px-4 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-mono font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors" id="modal-review-btn">
           Review What I Learned
         </button>
-        <a href="learning.html" class="w-full sm:w-auto py-3 px-4 rounded-lg text-slate-500 hover:text-slate-900 dark:hover:text-white text-xs font-mono text-center transition-colors">
+        <a href="/" class="w-full sm:w-auto py-3 px-4 rounded-lg text-slate-500 hover:text-slate-900 dark:hover:text-white text-xs font-mono text-center transition-colors">
           Learning Path
         </a>
       </div>
@@ -539,16 +539,13 @@
         <span>CALION Cyber Operations Academy · Task Progression Engine</span>
       </div>
       <div class="flex items-center gap-4">
-        <a href="learning.html" class="hover:text-primary transition-colors">Pathways</a>
-        <a href="modules.html" class="hover:text-primary transition-colors">Modules</a>
-        <a href="labs.html" class="hover:text-primary transition-colors">Labs</a>
+        <a href="/" class="hover:text-primary transition-colors">Academy Home</a>
         <a href="terminal-lab.html" class="hover:text-primary transition-colors">Terminal</a>
       </div>
     </div>
   </footer>
 
   <!-- Scripts: Exact Order Required for Security and Verification -->
-  <script src="calion-curriculum-pre-security.js"></script>
   <script src="learning-data.js"></script>
   <script src="vendor/supabase.min.js"></script>
   <script src="calion-runtime-config.js"></script>
@@ -619,20 +616,8 @@
         return;
       }
 
-      let roomId = rawRoom.toLowerCase();
-      if (roomId.startsWith('ps-room-')) {
-        const numPart = roomId.replace('ps-room-', '');
-        roomId = 'ps-room-' + String(parseInt(numPart, 10)).padStart(2, '0');
-      } else if (!roomId.startsWith('room-')) {
-        roomId = 'room-' + String(parseInt(rawRoom, 10)).padStart(2, '0');
-      } else {
-        const numPart = roomId.replace('room-', '');
-        roomId = 'room-' + String(parseInt(numPart, 10)).padStart(2, '0');
-      }
-
-      const room = (typeof CALION_PRE_SECURITY_ROOM_MAP !== 'undefined' && CALION_PRE_SECURITY_ROOM_MAP[roomId]) ||
-                   (typeof CALION_ROOM_MAP !== 'undefined' && CALION_ROOM_MAP[roomId]) || 
-                   (typeof PRE_SECURITY_ROOM_MAP !== 'undefined' && PRE_SECURITY_ROOM_MAP[roomId]);
+      const roomId = AcademyState.normalizeRoomId(rawRoom);
+      const room = (typeof CALION_ROOM_MAP !== 'undefined' && CALION_ROOM_MAP[roomId]) || null;
       if (!room) {
         showNotFound();
         return;
@@ -642,6 +627,29 @@
         if (notFoundEl) notFoundEl.classList.remove('hidden');
         if (containerEl) containerEl.classList.add('hidden');
         document.title = 'Task Not Found · CALION Academy';
+      }
+
+      function showLocked(message) {
+        if (notFoundEl) {
+          notFoundEl.classList.remove('hidden');
+          const title = notFoundEl.querySelector('h1');
+          const description = notFoundEl.querySelector('p');
+          if (title) title.textContent = 'Room Locked';
+          if (description) description.textContent = message;
+        }
+        if (containerEl) containerEl.classList.add('hidden');
+        document.title = 'Room Locked · CALION Academy';
+      }
+
+      const pathRooms = CALION_ROOMS.filter(r => r.stageId === room.stageId);
+      const pathRoomIndex = pathRooms.findIndex(r => r.id === room.id);
+      if (!AcademyState.isStageUnlocked(room.stageId, CALION_ROOMS)) {
+        showLocked(`Complete at least 3 rooms in ${room.stageOrder === 2 ? 'Pre-Security' : 'Cyber Security Foundations'} to unlock this path.`);
+        return;
+      }
+      if (pathRoomIndex > 0 && !AcademyState.isRoomCompleted(pathRooms[pathRoomIndex - 1].id)) {
+        showLocked(`Complete ${pathRooms[pathRoomIndex - 1].id.toUpperCase()}: ${pathRooms[pathRoomIndex - 1].title} before entering this room.`);
+        return;
       }
 
       // Update state
@@ -858,13 +866,13 @@
                   ${q.visualSlots ? `
                     <div class="flex flex-wrap items-center gap-2 font-mono text-xs text-sky-600 dark:text-sky-400 font-bold tracking-widest bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 w-fit">
                       <span class="text-slate-500 font-sans uppercase text-[10px] tracking-normal">Pattern:</span>
-                      <span class="text-slate-900 dark:text-white font-mono select-none">${escapeHtml(q.visualSlots)}</span>
+                      <span class="text-slate-900 dark:text-white font-mono select-none">${escapeHtml(AcademyState.formatAnswerMask(q))}</span>
                       ${q.answerLength ? `<span class="text-slate-400 font-sans text-[11px] font-normal">(${q.answerLength} chars)</span>` : ''}
                     </div>
                   ` : ''}
 
                   <div class="flex items-center gap-2 max-w-md">
-                    <input type="text" id="q-input-${qIdx}" class="flex-1 px-3.5 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-mono text-slate-900 dark:text-white placeholder-slate-400 focus:border-sky-500 focus:outline-none" placeholder="Type your answer..." value="${isSolved ? (q.acceptedAnswers ? q.acceptedAnswers[0] : '') : ''}" ${isSolved ? 'disabled' : ''} autocomplete="off"/>
+                    <input type="text" id="q-input-${qIdx}" class="flex-1 px-3.5 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-mono text-slate-900 dark:text-white placeholder-slate-400 focus:border-sky-500 focus:outline-none" placeholder="Type your answer..." value="" ${isSolved ? 'disabled' : ''} autocomplete="off"/>
                     <button type="button" class="q-submit-btn px-4 py-2 rounded-lg bg-sky-600 hover:bg-sky-700 text-white font-mono font-bold text-xs cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed transition-colors" data-qidx="${qIdx}" ${isSolved ? 'disabled' : ''}>
                       Submit
                     </button>
@@ -907,7 +915,8 @@
                     <span>Need a hint? (1 of ${q.hints.length})</span>
                   </summary>
                   <div class="p-3 mt-2 rounded-lg bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-sans leading-relaxed space-y-2">
-                    ${q.hints.map((h, hIdx) => `<div><strong>Hint ${hIdx + 1}:</strong> ${escapeHtml(h)}</div>`).join('')}
+                    <div id="lesson-hint-text-${qIdx}"><strong>Hint 1:</strong> ${escapeHtml(q.hints[0])}</div>
+                    ${q.hints.length > 1 ? `<button type="button" class="lesson-hint-next text-sky-600 hover:underline" data-qidx="${qIdx}" data-next-step="1">Next hint (2 of ${q.hints.length}) →</button>` : ''}
                   </div>
                 </details>
               ` : (q.hint ? `
@@ -936,6 +945,20 @@
           btn.addEventListener('click', function() {
             const idx = parseInt(this.dataset.qidx, 10);
             handleQuestionSubmit(idx);
+          });
+        });
+
+        // Reveal progressive hints only when the learner requests the next tier.
+        document.querySelectorAll('.lesson-hint-next').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const idx = Number(this.dataset.qidx);
+            const step = Number(this.dataset.nextStep);
+            const q = questions[idx];
+            if (!q || !Array.isArray(q.hints) || step >= q.hints.length) return;
+            const panel = document.getElementById(`lesson-hint-text-${idx}`);
+            if (panel) panel.innerHTML += `<div class="mt-2"><strong>Hint ${step + 1}:</strong> ${escapeHtml(q.hints[step])}</div>`;
+            if (step + 1 >= q.hints.length) this.remove();
+            else { this.dataset.nextStep = String(step + 1); this.textContent = `Next hint (${step + 2} of ${q.hints.length}) →`; }
           });
         });
 
@@ -1061,7 +1084,9 @@
 
       const allRooms = (typeof PRE_SECURITY_ROOMS !== 'undefined') ? PRE_SECURITY_ROOMS : [];
       const currentRoomIdx = allRooms.findIndex(r => r.id === room.id);
-      const nextRoomObj = currentRoomIdx >= 0 && currentRoomIdx < allRooms.length - 1 ? allRooms[currentRoomIdx + 1] : null;
+      const stageRooms = allRooms.filter(r => r.stageId === room.stageId);
+      const stageRoomIdx = stageRooms.findIndex(r => r.id === room.id);
+      const nextRoomObj = stageRoomIdx >= 0 && stageRoomIdx < stageRooms.length - 1 ? stageRooms[stageRoomIdx + 1] : null;
 
       if (taskIdx < lessons.length - 1) {
         nextBtn.onclick = function() {
@@ -1132,8 +1157,8 @@
             nextBtnModal.href = `room.html?id=${nextRoomObj.id}`;
             nextBtnModal.innerHTML = `<span>Continue to ${nextRoomObj.id.toUpperCase()}</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span>`;
           } else {
-            nextBtnModal.href = 'learning.html';
-            nextBtnModal.innerHTML = `<span>Back to Learning Path</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span>`;
+            nextBtnModal.href = '/';
+            nextBtnModal.innerHTML = `<span>Return to Academy Home</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span>`;
           }
         }
 

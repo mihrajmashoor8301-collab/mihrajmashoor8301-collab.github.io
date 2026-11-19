@@ -504,7 +504,7 @@
       description: 'A harmless unique alphanumeric token used to check whether user input is reflected in HTML response bodies without executing any script or query logic.',
       expectedLabResult: 'The literal string is reflected unmodified in the HTTP response.',
       mitigation: 'No mitigation required for harmless strings; ensure output encoding is maintained.',
-      roomLink: 'learning.html#room-01'
+      roomLink: 'room.html?id=room-01'
     },
     {
       id: 'payload-boundary-02',
@@ -517,7 +517,7 @@
       description: 'A benign string containing common programming delimiters to observe whether an application safely escapes or sanitizes punctuation characters.',
       expectedLabResult: 'Special characters are converted to HTML entities (&quot;, &lt;, &gt;) in output.',
       mitigation: 'Contextual HTML entity encoding and strict input type validation.',
-      roomLink: 'learning.html#room-33'
+      roomLink: 'room.html?id=room-33'
     },
 
     // Category: XSS Concepts
@@ -532,7 +532,7 @@
       description: 'The canonical proof-of-concept payload testing whether raw HTML markup injected by a user is rendered directly by the victim browser without sanitization.',
       expectedLabResult: 'Triggers a non-destructive modal alert box in vulnerable web training applications (Lab 06).',
       mitigation: 'Context-aware output encoding (e.g. converting < to &lt;), and Content-Security-Policy (CSP) headers.',
-      roomLink: 'learning.html#room-31'
+      roomLink: 'room.html?id=room-31'
     },
     {
       id: 'payload-xss-02',
@@ -545,7 +545,7 @@
       description: 'Closes the preceding input attribute tag with "> and injects an executable script element into the surrounding DOM.',
       expectedLabResult: 'Attribute is terminated early and script tag executes.',
       mitigation: 'HTML attribute encoding (e.g. converting " to &quot;).',
-      roomLink: 'learning.html#room-33'
+      roomLink: 'room.html?id=room-33'
     },
     {
       id: 'payload-xss-03',
@@ -558,7 +558,7 @@
       description: 'Forces the browser to load a non-existent image source ("x"), triggering the onerror event handler automatically without needing user interaction.',
       expectedLabResult: 'Browser fails to load image and executes onerror callback.',
       mitigation: 'Sanitize HTML with DOMPurify and enforce CSP directives disabling inline scripts (script-src \'self\').',
-      roomLink: 'learning.html#room-31'
+      roomLink: 'room.html?id=room-31'
     },
     {
       id: 'payload-xss-04',
@@ -571,7 +571,7 @@
       description: 'Utilizes XML SVG elements that trigger JavaScript execution upon element load.',
       expectedLabResult: 'SVG loads in DOM and displays the current origin domain.',
       mitigation: 'Disallow raw SVG uploads and use strict Content-Type headers.',
-      roomLink: 'learning.html#room-33'
+      roomLink: 'room.html?id=room-33'
     },
 
     // Category: SQL Injection Concepts
@@ -586,7 +586,7 @@
       description: 'Injects a single quote to terminate the string literal, adds a tautology (1=1 is always true), and uses comment dashes (--) to discard the password check.',
       expectedLabResult: 'Authenticates into the administrative dashboard without knowing the password (Lab 03 / Lab 05).',
       mitigation: 'Parameterized queries (Prepared Statements) with bound parameters in all SQL statements.',
-      roomLink: 'learning.html#room-37'
+      roomLink: 'room.html?id=room-37'
     },
     {
       id: 'payload-sqli-02',
@@ -599,7 +599,7 @@
       description: 'Uses ORDER BY clauses sequentially (1, 2, 3, 4...) until the database throws an error, revealing the exact column count needed for UNION-based data extraction.',
       expectedLabResult: 'Succeeds on valid column count; errors when exceeding columns.',
       mitigation: 'ORM frameworks or parameterized SQL execution preventing user-controlled query structure.',
-      roomLink: 'learning.html#room-35'
+      roomLink: 'room.html?id=room-35'
     },
     {
       id: 'payload-sqli-03',
@@ -612,7 +612,7 @@
       description: 'Appends a second SELECT query to extract system information into the reflected application response.',
       expectedLabResult: 'Displays the underlying SQLite/MySQL database version on screen.',
       mitigation: 'Parameterized queries and suppressing detailed database error messages.',
-      roomLink: 'learning.html#room-35'
+      roomLink: 'room.html?id=room-35'
     },
 
     // Category: Command Injection Concepts
@@ -627,7 +627,7 @@
       description: 'Appends a semicolon shell command separator to terminate the first command and execute `whoami` under the web server user context.',
       expectedLabResult: 'Outputs web server user ID (e.g. www-data) following the ping result.',
       mitigation: 'Avoid passing user input to system shell execution functions (e.g. exec, system); use dedicated library APIs.',
-      roomLink: 'learning.html#room-13'
+      roomLink: 'room.html?id=room-13'
     },
     {
       id: 'payload-cmdi-02',
@@ -640,7 +640,7 @@
       description: 'Executes the initial ping, and upon success, executes `cat /etc/passwd` to dump system accounts.',
       expectedLabResult: 'Displays the contents of /etc/passwd.',
       mitigation: 'Strict input whitelist validation allowing only valid IP address formats.',
-      roomLink: 'learning.html#room-13'
+      roomLink: 'room.html?id=room-13'
     },
     {
       id: 'payload-cmdi-03',
@@ -653,7 +653,7 @@
       description: 'Bash subshell substitution evaluates the enclosed command first and passes its output as an argument.',
       expectedLabResult: 'Subshell command runs and output is embedded into execution flow.',
       mitigation: 'Never pass user strings directly to bash -c; execute binaries with fixed argument arrays.',
-      roomLink: 'learning.html#room-14'
+      roomLink: 'room.html?id=room-14'
     },
 
     // Category: Path Traversal
@@ -668,7 +668,7 @@
       description: 'Uses parent directory sequences (..) to escape `/var/www/html/` and access the Linux password configuration database.',
       expectedLabResult: 'Server returns the plain text contents of /etc/passwd (Lab 09).',
       mitigation: 'Validate file paths with realpath/chroot and map user inputs to strict whitelist indexes.',
-      roomLink: 'learning.html#room-08'
+      roomLink: 'room.html?id=room-08'
     },
     {
       id: 'payload-lfi-02',
@@ -681,7 +681,7 @@
       description: 'URL-encodes dots (%2e) and slashes (%2f) to bypass front-end filters before web server path decoding takes place.',
       expectedLabResult: 'Web server decodes characters and resolves file path.',
       mitigation: 'Perform path canonicalization and verification AFTER URL decoding.',
-      roomLink: 'learning.html#room-29'
+      roomLink: 'room.html?id=room-29'
     },
     {
       id: 'payload-lfi-03',
@@ -694,7 +694,7 @@
       description: 'Uses Windows backslash directory separators to retrieve the standard system initialization file.',
       expectedLabResult: 'Displays Windows win.ini configuration file.',
       mitigation: 'Use strict whitelist filename checks; avoid user-controlled filesystem access.',
-      roomLink: 'learning.html#room-15'
+      roomLink: 'room.html?id=room-15'
     },
 
     // Category: HTTP Header & Session Probes
@@ -709,7 +709,7 @@
       description: 'Simulates requests originating from the local loopback interface to bypass IP-based administration blocks or endpoint rate limits (Lab 03).',
       expectedLabResult: 'Bypasses rate limiting or grants access to internal administrative routes.',
       mitigation: 'Only trust X-Forwarded-For headers from verified, internal reverse proxy gateways.',
-      roomLink: 'learning.html#room-31'
+      roomLink: 'room.html?id=room-31'
     },
     {
       id: 'payload-header-02',
@@ -722,7 +722,7 @@
       description: 'Uses carriage return (%0d) and line feed (%0a) to split HTTP response headers and force the browser to accept forged headers.',
       expectedLabResult: 'Browser sets an unauthorized cookie or renders an injected response.',
       mitigation: 'Strip or reject carriage return (\\r) and newline (\\n) characters in header generation.',
-      roomLink: 'learning.html#room-31'
+      roomLink: 'room.html?id=room-31'
     },
 
     // Category: IDOR & Parameter Tampering
@@ -737,7 +737,7 @@
       description: 'Alters a user-owned invoice number to an adjacent numeric ID to verify if another customer\'s private billing records can be accessed (Lab 04).',
       expectedLabResult: 'Returns adjacent customer data if authorization checks are missing.',
       mitigation: 'Implement robust server-side authorization checks verifying that the authenticated session owns the requested object ID.',
-      roomLink: 'learning.html#room-33'
+      roomLink: 'room.html?id=room-33'
     },
     {
       id: 'payload-idor-02',
@@ -750,7 +750,7 @@
       description: 'Tests non-sequential executive account identifiers to extract administrative data.',
       expectedLabResult: 'Displays executive profile data and authorization flags.',
       mitigation: 'Enforce Role-Based Access Control (RBAC) and reject unauthorized cross-tenant requests.',
-      roomLink: 'learning.html#room-37'
+      roomLink: 'room.html?id=room-37'
     }
   ];
 

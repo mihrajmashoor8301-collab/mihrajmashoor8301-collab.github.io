@@ -81,7 +81,7 @@
       
       <!-- Brand & Section Label -->
       <div class="flex items-center gap-3">
-        <a aria-label="CALION Academy Home" class="flex items-center gap-2 group" href="learning.html">
+        <a aria-label="CALION Academy Home" class="flex items-center gap-2 group" href="/">
           <svg class="h-7 w-auto" fill="none" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="calion_grad_hdr_r" x1="0%" x2="100%" y1="0%" y2="100%">
@@ -110,7 +110,7 @@
 
       <!-- Center Minimal Navigation -->
       <nav class="flex items-center gap-1 text-xs font-mono" aria-label="Main Navigation">
-        <a href="learning.html" class="px-3 py-1.5 rounded-md text-primary font-bold bg-surface-raised flex items-center gap-1.5 transition-colors">
+        <a href="/" class="px-3 py-1.5 rounded-md text-primary font-bold bg-surface-raised flex items-center gap-1.5 transition-colors">
           <span class="material-symbols-outlined text-[15px]">school</span>
           <span>Learn</span>
         </a>
@@ -160,7 +160,7 @@
           <span class="font-bold text-sm text-primary">CALION Academy</span>
           <button type="button" id="mobile-drawer-close" class="p-1 rounded text-outline hover:text-on-surface"><span class="material-symbols-outlined text-base">close</span></button>
         </div>
-        <a href="learning.html" class="block px-2.5 py-2 rounded-lg bg-surface-raised text-primary font-bold">Learning Tree</a>
+        <a href="/" class="block px-2.5 py-2 rounded-lg bg-surface-raised text-primary font-bold">Learning Tree</a>
         <a href="terminal-lab.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Terminal Sandbox</a>
         <a href="profile.html" class="block px-2.5 py-2 rounded-lg text-on-surface hover:bg-surface-raised">Learner Profile</a>
       </div>
@@ -183,9 +183,9 @@
         The requested room identifier is invalid or does not exist in the curriculum database.
       </p>
       <div class="pt-6">
-        <a href="modules.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white text-xs font-mono font-bold hover:opacity-95 shadow transition-all">
+        <a href="/" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white text-xs font-mono font-bold hover:opacity-95 shadow transition-all">
           <span class="material-symbols-outlined text-sm">arrow_back</span>
-          <span>Back to Module Directory</span>
+          <span>Back to Academy Home</span>
         </a>
       </div>
     </div>
@@ -195,9 +195,9 @@
       
       <!-- Breadcrumb Navigation -->
       <nav aria-label="Breadcrumb" class="flex flex-wrap items-center gap-2 text-xs font-mono text-outline">
-        <a href="learning.html" class="hover:text-primary transition-colors">Learn</a>
+        <a href="/" class="hover:text-primary transition-colors">Academy</a>
         <span class="material-symbols-outlined text-xs">chevron_right</span>
-        <a href="modules.html" class="hover:text-primary transition-colors">Pre Security</a>
+        <a href="/" class="hover:text-primary transition-colors">Academy Home</a>
         <span class="material-symbols-outlined text-xs">chevron_right</span>
         <a id="breadcrumb-module-link" href="#" class="hover:text-primary transition-colors">Level</a>
         <span class="material-symbols-outlined text-xs">chevron_right</span>
@@ -348,7 +348,7 @@
               </div>
             </a>
 
-            <a id="module-syllabus-link" href="learning.html" class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-surface-raised border border-border-hairline text-on-surface hover:text-primary transition-colors">
+            <a id="module-syllabus-link" href="/" class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-surface-raised border border-border-hairline text-on-surface hover:text-primary transition-colors">
               <span class="material-symbols-outlined text-sm">view_list</span>
               <span>Back to Learning Tree</span>
             </a>
@@ -412,7 +412,7 @@
         <button type="button" class="w-full sm:w-auto py-3 px-4 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-mono font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors" id="modal-review-btn">
           Review What I Learned
         </button>
-        <a href="learning.html" class="w-full sm:w-auto py-3 px-4 rounded-lg text-slate-500 hover:text-slate-900 dark:hover:text-white text-xs font-mono text-center transition-colors">
+        <a href="/" class="w-full sm:w-auto py-3 px-4 rounded-lg text-slate-500 hover:text-slate-900 dark:hover:text-white text-xs font-mono text-center transition-colors">
           Learning Path
         </a>
       </div>
@@ -429,18 +429,13 @@
         <span class="font-bold text-on-surface">Endlessus Cybersecurity Academy</span> · Engineered by Mihraj Mashhoor K
       </div>
       <div class="flex items-center gap-4">
-        <a href="learning.html" class="hover:text-primary transition-colors">Learn</a>
-        <a href="modules.html" class="hover:text-primary transition-colors">Modules</a>
-        <a href="roadmap.html" class="hover:text-primary transition-colors">Roadmap</a>
-        <a href="labs.html" class="hover:text-primary transition-colors">Labs</a>
+        <a href="/" class="hover:text-primary transition-colors">Academy Home</a>
         <a href="terminal-lab.html" class="hover:text-primary transition-colors">Terminal</a>
-        <a href="glossary.html" class="hover:text-primary transition-colors">Glossary</a>
       </div>
     </div>
   </footer>
 
   <!-- Scripts -->
-  <script src="calion-curriculum-pre-security.js"></script>
   <script src="learning-data.js"></script>
   <script src="vendor/supabase.min.js"></script>
   <script src="calion-runtime-config.js"></script>
@@ -465,31 +460,9 @@
         return;
       }
 
-      // Normalize raw ID: e.g. "ps-room-01", "room-1" -> "room-01", "1" -> "room-01"
-      let normalizedId = rawId.toLowerCase();
-      if (normalizedId.startsWith('ps-room-')) {
-        const numPart = normalizedId.replace('ps-room-', '');
-        normalizedId = 'ps-room-' + String(parseInt(numPart, 10)).padStart(2, '0');
-      } else if (!normalizedId.startsWith('room-')) {
-        normalizedId = 'room-' + String(parseInt(rawId, 10)).padStart(2, '0');
-      } else {
-        const numPart = normalizedId.replace('room-', '');
-        normalizedId = 'room-' + String(parseInt(numPart, 10)).padStart(2, '0');
-      }
-
-      const psCurriculum = (typeof CALION_PRE_SECURITY_CURRICULUM !== 'undefined') ? CALION_PRE_SECURITY_CURRICULUM : null;
-      const psRooms = (typeof CALION_PRE_SECURITY_ROOMS !== 'undefined') ? CALION_PRE_SECURITY_ROOMS : (psCurriculum ? psCurriculum.rooms : []);
-      const psRoomMap = (typeof CALION_PRE_SECURITY_ROOM_MAP !== 'undefined') ? CALION_PRE_SECURITY_ROOM_MAP : (psCurriculum ? psCurriculum.roomMap : {});
-
-      const allRooms = (typeof CALION_ROOMS !== 'undefined' && Array.isArray(CALION_ROOMS))
-        ? CALION_ROOMS
-        : ((typeof PRE_SECURITY_ROOMS !== 'undefined' && Array.isArray(PRE_SECURITY_ROOMS)) ? PRE_SECURITY_ROOMS : []);
-
-      const roomMap = (typeof PRE_SECURITY_ROOM_MAP !== 'undefined') ? PRE_SECURITY_ROOM_MAP : {};
-      let room = (psRoomMap && psRoomMap[normalizedId]) || psRooms.find(r => r.id === normalizedId || (r.legacyId && r.legacyId === normalizedId));
-      if (!room) {
-        room = allRooms.find(r => r.id === normalizedId) || roomMap[normalizedId];
-      }
+      const allRooms = Array.isArray(window.CALION_ROOMS) ? window.CALION_ROOMS : [];
+      const normalizedId = AcademyState.normalizeRoomId(rawId);
+      const room = allRooms.find(r => r.id === normalizedId);
 
       if (!room) {
         showNotFound();
@@ -500,6 +473,29 @@
         if (notFoundEl) notFoundEl.classList.remove('hidden');
         if (containerEl) containerEl.classList.add('hidden');
         document.title = 'Room Not Found · CALION Academy';
+      }
+
+      function showLocked(message) {
+        if (notFoundEl) {
+          notFoundEl.classList.remove('hidden');
+          const title = notFoundEl.querySelector('h1');
+          const description = notFoundEl.querySelector('p');
+          if (title) title.textContent = 'Room Locked';
+          if (description) description.textContent = message;
+        }
+        if (containerEl) containerEl.classList.add('hidden');
+        document.title = 'Room Locked · CALION Academy';
+      }
+
+      const pathRooms = allRooms.filter(r => r.stageId === room.stageId);
+      const pathRoomIndex = pathRooms.findIndex(r => r.id === room.id);
+      if (!AcademyState.isStageUnlocked(room.stageId, allRooms)) {
+        showLocked(`Complete at least 3 rooms in ${room.stageOrder === 2 ? 'Pre-Security' : 'Cyber Security Foundations'} to unlock this path.`);
+        return;
+      }
+      if (pathRoomIndex > 0 && !AcademyState.isRoomCompleted(pathRooms[pathRoomIndex - 1].id)) {
+        showLocked(`Complete ${pathRooms[pathRoomIndex - 1].id.toUpperCase()}: ${pathRooms[pathRoomIndex - 1].title} before entering this room.`);
+        return;
       }
 
       // Record room activity
@@ -516,7 +512,7 @@
       const bModuleLink = document.getElementById('breadcrumb-module-link');
       if (bModuleLink) {
         bModuleLink.textContent = stageName;
-        bModuleLink.href = `learning.html?stage=${room.stageId || 'pre-security'}`;
+        bModuleLink.href = '/';
       }
 
       const bTitle = document.getElementById('breadcrumb-room-title');
@@ -524,7 +520,7 @@
 
       const syllabusLink = document.getElementById('module-syllabus-link');
       if (syllabusLink) {
-        syllabusLink.href = `learning.html?stage=${room.stageId || 'pre-security'}`;
+        syllabusLink.href = '/';
         syllabusLink.innerHTML = `<span class="material-symbols-outlined text-sm">account_tree</span><span>Back to Learning Tree</span>`;
       }
 
@@ -921,13 +917,13 @@
                                 ${q.visualSlots ? `
                                   <div class="flex items-center gap-2 font-mono text-xs text-primary font-bold tracking-widest bg-surface-subtle px-3 py-1.5 rounded-lg border border-border-hairline w-fit">
                                     <span class="text-outline uppercase text-[10px] tracking-normal font-sans">Pattern:</span>
-                                    <span class="text-on-surface font-mono select-none">${escapeHtml(q.visualSlots)}</span>
+                                    <span class="text-on-surface font-mono select-none">${escapeHtml(AcademyState.formatAnswerMask(q))}</span>
                                     ${q.answerLength ? `<span class="text-outline font-sans text-[11px] font-normal">(${q.answerLength} chars)</span>` : ''}
                                   </div>
                                 ` : ''}
 
                                 <div class="flex items-center gap-2 max-w-md">
-                                  <input type="text" id="q-input-${origIdx}" class="flex-1 px-3 py-2 rounded-lg border border-border-hairline bg-surface-subtle text-xs font-mono text-on-surface placeholder-outline focus:border-primary focus:outline-none" placeholder="Type your answer..." value="${isSolved ? (q.acceptedAnswers ? q.acceptedAnswers[0] : '') : ''}" ${isSolved ? 'disabled' : ''} autocomplete="off"/>
+                                  <input type="text" id="q-input-${origIdx}" class="flex-1 px-3 py-2 rounded-lg border border-border-hairline bg-surface-subtle text-xs font-mono text-on-surface placeholder-outline focus:border-primary focus:outline-none" placeholder="Type your answer..." value="" ${isSolved ? 'disabled' : ''} autocomplete="off"/>
                                   <button type="button" class="q-submit-btn px-4 py-2 rounded-lg bg-primary text-black font-mono font-bold text-xs hover:opacity-95 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" data-qidx="${origIdx}" ${isSolved ? 'disabled' : ''}>
                                     Submit
                                   </button>
@@ -1102,13 +1098,13 @@
                         ${capstoneQ.visualSlots ? `
                           <div class="flex items-center gap-2 font-mono text-xs text-primary font-bold tracking-widest bg-surface-subtle px-3 py-1.5 rounded-lg border border-border-hairline w-fit">
                             <span class="text-outline uppercase text-[10px] tracking-normal font-sans">Pattern:</span>
-                            <span class="text-on-surface font-mono select-none">${escapeHtml(capstoneQ.visualSlots)}</span>
+                            <span class="text-on-surface font-mono select-none">${escapeHtml(AcademyState.formatAnswerMask(capstoneQ))}</span>
                             ${capstoneQ.answerLength ? `<span class="text-outline font-sans text-[11px] font-normal">(${capstoneQ.answerLength} chars)</span>` : ''}
                           </div>
                         ` : ''}
 
                         <div class="flex items-center gap-2 max-w-md">
-                          <input type="text" id="q-input-${capstoneIdx}" class="flex-1 px-3 py-2 rounded-lg border border-border-hairline bg-surface-subtle text-xs font-mono text-on-surface placeholder-outline focus:border-primary focus:outline-none" placeholder="Type your answer..." value="${isCapstoneSolved ? (capstoneQ.acceptedAnswers ? capstoneQ.acceptedAnswers[0] : '') : ''}" ${isCapstoneSolved ? 'disabled' : ''} autocomplete="off"/>
+                          <input type="text" id="q-input-${capstoneIdx}" class="flex-1 px-3 py-2 rounded-lg border border-border-hairline bg-surface-subtle text-xs font-mono text-on-surface placeholder-outline focus:border-primary focus:outline-none" placeholder="Type your answer..." value="" ${isCapstoneSolved ? 'disabled' : ''} autocomplete="off"/>
                           <button type="button" class="q-submit-btn px-4 py-2 rounded-lg bg-primary text-black font-mono font-bold text-xs hover:opacity-95 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" data-qidx="${capstoneIdx}" ${isCapstoneSolved ? 'disabled' : ''}>
                             Submit
                           </button>
@@ -1538,7 +1534,7 @@
             nextBtnModal.href = `room.html?id=${nextRoom.id}`;
             nextBtnModal.innerHTML = `<span>Continue to ${nextRoom.id.toUpperCase()}</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span>`;
           } else {
-            nextBtnModal.href = `learning.html?stage=${room.stageId || 'pre-security'}`;
+            nextBtnModal.href = '/';
             nextBtnModal.innerHTML = `<span>Return to Learning Tree</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span>`;
           }
         }
@@ -1656,9 +1652,9 @@
 
       // Prev / Next Room Navigation
       const currentIdx = allRooms.findIndex(r => r.id === room.id);
-      const prevRoom = currentIdx > 0 ? allRooms[currentIdx - 1] : null;
-      const nextRoom = (room.nextRoomId && allRooms.find(r => r.id === room.nextRoomId)) 
-        || (currentIdx >= 0 && currentIdx < allRooms.length - 1 ? allRooms[currentIdx + 1] : null);
+      const pathIdx = pathRooms.findIndex(r => r.id === room.id);
+      const prevRoom = pathIdx > 0 ? pathRooms[pathIdx - 1] : null;
+      const nextRoom = pathIdx >= 0 && pathIdx < pathRooms.length - 1 ? pathRooms[pathIdx + 1] : null;
 
       const prevLink = document.getElementById('prev-room-link');
       const prevTitle = document.getElementById('prev-room-title');

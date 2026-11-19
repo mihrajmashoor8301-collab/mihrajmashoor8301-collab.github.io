@@ -245,7 +245,10 @@ const seedPath = path.join(__dirname, '../supabase/migrations/202611170002_endle
 assert(fs.existsSync(seedPath), 'Academy seed SQL migration file must exist');
 const seedSql = fs.readFileSync(seedPath, 'utf8');
 assert(seedSql.includes('pre-security'), 'Seed SQL must include pre-security learning path');
-assert(seedSql.includes('room-01') && seedSql.includes('room-45'), 'Seed SQL must include all 45 rooms');
+const curriculumSeed = fs.readFileSync(path.join(__dirname, '../supabase/migrations/202611180001_calion_academy_47_rooms_seed.sql'), 'utf8');
+assert(curriculumSeed.includes('room-01') && curriculumSeed.includes('room-47'), 'Current curriculum seed must include all 47 rooms');
+const pathProgressMigration = fs.readFileSync(path.join(__dirname, '../supabase/migrations/202611190001_calion_academy_path_progress.sql'), 'utf8');
+assert(pathProgressMigration.includes('required_count = 10') && pathProgressMigration.includes('pre_security_completed = pre_security_total'), 'Server milestone completion must use the 10-room Pre-Security path');
 assert(seedSql.includes('lab-headers') && seedSql.includes('lab-capstone'), 'Seed SQL must include all 13 labs');
 
 console.log('  ✓ All 10 tables, RLS policies, triggers, and seed datasets verified');

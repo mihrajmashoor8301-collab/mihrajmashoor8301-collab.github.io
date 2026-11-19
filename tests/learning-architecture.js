@@ -2,7 +2,7 @@
  * Endlessus Academy - Modular Learning Architecture Test Suite
  * 
  * Tests:
- * 1. Module Catalogue: All 8 levels listed with accurate room counts matching authoritative data.
+ * 1. Four isolated path roadmaps expose only their authoritative room sets.
  * 2. URL Parameter Validation: module.html, room.html, lesson.html handle valid and invalid IDs gracefully.
  * 3. Continuity: Prev/Next links follow actual curriculum relationships without skipping.
  * 4. State Persistence & Idempotency: Solved questions, completed rooms, and XP calculations.
@@ -159,25 +159,17 @@ console.log('--- 6. Navigation Search Index Integrity ---');
   assert(!navContent.includes('learning.html#stage-8'), 'Legacy #stage-8 reference must not exist in search index');
   assert(!navContent.includes('learning.html#stage-9'), 'Legacy #stage-9 reference must not exist in search index');
   assert(!navContent.includes('learning.html#stage-10'), 'Legacy #stage-10 reference must not exist in search index');
-  assert(navContent.includes('learning.html?stage=pre-security'), 'Search index must deep link to stage progression');
+  assert(navContent.includes('Academy Home · Choose a Learning Path'), 'Search results must direct path selection to Academy home');
+  assert(!navContent.includes('learning.html?stage='), 'Search must not bypass Academy home to select a path');
   console.log('  ✓ Navigation search index contains zero orphaned legacy stage anchors');
 }
 
-console.log('--- 7. Sitemap Route Verification ---');
+console.log('--- 7. Pages Route and Legacy Destination Verification ---');
 {
-  const sitemapContent = fs.readFileSync(path.join(__dirname, '..', 'sitemap.xml'), 'utf8');
-  const requiredSitemapUrls = [
-    'https://endlessus.in/learning.html',
-    'https://endlessus.in/modules.html',
-    'https://endlessus.in/module.html',
-    'https://endlessus.in/room.html',
-    'https://endlessus.in/lesson.html',
-    'https://endlessus.in/security-tools.html'
-  ];
-  requiredSitemapUrls.forEach(url => {
-    assert(sitemapContent.includes(url), `sitemap.xml must include ${url}`);
-  });
-  console.log('  ✓ All new modular learning routes and security-tools verified in sitemap.xml');
+  const redirects = fs.readFileSync(path.join(__dirname, '..', '_redirects'), 'utf8');
+  ['/roadmap/pre-security','/roadmap/cyber-security','/roadmap/defensive-security','/roadmap/offensive-security'].forEach(route => assert(redirects.includes(route), `Cloudflare Pages must route ${route}`));
+  ['/modules','/modules.html','/module.html','/roadmap.html'].forEach(route => assert(redirects.includes(route), `Legacy route ${route} must redirect to Academy home`));
+  console.log('  ✓ Dedicated roadmaps and legacy entry redirects are configured');
 }
 
 console.log('\n============================================================');

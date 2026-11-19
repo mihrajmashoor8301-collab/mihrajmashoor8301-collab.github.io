@@ -104,38 +104,14 @@
   // 2. MASTER ACADEMY SEARCH INDEX
   // =========================================================================
   const ACADEMY_SEARCH_INDEX = [
-    // --- 4 AUTHORITATIVE CALION ACADEMY PROGRESSION STAGES ---
+    // Learning path selection intentionally lives only on Academy home.
     {
-      title: "Stage 1: Pre-Security (10 Rooms)",
-      desc: "Computer architecture, Internet routing, networking protocols, Linux & Windows foundations, virtualization, and intro to security.",
-      url: "learning.html?stage=pre-security",
-      type: "Stage",
+      title: "Academy Home · Choose a Learning Path",
+      desc: "Select Pre-Security, Cyber Security Foundations, Defensive Security or Offensive Security.",
+      url: "/",
+      type: "Academy",
       badgeClass: "badge-stage",
-      keywords: ["pre-security", "foundations", "beginner", "stage 1", "computer", "linux", "networking", "windows", "virtualization"]
-    },
-    {
-      title: "Stage 2: Cyber Security Foundations (10 Rooms)",
-      desc: "Threat landscape, CIA triad, cryptography, PKI, authentication, web architectures, firewalls, and security frameworks.",
-      url: "learning.html?stage=cyber-security",
-      type: "Stage",
-      badgeClass: "badge-stage",
-      keywords: ["cyber security", "threat", "cia triad", "crypto", "encryption", "web security", "stage 2", "firewalls", "siem"]
-    },
-    {
-      title: "Stage 3: Defensive Security (12 Rooms)",
-      desc: "SOC operations, log analysis, threat intelligence, incident response, network traffic analysis, digital forensics, and SIEM rule tuning.",
-      url: "learning.html?stage=defensive-security",
-      type: "Stage",
-      badgeClass: "badge-stage",
-      keywords: ["defensive", "blue team", "soc", "siem", "splunk", "wireshark", "forensics", "incident response", "yara", "stage 3"]
-    },
-    {
-      title: "Stage 4: Offensive Security (15 Rooms)",
-      desc: "Penetration testing methodology, active recon, vulnerability assessment, web attacks, privilege escalation, and capstone engagement.",
-      url: "learning.html?stage=offensive-security",
-      type: "Stage",
-      badgeClass: "badge-stage",
-      keywords: ["offensive", "red team", "pentest", "nmap", "sqli", "xss", "metasploit", "privesc", "buffer overflow", "stage 4"]
+      keywords: ["academy", "learning path", "pre-security", "cyber security", "defensive security", "offensive security"]
     },
     {
       title: "Terminal Practice Sandbox",
@@ -365,7 +341,7 @@
                 </a>
                 <a href="learning.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-surface-raised text-on-surface transition-colors">
                   <span class="material-symbols-outlined text-sm text-secondary">route</span>
-                  <span>Learning Paths</span>
+                  <span>Academy Home</span>
                 </a>
                 <button type="button" class="header-logout-btn w-full text-left flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-danger/10 text-danger transition-colors">
                   <span class="material-symbols-outlined text-sm">logout</span>

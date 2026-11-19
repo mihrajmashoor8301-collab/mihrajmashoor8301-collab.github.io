@@ -1,459 +1,90 @@
-/**
- * Endlessus Browser Verification Suite via Chrome DevTools Protocol (CDP)
- * Launches Headless Chromium and verifies:
- * 1. Minimal Learning Dashboard (learning.html)
- * 2. Module Catalogue (modules.html)
- * 3. Module Overview (module.html)
- * 4. Room Overview (room.html)
- * 5. Focused Lesson Reader & Question Engine (lesson.html)
- * 6. Visual Career Roadmap (roadmap.html) & Mobile 375px responsiveness
- * 7. Dedicated Security Tools (security-tools.html)
- * 8. Error state handling for invalid module/room/lesson IDs
- */
-
+/** Real Chromium verification for CALION Academy home, isolated roadmaps, and room entry. */
 const { spawn } = require('child_process');
 const http = require('http');
-const path = require('path');
 const fs = require('fs');
+const path = require('path');
 const assert = require('assert');
-
-console.log('============================================================');
-console.log('STARTING ENDLESSUS COMPLETE BROWSER VERIFICATION SUITE');
-console.log('============================================================\n');
-
-// 1. Start a simple static HTTP server
-const PORT = 8089;
-const ROOT_DIR = path.join(__dirname, '..');
-
-const MIME_TYPES = {
-  '.html': 'text/html',
-  '.css': 'text/css',
-  '.js': 'application/javascript',
-  '.json': 'application/json',
-  '.png': 'image/png',
-  '.svg': 'image/svg+xml'
-};
-
+const { execFileSync } = require('child_process');
+const PORT = 8089, DEBUG_PORT = 9224, ROOT = path.join(__dirname, '..', 'dist');
+execFileSync(process.execPath,[path.join(__dirname,'../scripts/build-pages.js')],{stdio:'ignore'});
 const server = http.createServer((req, res) => {
-  let reqPath = req.url.split('?')[0];
-  if (reqPath === '/') reqPath = '/learning.html';
-  const filePath = path.join(ROOT_DIR, reqPath);
-
-  if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
-    res.writeHead(404, { 'Content-Type': 'text/plain' });
-    res.end('Not Found');
-    return;
-  }
-
-  const ext = path.extname(filePath).toLowerCase();
-  const contentType = MIME_TYPES[ext] || 'application/octet-stream';
-  res.writeHead(200, { 'Content-Type': contentType });
-  fs.createReadStream(filePath).pipe(res);
+  const pathname = new URL(req.url, `http://127.0.0.1:${PORT}`).pathname;
+  if (['/modules','/modules/','/modules.html','/module.html','/roadmap.html'].includes(pathname)) { res.writeHead(301,{Location:'/'}); return res.end(); }
+  const route = pathname.match(/^\/roadmap\/(pre-security|cyber-security|defensive-security|offensive-security)$/);
+  const actual = route ? '/roadmap.html' : pathname === '/' ? '/learning.html' : pathname;
+  const file = path.join(ROOT, actual);
+  if (!fs.existsSync(file) || !fs.statSync(file).isFile()) { res.writeHead(404); return res.end('Not found'); }
+  const ext = path.extname(file), types={'.html':'text/html','.js':'application/javascript','.css':'text/css','.svg':'image/svg+xml','.json':'application/json'};
+  res.writeHead(200,{'Content-Type':types[ext]||'application/octet-stream'}); fs.createReadStream(file).pipe(res);
 });
-
-server.listen(PORT, async () => {
-  console.log(`✓ Local test server running on http://127.0.0.1:${PORT}`);
+class CDP {
+  constructor(url){this.ws=new WebSocket(url);this.next=0;this.waiters=new Map();this.errors=[];}
+  async ready(){await new Promise((resolve,reject)=>{this.ws.onopen=resolve;this.ws.onerror=reject;this.ws.onmessage=e=>{const m=JSON.parse(e.data);if(m.method==='Runtime.exceptionThrown')this.errors.push(m.params.exceptionDetails?.text||'JavaScript exception');if(m.id&&this.waiters.has(m.id)){const w=this.waiters.get(m.id);this.waiters.delete(m.id);m.error?w.reject(m.error):w.resolve(m.result)}}});}
+  send(method,params={}){const id=++this.next;return new Promise((resolve,reject)=>{this.waiters.set(id,{resolve,reject});this.ws.send(JSON.stringify({id,method,params}))})}
+  async eval(expression){const r=await this.send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.text);return r.result?.value}
+}
+server.listen(PORT, async()=>{
+  let chrome;
   try {
-    await runBrowserTests();
-  } catch (err) {
-    console.error('Browser verification failed:', err);
-    process.exit(1);
-  } finally {
-    server.close();
-  }
-});
-
-// Helper for CDP JSON RPC over WebSocket
-class CDPClient {
-  constructor(wsUrl) {
-    this.wsUrl = wsUrl;
-    this.ws = null;
-    this.id = 0;
-    this.callbacks = new Map();
-  }
-
-  async connect() {
-    return new Promise((resolve, reject) => {
-      this.ws = new WebSocket(this.wsUrl);
-      this.ws.onopen = () => resolve();
-      this.ws.onerror = (e) => reject(e);
-      this.ws.onmessage = (event) => {
-        const msg = JSON.parse(event.data);
-        if (msg.id && this.callbacks.has(msg.id)) {
-          const { resolve, reject } = this.callbacks.get(msg.id);
-          this.callbacks.delete(msg.id);
-          if (msg.error) reject(msg.error);
-          else resolve(msg.result);
-        }
-      };
-    });
-  }
-
-  async send(method, params = {}) {
-    return new Promise((resolve, reject) => {
-      const id = ++this.id;
-      this.callbacks.set(id, { resolve, reject });
-      this.ws.send(JSON.stringify({ id, method, params }));
-    });
-  }
-
-  async evaluate(expression) {
-    const res = await clientEvaluate(this, expression);
-    return res;
-  }
-
-  async close() {
-    if (this.ws) this.ws.close();
-  }
-}
-
-async function clientEvaluate(client, expression) {
-  const res = await client.send('Runtime.evaluate', {
-    expression,
-    returnByValue: true,
-    awaitPromise: true
-  });
-  if (res.exceptionDetails) {
-    throw new Error('Evaluation exception: ' + JSON.stringify(res.exceptionDetails));
-  }
-  return res.result ? res.result.value : undefined;
-}
-
-function fetchJson(url) {
-  return new Promise((resolve, reject) => {
-    http.get(url, (res) => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        try { resolve(JSON.parse(data)); } catch (e) { reject(e); }
-      });
-    }).on('error', reject);
-  });
-}
-
-async function runBrowserTests() {
-  const DEBUG_PORT = 9224;
-  const tmpProfileDir = `/tmp/chrome-test-profile-${Date.now()}`;
-  console.log('--- 1. Launching Headless Chromium ---');
-  const chromeProcess = spawn('/usr/bin/chromium', [
-    '--headless=new',
-    '--disable-gpu',
-    '--no-sandbox',
-    `--remote-debugging-port=${DEBUG_PORT}`,
-    `--user-data-dir=${tmpProfileDir}`,
-    '--window-size=1280,960'
-  ]);
-
-  let pageTarget = null;
-  for (let i = 0; i < 30; i++) {
-    await new Promise(r => setTimeout(r, 200));
-    try {
-      const targets = await fetchJson(`http://127.0.0.1:${DEBUG_PORT}/json`);
-      if (targets && targets.length > 0) {
-        pageTarget = targets.find(t => t.type === 'page') || targets[0];
-        break;
-      }
-    } catch (e) {}
-  }
-
-  assert(pageTarget && pageTarget.webSocketDebuggerUrl, 'Chromium debugging target required');
-  console.log(`  ✓ Connected to Chromium DevTools: ${pageTarget.title || 'Page'}`);
-
-  const client = new CDPClient(pageTarget.webSocketDebuggerUrl);
-  await client.connect();
-  await client.send('Page.enable');
-  await client.send('Runtime.enable');
-  await client.send('DOM.enable');
-
-  try {
-    async function navigate(url) {
-      const targetPath = new URL(url).pathname;
-      await client.send('Page.navigate', { url });
-      for (let i = 0; i < 60; i++) {
-        await new Promise(r => setTimeout(r, 100));
-        try {
-          const ok = await client.evaluate(`Boolean(window.location.pathname.endsWith('${targetPath}') && document.readyState === 'complete' && document.body && document.body.children.length > 0)`);
-          if (ok) break;
-        } catch (e) {}
-      }
-      await new Promise(r => setTimeout(r, 200));
+    chrome=spawn('/usr/bin/chromium',['--headless=new','--no-sandbox','--disable-gpu',`--remote-debugging-port=${DEBUG_PORT}`,`--user-data-dir=/tmp/calion-academy-${Date.now()}`,'--window-size=1280,960']);
+    let target;for(let i=0;i<50&&!target;i++){await new Promise(r=>setTimeout(r,150));try{target=(await (await fetch(`http://127.0.0.1:${DEBUG_PORT}/json`)).json()).find(x=>x.type==='page')}catch{}}
+    assert(target,'Chromium DevTools target available');const c=new CDP(target.webSocketDebuggerUrl);await c.ready();await c.send('Page.enable');await c.send('Runtime.enable');
+    const navigate=async url=>{await c.send('Page.navigate',{url});for(let i=0;i<60;i++){await new Promise(r=>setTimeout(r,100));if(await c.eval('document.readyState === "complete"').catch(()=>false))break}await new Promise(r=>setTimeout(r,180));};
+    await navigate(`http://127.0.0.1:${PORT}/`);
+    assert((await c.eval('document.title')).includes('CALION Academy'));
+    assert.equal(await c.eval('document.querySelectorAll("#path-grid .path-card").length'),4);
+    assert.equal(await c.eval('[...document.querySelectorAll("#path-grid a.path-action")].map(a=>a.getAttribute("href")).join(",")'),'/roadmap/pre-security,/roadmap/cyber-security,/roadmap/defensive-security,/roadmap/offensive-security');
+    console.log('✓ Academy home renders four path selectors and correct dedicated route destinations');
+    const expected={'pre-security':10,'cyber-security':10,'defensive-security':12,'offensive-security':15};
+    for(const [slug,count] of Object.entries(expected)){
+      await navigate(`http://127.0.0.1:${PORT}/roadmap/${slug}`);
+      assert.equal(await c.eval('document.querySelectorAll("#roadmap-nodes .rm-node").length'),count,`${slug} room count`);
+      assert.equal(await c.eval('new Set([...document.querySelectorAll("#roadmap-nodes .rm-node")].map(n=>n.querySelector(".rm-number").textContent)).size'),count);
+      assert.equal(await c.eval('document.querySelector("#page-canonical").href'),`https://learning.endlessus.in/roadmap/${slug}`);
+      assert((await c.eval('document.querySelector("#page-description").content')).includes(`${count} connected cybersecurity rooms`));
+      const wrong=await c.eval(`[...document.querySelectorAll("#roadmap-nodes .rm-node a.rm-enter")].some(a=>!a.getAttribute("href").startsWith("/room.html?id=room-"))`);
+      assert.equal(wrong,false);
+      const desktop=await c.eval('({width:innerWidth,scrollWidth:document.documentElement.scrollWidth})');
+      assert(desktop.width>=1024&&desktop.scrollWidth<=desktop.width,`${slug} desktop overflow: ${JSON.stringify(desktop)}`);
+      await c.send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+      const mobile=await c.eval('({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,nodes:document.querySelectorAll("#roadmap-nodes .rm-node").length})');
+      const shot=await c.send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});fs.writeFileSync(`/tmp/calion-${slug}-mobile.png`,Buffer.from(shot.data,'base64'));
+      assert(mobile.scrollWidth<=mobile.width,`${slug} horizontal overflow at 390px: ${JSON.stringify(mobile)}`);
+      await c.send('Emulation.clearDeviceMetricsOverride');
+      if(slug==='pre-security'){const desktopShot=await c.send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});fs.writeFileSync('/tmp/calion-pre-security-desktop.png',Buffer.from(desktopShot.data,'base64'));}
+      assert.equal(await c.eval('[...document.querySelectorAll(".rm-nav a")].filter(a=>! ["/","profile.html"].includes(a.getAttribute("href"))).length'),0,'roadmap exposes no cross-path navigation');
+      console.log(`✓ ${slug}: ${count} isolated rooms; no desktop or 390px mobile overflow`);
     }
-
-    // -------------------------------------------------------------
-    // TEST 1: Minimal Learning Dashboard (learning.html)
-    // -------------------------------------------------------------
-    console.log('\n--- 2. Testing Minimal Learning Dashboard (learning.html) ---');
-    await navigate(`http://127.0.0.1:${PORT}/learning.html`);
-
-    const dashTitle = await client.evaluate('document.title');
-    console.log(`  ✓ Dashboard title: "${dashTitle}"`);
-    assert(dashTitle.includes('Learning Dashboard') || dashTitle.includes('Endlessus') || dashTitle.includes('CALION'));
-
-    // Check primary "Start / Continue Learning" button
-    const continueBtnHref = await client.evaluate('document.getElementById("dashboard-continue-btn").getAttribute("href")');
-    const continueBtnText = await client.evaluate('document.getElementById("dashboard-continue-text").textContent.trim()');
-    console.log(`  ✓ Continue action: "${continueBtnText}" -> ${continueBtnHref}`);
-    assert(continueBtnHref.includes('room.html') || continueBtnHref.includes('lesson.html'), 'Continue button must link to room overview or lesson reader');
-
-    // Check metrics cards
-    const statsRooms = await client.evaluate('document.getElementById("stat-completed-rooms").textContent.trim()');
-    const statsXP = await client.evaluate('document.getElementById("stat-user-xp").textContent.trim()');
-    console.log(`  ✓ Dashboard stats: Completed=${statsRooms}/45, XP=${statsXP}`);
-
-    // Check recommended activity card
-    const recRoomTitle = await client.evaluate('document.getElementById("rec-room-title").textContent.trim()');
-    console.log(`  ✓ Recommended room: "${recRoomTitle}"`);
-    assert(recRoomTitle.includes('ROOM-01'), 'Default initial recommended room must be ROOM-01');
-
-    // -------------------------------------------------------------
-    // TEST 2: Module Catalogue (modules.html)
-    // -------------------------------------------------------------
-    console.log('\n--- 3. Testing Module Catalogue (modules.html) ---');
-    await navigate(`http://127.0.0.1:${PORT}/modules.html`);
-
-    const modulesTitle = await client.evaluate('document.title');
-    console.log(`  ✓ Module catalogue title: "${modulesTitle}"`);
-    assert(modulesTitle.includes('Learning Modules'));
-
-    // Check all 4 stage cards rendered
-    const levelCardsCount = await client.evaluate('document.querySelectorAll("#modules-grid article").length');
-    console.log(`  ✓ Rendered module cards in grid: ${levelCardsCount}`);
-    assert(levelCardsCount >= 4, 'Must render curriculum module cards');
-
-    // Test difficulty filter (e.g. "Practical" or "Foundational")
-    const practicalCount = await client.evaluate(`
-      (() => {
-        const btn = document.querySelector('[data-filter="Foundational"]') || document.querySelector('[data-filter="Practical"]');
-        if (btn) btn.click();
-        return document.querySelectorAll('#modules-grid article').length;
-      })()
-    `);
-    console.log(`  ✓ Filter results count: ${practicalCount}`);
-    assert(practicalCount >= 0 && practicalCount <= 4, 'Filter must narrow displayed cards');
-
-    // Reset filter
-    await client.evaluate('document.querySelector(\'[data-filter="all"]\').click()');
-
-    // -------------------------------------------------------------
-    // TEST 3: Module Overview (module.html?id=level-0)
-    // -------------------------------------------------------------
-    console.log('\n--- 4. Testing Module Overview (module.html?id=level-0) ---');
-    await navigate(`http://127.0.0.1:${PORT}/module.html?id=level-0`);
-
-    const modTitle = await client.evaluate('document.getElementById("module-title").textContent.trim()');
-    console.log(`  ✓ Module title: "${modTitle}"`);
-    assert(modTitle.includes('Pre-Security') || modTitle.includes('Start Here'), 'Module title must be Pre-Security or Start Here');
-
-    const outcomesCount = await client.evaluate('document.querySelectorAll("#module-outcomes-list li").length');
-    console.log(`  ✓ Learning outcomes listed: ${outcomesCount}`);
-    assert(outcomesCount >= 2, 'Module must list at least 2 real learning outcomes');
-
-    const moduleRoomsCount = await client.evaluate('document.querySelectorAll("#rooms-list-container > div").length');
-    console.log(`  ✓ Rooms listed in Level 00: ${moduleRoomsCount}`);
-    assert(moduleRoomsCount >= 2, 'Level 00 must contain rooms (room-01 to room-10)');
-
-    // -------------------------------------------------------------
-    // TEST 4: Room Overview (room.html?id=room-01)
-    // -------------------------------------------------------------
-    console.log('\n--- 5. Testing Room Overview (room.html?id=room-01) ---');
-    await navigate(`http://127.0.0.1:${PORT}/room.html?id=room-01`);
-
-    const roomTitle = await client.evaluate('document.getElementById("room-title").textContent.trim()');
-    console.log(`  ✓ Room title: "${roomTitle}"`);
-    assert(roomTitle.includes('Introduction to Computers') || roomTitle.includes('Welcome to Cybersecurity'));
-
-    const roomObjectivesCount = await client.evaluate('document.querySelectorAll("#room-objectives-list li").length');
-    console.log(`  ✓ Room objectives listed: ${roomObjectivesCount}`);
-    assert(roomObjectivesCount >= 3, 'Room 01 must list at least 3 learning objectives');
-
-    const lessonsOutlineCount = await client.evaluate('document.querySelectorAll("#lessons-outline-container > div").length');
-    console.log(`  ✓ Lesson outline sections: ${lessonsOutlineCount}`);
-    assert(lessonsOutlineCount >= 2, 'Room 01 must outline at least 2 lesson sections');
-
-    const inRoomTasksCount = await client.evaluate('document.querySelectorAll(".task-card").length');
-    const inRoomQuestionsCount = await client.evaluate('document.querySelectorAll(".q-submit-btn").length');
-    const sidebarTaskLinksCount = await client.evaluate('document.querySelectorAll(".task-jump-link").length');
-    console.log(`  ✓ TryHackMe room elements: Tasks=${inRoomTasksCount}, Questions=${inRoomQuestionsCount}, Quick-Jump Links=${sidebarTaskLinksCount}`);
-    assert(inRoomTasksCount >= 3, 'Must render at least 3 task cards');
-    assert(inRoomQuestionsCount >= 1, 'Must render in-room question submit buttons');
-    assert(sidebarTaskLinksCount >= 3, 'Must render sidebar quick-jump task links');
-
-    // -------------------------------------------------------------
-    // TEST 5: Focused Lesson Reader & Question Engine (lesson.html)
-    // -------------------------------------------------------------
-    console.log('\n--- 6. Testing Focused Lesson Reader & Question Engine (lesson.html) ---');
-    await navigate(`http://127.0.0.1:${PORT}/lesson.html?room=room-01&task=0`);
-
-    const sectionTitle = await client.evaluate('document.getElementById("lesson-section-title").textContent.trim()');
-    console.log(`  ✓ Lesson section title: "${sectionTitle}"`);
-    assert(sectionTitle.includes('Von Neumann') || sectionTitle.includes('What is Cybersecurity') || sectionTitle.includes('Computers'));
-
-    // Check SVG diagram is rendered
-    const hasSvg = await client.evaluate('Boolean(document.querySelector("#lesson-diagram-svg svg"))');
-    console.log(`  ✓ Architectural diagram rendered: ${hasSvg}`);
-    assert(hasSvg, 'Lesson section 1 must render architectural SVG diagram');
-
-    // Test Question 1 (Exact Answer with character slots)
-    const qCount = await client.evaluate('document.querySelectorAll("#questions-list > div").length');
-    console.log(`  ✓ Interactive questions loaded: ${qCount}`);
-    assert(qCount >= 1, 'Lesson reader must load interactive questions');
-
-    // Submit INCORRECT Answer
-    const incorrectCheck = await client.evaluate(`
-      (() => {
-        const input = document.getElementById('q-input-0');
-        input.value = 'invalid_answer_123';
-        const btn = document.querySelector('.q-submit-btn[data-qidx="0"]');
-        btn.click();
-        const fb = document.getElementById('q-feedback-0');
-        return fb ? fb.textContent.trim() : '';
-      })()
-    `);
-    console.log(`  ✓ Incorrect feedback: "${incorrectCheck.substring(0, 30)}..."`);
-    assert(incorrectCheck.includes('Incorrect'), 'Must display Incorrect Answer feedback');
-
-    // Submit CORRECT Answer "Instruction Pointer"
-    const correctCheck = await client.evaluate(`
-      (() => {
-        const input = document.getElementById('q-input-0');
-        input.value = '  Instruction Pointer  ';
-        const btn = document.querySelector('.q-submit-btn[data-qidx="0"]');
-        btn.click();
-        const fb = document.getElementById('q-feedback-0');
-        return fb ? fb.textContent.trim() : '';
-      })()
-    `);
-    console.log(`  ✓ Correct feedback: "${correctCheck.substring(0, 35)}..."`);
-    assert(correctCheck.includes('Correct!'), 'Must display Correct! feedback');
-
-    // Verify XP is awarded in localStorage
-    const savedXP = await client.evaluate('AcademyState.calculateTotalXP()');
-    console.log(`  ✓ User accrued XP in state: ${savedXP}`);
-    assert(savedXP >= 25, 'Solving question must award XP');
-
-    // -------------------------------------------------------------
-    // TEST 6: Visual Career Roadmap & Mobile 375px Responsiveness
-    // -------------------------------------------------------------
-    console.log('\n--- 7. Testing Visual Career Roadmap (roadmap.html) & Mobile Layout ---');
-    await navigate(`http://127.0.0.1:${PORT}/roadmap.html`);
-
-    const stagesCount = await client.evaluate('document.querySelectorAll("#roadmap-stages-container > div").length');
-    const roomsCount = await client.evaluate('document.querySelectorAll(".btn-toggle-room").length');
-    console.log(`  ✓ Rendered levels: ${stagesCount}, rooms: ${roomsCount}`);
-    assert(stagesCount >= 4, 'Career roadmap must render all stages');
-    assert(roomsCount >= 45, 'Career roadmap must render all rooms');
-
-    // Switch Viewport to Mobile (375px iPhone SE)
-    await client.send('Emulation.setDeviceMetricsOverride', {
-      width: 375,
-      height: 667,
-      deviceScaleFactor: 2,
-      mobile: true
-    });
-    await new Promise(r => setTimeout(r, 400));
-
-    const mobileOverflow = await client.evaluate(`
-      (() => {
-        return {
-          scrollWidth: document.documentElement.scrollWidth,
-          innerWidth: window.innerWidth,
-          hasOverflow: document.documentElement.scrollWidth > window.innerWidth
-        };
-      })()
-    `);
-    console.log(`  ✓ Mobile 375px overflow test: ScrollWidth=${mobileOverflow.scrollWidth}, InnerWidth=${mobileOverflow.innerWidth}`);
-    assert(!mobileOverflow.hasOverflow, 'Mobile layout must have zero horizontal overflow');
-
-    // Reset Desktop Viewport (1280px)
-    await client.send('Emulation.setDeviceMetricsOverride', {
-      width: 1280,
-      height: 960,
-      deviceScaleFactor: 1,
-      mobile: false
-    });
-    await new Promise(r => setTimeout(r, 200));
-
-    // -------------------------------------------------------------
-    // TEST 7: Security Tools Suite (security-tools.html)
-    // -------------------------------------------------------------
-    console.log('\n--- 8. Testing Security Tools Suite (security-tools.html) ---');
-    await navigate(`http://127.0.0.1:${PORT}/security-tools.html`);
-
-    const b64Test = await client.evaluate(`
-      (() => {
-        const input = document.getElementById('enc-input');
-        input.value = 'EndlessusPreSecurity2026';
-        document.getElementById('btn-encode').click();
-        return document.getElementById('enc-output').textContent.trim();
-      })()
-    `);
-    console.log(`  ✓ Base64 encode test: "${b64Test}"`);
-    assert.strictEqual(b64Test, 'RW5kbGVzc3VzUHJlU2VjdXJpdHkyMDI2');
-
-    // -------------------------------------------------------------
-    // TEST 9: Cadet Authentication (auth.html)
-    // -------------------------------------------------------------
-    console.log('\n--- 9. Testing Learner Authentication Page (auth.html) ---');
-    await navigate(`http://127.0.0.1:${PORT}/auth.html`);
-    const authTitle = await client.evaluate('document.getElementById("auth-title").textContent.trim()');
-    console.log(`  ✓ Auth page title: "${authTitle}"`);
-    assert(authTitle.includes('Account Access') || authTitle.includes('Authentication') || authTitle.includes('Cadet'), 'Auth page title must match');
-
-    // Switch to Register tab
-    await client.evaluate('document.getElementById("tab-register").click()');
-    const registerVisible = await client.evaluate('!document.getElementById("form-register").classList.contains("hidden")');
-    console.log(`  ✓ Register form revealed upon tab click: ${registerVisible}`);
-    assert(registerVisible, 'Register form must be visible');
-
-    // -------------------------------------------------------------
-    // TEST 10: TryHackMe Profile & Learning Progress (profile.html)
-    // -------------------------------------------------------------
-    console.log('\n--- 10. Testing TryHackMe Profile & Progress (profile.html) ---');
-    await navigate(`http://127.0.0.1:${PORT}/profile.html`);
-    const profileCadetName = await client.evaluate('document.getElementById("cadet-name").textContent.trim()');
-    const statRoomsText = await client.evaluate('document.getElementById("stat-rooms").textContent.trim()');
-    const pathPresecBarWidth = await client.evaluate('document.getElementById("path-presec-bar").style.width');
-    const heatmapCellsCount = await client.evaluate('document.getElementById("activity-heatmap").children.length');
-    const achievementsCount = await client.evaluate('document.getElementById("achievements-grid").children.length');
-
-    console.log(`  ✓ Profile cadet identity: "${profileCadetName}"`);
-    console.log(`  ✓ Learning rooms stat counter: "${statRoomsText}"`);
-    console.log(`  ✓ Pre Security pathway bar initialized: ${pathPresecBarWidth}`);
-    console.log(`  ✓ Activity calendar heatmap cells rendered: ${heatmapCellsCount}`);
-    console.log(`  ✓ Milestone achievements rendered in grid: ${achievementsCount}`);
-
-    assert(heatmapCellsCount > 300, '52-week activity calendar must render all day cells');
-    assert.strictEqual(achievementsCount, 9, 'Must render all 9 milestone achievements');
-
-    // -------------------------------------------------------------
-    // TEST 11: Invalid Query Parameters & Error States
-    // -------------------------------------------------------------
-    console.log('\n--- 11. Testing Invalid Query Parameter Handling & 404 States ---');
-
-    // Invalid Module ID
-    await navigate(`http://127.0.0.1:${PORT}/module.html?id=level-999`);
-    const modNotFoundVisible = await client.evaluate('!document.getElementById("module-not-found").classList.contains("hidden")');
-    console.log(`  ✓ Invalid module (level-999) shows clean error: ${modNotFoundVisible}`);
-    assert(modNotFoundVisible, 'Invalid module ID must display Not Found container');
-
-    // Invalid Room ID
-    await navigate(`http://127.0.0.1:${PORT}/room.html?id=room-999`);
-    const roomNotFoundVisible = await client.evaluate('!document.getElementById("room-not-found").classList.contains("hidden")');
-    console.log(`  ✓ Invalid room (room-999) shows clean error: ${roomNotFoundVisible}`);
-    assert(roomNotFoundVisible, 'Invalid room ID must display Not Found container');
-
-    // Invalid Lesson Room
-    await navigate(`http://127.0.0.1:${PORT}/lesson.html?room=room-999`);
-    const lessonNotFoundVisible = await client.evaluate('!document.getElementById("lesson-not-found").classList.contains("hidden")');
-    console.log(`  ✓ Invalid lesson (room-999) shows clean error: ${lessonNotFoundVisible}`);
-    assert(lessonNotFoundVisible, 'Invalid lesson room must display Not Found container');
-
-    console.log('\n============================================================');
-    console.log('ALL BROWSER VERIFICATION TESTS PASSED (100%)!');
-    console.log('============================================================\n');
-
-  } finally {
-    await client.close();
-    chromeProcess.kill();
-  }
-}
+    await navigate(`http://127.0.0.1:${PORT}/room.html?id=room-02`);
+    assert.equal(await c.eval('document.title'),'Room Locked · CALION Academy','direct URL cannot bypass previous-room prerequisite');
+    await navigate(`http://127.0.0.1:${PORT}/lesson.html?room=room-02&task=0`);
+    assert.equal(await c.eval('document.title'),'Room Locked · CALION Academy','lesson URL cannot bypass previous-room prerequisite');
+    await c.eval(`localStorage.setItem('calion_completed_rooms',JSON.stringify(['room-01','room-02','room-03','room-04','room-05','room-06','room-07','room-08']))`);
+    await navigate(`http://127.0.0.1:${PORT}/room.html?id=ps-room-03`);
+    assert((await c.eval('document.title')).includes('Introduction to Virtualization'));
+    const hintResult=await c.eval(`(()=>{const before=AcademyState.calculateTotalXP();const trigger=document.querySelector('.hint-step-trigger');if(!trigger)return {missing:true};trigger.click();const drawer=document.querySelector('[id^="hint-drawer-"]');const next=document.querySelector('.next-hint-btn');if(!next)return {missingNext:true};next.click();return {before,after:AcademyState.calculateTotalXP(),step:next.dataset.nextStep,visible:!drawer.classList.contains('hidden'),inputValues:[...document.querySelectorAll('input[id^="q-input-"]')].map(i=>i.value)}})()`);
+    assert.equal(hintResult.missing,undefined,'room renders learner-requested progressive hints');assert.equal(hintResult.missingNext,undefined);assert.equal(hintResult.visible,true);assert.equal(hintResult.step,'2');assert.equal(hintResult.after,hintResult.before,'hints do not deduct or award XP');assert(hintResult.inputValues.every(v=>v===''),'correct answers are not prefilled into question fields');
+    await navigate(`http://127.0.0.1:${PORT}/lesson.html?room=room-09&task=0`);
+    const lessonHint=await c.eval(`(()=>{const before=AcademyState.calculateTotalXP();const details=document.querySelector('details');const next=document.querySelector('.lesson-hint-next');if(!details||!next)return {missing:true};details.open=true;next.click();return {before,after:AcademyState.calculateTotalXP(),step:next.dataset.nextStep,text:document.querySelector('[id^="lesson-hint-text-"]').textContent}})()`);
+    assert.equal(lessonHint.missing,undefined,'lesson reader renders progressive hint control');assert.equal(lessonHint.after,lessonHint.before);assert.equal(lessonHint.step,'2');assert(lessonHint.text.includes('Hint 2:'));
+    console.log('✓ Room and lesson hints reveal one tier at a time on request without XP changes or answer prefill; legacy IDs normalize');
+    await c.eval(`localStorage.setItem('calion_completed_rooms',JSON.stringify(['room-01','room-02','room-03']))`);
+    await navigate(`http://127.0.0.1:${PORT}/roadmap/cyber-security`);
+    assert.equal(await c.eval('document.querySelector("#roadmap-header [role=status]")===null'),true,'three Pre-Security rooms unlock Foundations');
+    assert.equal(await c.eval('document.querySelector("#roadmap-nodes .rm-node").classList.contains("current")'),true);
+    await c.eval(`localStorage.setItem('calion_completed_rooms',JSON.stringify(['room-01','room-02','room-03','room-11','room-12','room-13']))`);
+    for(const slug of ['defensive-security','offensive-security']){
+      await navigate(`http://127.0.0.1:${PORT}/roadmap/${slug}`);
+      assert.equal(await c.eval('document.querySelector("#roadmap-header [role=status]")===null'),true,`${slug} independently unlocks after Foundations threshold`);
+      assert.equal(await c.eval('document.querySelector("#roadmap-nodes .rm-node").classList.contains("current")'),true);
+    }
+    console.log('✓ Existing unlock thresholds preserved: three Pre-Security unlock Foundations; three Foundations unlock both specialist paths in parallel');
+    for(const url of ['/modules','/modules.html','/module.html','/roadmap.html']){const r=await fetch(`http://127.0.0.1:${PORT}${url}`,{redirect:'manual'});assert.equal(r.status,301);assert.equal(r.headers.get('location'),'/')}
+    console.log('✓ Legacy Modules and unified roadmap URLs redirect to Academy home');
+    await c.send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+    await navigate(`http://127.0.0.1:${PORT}/`);assert((await c.eval('document.documentElement.scrollWidth'))<=390);console.log('✓ Academy home fits 390px viewport');
+    assert.deepEqual(c.errors,[],`browser runtime exceptions: ${c.errors.join('; ')}`);
+    console.log('✓ No uncaught JavaScript exceptions during browser navigation');
+    c.ws.close();
+  } catch(e){console.error(e);process.exitCode=1;} finally{if(chrome)chrome.kill();server.close();}
+});

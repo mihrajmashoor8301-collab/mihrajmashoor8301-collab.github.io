@@ -25,8 +25,8 @@ const htmlPath = path.resolve(__dirname, '../terminal-lab.html');
 const htmlContent = fs.readFileSync(htmlPath, 'utf8');
 
 const fnIdx = htmlContent.indexOf('function escapeHtml(str) {');
-const endIdx = htmlContent.indexOf('</script>', fnIdx);
-assert.ok(fnIdx !== -1 && endIdx !== -1, 'escapeHtml definition should exist in terminal-lab.html');
+const endIdx = htmlContent.indexOf('\n      }', fnIdx) + '\n      }'.length;
+assert.ok(fnIdx !== -1 && endIdx > fnIdx, 'escapeHtml definition should exist in terminal-lab.html');
 const fnCode = htmlContent.slice(fnIdx, endIdx).trim();
 const escapeHtml = new Function(fnCode + '; return escapeHtml;')();
 
@@ -114,12 +114,11 @@ test('Card title and description are escaped to prevent DOM XSS injection', () =
 });
 
 // 4. Verify terminal-lab.html template integrity
-test('terminal-lab.html card rendering template uses escapeHtml for flags and text', () => {
-  assert.ok(htmlContent.includes('${(card.flags || []).map(f => `<span class="px-1.5 py-0.5 rounded bg-surface-raised border border-border-hairline text-on-surface-variant">${escapeHtml(f)}</span>`).join(\'\')}'),
-    'Flag rendering must invoke escapeHtml(f)');
-  assert.ok(htmlContent.includes('${escapeHtml(card.title)}'), 'card.title must be escaped');
-  assert.ok(htmlContent.includes('${escapeHtml(card.desc)}'), 'card.desc must be escaped');
-  assert.ok(htmlContent.includes('${escapeHtml(card.command)}'), 'card.command must be escaped');
+test('terminal-lab.html escapes dynamic simulator output', () => {
+  assert.ok(htmlContent.includes('function escapeHtml(str)'), 'HTML escaping helper must exist');
+  assert.ok(htmlContent.includes('escapeHtml(cmd)'), 'Entered command output must be escaped');
+  assert.ok(htmlContent.includes('escapeHtml(target)'), 'Simulated target output must be escaped');
+  assert.ok(htmlContent.includes('appendLabOutput('), 'Escaped simulator output must use the output renderer');
 });
 
 // 5. Real Browser DOM Execution Test (via Chromium if available)

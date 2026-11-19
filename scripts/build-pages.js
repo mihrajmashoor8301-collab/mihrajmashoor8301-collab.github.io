@@ -51,6 +51,11 @@ const INCLUDE_SPECIAL_FILES = new Set([
 ]);
 
 // Root files/dirs explicitly excluded
+const EXCLUDE_ROOT_FILES = new Set([
+  'calion-curriculum-pre-security.js',
+  'pre-security-data.js'
+]);
+
 const EXCLUDE_NAMES = new Set([
   'supabase',
   'tests',
@@ -229,7 +234,7 @@ function runBuild() {
   let htmlPatchedCount = 0;
 
   for (const entry of rootEntries) {
-    if (EXCLUDE_NAMES.has(entry)) continue;
+    if (EXCLUDE_NAMES.has(entry) || EXCLUDE_ROOT_FILES.has(entry)) continue;
 
     const srcPath = path.join(ROOT_DIR, entry);
     const destPath = path.join(DIST_DIR, entry);
@@ -272,7 +277,7 @@ function runBuild() {
   if (htmlPatchedCount > 0) {
     console.log(`✓ Verified and ensured runtime configuration injection across ${htmlPatchedCount} HTML pages`);
   }
-  console.log('✓ Security check: Non-public directories (supabase, tests, docs, server, .env*) strictly excluded.');
+  console.log('✓ Security check: Non-public directories and retired duplicate curriculum bundles are excluded.');
   console.log('============================================================\n');
 }
 
