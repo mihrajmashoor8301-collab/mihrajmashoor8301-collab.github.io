@@ -87,6 +87,28 @@ const xpClient = require('../academy-xp-client.js');
   assert.equal(sent.xpAwarded, 25);
   assert.equal(sent.totalXP, 275);
 
+  global.window = { AcademyAuth: {
+    isAuthenticated: () => true,
+    getUser: () => ({ id: 'expired-user' }),
+    getClient: () => ({ rpc: async () => ({ data: null, error: { status: 401, message: 'JWT expired' } }) })
+  } };
+  const expired = await xpClient.submitAnswer({ roomId: 'room-01', questionId: 'q-01-1', answer: 'IP' });
+  assert.equal(expired.code, 'auth_required', 'expired sessions are surfaced as authentication failures');
+  assert.equal(expired.xpAwarded, 0);
+
+  let changingUser = { id: 'original-user' };
+  global.window = { AcademyAuth: {
+    isAuthenticated: () => true,
+    getUser: () => changingUser,
+    getClient: () => ({ rpc: async () => {
+      changingUser = { id: 'different-user' };
+      return { data: { success: true, correct: true, xp_awarded: 25, total_xp: 300 }, error: null };
+    } })
+  } };
+  const changed = await xpClient.submitAnswer({ roomId: 'room-01', questionId: 'q-01-1', answer: 'IP' });
+  assert.equal(changed.code, 'auth_changed', 'an answer response cannot update a different account after an auth change');
+  assert.equal(changed.xpAwarded, 0);
+
 // Model the unique-index/serialized RPC contract under concurrent retries.
 const ledger = new Map();
 let balance = 250;

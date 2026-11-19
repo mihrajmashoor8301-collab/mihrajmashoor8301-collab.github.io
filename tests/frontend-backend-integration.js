@@ -106,6 +106,10 @@ assert(lessonHtml.includes('rate_limited'), 'lesson.html must handle rate_limite
 // Assert server check failure handling
 assert(roomHtml.includes('serverCheckFailed'), 'room.html must handle server check failures gracefully');
 assert(lessonHtml.includes('serverCheckFailed'), 'lesson.html must handle server check failures gracefully');
+for (const [page, html] of [['room.html', roomHtml], ['lesson.html', lessonHtml]]) {
+  assert(html.includes("'auth_required'") && html.includes('Your sign-in session expired'), `${page} must explain expired sessions without treating them as wrong answers`);
+  assert(html.includes("'auth_changed'") && html.includes('Your account changed while the answer was being checked'), `${page} must not apply a response to a different account`);
+}
 
 // Assert button busy / disabled state during submission
 assert(roomHtml.includes('aria-busy'), 'room.html must set aria-busy / disable button during RPC');

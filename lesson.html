@@ -992,6 +992,7 @@
         let serverRoomCompleted = false;
         let serverCheckFailed = false;
         let rateLimited = false;
+        let verificationCode = null;
         const authenticatedLearner = Boolean(window.AcademyAuth && AcademyAuth.isAuthenticated && AcademyAuth.isAuthenticated());
 
         const feedbackEl = document.getElementById(`q-feedback-${idx}`);
@@ -1050,6 +1051,7 @@
               questionId: q.id,
               answer: q.type === 'exact' ? userInput : selectedOption
             });
+            verificationCode = checked && checked.code || null;
             if (checked && checked.code === 'rate_limited') {
               rateLimited = true;
             } else {
@@ -1057,7 +1059,7 @@
               verifiedAward = Number(checked && checked.xpAwarded) || 0;
               verifiedRoomAward = Number(checked && checked.roomXpAwarded) || 0;
               serverRoomCompleted = Boolean(checked && checked.room_completed);
-              serverCheckFailed = !checked || ['server_error','practice_only_guest','verification_unavailable'].includes(checked.code);
+              serverCheckFailed = !checked || ['server_error','practice_only_guest','verification_unavailable','auth_required','auth_changed'].includes(checked.code);
               if (authenticatedLearner && checked && Number.isFinite(checked.totalXP)) {
                 AcademyState.safeSet(AcademyState.KEYS.XP, checked.totalXP);
                 const prof = window.AcademyAuth?.getProfile?.();
@@ -1092,7 +1094,11 @@
         if (serverCheckFailed) {
           if (feedbackEl) {
             feedbackEl.className = 'p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-700 dark:text-amber-300 text-xs font-mono block';
-            feedbackEl.textContent = 'The answer could not be verified by the server. Your answer was not recorded; please retry when connected.';
+            feedbackEl.textContent = verificationCode === 'auth_required'
+              ? 'Your sign-in session expired. Sign in again before submitting this answer.'
+              : verificationCode === 'auth_changed'
+                ? 'Your account changed while the answer was being checked. Return to the original account to confirm its progress.'
+                : 'The answer could not be verified by the server. Your answer was not recorded; please retry when connected.';
           }
           return;
         }

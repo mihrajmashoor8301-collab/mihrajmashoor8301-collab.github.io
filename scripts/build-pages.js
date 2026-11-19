@@ -105,9 +105,16 @@ function parseEnvFile(filePath) {
  */
 function assertNotServiceRoleKey(key) {
   if (!key || typeof key !== 'string') return;
+  const normalizedKey = key.trim().toLowerCase();
+
+  // Supabase's current secret API keys use the sb_secret_ prefix and are not
+  // JWTs, so the legacy role-claim check below cannot identify them.
+  if (normalizedKey.startsWith('sb_secret_')) {
+    throw new Error('[CRITICAL SECURITY ERROR] CALION_SUPABASE_ANON_KEY contains a Supabase secret API key! Secret keys must NEVER be exposed to frontend clients.');
+  }
   
   // Guard 1: Plaintext keyword check
-  if (key.toLowerCase().includes('service_role')) {
+  if (normalizedKey.includes('service_role')) {
     throw new Error('[CRITICAL SECURITY ERROR] CALION_SUPABASE_ANON_KEY contains "service_role"! Service role keys must NEVER be exposed to frontend clients.');
   }
 
