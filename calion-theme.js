@@ -1,9 +1,14 @@
 /**
- * CALION Academy - Unified Three-Theme Manager
- * Supports:
- * 1. 'classic' (Classic White: clean, bright white canvas)
- * 2. 'soft' (Soft Light: comfortable off-white with blue-grey tint & high-contrast panels)
- * 3. 'dark' (Dark: deep navy canvas with elevated slate panels, 70/30 surface balance)
+ * CALION Academy - Canonical Theme Controller
+ * Authoritative global controller for Light & Dark HUD modes.
+ * 
+ * Features:
+ * - Zero-FOUC immediate initialization before DOM rendering
+ * - Single persistent source of truth (calion_theme, with fallback to system preference)
+ * - Dual-write compatibility for legacy keys (endlessus_learning_theme, theme)
+ * - Real-time cross-tab synchronization via StorageEvent
+ * - Delegated click handling for instant UI updates without page reload
+ * - Clean binary theme toggle: Light (Moon icon) <-> Dark (Sun icon)
  */
 
 (function (root, factory) {
@@ -15,169 +20,213 @@
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
 
-  const STORAGE_KEY = 'calion_theme';
-  const VALID_THEMES = ['soft', 'classic', 'dark'];
-  const DEFAULT_THEME = 'soft';
+  const PRIMARY_STORAGE_KEY = 'calion_theme';
+  const LEGACY_STORAGE_KEY = 'endlessus_learning_theme';
+  const GENERIC_STORAGE_KEY = 'theme';
+
+  function getSystemPreference() {
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      try {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      } catch (_) {}
+    }
+    return 'light';
+  }
 
   function normalizeTheme(theme) {
-    if (!theme) return DEFAULT_THEME;
+    if (!theme) return null;
     const t = String(theme).toLowerCase().trim();
     if (t === 'dark' || t === 'theme-dark' || t === 'hacker') return 'dark';
-    if (t === 'classic' || t === 'white' || t === 'classic-white') return 'classic';
-    if (t === 'soft' || t === 'soft-light' || t === 'light' || t === 'normal') return 'soft';
-    return DEFAULT_THEME;
+    if (t === 'light' || t === 'soft' || t === 'classic' || t === 'white' || t === 'normal') return 'light';
+    return null;
   }
 
   function getStoredTheme() {
     try {
-      if (typeof localStorage === 'undefined') return DEFAULT_THEME;
-      const saved = localStorage.getItem(STORAGE_KEY) || localStorage.getItem('endlessus_learning_theme');
-      return normalizeTheme(saved);
+      if (typeof localStorage === 'undefined') return getSystemPreference();
+      const primary = localStorage.getItem(PRIMARY_STORAGE_KEY);
+      const normalizedPrimary = normalizeTheme(primary);
+      if (normalizedPrimary) return normalizedPrimary;
+
+      const legacy = localStorage.getItem(LEGACY_STORAGE_KEY) || localStorage.getItem(GENERIC_STORAGE_KEY);
+      const normalizedLegacy = normalizeTheme(legacy);
+      if (normalizedLegacy) return normalizedLegacy;
+
+      return getSystemPreference();
     } catch (_) {
-      return DEFAULT_THEME;
+      return 'light';
     }
   }
 
-  function applyTheme(themeName) {
-    const theme = normalizeTheme(themeName);
-    const html = document.documentElement;
-    if (!html) return theme;
+  function applyTheme(themeName, persist) {
+    const theme = normalizeTheme(themeName) || 'light';
+    const isDark = theme === 'dark';
+    const html = typeof document !== 'undefined' ? document.documentElement : null;
+    const body = typeof document !== 'undefined' ? document.body : null;
 
-    // Reset all theme classes
-    html.classList.remove('light', 'dark', 'theme-soft-light', 'theme-classic-white', 'theme-dark', 'theme-normal', 'theme-hacker');
-
-    if (theme === 'dark') {
-      html.classList.add('dark', 'theme-dark');
-    } else if (theme === 'classic') {
-      html.classList.add('light', 'theme-classic-white');
-    } else {
-      // Soft light (default)
-      html.classList.add('light', 'theme-soft-light');
+    if (html) {
+      if (isDark) {
+        html.classList.add('dark', 'theme-dark', 'theme-hacker');
+        html.classList.remove('light', 'theme-light', 'theme-soft-light', 'theme-classic-white', 'theme-normal');
+      } else {
+        html.classList.add('light', 'theme-light', 'theme-soft-light', 'theme-normal');
+        html.classList.remove('dark', 'theme-dark', 'theme-hacker');
+      }
     }
 
-    try {
-      if (typeof localStorage !== 'undefined') {
-        localStorage.setItem(STORAGE_KEY, theme);
-        localStorage.setItem('endlessus_learning_theme', theme === 'dark' ? 'hacker' : 'normal');
+    if (body) {
+      if (isDark) {
+        body.classList.add('dark', 'theme-dark', 'theme-hacker');
+        body.classList.remove('light', 'theme-light', 'theme-soft-light', 'theme-classic-white', 'theme-normal');
+      } else {
+        body.classList.add('light', 'theme-light', 'theme-soft-light', 'theme-normal');
+        body.classList.remove('dark', 'theme-dark', 'theme-hacker');
       }
-    } catch (_) {}
+    }
+
+    if (persist !== false) {
+      try {
+        if (typeof localStorage !== 'undefined') {
+          localStorage.setItem(PRIMARY_STORAGE_KEY, theme);
+          localStorage.setItem(GENERIC_STORAGE_KEY, theme);
+          localStorage.setItem(LEGACY_STORAGE_KEY, isDark ? 'hacker' : 'normal');
+        }
+      } catch (_) {}
+    }
 
     updateToggleButtons(theme);
 
     if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function') {
       try {
         window.dispatchEvent(new CustomEvent('calion-theme-changed', { detail: { theme } }));
+        window.dispatchEvent(new CustomEvent('endlessus-theme-changed', { detail: { theme: isDark ? 'hacker' : 'normal' } }));
       } catch (_) {}
     }
 
     return theme;
   }
 
-  function cycleTheme() {
+  function toggleTheme() {
     const current = getStoredTheme();
-    let next = 'dark';
-    if (current === 'soft') next = 'dark';
-    else if (current === 'dark') next = 'classic';
-    else if (current === 'classic') next = 'soft';
-    return applyTheme(next);
+    const next = current === 'dark' ? 'light' : 'dark';
+    return applyTheme(next, true);
   }
 
   function updateToggleButtons(theme) {
     if (typeof document === 'undefined') return;
+    const isDark = theme === 'dark';
 
-    // Update single-toggle buttons icon & title
-    const toggles = document.querySelectorAll('#theme-toggle, .calion-theme-toggle, .btn-theme-toggle');
+    // 1. Single icon button toggles (#theme-toggle, .calion-theme-toggle, etc.)
+    const toggles = document.querySelectorAll('#theme-toggle, .calion-theme-toggle, .btn-theme-toggle, [data-theme-toggle]');
     toggles.forEach(btn => {
       btn.setAttribute('data-theme', theme);
-      const icon = btn.querySelector('.material-symbols-outlined') || btn.querySelector('[data-theme-icon]');
-      if (icon) {
-        if (theme === 'dark') {
-          icon.textContent = 'light_mode';
-          btn.setAttribute('title', 'Switch to Soft Light theme');
-        } else if (theme === 'classic') {
-          icon.textContent = 'dark_mode';
-          btn.setAttribute('title', 'Switch to Dark theme');
-        } else {
-          icon.textContent = 'contrast';
-          btn.setAttribute('title', 'Switch theme (Soft Light → Dark → Classic)');
-        }
+      btn.setAttribute('aria-label', isDark ? 'Switch to Light theme' : 'Switch to Dark theme');
+      btn.setAttribute('title', isDark ? 'Switch to Light theme' : 'Switch to Dark theme');
+
+      const iconEl = btn.querySelector('.material-symbols-outlined, [data-theme-icon]');
+      if (iconEl) {
+        iconEl.textContent = isDark ? 'light_mode' : 'dark_mode';
+      } else if (btn.childElementCount === 0 || btn.textContent.trim().length <= 2) {
+        // Fallback for simple text/unicode buttons
+        btn.textContent = isDark ? '☀️' : '🌙';
       }
     });
 
-    // Update 3-way segmented buttons if present
-    document.querySelectorAll('[data-set-theme]').forEach(btn => {
-      const btnTheme = normalizeTheme(btn.getAttribute('data-set-theme'));
-      const isActive = btnTheme === theme;
-      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-      btn.classList.toggle('active', isActive);
-      if (isActive) {
-        btn.classList.add('bg-white', 'dark:bg-slate-800', 'text-primary', 'font-bold', 'shadow-xs');
-      } else {
-        btn.classList.remove('bg-white', 'dark:bg-slate-800', 'text-primary', 'font-bold', 'shadow-xs');
-      }
-    });
-
-    // Dual-button compatibility for legacy theme-toggle-normal / theme-toggle-hacker
+    // 2. Dual-button legacy compatibility (#theme-toggle-normal / #theme-toggle-hacker)
     const btnNormal = document.getElementById('theme-toggle-normal');
     const btnHacker = document.getElementById('theme-toggle-hacker');
     if (btnNormal && btnHacker) {
-      const isDark = theme === 'dark';
       btnNormal.setAttribute('aria-pressed', isDark ? 'false' : 'true');
       btnHacker.setAttribute('aria-pressed', isDark ? 'true' : 'false');
       if (isDark) {
-        btnHacker.classList.add('bg-primary/20', 'text-primary', 'font-bold');
-        btnNormal.classList.remove('bg-primary/20', 'text-primary', 'font-bold');
+        btnHacker.classList.add('bg-primary', 'text-black', 'font-bold');
+        btnHacker.classList.remove('text-outline');
+        btnNormal.classList.remove('bg-primary', 'text-white', 'font-bold');
+        btnNormal.classList.add('text-outline');
       } else {
-        btnNormal.classList.add('bg-primary/20', 'text-primary', 'font-bold');
-        btnHacker.classList.remove('bg-primary/20', 'text-primary', 'font-bold');
+        btnNormal.classList.add('bg-primary', 'text-white', 'font-bold');
+        btnNormal.classList.remove('text-outline');
+        btnHacker.classList.remove('bg-primary', 'text-black', 'font-bold');
+        btnHacker.classList.add('text-outline');
       }
     }
+
+    // 3. Segmented buttons [data-set-theme]
+    document.querySelectorAll('[data-set-theme]').forEach(btn => {
+      const target = normalizeTheme(btn.getAttribute('data-set-theme'));
+      const active = target === theme;
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      btn.classList.toggle('active', active);
+    });
+  }
+
+  // EARLY INITIALIZATION: Apply immediately upon script execution to eliminate FOUC
+  if (typeof document !== 'undefined' && document.documentElement) {
+    const initialTheme = getStoredTheme();
+    applyTheme(initialTheme, false);
   }
 
   function init() {
     if (typeof document === 'undefined') return;
     const current = getStoredTheme();
-    applyTheme(current);
+    applyTheme(current, false);
 
-    // Bind click events
-    document.querySelectorAll('#theme-toggle, .calion-theme-toggle, .btn-theme-toggle').forEach(btn => {
-      if (btn.__calion_theme_bound) return;
-      btn.__calion_theme_bound = true;
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        cycleTheme();
-      });
-    });
+    // Global Delegated Click Listener for theme controls (reliable across dynamic renders)
+    if (!document.__calion_theme_delegated) {
+      document.__calion_theme_delegated = true;
 
-    document.querySelectorAll('[data-set-theme]').forEach(btn => {
-      if (btn.__calion_theme_bound) return;
-      btn.__calion_theme_bound = true;
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = btn.getAttribute('data-set-theme');
-        applyTheme(target);
-      });
-    });
+      document.addEventListener('click', function (e) {
+        const toggleBtn = e.target.closest('#theme-toggle, .calion-theme-toggle, .btn-theme-toggle, [data-theme-toggle]');
+        if (toggleBtn) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleTheme();
+          return;
+        }
 
-    const btnNormal = document.getElementById('theme-toggle-normal');
-    const btnHacker = document.getElementById('theme-toggle-hacker');
-    if (btnNormal && !btnNormal.__calion_theme_bound) {
-      btnNormal.__calion_theme_bound = true;
-      btnNormal.addEventListener('click', (e) => {
-        e.preventDefault();
-        applyTheme('soft');
+        const normalBtn = e.target.closest('#theme-toggle-normal, .theme-toggle-normal, [data-set-theme="light"], [data-set-theme="normal"], [data-set-theme="soft"]');
+        if (normalBtn) {
+          e.preventDefault();
+          e.stopPropagation();
+          applyTheme('light', true);
+          return;
+        }
+
+        const hackerBtn = e.target.closest('#theme-toggle-hacker, .theme-toggle-hacker, [data-set-theme="dark"], [data-set-theme="hacker"]');
+        if (hackerBtn) {
+          e.preventDefault();
+          e.stopPropagation();
+          applyTheme('dark', true);
+          return;
+        }
+      }, true);
+    }
+
+    // Cross-tab Synchronization
+    if (typeof window !== 'undefined' && !window.__calion_storage_bound) {
+      window.__calion_storage_bound = true;
+      window.addEventListener('storage', function (e) {
+        if (e.key === PRIMARY_STORAGE_KEY || e.key === LEGACY_STORAGE_KEY || e.key === GENERIC_STORAGE_KEY) {
+          applyTheme(getStoredTheme(), false);
+        }
       });
     }
-    if (btnHacker && !btnHacker.__calion_theme_bound) {
-      btnHacker.__calion_theme_bound = true;
-      btnHacker.addEventListener('click', (e) => {
-        e.preventDefault();
-        applyTheme('dark');
-      });
+
+    // System Preference Dynamic Listener
+    if (typeof window !== 'undefined' && window.matchMedia && !window.__calion_media_bound) {
+      window.__calion_media_bound = true;
+      try {
+        const mq = window.matchMedia('(prefers-color-scheme: dark)');
+        mq.addEventListener('change', function () {
+          // Only adapt if user hasn't set an explicit override in storage
+          if (!localStorage.getItem(PRIMARY_STORAGE_KEY) && !localStorage.getItem(LEGACY_STORAGE_KEY)) {
+            applyTheme(getSystemPreference(), false);
+          }
+        });
+      } catch (_) {}
     }
   }
 
-  // Auto-init on DOM ready
   if (typeof document !== 'undefined') {
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', init);
@@ -188,8 +237,9 @@
 
   return {
     getTheme: getStoredTheme,
-    setTheme: applyTheme,
-    cycleTheme,
+    setTheme: (t) => applyTheme(t, true),
+    toggleTheme,
+    cycleTheme: toggleTheme,
     init
   };
 });

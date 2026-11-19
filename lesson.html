@@ -142,15 +142,13 @@
           <span>Room</span>
         </a>
 
-        <!-- 3-Theme Selector Toggle Button -->
-        <button aria-label="Toggle theme mode" class="w-8 h-8 rounded-lg bg-surface-raised hover:bg-surface-subtle border border-border-hairline flex items-center justify-center text-outline hover:text-on-surface transition-colors calion-theme-toggle" id="theme-toggle" type="button" title="Switch Theme (Soft Light → Dark → Classic)">
-          <span class="material-symbols-outlined text-[18px]">contrast</span>
-        </button>
+        <!-- User Profile & Dropdown -->
+        <div id="academy-user-nav" class="academy-user-nav relative"></div>
 
-        <!-- Cadet Avatar / Profile -->
-        <a href="profile.html" class="w-8 h-8 rounded-full bg-gradient-to-tr from-sky-500 to-indigo-600 text-white font-mono text-xs font-bold flex items-center justify-center shadow-sm" id="cadet-avatar-badge" title="View Profile">
-          CA
-        </a>
+        <!-- Theme Toggle Button -->
+        <button aria-label="Toggle theme mode" class="calion-theme-toggle" id="theme-toggle" type="button" title="Toggle theme">
+          <span class="material-symbols-outlined text-[18px]">dark_mode</span>
+        </button>
 
         <button type="button" id="mobile-menu-btn" class="sm:hidden p-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300" aria-label="Open Mobile Menu">
           <span class="material-symbols-outlined text-base">menu</span>
@@ -552,6 +550,7 @@
   <script src="academy-config.js"></script>
   <script src="academy-state.js"></script>
   <script src="academy-auth.js"></script>
+  <script src="academy-xp-client.js"></script>
   <script src="academy-sync.js"></script>
   <script src="academy-nav.js"></script>
 
@@ -866,7 +865,7 @@
                   ${q.visualSlots ? `
                     <div class="flex flex-wrap items-center gap-2 font-mono text-xs text-sky-600 dark:text-sky-400 font-bold tracking-widest bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 w-fit">
                       <span class="text-slate-500 font-sans uppercase text-[10px] tracking-normal">Pattern:</span>
-                      <span class="text-slate-900 dark:text-white font-mono select-none">${escapeHtml(AcademyState.formatAnswerMask(q))}</span>
+                      <span class="text-slate-900 dark:text-white font-mono select-none">${escapeHtml(q.visualSlots)}</span>
                       ${q.answerLength ? `<span class="text-slate-400 font-sans text-[11px] font-normal">(${q.answerLength} chars)</span>` : ''}
                     </div>
                   ` : ''}
@@ -882,7 +881,7 @@
                 <div class="space-y-2 font-mono text-xs" role="radiogroup" aria-label="Question ${qIdx + 1} Options">
                   ${(q.options || []).map((opt, optIdx) => `
                     <label class="flex items-start gap-2.5 p-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800/60 hover:border-sky-500/50 cursor-pointer transition-colors">
-                      <input type="radio" name="q-option-${qIdx}" value="${optIdx}" class="mt-0.5 accent-sky-600" ${isSolved && optIdx === q.correctIndex ? 'checked' : ''} ${isSolved ? 'disabled' : ''}/>
+                      <input type="radio" name="q-option-${qIdx}" value="${optIdx}" class="mt-0.5 accent-sky-600" ${isSolved ? 'disabled' : ''}/>
                       <span class="text-slate-800 dark:text-slate-200">${escapeHtml(opt)}</span>
                     </label>
                   `).join('')}
@@ -981,28 +980,128 @@
         }
       }
 
-      function handleQuestionSubmit(idx) {
+      async function handleQuestionSubmit(idx) {
         const q = questions[idx];
         if (!q) return;
 
         let isCorrect = false;
         let userInput = '';
+        let selectedOption = '';
+        let verifiedAward = 0;
+        let verifiedRoomAward = 0;
+        let serverRoomCompleted = false;
+        let serverCheckFailed = false;
+        let rateLimited = false;
+        let verificationCode = null;
+        const authenticatedLearner = Boolean(window.AcademyAuth && AcademyAuth.isAuthenticated && AcademyAuth.isAuthenticated());
+
+        const feedbackEl = document.getElementById(`q-feedback-${idx}`);
+        const qCardEl = document.getElementById(`q-card-${idx}`);
+        const submitBtn = qCardEl ? qCardEl.querySelector('.q-submit-btn') : null;
 
         if (q.type === 'exact') {
           const inputEl = document.getElementById(`q-input-${idx}`);
           userInput = inputEl ? inputEl.value : '';
-          isCorrect = AcademyState.validateAnswer(q, userInput);
+          if (!userInput.trim()) {
+            if (feedbackEl) {
+              feedbackEl.classList.remove('hidden');
+              feedbackEl.className = 'p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-700 dark:text-amber-300 text-xs font-mono block';
+              feedbackEl.innerHTML = `
+                <div class="flex items-center gap-1.5 font-bold mb-0.5">
+                  <span class="material-symbols-outlined text-sm">warning</span>
+                  <span>Input Required</span>
+                </div>
+                <p class="font-sans">Please enter an answer before submitting.</p>
+              `;
+            }
+            if (inputEl) inputEl.focus();
+            return;
+          }
         } else {
           const selected = document.querySelector(`input[name="q-option-${idx}"]:checked`);
-          if (selected) {
-            const chosenIdx = parseInt(selected.value, 10);
-            isCorrect = chosenIdx === q.correctIndex;
+          if (!selected) {
+            if (feedbackEl) {
+              feedbackEl.classList.remove('hidden');
+              feedbackEl.className = 'p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-700 dark:text-amber-300 text-xs font-mono block';
+              feedbackEl.innerHTML = `
+                <div class="flex items-center gap-1.5 font-bold mb-0.5">
+                  <span class="material-symbols-outlined text-sm">warning</span>
+                  <span>Selection Required</span>
+                </div>
+                <p class="font-sans">Please select one of the options before submitting.</p>
+              `;
+            }
+            return;
+          }
+          const chosenIdx = parseInt(selected.value, 10);
+          selectedOption = q.options[chosenIdx];
+        }
+
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.setAttribute('aria-busy', 'true');
+        }
+
+        try {
+          if (!window.AcademyXP || typeof AcademyXP.submitAnswer !== 'function') {
+            serverCheckFailed = true;
+          } else {
+            const checked = await AcademyXP.submitAnswer({
+              roomId: room.id,
+              questionId: q.id,
+              answer: q.type === 'exact' ? userInput : selectedOption
+            });
+            verificationCode = checked && checked.code || null;
+            if (checked && checked.code === 'rate_limited') {
+              rateLimited = true;
+            } else {
+              isCorrect = Boolean(checked && checked.success && checked.correct);
+              verifiedAward = Number(checked && checked.xpAwarded) || 0;
+              verifiedRoomAward = Number(checked && checked.roomXpAwarded) || 0;
+              serverRoomCompleted = Boolean(checked && checked.room_completed);
+              serverCheckFailed = !checked || ['server_error','practice_only_guest','verification_unavailable','auth_required','auth_changed'].includes(checked.code);
+              if (authenticatedLearner && checked && Number.isFinite(checked.totalXP)) {
+                AcademyState.safeSet(AcademyState.KEYS.XP, checked.totalXP);
+                const prof = window.AcademyAuth?.getProfile?.();
+                if (prof) prof.total_xp = checked.totalXP;
+                if (window.CalionAcademy?.syncHeaderStats) window.CalionAcademy.syncHeaderStats();
+              }
+            }
+          }
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.removeAttribute('aria-busy');
           }
         }
 
-        const feedbackEl = document.getElementById(`q-feedback-${idx}`);
-        const qCardEl = document.getElementById(`q-card-${idx}`);
         if (feedbackEl) feedbackEl.classList.remove('hidden');
+
+        if (rateLimited) {
+          if (feedbackEl) {
+            feedbackEl.className = 'p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-700 dark:text-amber-300 text-xs font-mono block';
+            feedbackEl.innerHTML = `
+              <div class="flex items-center gap-1.5 font-bold mb-0.5">
+                <span class="material-symbols-outlined text-sm">hourglass_top</span>
+                <span>Rate Limited</span>
+              </div>
+              <p class="font-sans">Too many attempts. Please wait 1 minute before retrying.</p>
+            `;
+          }
+          return;
+        }
+
+        if (serverCheckFailed) {
+          if (feedbackEl) {
+            feedbackEl.className = 'p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-700 dark:text-amber-300 text-xs font-mono block';
+            feedbackEl.textContent = verificationCode === 'auth_required'
+              ? 'Your sign-in session expired. Sign in again before submitting this answer.'
+              : verificationCode === 'auth_changed'
+                ? 'Your account changed while the answer was being checked. Return to the original account to confirm its progress.'
+                : 'The answer could not be verified by the server. Your answer was not recorded; please retry when connected.';
+          }
+          return;
+        }
 
         if (isCorrect) {
           if (window.CalionSound) {
@@ -1015,10 +1114,14 @@
           }
           if (feedbackEl) {
             feedbackEl.className = 'p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-mono block calion-feedback-correct';
+            const xpAwardedForDisplay = authenticatedLearner ? verifiedAward : res.xp;
+            const awardText = xpAwardedForDisplay > 0
+              ? `(+${xpAwardedForDisplay} ${authenticatedLearner ? 'XP Awarded' : 'practice XP'})`
+              : '';
             feedbackEl.innerHTML = `
               <div class="flex items-center gap-1.5 text-emerald-600 font-bold mb-1">
                 <span class="material-symbols-outlined text-sm">check_circle</span>
-                <span>Correct! ${res.xp > 0 ? '(+25 XP Awarded)' : ''}</span>
+                <span>Correct! ${awardText}</span>
               </div>
               <p class="text-slate-600 dark:text-slate-400 font-sans">${escapeHtml(q.explanation || 'Well done! Answer verified.')}</p>
             `;
@@ -1028,10 +1131,10 @@
           // Check if all questions are now solved
           const qProgress = AcademyState.getQuestionProgress();
           const allSolved = questions.every((_, qI) => Boolean(qProgress[`${room.id}_q${qI}`]));
-          if (allSolved) {
+          if (allSolved && (!authenticatedLearner || serverRoomCompleted)) {
             AcademyState.markRoomCompleted(room.id);
             if (taskIdx === lessons.length - 1) {
-              triggerRoomCompletionModal();
+              triggerRoomCompletionModal(authenticatedLearner ? verifiedAward + verifiedRoomAward : null);
             }
           }
         } else {
@@ -1095,8 +1198,12 @@
       } else {
         document.getElementById('lesson-next-text').textContent = nextRoomObj ? `Next: ${nextRoomObj.id.toUpperCase()}` : 'Curriculum Complete';
         nextBtn.onclick = function() {
-          AcademyState.markRoomCompleted(room.id);
-          triggerRoomCompletionModal();
+          if (!AcademyAuth.isAuthenticated()) {
+            AcademyState.markRoomCompleted(room.id);
+            triggerRoomCompletionModal();
+          } else if (AcademyState.isRoomCompleted(room.id)) {
+            triggerRoomCompletionModal();
+          }
         };
       }
 
@@ -1109,6 +1216,10 @@
           markCompleteBtn.classList.add('text-emerald-600');
         }
         markCompleteBtn.onclick = function() {
+          if (AcademyAuth.isAuthenticated() && !AcademyState.isRoomCompleted(room.id)) {
+            completeText.textContent = 'Answer all questions to complete this room';
+            return;
+          }
           AcademyState.markRoomCompleted(room.id);
           completeText.textContent = 'Room Completed ✓';
           markCompleteBtn.classList.add('text-emerald-600');
@@ -1117,7 +1228,7 @@
       }
 
       // Room Completion Modal Handler (Section 8)
-      function triggerRoomCompletionModal() {
+      function triggerRoomCompletionModal(verifiedAward = null) {
         const modal = document.getElementById('room-complete-modal');
         if (!modal) return;
 
@@ -1125,8 +1236,11 @@
         document.getElementById('modal-tasks-stat').textContent = `${lessons.length} of ${lessons.length} Tasks Done`;
 
         // Calculate XP earned in room
-        const earnedXP = 50 + (questions.length * 25);
-        document.getElementById('modal-xp-stat').textContent = `+${earnedXP} XP Earned`;
+        const authenticatedLearner = Boolean(window.AcademyAuth && AcademyAuth.isAuthenticated && AcademyAuth.isAuthenticated());
+        const earnedXP = authenticatedLearner ? Math.max(0, Number(verifiedAward) || 0) : 50 + (questions.length * 25);
+        document.getElementById('modal-xp-stat').textContent = authenticatedLearner
+          ? (earnedXP ? `+${earnedXP} XP Awarded` : 'XP already reflected in your account')
+          : `+${earnedXP} practice XP`;
 
         // "What Did You Learn?" summary bullet points from room objectives
         const learnedList = document.getElementById('modal-learned-list');

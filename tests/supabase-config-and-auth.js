@@ -56,10 +56,18 @@ assert.throws(() => {
   builder.assertNotServiceRoleKey(serviceRoleJwt);
 }, /service_role JWT/, 'Must throw on service_role JWT claim');
 
-// Case C: Valid anon key must pass
+// Case C: Modern Supabase secret API keys are not JWTs and must be rejected.
+assert.throws(() => {
+  builder.assertNotServiceRoleKey('sb_secret_test_only_not_a_real_key');
+}, /secret API key/, 'Must reject modern sb_secret_ API keys');
+
+// Case D: Valid public anon/publishable keys must pass
 assert.doesNotThrow(() => {
   builder.assertNotServiceRoleKey(anonJwt);
 }, 'Valid anon key must pass assertion');
+assert.doesNotThrow(() => {
+  builder.assertNotServiceRoleKey('sb_publishable_test_only');
+}, 'Valid public publishable key must pass assertion');
 console.log('  ✓ Strict anti-service_role defense-in-depth verified');
 
 // -----------------------------------------------------------------------------

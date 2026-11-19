@@ -19,7 +19,6 @@ const DIST_DIR = path.join(ROOT_DIR, 'dist');
 
 // Specific directories to include in distribution
 const INCLUDE_DIRS = [
-  'curriculum',
   'handbook',
   'vendor',
   'cert_previews',
@@ -54,7 +53,9 @@ const INCLUDE_SPECIAL_FILES = new Set([
 // Root files/dirs explicitly excluded
 const EXCLUDE_ROOT_FILES = new Set([
   'calion-curriculum-pre-security.js',
-  'pre-security-data.js'
+  'pre-security-data.js',
+  'curriculum-data.js',
+  'learning.js'
 ]);
 
 const EXCLUDE_NAMES = new Set([
@@ -104,9 +105,16 @@ function parseEnvFile(filePath) {
  */
 function assertNotServiceRoleKey(key) {
   if (!key || typeof key !== 'string') return;
+  const normalizedKey = key.trim().toLowerCase();
+
+  // Supabase's current secret API keys use the sb_secret_ prefix and are not
+  // JWTs, so the legacy role-claim check below cannot identify them.
+  if (normalizedKey.startsWith('sb_secret_')) {
+    throw new Error('[CRITICAL SECURITY ERROR] CALION_SUPABASE_ANON_KEY contains a Supabase secret API key! Secret keys must NEVER be exposed to frontend clients.');
+  }
   
   // Guard 1: Plaintext keyword check
-  if (key.toLowerCase().includes('service_role')) {
+  if (normalizedKey.includes('service_role')) {
     throw new Error('[CRITICAL SECURITY ERROR] CALION_SUPABASE_ANON_KEY contains "service_role"! Service role keys must NEVER be exposed to frontend clients.');
   }
 
@@ -201,6 +209,23 @@ function copyRecursive(src, dest) {
   } else {
     fs.copyFileSync(src, dest);
   }
+}
+
+function assertNoBrowserAnswerKeys(directory) {
+  const keyProperty = /["']?(?:acceptedAnswers|correctIndex|expectedAnswer|answerKey|accepted_answers|correct_index|expected_answer|answer_key)["']?\s*:/i;
+  const visit = (current) => {
+    for (const entry of fs.readdirSync(current, { withFileTypes: true })) {
+      const target = path.join(current, entry.name);
+      if (entry.isDirectory()) visit(target);
+      else if (/\.(?:js|html|json)$/i.test(entry.name)) {
+        const content = fs.readFileSync(target, 'utf8');
+        if (keyProperty.test(content)) {
+          throw new Error(`[CRITICAL SECURITY ERROR] Browser build contains answer-key properties: ${path.relative(directory, target)}`);
+        }
+      }
+    }
+  };
+  visit(directory);
 }
 
 function runBuild() {
@@ -306,6 +331,9 @@ function runBuild() {
     fs.copyFileSync(path.join(ROOT_DIR, '_redirects'), path.join(DIST_DIR, '_redirects'));
   }
 
+  // Fail closed if a future curriculum or asset change reintroduces answer keys.
+  assertNoBrowserAnswerKeys(DIST_DIR);
+
   console.log(`\n✓ Distribution build complete! ${fileCount} root files copied to dist/`);
   if (htmlPatchedCount > 0) {
     console.log(`✓ Verified and ensured runtime configuration injection across ${htmlPatchedCount} HTML pages`);
@@ -325,5 +353,6 @@ module.exports = {
   validateSupabaseUrl,
   resolveSupabaseConfig,
   generateRuntimeConfigContent,
+  assertNoBrowserAnswerKeys,
   runBuild
 };

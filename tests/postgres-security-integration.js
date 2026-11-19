@@ -10,9 +10,9 @@ const assert = require('assert');
 const { execSync } = require('child_process');
 const path = require('path');
 
-const PG_HOST = '/tmp/calion_test_pg';
-const PG_PORT = '5433';
-const PG_DB = 'postgres';
+const PG_HOST = process.env.CALION_TEST_PG_HOST || '/tmp/calion_test_pg';
+const PG_PORT = process.env.CALION_TEST_PG_PORT || '5433';
+const PG_DB = process.env.CALION_TEST_PG_DB || 'postgres';
 
 function runSql(sql, asRole = null, userId = null) {
   let sessionPreamble = '';
@@ -315,8 +315,10 @@ WHERE user_id = '${USER_A_ID}' AND room_id = 'room-01';
 runSql(demoteSql, 'authenticated', USER_A_ID);
 // Verify that client migration filter in academy-sync.js skips server-completed rooms
 const syncCode = require('fs').readFileSync(path.join(__dirname, '..', 'academy-sync.js'), 'utf8');
-assert(syncCode.includes('existing.status === \'completed\' || existing.progress_pct >= roomProg[id]'),
-  'academy-sync.js must prevent overwriting completed or higher server progress');
+assert(syncCode.includes("existing.status === 'completed'") &&
+  syncCode.includes('existing.progress_pct >= localPct') &&
+  syncCode.includes('const safePct = completedRooms.includes(roomId) ? 99'),
+  'academy-sync.js must skip completed/higher server progress and import local completion only as unverified progress');
 console.log('  ✓ Verified: academy-sync.js strictly skips migration for rooms already completed or higher on server');
 
 console.log('\n============================================================');

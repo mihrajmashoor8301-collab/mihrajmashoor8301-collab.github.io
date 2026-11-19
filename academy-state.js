@@ -25,18 +25,20 @@
   'use strict';
 
   const KEYS = {
-    ROOMS: 'calion_completed_rooms',
-    ROOM_PROG: 'calion_room_progress',
-    QUESTIONS: 'calion_question_progress',
+    // Keep legacy 45-room progress intact, but never count it as completion of
+    // the re-indexed 47-room curriculum.
+    ROOMS: 'calion_47_completed_rooms',
+    ROOM_PROG: 'calion_47_room_progress',
+    QUESTIONS: 'calion_47_question_progress',
     LABS: 'calion_completed_labs',
     XP: 'calion_user_xp',
     STREAK: 'calion_streak_days',
     LAST_ACTIVE: 'calion_last_active',
     LAST_ROOM: 'calion_last_room',
     THEME: 'calion_learning_theme',
-    TASKS: 'calion_task_progress',
+    TASKS: 'calion_47_task_progress',
     LAB_FLAGS: 'calion_lab_flags',
-    LAST_POS: 'calion_last_position'
+    LAST_POS: 'calion_47_last_position'
   };
 
   const LEGACY_KEYS = {
@@ -78,7 +80,9 @@
       const json = JSON.stringify(val);
       localStorage.setItem(key, json);
       const legacyKey = key.replace('calion_', 'endlessus_');
-      if (legacyKey !== key) {
+      // Lab completions and XP are curriculum/history scoped. Keep their old
+      // unversioned values intact instead of replacing them with current state.
+      if (legacyKey !== key && key !== KEYS.LABS && key !== KEYS.XP) {
         localStorage.setItem(legacyKey, json);
       }
     } catch (e) {
@@ -95,43 +99,6 @@
     if (!match) return clean;
     const number = Number(match[1]);
     return number >= 1 && number <= 47 ? `room-${String(number).padStart(2, '0')}` : clean;
-  }
-
-  function formatAnswerMask(question) {
-    if (!question || question.type === 'multiple-choice' || question.type === 'mc') return '';
-    const answer = (question.acceptedAnswers || [])[0];
-    if (!answer) return '';
-    const chars = Array.from(String(answer));
-    let out = '';
-    chars.forEach((ch, index) => {
-      if (/\s/u.test(ch)) out = out.replace(/ $/, '') + '   ';
-      else out += (out && !out.endsWith('   ') ? ' ' : '') + '_';
-    });
-    return out.trim();
-  }
-
-  // Client-side answers are downloadable with curriculum data; this is a learning
-  // check, not a security boundary.
-  // Authoritative answer validation
-  function validateAnswer(questionObj, userInput) {
-    if (!questionObj || typeof userInput !== 'string') return false;
-    const isCaseSensitive = Boolean(questionObj.caseSensitive);
-    const shouldTrim = questionObj.trimWhitespace !== false;
-
-    let cleanInput = userInput;
-    if (shouldTrim) cleanInput = cleanInput.trim();
-    if (!isCaseSensitive) cleanInput = cleanInput.toLowerCase();
-
-    if (!cleanInput) return false;
-
-    const accepted = (questionObj.acceptedAnswers || []).map(ans => {
-      let a = String(ans);
-      if (shouldTrim) a = a.trim();
-      if (!isCaseSensitive) a = a.toLowerCase();
-      return a;
-    });
-
-    return accepted.includes(cleanInput);
   }
 
   // Calculate XP idempotently: 50 per completed room + 25 per solved question + 75 per solved lab
@@ -394,7 +361,9 @@
       roomProg[roomId] = pct;
       safeSet(KEYS.ROOM_PROG, roomProg);
 
-      if (pct === 100 && !isRoomCompleted(roomId)) {
+      const authenticatedLearner = typeof window !== 'undefined' && window.AcademyAuth &&
+        typeof window.AcademyAuth.isAuthenticated === 'function' && window.AcademyAuth.isAuthenticated();
+      if (pct === 100 && !isRoomCompleted(roomId) && !authenticatedLearner) {
         markRoomCompleted(roomId);
         roomCompleted = true;
       }
@@ -573,10 +542,8 @@
   return {
     KEYS,
     normalizeRoomId,
-    formatAnswerMask,
     safeGet,
     safeSet,
-    validateAnswer,
     calculateTotalXP,
     getCompletedRooms,
     getCompletedLabs,

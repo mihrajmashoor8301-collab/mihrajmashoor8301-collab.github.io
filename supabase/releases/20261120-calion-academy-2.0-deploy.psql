@@ -1,0 +1,42 @@
+\set ON_ERROR_STOP on
+
+-- Production release runner. This file applies only the two reviewed pending
+-- migrations; it never replays the four legacy baseline migrations.
+-- Run only after the approved history reconciliation records exactly the four
+-- verified baseline versions listed below.
+do $release_gate$
+declare
+  v_count integer;
+begin
+  if to_regclass('supabase_migrations.schema_migrations') is null then
+    raise exception 'Migration history is not reconciled; stop before applying release SQL';
+  end if;
+
+  select count(*) into v_count
+  from supabase_migrations.schema_migrations
+  where version in ('202611170001','202611170002','202611170003','202611190001');
+  if v_count<>4 then
+    raise exception 'Expected exactly four reconciled baseline versions; found %',v_count;
+  end if;
+
+  if exists (
+    select 1 from supabase_migrations.schema_migrations
+    where version in ('202611200001','202611200002')
+  ) then
+    raise exception 'A CALION 2.0 release migration is already recorded; inspect state before retrying';
+  end if;
+
+  if exists (
+    select 1 from supabase_migrations.schema_migrations
+    where version not in ('202611170001','202611170002','202611170003','202611190001')
+  ) then
+    raise exception 'Unexpected remote migration version exists; review the pending set before release';
+  end if;
+end
+$release_gate$;
+
+\echo Applying CALION Academy curriculum reconciliation (202611200001)
+\ir ../migrations/202611200001_calion_four_path_reconciliation.sql
+
+\echo Applying CALION Academy authoritative XP ledger (202611200002)
+\ir ../migrations/202611200002_calion_authoritative_xp_ledger.sql

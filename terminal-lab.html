@@ -80,8 +80,8 @@
       
       <!-- Brand & Section (Improvement 14) -->
       <div class="flex items-center gap-3">
-        <a aria-label="CALION Academy Home" class="flex items-center gap-2 group" href="learning.html">
-          <svg class="h-7 w-auto" fill="none" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+        <a aria-label="CALION Academy Home" class="flex items-center gap-2 group" href="/">
+          <svg class="calion-logo-svg h-7 w-auto shrink-0 select-none" height="28" style="height:28px; width:auto;" fill="none" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="calion_grad_term_hdr" x1="0%" x2="100%" y1="0%" y2="100%">
                 <stop offset="0%" stop-color="#00F0FF"></stop>
@@ -102,8 +102,8 @@
             <rect fill="#6366F1" height="6" rx="1.5" width="6" x="362" y="48"></rect>
           </svg>
         </a>
-        <span class="text-outline">/</span>
-        <span class="font-mono text-xs font-bold text-primary flex items-center gap-1">
+        <span class="text-outline hidden sm:inline">/</span>
+        <span class="font-mono text-xs font-bold text-primary hidden sm:inline-flex items-center gap-1">
           <span class="material-symbols-outlined text-[15px]">terminal</span>
           <span>Terminal Sandbox</span>
         </span>
@@ -111,9 +111,9 @@
 
       <!-- Center Links (Minimal: Learn & Terminal) -->
       <nav class="hidden md:flex items-center gap-1 text-xs font-mono">
-        <a href="learning.html" class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-raised flex items-center gap-1.5 transition-colors">
+        <a href="/" class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-raised flex items-center gap-1.5 transition-colors">
           <span class="material-symbols-outlined text-[15px]">school</span>
-          <span>Learning Tree</span>
+          <span>Academy</span>
         </a>
         <a href="terminal-lab.html" class="px-3 py-1.5 rounded-lg text-primary font-bold bg-primary/10 border border-primary/20 flex items-center gap-1.5 transition-colors">
           <span class="material-symbols-outlined text-[15px]">terminal</span>
@@ -142,15 +142,13 @@
           <span id="header-streak-pill" class="font-bold">1d</span>
         </div>
 
-        <!-- 3-Theme Selector Toggle Button -->
-        <button aria-label="Toggle theme mode" class="w-8 h-8 rounded-lg bg-surface-raised hover:bg-surface-subtle border border-border-hairline flex items-center justify-center text-outline hover:text-on-surface transition-colors calion-theme-toggle" id="theme-toggle" type="button" title="Switch Theme (Soft Light → Dark → Classic)">
-          <span class="material-symbols-outlined text-[18px]">contrast</span>
-        </button>
+        <!-- User Profile & Dropdown -->
+        <div id="academy-user-nav" class="academy-user-nav relative"></div>
 
-        <!-- Cadet Avatar / Profile -->
-        <a href="profile.html" class="w-7 h-7 rounded-full bg-gradient-to-tr from-sky-500 to-indigo-600 text-white font-mono text-xs font-bold flex items-center justify-center shadow-sm" id="cadet-avatar-badge" title="View Profile">
-          CA
-        </a>
+        <!-- Theme Toggle Button -->
+        <button aria-label="Toggle theme mode" class="calion-theme-toggle" id="theme-toggle" type="button" title="Toggle theme">
+          <span class="material-symbols-outlined text-[18px]">dark_mode</span>
+        </button>
       </div>
 
     </div>
@@ -184,7 +182,7 @@
       <!-- Terminal Output Screen -->
       <div id="lab-terminal-output" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-3 text-slate-200 leading-relaxed bg-[#070a10]">
         <!-- Welcome Banner -->
-        <div class="text-[#00F0FF] font-bold text-xs sm:text-sm leading-snug">
+        <div class="text-[#00F0FF] font-bold text-xs sm:text-sm leading-snug overflow-hidden whitespace-pre-wrap break-all">
           ════════════════════════════════════════════════════════════════════════════════════<br/>
           &nbsp;&nbsp;CALION ACADEMY // FULL-SCREEN TERMINAL LAB SANDBOX<br/>
           &nbsp;&nbsp;SIMULATED LINUX &amp; SECURITY ENVIRONMENT // SAFE EDUCATIONAL RUNTIME<br/>
@@ -282,6 +280,7 @@
   <script src="academy-config.js"></script>
   <script src="academy-state.js"></script>
   <script src="academy-auth.js"></script>
+  <script src="academy-xp-client.js"></script>
   <script src="academy-sync.js"></script>
   <script src="academy-nav.js"></script>
   <script src="portfolio-interactive.js"></script>

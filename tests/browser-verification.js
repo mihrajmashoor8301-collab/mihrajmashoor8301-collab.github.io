@@ -64,7 +64,7 @@ server.listen(PORT, async()=>{
     assert.equal(await c.eval('document.title'),'Room Locked · CALION Academy','direct URL cannot bypass previous-room prerequisite');
     await navigate(`http://127.0.0.1:${PORT}/lesson.html?room=room-02&task=0`);
     assert.equal(await c.eval('document.title'),'Room Locked · CALION Academy','lesson URL cannot bypass previous-room prerequisite');
-    await c.eval(`localStorage.setItem('calion_completed_rooms',JSON.stringify(['room-01','room-02','room-03','room-04','room-05','room-06','room-07','room-08']))`);
+    await c.eval(`localStorage.setItem(AcademyState.KEYS.ROOMS,JSON.stringify(['room-01','room-02','room-03','room-04','room-05','room-06','room-07','room-08']))`);
     await navigate(`http://127.0.0.1:${PORT}/room.html?id=ps-room-03`);
     assert((await c.eval('document.title')).includes('Introduction to Virtualization'));
     const hintResult=await c.eval(`(()=>{const before=AcademyState.calculateTotalXP();const trigger=document.querySelector('.hint-step-trigger');if(!trigger)return {missing:true};trigger.click();const drawer=document.querySelector('[id^="hint-drawer-"]');const next=document.querySelector('.next-hint-btn');if(!next)return {missingNext:true};next.click();return {before,after:AcademyState.calculateTotalXP(),step:next.dataset.nextStep,visible:!drawer.classList.contains('hidden'),inputValues:[...document.querySelectorAll('input[id^="q-input-"]')].map(i=>i.value)}})()`);
@@ -73,11 +73,11 @@ server.listen(PORT, async()=>{
     const lessonHint=await c.eval(`(()=>{const before=AcademyState.calculateTotalXP();const details=document.querySelector('details');const next=document.querySelector('.lesson-hint-next');if(!details||!next)return {missing:true};details.open=true;next.click();return {before,after:AcademyState.calculateTotalXP(),step:next.dataset.nextStep,text:document.querySelector('[id^="lesson-hint-text-"]').textContent}})()`);
     assert.equal(lessonHint.missing,undefined,'lesson reader renders progressive hint control');assert.equal(lessonHint.after,lessonHint.before);assert.equal(lessonHint.step,'2');assert(lessonHint.text.includes('Hint 2:'));
     console.log('✓ Room and lesson hints reveal one tier at a time on request without XP changes or answer prefill; legacy IDs normalize');
-    await c.eval(`localStorage.setItem('calion_completed_rooms',JSON.stringify(['room-01','room-02','room-03']))`);
+    await c.eval(`localStorage.setItem(AcademyState.KEYS.ROOMS,JSON.stringify(['room-01','room-02','room-03']))`);
     await navigate(`http://127.0.0.1:${PORT}/roadmap/cyber-security`);
     assert.equal(await c.eval('document.querySelector("#roadmap-header [role=status]")===null'),true,'three Pre-Security rooms unlock Foundations');
     assert.equal(await c.eval('document.querySelector("#roadmap-nodes .rm-node").classList.contains("current")'),true);
-    await c.eval(`localStorage.setItem('calion_completed_rooms',JSON.stringify(['room-01','room-02','room-03','room-11','room-12','room-13']))`);
+    await c.eval(`localStorage.setItem(AcademyState.KEYS.ROOMS,JSON.stringify(['room-01','room-02','room-03','room-11','room-12','room-13']))`);
     for(const slug of ['defensive-security','offensive-security']){
       await navigate(`http://127.0.0.1:${PORT}/roadmap/${slug}`);
       assert.equal(await c.eval('document.querySelector("#roadmap-header [role=status]")===null'),true,`${slug} independently unlocks after Foundations threshold`);

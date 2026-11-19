@@ -13,14 +13,56 @@
 </style>
 </head>
 <body class="bg-[#f8faff] dark:bg-[#090d16] text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
-<header class="home-nav"><a class="brand" href="/">◈ CALION Academy</a><nav aria-label="Primary"><a href="/">Academy</a><a class="hide-mobile" href="terminal-lab.html">Terminal</a><a href="profile.html">Account</a><button class="calion-theme-toggle" id="theme-toggle" type="button" aria-label="Toggle theme">◐</button></nav></header>
+<header class="home-nav">
+  <div class="calion-nav-left">
+    <a aria-label="CALION Academy Home" class="calion-brand-link" href="/">
+      <svg class="calion-logo-svg h-7 w-auto shrink-0 select-none" height="28" style="height:28px; width:auto;" fill="none" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg" aria-label="CALION Logo">
+        <defs>
+          <linearGradient id="calion_grad_home" x1="0%" x2="100%" y1="0%" y2="100%">
+            <stop offset="0%" stop-color="#00F0FF"></stop>
+            <stop offset="50%" stop-color="#0284C7"></stop>
+            <stop offset="100%" stop-color="#6366F1"></stop>
+          </linearGradient>
+        </defs>
+        <g transform="translate(10, 10)">
+          <path d="M 55 10 L 25 10 L 10 25 L 10 55 L 25 70 L 55 70" stroke="url(#calion_grad_home)" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"></path>
+          <path class="stroke-slate-900 dark:stroke-white transition-colors" d="M 42 70 L 42 22 L 58 22 L 68 70" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"></path>
+          <path d="M 33 46 L 56 46" stroke="url(#calion_grad_home)" stroke-linecap="round" stroke-width="4.5"></path>
+          <circle cx="55" cy="10" fill="#00F0FF" r="3.5"></circle>
+          <circle cx="25" cy="70" fill="#6366F1" r="3"></circle>
+          <circle class="fill-slate-900 dark:fill-white transition-colors" cx="42" cy="22" r="2.5"></circle>
+        </g>
+        <text class="fill-slate-900 dark:fill-white font-headline font-bold transition-colors" font-size="34" letter-spacing="0.22em" x="100" y="58">CALION</text>
+        <rect fill="#00F0FF" height="6" rx="1.5" width="6" x="362" y="38"></rect>
+        <rect fill="#6366F1" height="6" rx="1.5" width="6" x="362" y="48"></rect>
+      </svg>
+      <span class="calion-brand-badge hidden sm:inline-block">Academy</span>
+    </a>
+  </div>
+  <div class="calion-nav-right">
+    <nav class="calion-nav-links" aria-label="Primary">
+      <a class="calion-nav-item active" href="/">
+        <span class="material-symbols-outlined text-[16px]">school</span>
+        <span>Academy</span>
+      </a>
+      <a class="calion-nav-item hide-mobile" href="terminal-lab.html">
+        <span class="material-symbols-outlined text-[16px]">terminal</span>
+        <span>Terminal</span>
+      </a>
+    </nav>
+    <div id="academy-user-nav" class="academy-user-nav relative"></div>
+    <button class="calion-theme-toggle" id="theme-toggle" type="button" aria-label="Toggle theme" title="Toggle theme">
+      <span class="material-symbols-outlined text-[18px]">dark_mode</span>
+    </button>
+  </div>
+</header>
 <main class="academy-home">
 <section class="hero"><span class="eyebrow">Cybersecurity learning · four paths · 47 rooms</span><h1>Build your security skills,<br><span style="color:#0284c7">one room at a time.</span></h1><p>Choose a learning path to open its dedicated progression map. Foundations prepares you for defensive or authorized offensive security; those specialist paths are independent.</p></section>
 <section class="overall" aria-label="Overall learning progress"><div><div class="eyebrow">Your academy progress</div><strong id="overall-count">0 of 47 rooms complete</strong><div class="path-progress" style="width:min(460px,75vw);margin-bottom:0"><span id="overall-bar" style="width:0%"></span></div></div><a id="continue-link" class="path-action" href="room.html?id=room-01">Continue Learning</a></section>
 <section class="path-grid" id="path-grid" aria-label="Choose a learning path"></section>
 </main>
 <footer class="home-footer"><strong>CALION Academy</strong><div>Structured cybersecurity education for practical, responsible learning.</div><section aria-label="Platforms"><span>Platforms</span><a href="/">Academy</a><a href="https://payloads.endlessus.in">CALION Payload Hub</a><a href="terminal-lab.html">Terminal</a><a href="profile.html">Account</a></section></footer>
-<script src="learning-data.js"></script><script src="vendor/supabase.min.js"></script><script src="calion-runtime-config.js"></script><script src="academy-config.js"></script><script src="academy-state.js"></script><script src="academy-auth.js"></script><script src="academy-sync.js"></script><script src="academy-nav.js"></script>
+<script src="learning-data.js"></script><script src="vendor/supabase.min.js"></script><script src="calion-runtime-config.js"></script><script src="academy-config.js"></script><script src="academy-state.js"></script><script src="academy-auth.js"></script><script src="academy-xp-client.js"></script><script src="academy-sync.js"></script><script src="academy-nav.js"></script>
 <script>
 (()=>{const stages=window.CALION_STAGES||[],rooms=window.CALION_ROOMS||[],state=window.AcademyState;if(!stages.length||!rooms.length||!state){document.getElementById('path-grid').innerHTML='<p role="alert">Academy curriculum could not be loaded. Refresh the page or try again later.</p>';return}const links={'pre-security':'/roadmap/pre-security','cyber-security':'/roadmap/cyber-security','defensive-security':'/roadmap/defensive-security','offensive-security':'/roadmap/offensive-security'};function render(){const done=new Set(state.getCompletedRooms());const complete=rooms.filter(r=>done.has(r.id)).length,percent=Math.round(complete/rooms.length*100);document.getElementById('overall-count').textContent=`${complete} of ${rooms.length} rooms complete · ${percent}%`;document.getElementById('overall-bar').style.width=percent+'%';const resume=state.getLastActivePosition(rooms);const continueLink=document.getElementById('continue-link');continueLink.href=resume.url;continueLink.textContent=resume.isNewLearner?'Start Learning':'Continue Learning';document.getElementById('path-grid').innerHTML=stages.map(stage=>{const list=rooms.filter(r=>r.stageId===stage.id),progress=state.getStageProgress(stage.id,rooms),unlocked=state.isStageUnlocked(stage.id,rooms),next=list.find(r=>!done.has(r.id));return `<article class="path-card" style="--stage:${stage.color}"><span class="eyebrow">Path ${String(stage.order).padStart(2,'0')} · ${stage.difficulty}</span><h2>${stage.title}</h2><p>${stage.description}</p><div class="path-meta">${progress.completed}/${list.length} rooms · ${progress.percentage}% · ${stage.estimatedTime}</div><div class="path-progress" aria-label="${progress.percentage}% complete"><span style="width:${progress.percentage}%;background:${stage.color}"></span></div><div class="path-actions"><span class="path-meta">${unlocked?'Available':'Unlocks after required progress'}</span><a class="path-action" href="${links[stage.id]}" ${unlocked?'':'aria-disabled="true"'}>${next?'Explore Rooms':'Review Rooms'} →</a></div></article>`}).join('')}render();addEventListener('calion-progress-updated',render);addEventListener('endlessus-progress-updated',render)})();
 </script></body></html>

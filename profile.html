@@ -75,6 +75,7 @@
   <script src="calion-runtime-config.js"></script>
   <script src="academy-config.js"></script>
   <script src="academy-auth.js"></script>
+  <script src="academy-xp-client.js"></script>
   <script src="academy-sync.js"></script>
   <script src="academy-nav.js"></script>
 </head>
@@ -85,55 +86,70 @@
        1. GLOBAL STICKY HEADER
        ========================================================================= -->
   <header class="sticky top-0 z-50 w-full border-b border-border-hairline bg-surface-subtle/95 backdrop-blur-md">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
       
-      <!-- Brand -->
-      <div class="flex items-center gap-3">
-        <a href="learning.html" class="flex items-center gap-2.5 text-on-surface hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded py-1">
-          <span class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center font-mono font-black text-primary text-base">C</span>
-          <div class="flex flex-col">
-            <span class="font-bold text-sm tracking-tight leading-none text-on-surface">CALION Academy</span>
-            <span class="text-[10px] font-mono text-outline tracking-wider uppercase mt-0.5">Cybersecurity Education</span>
-          </div>
+      <!-- Brand & Approved Logo -->
+      <div class="flex items-center gap-3 shrink-0">
+        <a aria-label="CALION Academy Home" class="flex items-center gap-2.5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded py-1" href="/">
+          <svg class="h-7 w-auto shrink-0 select-none" fill="none" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg" aria-label="CALION Logo">
+            <defs>
+              <linearGradient id="calion_grad_prof" x1="0%" x2="100%" y1="0%" y2="100%">
+                <stop offset="0%" stop-color="#00F0FF"></stop>
+                <stop offset="50%" stop-color="#0284C7"></stop>
+                <stop offset="100%" stop-color="#6366F1"></stop>
+              </linearGradient>
+            </defs>
+            <g transform="translate(10, 10)">
+              <path d="M 55 10 L 25 10 L 10 25 L 10 55 L 25 70 L 55 70" stroke="url(#calion_grad_prof)" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"></path>
+              <path class="stroke-slate-900 dark:stroke-white transition-colors" d="M 42 70 L 42 22 L 58 22 L 68 70" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"></path>
+              <path d="M 33 46 L 56 46" stroke="url(#calion_grad_prof)" stroke-linecap="round" stroke-width="4.5"></path>
+              <circle cx="55" cy="10" fill="#00F0FF" r="3.5"></circle>
+              <circle cx="25" cy="70" fill="#6366F1" r="3"></circle>
+              <circle class="fill-slate-900 dark:fill-white transition-colors" cx="42" cy="22" r="2.5"></circle>
+            </g>
+            <text class="fill-slate-900 dark:fill-white font-headline font-bold transition-colors" font-size="34" letter-spacing="0.22em" x="100" y="58">CALION</text>
+            <rect fill="#00F0FF" height="6" rx="1.5" width="6" x="362" y="38"></rect>
+            <rect fill="#6366F1" height="6" rx="1.5" width="6" x="362" y="48"></rect>
+          </svg>
+          <span class="text-[11px] font-mono font-bold tracking-wider uppercase px-2 py-0.5 rounded border border-border-hairline bg-surface-raised text-primary hidden sm:inline-block">
+            Profile
+          </span>
         </a>
       </div>
 
-      <!-- Center Minimal Navigation -->
-      <nav class="flex items-center gap-1 text-xs font-mono" aria-label="Main Navigation">
-        <a href="learning.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised flex items-center gap-1.5 transition-colors">
-          <span class="material-symbols-outlined text-[15px]">school</span>
-          <span>Learning Tree</span>
-        </a>
-        <a href="terminal-lab.html" class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-raised flex items-center gap-1.5 transition-colors">
-          <span class="material-symbols-outlined text-[15px]">terminal</span>
-          <span>Terminal</span>
-        </a>
-        <a href="profile.html" class="px-3 py-1.5 rounded-md text-primary font-bold bg-surface-raised flex items-center gap-1.5 transition-colors">
-          <span class="material-symbols-outlined text-[15px]">account_circle</span>
-          <span>Profile</span>
-        </a>
-      </nav>
+      <!-- Center & Right Navigation -->
+      <div class="flex items-center gap-2 sm:gap-4">
+        <nav class="flex items-center gap-1 sm:gap-2 text-xs font-mono" aria-label="Main Navigation">
+          <a href="/" class="px-3 py-1.5 rounded-lg text-on-surface hover:text-primary hover:bg-surface-raised flex items-center gap-1.5 transition-colors font-medium">
+            <span class="material-symbols-outlined text-[16px] text-primary">school</span>
+            <span>Academy</span>
+          </a>
+          <a href="terminal-lab.html" class="px-3 py-1.5 rounded-lg text-on-surface hover:text-primary hover:bg-surface-raised flex items-center gap-1.5 transition-colors font-medium hidden sm:flex">
+            <span class="material-symbols-outlined text-[16px] text-secondary">terminal</span>
+            <span>Terminal</span>
+          </a>
+        </nav>
 
-      <!-- Right Action Bar -->
-      <div class="flex items-center gap-2 font-mono text-xs">
-        <!-- Streak Pill -->
-        <div class="hidden sm:flex items-center gap-1 px-2.5 py-1 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" title="Current Daily Streak">
-          <span class="text-amber-500">🔥</span>
-          <span id="header-streak-pill" class="font-bold">1d</span>
+        <!-- Streak & XP Pills -->
+        <div class="hidden md:flex items-center gap-2 font-mono text-xs">
+          <div class="flex items-center gap-1 px-2.5 py-1 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" title="Current Daily Streak">
+            <span class="text-amber-500">🔥</span>
+            <span id="header-streak-pill" class="font-bold">1d</span>
+          </div>
+          <div class="flex items-center gap-1 px-2.5 py-1 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" title="Total Accumulated XP">
+            <span class="text-primary font-bold">⚡</span>
+            <span id="header-xp-pill" class="font-bold">0 XP</span>
+          </div>
         </div>
 
-        <!-- XP Pill -->
-        <div class="hidden sm:flex items-center gap-1 px-2.5 py-1 rounded-lg border border-border-hairline bg-surface-raised text-on-surface" title="Total Accumulated XP">
-          <span class="text-primary font-bold">⚡</span>
-          <span id="header-xp-pill" class="font-bold">0 XP</span>
-        </div>
+        <div class="h-4 w-px bg-border-hairline hidden sm:block"></div>
 
-        <!-- Auth Slot -->
-        <div id="academy-auth-slot"></div>
+        <!-- User Identity & Dropdown -->
+        <div id="academy-user-nav" class="academy-user-nav relative"></div>
 
-        <!-- 3-Theme Selector Toggle Button -->
-        <button aria-label="Toggle theme mode" class="w-8 h-8 rounded-lg bg-surface-raised hover:bg-surface-subtle border border-border-hairline flex items-center justify-center text-outline hover:text-on-surface transition-colors calion-theme-toggle" id="theme-toggle" type="button" title="Switch Theme (Soft Light → Dark → Classic)">
-          <span class="material-symbols-outlined text-[18px]">contrast</span>
+        <!-- Theme Toggle -->
+        <button aria-label="Toggle theme mode" class="calion-theme-toggle" id="theme-toggle" type="button" title="Toggle theme">
+          <span class="material-symbols-outlined text-[18px]">dark_mode</span>
         </button>
       </div>
     </div>
