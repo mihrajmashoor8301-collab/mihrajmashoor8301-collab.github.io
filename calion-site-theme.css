@@ -19,13 +19,13 @@ body.dark,
 body.theme-dark,
 body.theme-hacker {
   color-scheme: dark;
-  --calion-brand-canvas: #0B1220;
-  --calion-brand-surface: #17243A;
-  --calion-brand-subtle: #111B2C;
-  --calion-brand-border: #2A3B55;
+  --calion-brand-canvas: #292A2D;
+  --calion-brand-surface: #FAFBFC;
+  --calion-brand-subtle: #EEF0F2;
+  --calion-brand-border: #C5CBD2;
   --calion-brand-text: #EDF3FB;
   --calion-brand-muted: #B4C2D5;
-  --calion-brand-primary: #60A5FA;
+  --calion-brand-primary: #0369A1;
 }
 
 html body {
@@ -67,4 +67,12 @@ html.theme-hacker body ::selection {
 
 html body img[src$="favicon.svg"] {
   image-rendering: auto;
+}
+
+/* Dark canvas surfaces retain a light reading surface and strong text contrast. */
+html.dark body :is([class*="card"], [class*="panel"], [class*="surface"]) :is(h1,h2,h3,h4,h5,h6) {
+  color: #202B36 !important;
+}
+html.dark body :is([class*="card"], [class*="panel"], [class*="surface"]) :is(p,li,label,small) {
+  color: #465363;
 }
