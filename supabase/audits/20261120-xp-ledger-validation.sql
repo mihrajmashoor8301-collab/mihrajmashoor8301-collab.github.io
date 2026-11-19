@@ -56,6 +56,9 @@ select has_table_privilege('anon','calion_private.xp_events','select') as anon_c
        has_table_privilege('authenticated','calion_private.xp_events','insert') as learner_can_insert_ledger,
        has_function_privilege('anon','public.submit_calion_answer(text,text,text,text)','execute') as anon_can_answer_rpc,
        has_function_privilege('authenticated','public.submit_calion_answer(text,text,text,text)','execute') as authenticated_can_answer_rpc,
+       has_function_privilege('anon','public.evaluate_user_milestones(uuid)','execute') as anon_can_call_milestone_internal,
+       has_function_privilege('authenticated','public.evaluate_user_milestones(uuid)','execute') as authenticated_can_call_milestone_internal,
+       has_function_privilege('public','public.evaluate_user_milestones(uuid)','execute') as public_can_call_milestone_internal,
        has_function_privilege('authenticated','calion_private.append_xp_event(uuid,text,text,text,text,integer)','execute') as learner_can_call_internal_awarder;
 select tgname,tgenabled,pg_get_triggerdef(oid) as definition
 from pg_trigger

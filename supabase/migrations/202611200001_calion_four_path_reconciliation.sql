@@ -392,6 +392,11 @@ begin
 end;
 $$;
 
+-- Milestone evaluation is an internal trigger/server operation. Removing direct
+-- client execution here closes the interval between curriculum reconciliation
+-- and the XP-ledger migration without changing existing profiles.total_xp.
+revoke all on function public.evaluate_user_milestones(uuid) from public,anon,authenticated;
+
 do $$
 declare pre_count integer; foundations_count integer; defensive_count integer; offensive_count integer;
 begin

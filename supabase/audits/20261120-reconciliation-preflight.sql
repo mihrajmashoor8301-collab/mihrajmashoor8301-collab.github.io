@@ -67,3 +67,26 @@ select count(*)::int as achievement_count,
 from public.achievements;
 select id,title,description,icon,category,required_count,xp_bonus
 from public.achievements where id='pre-security-graduate';
+
+-- Baseline migration evidence: extensions, RLS, client privileges and the
+-- currently exposed milestone evaluator. These checks do not prove provenance;
+-- compare them with each migration before reconciling its history version.
+select e.extname,n.nspname as extension_schema
+from pg_extension e join pg_namespace n on n.oid=e.extnamespace
+where e.extname='pgcrypto';
+
+select c.relname,c.relrowsecurity
+from pg_class c join pg_namespace n on n.oid=c.relnamespace
+where n.nspname='public' and c.relname in
+  ('profiles','learning_paths','rooms','room_progress','labs','lab_progress',
+   'task_progress','achievements','user_achievements','user_activity','lab_secrets')
+order by c.relname;
+
+select has_column_privilege('authenticated','public.profiles','total_xp','update') as authenticated_can_update_total_xp,
+       has_table_privilege('anon','public.user_achievements','insert') as anon_can_insert_achievements,
+       has_table_privilege('authenticated','public.user_achievements','insert') as authenticated_can_insert_achievements,
+       has_table_privilege('anon','public.lab_secrets','select') as anon_can_read_lab_secrets,
+       has_table_privilege('authenticated','public.lab_secrets','select') as authenticated_can_read_lab_secrets,
+       has_function_privilege('anon','public.evaluate_user_milestones(uuid)','execute') as anon_can_execute_milestones,
+       has_function_privilege('authenticated','public.evaluate_user_milestones(uuid)','execute') as authenticated_can_execute_milestones,
+       has_function_privilege('public','public.evaluate_user_milestones(uuid)','execute') as public_can_execute_milestones;
