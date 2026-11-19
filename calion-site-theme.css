@@ -1,0 +1,70 @@
+/* Shared CALION Academy brand layer for non-portfolio product pages. */
+:root {
+  color-scheme: light;
+  --calion-brand-canvas: #EBF1F7;
+  --calion-brand-surface: #FFFFFF;
+  --calion-brand-subtle: #F3F7FA;
+  --calion-brand-border: #CBD8E6;
+  --calion-brand-text: #0F172A;
+  --calion-brand-muted: #475569;
+  --calion-brand-primary: #0284C7;
+  --calion-brand-heading: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --calion-brand-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+html.dark,
+html.theme-dark,
+html.theme-hacker,
+body.dark,
+body.theme-dark,
+body.theme-hacker {
+  color-scheme: dark;
+  --calion-brand-canvas: #090D16;
+  --calion-brand-surface: #131D36;
+  --calion-brand-subtle: #0E131F;
+  --calion-brand-border: #26344B;
+  --calion-brand-text: #E8EDF5;
+  --calion-brand-muted: #B9C5D8;
+  --calion-brand-primary: #38BDF8;
+}
+
+html body {
+  font-family: var(--calion-brand-body) !important;
+  color: var(--calion-brand-text);
+  background-color: var(--calion-brand-canvas);
+  accent-color: var(--calion-brand-primary);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+html body :is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--calion-brand-heading);
+  color: var(--calion-brand-text);
+  text-wrap: balance;
+}
+
+html body :is(input, select, textarea) {
+  font: inherit;
+  border-color: var(--calion-brand-border);
+  border-radius: 10px;
+}
+
+html body :is(button, a, input, select, textarea, summary):focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--calion-brand-primary) 38%, transparent);
+  outline-offset: 2px;
+}
+
+html body ::selection {
+  color: #0F172A;
+  background: #BAE6FD;
+}
+
+html.dark body ::selection,
+html.theme-hacker body ::selection {
+  color: #E8EDF5;
+  background: #075985;
+}
+
+html body img[src$="favicon.svg"] {
+  image-rendering: auto;
+}
