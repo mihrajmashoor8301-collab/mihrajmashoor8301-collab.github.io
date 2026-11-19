@@ -11,6 +11,8 @@ node scripts/build-pages.js
 node tests/browser-answer-key-exposure.js
 ```
 
+The local build used the safe unconfigured fallback because `CALION_SUPABASE_URL` and `CALION_SUPABASE_ANON_KEY` were not present in this workspace. For publication, rebuild in the authorized Pages/CI environment with its existing public Supabase URL and anon key variables; do not commit generated runtime config or paste credentials into the repository.
+
 Run the regression suite. The PostgreSQL security test needs a disposable local database with the four baseline migrations installed; the full Chromium tests run through their existing test scripts.
 
 ```sh
