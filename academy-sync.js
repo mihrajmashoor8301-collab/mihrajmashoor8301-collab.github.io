@@ -174,6 +174,17 @@
           const { data: rpcRes, error } = await sb.rpc('verify_lab_flag', { p_lab_id: labId, p_submitted_flag: submittedFlag });
           if (error || !rpcRes || !rpcRes.success) {
             console.warn('[AcademySync] Lab flag verification failed via RPC:', error ? error.message : (rpcRes ? rpcRes.message : 'No response'));
+          } else {
+            if (Number.isFinite(Number(rpcRes.total_xp))) {
+              AcademyState.safeSet(AcademyState.KEYS.XP, Number(rpcRes.total_xp));
+              const profile = AcademyAuth.getProfile && AcademyAuth.getProfile();
+              if (profile) profile.total_xp = Number(rpcRes.total_xp);
+            }
+            if (typeof window !== 'undefined') {
+              window.dispatchEvent(new CustomEvent('calion-progress-updated', {
+                detail: { type: 'verified-lab-completed', userId: user.id, labId, xpAwarded: Number(rpcRes.xp_awarded) || 0 }
+              }));
+            }
           }
         } catch (e) {
           console.warn('[AcademySync] RPC error during lab flag verification:', e);
@@ -358,12 +369,20 @@
         .eq('user_id', userId)
         .eq('curriculum_id', CURRICULUM_ID);
 
-      const { data: xpState, error: xpStateError } = await sb.rpc('get_calion_xp_state');
-      if (xpStateError || !xpState || !xpState.success) return null;
+      const signedInUser = AcademyAuth && AcademyAuth.getUser ? AcademyAuth.getUser() : null;
+      const isOwnProfile = Boolean(signedInUser && signedInUser.id === userId);
+      let xpState = null;
+      if (isOwnProfile) {
+        const { data, error } = await sb.rpc('get_calion_xp_state');
+        if (error || !data || !data.success) return null;
+        xpState = data;
+      }
       const curriculum = (typeof window !== 'undefined' && window.CALION_ROOMS) || [];
       const stages = (typeof window !== 'undefined' && window.CALION_STAGES) || [];
       const canonicalRoomIds = new Set(curriculum.map(r => r.id));
-      const completedRoomIds = new Set((Array.isArray(xpState.rooms_completed) ? xpState.rooms_completed : [])
+      const completedRoomIds = new Set((isOwnProfile
+        ? (Array.isArray(xpState.rooms_completed) ? xpState.rooms_completed : [])
+        : (roomRows || []).filter(r => r.status === 'completed').map(r => r.room_id))
         .map(id => AcademyState.normalizeRoomId(id)).filter(id => canonicalRoomIds.has(id)));
       const completedPaths = stages.filter(stage => { const pathRooms = curriculum.filter(r => r.stageId === stage.id); return pathRooms.length > 0 && pathRooms.every(r => completedRoomIds.has(r.id)); }).length;
       const preSecurityRooms = curriculum.filter(r => r.stageId === 'pre-security');
@@ -392,7 +411,7 @@
 
       // Authenticated XP is always the server profile value. Local calculations are
       // provisional guest display only and must never be used as an account fallback.
-      const xp = profile ? profile.total_xp : (Number.isFinite(Number(xpState.total_xp)) ? Number(xpState.total_xp) : null);
+      const xp = profile ? profile.total_xp : (xpState && Number.isFinite(Number(xpState.total_xp)) ? Number(xpState.total_xp) : null);
       const streak = profile ? profile.streak_days : AcademyState.getStreak();
       const verifiedRoomRows = (roomRows || []).map(r => {
         if (r.status === 'completed' && !completedRoomIds.has(AcademyState.normalizeRoomId(r.room_id))) {

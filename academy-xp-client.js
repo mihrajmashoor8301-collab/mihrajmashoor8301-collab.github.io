@@ -42,6 +42,7 @@
       return {
         ...data,
         xpAwarded: Number(data?.xp_awarded) || 0,
+        roomXpAwarded: Number(data?.room_xp_awarded) || 0,
         totalXP: Number.isFinite(Number(data?.total_xp)) ? Number(data.total_xp) : null
       };
     } catch (_) {

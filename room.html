@@ -1380,6 +1380,8 @@
         let userInput = '';
         let selectedOption = null;
         let verifiedAward = 0;
+        let verifiedRoomAward = 0;
+        let serverRoomCompleted = false;
         let serverCheckFailed = false;
 
         const feedbackEl = document.getElementById(`q-feedback-${idx}`);
@@ -1455,6 +1457,8 @@
               }
               isCorrect = Boolean(checked && checked.success && checked.correct);
               verifiedAward = Number(checked && checked.xpAwarded) || 0;
+              verifiedRoomAward = Number(checked && checked.roomXpAwarded) || 0;
+              serverRoomCompleted = Boolean(checked && checked.room_completed);
               serverCheckFailed = !checked || ['server_error','practice_only_guest'].includes(checked.code);
               if (checked && Number.isFinite(checked.totalXP)) {
                 AcademyState.safeSet(AcademyState.KEYS.XP, checked.totalXP);
@@ -1519,7 +1523,7 @@
               <p class="text-on-surface-variant font-sans">${escapeHtml(q.explanation || 'Well done! Answer verified.')}</p>
             `;
           }
-          checkAndCompleteWholeRoom();
+          checkAndCompleteWholeRoom(serverRoomCompleted, verifiedAward + verifiedRoomAward);
           renderTasks();
           renderOverallProgress();
         } else {
@@ -1540,7 +1544,9 @@
         }
       }
 
-      function checkAndCompleteWholeRoom() {
+      function checkAndCompleteWholeRoom(serverVerified = false, verifiedAward = 0) {
+        const authenticatedLearner = Boolean(window.AcademyAuth && AcademyAuth.isAuthenticated && AcademyAuth.isAuthenticated());
+        if (authenticatedLearner && !serverVerified) return;
         // If all lesson tasks are complete AND capstone (if present) is solved
         const allLessonsDone = lessons.every((_, idx) => isTaskDone(idx));
         const qProgress = AcademyState.getQuestionProgress();
@@ -1550,11 +1556,11 @@
 
         if (allLessonsDone && isCapstoneSolved && !AcademyState.isRoomCompleted(room.id)) {
           AcademyState.markRoomCompleted(room.id);
-          triggerRoomCompletionModal();
+          triggerRoomCompletionModal(authenticatedLearner ? verifiedAward : null);
         }
       }
 
-      function triggerRoomCompletionModal() {
+      function triggerRoomCompletionModal(verifiedAward = null) {
         const modal = document.getElementById('room-complete-modal');
         if (!modal) return;
 
@@ -1562,8 +1568,11 @@
         const totalTasksDone = lessons.length + (room.finalAssessment ? 1 : 0);
         document.getElementById('modal-tasks-stat').textContent = `${totalTasksDone} of ${totalTasksDone} Tasks Done`;
 
-        const earnedXP = 50 + (questions.length * 25);
-        document.getElementById('modal-xp-stat').textContent = `+${earnedXP} XP Earned`;
+        const authenticatedLearner = Boolean(window.AcademyAuth && AcademyAuth.isAuthenticated && AcademyAuth.isAuthenticated());
+        const earnedXP = authenticatedLearner ? Math.max(0, Number(verifiedAward) || 0) : 50 + (questions.length * 25);
+        document.getElementById('modal-xp-stat').textContent = authenticatedLearner
+          ? (earnedXP ? `+${earnedXP} XP Awarded` : 'XP already reflected in your account')
+          : `+${earnedXP} practice XP`;
 
         const learnedList = document.getElementById('modal-learned-list');
         if (learnedList) {
