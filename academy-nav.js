@@ -181,7 +181,6 @@
 
       if (isAuthed && (profile || user)) {
         const displayName = (profile && (profile.display_name || profile.username)) || (user && user.email ? user.email.split('@')[0] : 'Learner');
-        const email = (user && user.email) ? user.email : '';
         const initial = displayName.charAt(0).toUpperCase();
         const avatarUrl = profile && profile.avatar_url ? profile.avatar_url : '';
 
@@ -193,39 +192,18 @@
           <div class="relative academy-profile-menu">
             <button type="button" class="academy-profile-btn flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-2.5 sm:py-1 rounded-xl border border-border-hairline bg-surface-raised hover:bg-surface-subtle transition-all cursor-pointer text-xs font-mono select-none" aria-expanded="false" aria-haspopup="true" aria-label="User account menu for ${escapeHtml(displayName)}">
               ${avatarMarkup}
-              <span class="academy-profile-username font-bold text-on-surface max-w-[100px] truncate hidden sm:inline">${escapeHtml(displayName)}</span>
+              <span class="academy-profile-username font-bold text-on-surface max-w-[100px] truncate" style="display:inline">${escapeHtml(displayName)}</span>
               <span class="material-symbols-outlined text-[15px] text-outline">expand_more</span>
             </button>
-            <div class="academy-profile-dropdown absolute right-0 top-full mt-2 w-56 p-2 rounded-2xl border border-border-hairline bg-surface-raised/98 backdrop-blur-xl shadow-xl space-y-1 font-mono text-xs hidden z-50">
-              <div class="px-3 py-2 border-b border-border-hairline/60">
-                <div class="font-bold text-on-surface truncate">${escapeHtml(displayName)}</div>
-                ${email ? `<div class="text-[10px] text-outline truncate mt-0.5">${escapeHtml(email)}</div>` : ''}
-              </div>
+            <div class="academy-profile-dropdown absolute right-0 top-full mt-2 w-48 p-2 rounded-2xl border border-border-hairline bg-surface-raised/98 backdrop-blur-xl shadow-xl space-y-1 font-mono text-xs hidden z-50">
               <a href="profile.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-surface-subtle text-on-surface hover:text-primary transition-colors font-medium">
                 <span class="material-symbols-outlined text-[16px] text-primary">person</span>
                 <span>View Profile</span>
               </a>
-              ${!isRoadmapPage ? `
-                <a href="/" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-surface-subtle text-on-surface hover:text-primary transition-colors">
-                  <span class="material-symbols-outlined text-[16px] text-secondary">school</span>
-                  <span>Academy Home</span>
-                </a>
-                <a href="terminal-lab.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-surface-subtle text-on-surface hover:text-primary transition-colors">
-                  <span class="material-symbols-outlined text-[16px] text-emerald-500">terminal</span>
-                  <span>Terminal</span>
-                </a>
-              ` : `
-                <a href="/" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-surface-subtle text-on-surface hover:text-primary transition-colors">
-                  <span class="material-symbols-outlined text-[16px] text-secondary">school</span>
-                  <span>Academy Home</span>
-                </a>
-              `}
-              <div class="border-t border-border-hairline/60 pt-1">
-                <button type="button" class="header-logout-btn w-full text-left flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-red-500/10 text-red-600 dark:text-red-400 transition-colors cursor-pointer">
-                  <span class="material-symbols-outlined text-[16px]">logout</span>
-                  <span>Sign Out</span>
-                </button>
-              </div>
+              <button type="button" class="header-logout-btn w-full text-left flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-red-500/10 text-red-600 dark:text-red-400 transition-colors cursor-pointer">
+                <span class="material-symbols-outlined text-[16px]">logout</span>
+                <span>Sign Out</span>
+              </button>
             </div>
           </div>
         `;

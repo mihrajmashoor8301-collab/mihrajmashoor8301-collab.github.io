@@ -273,12 +273,31 @@ server.listen(PORT, async () => {
     console.log(`  ✓ Authenticated navbar name: "${authName}"`);
     assert.strictEqual(authName, 'Cyber Cadet', 'Authenticated username must be displayed beside avatar');
 
+    const authenticatedMenu = await c.eval(`(() => {
+      const menu = document.querySelector('.academy-profile-dropdown');
+      return {
+        text: menu?.textContent || '',
+        links: Array.from(menu?.querySelectorAll('a') || []).map(link => link.querySelector('span:last-child')?.textContent.trim()),
+        actions: menu?.querySelectorAll('button').length || 0
+      };
+    })()`);
+    assert.deepStrictEqual(authenticatedMenu.links, ['View Profile'], 'Signed-in menu must expose only View Profile as a link');
+    assert.strictEqual(authenticatedMenu.actions, 1, 'Signed-in menu must expose only Sign Out as an action');
+    assert(!authenticatedMenu.text.includes('cadet@calion.academy'), 'Signed-in menu must not expose the account email');
+    assert(!authenticatedMenu.text.includes('Academy Home') && !authenticatedMenu.text.includes('Terminal'), 'Signed-in menu must not duplicate global navigation');
+
     const avatarInitial = await c.eval('document.querySelector(".academy-profile-btn span")?.textContent.trim()');
     assert(avatarInitial.includes('C'), 'Avatar initial must match first letter of username');
     console.log(`  ✓ Fallback initial avatar rendered: "${avatarInitial}"`);
 
     console.log('\n--- 8. Testing Mobile Viewport (390px) & Zero Horizontal Overflow ---');
     await c.send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
+    const mobileUsername = await c.eval(`(() => {
+      const name = document.querySelector('.academy-profile-username');
+      return name ? { text: name.textContent.trim(), display: getComputedStyle(name).display } : null;
+    })()`);
+    assert.strictEqual(mobileUsername?.text, 'Cyber Cadet', 'Authenticated username must remain beside avatar on mobile');
+    assert.notStrictEqual(mobileUsername?.display, 'none', 'Authenticated username must be visible on mobile');
 
     for (const page of auditedPages) {
       await navigate(page.url);
