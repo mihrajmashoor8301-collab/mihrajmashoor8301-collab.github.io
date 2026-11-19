@@ -8,6 +8,8 @@ const { execFileSync } = require('child_process');
 const PORT = 8089, DEBUG_PORT = 9224, ROOT = path.join(__dirname, '..', 'dist');
 execFileSync(process.execPath,[path.join(__dirname,'../scripts/build-pages.js')],{stdio:'ignore'});
 for(const route of ['pre-security','cyber-security','defensive-security','offensive-security'])assert(fs.existsSync(path.join(ROOT,'roadmap',route,'index.html')),`built roadmap route ${route}`);
+const curriculumVersion=require('crypto').createHash('sha256').update(fs.readFileSync(path.join(__dirname,'../learning-data.js'))).digest('hex').slice(0,12);
+for(const page of ['learning.html','roadmap.html','room.html','lesson.html'])assert(fs.readFileSync(path.join(ROOT,page),'utf8').includes(`learning-data.js?v=${curriculumVersion}`),`${page} references versioned curriculum data`);
 const server = http.createServer((req, res) => {
   const pathname = new URL(req.url, `http://127.0.0.1:${PORT}`).pathname;
   if (['/modules','/modules/','/modules.html','/module.html','/roadmap.html'].includes(pathname)) { res.writeHead(301,{Location:'/'}); return res.end(); }

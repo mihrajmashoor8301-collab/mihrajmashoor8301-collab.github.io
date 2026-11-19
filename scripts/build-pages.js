@@ -12,6 +12,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 const ROOT_DIR = path.resolve(__dirname, '..');
 const DIST_DIR = path.join(ROOT_DIR, 'dist');
@@ -230,6 +231,13 @@ function runBuild() {
 
   // 4. Copy selected root files and ensure script load order
   const rootEntries = fs.readdirSync(ROOT_DIR);
+  // Curriculum bundles can be cached for a day at the CDN and in browsers.
+  // Version their URL in every generated page so a release cannot pair new
+  // renderers with stale curriculum globals from an older deployment.
+  const curriculumPath = path.join(ROOT_DIR, 'learning-data.js');
+  const curriculumVersion = fs.existsSync(curriculumPath)
+    ? crypto.createHash('sha256').update(fs.readFileSync(curriculumPath)).digest('hex').slice(0, 12)
+    : '';
   let fileCount = 0;
   let htmlPatchedCount = 0;
 
@@ -245,6 +253,10 @@ function runBuild() {
       if (INCLUDE_EXTS.has(ext) || INCLUDE_SPECIAL_FILES.has(entry)) {
         if (ext === '.html') {
           let htmlContent = fs.readFileSync(srcPath, 'utf8');
+          if (curriculumVersion) {
+            htmlContent = htmlContent.replace(/(<script\s+src=["'])learning-data\.js(?:\?[^"']*)?(["'])/g,
+              `$1learning-data.js?v=${curriculumVersion}$2`);
+          }
           // Ensure calion-runtime-config.js is loaded before academy-config.js
           if (htmlContent.includes('academy-config.js') && !htmlContent.includes('calion-runtime-config.js')) {
             htmlContent = htmlContent.replace(
