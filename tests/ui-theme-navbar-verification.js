@@ -285,6 +285,19 @@ server.listen(PORT, async () => {
     assert.strictEqual(authenticatedMenu.actions, 1, 'Signed-in menu must expose only Sign Out as an action');
     assert(!authenticatedMenu.text.includes('cadet@calion.academy'), 'Signed-in menu must not expose the account email');
     assert(!authenticatedMenu.text.includes('Academy Home') && !authenticatedMenu.text.includes('Terminal'), 'Signed-in menu must not duplicate global navigation');
+    const authMenuInitialDisplay = await c.eval('getComputedStyle(document.querySelector(".academy-profile-dropdown")).display');
+    assert.strictEqual(authMenuInitialDisplay, 'none', 'Signed-in menu must remain hidden until opened');
+    await c.eval('document.querySelector(".academy-profile-btn").click()');
+    const authMenuLayout = await c.eval(`(() => {
+      const menu = document.querySelector('.academy-profile-dropdown');
+      const items = Array.from(menu.children).map(item => item.getBoundingClientRect());
+      return { display: getComputedStyle(menu).display, direction: getComputedStyle(menu).flexDirection,
+        font: getComputedStyle(menu).fontFamily, firstTop: items[0]?.top, secondTop: items[1]?.top };
+    })()`);
+    assert.strictEqual(authMenuLayout.display, 'flex', 'Opened account menu must be visible');
+    assert.strictEqual(authMenuLayout.direction, 'column', 'Account actions must stack vertically');
+    assert(authMenuLayout.secondTop > authMenuLayout.firstTop, 'Account actions must occupy separate rows');
+    assert(authMenuLayout.font.includes('Inter'), 'Account menu must use the site sans-serif font');
 
     const avatarInitial = await c.eval('document.querySelector(".academy-profile-btn span")?.textContent.trim()');
     assert(avatarInitial.includes('C'), 'Avatar initial must match first letter of username');
