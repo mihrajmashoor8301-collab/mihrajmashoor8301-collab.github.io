@@ -1198,6 +1198,31 @@ header svg.h-7,
   display: block;
 }
 
+/* Logo ink has explicit colors because some pages intentionally omit Tailwind utilities. */
+.calion-logo-svg text {
+  fill: #0f172a;
+  font-family: var(--academy-font-display, 'Space Grotesk', sans-serif);
+  font-weight: 700;
+}
+
+.calion-logo-svg g > path:nth-of-type(2) {
+  stroke: #0f172a;
+}
+
+.calion-logo-svg g > circle:last-of-type {
+  fill: #0f172a;
+}
+
+html.dark .calion-logo-svg text,
+html.dark .calion-logo-svg g > path:nth-of-type(2) {
+  fill: #f8fafc;
+  stroke: #f8fafc;
+}
+
+html.dark .calion-logo-svg g > circle:last-of-type {
+  fill: #f8fafc;
+}
+
 .calion-brand-badge {
   font-family: var(--academy-font-mono, 'JetBrains Mono', monospace);
   font-size: 11px;

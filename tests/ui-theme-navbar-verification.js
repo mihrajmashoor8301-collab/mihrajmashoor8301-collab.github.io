@@ -185,7 +185,8 @@ server.listen(PORT, async () => {
 
     // Test persistence across navigation to other pages
     const auditedPages = [
-      { url: `http://127.0.0.1:${PORT}/roadmap/pre-security`, name: 'Pre-Security Roadmap' },
+      { url: `http://127.0.0.1:${PORT}/learning.html`, name: 'Academy Home' },
+      { url: `http://127.0.0.1:${PORT}/roadmap/pre-security/`, name: 'Pre-Security Roadmap' },
       { url: `http://127.0.0.1:${PORT}/room.html?id=room-01`, name: 'Room 01' },
       { url: `http://127.0.0.1:${PORT}/lesson.html?room=room-01&task=0`, name: 'Lesson 01' },
       { url: `http://127.0.0.1:${PORT}/profile.html`, name: 'Profile' },
@@ -211,6 +212,15 @@ server.listen(PORT, async () => {
 
       const logoText = await c.eval('document.querySelector("header svg text")?.textContent.trim()');
       assert.strictEqual(logoText, 'CALION', `Page ${page.name} logo must render CALION typography`);
+      const logoInk = await c.eval(`(() => {
+        const svg = document.querySelector('header svg');
+        const text = svg.querySelector('text'); const style = getComputedStyle(text); const box = text.getBBox();
+        return { textFill: style.fill, display: style.display, visibility: style.visibility, opacity: style.opacity,
+          fontSize: style.fontSize, box: { x: box.x, y: box.y, width: box.width, height: box.height },
+          markStroke: getComputedStyle(svg.querySelector('g > path:nth-of-type(2)')).stroke };
+      })()`);
+      assert(logoInk.textFill !== 'none' && logoInk.textFill !== 'rgba(0, 0, 0, 0)' && logoInk.display !== 'none' && logoInk.visibility !== 'hidden' && Number(logoInk.opacity) > 0 && logoInk.box.width > 0, `Page ${page.name} logo wordmark must be visible`);
+      assert(logoInk.markStroke !== 'none' && logoInk.markStroke !== 'rgba(0, 0, 0, 0)', `Page ${page.name} logo monogram must be visible`);
 
       const logoBox = await c.eval('(()=>{const el=document.querySelector("header svg"); if(!el) return null; const r=el.getBoundingClientRect(); return {width: Number(r.width), height: Number(r.height), ratio: Number(r.width/r.height)};})()');
       console.log(`  DEBUG LOGO BOX for ${page.name}:`, JSON.stringify(logoBox));
