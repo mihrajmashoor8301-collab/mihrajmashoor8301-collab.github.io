@@ -167,11 +167,14 @@ async function runBrowserTests() {
 
   try {
     async function navigate(url) {
+      const targetPath = new URL(url).pathname;
       await client.send('Page.navigate', { url });
-      for (let i = 0; i < 40; i++) {
+      for (let i = 0; i < 60; i++) {
         await new Promise(r => setTimeout(r, 100));
-        const ready = await client.evaluate('document.readyState === "complete"');
-        if (ready) break;
+        try {
+          const ok = await client.evaluate(`Boolean(window.location.pathname.endsWith('${targetPath}') && document.readyState === 'complete' && document.body && document.body.children.length > 0)`);
+          if (ok) break;
+        } catch (e) {}
       }
       await new Promise(r => setTimeout(r, 200));
     }

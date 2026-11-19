@@ -856,8 +856,10 @@
               ${isExact ? `
                 <div class="space-y-3">
                   ${q.visualSlots ? `
-                    <div class="flex flex-wrap gap-1 font-mono text-xs text-sky-600 dark:text-sky-400 font-bold tracking-widest bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 w-fit">
-                      <span>Pattern:</span> <span class="text-slate-900 dark:text-white font-mono">${escapeHtml(q.visualSlots)}</span>
+                    <div class="flex flex-wrap items-center gap-2 font-mono text-xs text-sky-600 dark:text-sky-400 font-bold tracking-widest bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 w-fit">
+                      <span class="text-slate-500 font-sans uppercase text-[10px] tracking-normal">Pattern:</span>
+                      <span class="text-slate-900 dark:text-white font-mono select-none">${escapeHtml(q.visualSlots)}</span>
+                      ${q.answerLength ? `<span class="text-slate-400 font-sans text-[11px] font-normal">(${q.answerLength} chars)</span>` : ''}
                     </div>
                   ` : ''}
 
@@ -897,18 +899,28 @@
                 ` : ''}
               </div>
 
-              <!-- Collapsible Hint -->
-              ${q.hint ? `
+              <!-- Collapsible Progressive Hint -->
+              ${(Array.isArray(q.hints) && q.hints.length > 0) ? `
                 <details class="text-xs font-mono text-slate-500 group">
                   <summary class="cursor-pointer hover:text-sky-600 flex items-center gap-1 py-1">
                     <span class="material-symbols-outlined text-amber-500 text-[16px]">lightbulb</span>
-                    <span>Need a hint? (-10 XP penalty on submission)</span>
+                    <span>Need a hint? (1 of ${q.hints.length})</span>
+                  </summary>
+                  <div class="p-3 mt-2 rounded-lg bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-sans leading-relaxed space-y-2">
+                    ${q.hints.map((h, hIdx) => `<div><strong>Hint ${hIdx + 1}:</strong> ${escapeHtml(h)}</div>`).join('')}
+                  </div>
+                </details>
+              ` : (q.hint ? `
+                <details class="text-xs font-mono text-slate-500 group">
+                  <summary class="cursor-pointer hover:text-sky-600 flex items-center gap-1 py-1">
+                    <span class="material-symbols-outlined text-amber-500 text-[16px]">lightbulb</span>
+                    <span>Need a hint?</span>
                   </summary>
                   <div class="p-3 mt-2 rounded-lg bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-sans leading-relaxed">
                     ${escapeHtml(q.hint)}
                   </div>
                 </details>
-              ` : ''}
+              ` : '')}
 
             </div>
           `;

@@ -261,7 +261,7 @@
             </div>
             <div class="flex justify-between text-[10px] font-mono text-outline">
               <span id="current-stage-tag">Foundations</span>
-              <span id="total-xp-display">0 / 1,600 XP</span>
+              <span id="total-xp-display">0 / 1,950 XP</span>
             </div>
           </div>
           <div class="flex items-center gap-2">
@@ -617,9 +617,10 @@
         const progressLabel = document.getElementById('path-progress-label');
         const progressBar = document.getElementById('path-progress-bar');
         const totalXpDisplay = document.getElementById('total-xp-display');
+        const maxCurriculumXP = (psCurriculum && psCurriculum.stats && psCurriculum.stats.maxXP) ? psCurriculum.stats.maxXP : 1950;
         if (progressLabel) progressLabel.textContent = `${completedCount} of ${psTotal} Rooms (${pct}%)`;
         if (progressBar) progressBar.style.width = `${pct}%`;
-        if (totalXpDisplay) totalXpDisplay.textContent = `${totalXP.toLocaleString()} / 1,600 XP`;
+        if (totalXpDisplay) totalXpDisplay.textContent = `${totalXP.toLocaleString()} / ${maxCurriculumXP.toLocaleString()} XP`;
 
         // Update Test compatibility elements
         const statCompletedRooms = document.getElementById('stat-completed-rooms');
@@ -767,8 +768,10 @@
         const stageRooms = psCurriculum ? psCurriculum.rooms : rooms.filter(r => r.stageId === stage.id);
         const completedRooms = new Set(AcademyState.getCompletedRooms());
 
+        const maxStageXP = (psCurriculum && psCurriculum.stats && psCurriculum.stats.maxXP) ? psCurriculum.stats.maxXP : 1950;
+        const totalStageTasks = (psCurriculum && psCurriculum.stats && psCurriculum.stats.totalLessons) ? psCurriculum.stats.totalLessons : 42;
         if (modalBadge) modalBadge.textContent = 'STAGE 01 · FOUNDATIONS';
-        if (modalStats) modalStats.textContent = `${stageRooms.length} Rooms • 12 Levels • +1,600 Max XP`;
+        if (modalStats) modalStats.textContent = `${stageRooms.length} Rooms • ${totalStageTasks} Tasks • +${maxStageXP.toLocaleString()} Max XP`;
         if (modalTitle) modalTitle.textContent = 'Pre-Security Progression Roadmap';
         if (modalDesc) modalDesc.textContent = 'Complete each foundational cybersecurity room in sequence along the progression path.';
 
@@ -930,22 +933,6 @@
       });
 
       // 6. Reset progress handler
-      const resetBtn = document.getElementById('reset-progress-btn');
-      if (resetBtn) {
-        resetBtn.addEventListener('click', () => {
-          if (confirm('Are you sure you want to reset your local learning progress? This action cannot be undone.')) {
-            AcademyState.resetAllProgress();
-            renderLearningTree();
-          }
-        });
-      }
-
-      // Initial execution & Subscription
-      renderLearningTree();
-      window.addEventListener('calion-progress-updated', renderLearningTree);
-      window.addEventListener('endlessus-progress-updated', renderLearningTree);
-
-      // 5. Reset progress handler
       const resetBtn = document.getElementById('reset-progress-btn');
       if (resetBtn) {
         resetBtn.addEventListener('click', () => {
