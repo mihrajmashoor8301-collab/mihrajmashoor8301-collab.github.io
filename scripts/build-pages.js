@@ -231,13 +231,20 @@ function runBuild() {
 
   // 4. Copy selected root files and ensure script load order
   const rootEntries = fs.readdirSync(ROOT_DIR);
-  // Curriculum bundles can be cached for a day at the CDN and in browsers.
-  // Version their URL in every generated page so a release cannot pair new
-  // renderers with stale curriculum globals from an older deployment.
-  const curriculumPath = path.join(ROOT_DIR, 'learning-data.js');
-  const curriculumVersion = fs.existsSync(curriculumPath)
-    ? crypto.createHash('sha256').update(fs.readFileSync(curriculumPath)).digest('hex').slice(0, 12)
-    : '';
+  // Local scripts can be cached for a day at the CDN and in browsers. Version
+  // each referenced bundle so a release cannot pair new markup with stale
+  // progress APIs or curriculum globals from an older deployment.
+  const scriptVersions = new Map();
+  const versionForScript = (src) => {
+    if (/^(?:[a-z]+:|\/\/|\/|data:)/i.test(src)) return null;
+    const pathname = src.split(/[?#]/, 1)[0].replace(/^\.\//, '');
+    const scriptPath = path.resolve(ROOT_DIR, pathname);
+    if (!scriptPath.startsWith(`${ROOT_DIR}${path.sep}`) || !fs.existsSync(scriptPath) || !fs.statSync(scriptPath).isFile()) return null;
+    if (!scriptVersions.has(scriptPath)) {
+      scriptVersions.set(scriptPath, crypto.createHash('sha256').update(fs.readFileSync(scriptPath)).digest('hex').slice(0, 12));
+    }
+    return scriptVersions.get(scriptPath);
+  };
   let fileCount = 0;
   let htmlPatchedCount = 0;
 
@@ -253,10 +260,12 @@ function runBuild() {
       if (INCLUDE_EXTS.has(ext) || INCLUDE_SPECIAL_FILES.has(entry)) {
         if (ext === '.html') {
           let htmlContent = fs.readFileSync(srcPath, 'utf8');
-          if (curriculumVersion) {
-            htmlContent = htmlContent.replace(/(<script\s+src=["'])learning-data\.js(?:\?[^"']*)?(["'])/g,
-              `$1learning-data.js?v=${curriculumVersion}$2`);
-          }
+          htmlContent = htmlContent.replace(/(<script\b[^>]*?\bsrc=["'])([^"']+)(["'])/gi, (match, before, src, after) => {
+            const version = versionForScript(src);
+            if (!version) return match;
+            const pathname = src.split(/[?#]/, 1)[0];
+            return `${before}${pathname}?v=${version}${after}`;
+          });
           // Ensure calion-runtime-config.js is loaded before academy-config.js
           if (htmlContent.includes('academy-config.js') && !htmlContent.includes('calion-runtime-config.js')) {
             htmlContent = htmlContent.replace(
