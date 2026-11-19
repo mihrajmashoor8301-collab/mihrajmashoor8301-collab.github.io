@@ -167,7 +167,8 @@ console.log('--- 6. Navigation Search Index Integrity ---');
 console.log('--- 7. Pages Route and Legacy Destination Verification ---');
 {
   const redirects = fs.readFileSync(path.join(__dirname, '..', '_redirects'), 'utf8');
-  ['/roadmap/pre-security','/roadmap/cyber-security','/roadmap/defensive-security','/roadmap/offensive-security'].forEach(route => assert(redirects.includes(route), `Cloudflare Pages must route ${route}`));
+  const builder = fs.readFileSync(path.join(__dirname, '../scripts/build-pages.js'), 'utf8');
+  ['pre-security','cyber-security','defensive-security','offensive-security'].forEach(route => { assert(builder.includes(`'${route}'`), `Build must emit ${route} roadmap directory`); assert(redirects.includes(`/roadmap/${route}`), `Cloudflare Pages must canonicalize ${route}`); });
   ['/modules','/modules.html','/module.html','/roadmap.html'].forEach(route => assert(redirects.includes(route), `Legacy route ${route} must redirect to Academy home`));
   console.log('  ✓ Dedicated roadmaps and legacy entry redirects are configured');
 }

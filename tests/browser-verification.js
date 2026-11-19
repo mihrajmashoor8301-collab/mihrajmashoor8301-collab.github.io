@@ -7,12 +7,13 @@ const assert = require('assert');
 const { execFileSync } = require('child_process');
 const PORT = 8089, DEBUG_PORT = 9224, ROOT = path.join(__dirname, '..', 'dist');
 execFileSync(process.execPath,[path.join(__dirname,'../scripts/build-pages.js')],{stdio:'ignore'});
+for(const route of ['pre-security','cyber-security','defensive-security','offensive-security'])assert(fs.existsSync(path.join(ROOT,'roadmap',route,'index.html')),`built roadmap route ${route}`);
 const server = http.createServer((req, res) => {
   const pathname = new URL(req.url, `http://127.0.0.1:${PORT}`).pathname;
   if (['/modules','/modules/','/modules.html','/module.html','/roadmap.html'].includes(pathname)) { res.writeHead(301,{Location:'/'}); return res.end(); }
-  const route = pathname.match(/^\/roadmap\/(pre-security|cyber-security|defensive-security|offensive-security)$/);
-  const actual = route ? '/roadmap.html' : pathname === '/' ? '/learning.html' : pathname;
-  const file = path.join(ROOT, actual);
+  const actual = pathname === '/' ? '/learning.html' : pathname;
+  let file = path.join(ROOT, actual);
+  if (fs.existsSync(file) && fs.statSync(file).isDirectory()) file = path.join(file, 'index.html');
   if (!fs.existsSync(file) || !fs.statSync(file).isFile()) { res.writeHead(404); return res.end('Not found'); }
   const ext = path.extname(file), types={'.html':'text/html','.js':'application/javascript','.css':'text/css','.svg':'image/svg+xml','.json':'application/json'};
   res.writeHead(200,{'Content-Type':types[ext]||'application/octet-stream'}); fs.createReadStream(file).pipe(res);
@@ -40,7 +41,7 @@ server.listen(PORT, async()=>{
       await navigate(`http://127.0.0.1:${PORT}/roadmap/${slug}`);
       assert.equal(await c.eval('document.querySelectorAll("#roadmap-nodes .rm-node").length'),count,`${slug} room count`);
       assert.equal(await c.eval('new Set([...document.querySelectorAll("#roadmap-nodes .rm-node")].map(n=>n.querySelector(".rm-number").textContent)).size'),count);
-      assert.equal(await c.eval('document.querySelector("#page-canonical").href'),`https://learning.endlessus.in/roadmap/${slug}`);
+      assert.equal(await c.eval('document.querySelector("#page-canonical").href'),`https://learning.endlessus.in/roadmap/${slug}/`);
       assert((await c.eval('document.querySelector("#page-description").content')).includes(`${count} connected cybersecurity rooms`));
       const wrong=await c.eval(`[...document.querySelectorAll("#roadmap-nodes .rm-node a.rm-enter")].some(a=>!a.getAttribute("href").startsWith("/room.html?id=room-"))`);
       assert.equal(wrong,false);

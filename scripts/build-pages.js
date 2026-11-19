@@ -265,7 +265,19 @@ function runBuild() {
     }
   }
 
-  // 5. Ensure _headers and _redirects are present
+  // 5. Publish each isolated URL as a directory index generated from the one
+  // shared roadmap renderer. This preserves the original path for route selection
+  // and avoids Pages clean-URL canonicalization of an internal .html rewrite.
+  const roadmapSource = path.join(DIST_DIR, 'roadmap.html');
+  const roadmapRoutes = ['pre-security', 'cyber-security', 'defensive-security', 'offensive-security'];
+  for (const route of roadmapRoutes) {
+    const routeDir = path.join(DIST_DIR, 'roadmap', route);
+    fs.mkdirSync(routeDir, { recursive: true });
+    fs.copyFileSync(roadmapSource, path.join(routeDir, 'index.html'));
+  }
+  console.log(`✓ Generated ${roadmapRoutes.length} isolated roadmap routes from the shared renderer`);
+
+  // 6. Ensure _headers and _redirects are present
   if (fs.existsSync(path.join(ROOT_DIR, '_headers'))) {
     fs.copyFileSync(path.join(ROOT_DIR, '_headers'), path.join(DIST_DIR, '_headers'));
   }
