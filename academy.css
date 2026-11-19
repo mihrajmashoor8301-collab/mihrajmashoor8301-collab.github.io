@@ -122,43 +122,43 @@ html.theme-hacker,
 body.theme-hacker,
 body.dark {
   /* Stitch Dark Palette: Midnight Navy & Deep Slate */
-  --color-canvas-base: #0B1220;
-  --color-surface-subtle: #111B2C;
-  --color-surface-raised: #17243A;
-  --color-surface-container: #1C2B43;
-  --color-border-hairline: #2A3B55;
-  --color-border-medium: #405571;
-  --color-primary: #60A5FA;
-  --color-primary-container: rgba(96, 165, 250, 0.16);
-  --color-secondary: #A78BFA;
-  --color-on-surface: #EDF3FB;
-  --color-on-surface-variant: #B4C2D5;
-  --color-outline: #8496AF;
+  --color-canvas-base: #292A2D;
+  --color-surface-subtle: #EEF0F2;
+  --color-surface-raised: #FAFBFC;
+  --color-surface-container: #E2E5E9;
+  --color-border-hairline: #C5CBD2;
+  --color-border-medium: #9AA3AD;
+  --color-primary: #0369A1;
+  --color-primary-container: #DCEEF8;
+  --color-secondary: #5B50B5;
+  --color-on-surface: #F3F4F6;
+  --color-on-surface-variant: #D1D5DB;
+  --color-outline: #66717D;
   --color-warning: #FBBF24;
   --color-danger-critical: #FB7185;
 
   /* Academy Semantic Variables */
-  --academy-bg: #0B1220;
-  --academy-bg-deep: #080E19;
-  --academy-surface: #111B2C;
-  --academy-surface-raised: #17243A;
-  --academy-surface-subtle: #1C2B43;
-  --academy-border: #2A3B55;
-  --academy-border-strong: #405571;
+  --academy-bg: #292A2D;
+  --academy-bg-deep: #222326;
+  --academy-surface: #EEF0F2;
+  --academy-surface-raised: #FAFBFC;
+  --academy-surface-subtle: #E7EAED;
+  --academy-border: #C5CBD2;
+  --academy-border-strong: #9AA3AD;
   
   --academy-text: #EDF3FB;
   --academy-text-secondary: #B4C2D5;
   --academy-text-muted: #91A2B9;
   --academy-text-disabled: #64758D;
   
-  --academy-primary: #60A5FA;
-  --academy-primary-hover: #93C5FD;
-  --academy-primary-light: rgba(96, 165, 250, 0.2);
-  --academy-primary-dim: rgba(96, 165, 250, 0.12);
+  --academy-primary: #0369A1;
+  --academy-primary-hover: #075985;
+  --academy-primary-light: #DCEEF8;
+  --academy-primary-dim: rgba(3, 105, 161, 0.1);
   
-  --academy-secondary: #A78BFA;
-  --academy-secondary-hover: #C4B5FD;
-  --academy-secondary-dim: rgba(167, 139, 250, 0.12);
+  --academy-secondary: #5B50B5;
+  --academy-secondary-hover: #494096;
+  --academy-secondary-dim: rgba(91, 80, 181, 0.1);
   
   --academy-accent: #5EEAD4;
   --academy-warning: #FBBF24;
@@ -1421,3 +1421,77 @@ html.theme-dark .task-card .task-body,
 html.theme-hacker .task-card .task-body {
   border-top-color: #354963 !important;
 }
+
+/* Ash dark theme: keep the page canvas dark while all navigation and learning
+   panels use bright surfaces with dark, readable text. */
+html.dark .calion-global-header,
+html.dark .home-nav,
+html.dark .rm-nav,
+html.theme-hacker .calion-global-header,
+html.theme-hacker .home-nav,
+html.theme-hacker .rm-nav {
+  background: #F4F5F6 !important;
+  border-color: #D0D4D9 !important;
+  color: #17202A !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,.12);
+}
+html.dark .calion-brand-link,
+html.dark .calion-nav-item,
+html.dark .calion-nav-item:hover,
+html.dark .calion-nav-item.active,
+html.dark .academy-profile-btn,
+html.dark .academy-profile-dropdown,
+html.theme-hacker .calion-brand-link,
+html.theme-hacker .calion-nav-item,
+html.theme-hacker .academy-profile-btn,
+html.theme-hacker .academy-profile-dropdown { color: #17202A !important; }
+html.dark .calion-nav-item.active,
+html.dark .calion-nav-item:hover,
+html.dark .academy-profile-btn,
+html.dark .academy-profile-dropdown,
+html.theme-hacker .calion-nav-item.active,
+html.theme-hacker .calion-nav-item:hover,
+html.theme-hacker .academy-profile-btn,
+html.theme-hacker .academy-profile-dropdown {
+  background: #FFFFFF !important;
+  border-color: #D0D4D9 !important;
+}
+html.dark .calion-theme-toggle,
+html.theme-hacker .calion-theme-toggle {
+  color: #17202A !important;
+  background: #FFFFFF !important;
+  border-color: #C5CBD2 !important;
+}
+html.dark .academy-profile-dropdown a,
+html.dark .academy-profile-dropdown button,
+html.theme-hacker .academy-profile-dropdown a,
+html.theme-hacker .academy-profile-dropdown button { color: #26313D !important; }
+html.dark .task-card,
+html.theme-dark .task-card,
+html.theme-hacker .task-card {
+  color: #202B36 !important;
+  background: linear-gradient(145deg, #FFFFFF, #EEF0F2) !important;
+  border-color: #B8C0C9 !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.14) !important;
+}
+html.dark .task-card .task-accordion-toggle,
+html.dark .task-card .task-body,
+html.theme-hacker .task-card .task-accordion-toggle,
+html.theme-hacker .task-card .task-body { color: #202B36 !important; }
+html.dark .task-card.task-card-completed,
+html.theme-hacker .task-card.task-card-completed {
+  background: linear-gradient(145deg, #F0FBF6, #E4F5EC) !important;
+  border-color: #54A981 !important;
+}
+html.dark .calion-global-header .calion-logo-svg text,
+html.dark .home-nav .calion-logo-svg text,
+html.dark .rm-nav .calion-logo-svg text,
+html.theme-hacker .calion-global-header .calion-logo-svg text,
+html.theme-hacker .home-nav .calion-logo-svg text,
+html.theme-hacker .rm-nav .calion-logo-svg text { fill: #17202A !important; }
+html.dark .calion-global-header .calion-logo-svg g > path:nth-of-type(2),
+html.dark .home-nav .calion-logo-svg g > path:nth-of-type(2),
+html.dark .rm-nav .calion-logo-svg g > path:nth-of-type(2),
+html.theme-hacker .calion-global-header .calion-logo-svg g > path:nth-of-type(2),
+html.theme-hacker .home-nav .calion-logo-svg g > path:nth-of-type(2),
+html.theme-hacker .rm-nav .calion-logo-svg g > path:nth-of-type(2) { stroke: #17202A !important; }
