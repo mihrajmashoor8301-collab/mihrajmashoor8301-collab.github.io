@@ -80,7 +80,9 @@
       const json = JSON.stringify(val);
       localStorage.setItem(key, json);
       const legacyKey = key.replace('calion_', 'endlessus_');
-      if (legacyKey !== key) {
+      // Lab completions and XP are curriculum/history scoped. Keep their old
+      // unversioned values intact instead of replacing them with current state.
+      if (legacyKey !== key && key !== KEYS.LABS && key !== KEYS.XP) {
         localStorage.setItem(legacyKey, json);
       }
     } catch (e) {

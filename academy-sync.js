@@ -51,6 +51,20 @@
     if (!sb || !userId) return;
 
     try {
+      const snapshotKey = `calion_unverified_local_progress_${userId}`;
+      if (!localStorage.getItem(snapshotKey)) {
+        localStorage.setItem(snapshotKey, JSON.stringify({
+          completedRooms: AcademyState.getCompletedRooms(),
+          roomProgress: AcademyState.getRoomProgressMap(),
+          questionProgress: AcademyState.getQuestionProgress(),
+          completedLabs: AcademyState.getCompletedLabs()
+        }));
+      }
+
+      const { data: xpState, error: xpStateError } = await sb.rpc('get_calion_xp_state');
+      if (xpStateError || !xpState || !xpState.success) {
+        throw xpStateError || new Error('Authoritative XP state is unavailable');
+      }
       // 1. Fetch room progress
       const { data: roomRows } = await sb
         .from('room_progress')
@@ -58,30 +72,23 @@
         .eq('user_id', userId)
         .eq('curriculum_id', CURRICULUM_ID);
 
-      if (Array.isArray(roomRows) && roomRows.length > 0) {
-        const localRooms = new Set(AcademyState.getCompletedRooms());
-        const localProg = AcademyState.getRoomProgressMap();
-        const localQuestions = AcademyState.getQuestionProgress();
+      const completedRoomSet = new Set(Array.isArray(xpState.rooms_completed) ? xpState.rooms_completed : []);
+      const currentRoomProgress = {};
+      (Array.isArray(roomRows) ? roomRows : []).forEach(r => {
+        if (r.status !== 'completed' && Number(r.progress_pct) > 0) currentRoomProgress[r.room_id] = Math.min(99, Number(r.progress_pct));
+      });
+      completedRoomSet.forEach(id => { currentRoomProgress[id] = 100; });
 
-        roomRows.forEach(r => {
-          if (r.status === 'completed') {
-            localRooms.add(r.room_id);
-            localProg[r.room_id] = 100;
-          } else if (r.progress_pct > (localProg[r.room_id] || 0)) {
-            localProg[r.room_id] = r.progress_pct;
-          }
-
-          if (Array.isArray(r.questions_solved)) {
-            r.questions_solved.forEach(qKey => {
-              localQuestions[qKey] = true;
-            });
-          }
-        });
-
-        AcademyState.safeSet(AcademyState.KEYS.ROOMS, Array.from(localRooms));
-        AcademyState.safeSet(AcademyState.KEYS.ROOM_PROG, localProg);
-        AcademyState.safeSet(AcademyState.KEYS.QUESTIONS, localQuestions);
-      }
+      const verifiedQuestionSet = new Set((Array.isArray(xpState.questions_solved) ? xpState.questions_solved : [])
+        .map(q => `${q.room_id}:${q.question_id}`));
+      const currentQuestions = {};
+      const curriculumRooms = (typeof window !== 'undefined' && window.CALION_ROOMS) || [];
+      curriculumRooms.forEach(room => (room.questions || []).forEach((question, index) => {
+        if (verifiedQuestionSet.has(`${room.id}:${question.id}`)) currentQuestions[`${room.id}_q${index}`] = true;
+      }));
+      AcademyState.safeSet(AcademyState.KEYS.ROOMS, Array.from(completedRoomSet));
+      AcademyState.safeSet(AcademyState.KEYS.ROOM_PROG, currentRoomProgress);
+      AcademyState.safeSet(AcademyState.KEYS.QUESTIONS, currentQuestions);
 
       // 2. Fetch lab progress
       const { data: labRows } = await sb
@@ -89,22 +96,23 @@
         .select('*')
         .eq('user_id', userId);
 
-      if (Array.isArray(labRows) && labRows.length > 0) {
-        const localLabs = new Set(AcademyState.getCompletedLabs());
-        labRows.forEach(l => {
-          if (l.status === 'completed' || l.flag_verified) {
-            localLabs.add(l.lab_id);
-          }
-        });
-        AcademyState.safeSet(AcademyState.KEYS.LABS, Array.from(localLabs));
-      }
+      const verifiedLabs = Array.isArray(xpState.labs_completed) ? xpState.labs_completed :
+        (Array.isArray(labRows) ? labRows.filter(l => l.status === 'completed' || l.flag_verified).map(l => l.lab_id) : []);
+      AcademyState.safeSet(AcademyState.KEYS.LABS, verifiedLabs);
 
       // Recompute local XP
+      // Authenticated XP display reads profiles.total_xp; local estimates remain guest-only.
+      if (Number.isFinite(Number(xpState.total_xp))) {
+        AcademyState.safeSet(AcademyState.KEYS.XP, Number(xpState.total_xp));
+      }
       AcademyState.calculateTotalXP();
 
       // Notify UI
       if (typeof window !== 'undefined') {
         window.dispatchEvent(new CustomEvent('endlessus-progress-updated', {
+          detail: { type: 'cloud-synced', userId }
+        }));
+        window.dispatchEvent(new CustomEvent('calion-progress-updated', {
           detail: { type: 'cloud-synced', userId }
         }));
       }
@@ -121,28 +129,31 @@
     if (!user || !sb || !roomId) return;
 
     try {
-      const isCompleted = AcademyState.isRoomCompleted(roomId);
       const roomProg = AcademyState.getRoomProgressMap();
-      const pct = isCompleted ? 100 : (roomProg[roomId] || 0);
-      const allQuestions = AcademyState.getQuestionProgress();
+      const pct = Math.min(99, Math.max(0, Number(roomProg[roomId]) || 0));
+      const { data: existing } = await sb.from('room_progress')
+        .select('status')
+        .eq('user_id', user.id)
+        .eq('room_id', roomId)
+        .eq('curriculum_id', CURRICULUM_ID)
+        .maybeSingle();
 
-      // Collect questions solved for this room
-      const questionsSolved = Object.keys(allQuestions).filter(
-        k => k.startsWith(`${roomId}_`) && allQuestions[k] === true
-      );
+      // Only submit_calion_answer may create a verified completion or question evidence.
+      // Never mirror local question keys/completion into trusted server progress.
+      if (existing && existing.status === 'completed') return;
 
       const payload = {
         user_id: user.id,
         room_id: roomId,
         curriculum_id: CURRICULUM_ID,
-        status: isCompleted ? 'completed' : (pct > 0 ? 'in_progress' : 'not_started'),
+        status: 'in_progress',
         progress_pct: pct,
-        questions_solved: questionsSolved,
-        completed_at: isCompleted ? new Date().toISOString() : null,
+        questions_solved: [],
         last_accessed_at: new Date().toISOString()
       };
 
-      await sb.from('room_progress').upsert(payload, { onConflict: 'user_id,room_id,curriculum_id' });
+      const { error } = await sb.from('room_progress').upsert(payload, { onConflict: 'user_id,room_id,curriculum_id' });
+      if (error) throw error;
     } catch (e) {
       console.warn('[AcademySync] Error pushing room progress:', e);
     }
@@ -198,8 +209,11 @@
     const completedLabs = AcademyState.getCompletedLabs();
     const questions = AcademyState.getQuestionProgress();
     const hasQuestions = Object.keys(questions).some(k => questions[k] === true);
+    let preservedSnapshot = null;
+    try { preservedSnapshot = JSON.parse(localStorage.getItem(`calion_unverified_local_progress_${userId}`) || 'null'); } catch (_) {}
 
-    return completedRooms.length > 0 || completedLabs.length > 0 || hasQuestions;
+    return completedRooms.length > 0 || completedLabs.length > 0 || hasQuestions ||
+      Boolean(preservedSnapshot && ((preservedSnapshot.completedRooms || []).length || Object.keys(preservedSnapshot.questionProgress || {}).length || (preservedSnapshot.completedLabs || []).length));
   }
 
   // Migrate local progress to cloud with consent (sanitized and validated)
@@ -218,59 +232,52 @@
       const validPsRoomRegex = /^ps-room-[0-9]{2,}$/;
       const validLabRegex = /^lab-[a-z0-9_-]+$/;
 
-      const completedRooms = (AcademyState.getCompletedRooms() || []).filter(
+      let localSnapshot = null;
+      try { localSnapshot = JSON.parse(localStorage.getItem(`calion_unverified_local_progress_${userId}`) || 'null'); } catch (_) {}
+      const completedRooms = Array.from(new Set([
+        ...(AcademyState.getCompletedRooms() || []),
+        ...((localSnapshot && localSnapshot.completedRooms) || [])
+      ])).filter(
         id => typeof id === 'string' && (validRoomRegex.test(id) || validPsRoomRegex.test(id))
       );
-      const roomProg = AcademyState.getRoomProgressMap() || {};
-      const questionMap = AcademyState.getQuestionProgress() || {};
-      const completedLabs = (AcademyState.getCompletedLabs() || []).filter(
+      const roomProg = {
+        ...((localSnapshot && localSnapshot.roomProgress) || {}),
+        ...(AcademyState.getRoomProgressMap() || {})
+      };
+      const progressByCanonicalRoom = {};
+      Object.entries(roomProg).forEach(([roomId, percentage]) => {
+        const canonicalId = AcademyState.normalizeRoomId(roomId);
+        progressByCanonicalRoom[canonicalId] = Math.max(progressByCanonicalRoom[canonicalId] || 0, Number(percentage) || 0);
+      });
+      const completedLabs = Array.from(new Set([
+        ...(AcademyState.getCompletedLabs() || []),
+        ...((localSnapshot && localSnapshot.completedLabs) || [])
+      ])).filter(
         id => typeof id === 'string' && validLabRegex.test(id)
       );
 
       // Fetch existing server records for this user to guarantee we never regress state
       let serverRoomMap = {};
-      let serverLabMap = {};
       try {
         const { data: serverRooms } = await sb.from('room_progress').select('room_id, status, progress_pct, completed_at').eq('user_id', userId).eq('curriculum_id', CURRICULUM_ID);
         if (Array.isArray(serverRooms)) {
           serverRooms.forEach(r => { serverRoomMap[r.room_id] = r; });
         }
-        const { data: serverLabs } = await sb.from('lab_progress').select('lab_id, status, flag_verified, completed_at').eq('user_id', userId);
-        if (Array.isArray(serverLabs)) {
-          serverLabs.forEach(l => { serverLabMap[l.lab_id] = l; });
-        }
       } catch (err) {
         console.warn('[CALION AcademySync] Pre-migration check warning:', err.message);
       }
 
-      // 1. Batch upsert rooms
-      if (completedRooms.length > 0) {
-        const roomUpserts = completedRooms.map(roomId => {
-          const questionsSolved = Object.keys(questionMap).filter(
-            k => k.startsWith(`${roomId}_`) && questionMap[k] === true
-          );
-          const existing = serverRoomMap[roomId];
-          return {
-            user_id: userId,
-            room_id: roomId,
-            curriculum_id: CURRICULUM_ID,
-            status: 'completed',
-            progress_pct: 100,
-            questions_solved: questionsSolved,
-            completed_at: (existing && existing.completed_at) || new Date().toISOString(),
-            last_accessed_at: new Date().toISOString()
-          };
-        });
-
-        await sb.from('room_progress').upsert(roomUpserts, { onConflict: 'user_id,room_id,curriculum_id' });
-      }
-
-      // Also upsert in-progress rooms (NEVER overwrite completed rooms or higher server progress)
-      const inProgressRoomIds = Object.keys(roomProg).filter(id => {
-        if ((!validRoomRegex.test(id) && !validPsRoomRegex.test(id)) || completedRooms.includes(id) || roomProg[id] <= 0) return false;
+      // Import local records as unverified progress only. Local solved flags and
+      // completion markers are user-editable; only submit_calion_answer certifies them.
+      const candidateRoomIds = new Set([...completedRooms, ...Object.keys(roomProg)]
+        .map(id => AcademyState.normalizeRoomId(id))
+        .filter(id => /^room-(0[1-9]|[1-3][0-9]|4[0-7])$/.test(id)));
+      const inProgressRoomIds = Array.from(candidateRoomIds).filter(id => {
+        if (Number(roomProg[id] || 0) <= 0 && !completedRooms.includes(id)) return false;
         const existing = serverRoomMap[id];
-        // If server already marked completed or has higher percentage, do not regress
-        if (existing && (existing.status === 'completed' || existing.progress_pct >= roomProg[id])) {
+        if (existing && existing.status === 'completed') return false;
+        const localPct = completedRooms.includes(id) ? 99 : Math.min(99, Math.max(1, progressByCanonicalRoom[id] || 1));
+        if (existing && existing.progress_pct >= localPct) {
           return false;
         }
         return true;
@@ -278,43 +285,24 @@
 
       if (inProgressRoomIds.length > 0) {
         const ipUpserts = inProgressRoomIds.map(roomId => {
-          const questionsSolved = Object.keys(questionMap).filter(
-            k => k.startsWith(`${roomId}_`) && questionMap[k] === true
-          );
-          const safePct = Math.min(99, Math.max(1, parseInt(roomProg[roomId], 10) || 0));
+          const rawPct = progressByCanonicalRoom[roomId] || 0;
+          const safePct = completedRooms.includes(roomId) ? 99 : Math.min(99, Math.max(1, parseInt(rawPct, 10) || 0));
           return {
             user_id: userId,
             room_id: roomId,
             curriculum_id: CURRICULUM_ID,
             status: 'in_progress',
             progress_pct: safePct,
-            questions_solved: questionsSolved,
+            questions_solved: [],
             last_accessed_at: new Date().toISOString()
           };
         });
-        await sb.from('room_progress').upsert(ipUpserts, { onConflict: 'user_id,room_id,curriculum_id' });
+        const { error } = await sb.from('room_progress').upsert(ipUpserts, { onConflict: 'user_id,room_id,curriculum_id' });
+        if (error) throw error;
       }
 
-      // 2. Batch verify labs (NEVER downgrade existing verified labs, and always verify cryptographically on server)
-      if (completedLabs.length > 0) {
-        for (const labId of completedLabs) {
-          const existing = serverLabMap[labId];
-          // If already verified on the server, skip re-verification
-          if (existing && existing.status === 'completed' && existing.flag_verified) {
-            continue;
-          }
-          const storedFlag = (typeof AcademyState !== 'undefined' && typeof AcademyState.getLabFlag === 'function')
-            ? AcademyState.getLabFlag(labId)
-            : null;
-          if (storedFlag) {
-            try {
-              await sb.rpc('verify_lab_flag', { p_lab_id: labId, p_submitted_flag: storedFlag });
-            } catch (rpcErr) {
-              console.warn('[CALION AcademySync] Lab migration verify warning for', labId, rpcErr.message);
-            }
-          }
-        }
-      }
+      // Never replay a locally completed lab into the server XP verifier. Its age
+      // cannot be established safely; a live flag submission can still earn XP.
 
       // Mark migration complete for this user
       localStorage.setItem(migrationKey, 'true');
@@ -325,8 +313,9 @@
 
       return {
         success: true,
-        migratedRooms: completedRooms.length,
-        migratedLabs: completedLabs.length
+        migratedRooms: inProgressRoomIds.length,
+        retainedLocalLabs: completedLabs.length,
+        migratedLabs: 0
       };
     } catch (e) {
       console.warn('[CALION AcademySync] Migration error:', e);
@@ -369,11 +358,13 @@
         .eq('user_id', userId)
         .eq('curriculum_id', CURRICULUM_ID);
 
-      const completedRooms = (roomRows || []).filter(r => r.status === 'completed');
+      const { data: xpState, error: xpStateError } = await sb.rpc('get_calion_xp_state');
+      if (xpStateError || !xpState || !xpState.success) return null;
       const curriculum = (typeof window !== 'undefined' && window.CALION_ROOMS) || [];
       const stages = (typeof window !== 'undefined' && window.CALION_STAGES) || [];
       const canonicalRoomIds = new Set(curriculum.map(r => r.id));
-      const completedRoomIds = new Set(completedRooms.map(r => AcademyState.normalizeRoomId(r.room_id)).filter(id => canonicalRoomIds.has(id)));
+      const completedRoomIds = new Set((Array.isArray(xpState.rooms_completed) ? xpState.rooms_completed : [])
+        .map(id => AcademyState.normalizeRoomId(id)).filter(id => canonicalRoomIds.has(id)));
       const completedPaths = stages.filter(stage => { const pathRooms = curriculum.filter(r => r.stageId === stage.id); return pathRooms.length > 0 && pathRooms.every(r => completedRoomIds.has(r.id)); }).length;
       const preSecurityRooms = curriculum.filter(r => r.stageId === 'pre-security');
       const preSecurityCompleted = preSecurityRooms.filter(r => completedRoomIds.has(r.id)).length;
@@ -399,8 +390,16 @@
         .eq('id', userId)
         .maybeSingle();
 
-      const xp = profile ? profile.total_xp : (completedRooms.length * 50 + completedLabs.length * 75);
+      // Authenticated XP is always the server profile value. Local calculations are
+      // provisional guest display only and must never be used as an account fallback.
+      const xp = profile ? profile.total_xp : (Number.isFinite(Number(xpState.total_xp)) ? Number(xpState.total_xp) : null);
       const streak = profile ? profile.streak_days : AcademyState.getStreak();
+      const verifiedRoomRows = (roomRows || []).map(r => {
+        if (r.status === 'completed' && !completedRoomIds.has(AcademyState.normalizeRoomId(r.room_id))) {
+          return { ...r, status: 'in_progress', progress_pct: Math.min(99, Number(r.progress_pct) || 99), questions_solved: [] };
+        }
+        return r;
+      });
 
       return {
         totalRoomsCompleted: completedRoomIds.size,
@@ -416,7 +415,7 @@
           completed: preSecurityCompleted,
           percentage: preSecurityRooms.length ? Math.round((preSecurityCompleted / preSecurityRooms.length) * 100) : 0
         },
-        rawRoomRows: roomRows || [],
+        rawRoomRows: verifiedRoomRows,
         rawLabRows: labRows || []
       };
     } catch (e) {

@@ -442,6 +442,7 @@
   <script src="academy-config.js"></script>
   <script src="academy-state.js"></script>
   <script src="academy-auth.js"></script>
+  <script src="academy-xp-client.js"></script>
   <script src="academy-sync.js"></script>
   <script src="academy-nav.js"></script>
 
@@ -1354,7 +1355,7 @@
         }
       }
 
-      function handleQuestionSubmit(idx) {
+      async function handleQuestionSubmit(idx) {
         const q = questions[idx];
         if (!q) return;
 
@@ -1377,6 +1378,9 @@
 
         let isCorrect = false;
         let userInput = '';
+        let selectedOption = null;
+        let verifiedAward = 0;
+        let serverCheckFailed = false;
 
         const feedbackEl = document.getElementById(`q-feedback-${idx}`);
         const qCardEl = document.getElementById(`q-card-${idx}`);
@@ -1399,7 +1403,6 @@
             if (inputEl) inputEl.focus();
             return;
           }
-          isCorrect = AcademyState.validateAnswer(q, userInput);
         } else {
           const selected = document.querySelector(`input[name="q-option-${idx}"]:checked`);
           if (!selected) {
@@ -1417,12 +1420,76 @@
             return;
           }
           const chosenIdx = parseInt(selected.value, 10);
-          isCorrect = chosenIdx === q.correctIndex;
+          selectedOption = q.options[chosenIdx];
+        }
+
+        const submitBtn = qCardEl ? qCardEl.querySelector('.q-submit-btn') : null;
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.setAttribute('aria-busy', 'true');
+        }
+
+        try {
+          if (window.AcademyAuth && AcademyAuth.isAuthenticated && AcademyAuth.isAuthenticated()) {
+            if (!window.AcademyXP || typeof AcademyXP.submitAnswer !== 'function') {
+              serverCheckFailed = true;
+            } else {
+              const checked = await AcademyXP.submitAnswer({
+                roomId: room.id,
+                questionId: q.id,
+                answer: q.type === 'exact' ? userInput : selectedOption
+              });
+              if (checked && checked.code === 'rate_limited') {
+                if (feedbackEl) {
+                  feedbackEl.classList.remove('hidden');
+                  feedbackEl.className = 'p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-700 dark:text-amber-300 text-xs font-mono block';
+                  feedbackEl.innerHTML = `
+                    <div class="flex items-center gap-1.5 font-bold mb-0.5">
+                      <span class="material-symbols-outlined text-sm">hourglass_top</span>
+                      <span>Rate Limited</span>
+                    </div>
+                    <p class="font-sans">Too many attempts. Please wait 1 minute before retrying.</p>
+                  `;
+                }
+                return;
+              }
+              isCorrect = Boolean(checked && checked.success && checked.correct);
+              verifiedAward = Number(checked && checked.xpAwarded) || 0;
+              serverCheckFailed = !checked || ['server_error','practice_only_guest'].includes(checked.code);
+              if (checked && Number.isFinite(checked.totalXP)) {
+                AcademyState.safeSet(AcademyState.KEYS.XP, checked.totalXP);
+                const prof = window.AcademyAuth?.getProfile?.();
+                if (prof) prof.total_xp = checked.totalXP;
+                if (window.CalionAcademy?.syncHeaderStats) {
+                  window.CalionAcademy.syncHeaderStats();
+                }
+              }
+            }
+          } else {
+            // Local guest practice is provisional and never writes authoritative XP.
+            isCorrect = q.type === 'exact'
+              ? AcademyState.validateAnswer(q, userInput)
+              : selectedOption === q.options[q.correctIndex];
+          }
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.removeAttribute('aria-busy');
+          }
         }
 
         if (feedbackEl) feedbackEl.classList.remove('hidden');
 
+        if (serverCheckFailed) {
+          if (feedbackEl) {
+            feedbackEl.className = 'p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-700 dark:text-amber-300 text-xs font-mono block';
+            feedbackEl.textContent = 'The answer could not be verified by the server. Your answer was not recorded; please retry when connected.';
+          }
+          return;
+        }
+
         if (isCorrect) {
+          const isAuthenticatedLearner = Boolean(window.AcademyAuth && AcademyAuth.isAuthenticated && AcademyAuth.isAuthenticated());
           if (window.CalionSound) {
             window.CalionSound.playCorrect();
             window.CalionSound.triggerVisualFeedback(qCardEl || feedbackEl, true);
@@ -1442,11 +1509,12 @@
           }
 
           if (feedbackEl) {
+            const xpAwardedForDisplay = isAuthenticatedLearner ? verifiedAward : res.xp;
             feedbackEl.className = 'p-3 rounded-lg bg-primary/10 border border-primary/30 text-on-surface text-xs font-mono block calion-feedback-correct';
             feedbackEl.innerHTML = `
               <div class="flex items-center gap-1.5 text-primary font-bold mb-0.5">
                 <span class="material-symbols-outlined text-sm">check_circle</span>
-                <span>Correct! ${res.xp > 0 ? '(+25 XP Awarded)' : ''}</span>
+                <span>Correct! ${xpAwardedForDisplay > 0 ? `(+${xpAwardedForDisplay} ${isAuthenticatedLearner ? 'XP Awarded' : 'practice XP'})` : ''}</span>
               </div>
               <p class="text-on-surface-variant font-sans">${escapeHtml(q.explanation || 'Well done! Answer verified.')}</p>
             `;

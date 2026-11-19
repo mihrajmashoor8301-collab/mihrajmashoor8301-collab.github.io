@@ -331,14 +331,33 @@
     }
   });
 
-  function syncHeaderStats() {
+  let headerStatsRequest = 0;
+  async function syncHeaderStats() {
     if (typeof window === 'undefined' || typeof window.AcademyState === 'undefined') return;
+    const requestId = ++headerStatsRequest;
     const streakEls = document.querySelectorAll('#header-streak-pill, .header-streak-pill');
     const xpEls = document.querySelectorAll('#header-xp-pill, .header-xp-pill');
     const streak = window.AcademyState.getStreak ? window.AcademyState.getStreak() : 1;
-    const xp = window.AcademyState.calculateTotalXP ? window.AcademyState.calculateTotalXP() : 0;
+    let xpText;
+    const auth = window.AcademyAuth;
+    if (auth && auth.isAuthenticated && auth.isAuthenticated()) {
+      const user = auth.getUser && auth.getUser();
+      const client = auth.getClient && auth.getClient();
+      if (user && client) {
+        const { data, error } = await client.from('profiles').select('total_xp').eq('id', user.id).maybeSingle();
+        if (requestId !== headerStatsRequest) return;
+        xpText = !error && data && Number.isFinite(Number(data.total_xp))
+          ? `${Number(data.total_xp).toLocaleString()} XP`
+          : 'XP unavailable';
+      } else {
+        xpText = 'XP unavailable';
+      }
+    } else {
+      const localXp = window.AcademyState.calculateTotalXP ? window.AcademyState.calculateTotalXP() : 0;
+      xpText = `${localXp.toLocaleString()} practice XP`;
+    }
     streakEls.forEach(el => { el.textContent = `${streak}d`; });
-    xpEls.forEach(el => { el.textContent = `${xp.toLocaleString()} XP`; });
+    xpEls.forEach(el => { el.textContent = xpText; });
   }
 
   // =========================================================================

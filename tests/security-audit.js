@@ -157,6 +157,7 @@ assert.deepStrictEqual(completedRooms, [], 'Legacy room completions must not cou
 assert.strictEqual(AcademyState.getStreak(), 5, 'Must fall back to endlessus_streak_days');
 assert.strictEqual(AcademyState.calculateTotalXP(), 150, 'Must preserve lab XP without crediting legacy room completion');
 assert.deepStrictEqual(JSON.parse(mockStorage.getItem('endlessus_completed_rooms')), ['room-01', 'room-02'], 'Legacy progress stays stored');
+mockStorage.setItem('endlessus_user_xp', '950');
 console.log('  ✓ Legacy room progress remains stored and is excluded from current completion');
 
 // Scenario B: User sets new data; must dual-write or prioritize calion_*
@@ -165,6 +166,11 @@ const updatedRooms = AcademyState.getCompletedRooms();
 assert(updatedRooms.includes('room-03'), 'Room-03 must be recorded');
 assert(mockStorage.getItem(AcademyState.KEYS.ROOMS) !== null, 'Must write to current curriculum storage key');
 assert(mockStorage.getItem('endlessus_completed_rooms') !== null, 'Must retain the legacy storage record unchanged');
+const oldLabs = JSON.parse(mockStorage.getItem('endlessus_completed_labs'));
+AcademyState.markLabCompleted('lab-new');
+assert.deepStrictEqual(JSON.parse(mockStorage.getItem('endlessus_completed_labs')), oldLabs, 'New lab state must not overwrite historical lab records');
+AcademyState.safeSet(AcademyState.KEYS.XP, 250);
+assert.strictEqual(mockStorage.getItem('endlessus_user_xp'), '950', 'Current XP snapshots must not overwrite historical XP storage');
 console.log('  ✓ Current progress uses versioned storage while old records remain intact');
 
 // -----------------------------------------------------------------------------

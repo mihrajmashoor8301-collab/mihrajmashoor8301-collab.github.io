@@ -245,7 +245,12 @@ const seedPath = path.join(__dirname, '../supabase/migrations/202611170002_endle
 assert(fs.existsSync(seedPath), 'Academy seed SQL migration file must exist');
 const seedSql = fs.readFileSync(seedPath, 'utf8');
 assert(seedSql.includes('pre-security'), 'Seed SQL must include pre-security learning path');
-const curriculumSeed = fs.readFileSync(path.join(__dirname, '../supabase/migrations/202611180001_calion_academy_47_rooms_seed.sql'), 'utf8');
+const seed47Path = fs.existsSync(path.join(__dirname, '../supabase/migrations/202611200001_calion_four_path_reconciliation.sql'))
+  ? path.join(__dirname, '../supabase/migrations/202611200001_calion_four_path_reconciliation.sql')
+  : (fs.existsSync(path.join(__dirname, '../supabase/archive/20261120-unapplied-incompatible/202611180001_calion_academy_47_rooms_seed.sql'))
+      ? path.join(__dirname, '../supabase/archive/20261120-unapplied-incompatible/202611180001_calion_academy_47_rooms_seed.sql')
+      : path.join(__dirname, '../supabase/migrations/202611180001_calion_academy_47_rooms_seed.sql'));
+const curriculumSeed = fs.readFileSync(seed47Path, 'utf8');
 assert(curriculumSeed.includes('room-01') && curriculumSeed.includes('room-47'), 'Current curriculum seed must include all 47 rooms');
 const pathProgressMigration = fs.readFileSync(path.join(__dirname, '../supabase/migrations/202611190001_calion_academy_path_progress.sql'), 'utf8');
 assert(pathProgressMigration.includes('required_count = 10') && pathProgressMigration.includes('pre_security_completed = pre_security_total'), 'Server milestone completion must use the 10-room Pre-Security path');
