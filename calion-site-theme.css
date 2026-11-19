@@ -19,13 +19,13 @@ body.dark,
 body.theme-dark,
 body.theme-hacker {
   color-scheme: dark;
-  --calion-brand-canvas: #090D16;
-  --calion-brand-surface: #131D36;
-  --calion-brand-subtle: #0E131F;
-  --calion-brand-border: #26344B;
-  --calion-brand-text: #E8EDF5;
-  --calion-brand-muted: #B9C5D8;
-  --calion-brand-primary: #38BDF8;
+  --calion-brand-canvas: #0B1220;
+  --calion-brand-surface: #17243A;
+  --calion-brand-subtle: #111B2C;
+  --calion-brand-border: #2A3B55;
+  --calion-brand-text: #EDF3FB;
+  --calion-brand-muted: #B4C2D5;
+  --calion-brand-primary: #60A5FA;
 }
 
 html body {

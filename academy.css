@@ -122,58 +122,58 @@ html.theme-hacker,
 body.theme-hacker,
 body.dark {
   /* Stitch Dark Palette: Midnight Navy & Deep Slate */
-  --color-canvas-base: #090D16;
-  --color-surface-subtle: #0E131F;
-  --color-surface-raised: #131D36;
-  --color-surface-container: #182338;
-  --color-border-hairline: #1E293B;
-  --color-border-medium: #334155;
-  --color-primary: #0284C7;
-  --color-primary-container: rgba(2, 132, 199, 0.2);
-  --color-secondary: #6366F1;
-  --color-on-surface: #E8EDF5;
-  --color-on-surface-variant: #B9C5D8;
-  --color-outline: #64748B;
-  --color-warning: #F59E0B;
-  --color-danger-critical: #EF4444;
+  --color-canvas-base: #0B1220;
+  --color-surface-subtle: #111B2C;
+  --color-surface-raised: #17243A;
+  --color-surface-container: #1C2B43;
+  --color-border-hairline: #2A3B55;
+  --color-border-medium: #405571;
+  --color-primary: #60A5FA;
+  --color-primary-container: rgba(96, 165, 250, 0.16);
+  --color-secondary: #A78BFA;
+  --color-on-surface: #EDF3FB;
+  --color-on-surface-variant: #B4C2D5;
+  --color-outline: #8496AF;
+  --color-warning: #FBBF24;
+  --color-danger-critical: #FB7185;
 
   /* Academy Semantic Variables */
-  --academy-bg: #090D16;
-  --academy-bg-deep: #060911;
-  --academy-surface: #0E131F;
-  --academy-surface-raised: #131D36;
-  --academy-surface-subtle: #182338;
-  --academy-border: #1E293B;
-  --academy-border-strong: #334155;
+  --academy-bg: #0B1220;
+  --academy-bg-deep: #080E19;
+  --academy-surface: #111B2C;
+  --academy-surface-raised: #17243A;
+  --academy-surface-subtle: #1C2B43;
+  --academy-border: #2A3B55;
+  --academy-border-strong: #405571;
   
-  --academy-text: #E8EDF5;
-  --academy-text-secondary: #B9C5D8;
-  --academy-text-muted: #64748B;
-  --academy-text-disabled: #475569;
+  --academy-text: #EDF3FB;
+  --academy-text-secondary: #B4C2D5;
+  --academy-text-muted: #91A2B9;
+  --academy-text-disabled: #64758D;
   
-  --academy-primary: #0284C7;
-  --academy-primary-hover: #38BDF8;
-  --academy-primary-light: rgba(2, 132, 199, 0.25);
-  --academy-primary-dim: rgba(2, 132, 199, 0.15);
+  --academy-primary: #60A5FA;
+  --academy-primary-hover: #93C5FD;
+  --academy-primary-light: rgba(96, 165, 250, 0.2);
+  --academy-primary-dim: rgba(96, 165, 250, 0.12);
   
-  --academy-secondary: #6366F1;
-  --academy-secondary-hover: #818CF8;
-  --academy-secondary-dim: rgba(99, 102, 241, 0.15);
+  --academy-secondary: #A78BFA;
+  --academy-secondary-hover: #C4B5FD;
+  --academy-secondary-dim: rgba(167, 139, 250, 0.12);
   
-  --academy-accent: #00F0FF;
-  --academy-warning: #F59E0B;
-  --academy-warning-dim: rgba(245, 158, 11, 0.15);
-  --academy-success: #10B981;
-  --academy-success-dim: rgba(16, 185, 129, 0.15);
-  --academy-danger: #EF4444;
-  --academy-danger-dim: rgba(239, 68, 68, 0.15);
+  --academy-accent: #5EEAD4;
+  --academy-warning: #FBBF24;
+  --academy-warning-dim: rgba(251, 191, 36, 0.12);
+  --academy-success: #34D399;
+  --academy-success-dim: rgba(52, 211, 153, 0.12);
+  --academy-danger: #FB7185;
+  --academy-danger-dim: rgba(251, 113, 133, 0.12);
 
   --academy-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --academy-font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --academy-font-mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
 
-  --academy-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  --academy-card-hover-shadow: 0 0 20px rgba(2, 132, 199, 0.25);
+  --academy-card-shadow: 0 12px 30px rgba(2, 8, 23, 0.24);
+  --academy-card-hover-shadow: 0 16px 38px rgba(2, 8, 23, 0.34), 0 0 0 1px rgba(96, 165, 250, 0.16);
 }
 
 /* ==========================================================================
@@ -1452,4 +1452,47 @@ html.dark .academy-profile-dropdown {
   .academy-profile-btn span.font-bold {
     display: none;
   }
+}
+
+/* Refined lesson task cards: clear boundaries in both themes. */
+.task-card {
+  border: 1px solid var(--academy-border-strong, #94A8BF) !important;
+  border-radius: 16px !important;
+  background: var(--academy-surface, #FFFFFF) !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.045) !important;
+  margin-block: 0.9rem;
+}
+.task-card:not(.task-card-completed) {
+  border-left: 3px solid var(--academy-primary, #0284C7) !important;
+}
+.task-card .task-accordion-toggle { color: var(--academy-text, #0F172A); }
+.task-card .task-body { border-top-color: var(--academy-border, #CBD8E6) !important; }
+.task-card.task-card-completed {
+  border-color: var(--academy-success, #10B981) !important;
+  border-left: 3px solid var(--academy-success, #10B981) !important;
+  background: color-mix(in srgb, var(--academy-success, #10B981) 7%, var(--academy-surface, #FFFFFF)) !important;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.09) !important;
+}
+html.dark .task-card,
+html.theme-dark .task-card,
+html.theme-hacker .task-card {
+  background: linear-gradient(135deg, #17243A, #121E31) !important;
+  border-color: #405571 !important;
+  box-shadow: 0 10px 26px rgba(2, 8, 23, 0.2) !important;
+}
+html.dark .task-card:not(.task-card-completed),
+html.theme-dark .task-card:not(.task-card-completed),
+html.theme-hacker .task-card:not(.task-card-completed) {
+  border-left-color: #60A5FA !important;
+}
+html.dark .task-card.task-card-completed,
+html.theme-dark .task-card.task-card-completed,
+html.theme-hacker .task-card.task-card-completed {
+  border-color: #34D399 !important;
+  background: linear-gradient(135deg, rgba(52, 211, 153, 0.14), #142338) !important;
+}
+html.dark .task-card .task-body,
+html.theme-dark .task-card .task-body,
+html.theme-hacker .task-card .task-body {
+  border-top-color: #354963 !important;
 }
