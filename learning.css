@@ -2,7 +2,7 @@
  * Endlessus Learning Hub - Unified Theme Stylesheet
  * Supports dual presentation modes:
  * 1. Normal View (.theme-normal): Clean, light, spacious, educational, professional academy design.
- * 2. Hacker View (.theme-hacker): Dark, neon accents, monospace typography, technical HUD and terminal aesthetic.
+ * 2. Dark View (.theme-hacker): Deep slate surfaces with restrained, layered CALION accents.
  */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
@@ -63,52 +63,45 @@ body.theme-normal {
 }
 
 body.theme-hacker {
-  --lh-bg: #090D12;
-  --lh-bg-deep: #05070A;
-  --lh-surface: #0E131B;
-  --lh-surface-hover: #151D28;
-  --lh-surface-subtle: #121924;
-  --lh-surface-border: #1F2937;
-  --lh-surface-border-subtle: #111827;
-  
-  --lh-text: #F3F4F6;
-  --lh-text-muted: #8692A6;
-  --lh-text-subtle: #64748B;
-  
-  --lh-primary: #4EDEA3;
-  --lh-primary-hover: #38c78c;
-  --lh-primary-light: rgba(78, 222, 163, 0.2);
-  --lh-primary-dim: rgba(78, 222, 163, 0.12);
-  --lh-primary-glow: rgba(78, 222, 163, 0.35);
-  
-  --lh-secondary: #4CD7F6;
-  --lh-secondary-hover: #38c2e0;
-  --lh-secondary-dim: rgba(76, 215, 246, 0.12);
-  
-  --lh-accent: #A855F7;
-  --lh-warning: #F59E0B;
-  --lh-warning-dim: rgba(245, 158, 11, 0.15);
-  --lh-success: #4EDEA3;
-  --lh-success-dim: rgba(78, 222, 163, 0.15);
-  --lh-danger: #EF4444;
-  --lh-danger-dim: rgba(239, 68, 68, 0.15);
-  
+  --lh-bg: #0b1220;
+  --lh-bg-deep: #080e19;
+  --lh-surface: #111b2c;
+  --lh-surface-hover: #18263b;
+  --lh-surface-subtle: #142136;
+  --lh-surface-border: #2a3b55;
+  --lh-surface-border-subtle: #202f46;
+  --lh-text: #edf3fb;
+  --lh-text-muted: #a8b7cb;
+  --lh-text-subtle: #8092aa;
+  --lh-primary: #60a5fa;
+  --lh-primary-hover: #93c5fd;
+  --lh-primary-light: rgba(96, 165, 250, 0.18);
+  --lh-primary-dim: rgba(96, 165, 250, 0.12);
+  --lh-primary-glow: rgba(96, 165, 250, 0.2);
+  --lh-secondary: #a78bfa;
+  --lh-secondary-hover: #c4b5fd;
+  --lh-secondary-dim: rgba(167, 139, 250, 0.12);
+  --lh-accent: #5eead4;
+  --lh-warning: #fbbf24;
+  --lh-warning-dim: rgba(251, 191, 36, 0.12);
+  --lh-success: #34d399;
+  --lh-success-dim: rgba(52, 211, 153, 0.12);
+  --lh-danger: #fb7185;
+  --lh-danger-dim: rgba(251, 113, 133, 0.12);
   --lh-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --lh-font-heading: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  --lh-font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --lh-font-mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
   
-  --lh-radius-sm: 4px;
-  --lh-radius-md: 6px;
-  --lh-radius-lg: 8px;
-  --lh-radius-pill: 4px;
-  
-  --lh-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  --lh-card-hover-shadow: 0 0 20px rgba(78, 222, 163, 0.18);
-  
-  --lh-grid-display: block;
+  --lh-radius-sm: 8px;
+  --lh-radius-md: 12px;
+  --lh-radius-lg: 18px;
+  --lh-radius-pill: 9999px;
+  --lh-card-shadow: 0 12px 30px rgba(2, 8, 23, 0.24);
+  --lh-card-hover-shadow: 0 16px 38px rgba(2, 8, 23, 0.34), 0 0 0 1px rgba(96, 165, 250, 0.16);
+  --lh-grid-display: none;
   --lh-hud-display: inline-flex;
   --lh-terminal-bg: #05070A;
-  --lh-terminal-text: #4EDEA3;
+  --lh-terminal-text: #5eead4;
 }
 
 /* ==========================================================================
@@ -139,10 +132,9 @@ body {
 
 body.theme-hacker {
   background-image:
-    radial-gradient(ellipse at 50% 0%, rgba(78, 222, 163, 0.05) 0%, transparent 60%),
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 100% 100%, 48px 48px, 48px 48px;
+    radial-gradient(ellipse at 12% 0%, rgba(96, 165, 250, 0.10) 0%, transparent 42%),
+    radial-gradient(ellipse at 92% 18%, rgba(167, 139, 250, 0.07) 0%, transparent 36%);
+  background-size: 100% 100%;
 }
 
 body.theme-normal {
@@ -192,7 +184,9 @@ body.theme-normal .lh-header {
 }
 
 body.theme-hacker .lh-header {
-  background: rgba(14, 19, 27, 0.95);
+  background: rgba(17, 27, 44, 0.94);
+  border-bottom-color: var(--lh-surface-border);
+  box-shadow: 0 8px 28px rgba(2, 8, 23, 0.2);
 }
 
 .lh-header-inner {
@@ -320,8 +314,8 @@ body.theme-normal .lh-toggle-btn.normal-btn.active {
 body.theme-hacker .lh-toggle-btn.hacker-btn.active {
   background: var(--lh-surface-hover);
   color: var(--lh-primary);
-  border: 1px solid var(--lh-primary);
-  box-shadow: 0 0 10px var(--lh-primary-glow);
+  border: 1px solid rgba(96, 165, 250, 0.42);
+  box-shadow: 0 2px 8px rgba(2, 8, 23, 0.22);
 }
 
 /* Telemetry pill (Hacker view only) */
