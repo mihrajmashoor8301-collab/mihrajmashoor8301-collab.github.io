@@ -105,12 +105,31 @@ create table calion_private.question_attempt_limits (
   primary key(user_id,room_id,question_id)
 );
 
+-- Guest answer checks never award XP. Rate limits use a keyed hash of the
+-- gateway-provided client IP, so the raw address is not persisted.
+create table calion_private.guest_question_attempt_limits (
+  client_fingerprint bytea not null,
+  room_id text not null,
+  question_id text not null,
+  window_started_at timestamptz not null,
+  attempt_count integer not null check (attempt_count between 0 and 10),
+  primary key(client_fingerprint,room_id,question_id)
+);
+create table calion_private.guest_attempt_fingerprint_secret (
+  singleton boolean primary key default true check(singleton),
+  secret bytea not null
+);
+insert into calion_private.guest_attempt_fingerprint_secret(singleton,secret)
+values(true,extensions.gen_random_bytes(32));
+
 alter table calion_private.xp_events enable row level security;
 alter table calion_private.xp_opening_balances enable row level security;
 alter table calion_private.xp_legacy_labs enable row level security;
 alter table calion_private.xp_legacy_achievements enable row level security;
 alter table calion_private.question_answer_keys enable row level security;
 alter table calion_private.question_attempt_limits enable row level security;
+alter table calion_private.guest_question_attempt_limits enable row level security;
+alter table calion_private.guest_attempt_fingerprint_secret enable row level security;
 revoke all on all tables in schema calion_private from public, anon, authenticated;
 revoke all on all sequences in schema calion_private from public, anon, authenticated;
 
@@ -377,6 +396,75 @@ begin
 end;
 $$;
 
+-- Public guest checks retain the learning flow but never create progress, events,
+-- achievements, or XP. Only a correct/incorrect result crosses the API boundary.
+create function public.verify_calion_answer_guest(
+  p_curriculum_id text,p_room_id text,p_question_id text,p_answer text
+) returns jsonb language plpgsql security definer
+set search_path=pg_catalog,public,calion_private,extensions,auth as $$
+declare
+  v_headers jsonb;
+  v_ip text;
+  v_fingerprint bytea;
+  v_attempt_count integer;
+  v_window_started timestamptz;
+  v_correct boolean := false;
+begin
+  if p_curriculum_id is distinct from 'calion-academy-47-v1'
+     or p_room_id !~ '^room-(0[1-9]|[1-3][0-9]|4[0-7])$'
+     or p_question_id !~ '^q-[0-9]{2}-[0-9]+$'
+     or p_answer is null or length(p_answer)>512 then
+    return jsonb_build_object('success',false,'code','invalid_input');
+  end if;
+  if not exists(select 1 from calion_private.question_answer_keys k where k.curriculum_id=p_curriculum_id
+      and k.room_id=p_room_id and k.question_id=p_question_id) then
+    return jsonb_build_object('success',false,'correct',false,'code','incorrect');
+  end if;
+
+  begin
+    v_headers:=nullif(current_setting('request.headers',true),'')::jsonb;
+    v_ip:=coalesce(v_headers->>'cf-connecting-ip',v_headers->>'x-real-ip',
+      split_part(coalesce(v_headers->>'x-forwarded-for',''),',',1));
+    v_ip:=host(btrim(v_ip)::inet);
+  exception when others then
+    return jsonb_build_object('success',false,'correct',false,'code','verification_unavailable');
+  end;
+  select extensions.digest(convert_to(v_ip,'UTF8')||s.secret,'sha256') into v_fingerprint
+  from calion_private.guest_attempt_fingerprint_secret s where s.singleton;
+  if v_fingerprint is null then
+    return jsonb_build_object('success',false,'correct',false,'code','verification_unavailable');
+  end if;
+
+  insert into calion_private.guest_question_attempt_limits(client_fingerprint,room_id,question_id,window_started_at,attempt_count)
+  values(v_fingerprint,p_room_id,p_question_id,clock_timestamp(),0)
+  on conflict(client_fingerprint,room_id,question_id) do nothing;
+  select attempt_count,window_started_at into v_attempt_count,v_window_started
+  from calion_private.guest_question_attempt_limits
+  where client_fingerprint=v_fingerprint and room_id=p_room_id and question_id=p_question_id for update;
+  if v_window_started < clock_timestamp()-interval '1 minute' then
+    update calion_private.guest_question_attempt_limits
+    set window_started_at=clock_timestamp(),attempt_count=0
+    where client_fingerprint=v_fingerprint and room_id=p_room_id and question_id=p_question_id;
+    v_attempt_count:=0;
+  end if;
+  if v_attempt_count>=10 then
+    return jsonb_build_object('success',false,'correct',false,'code','rate_limited');
+  end if;
+  update calion_private.guest_question_attempt_limits set attempt_count=attempt_count+1
+  where client_fingerprint=v_fingerprint and room_id=p_room_id and question_id=p_question_id;
+
+  select exists(
+    select 1 from calion_private.question_answer_keys k
+    where k.curriculum_id=p_curriculum_id and k.room_id=p_room_id and k.question_id=p_question_id
+      and k.answer_digest=extensions.digest(convert_to(
+        (case when k.trim_whitespace then btrim(case when k.case_sensitive then p_answer else lower(p_answer) end)
+              else (case when k.case_sensitive then p_answer else lower(p_answer) end) end)||k.answer_salt,'UTF8'),'sha256')
+  ) into v_correct;
+  return jsonb_build_object('success',v_correct,'correct',v_correct,
+    'code',case when v_correct then 'verified' else 'incorrect' end);
+end;
+$$;
+
 -- Existing lab flag verification remains the only completion gate. A pre-cutover
 -- completed lab is snapshotted above and can never produce a second lab award.
 create or replace function public.verify_lab_flag(p_lab_id text,p_submitted_flag text)
@@ -411,6 +499,8 @@ $$;
 
 revoke all on function public.submit_calion_answer(text,text,text,text) from public,anon;
 grant execute on function public.submit_calion_answer(text,text,text,text) to authenticated;
+revoke all on function public.verify_calion_answer_guest(text,text,text,text) from public;
+grant execute on function public.verify_calion_answer_guest(text,text,text,text) to anon,authenticated;
 revoke all on function public.get_calion_xp_state() from public,anon;
 grant execute on function public.get_calion_xp_state() to authenticated;
 revoke all on function public.verify_lab_flag(text,text) from public,anon;
@@ -425,7 +515,8 @@ revoke all on function calion_private.reject_xp_event_mutation() from public,ano
 revoke all on function calion_private.reject_xp_event_truncate() from public,anon,authenticated;
 revoke all on function public.evaluate_user_milestones(uuid) from public,anon,authenticated;
 
--- Per-answer salted digests are generated from learning-data.js. Plain answer strings are not copied here.
+-- Per-answer salted digests were generated during server-side curriculum authoring.
+-- Plain answer strings and option indexes are not copied into this migration.
 insert into calion_private.question_answer_keys(curriculum_id,room_id,question_id,answer_salt,answer_digest,case_sensitive,trim_whitespace) values
 ('calion-academy-47-v1','room-01','q-01-1','7bb86bc2021deecda3e8e025410c84eb',decode('9a2a0e7790236306238946c0733117ab3b1f471c28501f15c8866d6262776d63','hex'),false,true),
 ('calion-academy-47-v1','room-01','q-01-1','9802d9b8360f93e7c0c9eeef60572978',decode('6167d1cee33b31a052e1cf6c3a5f196bc3679cc83cf0bdb4fe107bab97fb5906','hex'),false,true),

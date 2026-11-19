@@ -4,6 +4,13 @@ Audit target: linked Supabase project **CALION LEARNING / production**. All data
 
 ## Findings
 
+## Final read-only progress reread
+
+A later read-only query in this review found **8** `room_progress` rows, all completed: `room-01` through `room-07`, plus `room-11`. This supersedes the earlier five-row snapshot and its room-04 in-progress status above; that earlier snapshot remains in the historical section for provenance only. The reconciliation migration and its tests now use the later exact state and fingerprint `6dfbf291e77c51eef66de9a6c6144d48`.
+
+The three additional rows are `room-05` (legacy title: Programs, Processes & Background Services; current title: Linux Fundamentals), `room-06` (Operating Systems & User Permissions; current title: Windows Fundamentals), and `room-07` (Introduction to Linux & The Command Line; current title: Command-Line Fundamentals). Production stores no lesson objectives or question content for the historical curriculum, and the current IDs do not prove topic equivalence. Preserve all three as legacy progress without transferring completion credit. This conservative decision avoids attributing historical work to current rooms without objective-level evidence.
+
+
 - Application source `learning-data.js` has 47 rooms in four paths: Pre-Security 10, Cyber Security Foundations 10, Defensive Security 12, Offensive Security 15.
 - Production has 45 room rows. IDs `room-01` through `room-45` exist; `room-46` and `room-47` are missing. There are no extra room IDs.
 - All 45 production room rows are assigned to `pre-security`. All 45 titles differ from the authoritative title at the same stable room ID. The DB question threshold also differs on 41/45 existing rows (DB has 2 questions, app curriculum has 3 on every room). No remapping based on old topic names was inferred.

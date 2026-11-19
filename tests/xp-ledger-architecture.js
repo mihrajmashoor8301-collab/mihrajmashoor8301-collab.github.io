@@ -9,7 +9,6 @@ const roomPage = fs.readFileSync(path.join(__dirname, '../room.html'), 'utf8');
 const syncSource = fs.readFileSync(path.join(__dirname, '../academy-sync.js'), 'utf8');
 const navSource = fs.readFileSync(path.join(__dirname, '../academy-nav.js'), 'utf8');
 const { CALION_ROOMS } = require('../learning-data.js');
-const crypto = require('node:crypto');
 
 assert.equal(CALION_ROOMS.length, 47);
 assert.equal(CALION_ROOMS.reduce((n, r) => n + r.questions.length, 0), 141);
@@ -26,7 +25,8 @@ assert(migration.includes("p_curriculum_id is distinct from 'calion-academy-47-v
 assert(migration.includes("event_type='question'" ) && migration.includes('count(*),coalesce(jsonb_agg(source_id'), 'room completion uses verified question events');
 assert(migration.includes('pg_advisory_xact_lock'), 'room-finalization races are serialized');
 assert(migration.includes('for update'), 'profile award updates serialize for a learner');
-assert(migration.includes('answer_digest=digest(convert_to'), 'answers are verified against private salted digests');
+assert(migration.includes('answer_digest=extensions.digest(convert_to'), 'answers are verified against private salted digests');
+assert(migration.includes('public.verify_calion_answer_guest'), 'guests use a server verifier without XP awards');
 assert(migration.includes('room_xp_awarded'), 'server response reports whether room XP was newly awarded');
 assert(migration.includes("v_attempt_count>=10") && migration.includes("interval '1 minute'"), 'question RPC limits brute-force retries per learner/question');
 assert(migration.includes('xp_events_no_update_delete') && migration.includes('xp_events_no_truncate'), 'ledger is append-only');
@@ -40,27 +40,18 @@ assert(!/update\s+public\.profiles\s+set\s+total_xp\s*=\s*\(/i.test(migration), 
 assert(migration.toLowerCase().includes('initial rollout must not create xp events'));
 assert(migration.includes('calion_xp_profile_rollout_snapshot') && migration.includes('profiles.total_xp changed during XP ledger installation'));
 assert.equal((migration.match(/\('calion-academy-47-v1','room-\d\d','q-\d\d-\d+'/g) || []).length, 205, 'answer alias hashes cover seeded current questions');
-assert(!/insert into calion_private\.question_answer_keys[^;]*acceptedAnswers/is.test(migration));
+assert(!/acceptedAnswers|correctIndex|expectedAnswer|answerKey/i.test(migration), 'migration carries no plaintext answer values or correct indexes');
 const questionMap = new Map(CALION_ROOMS.flatMap(room => room.questions.map(q => [`${room.id}:${q.id}`, q])));
 const digestRows = [...migration.matchAll(/\('calion-academy-47-v1','(room-\d\d)','(q-\d\d-\d+)','([a-f0-9]{32})',decode\('([a-f0-9]{64})','hex'\),(true|false),(true|false)\)/g)];
 assert.equal(digestRows.length, 205);
-for (const row of digestRows) {
-  const [,roomId,questionId,salt,digest,caseSensitive,trimWhitespace] = row;
+for (const [,roomId,questionId] of digestRows) {
   const q = questionMap.get(`${roomId}:${questionId}`);
   assert(q, `seed includes known question ${roomId}:${questionId}`);
-  assert.equal(String(q.caseSensitive === true), caseSensitive);
-  assert.equal(String(q.trimWhitespace !== false), trimWhitespace);
-  const answers = q.type === 'exact' ? q.acceptedAnswers : [q.options[q.correctIndex]];
-  assert(answers.some(answer => {
-    let value = String(answer);
-    if (q.trimWhitespace !== false) value=value.trim();
-    if (!q.caseSensitive) value=value.toLowerCase();
-    return crypto.createHash('sha256').update(value+salt,'utf8').digest('hex')===digest;
-  }), `salted digest corresponds to accepted answer ${roomId}:${questionId}`);
+  assert(!Object.hasOwn(q, 'acceptedAnswers') && !Object.hasOwn(q, 'correctIndex'));
 }
 assert(proposal.includes('opening_balance` is captured from the exact `profiles.total_xp`'));
 assert(proposal.includes('A guest without an authenticated Supabase identity'));
-assert(clientSource.includes("code: 'practice_only_guest'"));
+assert(clientSource.includes("'verify_calion_answer_guest'"));
 assert(roomPage.includes('<script src="academy-xp-client.js"></script>'));
 assert(roomPage.includes('AcademyXP.submitAnswer({'), 'authenticated lesson answers use the server verifier');
 assert(roomPage.includes('if (authenticatedLearner && !serverVerified) return'), 'room completion requires server-confirmed current progress');
@@ -75,9 +66,14 @@ assert(!/xp_amount|xpAwardAmount|awardXp\(/i.test(clientSource), 'client cannot 
 
 const xpClient = require('../academy-xp-client.js');
 (async () => {
-  global.window = { AcademyAuth: { isAuthenticated: () => false } };
+  let guestRpc;
+  global.window = { AcademyAuth: {
+    isAuthenticated: () => false,
+    getClient: () => ({ rpc: async (name, args) => { guestRpc = { name, args }; return { data: { success: true, correct: true, code: 'verified' }, error: null }; } })
+  } };
   const guest = await xpClient.submitAnswer({ roomId: 'room-01', questionId: 'q-01-1', answer: 'IP' });
-  assert.equal(guest.code, 'practice_only_guest', 'guest requests cannot create server XP');
+  assert.equal(guestRpc.name, 'verify_calion_answer_guest', 'guest correctness is checked server-side');
+  assert.equal(guest.correct, true);
   assert.equal(guest.xpAwarded, 0);
   let rpcArgs;
   global.window = { AcademyAuth: {
@@ -95,7 +91,7 @@ const xpClient = require('../academy-xp-client.js');
 const ledger = new Map();
 let balance = 250;
 let queue = Promise.resolve();
-const protectedAnswers = new Map([['room-01:q-01-1', new Set(['instruction pointer','program counter','rip','eip','pc'])]]);
+const protectedAnswers = new Map([['room-01:q-01-1', new Set(['sample answer'])]]);
 async function award(key, amount) {
   let result;
   queue = queue.then(() => {
@@ -115,8 +111,8 @@ async function submitAnswer(userId, curriculumId, roomId, questionId, answer) {
   assert.deepEqual(await submitAnswer(null,'calion-academy-47-v1','room-01','q-01-1','IP'),{correct:false,xp:0},'unauthorized requests cannot earn XP');
   assert.deepEqual(await submitAnswer('u1','calion-legacy-45-v1','room-01','q-01-1','IP'),{correct:false,xp:0},'legacy curriculum answer cannot earn XP');
   assert.deepEqual(await submitAnswer('u1','calion-academy-47-v1','room-01','q-01-1','wrong'),{correct:false,xp:0},'invalid answer cannot earn XP');
-  assert.deepEqual(await submitAnswer('u1','calion-academy-47-v1','room-01','q-01-1','RIP'),{correct:true,xp:25});
-  assert.deepEqual(await submitAnswer('u1','calion-academy-47-v1','room-01','q-01-1','RIP'),{correct:true,xp:0},'question retry awards no duplicate XP');
+  assert.deepEqual(await submitAnswer('u1','calion-academy-47-v1','room-01','q-01-1','SAMPLE ANSWER'),{correct:true,xp:25});
+  assert.deepEqual(await submitAnswer('u1','calion-academy-47-v1','room-01','q-01-1','sample answer'),{correct:true,xp:0},'question retry awards no duplicate XP');
   const [roomA, roomB] = await Promise.all([award('room:v1:room-01', 50), award('room:v1:room-01', 50)]);
   assert.equal([roomA.inserted, roomB.inserted].filter(Boolean).length, 1, 'duplicate room award is once-only');
   const questions = await Promise.all(Array.from({ length: 20 }, () => award('question:v1:room-01:q-01-2', 25)));

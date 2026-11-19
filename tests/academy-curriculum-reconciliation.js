@@ -55,7 +55,7 @@ assert(!/update\s+public\.room_progress[^;]*status\s*=/is.test(migration), 'migr
 assert(migration.includes("req_questions:=coalesce(new.legacy_room_total_questions,2)"), 'legacy completion must use its old threshold');
 assert(migration.includes("rp.curriculum_id='calion-academy-47-v1'"), 'new room awards must require current curriculum progress');
 assert(migration.includes('pre_security_total=10 and pre_security_completed=10'), 'graduation requires all 10 actual Pre-Security rooms');
-assert(migration.includes('The audited five-row progress set changed'), 'migration must stop if production progress changes after audit');
+assert(migration.includes('The audited eight-row progress set changed'), 'migration must stop if production progress changes after audit');
 assert(!/update\s+public\.profiles/i.test(migration), 'curriculum migration must never recalculate profile XP');
 assert(migration.includes('calion_reconcile_profiles_snapshot'), 'migration must compare opening XP before and after');
 assert(migration.includes('Profile XP changed during curriculum reconciliation'), 'XP drift must abort the transaction');

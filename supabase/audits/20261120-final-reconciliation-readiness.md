@@ -16,7 +16,7 @@ This is still a proposal, not an installed ledger or authoritative answer-verifi
 
 ## Blocker 2 — migration drift protection
 
-`supabase/migrations/202611200001_calion_four_path_reconciliation.sql` starts a transaction and takes `SHARE ROW EXCLUSIVE` locks before checking the baseline. It fails closed unless it sees the audited room IDs/metadata, path metadata, five room-progress states, empty task progress, relevant columns, 39 constraints/indexes, trigger function source, two enabled trigger definitions, and achievement catalog/threshold. Fingerprints were captured read-only from production on 2026-11-19 and are embedded as explicit equality checks. Unexpected changes abort instead of being upserted over.
+`supabase/migrations/202611200001_calion_four_path_reconciliation.sql` starts a transaction and takes `SHARE ROW EXCLUSIVE` locks before checking the baseline. It fails closed unless it sees the audited room IDs/metadata, path metadata, eight room-progress states, empty task progress, relevant columns, 39 constraints/indexes, trigger function source, two enabled trigger definitions, and achievement catalog/threshold. Fingerprints were captured read-only from production on 2026-11-19 and are embedded as explicit equality checks. Unexpected changes abort instead of being upserted over.
 
 The migration snapshots profiles, room progress, task progress, and achievements, then verifies the exact snapshots after reconciliation. It does not assign `status`, `progress_pct`, answers, progress timestamps, profile XP, or achievement rows. Existing progress rows and room IDs/FKs are retained; their same-ID historical topics are versioned as legacy and receive no current completion credit. The catalog assertion requires 47 rooms split 10/10/12/15.
 
@@ -43,7 +43,7 @@ Read-only CLI target: linked Supabase project `CALION LEARNING` (production).
 |---|---:|---|
 | Existing rooms | 45 rows | `102a55759ea05d5fff4681472d8e9afb` |
 | Learning paths | 3 rows | `e3f21808e2ee78a31b633dbf8ef0ac15` |
-| Room progress | 5 rows (4 completed, 1 in progress) | `4be8f5504b133bf0440d11c0756404bb` |
+| Room progress | 8 rows (8 completed, 0 in progress) | `6dfbf291e77c51eef66de9a6c6144d48` |
 | Task progress | 0 rows | `d41d8cd98f00b204e9800998ecf8427e` |
 | Relevant public columns | 40 | `b45d4c16160624d89c4ddd0d2f862e1b` |
 | Relevant constraints/indexes | 39 | `92847896992f7e999f5bc1ffa6d071a9` |

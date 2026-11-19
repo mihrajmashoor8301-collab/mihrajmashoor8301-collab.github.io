@@ -865,7 +865,7 @@
                   ${q.visualSlots ? `
                     <div class="flex flex-wrap items-center gap-2 font-mono text-xs text-sky-600 dark:text-sky-400 font-bold tracking-widest bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 w-fit">
                       <span class="text-slate-500 font-sans uppercase text-[10px] tracking-normal">Pattern:</span>
-                      <span class="text-slate-900 dark:text-white font-mono select-none">${escapeHtml(AcademyState.formatAnswerMask(q))}</span>
+                      <span class="text-slate-900 dark:text-white font-mono select-none">${escapeHtml(q.visualSlots)}</span>
                       ${q.answerLength ? `<span class="text-slate-400 font-sans text-[11px] font-normal">(${q.answerLength} chars)</span>` : ''}
                     </div>
                   ` : ''}
@@ -881,7 +881,7 @@
                 <div class="space-y-2 font-mono text-xs" role="radiogroup" aria-label="Question ${qIdx + 1} Options">
                   ${(q.options || []).map((opt, optIdx) => `
                     <label class="flex items-start gap-2.5 p-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800/60 hover:border-sky-500/50 cursor-pointer transition-colors">
-                      <input type="radio" name="q-option-${qIdx}" value="${optIdx}" class="mt-0.5 accent-sky-600" ${isSolved && optIdx === q.correctIndex ? 'checked' : ''} ${isSolved ? 'disabled' : ''}/>
+                      <input type="radio" name="q-option-${qIdx}" value="${optIdx}" class="mt-0.5 accent-sky-600" ${isSolved ? 'disabled' : ''}/>
                       <span class="text-slate-800 dark:text-slate-200">${escapeHtml(opt)}</span>
                     </label>
                   `).join('')}
@@ -1042,38 +1042,29 @@
         }
 
         try {
-          if (authenticatedLearner) {
-            if (!window.AcademyXP || typeof AcademyXP.submitAnswer !== 'function') {
-              serverCheckFailed = true;
+          if (!window.AcademyXP || typeof AcademyXP.submitAnswer !== 'function') {
+            serverCheckFailed = true;
+          } else {
+            const checked = await AcademyXP.submitAnswer({
+              roomId: room.id,
+              questionId: q.id,
+              answer: q.type === 'exact' ? userInput : selectedOption
+            });
+            if (checked && checked.code === 'rate_limited') {
+              rateLimited = true;
             } else {
-              const checked = await AcademyXP.submitAnswer({
-                roomId: room.id,
-                questionId: q.id,
-                answer: q.type === 'exact' ? userInput : selectedOption
-              });
-              if (checked && checked.code === 'rate_limited') {
-                rateLimited = true;
-              } else {
-                isCorrect = Boolean(checked && checked.success && checked.correct);
-                verifiedAward = Number(checked && checked.xpAwarded) || 0;
-                verifiedRoomAward = Number(checked && checked.roomXpAwarded) || 0;
-                serverRoomCompleted = Boolean(checked && checked.room_completed);
-                serverCheckFailed = !checked || ['server_error','practice_only_guest'].includes(checked.code);
-                if (checked && Number.isFinite(checked.totalXP)) {
-                  AcademyState.safeSet(AcademyState.KEYS.XP, checked.totalXP);
-                  const prof = window.AcademyAuth?.getProfile?.();
-                  if (prof) prof.total_xp = checked.totalXP;
-                  if (window.CalionAcademy?.syncHeaderStats) {
-                    window.CalionAcademy.syncHeaderStats();
-                  }
-                }
+              isCorrect = Boolean(checked && checked.success && checked.correct);
+              verifiedAward = Number(checked && checked.xpAwarded) || 0;
+              verifiedRoomAward = Number(checked && checked.roomXpAwarded) || 0;
+              serverRoomCompleted = Boolean(checked && checked.room_completed);
+              serverCheckFailed = !checked || ['server_error','practice_only_guest','verification_unavailable'].includes(checked.code);
+              if (authenticatedLearner && checked && Number.isFinite(checked.totalXP)) {
+                AcademyState.safeSet(AcademyState.KEYS.XP, checked.totalXP);
+                const prof = window.AcademyAuth?.getProfile?.();
+                if (prof) prof.total_xp = checked.totalXP;
+                if (window.CalionAcademy?.syncHeaderStats) window.CalionAcademy.syncHeaderStats();
               }
             }
-          } else {
-            // Local guest practice is provisional and never writes authoritative XP.
-            isCorrect = q.type === 'exact'
-              ? AcademyState.validateAnswer(q, userInput)
-              : selectedOption === q.options[q.correctIndex];
           }
         } finally {
           if (submitBtn) {

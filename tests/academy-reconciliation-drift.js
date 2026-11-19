@@ -8,7 +8,7 @@ const preflight = fs.readFileSync(path.join(__dirname, '../supabase/audits/20261
 const expectedFingerprints = [
   '102a55759ea05d5fff4681472d8e9afb', // all 45 room rows and metadata, including created_at
   'e3f21808e2ee78a31b633dbf8ef0ac15', // all path rows and metadata, including created_at
-  '4be8f5504b133bf0440d11c0756404bb', // five progress records and state
+  '6dfbf291e77c51eef66de9a6c6144d48', // final read-only reread: eight completed records
   'd41d8cd98f00b204e9800998ecf8427e', // empty task_progress table
   'b45d4c16160624d89c4ddd0d2f862e1b', // relevant schema columns
   '92847896992f7e999f5bc1ffa6d071a9', // constraints and indexes

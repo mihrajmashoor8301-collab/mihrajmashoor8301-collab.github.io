@@ -37,7 +37,7 @@ where table_schema='public' and table_name in
 with objects as (
   select 'constraint'::text as kind,conrelid::regclass::text as relation,conname as name,
          pg_get_constraintdef(oid) as definition
-  from pg_constraint where connamespace='public'::regnamespace and conrelid in
+  from pg_constraint where connamespace='public'::regnamespace and contype<>'n' and conrelid in
     ('public.learning_paths'::regclass,'public.rooms'::regclass,'public.room_progress'::regclass,
      'public.task_progress'::regclass,'public.achievements'::regclass)
   union all

@@ -918,7 +918,7 @@
                                 ${q.visualSlots ? `
                                   <div class="flex items-center gap-2 font-mono text-xs text-primary font-bold tracking-widest bg-surface-subtle px-3 py-1.5 rounded-lg border border-border-hairline w-fit">
                                     <span class="text-outline uppercase text-[10px] tracking-normal font-sans">Pattern:</span>
-                                    <span class="text-on-surface font-mono select-none">${escapeHtml(AcademyState.formatAnswerMask(q))}</span>
+                                    <span class="text-on-surface font-mono select-none">${escapeHtml(q.visualSlots)}</span>
                                     ${q.answerLength ? `<span class="text-outline font-sans text-[11px] font-normal">(${q.answerLength} chars)</span>` : ''}
                                   </div>
                                 ` : ''}
@@ -934,7 +934,7 @@
                               <div class="space-y-2 font-mono text-xs" role="radiogroup" aria-label="Question ${origIdx + 1} Options">
                                 ${(q.options || []).map((opt, optIdx) => `
                                   <label class="flex items-start gap-2.5 p-2.5 rounded-lg border border-border-hairline bg-surface-subtle hover:border-primary/50 cursor-pointer transition-colors">
-                                    <input type="radio" name="q-option-${origIdx}" value="${optIdx}" class="mt-0.5 accent-primary" ${isSolved && optIdx === q.correctIndex ? 'checked' : ''} ${isSolved ? 'disabled' : ''}/>
+                                    <input type="radio" name="q-option-${origIdx}" value="${optIdx}" class="mt-0.5 accent-primary" ${isSolved ? 'disabled' : ''}/>
                                     <span class="text-on-surface">${escapeHtml(opt)}</span>
                                   </label>
                                 `).join('')}
@@ -1099,7 +1099,7 @@
                         ${capstoneQ.visualSlots ? `
                           <div class="flex items-center gap-2 font-mono text-xs text-primary font-bold tracking-widest bg-surface-subtle px-3 py-1.5 rounded-lg border border-border-hairline w-fit">
                             <span class="text-outline uppercase text-[10px] tracking-normal font-sans">Pattern:</span>
-                            <span class="text-on-surface font-mono select-none">${escapeHtml(AcademyState.formatAnswerMask(capstoneQ))}</span>
+                            <span class="text-on-surface font-mono select-none">${escapeHtml(capstoneQ.visualSlots)}</span>
                             ${capstoneQ.answerLength ? `<span class="text-outline font-sans text-[11px] font-normal">(${capstoneQ.answerLength} chars)</span>` : ''}
                           </div>
                         ` : ''}
@@ -1115,7 +1115,7 @@
                       <div class="space-y-2 font-mono text-xs" role="radiogroup" aria-label="Capstone Options">
                         ${(capstoneQ.options || []).map((opt, optIdx) => `
                           <label class="flex items-start gap-2.5 p-2.5 rounded-lg border border-border-hairline bg-surface-subtle hover:border-primary/50 cursor-pointer transition-colors">
-                            <input type="radio" name="q-option-${capstoneIdx}" value="${optIdx}" class="mt-0.5 accent-primary" ${isCapstoneSolved && optIdx === capstoneQ.correctIndex ? 'checked' : ''} ${isCapstoneSolved ? 'disabled' : ''}/>
+                            <input type="radio" name="q-option-${capstoneIdx}" value="${optIdx}" class="mt-0.5 accent-primary" ${isCapstoneSolved ? 'disabled' : ''}/>
                             <span class="text-on-surface">${escapeHtml(opt)}</span>
                           </label>
                         `).join('')}
@@ -1383,6 +1383,7 @@
         let verifiedRoomAward = 0;
         let serverRoomCompleted = false;
         let serverCheckFailed = false;
+        const authenticatedLearner = Boolean(window.AcademyAuth && AcademyAuth.isAuthenticated && AcademyAuth.isAuthenticated());
 
         const feedbackEl = document.getElementById(`q-feedback-${idx}`);
         const qCardEl = document.getElementById(`q-card-${idx}`);
@@ -1432,48 +1433,39 @@
         }
 
         try {
-          if (window.AcademyAuth && AcademyAuth.isAuthenticated && AcademyAuth.isAuthenticated()) {
-            if (!window.AcademyXP || typeof AcademyXP.submitAnswer !== 'function') {
-              serverCheckFailed = true;
-            } else {
-              const checked = await AcademyXP.submitAnswer({
-                roomId: room.id,
-                questionId: q.id,
-                answer: q.type === 'exact' ? userInput : selectedOption
-              });
-              if (checked && checked.code === 'rate_limited') {
-                if (feedbackEl) {
-                  feedbackEl.classList.remove('hidden');
-                  feedbackEl.className = 'p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-700 dark:text-amber-300 text-xs font-mono block';
-                  feedbackEl.innerHTML = `
-                    <div class="flex items-center gap-1.5 font-bold mb-0.5">
-                      <span class="material-symbols-outlined text-sm">hourglass_top</span>
-                      <span>Rate Limited</span>
-                    </div>
-                    <p class="font-sans">Too many attempts. Please wait 1 minute before retrying.</p>
-                  `;
-                }
-                return;
-              }
-              isCorrect = Boolean(checked && checked.success && checked.correct);
-              verifiedAward = Number(checked && checked.xpAwarded) || 0;
-              verifiedRoomAward = Number(checked && checked.roomXpAwarded) || 0;
-              serverRoomCompleted = Boolean(checked && checked.room_completed);
-              serverCheckFailed = !checked || ['server_error','practice_only_guest'].includes(checked.code);
-              if (checked && Number.isFinite(checked.totalXP)) {
-                AcademyState.safeSet(AcademyState.KEYS.XP, checked.totalXP);
-                const prof = window.AcademyAuth?.getProfile?.();
-                if (prof) prof.total_xp = checked.totalXP;
-                if (window.CalionAcademy?.syncHeaderStats) {
-                  window.CalionAcademy.syncHeaderStats();
-                }
-              }
-            }
+          if (!window.AcademyXP || typeof AcademyXP.submitAnswer !== 'function') {
+            serverCheckFailed = true;
           } else {
-            // Local guest practice is provisional and never writes authoritative XP.
-            isCorrect = q.type === 'exact'
-              ? AcademyState.validateAnswer(q, userInput)
-              : selectedOption === q.options[q.correctIndex];
+            const checked = await AcademyXP.submitAnswer({
+              roomId: room.id,
+              questionId: q.id,
+              answer: q.type === 'exact' ? userInput : selectedOption
+            });
+            if (checked && checked.code === 'rate_limited') {
+              if (feedbackEl) {
+                feedbackEl.classList.remove('hidden');
+                feedbackEl.className = 'p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-700 dark:text-amber-300 text-xs font-mono block';
+                feedbackEl.innerHTML = `
+                  <div class="flex items-center gap-1.5 font-bold mb-0.5">
+                    <span class="material-symbols-outlined text-sm">hourglass_top</span>
+                    <span>Rate Limited</span>
+                  </div>
+                  <p class="font-sans">Too many attempts. Please wait 1 minute before retrying.</p>
+                `;
+              }
+              return;
+            }
+            isCorrect = Boolean(checked && checked.success && checked.correct);
+            verifiedAward = Number(checked && checked.xpAwarded) || 0;
+            verifiedRoomAward = Number(checked && checked.roomXpAwarded) || 0;
+            serverRoomCompleted = Boolean(checked && checked.room_completed);
+            serverCheckFailed = !checked || ['server_error','practice_only_guest','verification_unavailable'].includes(checked.code);
+            if (authenticatedLearner && checked && Number.isFinite(checked.totalXP)) {
+              AcademyState.safeSet(AcademyState.KEYS.XP, checked.totalXP);
+              const prof = window.AcademyAuth?.getProfile?.();
+              if (prof) prof.total_xp = checked.totalXP;
+              if (window.CalionAcademy?.syncHeaderStats) window.CalionAcademy.syncHeaderStats();
+            }
           }
         } finally {
           if (submitBtn) {
@@ -1493,7 +1485,6 @@
         }
 
         if (isCorrect) {
-          const isAuthenticatedLearner = Boolean(window.AcademyAuth && AcademyAuth.isAuthenticated && AcademyAuth.isAuthenticated());
           if (window.CalionSound) {
             window.CalionSound.playCorrect();
             window.CalionSound.triggerVisualFeedback(qCardEl || feedbackEl, true);
@@ -1513,12 +1504,12 @@
           }
 
           if (feedbackEl) {
-            const xpAwardedForDisplay = isAuthenticatedLearner ? verifiedAward : res.xp;
+            const xpAwardedForDisplay = authenticatedLearner ? verifiedAward : res.xp;
             feedbackEl.className = 'p-3 rounded-lg bg-primary/10 border border-primary/30 text-on-surface text-xs font-mono block calion-feedback-correct';
             feedbackEl.innerHTML = `
               <div class="flex items-center gap-1.5 text-primary font-bold mb-0.5">
                 <span class="material-symbols-outlined text-sm">check_circle</span>
-                <span>Correct! ${xpAwardedForDisplay > 0 ? `(+${xpAwardedForDisplay} ${isAuthenticatedLearner ? 'XP Awarded' : 'practice XP'})` : ''}</span>
+                <span>Correct! ${xpAwardedForDisplay > 0 ? `(+${xpAwardedForDisplay} ${authenticatedLearner ? 'XP Awarded' : 'practice XP'})` : ''}</span>
               </div>
               <p class="text-on-surface-variant font-sans">${escapeHtml(q.explanation || 'Well done! Answer verified.')}</p>
             `;

@@ -28,21 +28,22 @@ begin
   ) then
     raise exception 'Progress version column already exists; stop and audit partial or changed schema';
   end if;
-  if (select count(*) from public.room_progress)<>5
-     or (select count(distinct room_id) from public.room_progress)<>5
-     or exists (select 1 from public.room_progress where room_id not in ('room-01','room-02','room-03','room-04','room-11'))
+  if (select count(*) from public.room_progress)<>8
+     or (select count(distinct room_id) from public.room_progress)<>8
+     or exists (select 1 from public.room_progress where room_id not in ('room-01','room-02','room-03','room-04','room-05','room-06','room-07','room-11'))
      or exists (select 1 from public.room_progress where status not in ('completed','in_progress')) then
-    raise exception 'The audited five-row progress set changed; refresh the historical review before reconciling';
+    raise exception 'The audited eight-row progress set changed; refresh the historical review before reconciling';
   end if;
-  if (select count(*) from public.room_progress where status='completed')<>4
-     or (select count(*) from public.room_progress where status='in_progress')<>1 then
+  if (select count(*) from public.room_progress where status='completed')<>8
+     or (select count(*) from public.room_progress where status='in_progress')<>0 then
     raise exception 'Progress state differs from the reviewed baseline; refresh checksums and review';
   end if;
   if exists (
     select 1
     from (values
       ('room-01','completed'),('room-02','completed'),('room-03','completed'),
-      ('room-04','in_progress'),('room-11','completed')
+      ('room-04','completed'),('room-05','completed'),('room-06','completed'),
+      ('room-07','completed'),('room-11','completed')
     ) expected(room_id,status)
     left join public.room_progress rp on rp.room_id=expected.room_id
     where rp.id is null or rp.status<>expected.status
@@ -59,7 +60,7 @@ begin
      or (select md5(coalesce(string_agg(concat_ws(E'\x1f',id,title,description,coalesce(badge_icon,''),display_order::text,is_active::text,created_at::text),'|' order by id),'')) from public.learning_paths)<>'e3f21808e2ee78a31b633dbf8ef0ac15' then
     raise exception 'Learning path catalog differs from the reviewed production baseline';
   end if;
-  if (select md5(coalesce(string_agg(concat_ws(E'\x1f',user_id::text,room_id,status,progress_pct::text,questions_solved::text,started_at::text,coalesce(completed_at::text,''),last_accessed_at::text),'|' order by user_id,room_id),'')) from public.room_progress)<>'4be8f5504b133bf0440d11c0756404bb' then
+  if (select md5(coalesce(string_agg(concat_ws(E'\x1f',user_id::text,room_id,status,progress_pct::text,questions_solved::text,started_at::text,coalesce(completed_at::text,''),last_accessed_at::text),'|' order by user_id,room_id),'')) from public.room_progress)<>'6dfbf291e77c51eef66de9a6c6144d48' then
     raise exception 'Room progress differs from the reviewed row-state baseline';
   end if;
   if (select count(*) from public.task_progress)<>0
@@ -72,7 +73,7 @@ begin
   end if;
   if (select count(*) from (
         select conrelid::regclass::text as relation,conname as name,pg_get_constraintdef(oid) as definition
-        from pg_constraint where connamespace='public'::regnamespace and conrelid in
+        from pg_constraint where connamespace='public'::regnamespace and contype<>'n' and conrelid in
           ('public.learning_paths'::regclass,'public.rooms'::regclass,'public.room_progress'::regclass,'public.task_progress'::regclass,'public.achievements'::regclass)
         union all
         select schemaname||'.'||tablename,indexname,indexdef
@@ -80,7 +81,7 @@ begin
       ) objects)<>39
      or (with objects as (
         select 'constraint'::text as kind,conrelid::regclass::text as relation,conname as name,pg_get_constraintdef(oid) as definition
-        from pg_constraint where connamespace='public'::regnamespace and conrelid in
+        from pg_constraint where connamespace='public'::regnamespace and contype<>'n' and conrelid in
           ('public.learning_paths'::regclass,'public.rooms'::regclass,'public.room_progress'::regclass,'public.task_progress'::regclass,'public.achievements'::regclass)
         union all
         select 'index',schemaname||'.'||tablename,indexname,indexdef
